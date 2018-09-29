@@ -32,3 +32,13 @@ func create_trail(pos):
 	trail.position = pos
 	last_trail_pos = trail.position
 	map.add_child(trail)
+
+func _on_Area2D_area_exited(area):
+	var _trail = area.get_parent()
+	if _trail.is_in_group('trail'):
+		_trail.can_collide = true
+
+func _on_Area2D_area_entered(area):
+	var _trail = area.get_parent()
+	if _trail.is_in_group('trail') and _trail.can_collide:
+		self.queue_free()
