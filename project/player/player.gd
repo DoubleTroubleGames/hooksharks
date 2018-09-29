@@ -115,16 +115,19 @@ func _input(event):
 		hook = null
 
 func dive():
-	var timer = Timer.new()
 	can_dive = false
 	diving = true
-	timer.wait_time = dive_duration
-	area.visible = false
-	timer.connect('timeout', self, 'emerge')
+	$Sprite/AnimationPlayer.play("dive")
+	var timer = Timer.new()
+	timer.wait_time = $Sprite/AnimationPlayer.current_animation_length
 	timer.start()
 	self.add_child(timer)
+	timer.connect("timeout",self,"emerge",[timer])
+	
 
-func emerge():
+func emerge(_timer):
+	_timer.queue_free()
+	$Sprite/AnimationPlayer.play("walk")
 	var timer = Timer.new()
 	diving = false
 	timer.wait_time = dive_cooldown
