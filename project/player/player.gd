@@ -7,7 +7,7 @@ onready var map = get_parent()
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
 
-var speed = 200
+var speed = 100
 var dir
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -15,14 +15,15 @@ var diving = false
 var can_dive = true
 var dive_cooldown = 3
 var dive_duration = 1
+var stunned = false
 
 func _ready():
 	dir = Vector2(1, 0)
 
 func _physics_process(delta):
-	if Input.is_action_pressed('ui_right'):
+	if Input.is_action_pressed('ui_right') and not stunned:
 		dir = dir.rotated(ROT_SPEED * delta)
-	if Input.is_action_pressed('ui_left'):
+	if Input.is_action_pressed('ui_left') and not stunned:
 		dir = dir.rotated(-ROT_SPEED * delta)
 	
 	self.position += dir * speed * delta
@@ -48,9 +49,22 @@ func _on_Area2D_area_entered(area):
 	if _trail.is_in_group('trail') and _trail.can_collide and not diving:
 		self.queue_free()
 
+func hook_collision():
+	var timer = Timer.new()
+	timer.wait_time = 2
+	timer.start()
+	self.add_child(timer)
+	timer.connect('timeout', self, 'end_stun')
+	stunned = true
+
+func end_stun():
+	stunned = false
+
 func _input(event):
 	if event.is_action_pressed('ui_accept') and can_dive:
 		dive()
+	if event.is_action_pressed('shoot') and !diving:
+		map.create_hook(self)
 
 func dive():
 	var timer = Timer.new()

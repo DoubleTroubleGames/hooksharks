@@ -1,6 +1,8 @@
 [gd_scene format=2]
 
-[node name="Walls" type="Node2D" index="0"]
+[node name="Walls" type="Node2D" groups=[
+"wall",
+]]
 
 [node name="Left" type="Area2D" parent="." index="0"]
 
