@@ -2,14 +2,15 @@
 
 [ext_resource path="res://wall/obstacle.gd" type="Script" id=1]
 
-[node name="Obstacle" type="Sprite" groups=[
+[node name="Obstacle" type="Node2D" groups=[
 "wall",
 ]]
 
 script = ExtResource( 1 )
-extents = Vector2( 30, 30 )
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -19,6 +20,9 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array(  )
 
 
