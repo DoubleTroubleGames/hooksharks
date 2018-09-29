@@ -7,7 +7,7 @@ onready var map = get_parent()
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
 
-var speed = 100
+var speed = 200
 var dir
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -22,17 +22,22 @@ func _ready():
 	dir = Vector2(1, 0)
 
 func _physics_process(delta):
+	var applying_force = Vector2(0, 0)
 	if Input.is_action_pressed('ui_right') and not stunned:
 		dir = dir.rotated(ROT_SPEED * delta)
 	if Input.is_action_pressed('ui_left') and not stunned:
 		dir = dir.rotated(-ROT_SPEED * delta)
 	
-	self.position += dir * speed * delta
+	if hook != null and hook.has_collided:
+		applying_force = hook.rope.get_applying_force()
+	
+	self.position += (dir + applying_force) * speed * delta
 	sprite.rotation = dir.angle()
 	area.rotation = dir.angle()
 	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
+	
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
