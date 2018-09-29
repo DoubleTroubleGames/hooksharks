@@ -7,7 +7,7 @@
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://wall/wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://wall/obstacle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/tetos/teto_03.png" type="Texture" id=8]
+[ext_resource path="res://assets/caixas_01.png" type="Texture" id=8]
 [ext_resource path="res://round_manager.gd" type="Script" id=9]
 
 [sub_resource type="Shader" id=1]
@@ -43,7 +43,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -101,9 +101,14 @@ _sections_unfolded = [ "Material" ]
 
 [node name="Player0" parent="Players" index="0" instance=ExtResource( 5 )]
 
+editor/display_folded = true
 position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 id = 0
+
+[node name="CollisionShape2D" parent="Players/Player0/Area2D" index="0"]
+
+shape = null
 
 [node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
 
@@ -124,7 +129,7 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="CollisionPolygon2D" parent="Walls/Obstacle/Area2D" index="0"]
 
-polygon = PoolVector2Array( -29, -28, 43, -28, 43, 28, -29, 28 )
+polygon = PoolVector2Array( -29, -36, 35, -36, 35, 28, -29, 28 )
 
 [node name="Hooks" type="Node2D" parent="." index="4"]
 
@@ -135,4 +140,5 @@ polygon = PoolVector2Array( -29, -28, 43, -28, 43, 28, -29, 28 )
 script = ExtResource( 9 )
 
 
+[editable path="Players/Player0"]
 [editable path="Walls/Obstacle"]
