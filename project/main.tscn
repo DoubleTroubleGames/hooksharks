@@ -43,7 +43,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -51,6 +51,7 @@ _sections_unfolded = [ "Pause" ]
 [node name="BG" type="Sprite" parent="." index="0"]
 
 editor/display_folded = true
+visible = false
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -114,15 +115,16 @@ id = 1
 
 [node name="Obstacle" parent="Walls" index="4" instance=ExtResource( 7 )]
 
-position = Vector2( 560, 280 )
+position = Vector2( 461, 300 )
 
 [node name="Sprite" parent="Walls/Obstacle" index="0"]
 
 texture = ExtResource( 8 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="CollisionPolygon2D" parent="Walls/Obstacle/Area2D" index="0"]
 
-polygon = PoolVector2Array( 29, 0, 99, 0, 99, 90, 29, 90 )
+polygon = PoolVector2Array( -29, -28, 43, -28, 43, 28, -29, 28 )
 
 [node name="Hooks" type="Node2D" parent="." index="4"]
 

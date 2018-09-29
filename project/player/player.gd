@@ -100,7 +100,6 @@ func end_stun():
 	stunned = false
 
 func _input(event):
-#	print(event.as_text())
 	if event.is_action_pressed('dive_'+str(id)) and can_dive:
 		dive()
 	elif event.is_action_pressed('shoot_'+str(id)) and !diving:

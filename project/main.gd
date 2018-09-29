@@ -8,6 +8,7 @@ onready var bg = get_node('BG')
 
 func _ready():
 	print(get_node('/root/global').scores)
+	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280)
 	bg.position = (bg.scale * Vector2(1600, 1280))/2
 	get_node('Mirage').rect_size = OS.window_size
