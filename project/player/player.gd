@@ -26,7 +26,6 @@ func _ready():
 
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
-	print(speed2)
 	var applying_force = Vector2(0, 0)
 	
 	if hook != null and hook.has_collided:
