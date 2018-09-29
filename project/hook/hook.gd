@@ -1,7 +1,7 @@
 extends Node2D
 
-var speed = 500
-var acc = 200
+var speed = 700
+var acc = 500
 
 var dir = Vector2()
 var has_collided = false

@@ -2,7 +2,7 @@ extends Node2D
 
 const ROT_SPEED = PI/2.5
 const TRAIL = preload('res://player/trail.tscn')
-const ACC = 5
+const ACC = 6
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
 

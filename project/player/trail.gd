@@ -1,8 +1,11 @@
 extends Node2D
 
+const WAIT_TIME = 4
+
 var can_collide = false
 
 func _ready():
+	$Timer.wait_time = WAIT_TIME
 	$Timer.start()
 	
 	
@@ -10,6 +13,7 @@ func _ready():
 
 func _on_Timer_timeout():
 	$Fire.emitting = false
+	$KillTimer.wait_time = $Fire.lifetime + .5
 	$KillTimer.start()
 
 
