@@ -72,7 +72,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Color", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="Trail" type="Node2D" index="0" groups=[
+[node name="Trail" type="Node2D" groups=[
 "trail",
 ]]
 
