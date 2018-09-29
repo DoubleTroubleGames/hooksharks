@@ -4,18 +4,27 @@
 [] Adicionar uma HUD com o score de cada player
 [] Adicionar cores diferentes aos players
 [] Adicionar Menu
-[] Adicionar a sprite do hook na ponta do rope
-[] Adicionar stun (lock controls) quando o player é atingido por um hook
-[] Quando o player dá dive, ele não colide com o player na superfície
-[] Quando dois players dão dive, eles podem colidir
+[OK] Adicionar a sprite do hook na ponta do rope
+[OK?] Quando o player dá dive, ele não colide com o player na superfície
+[OK?] Quando dois players dão dive, eles podem colidir
+[] Adicionar bait
+[] Colocar BGM da liv
+[] Acertar outro player da retract no hook e puxa-o levemente
 [] Adicionar óleo
-[] Adicionar timer nas trails
+[OK] Adicionar timer nas trails
 [] Adicionar paredes contínuas do fullscreen
 [] Adicionar animação quando o player entra na fase
 [] Criar fases
 [] Modificar a posição inicial dos players no mapa
 [] Adicionar screen shake
 [] Adicionar partículas
+    [] Quando player se move na agua
+    [] QUando player da dive ou emerge
+    [] QUando hook acerta parede
+    [] Quando hooks se acertam
+    [] Quando um player morre 
 [] Adicionar shaders
+[] Adicionar muitos efeitos sonoros
 [] Adicionar juiciness
+    [] Quando um jogador ganha um ponto
 
