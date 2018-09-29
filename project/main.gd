@@ -19,7 +19,9 @@ func _physics_process(delta):
 	bg.get_node('Reflex4').position = Vector2(bg.get_node('Reflex2').position.x - OS.window_size.x, bg.get_node('Reflex2').position.y)
 
 func _input(event):
+	print(event.as_text())
 	if event.is_action_pressed('ui_cancel'):
+		print("oi")
 		get_tree().quit()
 
 func create_hook(player, dir):
