@@ -1,6 +1,6 @@
 [] Adicionar explosão quando o player morre
-[] O player não pode dar dive depois que morre
-[] O dive cooldown tem que sumir quando o player morre
+[OK] O player não pode dar dive depois que morre
+[OK] O dive cooldown tem que sumir quando o player morre
 [] Adicionar uma HUD com o score de cada player
 [] Adicionar Menu
 [] Adicionar a sprite do hook na ponta do rope
