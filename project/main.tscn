@@ -107,6 +107,13 @@ position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 id = 0
 
+[node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+position = Vector2( 200, 400 )
+_sections_unfolded = [ "Transform" ]
+id = 1
+
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
 editor/display_folded = true

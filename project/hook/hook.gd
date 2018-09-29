@@ -28,12 +28,9 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
 	if object.is_in_group('hook'):
-		object.player.hook= null
-		object.queue_free()
-		player.hook = null
-		queue_free()
+		player.hook.retract()
 	elif object.is_in_group('player') and object != player:
-		object.hook_collision()
+		object.hook_collision(self)
 	elif object.is_in_group('wall'):
 		has_collided = true
 

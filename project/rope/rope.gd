@@ -5,7 +5,7 @@ var player = null
 var force = 700
 
 func _physics_process(delta):
-	if weakref(hook).get_ref():
+	if hook:
 		self.set_point_position(0, player.position)
 		self.set_point_position(1, hook.position)
 

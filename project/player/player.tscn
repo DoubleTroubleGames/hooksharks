@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://player/sprite_sheet_v02.png" type="Texture" id=2]
-[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=3]
-[ext_resource path="res://player/bubble.png" type="Texture" id=4]
-[ext_resource path="res://player/circle.png" type="Texture" id=5]
+[ext_resource path="res://player/flecha_orange.png" type="Texture" id=2]
+[ext_resource path="res://player/sprite_sheet_v02.png" type="Texture" id=3]
+[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=4]
+[ext_resource path="res://player/bubble.png" type="Texture" id=5]
+[ext_resource path="res://player/circle.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 
 resource_name = "dive"
 length = 2.4
@@ -32,7 +33,7 @@ length = 1.0
 loop = false
 step = 0.1
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 
 length = 1.2
 loop = true
@@ -50,7 +51,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2, 1 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 7.0
@@ -67,26 +68,17 @@ __meta__ = {
 }
 id = null
 
-[node name="Arrow" type="Polygon2D" parent="." index="0"]
+[node name="Arrow" type="Sprite" parent="." index="0"]
 
-polygon = PoolVector2Array( 0, -5, 50, -5, 50, -10, 60, 0, 50, 10, 50, 5, 0, 5 )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-_sections_unfolded = [ "Transform" ]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+offset = Vector2( 180, 0 )
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 offset = Vector2( 0, -5 )
 hframes = 6
 frame = 4
@@ -99,9 +91,9 @@ autoplay = "walk"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/dive = SubResource( 6 )
+anims/dive = SubResource( 1 )
 anims/emerge = SubResource( 2 )
-anims/walk = SubResource( 7 )
+anims/walk = SubResource( 3 )
 blend_times = [  ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
@@ -118,12 +110,12 @@ audio_bus_name = "Master"
 
 position = Vector2( 5, 0 )
 rotation = 1.5708
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scream" type="AudioStreamPlayer2D" parent="." index="3"]
 
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -159,9 +151,9 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 4 )
+texture_under = ExtResource( 5 )
 texture_over = null
-texture_progress = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
 fill_mode = 4
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
