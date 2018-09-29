@@ -114,7 +114,8 @@ func _input(event):
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
-			hook = map.create_hook(self, Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3)))
+			hook = map.create_hook(self, hook_dir)
+			hook.get_node("Sprite").rotation = hook_dir.angle()
 	elif event.is_action_pressed('cancel_'+str(id)) and hook and hook.has_collided:
 		hook.retract()
 		hook = null
