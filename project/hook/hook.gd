@@ -9,13 +9,16 @@ var dir = Vector2()
 var has_collided = false
 var player = null
 var rope = null
+var stop_at = null
 
 func shoot(direction):
 	dir = direction
 
 func _physics_process(delta):
 	speed += acc * delta
-	if !has_collided:
+	if stop_at != null:
+		position = stop_at.position
+	elif !has_collided:
 		position += dir * (delta * speed)
 	if retracting:
 		dir = (player.position - self.position).normalized()
@@ -27,11 +30,13 @@ func _physics_process(delta):
 
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
-	if object.is_in_group('hook'):
+	if object.is_in_group('hook') and not retracting:
 		player.hook.retract()
-	elif object.is_in_group('player') and object != player:
-		pass
-	elif object.is_in_group('wall'):
+	elif object.is_in_group('player') and object != player and not retracting:
+		if not object.stunned:
+			stop_at = object
+			object.hook_collision(self)
+	elif object.is_in_group('wall') and not retracting:
 		has_collided = true
 
 func retract():
