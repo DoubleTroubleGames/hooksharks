@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://wall/wall.gd" type="Script" id=1]
+[ext_resource path="res://assets/parede_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/parede_01.png" type="Texture" id=3]
 
 [node name="Walls" type="Node2D" groups=[
 "wall",
@@ -24,6 +26,13 @@ _sections_unfolded = [ "Transform" ]
 build_mode = 0
 polygon = PoolVector2Array( 0, 0, 24, 0, 24, 576, 0, 576 )
 
+[node name="Sprite" type="Sprite" parent="Left" index="1"]
+
+position = Vector2( 26.4211, 288.238 )
+scale = Vector2( -0.615, 0.56256 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
 [node name="Right" type="Area2D" parent="." index="1"]
 
 position = Vector2( 1000, 0 )
@@ -41,6 +50,13 @@ _sections_unfolded = [ "Transform" ]
 build_mode = 0
 polygon = PoolVector2Array( 0, 0, 24, 0, 24, 576, 0, 576 )
 
+[node name="Sprite" type="Sprite" parent="Right" index="1"]
+
+position = Vector2( -1.97412, 287.919 )
+scale = Vector2( 0.615, -0.56256 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="Top" type="Area2D" parent="." index="2"]
 
 input_pickable = true
@@ -56,6 +72,13 @@ _sections_unfolded = [ "Transform" ]
 
 build_mode = 0
 polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
+
+[node name="Sprite" type="Sprite" parent="Top" index="1"]
+
+position = Vector2( 512.072, 25.0724 )
+scale = Vector2( 0.8, -0.73 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Bottom" type="Area2D" parent="." index="3"]
 
@@ -73,5 +96,12 @@ _sections_unfolded = [ "Transform" ]
 
 build_mode = 0
 polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 24, 0, 24 )
+
+[node name="Sprite" type="Sprite" parent="Bottom" index="1"]
+
+position = Vector2( 512.144, -0.709351 )
+scale = Vector2( 0.8, 0.73 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 
