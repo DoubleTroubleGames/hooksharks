@@ -4,7 +4,9 @@ const ROT_SPEED = PI/2.5
 const TRAIL = preload('res://player/trail.tscn')
 const ACC = 5
 const INITIAL_SPEED = 100
-const AXIS_DEADZONE = .1
+const AXIS_DEADZONE = .2
+
+export (int)var id
 
 onready var arrow = $Arrow
 onready var map = get_node('../../')
@@ -21,14 +23,11 @@ var dive_cooldown = 3
 var dive_duration = 1
 var stunned = false
 var hook = null
-var joy_id = 0
 var score = 0
-var id
 
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
 func _ready():
-	id = int(self.name[6])
 	dir = Vector2(1, 0)
 
 func _physics_process(delta):
@@ -38,9 +37,9 @@ func _physics_process(delta):
 	if hook != null and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
 	else:
-		if (Input.is_action_pressed('ui_right') or Input.get_joy_axis(joy_id, 0) > AXIS_DEADZONE) and not stunned:
+		if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
 			speed2 = speed2.rotated(ROT_SPEED * delta)
-		if (Input.is_action_pressed('ui_left') or Input.get_joy_axis(joy_id, 0) < -AXIS_DEADZONE) and not stunned:
+		if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
 			speed2 = speed2.rotated(-ROT_SPEED * delta)
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
@@ -56,9 +55,9 @@ func _physics_process(delta):
 			create_trail(self.position)
 	
 	# Arrow direction
-	var arrow_dir = Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3))
+	var arrow_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE)	
-	arrow.rotation = arrow_dir.angle()
+	arrow.global_rotation = arrow_dir.angle()
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -102,15 +101,15 @@ func end_stun():
 
 func _input(event):
 #	print(event.as_text())
-	if event.is_action_pressed('dive') and can_dive:
+	if event.is_action_pressed('dive_'+str(id)) and can_dive:
 		dive()
-	elif event.is_action_pressed('shoot') and !diving:
+	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 		if hook == null:
-			var hook_dir = Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3))
+			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
-			hook = map.create_hook(self, Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3)))
-	elif event.is_action_pressed('cancel') and hook and hook.has_collided:
+			hook = map.create_hook(self, Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3)))
+	elif event.is_action_pressed('cancel_'+str(id)) and hook and hook.has_collided:
 		hook.rope.queue_free()
 		hook.queue_free()
 		hook = null
