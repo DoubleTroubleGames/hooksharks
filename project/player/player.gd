@@ -83,7 +83,8 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('wall'):
 		_queue_free()
 	if object.is_in_group('player') and object != self:
-		_queue_free(true)
+		if diving == object.diving:
+			_queue_free(true)
 
 func _queue_free(player_collision=false):
 	$Scream.play()

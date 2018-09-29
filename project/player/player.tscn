@@ -6,7 +6,7 @@
 [ext_resource path="res://player/bubble.png" type="Texture" id=4]
 [ext_resource path="res://player/circle.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=6]
 
 resource_name = "dive"
 length = 2.4
@@ -32,7 +32,7 @@ length = 1.0
 loop = false
 step = 0.1
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
 
 length = 1.2
 loop = true
@@ -50,13 +50,13 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2, 1 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=8]
 
 custom_solver_bias = 0.0
 radius = 7.0
 height = 20.0
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -99,9 +99,9 @@ autoplay = "walk"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/dive = SubResource( 1 )
+anims/dive = SubResource( 6 )
 anims/emerge = SubResource( 2 )
-anims/walk = SubResource( 3 )
+anims/walk = SubResource( 7 )
 blend_times = [  ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
@@ -118,7 +118,7 @@ audio_bus_name = "Master"
 
 position = Vector2( 5, 0 )
 rotation = 1.5708
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scream" type="AudioStreamPlayer2D" parent="." index="3"]
