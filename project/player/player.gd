@@ -64,6 +64,7 @@ func _physics_process(delta):
 func create_trail(pos):
 	var trail = TRAIL.instance()
 	trail.position = pos
+	trail.rotation = speed2.angle()
 	last_trail_pos = trail.position
 	map.add_child(trail)
 
