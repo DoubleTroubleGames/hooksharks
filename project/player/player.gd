@@ -110,7 +110,7 @@ func _input(event):
 	if event.is_action_pressed('dive_'+str(id)) and can_dive:
 		dive()
 	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
-		if hook == null:
+		if hook == null and not stunned:
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
@@ -129,7 +129,6 @@ func dive():
 	timer.start()
 	self.add_child(timer)
 	timer.connect("timeout",self,"emerge",[timer])
-	
 
 func emerge(_timer):
 	_timer.queue_free()
