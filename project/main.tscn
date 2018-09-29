@@ -1,20 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://wall/wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://wall/obstacle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://round_manager.gd" type="Script" id=5]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Players" type="Node2D" parent="." index="0"]
+
+[node name="Player0" parent="Players" index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="Player1" parent="Players" index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 300, 400 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="Walls" parent="." index="1" instance=ExtResource( 3 )]
+
+editor/display_folded = true
 
 [node name="Obstacle" parent="Walls" index="4" instance=ExtResource( 4 )]
 
@@ -23,6 +34,10 @@ position = Vector2( 461, 300 )
 [node name="Hooks" type="Node2D" parent="." index="2"]
 
 [node name="Ropes" type="Node2D" parent="." index="3"]
+
+[node name="RoundManager" type="Node2D" parent="." index="4"]
+
+script = ExtResource( 5 )
 
 
 [editable path="Walls/Obstacle"]

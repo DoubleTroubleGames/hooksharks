@@ -3,6 +3,10 @@ extends Node2D
 const HOOK = preload('res://hook/hook.tscn')
 const ROPE = preload('res://rope/rope.tscn')
 
+func _ready():
+	get_tree().paused = false
+	print(get_node('/root/global').scores)
+
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):
 		get_tree().quit()

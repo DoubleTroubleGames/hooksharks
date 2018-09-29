@@ -6,29 +6,32 @@ const ACC = 5
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .1
 
-onready var map = get_parent()
+onready var map = get_node('../../')
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
+onready var round_manager = map.get_node('RoundManager')
 
 var dir
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
-var diving = false
+var diving = false 
 var can_dive = true
 var dive_cooldown = 3
 var dive_duration = 1
 var stunned = false
 var hook = null
 var joy_id = 0
+var score = 0
+var id
 
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
 func _ready():
+	id = int(self.name[6])
 	dir = Vector2(1, 0)
 
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
-
 	var applying_force = Vector2(0, 0)
 	
 	if hook != null and hook.has_collided:
@@ -50,7 +53,6 @@ func _physics_process(delta):
 	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
-	
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -71,6 +73,7 @@ func _on_Area2D_area_entered(area):
 		_queue_free()
 
 func _queue_free():
+	round_manager.remove_player(self)
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
