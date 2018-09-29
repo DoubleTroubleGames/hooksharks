@@ -1,15 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://rope/rope.gd" type="Script" id=1]
+[ext_resource path="res://assets/corda_02.png" type="Texture" id=1]
+[ext_resource path="res://rope/rope.gd" type="Script" id=2]
 
-[node name="Rope" type="Line2D"]
+[node name="Rope" type="Line2D" index="0"]
 
 points = PoolVector2Array(  )
-width = 10.0
-default_color = Color( 0.4, 0.5, 1, 1 )
+width = 20.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 1 )
+texture_mode = 1
 sharp_limit = 2.0
 round_precision = 8
-script = ExtResource( 1 )
-_sections_unfolded = [ "Fill" ]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Border", "Capping", "Fill", "Transform" ]
 
 
