@@ -1,0 +1,20 @@
+[] Adicionar explosão quando o player morre
+[] O player não pode dar dive depois que morre
+[] O dive cooldown tem que sumir quando o player morre
+[] Adicionar uma HUD com o score de cada player
+[] Adicionar Menu
+[] Adicionar a sprite do hook na ponta do rope
+[] Adicionar stun (lock controls) quando o player é atingido por um hook
+[] Quando o player dá dive, ele não colide com o player na superfície
+[] Quando dois players dão dive, eles podem colidir
+[] Adicionar óleo
+[] Adicionar timer nas trails
+[] Adicionar paredes contínuas do fullscreen
+[] Adicionar animação quando o player entra na fase
+[] Criar fases
+[] Modificar a posição inicial dos players no mapa
+[] Adicionar screen shake
+[] Adicionar partículas
+[] Adicionar shaders
+[] Adicionar juiciness
+
