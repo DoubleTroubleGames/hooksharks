@@ -140,7 +140,9 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="DiveBar" type="TextureProgress" parent="." index="4"]
+[node name="DiveCooldown" type="Node2D" parent="." index="4"]
+
+[node name="Bar" type="TextureProgress" parent="DiveCooldown" index="0"]
 
 visible = false
 anchor_left = 0.0

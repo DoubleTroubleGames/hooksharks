@@ -9,7 +9,8 @@ const AXIS_DEADZONE = .2
 export (int)var id
 
 onready var arrow = $Arrow
-onready var dive_bar = $DiveBar
+onready var bar = $DiveCooldown/Bar
+onready var dive_bar = $DiveCooldown
 onready var map = get_node('../../')
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
@@ -61,8 +62,8 @@ func _physics_process(delta):
 	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and !diving)
 	arrow.global_rotation = arrow_dir.angle()
 	
-#	if dive_bar.visible:
-#		dive_bar.rect_rotation = - rotation_degrees
+	if bar.visible:
+		dive_bar.global_rotation = 0
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -141,11 +142,11 @@ func emerge(_timer):
 	self.add_child(timer)
 	
 	# Cooldown progress bar
-	dive_bar.value = 100
-	dive_bar.visible = true
-	tween.interpolate_property(dive_bar, "value", 100, 0, dive_cooldown, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	bar.value = 100
+	bar.visible = true
+	tween.interpolate_property(bar, "value", 100, 0, dive_cooldown, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
 func enable_diving():
 	can_dive = true
-	dive_bar.visible = false
+	bar.visible = false
