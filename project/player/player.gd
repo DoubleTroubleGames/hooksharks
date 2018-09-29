@@ -24,7 +24,6 @@ var diving = false
 var can_dive = true
 var dive_cooldown = 2
 var dive_duration = .7
-var stunned = false
 var hook = null
 var score = 0
 
@@ -40,9 +39,9 @@ func _physics_process(delta):
 	if hook != null and weakref(hook).get_ref() and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
 	else:
-		if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
+		if Input.get_joy_axis(id, 0) > AXIS_DEADZONE:
 			speed2 = speed2.rotated(ROT_SPEED * delta)
-		if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
+		if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE:
 			speed2 = speed2.rotated(-ROT_SPEED * delta)
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
@@ -96,23 +95,12 @@ func _queue_free(player_collision=false):
 		hook.queue_free()
 	set_physics_process(false)
 
-func hook_collision(from_hook):
-	from_hook.retract()
-	var timer = Timer.new()
-	timer.wait_time = 2
-	timer.start()
-	self.add_child(timer)
-	timer.connect('timeout', self, 'end_stun')
-	stunned = true
-
-func end_stun():
-	stunned = false
 
 func _input(event):
 	if event.is_action_pressed('dive_'+str(id)) and can_dive:
 		dive()
 	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
-		if hook == null and not stunned:
+		if hook == null:
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2

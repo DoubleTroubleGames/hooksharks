@@ -30,7 +30,7 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('hook'):
 		player.hook.retract()
 	elif object.is_in_group('player') and object != player:
-		object.hook_collision(self)
+		pass
 	elif object.is_in_group('wall'):
 		has_collided = true
 
