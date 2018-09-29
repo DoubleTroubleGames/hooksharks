@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://wall/wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://wall/obstacle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://round_manager.gd" type="Script" id=8]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://round_manager.gd" type="Script" id=9]
 
 [sub_resource type="Shader" id=1]
 
@@ -111,11 +112,17 @@ id = 1
 
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
-editor/display_folded = true
-
 [node name="Obstacle" parent="Walls" index="4" instance=ExtResource( 7 )]
 
 position = Vector2( 461, 300 )
+
+[node name="Sprite" parent="Walls/Obstacle" index="0"]
+
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" parent="Walls/Obstacle/Area2D" index="0"]
+
+polygon = PoolVector2Array( -29, -28, 139, -28, 139, 28, -29, 28 )
 
 [node name="Hooks" type="Node2D" parent="." index="4"]
 
@@ -123,7 +130,7 @@ position = Vector2( 461, 300 )
 
 [node name="RoundManager" type="Node2D" parent="." index="6"]
 
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 
 [editable path="Walls/Obstacle"]
