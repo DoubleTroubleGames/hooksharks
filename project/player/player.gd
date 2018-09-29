@@ -6,6 +6,7 @@ const ACC = 5
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .1
 
+onready var arrow = $Arrow
 onready var map = get_node('../../')
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
@@ -53,6 +54,12 @@ func _physics_process(delta):
 	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
+	
+	# Arrow direction
+	var arrow_dir = Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3))
+	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE)	
+	arrow.rotation = arrow_dir.angle()
+	
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -100,17 +107,6 @@ func _input(event):
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
 			hook = map.create_hook(self, Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3)))
-#		elif hook.has_collided:
-#			hook.rope.queue_free()
-#			hook.queue_free()
-#			hook = null
-	elif event.is_action_pressed('shoot_mouse') and !diving:
-		if hook == null:
-			hook = map.create_hook(self, get_viewport().get_mouse_position() - position)
-#		elif hook.has_collided:
-#			hook.rope.queue_free()
-#			hook.queue_free()
-#			hook = null
 	elif event.is_action_pressed('cancel') and hook and hook.has_collided:
 		hook.rope.queue_free()
 		hook.queue_free()

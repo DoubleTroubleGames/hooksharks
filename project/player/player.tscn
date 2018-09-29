@@ -12,6 +12,10 @@ radius = 20.0
 ]]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -28,6 +32,22 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 shape = SubResource( 1 )
+
+[node name="Arrow" type="Polygon2D" parent="." index="2"]
+
+polygon = PoolVector2Array( 0, -5, 50, -5, 50, -10, 60, 0, 50, 10, 50, 5, 0, 5 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
