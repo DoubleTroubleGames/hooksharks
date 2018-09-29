@@ -44,7 +44,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -54,7 +54,7 @@ _sections_unfolded = [ "Pause" ]
 editor/display_folded = true
 visible = false
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Transform" ]
 
 [node name="Reflex1" type="Sprite" parent="BG" index="0"]
 
@@ -106,13 +106,6 @@ editor/display_folded = true
 position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 id = 0
-
-[node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
-
-editor/display_folded = true
-position = Vector2( 200, 400 )
-_sections_unfolded = [ "Transform" ]
-id = 1
 
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
