@@ -7,10 +7,10 @@ func _input(event):
 	if event.is_action_pressed('ui_cancel'):
 		get_tree().quit()
 
-func create_hook(player):
+func create_hook(player, dir):
 	var hook = HOOK.instance()
 	hook.position = player.position
-	hook.shoot((get_viewport().get_mouse_position() - player.position).normalized())
+	hook.shoot(dir.normalized())
 	hook.player = player
 	get_node('Hooks').add_child(hook)
 	var rope = ROPE.instance()

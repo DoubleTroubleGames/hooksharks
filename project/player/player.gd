@@ -4,6 +4,7 @@ const ROT_SPEED = PI/2.5
 const TRAIL = preload('res://player/trail.tscn')
 const ACC = 5
 const INITIAL_SPEED = 100
+const AXIS_DEADZONE = .1
 
 onready var map = get_parent()
 onready var sprite = get_node('Sprite')
@@ -18,6 +19,7 @@ var dive_cooldown = 3
 var dive_duration = 1
 var stunned = false
 var hook = null
+var joy_id = 0
 
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
@@ -26,15 +28,15 @@ func _ready():
 
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
-	print(speed2)
+
 	var applying_force = Vector2(0, 0)
 	
 	if hook != null and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
 	else:
-		if Input.is_action_pressed('ui_right') and not stunned:
+		if (Input.is_action_pressed('ui_right') or Input.get_joy_axis(joy_id, 0) > AXIS_DEADZONE) and not stunned:
 			speed2 = speed2.rotated(ROT_SPEED * delta)
-		if Input.is_action_pressed('ui_left') and not stunned:
+		if (Input.is_action_pressed('ui_left') or Input.get_joy_axis(joy_id, 0) < -AXIS_DEADZONE) and not stunned:
 			speed2 = speed2.rotated(-ROT_SPEED * delta)
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
@@ -86,15 +88,30 @@ func end_stun():
 	stunned = false
 
 func _input(event):
-	if event.is_action_pressed('ui_accept') and can_dive:
+	print(event.as_text())
+	if event.is_action_pressed('dive') and can_dive:
 		dive()
-	if event.is_action_pressed('shoot') and !diving:
+	elif event.is_action_pressed('shoot') and !diving:
 		if hook == null:
-			hook = map.create_hook(self)
-		elif hook.has_collided:
-			hook.rope.queue_free()
-			hook.queue_free()
-			hook = null
+			var hook_dir = Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3))
+			if hook_dir.length() < AXIS_DEADZONE:
+				hook_dir = speed2
+			hook = map.create_hook(self, Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3)))
+#		elif hook.has_collided:
+#			hook.rope.queue_free()
+#			hook.queue_free()
+#			hook = null
+	elif event.is_action_pressed('shoot_mouse') and !diving:
+		if hook == null:
+			hook = map.create_hook(self, get_viewport().get_mouse_position() - position)
+#		elif hook.has_collided:
+#			hook.rope.queue_free()
+#			hook.queue_free()
+#			hook = null
+	elif event.is_action_pressed('cancel') and hook and hook.has_collided:
+		hook.rope.queue_free()
+		hook.queue_free()
+		hook = null
 
 func dive():
 	var timer = Timer.new()
