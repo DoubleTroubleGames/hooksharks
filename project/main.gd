@@ -5,7 +5,12 @@ const ROPE = preload('res://rope/rope.tscn')
 
 func _ready():
 	get_tree().paused = false
+	var bg = get_node('BG')
 	print(get_node('/root/global').scores)
+	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280)
+	bg.position = (bg.scale * Vector2(1600, 1280))/2
+	bg.get_node('Reflex1/AnimationPlayer').play('anim')
+	bg.get_node('Reflex2/AnimationPlayer').play('anim')
 
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):
