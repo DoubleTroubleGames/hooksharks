@@ -12,3 +12,4 @@ func create_hook(player):
 	hook.shoot((get_viewport().get_mouse_position() - player.position).normalized())
 	hook.player = player
 	get_node('Hooks').add_child(hook)
+	return hook

@@ -16,6 +16,7 @@ var can_dive = true
 var dive_cooldown = 3
 var dive_duration = 1
 var stunned = false
+var hook = null
 
 func _ready():
 	dir = Vector2(1, 0)
@@ -64,7 +65,11 @@ func _input(event):
 	if event.is_action_pressed('ui_accept') and can_dive:
 		dive()
 	if event.is_action_pressed('shoot') and !diving:
-		map.create_hook(self)
+		if hook == null:
+			hook = map.create_hook(self)
+		elif hook.has_collided:
+			hook.queue_free()
+			hook = null
 
 func dive():
 	var timer = Timer.new()
