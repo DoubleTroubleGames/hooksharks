@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
+[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 20.0
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 
@@ -48,6 +49,17 @@ texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
 _sections_unfolded = [ "Transform" ]
+
+[node name="Scream" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = ExtResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

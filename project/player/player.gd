@@ -64,6 +64,7 @@ func _physics_process(delta):
 func create_trail(pos):
 	var trail = TRAIL.instance()
 	trail.position = pos
+	trail.rotation = speed2.angle()
 	last_trail_pos = trail.position
 	map.add_child(trail)
 
@@ -80,6 +81,7 @@ func _on_Area2D_area_entered(area):
 		_queue_free()
 
 func _queue_free():
+	$Scream.play()
 	round_manager.remove_player(self)
 	if hook != null:
 		hook.rope.queue_free()
