@@ -116,8 +116,7 @@ func _input(event):
 				hook_dir = speed2
 			hook = map.create_hook(self, Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3)))
 	elif event.is_action_pressed('cancel_'+str(id)) and hook and hook.has_collided:
-		hook.rope.queue_free()
-		hook.queue_free()
+		hook.retract()
 		hook = null
 
 func dive():
