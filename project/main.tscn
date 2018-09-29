@@ -17,4 +17,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Hooks" type="Node2D" parent="." index="2"]
 
+[node name="Ropes" type="Node2D" parent="." index="3"]
+
 

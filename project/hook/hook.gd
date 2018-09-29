@@ -5,6 +5,7 @@ const SPEED = 300
 var dir = Vector2()
 var has_collided = false
 var player = null
+var rope = null
 
 func shoot(direction):
 	dir = direction

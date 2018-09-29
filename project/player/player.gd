@@ -48,6 +48,9 @@ func _on_Area2D_area_exited(area):
 func _on_Area2D_area_entered(area):
 	var _trail = area.get_parent()
 	if _trail.is_in_group('trail') and _trail.can_collide and not diving:
+		if hook != null:
+			hook.rope.queue_free()
+			hook.queue_free()
 		self.queue_free()
 
 func hook_collision():
@@ -68,6 +71,7 @@ func _input(event):
 		if hook == null:
 			hook = map.create_hook(self)
 		elif hook.has_collided:
+			hook.rope.queue_free()
 			hook.queue_free()
 			hook = null
 
