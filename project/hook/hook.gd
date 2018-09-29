@@ -21,13 +21,16 @@ func _physics_process(delta):
 		dir = (player.position - self.position).normalized()
 		position += dir * (delta * speed * 2)
 		if position.distance_to(player.position) <= kill_distance:
-				rope.queue_free()
-				self.queue_free()
+			rope.queue_free()
+			player.hook = null
+			self.queue_free()
 
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
 	if object.is_in_group('hook'):
+		object.player.hook= null
 		object.queue_free()
+		player.hook = null
 		queue_free()
 	elif object.is_in_group('player') and object != player:
 		object.hook_collision()

@@ -22,8 +22,8 @@ var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
 var diving = false 
 var can_dive = true
-var dive_cooldown = 3
-var dive_duration = 1
+var dive_cooldown = 2
+var dive_duration = .7
 var stunned = false
 var hook = null
 var score = 0
@@ -37,7 +37,7 @@ func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
 	
-	if hook != null and hook.has_collided:
+	if hook != null and weakref(hook).get_ref() and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
 	else:
 		if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
@@ -116,16 +116,11 @@ func _input(event):
 				hook_dir = speed2
 			hook = map.create_hook(self, hook_dir)
 			hook.get_node("Sprite").rotation = hook_dir.angle()
-		elif !diving:
+		elif hook and weakref(hook).get_ref() and hook.has_collided and not hook.retracting:
 			hook.retract()
-			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
-			if hook_dir.length() < AXIS_DEADZONE:
-				hook_dir = speed2
-			hook = map.create_hook(self, hook_dir)
-			hook.get_node("Sprite").rotation = hook_dir.angle()
-	elif event.is_action_pressed('cancel_'+str(id)) and hook and hook.has_collided:
-		hook.retract()
-		hook = null
+	elif event.is_action_pressed('cancel_'+str(id)) and hook and weakref(hook).get_ref() and hook.has_collided:
+		if not hook.retracting:
+			hook.retract()
 
 func dive():
 	can_dive = false
