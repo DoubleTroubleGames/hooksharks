@@ -2,14 +2,14 @@
 
 [ext_resource path="res://rope/rope.gd" type="Script" id=1]
 
-[node name="Rope" type="Line2D" index="0"]
+[node name="Rope" type="Line2D"]
 
 points = PoolVector2Array(  )
 width = 10.0
 default_color = Color( 0.4, 0.5, 1, 1 )
-texture_mode = 31
 sharp_limit = 2.0
 round_precision = 8
 script = ExtResource( 1 )
+_sections_unfolded = [ "Fill" ]
 
 
