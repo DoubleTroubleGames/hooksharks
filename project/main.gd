@@ -2,15 +2,22 @@ extends Node2D
 
 const HOOK = preload('res://hook/hook.tscn')
 const ROPE = preload('res://rope/rope.tscn')
+const BG_SPEED = 20
+
+onready var bg = get_node('BG')
 
 func _ready():
 	get_tree().paused = false
-	var bg = get_node('BG')
 	print(get_node('/root/global').scores)
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280)
 	bg.position = (bg.scale * Vector2(1600, 1280))/2
-	bg.get_node('Reflex1/AnimationPlayer').play('anim')
-	bg.get_node('Reflex2/AnimationPlayer').play('anim')
+	get_node('Mirage').rect_size = OS.window_size
+
+func _physics_process(delta):
+	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
+	bg.get_node('Reflex2').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
+	bg.get_node('Reflex3').position = Vector2(bg.get_node('Reflex1').position.x - OS.window_size.x, bg.get_node('Reflex1').position.y)
+	bg.get_node('Reflex4').position = Vector2(bg.get_node('Reflex2').position.x - OS.window_size.x, bg.get_node('Reflex2').position.y)
 
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -9,51 +9,47 @@
 [ext_resource path="res://wall/obstacle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://round_manager.gd" type="Script" id=8]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Shader" id=1]
 
-resource_name = "anim"
-length = 4.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 20, -20 ), Vector2( 40, 0 ), Vector2( 20, -20 ), Vector2( 0, 0 ) ]
+code = "shader_type canvas_item;
+
+uniform float frequency = 60;
+uniform float depth = 0.005;
+uniform float amount : hint_range(0,5);
+
+void fragment() {
+	
+	vec2 uv = SCREEN_UV;
+	uv.y += sin(uv.x*frequency+TIME)*depth;
+	uv.y = clamp(uv.y,0,1);
+	vec3 c = textureLod(SCREEN_TEXTURE,uv,amount).rgb;
+	
+	COLOR.rgb = c;
 }
+"
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="ShaderMaterial" id=2]
 
-resource_name = "anim"
-length = 4.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -20, 20 ), Vector2( -40, 0 ), Vector2( -20, 20 ), Vector2( 0, 0 ) ]
-}
+render_priority = 0
+shader = SubResource( 1 )
+shader_param/frequency = 120.0
+shader_param/depth = 0.005
+shader_param/amount = 0.5
+_sections_unfolded = [ "shader_param" ]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="StreamTexture" id=3]
+
+flags = 4
+load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
+
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
 
 [node name="BG" type="Sprite" parent="." index="0"]
 
+editor/display_folded = true
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -62,33 +58,46 @@ _sections_unfolded = [ "Transform" ]
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BG/Reflex1" index="0"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/anim = SubResource( 1 )
-blend_times = [  ]
-
 [node name="Reflex2" type="Sprite" parent="BG" index="1"]
 
 texture = ExtResource( 4 )
 offset = Vector2( -20, 20 )
 _sections_unfolded = [ "Offset" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BG/Reflex2" index="0"]
+[node name="Reflex3" type="Sprite" parent="BG" index="2"]
 
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/anim = SubResource( 2 )
-blend_times = [  ]
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset" ]
 
-[node name="Players" type="Node2D" parent="." index="1"]
+[node name="Reflex4" type="Sprite" parent="BG" index="3"]
+
+texture = ExtResource( 4 )
+offset = Vector2( -20, 20 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="Mirage" type="TextureRect" parent="." index="1"]
+
+material = SubResource( 2 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1024.0
+margin_bottom = 576.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = SubResource( 3 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Material" ]
+
+[node name="Players" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="Player0" parent="Players" index="0" instance=ExtResource( 5 )]
 
@@ -100,7 +109,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 300, 400 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Walls" parent="." index="2" instance=ExtResource( 6 )]
+[node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
 editor/display_folded = true
 
@@ -108,11 +117,11 @@ editor/display_folded = true
 
 position = Vector2( 461, 300 )
 
-[node name="Hooks" type="Node2D" parent="." index="3"]
+[node name="Hooks" type="Node2D" parent="." index="4"]
 
-[node name="Ropes" type="Node2D" parent="." index="4"]
+[node name="Ropes" type="Node2D" parent="." index="5"]
 
-[node name="RoundManager" type="Node2D" parent="." index="5"]
+[node name="RoundManager" type="Node2D" parent="." index="6"]
 
 script = ExtResource( 8 )
 
