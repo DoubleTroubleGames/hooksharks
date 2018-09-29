@@ -80,6 +80,7 @@ func _on_Area2D_area_entered(area):
 		_queue_free()
 
 func _queue_free():
+	$Scream.play()
 	round_manager.remove_player(self)
 	if hook != null:
 		hook.rope.queue_free()
