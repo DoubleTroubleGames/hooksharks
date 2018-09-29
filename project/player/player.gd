@@ -1,13 +1,14 @@
 extends Node2D
 
-const ROT_SPEED = PI
+const ROT_SPEED = PI/3
 const TRAIL = preload('res://player/trail.tscn')
+const ACC = 5
+const INITIAL_SPEED = 150
 
 onready var map = get_parent()
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
 
-var speed = 250
 var dir
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -18,12 +19,14 @@ var dive_duration = 1
 var stunned = false
 var hook = null
 
-var speed2 = Vector2(speed, 0)
+var speed2 = Vector2(INITIAL_SPEED, 0)
 
 func _ready():
 	dir = Vector2(1, 0)
 
 func _physics_process(delta):
+	speed2 += speed2.normalized() * ACC * delta
+	print(speed2)
 	var applying_force = Vector2(0, 0)
 	
 	if hook != null and hook.has_collided:

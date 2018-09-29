@@ -1,6 +1,7 @@
 extends Node2D
 
-const SPEED = 300
+var speed = 500
+var acc = 100
 
 var dir = Vector2()
 var has_collided = false
@@ -11,8 +12,9 @@ func shoot(direction):
 	dir = direction
 
 func _physics_process(delta):
+	speed += acc * delta
 	if !has_collided:
-		position += dir * (delta * SPEED)
+		position += dir * (delta * speed)
 
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
