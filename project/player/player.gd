@@ -59,7 +59,6 @@ func _physics_process(delta):
 	var arrow_dir = Vector2(Input.get_joy_axis(joy_id, 2), Input.get_joy_axis(joy_id, 3))
 	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE)	
 	arrow.rotation = arrow_dir.angle()
-	
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -79,14 +78,16 @@ func _on_Area2D_area_entered(area):
 		_queue_free()
 	if object.is_in_group('wall'):
 		_queue_free()
+	if object.is_in_group('player') and object != self:
+		_queue_free(true)
 
-func _queue_free():
+func _queue_free(player_collision=false):
 	$Scream.play()
-	round_manager.remove_player(self)
+	round_manager.remove_player(self, player_collision)
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
-	self.queue_free()
+	set_physics_process(false)
 
 func hook_collision():
 	var timer = Timer.new()

@@ -7,7 +7,6 @@ const BG_SPEED = 20
 onready var bg = get_node('BG')
 
 func _ready():
-	get_tree().paused = false
 	print(get_node('/root/global').scores)
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280)
 	bg.position = (bg.scale * Vector2(1600, 1280))/2

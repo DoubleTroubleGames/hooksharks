@@ -97,8 +97,6 @@ _sections_unfolded = [ "Material" ]
 
 [node name="Players" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
-
 [node name="Player0" parent="Players" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 200, 200 )
@@ -106,7 +104,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
 
-position = Vector2( 300, 400 )
+position = Vector2( 200, 400 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]

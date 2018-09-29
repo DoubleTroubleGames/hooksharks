@@ -2,7 +2,7 @@
 
 [ext_resource path="res://rope/rope.gd" type="Script" id=1]
 
-[node name="Rope" type="Line2D"]
+[node name="Rope" type="Line2D" index="0"]
 
 points = PoolVector2Array(  )
 width = 10.0
