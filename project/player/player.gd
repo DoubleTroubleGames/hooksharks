@@ -2,7 +2,7 @@ extends Node2D
 
 const ROT_SPEED = PI/2.5
 const TRAIL = preload('res://player/trail.tscn')
-const ACC = 5
+const ACC = 6
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
 
@@ -114,10 +114,10 @@ func _input(event):
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
-			hook = map.create_hook(self, Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3)))
+			hook = map.create_hook(self, hook_dir)
+			hook.get_node("Sprite").rotation = hook_dir.angle()
 	elif event.is_action_pressed('cancel_'+str(id)) and hook and hook.has_collided:
-		hook.rope.queue_free()
-		hook.queue_free()
+		hook.retract()
 		hook = null
 
 func dive():

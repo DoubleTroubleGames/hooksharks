@@ -1,7 +1,9 @@
 extends Node2D
 
-var speed = 500
-var acc = 200
+var speed = 700
+var acc = 500
+var retracting = false
+var kill_distance = 20
 
 var dir = Vector2()
 var has_collided = false
@@ -15,6 +17,12 @@ func _physics_process(delta):
 	speed += acc * delta
 	if !has_collided:
 		position += dir * (delta * speed)
+	if retracting:
+		dir = (player.position - self.position).normalized()
+		position += dir * (delta * speed * 2)
+		if position.distance_to(player.position) <= kill_distance:
+				rope.queue_free()
+				self.queue_free()
 
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
@@ -25,3 +33,6 @@ func _on_Area2D_area_entered(area):
 		object.hook_collision()
 	elif object.is_in_group('wall'):
 		has_collided = true
+
+func retract():
+	retracting = true
