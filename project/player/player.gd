@@ -1,9 +1,9 @@
 extends Node2D
 
-const ROT_SPEED = PI/3
+const ROT_SPEED = PI/2.5
 const TRAIL = preload('res://player/trail.tscn')
 const ACC = 5
-const INITIAL_SPEED = 150
+const INITIAL_SPEED = 100
 
 onready var map = get_parent()
 onready var sprite = get_node('Sprite')
