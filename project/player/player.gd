@@ -26,6 +26,7 @@ var dive_cooldown = 2
 var dive_duration = .7
 var stunned = false
 var hook = null
+var pull_dir = null
 var score = 0
 
 var speed2 = Vector2(INITIAL_SPEED, 0)
@@ -48,8 +49,12 @@ func _physics_process(delta):
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
 	
-	speed2 += applying_force * delta
+	if stunned:
+		position += pull_dir * 100 * delta
+		applying_force = pull_dir * 200
+	
 	position += speed2 * delta
+	speed2 += applying_force * delta
 
 	rotation = speed2.angle()
 	
@@ -96,16 +101,19 @@ func _queue_free(player_collision=false):
 		hook.queue_free()
 	set_physics_process(false)
 
-func hook_collision(from_hook):
-	from_hook.retract()
+func hook_collision(from_hook):	
 	var timer = Timer.new()
-	timer.wait_time = 2
+	timer.wait_time = .3
 	timer.start()
 	self.add_child(timer)
-	timer.connect('timeout', self, 'end_stun')
+	timer.connect('timeout', self, 'end_stun', [from_hook, timer])
 	stunned = true
+	pull_dir = (from_hook.rope.get_point_position(0)-from_hook.rope.get_point_position(1)).normalized()
 
-func end_stun():
+func end_stun(hook, timer):
+	timer.queue_free()
+	hook.retract() # ERRO: hook já está free
+	hook.stop_at = null
 	stunned = false
 
 func _input(event):
