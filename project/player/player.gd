@@ -62,8 +62,7 @@ func _physics_process(delta):
 	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and !diving)
 	arrow.global_rotation = arrow_dir.angle()
 	
-	if bar.visible:
-		dive_bar.global_rotation = 0
+	dive_bar.global_rotation = 0
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -137,7 +136,7 @@ func emerge(_timer):
 	diving = false
 	timer.wait_time = dive_cooldown
 	area.visible = true
-	timer.connect('timeout', self, 'enable_diving')
+	timer.connect('timeout', self, 'enable_diving', [timer])
 	timer.start()
 	self.add_child(timer)
 	
@@ -147,6 +146,7 @@ func emerge(_timer):
 	tween.interpolate_property(bar, "value", 100, 0, dive_cooldown, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
-func enable_diving():
+func enable_diving(timer):
+	timer.queue_free()
 	can_dive = true
 	bar.visible = false

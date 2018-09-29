@@ -43,7 +43,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -106,16 +106,6 @@ position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 id = 0
 
-[node name="CollisionShape2D" parent="Players/Player0/Area2D" index="0"]
-
-shape = null
-
-[node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
-
-position = Vector2( 200, 400 )
-_sections_unfolded = [ "Transform" ]
-id = 1
-
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
 [node name="Obstacle" parent="Walls" index="4" instance=ExtResource( 7 )]
@@ -140,5 +130,4 @@ polygon = PoolVector2Array( -29, -36, 35, -36, 35, 28, -29, 28 )
 script = ExtResource( 9 )
 
 
-[editable path="Players/Player0"]
 [editable path="Walls/Obstacle"]
