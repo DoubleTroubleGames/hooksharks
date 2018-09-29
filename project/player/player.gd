@@ -87,6 +87,8 @@ func _on_Area2D_area_entered(area):
 
 func _queue_free(player_collision=false):
 	$Scream.play()
+	can_dive = false
+	$DiveCooldown.visible = false
 	round_manager.remove_player(self, player_collision)
 	if hook != null:
 		hook.rope.queue_free()
