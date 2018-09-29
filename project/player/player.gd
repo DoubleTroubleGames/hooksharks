@@ -41,17 +41,22 @@ func create_trail(pos):
 	map.add_child(trail)
 
 func _on_Area2D_area_exited(area):
-	var _trail = area.get_parent()
-	if _trail.is_in_group('trail'):
-		_trail.can_collide = true
+	var object = area.get_parent()
+	if object.is_in_group('trail'):
+		object.can_collide = true
 
 func _on_Area2D_area_entered(area):
-	var _trail = area.get_parent()
-	if _trail.is_in_group('trail') and _trail.can_collide and not diving:
-		if hook != null:
-			hook.rope.queue_free()
-			hook.queue_free()
-		self.queue_free()
+	var object = area.get_parent()
+	if object.is_in_group('trail') and object.can_collide and not diving:
+		_queue_free()
+	if object.is_in_group('wall'):
+		_queue_free()
+
+func _queue_free():
+	if hook != null:
+		hook.rope.queue_free()
+		hook.queue_free()
+	self.queue_free()
 
 func hook_collision():
 	var timer = Timer.new()
