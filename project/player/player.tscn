@@ -6,7 +6,7 @@
 [ext_resource path="res://player/bubble.png" type="Texture" id=4]
 [ext_resource path="res://player/circle.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
 
 resource_name = "dive"
 length = 2.4
@@ -32,7 +32,7 @@ length = 1.0
 loop = false
 step = 0.1
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
 
 length = 1.2
 loop = true
@@ -50,10 +50,11 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2, 1 ]
 }
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=8]
 
 custom_solver_bias = 0.0
-radius = 20.0
+radius = 7.0
+height = 20.0
 
 [node name="Player" type="Node2D" index="0" groups=[
 "player",
@@ -66,7 +67,23 @@ __meta__ = {
 }
 id = null
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Arrow" type="Polygon2D" parent="." index="0"]
+
+polygon = PoolVector2Array( 0, -5, 50, -5, 50, -10, 60, 0, 50, 10, 50, 5, 0, 5 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
 
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
@@ -82,12 +99,12 @@ autoplay = "walk"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/dive = SubResource( 3 )
+anims/dive = SubResource( 6 )
 anims/emerge = SubResource( 2 )
-anims/walk = SubResource( 4 )
+anims/walk = SubResource( 7 )
 blend_times = [  ]
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="Area2D" type="Area2D" parent="." index="2"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -99,22 +116,9 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
-shape = SubResource( 5 )
-
-[node name="Arrow" type="Polygon2D" parent="." index="2"]
-
-polygon = PoolVector2Array( 0, -5, 50, -5, 50, -10, 60, 0, 50, 10, 50, 5, 0, 5 )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
+position = Vector2( 5, 0 )
+rotation = 1.5708
+shape = SubResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scream" type="AudioStreamPlayer2D" parent="." index="3"]
