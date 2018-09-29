@@ -2,7 +2,7 @@ extends Line2D
 
 var hook = null
 var player = null
-var force = .7
+var force = 600
 
 func _physics_process(delta):
 	self.set_point_position(0, player.position)

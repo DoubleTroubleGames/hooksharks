@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 30.0
+radius = 20.0
 
 [node name="Player" type="Node2D" index="0" groups=[
 "player",

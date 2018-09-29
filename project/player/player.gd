@@ -7,7 +7,7 @@ onready var map = get_parent()
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
 
-var speed = 200
+var speed = 250
 var dir
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -18,22 +18,36 @@ var dive_duration = 1
 var stunned = false
 var hook = null
 
+var speed2 = Vector2(speed, 0)
+
 func _ready():
 	dir = Vector2(1, 0)
 
 func _physics_process(delta):
 	var applying_force = Vector2(0, 0)
 	if Input.is_action_pressed('ui_right') and not stunned:
-		dir = dir.rotated(ROT_SPEED * delta)
+#		dir = dir.rotated(ROT_SPEED * delta)
+		speed2 = speed2.rotated(ROT_SPEED * delta)
 	if Input.is_action_pressed('ui_left') and not stunned:
-		dir = dir.rotated(-ROT_SPEED * delta)
+#		dir = dir.rotated(-ROT_SPEED * delta)
+		speed2 = speed2.rotated(-ROT_SPEED * delta)
 	
 	if hook != null and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
 	
-	self.position += (dir + applying_force) * speed * delta
-	sprite.rotation = dir.angle()
-	area.rotation = dir.angle()
+	
+	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
+	applying_force -= proj
+	
+	speed2 += applying_force * delta
+	position += speed2 * delta
+#	self.position += (dir + applying_force) * speed * delta
+	
+#	sprite.rotation = dir.angle()
+#	area.rotation = dir.angle()
+	
+	rotation = speed2.angle()
+	
 	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
