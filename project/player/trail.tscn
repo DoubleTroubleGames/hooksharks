@@ -72,7 +72,7 @@ anim_offset_random = 1.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="Trail" type="Node2D" groups=[
+[node name="Trail" type="Node2D" index="0" groups=[
 "trail",
 ]]
 
@@ -103,7 +103,7 @@ shape = SubResource( 1 )
 [node name="Fire" type="Particles2D" parent="." index="2"]
 
 emitting = true
-amount = 40
+amount = 80
 lifetime = 1.5
 one_shot = false
 preprocess = 0.0
