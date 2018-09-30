@@ -1,8 +1,6 @@
 Adicionar partículas
     Quando player se move na agua
     Quando player da dive ou emerge
-    Quando hook acerta parede
-    Quando hooks se acertam
     Partículas de ember no fogo
 Adicionar shaders
 Adicionar juiciness
