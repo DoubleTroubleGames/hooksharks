@@ -6,12 +6,13 @@ const BG_SPEED = 20
 
 onready var blink = $Blink
 onready var bg = get_node('BG')
+onready var camera = $Camera2D
 onready var hud = $HUD
 
 func _ready():
 	bg.visible = true
-	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280)
-	bg.position = (bg.scale * Vector2(1600, 1280))/2
+	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
+	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 
 func _physics_process(delta):
