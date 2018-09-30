@@ -128,7 +128,6 @@ editor/display_folded = true
 position = Vector2( 800, 400 )
 _sections_unfolded = [ "Transform" ]
 id = 1
-initial_dir = Vector2( -1, 0 )
 
 [node name="Arrow" parent="Players/Player1" index="0"]
 

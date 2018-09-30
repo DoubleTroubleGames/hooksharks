@@ -5,6 +5,8 @@ const TRAIL = preload('res://player/trail.tscn')
 const ACC = 4
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
+const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://player/explosion/2.png"),
+	preload("res://player/explosion/3.png"), preload("res://player/explosion/4.png")]
 
 export (int)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
@@ -35,6 +37,8 @@ var speed2 = Vector2(INITIAL_SPEED, 0)
 
 func _ready():
 	speed2 = speed2.rotated(initial_dir.angle())
+	$Explosion.texture = EXPLOSIONS[randi() % 4]
+	$Explosion2.texture = EXPLOSIONS[randi() % 4]
 
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
@@ -95,6 +99,8 @@ func _on_Area2D_area_entered(area):
 
 func _queue_free(player_collision=false):
 	$Scream.play()
+	$Explosion.emitting = true
+	$Explosion2.emitting = true
 	get_node('Sprite').visible = false
 	get_node('HookGuy').visible = false
 	get_node('Death').visible = true
