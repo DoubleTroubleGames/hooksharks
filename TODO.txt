@@ -14,7 +14,7 @@
 [] Adicionar óleo
 [OK] Adicionar timer nas trails
 [] Adicionar paredes contínuas na resolução certa
-[] Adicionar animação quando o player entra na fase
+[] ??? Adicionar animação quando o player entra na fase
 [] Criar fases
     [] Modificar a posição inicial dos players no mapa
 [] Adicionar screen shake
