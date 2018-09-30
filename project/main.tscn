@@ -207,6 +207,9 @@ _sections_unfolded = [ "Material", "Rect" ]
 
 [node name="HUD" parent="." index="9" instance=ExtResource( 11 )]
 
+margin_right = 1216.0
+margin_bottom = 656.0
+
 [node name="Blink" type="Sprite" parent="." index="10"]
 
 modulate = Color( 1, 1, 1, 0 )
