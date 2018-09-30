@@ -6,9 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 20.0
 
-[node name="Hook" type="Node2D" groups=[
+[node name="Hook" type="Node2D" index="0" groups=[
 "hook",
 ]]
 
@@ -16,8 +16,8 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( 3.85536, -0.128517 )
-scale = Vector2( 0.15, 0.15 )
+position = Vector2( 6.1867, -0.412826 )
+scale = Vector2( 0.209665, 0.205871 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 

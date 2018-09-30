@@ -7,6 +7,7 @@ var kill_distance = 20
 
 onready var camera = get_node('../../Camera2D')
 onready var bgm = get_node('/root/bgm')
+onready var hook_clink = get_node('../../HookClink')
 var dir = Vector2()
 var has_collided = false
 var player = null
@@ -37,6 +38,8 @@ func _on_Area2D_area_entered(area):
 		player.map.blink_screen()
 		bgm.get_node('HookHitHook').play()
 		camera.add_shake(.8)
+		hook_clink.position = (object.position + self.position)/2
+		hook_clink.emitting = true
 	elif object.is_in_group('player') and object != player and not retracting:
 		if not object.stunned and not object.diving:
 			stop_at = object
