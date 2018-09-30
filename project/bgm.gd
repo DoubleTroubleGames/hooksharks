@@ -1,6 +1,4 @@
-extends AudioStreamPlayer
+extends AudioStreamPlayer2D
 
 func _ready():
 	self.play()
-	for child in get_children():
-		child.playing = false

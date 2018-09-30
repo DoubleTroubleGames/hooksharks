@@ -11,7 +11,7 @@
 [sub_resource type="Animation" id=1]
 
 resource_name = "dive"
-length = 2.4
+length = 1.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -21,7 +21,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 2.3 ),
+"times": PoolRealArray( 0, 0.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 4 ]
@@ -33,7 +33,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 2.3 ),
+"times": PoolRealArray( 0, 0.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]

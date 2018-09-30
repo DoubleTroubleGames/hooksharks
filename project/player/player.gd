@@ -25,7 +25,6 @@ var trail = TRAIL.instance()
 var diving = false 
 var can_dive = true
 var dive_cooldown = 1.5
-var dive_duration = .5
 var stunned = false
 var hook = null
 var pull_dir = null
@@ -162,6 +161,7 @@ func emerge(_timer):
 	timer.connect('timeout', self, 'enable_diving', [timer])
 	timer.start()
 	self.add_child(timer)
+	bgm.get_node('Emerge').play()
 	
 	# Cooldown progress bar
 	bar.value = 100
