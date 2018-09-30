@@ -7,6 +7,7 @@ const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
 
 export (int)var id
+export (Vector2)var initial_dir = Vector2(1, 0)
 
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
@@ -17,7 +18,6 @@ onready var area = get_node('Area2D')
 onready var round_manager = map.get_node('RoundManager')
 onready var tween = $Tween
 
-var dir
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
 var diving = false 
@@ -32,7 +32,8 @@ var score = 0
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
 func _ready():
-	dir = Vector2(1, 0)
+	speed2 = speed2.rotated(initial_dir.angle())
+
 
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
