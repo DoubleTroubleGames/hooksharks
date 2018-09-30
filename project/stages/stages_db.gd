@@ -9,8 +9,12 @@ preload('res://stages/stage5.tscn'),
 preload('res://stages/stage6.tscn'),
 preload('res://stages/stage7.tscn'),
 preload('res://stages/stage8.tscn'),
-preload('res://stages/stage9.tscn')
+preload('res://stages/stage9.tscn'),
+preload('res://stages/stage10.tscn')
 ]
 
 func get_random_stage():
-	return STAGES[randi() % STAGES.size()]
+	return STAGES[1 + (randi() % STAGES.size() - 1)]
+
+func get_first_stage():
+	return STAGES[0]

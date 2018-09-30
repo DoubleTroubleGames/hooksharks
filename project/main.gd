@@ -5,6 +5,7 @@ const ROPE = preload('res://rope/rope.tscn')
 const STAGES_DB = preload('res://stages/stages_db.gd')
 const BG_SPEED = 20
 
+onready var global = get_node('/root/global')
 onready var bgm = get_node('/root/bgm')
 onready var blink = $Blink
 onready var bg = get_node('BG')
@@ -13,7 +14,10 @@ onready var hud = $HUD
 onready var stages = STAGES_DB.new()
 
 func _ready():
-	self.add_child(stages.get_random_stage().instance())
+	if global.scores == [0, 0]:
+		self.add_child(stages.get_first_stage().instance())
+	else:
+		self.add_child(stages.get_random_stage().instance())
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
