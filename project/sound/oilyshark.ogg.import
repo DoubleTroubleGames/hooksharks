@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/oilyshark.ogg-2be694bcdad1a34a00c1fe3b432c7516.oggstr"
+
+[deps]
+
+source_file="res://sound/oilyshark.ogg"
+dest_files=[ "res://.import/oilyshark.ogg-2be694bcdad1a34a00c1fe3b432c7516.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
