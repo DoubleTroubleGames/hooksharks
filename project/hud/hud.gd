@@ -32,12 +32,16 @@ func _ready():
 	for i in range(global.scores[1]):
 		right_markers[i].visible = true
 	
+
+func show_round():
+	
+	
 	if global.winner == -1:
 		$Round/Draw.visible = true
 		$Round/Text.visible = false
 		$Round/Number.visible = false
-
-func show_round():
+		
+		
 	# Fade in
 	get_node('../Mirage').visible = false
 	get_node('../Blur').visible = true
