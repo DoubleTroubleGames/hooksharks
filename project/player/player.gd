@@ -74,7 +74,7 @@ func create_trail(pos):
 	trail.position = pos
 	trail.rotation = speed2.angle()
 	last_trail_pos = trail.position
-	map.add_child(trail)
+	map.get_node("Trail").add_child(trail)
 
 func _on_Area2D_area_exited(area):
 	var object = area.get_parent()

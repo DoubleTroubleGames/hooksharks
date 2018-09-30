@@ -40,7 +40,7 @@ emission_shape = 2
 emission_box_extents = Vector3( 10, 10, 1 )
 flag_align_y = false
 flag_rotate_y = false
-flag_disable_z = true
+flag_disable_z = false
 spread = 90.0
 flatness = 0.0
 gravity = Vector3( 0, -30, 0 )
@@ -48,8 +48,6 @@ initial_velocity = 0.0
 initial_velocity_random = 0.0
 angular_velocity = 0.0
 angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
 linear_accel = 0.0
 linear_accel_random = 0.0
 radial_accel = 10.0
@@ -115,20 +113,20 @@ texture = ExtResource( 2 )
 normal_map = null
 h_frames = 6
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Z Index" ]
 
 [node name="Timer" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 8.0
-one_shot = false
+one_shot = true
 autostart = false
 
 [node name="KillTimer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 3.0
-one_shot = false
+one_shot = true
 autostart = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

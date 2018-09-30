@@ -8,7 +8,25 @@
 [ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=6]
 [ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=7]
 
-[node name="HUD" type="Control" index="0"]
+[node name="HUD" type="Control"]
+
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1280, 720 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause", "Visibility" ]
+
+[node name="Background" type="ColorRect" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -20,9 +38,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.501961 )
 
-[node name="Round" type="Control" parent="." index="0"]
+[node name="Round" type="Control" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -147,6 +165,12 @@ visible = false
 position = Vector2( 117, 26 )
 texture = ExtResource( 7 )
 
+[node name="X3" type="Sprite" parent="Round/BallsLeft" index="2"]
+
+visible = false
+position = Vector2( 200, 25 )
+texture = ExtResource( 7 )
+
 [node name="BallsRight" type="TextureRect" parent="Round" index="5"]
 
 anchor_left = 1.0
@@ -178,5 +202,27 @@ texture = ExtResource( 7 )
 visible = false
 position = Vector2( 119, 28 )
 texture = ExtResource( 7 )
+
+[node name="X3" type="Sprite" parent="Round/BallsRight" index="2"]
+
+visible = false
+position = Vector2( 200, 28 )
+texture = ExtResource( 7 )
+
+[node name="Tween" type="Tween" parent="." index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="DisplayTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
 
 
