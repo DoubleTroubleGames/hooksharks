@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/caixas_01.png" type="Texture" id=8]
 [ext_resource path="res://round_manager.gd" type="Script" id=9]
 [ext_resource path="res://hud/hud.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/white.png" type="Texture" id=11]
 
 [sub_resource type="Shader" id=1]
 
@@ -44,7 +45,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -101,6 +102,8 @@ _sections_unfolded = [ "Material", "Pause" ]
 
 [node name="Players" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
+
 [node name="Player0" parent="Players" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 200, 200 )
@@ -155,6 +158,14 @@ script = ExtResource( 9 )
 [node name="Trail" type="Node2D" parent="." index="7"]
 
 [node name="HUD" parent="." index="8" instance=ExtResource( 10 )]
+
+[node name="Blink" type="Sprite" parent="." index="9"]
+
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 640, 360 )
+scale = Vector2( 20, 11.25 )
+texture = ExtResource( 11 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 
 [editable path="Players/Player0"]

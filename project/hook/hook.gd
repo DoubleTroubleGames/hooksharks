@@ -32,6 +32,7 @@ func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
 	if object.is_in_group('hook') and not retracting:
 		player.hook.retract()
+		player.map.blink_screen()
 	elif object.is_in_group('player') and object != player and not retracting:
 		if not object.stunned:
 			stop_at = object

@@ -26,7 +26,7 @@
     [] Quando um player morre
     [] Partículas de ember no fogo
 [] Adicionar shaders
-    [] Fazer a tela piscar branco quando os hooks se acertam
+[OK] Fazer a tela piscar branco quando os hooks se acertam
 [] Adicionar muitos efeitos sonoros
 [] Adicionar juiciness
     [] Quando um jogador ganha um ponto

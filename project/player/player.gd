@@ -101,7 +101,7 @@ func _queue_free(player_collision=false):
 		hook.queue_free()
 	set_physics_process(false)
 
-func hook_collision(from_hook):	
+func hook_collision(from_hook):
 	var timer = Timer.new()
 	timer.wait_time = .3
 	timer.start()

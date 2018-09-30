@@ -4,6 +4,7 @@ const HOOK = preload('res://hook/hook.tscn')
 const ROPE = preload('res://rope/rope.tscn')
 const BG_SPEED = 20
 
+onready var blink = $Blink
 onready var bg = get_node('BG')
 onready var hud = $HUD
 
@@ -37,6 +38,14 @@ func create_hook(player, dir):
 	hook.rope = rope
 	get_node('Ropes').add_child(rope)
 	return hook
+
+func blink_screen():
+	var tween = Tween.new()
+	tween.interpolate_property(blink, 'modulate', Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
+	self.add_child(tween)
+	yield(tween, 'tween_completed')
+	tween.queue_free()
 
 func show_round():
 	hud.show_round()

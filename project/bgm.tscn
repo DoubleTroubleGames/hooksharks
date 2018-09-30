@@ -3,7 +3,7 @@
 [ext_resource path="res://sound/oilyshark.ogg" type="AudioStream" id=1]
 [ext_resource path="res://bgm.gd" type="Script" id=2]
 
-[node name="BGM" type="AudioStreamPlayer" index="0"]
+[node name="BGM" type="AudioStreamPlayer"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
