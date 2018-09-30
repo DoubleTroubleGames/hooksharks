@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 0.827451, 1 )
+colors = PoolColorArray( 1, 1, 0.501961, 1, 1, 1, 0.501961, 1, 1, 1, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+
+flags = 4
+gradient = SubResource( 4 )
+width = 2048
+
+[sub_resource type="Curve" id=6]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.510742 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+
+flags = 4
+width = 2048
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = true
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 100.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 2.0
+scale_random = 0.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+hue_variation = 0.1
+hue_variation_random = 0.5
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Damping", "Flags", "Hue Variation", "Initial Velocity", "Scale" ]
+
+[node name="HookClink" type="Particles2D"]
+
+emitting = false
+amount = 30
+lifetime = 1.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 2.0
+explosiveness = 0.9
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 8 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+
+
