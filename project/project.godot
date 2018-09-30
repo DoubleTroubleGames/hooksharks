@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="SharkTron"
-run/main_scene="res://main.tscn"
+run/main_scene="res://main_menu/main_menu.tscn"
 config/use_custom_user_dir=true
 boot_splash/image="res://main_menu/ilustra_menu.png"
 config/icon="res://hud/round_screen/UI_shark_red.png"

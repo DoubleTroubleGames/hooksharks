@@ -32,7 +32,7 @@ func _ready():
 	for i in range(global.scores[1]):
 		right_markers[i].visible = true
 	
-	if hud.winner == -1:
+	if global.winner == -1:
 		$Round/Draw.visible = true
 		$Round/Text.visible = false
 		$Round/Number.visible = false
