@@ -2,7 +2,7 @@
 [OK] O player não pode dar dive depois que morre
 [OK] O dive cooldown tem que sumir quando o player morre
 [OK] Adicionar uma HUD com o score de cada player
-[] Adicionar os scuba divers em cima dos tubarões
+[OK] Adicionar os hook guys em cima dos tubarões
 [] Adicionar cores diferentes aos players
 [] Adicionar Menu
 [OK] Adicionar a sprite do hook na ponta do rope
