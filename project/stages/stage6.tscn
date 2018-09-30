@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=2]
 [ext_resource path="res://wall/obstacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/caixas_01.png" type="Texture" id=4]
-[ext_resource path="res://assets/caixas_02.png" type="Texture" id=5]
+[ext_resource path="res://assets/caixas_04.png" type="Texture" id=5]
 
 [node name="Walls" type="Node2D" index="0" groups=[
 "wall",
@@ -157,12 +157,13 @@ texture = ExtResource( 4 )
 
 [node name="CollisionPolygon2D" parent="Obstacles/Obstacle/Area2D" index="0"]
 
-position = Vector2( 56, -64 )
-polygon = PoolVector2Array( -136, -32, 32, -32, 32, 32, -136, 32 )
+position = Vector2( 56, 0 )
+polygon = PoolVector2Array( -136, -32, 24, -32, 24, 32, -136, 32 )
 
 [node name="Obstacle2" parent="Obstacles" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 632, 104 )
+editor/display_folded = true
+position = Vector2( 952, 208 )
 
 [node name="Sprite" parent="Obstacles/Obstacle2" index="0"]
 
@@ -170,8 +171,8 @@ texture = ExtResource( 5 )
 
 [node name="CollisionPolygon2D" parent="Obstacles/Obstacle2/Area2D" index="0"]
 
-position = Vector2( 376, 136 )
-polygon = PoolVector2Array( -136, -32, 32, -32, 32, 32, -136, 32 )
+position = Vector2( 56, 0 )
+polygon = PoolVector2Array( -136, -32, 24, -32, 24, 32, -136, 32 )
 
 
 [editable path="Obstacles/Obstacle"]

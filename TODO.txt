@@ -9,7 +9,6 @@ Adicionar shaders
 Adicionar juiciness
 Bagulho do draw
 
-sprite colorido do player
 óleo
 logo
 hud (winner, press options)

@@ -164,7 +164,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 [node name="Obstacle2" parent="Obstacles" index="1" instance=ExtResource( 3 )]
 
 editor/display_folded = true
-position = Vector2( 928, 288 )
+position = Vector2( 920, 280 )
 
 [node name="Sprite" parent="Obstacles/Obstacle2" index="0"]
 
@@ -213,9 +213,65 @@ texture = ExtResource( 4 )
 
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
+[node name="Obstacle6" parent="Obstacles" index="5" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 96, 112 )
+
+[node name="Sprite" parent="Obstacles/Obstacle6" index="0"]
+
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" parent="Obstacles/Obstacle6/Area2D" index="0"]
+
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="Obstacle7" parent="Obstacles" index="6" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 1184, 608 )
+
+[node name="Sprite" parent="Obstacles/Obstacle7" index="0"]
+
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Obstacles/Obstacle7/Area2D" index="0"]
+
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="Obstacle8" parent="Obstacles" index="7" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 320, 288 )
+
+[node name="Sprite" parent="Obstacles/Obstacle8" index="0"]
+
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" parent="Obstacles/Obstacle8/Area2D" index="0"]
+
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="Obstacle9" parent="Obstacles" index="8" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 920, 456 )
+
+[node name="Sprite" parent="Obstacles/Obstacle9" index="0"]
+
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" parent="Obstacles/Obstacle9/Area2D" index="0"]
+
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
 
 [editable path="Obstacles/Obstacle"]
 [editable path="Obstacles/Obstacle2"]
 [editable path="Obstacles/Obstacle3"]
 [editable path="Obstacles/Obstacle4"]
 [editable path="Obstacles/Obstacle5"]
+[editable path="Obstacles/Obstacle6"]
+[editable path="Obstacles/Obstacle7"]
+[editable path="Obstacles/Obstacle8"]
+[editable path="Obstacles/Obstacle9"]

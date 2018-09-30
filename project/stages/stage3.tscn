@@ -176,7 +176,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 [node name="Obstacle3" parent="Obstacles" index="2" instance=ExtResource( 3 )]
 
 editor/display_folded = true
-position = Vector2( 632, 368 )
+position = Vector2( 640, 352 )
 
 [node name="Sprite" parent="Obstacles/Obstacle3" index="0"]
 
