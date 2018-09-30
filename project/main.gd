@@ -22,6 +22,7 @@ func _ready():
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
+	self.move_child(hud, self.get_child_count())
 
 func _physics_process(delta):
 	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)

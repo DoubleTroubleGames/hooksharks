@@ -148,7 +148,6 @@ polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -17
 
 [node name="Obstacle" parent="Obstacles" index="0" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 position = Vector2( 336, 536 )
 
 [node name="Sprite" parent="Obstacles/Obstacle" index="0"]
@@ -162,7 +161,6 @@ polygon = PoolVector2Array( -136, -32, 24, -32, 24, 32, -136, 32 )
 
 [node name="Obstacle2" parent="Obstacles" index="1" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 position = Vector2( 952, 208 )
 
 [node name="Sprite" parent="Obstacles/Obstacle2" index="0"]

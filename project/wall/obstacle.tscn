@@ -2,7 +2,7 @@
 
 [ext_resource path="res://wall/obstacle.gd" type="Script" id=1]
 
-[node name="Obstacle" type="Node2D" groups=[
+[node name="Obstacle" type="Node2D" index="0" groups=[
 "wall",
 ]]
 
@@ -21,6 +21,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 

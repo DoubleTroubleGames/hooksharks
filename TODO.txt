@@ -1,4 +1,3 @@
-Adicionar óleo
 Adicionar partículas
     Quando player se move na agua
     Quando player da dive ou emerge
@@ -8,8 +7,8 @@ Adicionar partículas
 Adicionar shaders
 Adicionar juiciness
 Bagulho do draw
+Atualizar o TODO
 
-óleo
 logo
 hud (winner, press options)
 

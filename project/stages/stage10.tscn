@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/caixas_03.png" type="Texture" id=6]
 [ext_resource path="res://assets/caixas_04.png" type="Texture" id=7]
 
-[node name="Walls" type="Node2D" index="0" groups=[
+[node name="Walls" type="Node2D" groups=[
 "wall",
 ]]
 
