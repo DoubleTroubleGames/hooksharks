@@ -1,6 +1,4 @@
-Adicionar cores diferentes aos players
 Adicionar óleo
-Criar fases
 Adicionar partículas
     Quando player se move na agua
     Quando player da dive ou emerge
