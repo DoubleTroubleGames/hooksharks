@@ -36,7 +36,6 @@ var speed2 = Vector2(INITIAL_SPEED, 0)
 func _ready():
 	speed2 = speed2.rotated(initial_dir.angle())
 
-
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)

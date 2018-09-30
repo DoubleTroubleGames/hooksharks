@@ -38,7 +38,7 @@ func _on_Area2D_area_entered(area):
 		bgm.get_node('HookHitHook').play()
 		camera.add_shake(.8)
 	elif object.is_in_group('player') and object != player and not retracting:
-		if not object.stunned:
+		if not object.stunned and not object.diving:
 			stop_at = object
 			object.hook_collision(self)
 			bgm.get_node('HookHitPlayer').play()

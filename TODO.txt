@@ -3,7 +3,6 @@ Adicionar cores diferentes aos players
 Adicionar óleo
 Adicionar paredes contínuas na resolução certa
 Criar fases
-Adicionar screen shake
 Adicionar partículas
     Quando player se move na agua
     Quando player da dive ou emerge
