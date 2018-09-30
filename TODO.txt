@@ -3,7 +3,7 @@
 [OK] O dive cooldown tem que sumir quando o player morre
 [OK] Adicionar uma HUD com o score de cada player
 [] Adicionar cores diferentes aos players
-[] Adicionar Menu
+[OK] Adicionar Menu
 [OK] Adicionar a sprite do hook na ponta do rope
 [OK?] Quando o player dá dive, ele não colide com o player na superfície
 [OK?] Quando dois players dão dive, eles podem colidir
