@@ -40,7 +40,7 @@ tracks/0/keys = {
 "values": [ Color( 0.580392, 0, 0.827451, 1 ), Color( 0.294118, 0, 0.509804, 1 ), Color( 0, 0, 1, 1 ), Color( 0, 1, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 1, 0.498039, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.580392, 0, 0.827451, 1 ) ]
 }
 
-[node name="HUD" type="Control" index="0"]
+[node name="HUD" type="Control"]
 
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://fx/water_particles.tscn" type="PackedScene" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://player/circle.png" type="Texture" id=7]
 [ext_resource path="res://player/explosion/4.png" type="Texture" id=8]
 [ext_resource path="res://player/explosion/3.png" type="Texture" id=9]
-[ext_resource path="res://player/shockwave.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 
@@ -348,14 +347,6 @@ normal_map = null
 h_frames = 8
 v_frames = 8
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
-
-[node name="Shockwave" parent="." index="11" instance=ExtResource( 10 )]
-
-margin_left = -512.0
-margin_top = -384.0
-margin_right = 512.0
-margin_bottom = 384.0
-_sections_unfolded = [ "Material", "Rect" ]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
