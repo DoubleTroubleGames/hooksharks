@@ -1,9 +1,13 @@
 extends Control
 
+const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
+
 signal finished
 
 onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2, $Round/BallsLeft/X3]
 onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2, $Round/BallsRight/X3]
+onready var winner = $Round/Winner
+onready var menu = $Round/Menu
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
 
@@ -54,6 +58,34 @@ func show_round():
 		tween.start()
 		yield(tween, "tween_completed")
 	
-	display_timer.start()
-	yield(display_timer, "timeout")
-	emit_signal("finished")
+	if global.scores[0] < 3 and global.scores[1] < 3:
+		display_timer.start()
+		yield(display_timer, "timeout")
+		emit_signal("finished")
+		return
+	
+	# Winner label animation
+	winner.rect_position = WINNER_POS[global.winner] - Vector2(0, 400)
+	winner.visible = true
+	tween.interpolate_property(winner, "rect_position", winner.rect_position, WINNER_POS[global.winner],
+		.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+	
+	# Menu animation
+	tween.interpolate_property(menu, "rect_position", menu.rect_position, Vector2(menu.rect_position.x, 590),
+		.5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
+	tween.start()
+	yield(tween, "tween_completed")
+	$Round/Menu/Restart.disabled = false
+	$Round/Menu/Restart.grab_focus()
+	$Round/Menu/Quit.disabled = false
+	
+	global.scores = [0, 0]
+	global.round_number = 1
+
+
+func _on_Restart_pressed():
+	get_tree().reload_current_scene()
+
+
+func _on_Quit_pressed():
+	get_tree().change_scene("res://main_menu/main_menu.tscn")

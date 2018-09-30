@@ -54,5 +54,4 @@ func show_round():
 	if global.winner != -1:
 		global.round_number += 1
 	get_tree().paused = false
-	if global.scores[0] < 3 and global.scores[1] < 3:
-		get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
