@@ -5,6 +5,7 @@ const TRAIL = preload('res://player/trail.tscn')
 const ACC = 4
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
+const DIVE_PARTICLES = preload('res://fx/dive_particles.tscn')
 const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://player/explosion/2.png"),
 	preload("res://player/explosion/3.png"), preload("res://player/explosion/4.png")]
 
@@ -151,6 +152,13 @@ func _input(event):
 
 func dive():
 	$WaterParticles.visible = false
+	var dive_particles = DIVE_PARTICLES.instance()
+	dive_particles.emitting = true
+	var timer2 = Timer.new()
+	timer2.wait_time = dive_particles.lifetime
+	timer2.start()
+	self.add_child(timer2)
+	self.add_child(dive_particles)
 	can_dive = false
 	diving = true
 	$Sprite/AnimationPlayer.play("dive")
@@ -159,6 +167,9 @@ func dive():
 	timer.start()
 	self.add_child(timer)
 	timer.connect("timeout",self,"emerge",[timer])
+	yield(timer2, 'timeout')
+	timer2.queue_free()
+	dive_particles.queue_free()
 
 func emerge(_timer):
 	$WaterParticles.visible = true
