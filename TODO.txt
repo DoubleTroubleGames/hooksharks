@@ -1,18 +1,6 @@
 [] Adicionar explosão quando o player morre
-[OK] O player não pode dar dive depois que morre
-[OK] O dive cooldown tem que sumir quando o player morre
-[OK] Adicionar uma HUD com o score de cada player
-[OK] Adicionar os hook guys em cima dos tubarões
 [] Adicionar cores diferentes aos players
-[OK] Adicionar Menu
-[OK] Adicionar a sprite do hook na ponta do rope
-[OK] Quando o player dá dive, ele não colide com o player na superfície
-[OK] Quando dois players dão dive, eles podem colidir
-[OK] Adicionar bait
-[OK] Colocar BGM da liv
-[OK] Acertar outro player da retract no hook e puxa-o levemente
 [] Adicionar óleo
-[OK] Adicionar timer nas trails
 [] Adicionar paredes contínuas na resolução certa
 [] ??? Adicionar animação quando o player entra na fase
 [] Criar fases
@@ -26,8 +14,6 @@
     [] Quando um player morre
     [] Partículas de ember no fogo
 [] Adicionar shaders
-[OK] Fazer a tela piscar branco quando os hooks se acertam
-[] Adicionar muitos efeitos sonoros
 [] Adicionar juiciness
     [] Quando um jogador ganha um ponto
 

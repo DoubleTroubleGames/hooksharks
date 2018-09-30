@@ -27,7 +27,6 @@ func _ready():
 	for i in range(global.scores[1]):
 		right_markers[i].visible = true
 
-
 func show_round():
 	# Fade in
 	tween.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1),
@@ -41,6 +40,8 @@ func show_round():
 		marker = left_markers[global.scores[0] - 1]
 	elif global.winner == 1:
 		marker = right_markers[global.scores[1] - 1]
+	
+	bgm.get_node('Score').play()
 	
 	if marker:
 		marker.visible = true

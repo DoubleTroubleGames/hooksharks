@@ -8,6 +8,7 @@ const AXIS_DEADZONE = .2
 
 export (int)var id
 
+onready var bgm = get_node('/root/bgm')
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
@@ -93,6 +94,7 @@ func _on_Area2D_area_entered(area):
 
 func _queue_free(player_collision=false):
 	$Scream.play()
+	bgm.get_node('Explosion').play()
 	can_dive = false
 	$DiveCooldown.visible = false
 	round_manager.remove_player(self, player_collision)
@@ -118,12 +120,14 @@ func end_stun(hook, timer):
 
 func _input(event):
 	if event.is_action_pressed('dive_'+str(id)) and can_dive:
+		bgm.get_node('Dive').play()
 		dive()
 	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 		if hook == null and not stunned:
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
+				bgm.get_node('Harpoon').play()
 			hook = map.create_hook(self, hook_dir)
 			hook.get_node("Sprite").rotation = hook_dir.angle()
 		elif hook and weakref(hook).get_ref() and not hook.retracting:

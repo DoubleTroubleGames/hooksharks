@@ -2,11 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-valid=false
+path="res://.import/click.wav-c5e6397ccf2579ff3b1f6318b0974493.sample"
 
 [deps]
 
-source_file="res://assets/hook_clink.wav"
+source_file="res://sound/click.wav"
+dest_files=[ "res://.import/click.wav-c5e6397ccf2579ff3b1f6318b0974493.sample" ]
+
 [params]
 
 force/8_bit=false

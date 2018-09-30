@@ -5,6 +5,7 @@ var acc = 500
 var retracting = false
 var kill_distance = 20
 
+onready var bgm = get_node('/root/bgm')
 var dir = Vector2()
 var has_collided = false
 var player = null
@@ -33,12 +34,15 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('hook') and not retracting:
 		player.hook.retract()
 		player.map.blink_screen()
+		bgm.get_node('HookHitHook').play()
 	elif object.is_in_group('player') and object != player and not retracting:
 		if not object.stunned:
 			stop_at = object
 			object.hook_collision(self)
+			bgm.get_node('HookHitPlayer')
 	elif object.is_in_group('wall') and not retracting:
 		has_collided = true
+		bgm.get_node('HookHitWall').play()
 
 func retract():
 	retracting = true

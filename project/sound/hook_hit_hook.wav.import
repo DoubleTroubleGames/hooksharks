@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hook_hit_hook.wav-a058b2f04a3f41d031f582fe0c4fa17a.sample"
+
+[deps]
+
+source_file="res://sound/hook_hit_hook.wav"
+dest_files=[ "res://.import/hook_hit_hook.wav-a058b2f04a3f41d031f582fe0c4fa17a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
