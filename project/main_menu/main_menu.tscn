@@ -1,33 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main_menu/main_menu.gd" type="Script" id=1]
-[ext_resource path="res://main_menu/ilustra_menu.jpg" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/SigmarOne-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-
-size = 64
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 3 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="DynamicFont" id=2]
-
-size = 128
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="DynamicFont" id=3]
-
-size = 64
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
-_sections_unfolded = [ "Font", "Settings" ]
+[ext_resource path="res://main_menu/ilustra_menu.png" type="Texture" id=2]
+[ext_resource path="res://main_menu/UI_TITLE.png" type="Texture" id=3]
+[ext_resource path="res://main_menu/UI_TITLE_START.png" type="Texture" id=4]
+[ext_resource path="res://main_menu/UI_TITLE_START_SELECT.png" type="Texture" id=5]
+[ext_resource path="res://main_menu/UI_TITLE_QUIT.png" type="Texture" id=6]
+[ext_resource path="res://main_menu/UI_TITLE_QUIT_SELECT.png" type="Texture" id=7]
 
 [node name="MainMenu" type="Control" index="0"]
 
@@ -58,16 +37,35 @@ size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 0
 
-[node name="Menu" type="HBoxContainer" parent="." index="1"]
+[node name="Title" type="TextureRect" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.2, 0.2 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Menu" type="HBoxContainer" parent="." index="2"]
 
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -252.0
-margin_top = -140.0
-margin_right = 252.0
-margin_bottom = -28.0
+margin_left = -50.0
+margin_top = -170.0
+margin_right = 580.0
+margin_bottom = -8.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -78,14 +76,14 @@ custom_constants/separation = 30
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="Start" type="Button" parent="Menu" index="0"]
+[node name="Start" type="TextureButton" parent="Menu" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 250.0
-margin_bottom = 112.0
+margin_right = 296.0
+margin_bottom = 162.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -94,25 +92,24 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Start"
-flat = false
-align = 1
-_sections_unfolded = [ "Rect", "custom_fonts" ]
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="Button" parent="Menu" index="1"]
+[node name="Quit" type="TextureButton" parent="Menu" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 280.0
-margin_right = 530.0
-margin_bottom = 112.0
+margin_left = 326.0
+margin_right = 630.0
+margin_bottom = 162.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -121,88 +118,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Quit"
-flat = false
-align = 1
-_sections_unfolded = [ "Rect", "custom_fonts" ]
-
-[node name="TitleContainer" type="VBoxContainer" parent="." index="2"]
-
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -361.0
-margin_top = -340.0
-margin_right = 361.0
-margin_bottom = -61.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="Title" type="Label" parent="TitleContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 722.0
-margin_bottom = 183.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 5
-custom_constants/shadow_offset_y = 5
-text = "Shark Tron"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
-
-[node name="Subtitle" type="Label" parent="TitleContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 187.0
-margin_right = 722.0
-margin_bottom = 279.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 1, 1, 0.501961, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 3
-custom_constants/shadow_offset_y = 3
-text = "Beyond Waterdome"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
 

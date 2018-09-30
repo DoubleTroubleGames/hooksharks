@@ -1,24 +1,28 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://hud/round_screen/UI_round.png" type="Texture" id=2]
-[ext_resource path="res://hud/round_screen/UI_01.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://hud/round_screen/UI_shark_red.png" type="Texture" id=5]
-[ext_resource path="res://hud/round_screen/UI_shark_blue.png" type="Texture" id=6]
-[ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=7]
-[ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/SigmarOne-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://main_menu/UI_draw.png" type="Texture" id=3]
+[ext_resource path="res://hud/round_screen/UI_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://hud/round_screen/UI_shark_red.png" type="Texture" id=6]
+[ext_resource path="res://hud/round_screen/UI_shark_blue.png" type="Texture" id=7]
+[ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=8]
+[ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=9]
+[ext_resource path="res://main_menu/UI_TITLE_RESTART.png" type="Texture" id=10]
+[ext_resource path="res://main_menu/UI_TITLE_RESTART_SELECT.png" type="Texture" id=11]
+[ext_resource path="res://main_menu/UI_TITLE_QUIT.png" type="Texture" id=12]
+[ext_resource path="res://main_menu/UI_TITLE_QUIT_SELECT.png" type="Texture" id=13]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 
 size = 64
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 length = 0.7
 loop = true
@@ -36,18 +40,9 @@ tracks/0/keys = {
 "values": [ Color( 0.580392, 0, 0.827451, 1 ), Color( 0.294118, 0, 0.509804, 1 ), Color( 0, 0, 1, 1 ), Color( 0, 1, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 1, 0.498039, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.580392, 0, 0.827451, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
-
-size = 64
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 9 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" index="0"]
 
 pause_mode = 2
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -114,7 +109,29 @@ texture = ExtResource( 2 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Number" type="TextureRect" parent="Round" index="1"]
+[node name="Draw" type="TextureRect" parent="Round" index="1"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -216.0
+margin_top = 100.0
+margin_right = 2859.0
+margin_bottom = 1215.0
+rect_scale = Vector2( 0.14, 0.14 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Number" type="TextureRect" parent="Round" index="2"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -130,11 +147,11 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Winner" type="Label" parent="Round" index="2"]
+[node name="Winner" type="Label" parent="Round" index="3"]
 
 editor/display_folded = true
 visible = false
@@ -153,7 +170,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 5
 custom_constants/shadow_offset_y = 5
@@ -170,11 +187,11 @@ autoplay = "glow"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 0.5
-anims/glow = SubResource( 4 )
+anims/glow = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="SharkLeft" type="TextureRect" parent="Round" index="3"]
+[node name="SharkLeft" type="TextureRect" parent="Round" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.5
@@ -190,11 +207,11 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="SharkRight" type="TextureRect" parent="Round" index="4"]
+[node name="SharkRight" type="TextureRect" parent="Round" index="5"]
 
 anchor_left = 1.0
 anchor_top = 0.5
@@ -210,11 +227,11 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="BallsLeft" type="TextureRect" parent="Round" index="5"]
+[node name="BallsLeft" type="TextureRect" parent="Round" index="6"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -231,7 +248,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -239,21 +256,21 @@ _sections_unfolded = [ "Rect" ]
 
 visible = false
 position = Vector2( 29, 30 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="X2" type="Sprite" parent="Round/BallsLeft" index="1"]
 
 visible = false
 position = Vector2( 117, 26 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="X3" type="Sprite" parent="Round/BallsLeft" index="2"]
 
 visible = false
 position = Vector2( 200, 25 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
-[node name="BallsRight" type="TextureRect" parent="Round" index="6"]
+[node name="BallsRight" type="TextureRect" parent="Round" index="7"]
 
 editor/display_folded = true
 anchor_left = 1.0
@@ -270,7 +287,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -278,23 +295,22 @@ _sections_unfolded = [ "Rect" ]
 
 visible = false
 position = Vector2( 29, 28 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="X2" type="Sprite" parent="Round/BallsRight" index="1"]
 
 visible = false
 position = Vector2( 119, 28 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="X3" type="Sprite" parent="Round/BallsRight" index="2"]
 
 visible = false
 position = Vector2( 200, 28 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
-[node name="Menu" type="HBoxContainer" parent="Round" index="7"]
+[node name="Menu" type="HBoxContainer" parent="Round" index="8"]
 
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -313,14 +329,14 @@ custom_constants/separation = 30
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="Restart" type="Button" parent="Round/Menu" index="0"]
+[node name="Restart" type="TextureButton" parent="Round/Menu" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 333.0
-margin_bottom = 112.0
+margin_bottom = 163.0
 rect_min_size = Vector2( 333, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -329,18 +345,17 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 5 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Restart"
-flat = false
-align = 1
-_sections_unfolded = [ "Rect", "custom_fonts" ]
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_focused = ExtResource( 11 )
+_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="Button" parent="Round/Menu" index="1"]
+[node name="Quit" type="TextureButton" parent="Round/Menu" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -348,7 +363,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 363.0
 margin_right = 696.0
-margin_bottom = 112.0
+margin_bottom = 163.0
 rect_min_size = Vector2( 333, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -357,16 +372,15 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 5 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Quit"
-flat = false
-align = 1
-_sections_unfolded = [ "Rect", "custom_fonts" ]
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+texture_focused = ExtResource( 13 )
+_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
 [node name="Tween" type="Tween" parent="." index="2"]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ilustra_menu.jpg-0b533d0e22a91d5aa510e20f1e953d9a.stex"
+path="res://.import/UI_TITLE_RESTART_SELECT.png-e0ddf8aeaa7e029e0d835c3307044bdc.stex"
 
 [deps]
 
-source_file="res://main_menu/ilustra_menu.jpg"
-dest_files=[ "res://.import/ilustra_menu.jpg-0b533d0e22a91d5aa510e20f1e953d9a.stex" ]
+source_file="res://main_menu/UI_TITLE_RESTART_SELECT.png"
+dest_files=[ "res://.import/UI_TITLE_RESTART_SELECT.png-e0ddf8aeaa7e029e0d835c3307044bdc.stex" ]
 
 [params]
 
