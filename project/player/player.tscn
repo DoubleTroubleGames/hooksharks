@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://player/flecha_orange.png" type="Texture" id=2]
+[ext_resource path="res://player/flecha_cinza.png" type="Texture" id=2]
 [ext_resource path="res://player/sprite_sheet_v02.png" type="Texture" id=3]
 [ext_resource path="res://player/screams/01.wav" type="AudioStream" id=4]
 [ext_resource path="res://player/bubble.png" type="Texture" id=5]
