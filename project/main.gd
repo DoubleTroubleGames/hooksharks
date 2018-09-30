@@ -4,6 +4,7 @@ const HOOK = preload('res://hook/hook.tscn')
 const ROPE = preload('res://rope/rope.tscn')
 const BG_SPEED = 20
 
+onready var bgm = get_node('/root/bgm')
 onready var blink = $Blink
 onready var bg = get_node('BG')
 onready var camera = $Camera2D
@@ -36,6 +37,7 @@ func create_hook(player, dir):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
+	bgm.get_node('Harpoon').play()
 	hook.rope = rope
 	get_node('Ropes').add_child(rope)
 	return hook

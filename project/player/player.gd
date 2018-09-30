@@ -115,8 +115,9 @@ func hook_collision(from_hook):
 
 func end_stun(hook, timer):
 	timer.queue_free()
-	hook.retract() # ERRO: hook já está free
-	hook.stop_at = null
+	if weakref(hook).get_ref():
+		hook.retract()
+		hook.stop_at = null
 	stunned = false
 
 func _input(event):
@@ -128,7 +129,6 @@ func _input(event):
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
-				bgm.get_node('Harpoon').play()
 			hook = map.create_hook(self, hook_dir)
 			hook.get_node("Sprite").rotation = hook_dir.angle()
 		elif hook and weakref(hook).get_ref() and not hook.retracting:

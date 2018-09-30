@@ -78,7 +78,7 @@ bus = "Master"
 [node name="HookHitWall" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 9 )
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
