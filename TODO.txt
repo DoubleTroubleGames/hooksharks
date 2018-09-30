@@ -8,7 +8,7 @@
 [OK] Adicionar a sprite do hook na ponta do rope
 [OK] Quando o player dá dive, ele não colide com o player na superfície
 [OK] Quando dois players dão dive, eles podem colidir
-[] Adicionar bait
+[OK] Adicionar bait
 [] Colocar BGM da liv
 [OK] Acertar outro player da retract no hook e puxa-o levemente
 [] Adicionar óleo

@@ -126,10 +126,7 @@ func _input(event):
 				hook_dir = speed2
 			hook = map.create_hook(self, hook_dir)
 			hook.get_node("Sprite").rotation = hook_dir.angle()
-		elif hook and weakref(hook).get_ref() and hook.has_collided and not hook.retracting:
-			hook.retract()
-	elif event.is_action_pressed('cancel_'+str(id)) and hook and weakref(hook).get_ref() and hook.has_collided:
-		if not hook.retracting:
+		elif hook and weakref(hook).get_ref() and not hook.retracting:
 			hook.retract()
 
 func dive():
