@@ -8,13 +8,12 @@ Adicionar partículas
     Quando player da dive ou emerge
     Quando hook acerta parede
     Quando hooks se acertam
-    Quando um player morre
     Partículas de ember no fogo
 Adicionar shaders
 Adicionar juiciness
 
 sprite colorido do player
-logo
 óleo
+logo
 hud (winner, press options)
 

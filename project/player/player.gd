@@ -120,7 +120,7 @@ func _queue_free(player_collision=false):
 
 func hook_collision(from_hook):
 	var timer = Timer.new()
-	timer.wait_time = .3
+	timer.wait_time = .4
 	timer.start()
 	self.add_child(timer)
 	timer.connect('timeout', self, 'end_stun', [from_hook, timer])

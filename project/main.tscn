@@ -46,7 +46,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -125,9 +125,10 @@ _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 [node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 800, 400 )
+position = Vector2( 1100, 550 )
 _sections_unfolded = [ "Transform" ]
 id = 1
+initial_dir = Vector2( -1, 0 )
 
 [node name="Arrow" parent="Players/Player1" index="0"]
 
