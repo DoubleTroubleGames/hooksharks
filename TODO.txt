@@ -1,7 +1,5 @@
-Adicionar explosão quando o player morre
 Adicionar cores diferentes aos players
 Adicionar óleo
-Adicionar paredes contínuas na resolução certa
 Criar fases
 Adicionar partículas
     Quando player se move na agua
@@ -11,6 +9,7 @@ Adicionar partículas
     Partículas de ember no fogo
 Adicionar shaders
 Adicionar juiciness
+Bagulho do draw
 
 sprite colorido do player
 óleo

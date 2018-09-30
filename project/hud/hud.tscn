@@ -1,41 +1,21 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://hud/hud.gd" type="Script" id=1]
-[ext_resource path="res://assets/white.png" type="Texture" id=2]
-[ext_resource path="res://hud/round_screen/UI_round.png" type="Texture" id=3]
-[ext_resource path="res://hud/round_screen/UI_01.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://hud/round_screen/UI_shark_red.png" type="Texture" id=6]
-[ext_resource path="res://hud/round_screen/UI_shark_blue.png" type="Texture" id=7]
-[ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=8]
-[ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=9]
-[ext_resource path="res://assets/fonts/SigmarOne-Regular.ttf" type="DynamicFontData" id=10]
-
-[sub_resource type="Shader" id=1]
-
-code = "shader_type canvas_item;
-
-uniform float amount : hint_range(0,5);
-
-void fragment() {
-
-	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=2]
-
-render_priority = 0
-shader = SubResource( 1 )
-shader_param/amount = 2.0
-_sections_unfolded = [ "shader_param" ]
+[ext_resource path="res://hud/round_screen/UI_round.png" type="Texture" id=2]
+[ext_resource path="res://hud/round_screen/UI_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://hud/round_screen/UI_shark_red.png" type="Texture" id=5]
+[ext_resource path="res://hud/round_screen/UI_shark_blue.png" type="Texture" id=6]
+[ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=7]
+[ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/SigmarOne-Regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=3]
 
 size = 64
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 5 )
+font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="Animation" id=4]
@@ -61,7 +41,7 @@ tracks/0/keys = {
 size = 64
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="HUD" type="Control" index="0"]
@@ -82,28 +62,7 @@ size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Visibility" ]
 
-[node name="Blur" type="TextureRect" parent="." index="0"]
-
-visible = false
-material = SubResource( 2 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1280.0
-margin_bottom = 720.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Material", "Rect" ]
-
-[node name="Background" type="ColorRect" parent="." index="1"]
+[node name="Background" type="ColorRect" parent="." index="0"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -122,7 +81,7 @@ size_flags_vertical = 1
 color = Color( 0, 0, 0, 0.501961 )
 _sections_unfolded = [ "Material" ]
 
-[node name="Round" type="Control" parent="." index="2"]
+[node name="Round" type="Control" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -151,7 +110,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -171,7 +130,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -231,7 +190,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -251,7 +210,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -272,7 +231,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -280,19 +239,19 @@ _sections_unfolded = [ "Rect" ]
 
 visible = false
 position = Vector2( 29, 30 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="X2" type="Sprite" parent="Round/BallsLeft" index="1"]
 
 visible = false
 position = Vector2( 117, 26 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="X3" type="Sprite" parent="Round/BallsLeft" index="2"]
 
 visible = false
 position = Vector2( 200, 25 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="BallsRight" type="TextureRect" parent="Round" index="6"]
 
@@ -311,7 +270,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -319,19 +278,19 @@ _sections_unfolded = [ "Rect" ]
 
 visible = false
 position = Vector2( 29, 28 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="X2" type="Sprite" parent="Round/BallsRight" index="1"]
 
 visible = false
 position = Vector2( 119, 28 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="X3" type="Sprite" parent="Round/BallsRight" index="2"]
 
 visible = false
 position = Vector2( 200, 28 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="Menu" type="HBoxContainer" parent="Round" index="7"]
 
@@ -409,7 +368,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
-[node name="Tween" type="Tween" parent="." index="3"]
+[node name="Tween" type="Tween" parent="." index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -418,7 +377,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="DisplayTimer" type="Timer" parent="." index="4"]
+[node name="DisplayTimer" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 1.0

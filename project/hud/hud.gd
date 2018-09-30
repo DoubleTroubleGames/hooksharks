@@ -34,6 +34,8 @@ func _ready():
 
 func show_round():
 	# Fade in
+	get_node('../Mirage').visible = false
+	get_node('../Blur').visible = true
 	tween.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1),
 		.5, Tween.TRANS_LINEAR, Tween.EASE_IN, .1)
 	tween.start()
@@ -90,10 +92,8 @@ func show_round():
 	global.scores = [0, 0]
 	global.round_number = 1
 
-
 func _on_Restart_pressed():
 	get_tree().reload_current_scene()
-
 
 func _on_Quit_pressed():
 	get_tree().change_scene("res://main_menu/main_menu.tscn")
