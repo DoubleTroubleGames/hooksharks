@@ -103,17 +103,29 @@ _sections_unfolded = [ "Material", "Pause" ]
 
 [node name="Player0" parent="Players" index="0" instance=ExtResource( 5 )]
 
-editor/display_folded = true
 position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 id = 0
 
+[node name="Arrow" parent="Players/Player0" index="0"]
+
+modulate = Color( 0.929412, 0.133333, 0.266667, 1 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Sprite" parent="Players/Player0" index="1"]
+
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
+
 [node name="Player1" parent="Players" index="1" instance=ExtResource( 5 )]
 
-editor/display_folded = true
 position = Vector2( 200, 400 )
 _sections_unfolded = [ "Transform" ]
 id = 1
+
+[node name="Arrow" parent="Players/Player1" index="0"]
+
+modulate = Color( 0.129412, 0.207843, 0.933333, 1 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
@@ -145,4 +157,6 @@ script = ExtResource( 9 )
 [node name="HUD" parent="." index="8" instance=ExtResource( 10 )]
 
 
+[editable path="Players/Player0"]
+[editable path="Players/Player1"]
 [editable path="Walls/Obstacle"]

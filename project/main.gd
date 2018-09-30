@@ -7,14 +7,11 @@ const BG_SPEED = 20
 onready var bg = get_node('BG')
 onready var hud = $HUD
 
-
 func _ready():
-	print(get_node('/root/global').scores)
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280)
 	bg.position = (bg.scale * Vector2(1600, 1280))/2
 	get_node('Mirage').rect_size = OS.window_size
-
 
 func _physics_process(delta):
 	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
@@ -22,11 +19,9 @@ func _physics_process(delta):
 	bg.get_node('Reflex3').position = Vector2(bg.get_node('Reflex1').position.x - OS.window_size.x, bg.get_node('Reflex1').position.y)
 	bg.get_node('Reflex4').position = Vector2(bg.get_node('Reflex2').position.x - OS.window_size.x, bg.get_node('Reflex2').position.y)
 
-
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):
 		get_tree().quit()
-
 
 func create_hook(player, dir):
 	var hook = HOOK.instance()
@@ -42,7 +37,6 @@ func create_hook(player, dir):
 	hook.rope = rope
 	get_node('Ropes').add_child(rope)
 	return hook
-
 
 func show_round():
 	hud.show_round()
