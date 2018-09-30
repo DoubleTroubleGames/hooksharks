@@ -8,7 +8,7 @@
 [ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=6]
 [ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=7]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" index="0"]
 
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0 )
@@ -28,10 +28,14 @@ _sections_unfolded = [ "Pause", "Visibility" ]
 
 [node name="Background" type="ColorRect" parent="." index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -768.0
+margin_top = -432.0
+margin_right = 768.0
+margin_bottom = 432.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -39,6 +43,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0, 0, 0, 0.501961 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="Round" type="Control" parent="." index="1"]
 

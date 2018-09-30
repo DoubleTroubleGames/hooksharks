@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://round_manager.gd" type="Script" id=9]
 [ext_resource path="res://hud/hud.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/white.png" type="Texture" id=11]
+[ext_resource path="res://camera/camera.gd" type="Script" id=12]
 
 [sub_resource type="Shader" id=1]
 
@@ -45,7 +46,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -174,7 +175,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 
-position = Vector2( 640, 360 )
+offset = Vector2( 640, 360 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -197,7 +198,8 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Transform" ]
+script = ExtResource( 12 )
+_sections_unfolded = [ "Editor", "Transform" ]
 
 
 [editable path="Players/Player0"]

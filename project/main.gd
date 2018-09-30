@@ -6,6 +6,7 @@ const BG_SPEED = 20
 
 onready var blink = $Blink
 onready var bg = get_node('BG')
+onready var camera = $Camera2D
 onready var hud = $HUD
 
 func _ready():
