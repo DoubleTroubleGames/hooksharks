@@ -1,5 +1,4 @@
 Adicionar partículas
-    Quando player da dive ou emerge
     Partículas de ember no fogo
 Adicionar shaders
 Adicionar juiciness

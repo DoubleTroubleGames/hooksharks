@@ -116,6 +116,7 @@ func _queue_free(player_collision=false):
 		hook.rope.queue_free()
 		hook.queue_free()
 	camera.add_shake(1)
+	$WaterParticles.visible = false
 	set_physics_process(false)
 	set_process_input(false)
 
@@ -172,6 +173,11 @@ func dive():
 	dive_particles.queue_free()
 
 func emerge(_timer):
+	var dive_particles = DIVE_PARTICLES.instance()
+	dive_particles.emitting = true
+	var timer2 = Timer.new()
+	timer2.wait_time = dive_particles.lifetime
+	timer2.start()
 	$WaterParticles.visible = true
 	_timer.queue_free()
 	$Sprite/AnimationPlayer.play("walk")
@@ -189,6 +195,9 @@ func emerge(_timer):
 	bar.visible = true
 	tween.interpolate_property(bar, "value", 100, 0, dive_cooldown, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+	yield(timer2, 'timeout')
+	timer2.queue_free()
+	dive_particles.queue_free()
 
 func enable_diving(timer):
 	timer.queue_free()
