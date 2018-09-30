@@ -47,6 +47,7 @@ func _on_Area2D_area_entered(area):
 			bgm.get_node('HookHitPlayer').play()
 			camera.add_shake(.7)
 	elif object.is_in_group('wall') and not retracting:
+		$WallParticles.emitting = true
 		camera.add_shake(.3)
 		has_collided = true
 		bgm.get_node('HookHitWall').play()
