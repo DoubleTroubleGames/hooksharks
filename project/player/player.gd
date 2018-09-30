@@ -107,6 +107,7 @@ func _queue_free(player_collision=false):
 		hook.rope.queue_free()
 		hook.queue_free()
 	set_physics_process(false)
+	set_process_input(false)
 
 func hook_collision(from_hook):
 	var timer = Timer.new()

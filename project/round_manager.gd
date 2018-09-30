@@ -24,3 +24,4 @@ func remove_player(player, player_collision):
 		else:
 			global.winner = -1
 		winner.set_physics_process(false)
+		winner.set_process_input(false)

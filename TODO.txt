@@ -2,7 +2,6 @@ Adicionar explosão quando o player morre
 Adicionar cores diferentes aos players
 Adicionar óleo
 Adicionar paredes contínuas na resolução certa
-Não pode dar hook e dive depois que o jogo termina
 ??? Adicionar animação quando o player entra na fase
 Criar fases
     Modificar a posição inicial dos players no mapa
