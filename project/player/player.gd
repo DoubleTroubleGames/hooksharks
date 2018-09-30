@@ -94,12 +94,14 @@ func _on_Area2D_area_entered(area):
 			_queue_free(true)
 
 func _queue_free(player_collision=false):
-	$Scream.play()
 	get_node('Sprite').visible = false
 	get_node('HookGuy').visible = false
 	get_node('Death').visible = true
 	get_node('Death/AnimationPlayer').play('death')
 	bgm.get_node('Explosion').play()
+	randomize()
+	var scream = 1 + randi() % 9
+	bgm.get_node(str('Scream', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
 	round_manager.remove_player(self, player_collision)

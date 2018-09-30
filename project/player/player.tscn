@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/flecha_cinza.png" type="Texture" id=2]
 [ext_resource path="res://player/sprite_sheet_v02.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprite_sheet_death.png" type="Texture" id=4]
 [ext_resource path="res://player/hook_guy.png" type="Texture" id=5]
-[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=6]
-[ext_resource path="res://player/bubble.png" type="Texture" id=7]
-[ext_resource path="res://player/circle.png" type="Texture" id=8]
+[ext_resource path="res://player/bubble.png" type="Texture" id=6]
+[ext_resource path="res://player/circle.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 
@@ -189,18 +188,7 @@ rotation = 1.5708
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scream" type="AudioStreamPlayer2D" parent="." index="5"]
-
-stream = ExtResource( 6 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="DiveCooldown" type="Node2D" parent="." index="6"]
+[node name="DiveCooldown" type="Node2D" parent="." index="5"]
 
 [node name="Bar" type="TextureProgress" parent="DiveCooldown" index="0"]
 
@@ -227,16 +215,16 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 7 )
+texture_under = ExtResource( 6 )
 texture_over = null
-texture_progress = ExtResource( 8 )
+texture_progress = ExtResource( 7 )
 fill_mode = 4
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Rect", "Textures", "Visibility" ]
 
-[node name="Tween" type="Tween" parent="." index="7"]
+[node name="Tween" type="Tween" parent="." index="6"]
 
 repeat = false
 playback_process_mode = 1

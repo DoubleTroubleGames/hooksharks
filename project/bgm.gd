@@ -2,4 +2,5 @@ extends AudioStreamPlayer
 
 func _ready():
 	self.play()
-	pass
+	for child in get_children():
+		child.playing = false

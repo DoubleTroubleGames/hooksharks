@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://sound/oilyshark.ogg" type="AudioStream" id=1]
 [ext_resource path="res://bgm.gd" type="Script" id=2]
@@ -10,8 +10,17 @@
 [ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=9]
 [ext_resource path="res://sound/score.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/scream1.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/scream2.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound/scream3.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/scream4.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/scream5.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/scream6.wav" type="AudioStream" id=16]
+[ext_resource path="res://sound/scream7.wav" type="AudioStream" id=17]
+[ext_resource path="res://sound/scream8.wav" type="AudioStream" id=18]
+[ext_resource path="res://sound/scream9.wav" type="AudioStream" id=19]
 
-[node name="BGM" type="AudioStreamPlayer"]
+[node name="BGM" type="AudioStreamPlayer" index="0"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
@@ -42,7 +51,7 @@ bus = "Master"
 [node name="Explosion" type="AudioStreamPlayer" parent="." index="2"]
 
 stream = ExtResource( 5 )
-volume_db = 0.0
+volume_db = 10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
@@ -87,6 +96,87 @@ bus = "Master"
 [node name="Score" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream1" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream2" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream3" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream4" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 14 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream5" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 15 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream6" type="AudioStreamPlayer" parent="." index="13"]
+
+stream = ExtResource( 16 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream7" type="AudioStreamPlayer" parent="." index="14"]
+
+stream = ExtResource( 17 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream8" type="AudioStreamPlayer" parent="." index="15"]
+
+stream = ExtResource( 18 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Scream9" type="AudioStreamPlayer" parent="." index="16"]
+
+stream = ExtResource( 19 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
