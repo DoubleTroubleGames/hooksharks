@@ -145,6 +145,7 @@ func _input(event):
 				hook_dir = speed2
 			hook = map.create_hook(self, hook_dir)
 			hook.get_node("Sprite").rotation = hook_dir.angle()
+			hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
 		elif hook and weakref(hook).get_ref() and not hook.retracting:
 			hook.retract()
 

@@ -64,7 +64,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Damping", "Flags", "Hue Variation", "Initial Velocity", "Scale" ]
 
-[node name="HookClink" type="Particles2D" index="0"]
+[node name="HookClink" type="Particles2D"]
 
 emitting = false
 amount = 30
