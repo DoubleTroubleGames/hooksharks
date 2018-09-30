@@ -18,6 +18,7 @@ onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
 onready var round_manager = map.get_node('RoundManager')
 onready var tween = $Tween
+onready var camera = get_node('../../Camera2D')
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -106,6 +107,7 @@ func _queue_free(player_collision=false):
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
+	camera.add_shake(1)
 	set_physics_process(false)
 	set_process_input(false)
 

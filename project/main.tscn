@@ -112,7 +112,6 @@ editor/display_folded = true
 position = Vector2( 200, 200 )
 _sections_unfolded = [ "Transform" ]
 id = 0
-initial_dir = Vector2( 1, 0 )
 
 [node name="Arrow" parent="Players/Player0" index="0"]
 
@@ -138,10 +137,11 @@ _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
 [node name="Walls" parent="." index="3" instance=ExtResource( 6 )]
 
-editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
 
 [node name="Obstacle" parent="Walls" index="4" instance=ExtResource( 7 )]
 
+editor/display_folded = true
 position = Vector2( 461, 300 )
 
 [node name="Sprite" parent="Walls/Obstacle" index="0"]
@@ -175,9 +175,10 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 
+pause_mode = 2
 offset = Vector2( 640, 360 )
 anchor_mode = 1
-rotating = false
+rotating = true
 current = true
 zoom = Vector2( 1, 1 )
 limit_left = -10000000
@@ -199,7 +200,7 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 script = ExtResource( 12 )
-_sections_unfolded = [ "Editor", "Transform" ]
+_sections_unfolded = [ "Editor", "Pause", "Transform" ]
 
 
 [editable path="Players/Player0"]

@@ -2,9 +2,7 @@ Adicionar explosão quando o player morre
 Adicionar cores diferentes aos players
 Adicionar óleo
 Adicionar paredes contínuas na resolução certa
-??? Adicionar animação quando o player entra na fase
 Criar fases
-    Modificar a posição inicial dos players no mapa
 Adicionar screen shake
 Adicionar partículas
     Quando player se move na agua
@@ -15,5 +13,9 @@ Adicionar partículas
     Partículas de ember no fogo
 Adicionar shaders
 Adicionar juiciness
-    Quando um jogador ganha um ponto
+
+sprite colorido do player
+logo
+óleo
+hud (winner, press options)
 

@@ -6,6 +6,7 @@ onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2, $Round/Bal
 onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2, $Round/BallsRight/X3]
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
+onready var camera = get_node('../Camera2D')
 
 var round_texture = [preload("res://hud/round_screen/UI_01.png"),
 					preload("res://hud/round_screen/UI_02.png"),
@@ -52,6 +53,13 @@ func show_round():
 		tween.interpolate_property(marker, "modulate", marker.modulate, Color(1, 1, 1, 1), .5,
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
+		var timer = Timer.new()
+		timer.wait_time = .15
+		self.add_child(timer)
+		timer.start()
+		yield(timer, 'timeout')
+		timer.queue_free()
+		camera.add_shake(.3)
 		yield(tween, "tween_completed")
 	
 	display_timer.start()

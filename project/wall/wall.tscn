@@ -84,14 +84,14 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Left" index="0"]
 
-position = Vector2( 35, 0 )
+position = Vector2( 34, 0 )
 scale = Vector2( -0.8, 0.8 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Sprite2" type="Sprite" parent="Left" index="1"]
 
-position = Vector2( -35, 0 )
+position = Vector2( -34, 0 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -118,7 +118,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Right" index="0"]
 
-position = Vector2( 35, 0 )
+position = Vector2( 34, 0 )
 rotation = -3.14159
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
@@ -126,7 +126,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Sprite2" type="Sprite" parent="Right" index="1"]
 
-position = Vector2( -35, 0 )
+position = Vector2( -34, 0 )
 scale = Vector2( 0.8, -0.8 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
