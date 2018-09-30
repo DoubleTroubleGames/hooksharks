@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/trail.gd" type="Script" id=1]
-[ext_resource path="res://player/fumaca_sheet.png" type="Texture" id=2]
+[ext_resource path="res://player/oilspill_sheet.png" type="Texture" id=2]
+[ext_resource path="res://player/fumaca_sheet.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -79,6 +80,12 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+hframes = 6
+_sections_unfolded = [ "Animation", "Transform", "Visibility", "Z Index" ]
+
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
 input_pickable = true
@@ -109,7 +116,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 6 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 normal_map = null
 h_frames = 6
 v_frames = 1
@@ -128,6 +135,15 @@ process_mode = 1
 wait_time = 3.0
 one_shot = true
 autostart = false
+
+[node name="Tween" type="Tween" parent="." index="5"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
