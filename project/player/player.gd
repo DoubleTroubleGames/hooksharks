@@ -95,6 +95,10 @@ func _on_Area2D_area_entered(area):
 
 func _queue_free(player_collision=false):
 	$Scream.play()
+	get_node('Sprite').visible = false
+	get_node('HookGuy').visible = false
+	get_node('Death').visible = true
+	get_node('Death/AnimationPlayer').play('death')
 	bgm.get_node('Explosion').play()
 	can_dive = false
 	$DiveCooldown.visible = false
@@ -103,6 +107,7 @@ func _queue_free(player_collision=false):
 		hook.rope.queue_free()
 		hook.queue_free()
 	set_physics_process(false)
+	set_process_input(false)
 
 func hook_collision(from_hook):
 	var timer = Timer.new()
@@ -115,8 +120,9 @@ func hook_collision(from_hook):
 
 func end_stun(hook, timer):
 	timer.queue_free()
-	hook.retract() # ERRO: hook já está free
-	hook.stop_at = null
+	if weakref(hook).get_ref():
+		hook.retract()
+		hook.stop_at = null
 	stunned = false
 
 func _input(event):
@@ -128,7 +134,6 @@ func _input(event):
 			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
-				bgm.get_node('Harpoon').play()
 			hook = map.create_hook(self, hook_dir)
 			hook.get_node("Sprite").rotation = hook_dir.angle()
 		elif hook and weakref(hook).get_ref() and not hook.retracting:

@@ -11,7 +11,7 @@
 [ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=9]
 [ext_resource path="res://sound/score.wav" type="AudioStream" id=10]
 
-[node name="BGM" type="AudioStreamPlayer" index="0"]
+[node name="BGM" type="AudioStreamPlayer"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
@@ -78,7 +78,7 @@ bus = "Master"
 [node name="HookHitWall" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 9 )
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0

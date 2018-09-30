@@ -39,7 +39,7 @@ func _on_Area2D_area_entered(area):
 		if not object.stunned:
 			stop_at = object
 			object.hook_collision(self)
-			bgm.get_node('HookHitPlayer')
+			bgm.get_node('HookHitPlayer').play()
 	elif object.is_in_group('wall') and not retracting:
 		has_collided = true
 		bgm.get_node('HookHitWall').play()
