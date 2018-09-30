@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://sound/oilyshark.ogg" type="AudioStream" id=1]
 [ext_resource path="res://bgm.gd" type="Script" id=2]
@@ -10,87 +10,225 @@
 [ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=9]
 [ext_resource path="res://sound/score.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/emerge.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/scream1.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound/scream2.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/scream3.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/scream4.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/scream5.wav" type="AudioStream" id=16]
+[ext_resource path="res://sound/scream6.wav" type="AudioStream" id=17]
+[ext_resource path="res://sound/scream7.wav" type="AudioStream" id=18]
+[ext_resource path="res://sound/scream8.wav" type="AudioStream" id=19]
+[ext_resource path="res://sound/scream9.wav" type="AudioStream" id=20]
 
-[node name="BGM" type="AudioStreamPlayer"]
+[node name="BGM" type="AudioStreamPlayer2D" index="0"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 script = ExtResource( 2 )
 
-[node name="Click" type="AudioStreamPlayer" parent="." index="0"]
+[node name="Click" type="AudioStreamPlayer2D" parent="." index="0"]
 
 stream = ExtResource( 3 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="Dive" type="AudioStreamPlayer" parent="." index="1"]
+[node name="Dive" type="AudioStreamPlayer2D" parent="." index="1"]
 
 stream = ExtResource( 4 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="Explosion" type="AudioStreamPlayer" parent="." index="2"]
+[node name="Explosion" type="AudioStreamPlayer2D" parent="." index="2"]
 
 stream = ExtResource( 5 )
-volume_db = 0.0
+volume_db = 10.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="Harpoon" type="AudioStreamPlayer" parent="." index="3"]
+[node name="Harpoon" type="AudioStreamPlayer2D" parent="." index="3"]
 
 stream = ExtResource( 6 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="HookHitHook" type="AudioStreamPlayer" parent="." index="4"]
+[node name="HookHitHook" type="AudioStreamPlayer2D" parent="." index="4"]
 
 stream = ExtResource( 7 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="HookHitPlayer" type="AudioStreamPlayer" parent="." index="5"]
+[node name="HookHitPlayer" type="AudioStreamPlayer2D" parent="." index="5"]
 
 stream = ExtResource( 8 )
-volume_db = 0.0
+volume_db = 10.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="HookHitWall" type="AudioStreamPlayer" parent="." index="6"]
+[node name="HookHitWall" type="AudioStreamPlayer2D" parent="." index="6"]
 
 stream = ExtResource( 9 )
 volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
 
-[node name="Score" type="AudioStreamPlayer" parent="." index="7"]
+[node name="Score" type="AudioStreamPlayer2D" parent="." index="7"]
 
 stream = ExtResource( 10 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-mix_target = 0
+max_distance = 2000.0
+attenuation = 1.0
 bus = "Master"
+area_mask = 1
+
+[node name="Emerge" type="AudioStreamPlayer2D" parent="." index="8"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream1" type="AudioStreamPlayer2D" parent="." index="9"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream2" type="AudioStreamPlayer2D" parent="." index="10"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream3" type="AudioStreamPlayer2D" parent="." index="11"]
+
+stream = ExtResource( 14 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream4" type="AudioStreamPlayer2D" parent="." index="12"]
+
+stream = ExtResource( 15 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream5" type="AudioStreamPlayer2D" parent="." index="13"]
+
+stream = ExtResource( 16 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream6" type="AudioStreamPlayer2D" parent="." index="14"]
+
+stream = ExtResource( 17 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream7" type="AudioStreamPlayer2D" parent="." index="15"]
+
+stream = ExtResource( 18 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream8" type="AudioStreamPlayer2D" parent="." index="16"]
+
+stream = ExtResource( 19 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Scream9" type="AudioStreamPlayer2D" parent="." index="17"]
+
+stream = ExtResource( 20 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
