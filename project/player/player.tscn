@@ -1,15 +1,13 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/flecha_cinza.png" type="Texture" id=2]
-[ext_resource path="res://player/sprite_sheet_v02.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprite_sheet_death.png" type="Texture" id=4]
-[ext_resource path="res://player/hook_guy.png" type="Texture" id=5]
-[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=6]
-[ext_resource path="res://player/bubble.png" type="Texture" id=7]
-[ext_resource path="res://player/circle.png" type="Texture" id=8]
-[ext_resource path="res://player/explosion/4.png" type="Texture" id=9]
-[ext_resource path="res://player/explosion/3.png" type="Texture" id=10]
+[ext_resource path="res://player/hook_guy.png" type="Texture" id=3]
+[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=4]
+[ext_resource path="res://player/bubble.png" type="Texture" id=5]
+[ext_resource path="res://player/circle.png" type="Texture" id=6]
+[ext_resource path="res://player/explosion/4.png" type="Texture" id=7]
+[ext_resource path="res://player/explosion/3.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -182,7 +180,6 @@ _sections_unfolded = [ "Offset", "Transform" ]
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 3 )
 offset = Vector2( 0, -5 )
 hframes = 6
 frame = 4
@@ -203,7 +200,6 @@ blend_times = [  ]
 
 visible = false
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 4 )
 hframes = 3
 frame = 2
 _sections_unfolded = [ "Animation", "Transform" ]
@@ -222,7 +218,7 @@ blend_times = [  ]
 
 position = Vector2( 19.4, 0 )
 scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Area2D" type="Area2D" parent="." index="4"]
@@ -244,7 +240,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Scream" type="AudioStreamPlayer2D" parent="." index="5"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 4 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -280,9 +276,9 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 7 )
+texture_under = ExtResource( 5 )
 texture_over = null
-texture_progress = ExtResource( 8 )
+texture_progress = ExtResource( 6 )
 fill_mode = 4
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
@@ -315,7 +311,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 7 )
-texture = ExtResource( 9 )
+texture = ExtResource( 7 )
 normal_map = null
 h_frames = 8
 v_frames = 8
@@ -338,7 +334,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 7 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
 normal_map = null
 h_frames = 8
 v_frames = 8

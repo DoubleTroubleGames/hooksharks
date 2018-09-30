@@ -44,7 +44,7 @@ use_filter = true
 font_data = ExtResource( 9 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="HUD" type="Control" index="0"]
+[node name="HUD" type="Control"]
 
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0 )
