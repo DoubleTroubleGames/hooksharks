@@ -4,7 +4,7 @@
 [OK] Adicionar uma HUD com o score de cada player
 [OK] Adicionar os hook guys em cima dos tubarões
 [] Adicionar cores diferentes aos players
-[] Adicionar Menu
+[OK] Adicionar Menu
 [OK] Adicionar a sprite do hook na ponta do rope
 [OK] Quando o player dá dive, ele não colide com o player na superfície
 [OK] Quando dois players dão dive, eles podem colidir
