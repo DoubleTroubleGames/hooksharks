@@ -149,6 +149,7 @@ func _input(event):
 			hook.retract()
 
 func dive():
+	$WaterParticles.visible = false
 	can_dive = false
 	diving = true
 	$Sprite/AnimationPlayer.play("dive")
@@ -159,6 +160,7 @@ func dive():
 	timer.connect("timeout",self,"emerge",[timer])
 
 func emerge(_timer):
+	$WaterParticles.visible = true
 	_timer.queue_free()
 	$Sprite/AnimationPlayer.play("walk")
 	var timer = Timer.new()

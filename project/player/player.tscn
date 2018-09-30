@@ -1,13 +1,14 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://player/flecha_cinza.png" type="Texture" id=2]
-[ext_resource path="res://player/hook_guy.png" type="Texture" id=3]
-[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=4]
-[ext_resource path="res://player/bubble.png" type="Texture" id=5]
-[ext_resource path="res://player/circle.png" type="Texture" id=6]
-[ext_resource path="res://player/explosion/4.png" type="Texture" id=7]
-[ext_resource path="res://player/explosion/3.png" type="Texture" id=8]
+[ext_resource path="res://fx/water_particles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/flecha_cinza.png" type="Texture" id=3]
+[ext_resource path="res://player/hook_guy.png" type="Texture" id=4]
+[ext_resource path="res://player/screams/01.wav" type="AudioStream" id=5]
+[ext_resource path="res://player/bubble.png" type="Texture" id=6]
+[ext_resource path="res://player/circle.png" type="Texture" id=7]
+[ext_resource path="res://player/explosion/4.png" type="Texture" id=8]
+[ext_resource path="res://player/explosion/3.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -163,6 +164,7 @@ _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity
 ]]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -170,14 +172,20 @@ __meta__ = {
 id = null
 initial_dir = Vector2( 1, 0 )
 
-[node name="Arrow" type="Sprite" parent="." index="0"]
+[node name="WaterParticles" parent="." index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 30, 0 )
+rotation = 1.5708
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="Arrow" type="Sprite" parent="." index="1"]
 
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 offset = Vector2( 180, 0 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="." index="2"]
 
 scale = Vector2( 0.3, 0.3 )
 offset = Vector2( 0, -5 )
@@ -196,7 +204,7 @@ anims/dive = SubResource( 1 )
 anims/walk = SubResource( 2 )
 blend_times = [  ]
 
-[node name="Death" type="Sprite" parent="." index="2"]
+[node name="Death" type="Sprite" parent="." index="3"]
 
 visible = false
 scale = Vector2( 0.3, 0.3 )
@@ -214,14 +222,14 @@ playback_speed = 1.0
 anims/death = SubResource( 3 )
 blend_times = [  ]
 
-[node name="HookGuy" type="Sprite" parent="." index="3"]
+[node name="HookGuy" type="Sprite" parent="." index="4"]
 
 position = Vector2( 19.4, 0 )
 scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Area2D" type="Area2D" parent="." index="4"]
+[node name="Area2D" type="Area2D" parent="." index="5"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -238,9 +246,9 @@ rotation = 1.5708
 shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scream" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="Scream" type="AudioStreamPlayer2D" parent="." index="6"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -249,7 +257,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="DiveCooldown" type="Node2D" parent="." index="6"]
+[node name="DiveCooldown" type="Node2D" parent="." index="7"]
 
 [node name="Bar" type="TextureProgress" parent="DiveCooldown" index="0"]
 
@@ -276,16 +284,16 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 5 )
+texture_under = ExtResource( 6 )
 texture_over = null
-texture_progress = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
 fill_mode = 4
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Rect", "Textures", "Visibility" ]
 
-[node name="Tween" type="Tween" parent="." index="7"]
+[node name="Tween" type="Tween" parent="." index="8"]
 
 repeat = false
 playback_process_mode = 1
@@ -294,7 +302,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Explosion" type="Particles2D" parent="." index="8"]
+[node name="Explosion" type="Particles2D" parent="." index="9"]
 
 z_index = 1
 emitting = false
@@ -311,13 +319,13 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 7 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 normal_map = null
 h_frames = 8
 v_frames = 8
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
 
-[node name="Explosion2" type="Particles2D" parent="." index="9"]
+[node name="Explosion2" type="Particles2D" parent="." index="10"]
 
 z_index = 1
 emitting = false
@@ -334,7 +342,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 7 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 normal_map = null
 h_frames = 8
 v_frames = 8

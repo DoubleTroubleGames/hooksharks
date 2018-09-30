@@ -1,4 +1,5 @@
 Adicionar partículas
+    SANGUE
     Quando player se move na agua
     Quando player da dive ou emerge
     Quando hook acerta parede
