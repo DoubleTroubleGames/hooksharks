@@ -1,11 +1,14 @@
 extends Control
 
 const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
+const MENU_POS = Vector2(292, 550)
 
 signal finished
 
-onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2, $Round/BallsLeft/X3]
-onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2, $Round/BallsRight/X3]
+onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2,
+	$Round/BallsLeft/X3]
+onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2,
+	$Round/BallsRight/X3]
 onready var winner = $Round/Winner
 onready var menu = $Round/Menu
 onready var tween = $Tween
@@ -19,6 +22,8 @@ var round_texture = [preload("res://hud/round_screen/UI_01.png"),
 					preload("res://hud/round_screen/UI_05.png")]
 
 func _ready():
+	modulate = Color(1, 1, 1, 0)
+	
 	$Round/Number.texture = round_texture[global.round_number - 1]
 	
 	randomize()
@@ -34,19 +39,16 @@ func _ready():
 	
 
 func show_round():
-	
-	
 	if global.winner == -1:
 		$Round/Draw.visible = true
 		$Round/Text.visible = false
 		$Round/Number.visible = false
-		
-		
+	
 	# Fade in
 	get_node('../Mirage').visible = false
 	get_node('../Blur').visible = true
-	tween.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1),
-		.5, Tween.TRANS_LINEAR, Tween.EASE_IN, .1)
+	tween.interpolate_property(self, "modulate", Color(1, 1, 1, 0),
+		Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .1)
 	tween.start()
 	yield(tween, "tween_completed")
 	
@@ -63,10 +65,10 @@ func show_round():
 		marker.visible = true
 		marker.scale = Vector2(2, 2)
 		marker.modulate = Color(1, 1, 1, 0)
-		tween.interpolate_property(marker, "scale", marker.scale, Vector2(1, 1), .5,
-			Tween.TRANS_BACK, Tween.EASE_OUT)
-		tween.interpolate_property(marker, "modulate", marker.modulate, Color(1, 1, 1, 1), .5,
-			Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.interpolate_property(marker, "scale", marker.scale, Vector2(1, 1),
+			.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+		tween.interpolate_property(marker, "modulate", marker.modulate,
+			Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
 		var timer = Timer.new()
 		timer.wait_time = .15
@@ -86,12 +88,13 @@ func show_round():
 	# Winner label animation
 	winner.rect_position = WINNER_POS[global.winner] - Vector2(0, 400)
 	winner.visible = true
-	tween.interpolate_property(winner, "rect_position", winner.rect_position, WINNER_POS[global.winner],
+	tween.interpolate_property(winner, "rect_position", winner.rect_position,
+		WINNER_POS[global.winner],
 		.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	
 	# Menu animation
-	tween.interpolate_property(menu, "rect_position", menu.rect_position, Vector2(menu.rect_position.x, 590),
-		.5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
+	tween.interpolate_property(menu, "rect_position", menu.rect_position,
+		MENU_POS, .5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
 	tween.start()
 	yield(tween, "tween_completed")
 	$Round/Menu/Restart.disabled = false
