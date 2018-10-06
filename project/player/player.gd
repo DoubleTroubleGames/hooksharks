@@ -98,7 +98,6 @@ func _on_Area2D_area_entered(area):
 			_queue_free(true)
 
 func _queue_free(player_collision=false):
-	$Scream.play()
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
 	get_node('Sprite').visible = false
