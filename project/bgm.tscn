@@ -21,16 +21,14 @@
 [ext_resource path="res://sound/scream8.wav" type="AudioStream" id=19]
 [ext_resource path="res://sound/scream9.wav" type="AudioStream" id=20]
 
-[node name="BGM" type="AudioStreamPlayer2D" index="0"]
+[node name="BGM" type="AudioStreamPlayer" index="0"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "Master"
-area_mask = 1
 script = ExtResource( 2 )
 
 [node name="Click" type="AudioStreamPlayer2D" parent="." index="0"]
