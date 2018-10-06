@@ -56,34 +56,16 @@ texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Menu" type="HBoxContainer" parent="." index="2"]
-
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -170.0
-margin_right = 580.0
-margin_bottom = -8.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_constants/separation = 30
-alignment = 0
-_sections_unfolded = [ "Rect", "custom_constants" ]
-
-[node name="Start" type="TextureButton" parent="Menu" index="0"]
+[node name="Start" type="TextureButton" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 296.0
-margin_bottom = 162.0
+margin_left = 590.0
+margin_top = 560.0
+margin_right = 886.0
+margin_bottom = 708.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -101,15 +83,16 @@ texture_pressed = ExtResource( 5 )
 texture_focused = ExtResource( 5 )
 _sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="TextureButton" parent="Menu" index="1"]
+[node name="Quit" type="TextureButton" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 326.0
-margin_right = 630.0
-margin_bottom = 162.0
+margin_left = 920.0
+margin_top = 550.0
+margin_right = 1224.0
+margin_bottom = 712.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -125,10 +108,10 @@ group = null
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 7 )
 texture_focused = ExtResource( 7 )
-_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
+_sections_unfolded = [ "Margin", "Rect", "custom_fonts" ]
 
-[connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 
-[connection signal="pressed" from="Menu/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 
 

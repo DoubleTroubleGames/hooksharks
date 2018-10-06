@@ -11,8 +11,6 @@
 [ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=9]
 [ext_resource path="res://main_menu/UI_TITLE_RESTART.png" type="Texture" id=10]
 [ext_resource path="res://main_menu/UI_TITLE_RESTART_SELECT.png" type="Texture" id=11]
-[ext_resource path="res://main_menu/UI_TITLE_QUIT.png" type="Texture" id=12]
-[ext_resource path="res://main_menu/UI_TITLE_QUIT_SELECT.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -40,7 +38,17 @@ tracks/0/keys = {
 "values": [ Color( 0.580392, 0, 0.827451, 1 ), Color( 0.294118, 0, 0.509804, 1 ), Color( 0, 0, 1, 1 ), Color( 0, 1, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 1, 0.498039, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.580392, 0, 0.827451, 1 ) ]
 }
 
-[node name="HUD" type="Control"]
+[sub_resource type="StreamTexture" id=3]
+
+flags = 4
+load_path = "res://.import/UI_TITLE_QUIT.png-52609523bccd1b564089bcdb4e8f5cc2.stex"
+
+[sub_resource type="StreamTexture" id=4]
+
+flags = 4
+load_path = "res://.import/UI_TITLE_QUIT_SELECT.png-46b3f0d4584b90c3ac18f739f9408ab7.stex"
+
+[node name="HUD" type="Control" index="0"]
 
 pause_mode = 2
 anchor_left = 0.0
@@ -309,35 +317,17 @@ visible = false
 position = Vector2( 200, 28 )
 texture = ExtResource( 9 )
 
-[node name="Menu" type="HBoxContainer" parent="Round" index="8"]
-
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -348.0
-margin_top = 20.0
-margin_right = 348.0
-margin_bottom = 183.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_constants/separation = 30
-alignment = 0
-_sections_unfolded = [ "Rect", "custom_constants" ]
-
-[node name="Restart" type="TextureButton" parent="Round/Menu" index="0"]
+[node name="Restart" type="TextureButton" parent="Round" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 333.0
-margin_bottom = 163.0
-rect_min_size = Vector2( 333, 112 )
+margin_left = 292.0
+margin_top = 740.0
+margin_right = 623.0
+margin_bottom = 903.0
+rect_min_size = Vector2( 331, 163 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -355,16 +345,17 @@ texture_pressed = ExtResource( 11 )
 texture_focused = ExtResource( 11 )
 _sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="TextureButton" parent="Round/Menu" index="1"]
+[node name="Quit" type="TextureButton" parent="Round" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 363.0
-margin_right = 696.0
-margin_bottom = 163.0
-rect_min_size = Vector2( 333, 112 )
+margin_left = 690.0
+margin_top = 740.0
+margin_right = 994.0
+margin_bottom = 902.0
+rect_min_size = Vector2( 304, 162 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -377,10 +368,10 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 13 )
-texture_focused = ExtResource( 13 )
-_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
+texture_normal = SubResource( 3 )
+texture_pressed = SubResource( 4 )
+texture_focused = SubResource( 4 )
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="Tween" type="Tween" parent="." index="2"]
 
@@ -398,8 +389,8 @@ wait_time = 1.0
 one_shot = true
 autostart = false
 
-[connection signal="pressed" from="Round/Menu/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Round/Restart" to="." method="_on_Restart_pressed"]
 
-[connection signal="pressed" from="Round/Menu/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Round/Quit" to="." method="_on_Quit_pressed"]
 
 

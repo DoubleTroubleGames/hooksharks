@@ -10,7 +10,6 @@ onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2,
 onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2,
 	$Round/BallsRight/X3]
 onready var winner = $Round/Winner
-onready var menu = $Round/Menu
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
 onready var camera = get_node('../Camera2D')
@@ -93,13 +92,15 @@ func show_round():
 		.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	
 	# Menu animation
-	tween.interpolate_property(menu, "rect_position", menu.rect_position,
+	tween.interpolate_property($Round/Restart, "rect_position", $Round/Restart.rect_position,
 		MENU_POS, .5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
+	tween.interpolate_property($Round/Quit, "rect_position", $Round/Quit.rect_position,
+		MENU_POS + Vector2(690-292, 0), .5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
 	tween.start()
 	yield(tween, "tween_completed")
-	$Round/Menu/Restart.disabled = false
-	$Round/Menu/Restart.grab_focus()
-	$Round/Menu/Quit.disabled = false
+	$Round/Restart.disabled = false
+	$Round/Restart.grab_focus()
+	$Round/Quit.disabled = false
 	
 	global.scores = [0, 0]
 	global.round_number = 1
