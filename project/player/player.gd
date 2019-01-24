@@ -1,3 +1,4 @@
+# Keyboard and Moukse control for player
 extends Node2D
 
 const ROT_SPEED = PI/3.5
@@ -9,10 +10,11 @@ const DIVE_PARTICLES = preload('res://fx/dive_particles.tscn')
 const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://player/explosion/2.png"),
 	preload("res://player/explosion/3.png"), preload("res://player/explosion/4.png")]
 
+enum INPUT_TYPES {KEYBOARD_MOUSE, GAMEPAD}
+
 export (int)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
 
-onready var bgm = get_node('/root/bgm')
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
@@ -23,16 +25,18 @@ onready var round_manager = map.get_node('RoundManager')
 onready var tween = $Tween
 onready var camera = get_node('../../Camera2D')
 
+# TODO: Change according to select screen
+var input_type = KEYBOARD_MOUSE
+
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
-var diving = false 
+var diving = false
 var can_dive = true
 var dive_cooldown = 1.5
 var stunned = false
 var hook = null
 var pull_dir = null
 var score = 0
-
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
 func _ready():
@@ -43,37 +47,47 @@ func _ready():
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
-	
+
 	if hook != null and weakref(hook).get_ref() and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
-	else:
-		if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
+	elif id == 0 and not stunned:
+		if Input.is_action_pressed("ui_right"):
 			speed2 = speed2.rotated(ROT_SPEED * delta)
-		if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
+		if Input.is_action_pressed("ui_left"):
 			speed2 = speed2.rotated(-ROT_SPEED * delta)
-	
+
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
-	
+
 	if stunned:
 		position += pull_dir * 100 * delta
 		applying_force = pull_dir * 200
-	
+
 	position += speed2 * delta
 	speed2 += applying_force * delta
 
 	rotation = speed2.angle()
-	
+
 	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
-	
-	# Arrow direction
-	var arrow_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
+
+	# Update arrow direction
+	var arrow_dir = get_arrow_direction()
 	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and !diving)
 	arrow.global_rotation = arrow_dir.angle()
-	
+
 	dive_bar.global_rotation = 0
+
+func get_arrow_direction():
+	match input_type:
+		GAMEPAD:
+			return Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
+		KEYBOARD_MOUSE:
+			return get_global_mouse_position() - get_position()
+	
+	print("input_type not defined")
+	return Vector2()
 
 func create_trail(pos):
 	var trail = TRAIL.instance()
@@ -104,10 +118,10 @@ func _queue_free(player_collision=false):
 	get_node('HookGuy').visible = false
 	get_node('Death').visible = true
 	get_node('Death/AnimationPlayer').play('death')
-	bgm.get_node('Explosion').play()
+	Bgm.get_node('Explosion').play()
 	randomize()
 	var scream = 1 + randi() % 9
-	bgm.get_node(str('Scream', scream)).play()
+	Bgm.get_node(str('Scream', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
 	round_manager.remove_player(self, player_collision)
@@ -136,12 +150,12 @@ func end_stun(hook, timer):
 	stunned = false
 
 func _input(event):
-	if event.is_action_pressed('dive_'+str(id)) and can_dive:
-		bgm.get_node('Dive').play()
+	if event.is_action_pressed('dive') and can_dive:
+		Bgm.get_node('Dive').play()
 		dive()
-	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
+	elif event.is_action_pressed('shoot') and !diving:
 		if hook == null and not stunned:
-			var hook_dir = Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
+			var hook_dir = get_arrow_direction()
 			if hook_dir.length() < AXIS_DEADZONE:
 				hook_dir = speed2
 			hook = map.create_hook(self, hook_dir)
@@ -187,8 +201,8 @@ func emerge(_timer):
 	timer.connect('timeout', self, 'enable_diving', [timer])
 	timer.start()
 	self.add_child(timer)
-	bgm.get_node('Emerge').play()
-	
+	Bgm.get_node('Emerge').play()
+
 	# Cooldown progress bar
 	bar.value = 100
 	bar.visible = true

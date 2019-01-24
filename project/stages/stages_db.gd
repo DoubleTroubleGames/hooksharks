@@ -14,7 +14,9 @@ preload('res://stages/stage10.tscn')
 ]
 
 func get_random_stage():
-	return STAGES[1 + (randi() % (STAGES.size() - 1))]
+	if STAGES.size() > 1:
+		return STAGES[1 + (randi() % (STAGES.size() - 1))]
+	return STAGES[0]
 
 func get_first_stage():
 	return STAGES[0]
