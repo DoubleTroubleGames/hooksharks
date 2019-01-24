@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://player/kmControl.gd" type="Script" id=1]
+[ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://fx/water_particles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/flecha_cinza.png" type="Texture" id=3]
 [ext_resource path="res://player/hook_guy.png" type="Texture" id=4]
@@ -158,7 +158,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 

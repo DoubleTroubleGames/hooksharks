@@ -49,7 +49,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -132,6 +132,7 @@ texture = ExtResource( 7 )
 
 [node name="Player2" parent="Players" index="1" instance=ExtResource( 5 )]
 
+editor/display_folded = true
 position = Vector2( 1100, 550 )
 id = 1
 initial_dir = Vector2( -1, 0 )
