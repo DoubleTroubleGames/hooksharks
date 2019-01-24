@@ -132,16 +132,13 @@ func _queue_free(player_collision=false):
 	set_process_input(false)
 
 func hook_collision(from_hook):
-	var timer = Timer.new()
-	timer.wait_time = .4
-	timer.start()
-	self.add_child(timer)
-	timer.connect('timeout', self, 'end_stun', [from_hook, timer])
+	$HookTimer.start()
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0)-from_hook.rope.get_point_position(1)).normalized()
+	yield($HookTimer, "timeout")
+	end_stun(from_hook)
 
-func end_stun(hook, timer):
-	timer.queue_free()
+func end_stun(hook):
 	if weakref(hook).get_ref():
 		hook.retract()
 		hook.stop_at = null
