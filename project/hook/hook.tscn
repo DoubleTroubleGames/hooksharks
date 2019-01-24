@@ -33,7 +33,7 @@ flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 100.0
 initial_velocity_random = 0.0
-angular_velocity = 4.55997e-41
+angular_velocity = 4.55997e-041
 angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
@@ -111,7 +111,7 @@ scale = Vector2( 0.209665, 0.205871 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="HookArea" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -121,7 +121,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea" index="0"]
 
 shape = SubResource( 1 )
 
@@ -171,6 +171,6 @@ h_frames = 4
 v_frames = 4
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visibility" ]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]
 
 
