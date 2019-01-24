@@ -23,7 +23,7 @@ var round_texture = [preload("res://hud/round_screen/UI_01.png"),
 func _ready():
 	modulate = Color(1, 1, 1, 0)
 	
-	$Round/Number.texture = round_texture[global.round_number - 1]
+	$Round/Number.texture = round_texture[Global.round_number - 1]
 	
 	randomize()
 	for x in left_markers:
@@ -31,14 +31,14 @@ func _ready():
 	for x in right_markers:
 		x.rotation_degrees = rand_range(-20, 20)
 	
-	for i in range(global.scores[0]):
+	for i in range(Global.scores[0]):
 		left_markers[i].visible = true
-	for i in range(global.scores[1]):
+	for i in range(Global.scores[1]):
 		right_markers[i].visible = true
 	
 
 func show_round():
-	if global.winner == -1:
+	if Global.winner == -1:
 		$Round/Draw.visible = true
 		$Round/Text.visible = false
 		$Round/Number.visible = false
@@ -53,12 +53,12 @@ func show_round():
 	
 	# Marker animation 
 	var marker = null
-	if global.winner == 0:
-		marker = left_markers[global.scores[0] - 1]
-	elif global.winner == 1:
-		marker = right_markers[global.scores[1] - 1]
+	if Global.winner == 0:
+		marker = left_markers[Global.scores[0] - 1]
+	elif Global.winner == 1:
+		marker = right_markers[Global.scores[1] - 1]
 	
-	bgm.get_node('Score').play()
+	Bgm.get_node('Score').play()
 	
 	if marker:
 		marker.visible = true
@@ -78,17 +78,17 @@ func show_round():
 		camera.add_shake(.3)
 		yield(tween, "tween_completed")
 	
-	if global.scores[0] < 3 and global.scores[1] < 3:
+	if Global.scores[0] < 3 and Global.scores[1] < 3:
 		display_timer.start()
 		yield(display_timer, "timeout")
 		emit_signal("finished")
 		return
 	
 	# Winner label animation
-	winner.rect_position = WINNER_POS[global.winner] - Vector2(0, 400)
+	winner.rect_position = WINNER_POS[Global.winner] - Vector2(0, 400)
 	winner.visible = true
 	tween.interpolate_property(winner, "rect_position", winner.rect_position,
-		WINNER_POS[global.winner],
+		WINNER_POS[Global.winner],
 		.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	
 	# Menu animation
@@ -102,8 +102,8 @@ func show_round():
 	$Round/Restart.grab_focus()
 	$Round/Quit.disabled = false
 	
-	global.scores = [0, 0]
-	global.round_number = 1
+	Global.scores = [0, 0]
+	Global.round_number = 1
 
 func _on_Restart_pressed():
 	get_tree().reload_current_scene()
