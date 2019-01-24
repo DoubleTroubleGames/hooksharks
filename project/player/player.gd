@@ -116,8 +116,6 @@ func _queue_free(player_collision=false):
 	$Explosion2.emitting = true
 	get_node('Sprite').visible = false
 	get_node('HookGuy').visible = false
-	get_node('Death').visible = true
-	get_node('Death/AnimationPlayer').play('death')
 	Bgm.get_node('Explosion').play()
 	randomize()
 	var scream = 1 + randi() % 9
