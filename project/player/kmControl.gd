@@ -13,7 +13,6 @@ const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://play
 export (int)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
 
-onready var bgm = get_node('/root/bgm')
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
@@ -105,10 +104,10 @@ func _queue_free(player_collision=false):
 	get_node('HookGuy').visible = false
 	get_node('Death').visible = true
 	get_node('Death/AnimationPlayer').play('death')
-	bgm.get_node('Explosion').play()
+	Bgm.get_node('Explosion').play()
 	randomize()
 	var scream = 1 + randi() % 9
-	bgm.get_node(str('Scream', scream)).play()
+	Bgm.get_node(str('Scream', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
 	round_manager.remove_player(self, player_collision)
@@ -138,7 +137,7 @@ func end_stun(hook, timer):
 
 func _input(event):
 	if event.is_action_pressed('dive') and can_dive:
-		bgm.get_node('Dive').play()
+		Bgm.get_node('Dive').play()
 		dive()
 	elif event.is_action_pressed('shoot') and !diving:
 		if hook == null and not stunned:
@@ -188,7 +187,7 @@ func emerge(_timer):
 	timer.connect('timeout', self, 'enable_diving', [timer])
 	timer.start()
 	self.add_child(timer)
-	bgm.get_node('Emerge').play()
+	Bgm.get_node('Emerge').play()
 
 	# Cooldown progress bar
 	bar.value = 100

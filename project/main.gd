@@ -5,16 +5,14 @@ const ROPE = preload('res://rope/rope.tscn')
 const STAGES_DB = preload('res://stages/stages_db.gd')
 const BG_SPEED = 20
 
-onready var global = get_node('/root/global')
-onready var bgm = get_node('/root/bgm')
 onready var blink = $Blink
-onready var bg = get_node('BG')
+onready var bg = $BG
 onready var camera = $Camera2D
 onready var hud = $HUD
 onready var stages = STAGES_DB.new()
 
 func _ready():
-	if global.scores == [0, 0]:
+	if Global.scores == [0, 0]:
 		self.add_child(stages.get_first_stage().instance())
 	else:
 		self.add_child(stages.get_random_stage().instance())
@@ -45,7 +43,7 @@ func create_hook(player, dir):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
-	bgm.get_node('Harpoon').play()
+	Bgm.get_node('Harpoon').play()
 	hook.rope = rope
 	get_node('Ropes').add_child(rope)
 	return hook
@@ -61,7 +59,7 @@ func blink_screen():
 func show_round():
 	hud.show_round()
 	yield(hud, "finished")
-	if global.winner != -1:
-		global.round_number += 1
+	if Global.winner != -1:
+		Global.round_number += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()

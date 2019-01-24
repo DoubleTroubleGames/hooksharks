@@ -6,7 +6,6 @@ var retracting = false
 var kill_distance = 20
 
 onready var camera = get_node('../../Camera2D')
-onready var bgm = get_node('/root/bgm')
 onready var hook_clink = get_node('../../HookClink')
 var dir = Vector2()
 var has_collided = false
@@ -36,7 +35,7 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('hook') and not retracting:
 		player.hook.retract()
 		player.map.blink_screen()
-		bgm.get_node('HookHitHook').play()
+		Bgm.get_node('HookHitHook').play()
 		camera.add_shake(.8)
 		hook_clink.position = (object.position + self.position)/2
 		hook_clink.emitting = true
@@ -45,13 +44,13 @@ func _on_Area2D_area_entered(area):
 			$BloodParticles.emitting = true
 			stop_at = object
 			object.hook_collision(self)
-			bgm.get_node('HookHitPlayer').play()
+			Bgm.get_node('HookHitPlayer').play()
 			camera.add_shake(.7)
 	elif object.is_in_group('wall') and not retracting:
 		$WallParticles.emitting = true
 		camera.add_shake(.3)
 		has_collided = true
-		bgm.get_node('HookHitWall').play()
+		Bgm.get_node('HookHitWall').play()
 
 func retract():
 	retracting = true

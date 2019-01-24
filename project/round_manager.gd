@@ -19,9 +19,9 @@ func remove_player(player, player_collision):
 		timer.pause_mode = PROCESS
 		timer.start()
 		if not player_collision:
-			global.scores[winner.id] += 1
-			global.winner = winner.id
+			Global.scores[winner.id] += 1
+			Global.winner = winner.id
 		else:
-			global.winner = -1
+			Global.winner = -1
 		winner.set_physics_process(false)
 		winner.set_process_input(false)
