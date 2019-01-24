@@ -287,6 +287,13 @@ h_frames = 8
 v_frames = 8
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
 
+[node name="HookTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 0.4
+one_shot = true
+autostart = false
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
