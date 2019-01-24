@@ -31,25 +31,25 @@ func _physics_process(delta):
 func _on_HookArea_area_entered(area):
 	var object = area.get_parent()
 	if object.is_in_group('hook') and not retracting:
-		hookHitHook()
+		hookHitHook(object)
 	elif object.is_in_group('player') and object != player and not retracting:
-		hookHitShark()
+		hookHitShark(object)
 	elif object.is_in_group('wall') and not retracting:
 		hookHitWall()
 
-func hookHitHook():
+func hookHitHook(otherHook):
 	retract()
 	player.map.blink_screen()
 	Bgm.get_node('HookHitHook').play()
 	camera.add_shake(.8)
-	hook_clink.position = (object.position + self.position)/2
+	hook_clink.position = (otherHook.position + self.position)/2
 	hook_clink.emitting = true
 
-func hookHitShark():
-	if not object.stunned and not object.diving:
+func hookHitShark(Shark):
+	if not Shark.stunned and not Shark.diving:
 		$BloodParticles.emitting = true
-		stop_at = object
-		object.hook_collision(self)
+		stop_at = Shark
+		Shark.hook_collision(self)
 		Bgm.get_node('HookHitPlayer').play()
 		camera.add_shake(.7)
 
