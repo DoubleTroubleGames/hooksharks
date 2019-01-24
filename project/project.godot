@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="SharkTron"
+config/name="HookSharks"
 run/main_scene="res://main_menu/main_menu.tscn"
 config/use_custom_user_dir=true
 boot_splash/image="res://main_menu/ilustra_menu.png"
@@ -18,8 +18,8 @@ config/icon="res://hud/round_screen/UI_shark_red.png"
 
 [autoload]
 
-global="*res://global.gd"
-bgm="*res://bgm.tscn"
+Global="*res://global.gd"
+Bgm="*res://bgm.tscn"
 
 [display]
 
