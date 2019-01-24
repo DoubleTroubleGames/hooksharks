@@ -78,13 +78,16 @@ _sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Damping", "Emi
 
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Oil" type="Sprite" parent="." index="0"]
 
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 hframes = 6
 _sections_unfolded = [ "Animation", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
@@ -95,6 +98,10 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
@@ -121,6 +128,9 @@ normal_map = null
 h_frames = 6
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Timer" type="Timer" parent="." index="3"]
 
