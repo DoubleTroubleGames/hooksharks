@@ -6,7 +6,7 @@ Avoid writing code that relies on a specific scene structure (like calling metho
 
 ## Code style guide
 
-Try to follow [GDScript's official style guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html).
+Follow [GDScript's official style guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html).
 
 ### Order inside a .gd file
 
