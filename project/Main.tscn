@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://arena-mode/Arena.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
 [ext_resource path="res://assets/reflex_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/reflex_02.png" type="Texture" id=4]
@@ -15,6 +15,9 @@
 [ext_resource path="res://assets/white.png" type="Texture" id=13]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=14]
 [ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=15]
+
+
+
 
 
 
