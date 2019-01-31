@@ -18,8 +18,8 @@ config/icon="res://hud/round_screen/ui_shark_red.png"
 
 [autoload]
 
-Global="*res://global.gd"
 BGM="*res://BGM.tscn"
+Global="*res://Global.gd"
 
 [display]
 
