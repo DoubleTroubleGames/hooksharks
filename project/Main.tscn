@@ -14,6 +14,9 @@
 [ext_resource path="res://camera/Camera.gd" type="Script" id=12]
 [ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=13]
 
+
+
+
 [sub_resource type="Shader" id=1]
 
 code = "shader_type canvas_item;
