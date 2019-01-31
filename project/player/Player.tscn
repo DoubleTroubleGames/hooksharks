@@ -139,6 +139,7 @@ __meta__ = {
 }
 id = null
 initial_dir = Vector2( 1, 0 )
+create_trail = true
 
 input_type = "Keyboard_mouse"
 
