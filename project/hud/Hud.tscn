@@ -4,24 +4,13 @@
 [ext_resource path="res://hud/round_screen/ui_round.png" type="Texture" id=2]
 [ext_resource path="res://main-menu/ui_draw.png" type="Texture" id=3]
 [ext_resource path="res://hud/round_screen/ui_01.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://hud/round_screen/ui_shark_red.png" type="Texture" id=6]
 [ext_resource path="res://hud/round_screen/ui_shark_blue.png" type="Texture" id=7]
 [ext_resource path="res://hud/round_screen/ui_bolas.png" type="Texture" id=8]
 [ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=9]
 [ext_resource path="res://main-menu/ui_title_restart.png" type="Texture" id=10]
 [ext_resource path="res://main-menu/ui_title_restart_select.png" type="Texture" id=11]
-
-
-
-
-
-
-
-
-
-
-
 
 [sub_resource type="DynamicFont" id=1]
 
