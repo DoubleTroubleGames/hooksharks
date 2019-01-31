@@ -47,7 +47,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Race" type="Node2D"]
+[node name="Race" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -112,6 +112,7 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 editor/display_folded = true
 position = Vector2( 198.772, 91.959 )
 id = 0
+create_trail = false
 
 [node name="Arrow" parent="Players/Player1" index="1"]
 
@@ -129,6 +130,7 @@ _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 editor/display_folded = true
 position = Vector2( 197.103, 195.775 )
 id = 1
+create_trail = false
 
 [node name="Arrow" parent="Players/Player2" index="1"]
 

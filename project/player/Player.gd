@@ -14,6 +14,7 @@ enum INPUT_TYPES {KEYBOARD_MOUSE, GAMEPAD}
 
 export (int)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
+export (bool)var create_trail = true
 
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
@@ -68,7 +69,7 @@ func _physics_process(delta):
 
 	rotation = speed2.angle()
 
-	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
+	if self.create_trail and self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
 
