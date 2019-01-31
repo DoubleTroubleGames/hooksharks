@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="SharkTron"
+config/name="Hooksharks"
 run/main_scene="res://main-menu/MainMenu.tscn"
 config/use_custom_user_dir=true
 boot_splash/image="res://main_menu/ilustra_menu.png"
