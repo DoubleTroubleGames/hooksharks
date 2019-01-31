@@ -5,7 +5,7 @@
 [ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/caixas_04.png" type="Texture" id=4]
 
-[node name="Walls" type="Node2D" index="0" groups=[
+[node name="Walls" type="Node2D" groups=[
 "wall",
 ]]
 
