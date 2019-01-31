@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=2]
+[ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/caixas_04.png" type="Texture" id=4]
 
 [node name="Walls" type="Node2D" index="0" groups=[
 "wall",
@@ -143,4 +145,17 @@ polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -17
 
 [node name="Obstacles" type="Node2D" parent="." index="4"]
 
+[node name="Obstacle" parent="Obstacles" index="0" instance=ExtResource( 3 )]
 
+position = Vector2( 518.681, 360.749 )
+
+[node name="Sprite" parent="Obstacles/Obstacle" index="0"]
+
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" parent="Obstacles/Obstacle/Area2D" index="0"]
+
+polygon = PoolVector2Array( -500, -60, 500, -60, 500, 60, -500, 60 )
+
+
+[editable path="Obstacles/Obstacle"]

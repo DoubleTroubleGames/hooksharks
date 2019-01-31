@@ -47,7 +47,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Race" type="Node2D" index="0"]
+[node name="Race" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -110,7 +110,7 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 [node name="Player1" parent="Players" index="0" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 200, 200 )
+position = Vector2( 198.772, 91.959 )
 id = 0
 
 [node name="Arrow" parent="Players/Player1" index="1"]
@@ -127,9 +127,8 @@ _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 [node name="Player2" parent="Players" index="1" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 1100, 550 )
+position = Vector2( 197.103, 195.775 )
 id = 1
-initial_dir = Vector2( -1, 0 )
 
 [node name="Arrow" parent="Players/Player2" index="1"]
 
@@ -155,13 +154,19 @@ script = ExtResource( 8 )
 
 [node name="HUD" parent="." index="8" instance=ExtResource( 10 )]
 
+margin_right = 1216.0
+margin_bottom = 656.0
+
 [node name="Blink" type="Sprite" parent="." index="9"]
 
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 640, 360 )
+position = Vector2( -264.124, -102.266 )
 scale = Vector2( 20, 11.25 )
 texture = ExtResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 
