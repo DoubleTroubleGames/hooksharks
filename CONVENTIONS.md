@@ -14,6 +14,8 @@ Follow [GDScript's official style guide](http://docs.godotengine.org/en/latest/g
   
 	extends
   
+  	signal
+  
 	class_name
   
 	enum
@@ -21,6 +23,8 @@ Follow [GDScript's official style guide](http://docs.godotengine.org/en/latest/g
 	const
   
 	export var
+  
+  	onready var
   
 	var
   
