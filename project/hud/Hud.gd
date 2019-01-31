@@ -6,19 +6,20 @@ const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
 const MENU_POS = Vector2(292, 550)
 
 onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2,
-	$Round/BallsLeft/X3]
+		$Round/BallsLeft/X3]
 onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2,
-	$Round/BallsRight/X3]
+		$Round/BallsRight/X3]
 onready var winner = $Round/Winner
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
 onready var camera = get_node('../Camera2D')
 
-var round_texture = [preload("res://hud/round_screen/ui_01.png"),
-					preload("res://hud/round_screen/ui_02.png"),
-					preload("res://hud/round_screen/ui_03.png"),
-					preload("res://hud/round_screen/ui_04.png"),
-					preload("res://hud/round_screen/ui_05.png")]
+var round_texture = [
+		preload("res://hud/round_screen/ui_01.png"),
+		preload("res://hud/round_screen/ui_02.png"),
+		preload("res://hud/round_screen/ui_03.png"),
+		preload("res://hud/round_screen/ui_04.png"),
+		preload("res://hud/round_screen/ui_05.png")]
 
 func _ready():
 	modulate = Color(1, 1, 1, 0)

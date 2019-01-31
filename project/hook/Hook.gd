@@ -14,9 +14,6 @@ var player = null
 var rope = null
 var stop_at = null
 
-func shoot(direction):
-	dir = direction
-
 func _physics_process(delta):
 	speed += acc * delta
 	if stop_at != null:
@@ -29,14 +26,9 @@ func _physics_process(delta):
 		if position.distance_to(player.position) <= kill_distance:
 			free_hook()
 
-func _on_HookArea_area_entered(area):
-	var object = area.get_parent()
-	if object.is_in_group('hook') and not retracting:
-		hookHitHook(object)
-	elif object.is_in_group('player') and object != player and not retracting:
-		hookHitShark(object)
-	elif object.is_in_group('wall') and not retracting:
-		hookHitWall()
+
+func shoot(direction):
+	dir = direction
 
 func hookHitHook(otherHook):
 	retract()
@@ -67,3 +59,12 @@ func free_hook():
 	rope.queue_free()
 	player.hook = null
 	self.queue_free()
+
+func _on_HookArea_area_entered(area):
+	var object = area.get_parent()
+	if object.is_in_group('hook') and not retracting:
+		hookHitHook(object)
+	elif object.is_in_group('player') and object != player and not retracting:
+		hookHitShark(object)
+	elif object.is_in_group('wall') and not retracting:
+		hookHitWall()
