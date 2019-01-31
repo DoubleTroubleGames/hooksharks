@@ -14,17 +14,17 @@ Follow [GDScript's official style guide](http://docs.godotengine.org/en/latest/g
   
 	extends
   
+	class_name
+  
   	signal
   
-	class_name
+  	onready var
   
 	enum
   
 	const
   
 	export var
-  
-  	onready var
   
 	var
   
