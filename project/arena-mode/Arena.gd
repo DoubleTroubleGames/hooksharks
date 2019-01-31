@@ -2,7 +2,7 @@ extends Node2D
 
 const HOOK = preload('res://hook/Hook.tscn')
 const ROPE = preload('res://rope/Rope.tscn')
-const STAGES_DB = preload('res://stages/StagesDb.gd')
+const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
 const BG_SPEED = 20
 
 onready var blink = $Blink
