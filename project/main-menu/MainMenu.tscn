@@ -56,7 +56,34 @@ texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Start" type="TextureButton" parent="." index="2"]
+[node name="StartRace" type="TextureButton" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 260.0
+margin_top = 560.0
+margin_right = 556.0
+margin_bottom = 708.0
+rect_min_size = Vector2( 250, 112 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
+
+[node name="StartArena" type="TextureButton" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -83,7 +110,7 @@ texture_pressed = ExtResource( 5 )
 texture_focused = ExtResource( 5 )
 _sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="TextureButton" parent="." index="3"]
+[node name="Quit" type="TextureButton" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -110,7 +137,9 @@ texture_pressed = ExtResource( 7 )
 texture_focused = ExtResource( 7 )
 _sections_unfolded = [ "Margin", "Rect", "custom_fonts" ]
 
-[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="StartRace" to="." method="_on_StartRace_pressed"]
+
+[connection signal="pressed" from="StartArena" to="." method="_on_StartArena_pressed"]
 
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 
