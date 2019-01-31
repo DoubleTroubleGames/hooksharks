@@ -17,6 +17,7 @@ func _on_Area2D_area_entered(area):
 
 func set_size(s):
 	size = s
-	var shape = RectangleShape2D.new()
-	shape.set_extents(Vector2(10, size))
-	$Area2D/CollisionShape2D.set_shape(shape)
+	if $Area2D:
+		var shape = RectangleShape2D.new()
+		shape.set_extents(Vector2(10, size))
+		$Area2D/CollisionShape2D.set_shape(shape)

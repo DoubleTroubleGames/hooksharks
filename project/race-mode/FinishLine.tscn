@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 300 )
 
-[node name="FinishLine" type="Node2D" index="0"]
+[node name="FinishLine" type="Node2D"]
 
 script = ExtResource( 1 )
 size = 300
