@@ -48,7 +48,7 @@ load_path = "res://.import/UI_TITLE_QUIT.png-52609523bccd1b564089bcdb4e8f5cc2.st
 flags = 4
 load_path = "res://.import/UI_TITLE_QUIT_SELECT.png-46b3f0d4584b90c3ac18f739f9408ab7.stex"
 
-[node name="HUD" type="Control" index="0"]
+[node name="HUD" type="Control"]
 
 pause_mode = 2
 anchor_left = 0.0
