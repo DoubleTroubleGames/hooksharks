@@ -10,7 +10,7 @@ const DIVE_PARTICLES = preload('res://fx/DiveParticles.tscn')
 const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://player/explosion/2.png"),
 	preload("res://player/explosion/3.png"), preload("res://player/explosion/4.png")]
 
-export (int)var id
+export (int, -1, 3)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
 export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
 
@@ -47,7 +47,7 @@ func _physics_process(delta):
 	if hook != null and weakref(hook).get_ref() and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
-		if input_type == "Keyboard_mouse" and id == 0:
+		if input_type == "Keyboard_mouse":
 			if Input.is_action_pressed("ui_right"):
 				speed2 = speed2.rotated(ROT_SPEED * delta)
 			if Input.is_action_pressed("ui_left"):
@@ -147,19 +147,35 @@ func end_stun(hook):
 	stunned = false
 
 func _input(event):
-	if event.is_action_pressed('dive_'+str(id)) and can_dive:
-		BGM.get_node('Dive').play()
-		dive()
-	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
-		if hook == null and not stunned:
-			var hook_dir = get_arrow_direction()
-			if hook_dir.length() < AXIS_DEADZONE:
-				hook_dir = speed2
-			hook = map.create_hook(self, hook_dir)
-			hook.get_node("Sprite").rotation = hook_dir.angle()
-			hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
-		elif hook and weakref(hook).get_ref() and not hook.retracting:
-			hook.retract()
+	if input_type == 'Gamepad':
+		if event.is_action_pressed('dive_'+str(id)) and can_dive:
+			BGM.get_node('Dive').play()
+			dive()
+		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
+			if hook == null and not stunned:
+				var hook_dir = get_arrow_direction()
+				if hook_dir.length() < AXIS_DEADZONE:
+					hook_dir = speed2
+				hook = map.create_hook(self, hook_dir)
+				hook.get_node("Sprite").rotation = hook_dir.angle()
+				hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
+			elif hook and weakref(hook).get_ref() and not hook.retracting:
+				hook.retract()
+	elif input_type == "Keyboard_mouse":
+		if event.is_action_pressed('dive_km') and can_dive:
+			BGM.get_node('Dive').play()
+			dive()
+		elif event.is_action_pressed('shoot_km') and !diving:
+			if hook == null and not stunned:
+				var hook_dir = get_arrow_direction()
+				if hook_dir.length() < AXIS_DEADZONE:
+					hook_dir = speed2
+				hook = map.create_hook(self, hook_dir)
+				hook.get_node("Sprite").rotation = hook_dir.angle()
+				hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
+			elif hook and weakref(hook).get_ref() and not hook.retracting:
+				hook.retract()
+		
 
 func dive():
 	$WaterParticles.visible = false

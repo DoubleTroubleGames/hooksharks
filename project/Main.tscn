@@ -51,6 +51,8 @@ load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
+use_keyboard = true
+keyboard_id = 0
 
 [node name="BG" type="Sprite" parent="." index="0"]
 
@@ -112,6 +114,7 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 editor/display_folded = true
 position = Vector2( 200, 200 )
 id = 0
+input_type = "Gamepad"
 
 [node name="Arrow" parent="Players/Player1" index="1"]
 

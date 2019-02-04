@@ -5,11 +5,16 @@ const ROPE = preload('res://rope/Rope.tscn')
 const STAGES_DB = preload('res://stages/StagesDb.gd')
 const BG_SPEED = 20
 
+export (bool)var use_keyboard = false
+export (int, '0', '1', '2', '3')var keyboard_id = 0
+
 onready var blink = $Blink
 onready var bg = $BG
 onready var camera = $Camera2D
 onready var hud = $HUD
 onready var stages = STAGES_DB.new()
+
+var ids = [0, 1, 2, 3]
 
 func _ready():
 	if Global.scores == [0, 0]:
@@ -21,6 +26,20 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 	self.move_child(hud, self.get_child_count())
+	
+	if use_keyboard:
+		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
+		KeyboardPlayer.input_type = "Keyboard_mouse"
+		KeyboardPlayer.id = -1 # Sets keyboard user's id as an out of range value
+		ids.remove(keyboard_id)
+		
+		# Subtracts the id from all Players with id greater than keyboard user's, as to make sure they get
+		# connected to the correct gamepad
+		for i in range(keyboard_id + 1, 4):
+			if $Players.has_node("Player" + str(i + 1)):
+				var Player = get_node("Players/Player" + str(i + 1))
+				Player.id -= 1
+
 
 func _physics_process(delta):
 	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
