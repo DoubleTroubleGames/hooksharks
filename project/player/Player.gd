@@ -48,7 +48,7 @@ func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
 
-	if hook != null and weakref(hook).get_ref() and hook.has_collided:
+	if hook != null and weakref(hook).get_ref() and hook.isColliding() and not hook.isPullingObject():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
 		if input_type == "Keyboard_mouse":

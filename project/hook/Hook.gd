@@ -7,6 +7,7 @@ onready var hook_clink = get_node('../../HookClink')
 var speed = 700
 var acc = 500
 var retracting = false
+var pulling_object = null
 var kill_distance = 20
 var dir = Vector2()
 var has_collided = false
@@ -25,7 +26,18 @@ func _physics_process(delta):
 		position += dir * (delta * speed * 2)
 		if position.distance_to(player.position) <= kill_distance:
 			free_hook()
+	elif pulling_object:
+		dir = (player.position - self.position).normalized()
+		position += dir * (delta * speed * .3)
+		if position.distance_to(player.position) <= kill_distance:
+			pulling_object.removeHook()
+			free_hook()
 
+func isPullingObject():
+	return not not pulling_object
+
+func isColliding():
+	return has_collided
 
 func shoot(direction):
 	dir = direction
@@ -52,19 +64,30 @@ func hookHitWall():
 	has_collided = true
 	BGM.get_node('HookHitWall').play()
 
+func hookHitObject(object):
+	camera.add_shake(.1)
+	has_collided = true
+	object.setHook(self)
+	pulling_object = object
+
 func retract():
+	if pulling_object:
+		pulling_object = null
 	retracting = true
 
 func free_hook():
 	rope.queue_free()
 	player.hook = null
+	pulling_object = null
 	self.queue_free()
 
 func _on_HookArea_area_entered(area):
 	var object = area.get_parent()
-	if object.is_in_group('hook') and not retracting:
+	if object.is_in_group('object') and not retracting:
+		hookHitObject(object)
+	elif object.is_in_group('hook') and not retracting:
 		hookHitHook(object)
-	elif object.is_in_group('player') and object != player and not retracting:
-		hookHitShark(object)
 	elif object.is_in_group('wall') and not retracting:
 		hookHitWall()
+	elif object.is_in_group('player') and object != player and not retracting:
+		hookHitShark(object)
