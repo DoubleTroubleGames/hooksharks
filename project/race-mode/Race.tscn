@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://arena-mode/Arena.gd" type="Script" id=1]
+[ext_resource path="res://race-mode/Race.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
 [ext_resource path="res://assets/reflex_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/reflex_02.png" type="Texture" id=4]
@@ -13,9 +13,6 @@
 [ext_resource path="res://assets/white.png" type="Texture" id=11]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=12]
 [ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=13]
-
-
-
 
 [sub_resource type="Shader" id=1]
 
@@ -50,12 +47,10 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Race" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
-use_keyboard = true
-keyboard_id = 0
 
 [node name="BG" type="Sprite" parent="." index="0"]
 
@@ -115,9 +110,9 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 [node name="Player1" parent="Players" index="0" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 200, 200 )
+position = Vector2( 198.772, 91.959 )
 id = 0
-input_type = "Gamepad"
+create_trail = false
 
 [node name="Arrow" parent="Players/Player1" index="1"]
 
@@ -133,10 +128,9 @@ _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 [node name="Player2" parent="Players" index="1" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 1100, 550 )
+position = Vector2( 197.103, 195.775 )
 id = 1
-initial_dir = Vector2( -1, 0 )
-input_type = "Gamepad"
+create_trail = false
 
 [node name="Arrow" parent="Players/Player2" index="1"]
 
@@ -162,13 +156,19 @@ script = ExtResource( 8 )
 
 [node name="HUD" parent="." index="8" instance=ExtResource( 10 )]
 
+margin_right = 1216.0
+margin_bottom = 656.0
+
 [node name="Blink" type="Sprite" parent="." index="9"]
 
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 640, 360 )
+position = Vector2( -264.124, -102.266 )
 scale = Vector2( 20, 11.25 )
 texture = ExtResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 

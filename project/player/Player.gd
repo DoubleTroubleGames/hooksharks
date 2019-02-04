@@ -12,7 +12,11 @@ const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://play
 
 export (int, -1, 3)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
+
 export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
+
+export (bool)var create_trail = true
+
 
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
@@ -44,7 +48,7 @@ func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
 
-	if hook != null and weakref(hook).get_ref() and hook.has_collided:
+	if hook != null and weakref(hook).get_ref() and hook.isColliding() and not hook.isPullingObject():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
 		if input_type == "Keyboard_mouse":
@@ -70,7 +74,7 @@ func _physics_process(delta):
 
 	rotation = speed2.angle()
 
-	if self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
+	if self.create_trail and self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
 
