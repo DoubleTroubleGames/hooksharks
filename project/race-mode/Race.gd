@@ -21,6 +21,11 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 	self.move_child(hud, self.get_child_count())
+	
+	var world = $ViewPorts/ViewportContainer1/Viewport.find_world_2d()
+	$ViewPorts/ViewportContainer2/Viewport.world_2d = world
+	$ViewPorts/ViewportContainer1/Viewport/Camera2D.target = $Players/Player1
+	$ViewPorts/ViewportContainer2/Viewport/Camera2D.target = $Players/Player2
 
 func _physics_process(delta):
 	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)

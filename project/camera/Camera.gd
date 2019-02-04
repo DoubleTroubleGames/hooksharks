@@ -21,8 +21,15 @@ var screen_shake = 0
 # be multiplied by.
 var shake_factor = 1
 
+var target = null
+
+
 func _ready():
 	randomize()
+
+func _physics_process(delta):
+	if target:
+		position = target.position
 
 func _process(delta):
 	shake_factor = pow(screen_shake, EXP)
