@@ -5,11 +5,16 @@ const ROPE = preload('res://rope/Rope.tscn')
 const STAGES_DB = preload('res://race-mode/stages/StagesDb.gd')
 const BG_SPEED = 20
 
+export (bool)var use_keyboard = false
+export (int, '0', '1', '2', '3')var keyboard_id = 0
+
 onready var blink = $Blink
 onready var bg = $BG
 onready var camera = $Camera2D
 onready var hud = $HUD
 onready var stages = STAGES_DB.new()
+
+var ids = [0, 1, 2, 3]
 
 func _ready():
 	if Global.scores == [0, 0]:
