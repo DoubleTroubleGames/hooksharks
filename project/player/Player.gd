@@ -10,10 +10,9 @@ const DIVE_PARTICLES = preload('res://fx/DiveParticles.tscn')
 const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://player/explosion/2.png"),
 	preload("res://player/explosion/3.png"), preload("res://player/explosion/4.png")]
 
-enum INPUT_TYPES {KEYBOARD_MOUSE, GAMEPAD}
-
 export (int)var id
 export (Vector2)var initial_dir = Vector2(1, 0)
+export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
 
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
@@ -24,9 +23,6 @@ onready var area = get_node('Area2D')
 onready var round_manager = map.get_node('RoundManager')
 onready var tween = $Tween
 onready var camera = get_node('../../Camera2D')
-
-# TODO: Change according to select screen
-var input_type = KEYBOARD_MOUSE
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -50,11 +46,17 @@ func _physics_process(delta):
 
 	if hook != null and weakref(hook).get_ref() and hook.has_collided:
 		applying_force = hook.rope.get_applying_force()
-	elif id == 0 and not stunned:
-		if Input.is_action_pressed("ui_right"):
-			speed2 = speed2.rotated(ROT_SPEED * delta)
-		if Input.is_action_pressed("ui_left"):
-			speed2 = speed2.rotated(-ROT_SPEED * delta)
+	elif not stunned:
+		if input_type == "Keyboard_mouse" and id == 0:
+			if Input.is_action_pressed("ui_right"):
+				speed2 = speed2.rotated(ROT_SPEED * delta)
+			if Input.is_action_pressed("ui_left"):
+				speed2 = speed2.rotated(-ROT_SPEED * delta)
+		elif input_type == "Gamepad":
+			if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
+				speed2 = speed2.rotated(ROT_SPEED * delta)
+			if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
+				speed2 = speed2.rotated(-ROT_SPEED * delta)
 
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
@@ -81,9 +83,9 @@ func _physics_process(delta):
 
 func get_arrow_direction():
 	match input_type:
-		GAMEPAD:
+		"Gamepad":
 			return Vector2(Input.get_joy_axis(id, 2), Input.get_joy_axis(id, 3))
-		KEYBOARD_MOUSE:
+		"Keyboard_mouse":
 			return get_global_mouse_position() - get_position()
 	
 	print("input_type not defined")
@@ -145,10 +147,10 @@ func end_stun(hook):
 	stunned = false
 
 func _input(event):
-	if event.is_action_pressed('dive') and can_dive:
+	if event.is_action_pressed('dive_'+str(id)) and can_dive:
 		BGM.get_node('Dive').play()
 		dive()
-	elif event.is_action_pressed('shoot') and !diving:
+	elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 		if hook == null and not stunned:
 			var hook_dir = get_arrow_direction()
 			if hook_dir.length() < AXIS_DEADZONE:
