@@ -1,7 +1,6 @@
 extends Node2D
 
 onready var camera = get_node('../../Camera2D')
-onready var bgm = get_node('/root/bgm')
 onready var hook_clink = get_node('../../HookClink')
 
 var speed = 700
