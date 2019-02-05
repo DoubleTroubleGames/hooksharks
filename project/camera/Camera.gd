@@ -14,7 +14,7 @@ export(float) var violence = .3
 # process, so screen_shake goes from 1 to 0 in (1 / dec_ratio) seconds.
 export(float) var dec_ratio = 1.2
 
-# The expoent when factoring screen shake into the actual position and rotation
+# The exponent when factoring screen shake into the actual position and rotation
 # offsets. Suggested value is between 2 and 3.
 export(float) var exponent = 2
 

@@ -1,5 +1,8 @@
 extends Node2D
 
+signal created_trail(trail)
+signal died(player, is_player_collision)
+signal hook_shot(player, direction)
 signal shook_screen(amount)
 
 const ROT_SPEED = PI/3.5
@@ -17,16 +20,16 @@ const SCREEN_SHAKE_EXPLOSION = 1
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
-onready var map = get_node('../../')
+# onready var map = get_node('../../')
 onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
-onready var round_manager = map.get_node('RoundManager')
+# onready var round_manager = map.get_node('RoundManager')
 onready var tween = $Tween
 
-export (int, -1, 3)var id
-export (Vector2)var initial_dir = Vector2(1, 0)
-export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
-export (bool)var create_trail = true
+export(int, -1, 3) var id
+export(Vector2) var initial_dir = Vector2(1, 0)
+export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
+export(bool) var create_trail = true
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -103,7 +106,8 @@ func create_trail(pos):
 	trail.position = pos
 	trail.rotation = speed2.angle()
 	last_trail_pos = trail.position
-	map.get_node("Trail").add_child(trail)
+	emit_signal("created_trail", trail)
+	# map.get_node("Trail").add_child(trail)
 
 func _on_Area2D_area_exited(area):
 	var object = area.get_parent()
@@ -120,7 +124,7 @@ func _on_Area2D_area_entered(area):
 		if diving == object.diving:
 			_queue_free(true)
 
-func _queue_free(player_collision=false):
+func _queue_free(is_player_collision=false):
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
 	get_node('Sprite').visible = false
@@ -131,7 +135,8 @@ func _queue_free(player_collision=false):
 	BGM.get_node(str('Scream', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
-	round_manager.remove_player(self, player_collision)
+	# round_manager.remove_player(self, player_collision)
+	emit_signal("died", self, is_player_collision)
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
@@ -164,9 +169,8 @@ func _input(event):
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
 					hook_dir = speed2
-				hook = map.create_hook(self, hook_dir)
-				hook.get_node("Sprite").rotation = hook_dir.angle()
-				hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
+				emit_signal("hook_shot", self, hook_dir)
+				# hook = map.create_hook(self, hook_dir)
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
@@ -178,9 +182,8 @@ func _input(event):
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
 					hook_dir = speed2
-				hook = map.create_hook(self, hook_dir)
-				hook.get_node("Sprite").rotation = hook_dir.angle()
-				hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
+				emit_signal("hook_shot", self, hook_dir)
+				# hook = map.create_hook(self, hook_dir)
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 		

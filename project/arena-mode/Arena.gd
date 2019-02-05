@@ -11,12 +11,21 @@ const ROPE = preload('res://rope/Rope.tscn')
 const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
 const BG_SPEED = 20
 
-export (bool)var use_keyboard = false
-export (int, '0', '1', '2', '3')var keyboard_id = 0
+export(bool) var use_keyboard = false
+export(int, '0', '1', '2', '3') var keyboard_id = 0
 
 var ids = [0, 1, 2, 3]
 
 func _ready():
+	# Connecting signals
+	hud.connect("shook_screen", camera, "add_shake")
+	
+	for player in $Players.get_children():
+		player.connect("hook_shot", self, "_on_player_hook_shot")
+		player.connect("created_trail", self, "_on_player_created_trail")
+		player.connect("died", $RoundManager, "remove_player")
+		player.connect("shook_screen", camera, "add_shake")
+	
 	if Global.scores == [0, 0]:
 		self.add_child(stages.get_first_stage().instance())
 	else:
@@ -26,11 +35,6 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 	self.move_child(hud, self.get_child_count())
-	
-	# Screen shake signals
-	hud.connect("shook_screen", camera, "add_shake")
-	for player in $Players.get_children():
-		player.connect("shook_screen", camera, "add_shake")
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -56,23 +60,6 @@ func _input(event):
 	if event.is_action_pressed('ui_cancel'):
 		get_tree().quit()
 
-func create_hook(player, dir):
-	var hook = HOOK.instance()
-	hook.position = player.position
-	hook.shoot(dir.normalized())
-	hook.player = player
-	get_node('Hooks').add_child(hook)
-	hook.connect("shook_screen", camera, "add_shake")
-	var rope = ROPE.instance()
-	rope.add_point(player.position)
-	rope.add_point(player.position)
-	rope.player = player
-	rope.hook = hook
-	BGM.get_node('Harpoon').play()
-	hook.rope = rope
-	get_node('Ropes').add_child(rope)
-	return hook
-
 func blink_screen():
 	var tween = Tween.new()
 	tween.interpolate_property(blink, 'modulate', Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -88,3 +75,23 @@ func show_round():
 		Global.round_number += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_player_hook_shot(player, direction):
+	var new_hook = HOOK.instance()
+	new_hook.init(player, direction.normalized())
+	get_node('Hooks').add_child(new_hook)
+	new_hook.connect("shook_screen", camera, "add_shake")
+
+	var rope = ROPE.instance()
+	rope.add_point(player.position)
+	rope.add_point(player.position)
+	rope.player = player
+	rope.hook = new_hook
+	get_node('Ropes').add_child(rope)
+	
+	BGM.get_node('Harpoon').play()
+	new_hook.rope = rope
+	player.hook = hook
+
+func _on_player_created_trail(trail):
+	$Trail.add_child(trail)

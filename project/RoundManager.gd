@@ -7,7 +7,7 @@ var players
 func _ready():
 	players = get_node('../Players').get_children()
 
-func remove_player(player, player_collision):
+func remove_player(player, is_player_collision):
 	players.erase(player)
 	if players.size() == 1:
 		var timer = Timer.new()
@@ -18,7 +18,7 @@ func remove_player(player, player_collision):
 		timer.one_shot = true
 		timer.pause_mode = PROCESS
 		timer.start()
-		if not player_collision:
+		if not is_player_collision:
 			var winner_id = get_winner_id(winner)
 			Global.scores[winner_id] += 1
 			Global.winner = winner_id
