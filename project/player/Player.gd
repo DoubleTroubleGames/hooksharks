@@ -1,5 +1,6 @@
-# Keyboard and Moukse control for player
 extends Node2D
+
+signal shook_screen(amount)
 
 const ROT_SPEED = PI/3.5
 const TRAIL = preload('res://player/Trail.tscn')
@@ -7,16 +8,11 @@ const ACC = 4
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
 const DIVE_PARTICLES = preload('res://fx/DiveParticles.tscn')
-const EXPLOSIONS = [preload("res://player/explosion/1.png"), preload("res://player/explosion/2.png"),
-	preload("res://player/explosion/3.png"), preload("res://player/explosion/4.png")]
-
-export (int, -1, 3)var id
-export (Vector2)var initial_dir = Vector2(1, 0)
-
-export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
-
-export (bool)var create_trail = true
-
+const EXPLOSIONS = [preload("res://player/explosion/1.png"),
+		preload("res://player/explosion/2.png"),
+		preload("res://player/explosion/3.png"),
+		preload("res://player/explosion/4.png")]
+const SCREEN_SHAKE_EXPLOSION = 1
 
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
@@ -26,7 +22,11 @@ onready var sprite = get_node('Sprite')
 onready var area = get_node('Area2D')
 onready var round_manager = map.get_node('RoundManager')
 onready var tween = $Tween
-onready var camera = get_node('../../Camera2D')
+
+export (int, -1, 3)var id
+export (Vector2)var initial_dir = Vector2(1, 0)
+export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
+export (bool)var create_trail = true
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -39,16 +39,19 @@ var pull_dir = null
 var score = 0
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
+
 func _ready():
 	speed2 = speed2.rotated(initial_dir.angle())
 	$Explosion.texture = EXPLOSIONS[randi() % 4]
 	$Explosion2.texture = EXPLOSIONS[randi() % 4]
 
+
 func _physics_process(delta):
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
 
-	if hook != null and weakref(hook).get_ref() and hook.isColliding() and not hook.isPullingObject():
+	if hook != null and weakref(hook).get_ref() and hook.is_colliding()\
+			and not hook.is_pulling_object():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
 		if input_type == "Keyboard_mouse":
@@ -61,28 +64,28 @@ func _physics_process(delta):
 				speed2 = speed2.rotated(ROT_SPEED * delta)
 			if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
 				speed2 = speed2.rotated(-ROT_SPEED * delta)
-
+	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
-
+	
 	if stunned:
 		position += pull_dir * 100 * delta
 		applying_force = pull_dir * 200
-
+	
 	position += speed2 * delta
 	speed2 += applying_force * delta
-
+	
 	rotation = speed2.angle()
-
+	
 	if self.create_trail and self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		if not diving:
 			create_trail(self.position)
-
+	
 	# Update arrow direction
 	var arrow_dir = get_arrow_direction()
 	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and !diving)
 	arrow.global_rotation = arrow_dir.angle()
-
+	
 	dive_bar.global_rotation = 0
 
 func get_arrow_direction():
@@ -132,7 +135,8 @@ func _queue_free(player_collision=false):
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
-	camera.add_shake(1)
+#	camera.add_shake(1)
+	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	$WaterParticles.visible = false
 	set_physics_process(false)
 	set_process_input(false)

@@ -1,5 +1,11 @@
 extends Node2D
 
+onready var blink = $Blink
+onready var bg = $BG
+onready var camera = $Camera2D
+onready var hud = $HUD
+onready var stages = STAGES_DB.new()
+
 const HOOK = preload('res://hook/Hook.tscn')
 const ROPE = preload('res://rope/Rope.tscn')
 const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
@@ -7,12 +13,6 @@ const BG_SPEED = 20
 
 export (bool)var use_keyboard = false
 export (int, '0', '1', '2', '3')var keyboard_id = 0
-
-onready var blink = $Blink
-onready var bg = $BG
-onready var camera = $Camera2D
-onready var hud = $HUD
-onready var stages = STAGES_DB.new()
 
 var ids = [0, 1, 2, 3]
 
@@ -26,6 +26,11 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 	self.move_child(hud, self.get_child_count())
+	
+	# Screen shake signals
+	hud.connect("shook_screen", camera, "add_shake")
+	for player in $Players.get_children():
+		player.connect("shook_screen", camera, "add_shake")
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -57,6 +62,7 @@ func create_hook(player, dir):
 	hook.shoot(dir.normalized())
 	hook.player = player
 	get_node('Hooks').add_child(hook)
+	hook.connect("shook_screen", camera, "add_shake")
 	var rope = ROPE.instance()
 	rope.add_point(player.position)
 	rope.add_point(player.position)

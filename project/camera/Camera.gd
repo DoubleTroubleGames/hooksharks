@@ -41,9 +41,9 @@ func _process(delta):
 	var to_offset_y = rand_range(-1, 1) * shake_factor * max_offset_y
 	var to_rotation = rand_range(-1, 1) * shake_factor * max_angle
 	
-	offset.x = lerp(offset.x, to_offset_x, VIOLENCE)
-	offset.y = lerp(offset.y, to_offset_y, VIOLENCE)
-	rotation_degrees = lerp(rotation_degrees, to_rotation, VIOLENCE)
+	offset.x = lerp(offset.x, to_offset_x, violence)
+	offset.y = lerp(offset.y, to_offset_y, violence)
+	rotation_degrees = lerp(rotation_degrees, to_rotation, violence)
 	
 	screen_shake = max(0, screen_shake - dec_ratio * delta)
 

@@ -1,9 +1,7 @@
 extends Control
 
 signal finished
-
-const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
-const MENU_POS = Vector2(292, 550)
+signal shook_screen(amount)
 
 onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2,
 		$Round/BallsLeft/X3]
@@ -12,7 +10,10 @@ onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2,
 onready var winner = $Round/Winner
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
-onready var camera = get_node('../Camera2D')
+
+const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
+const MENU_POS = Vector2(292, 550)
+const SCREEN_SHAKE_SCORE = .3
 
 var round_texture = [
 		preload("res://hud/round_screen/ui_01.png"),
@@ -76,7 +77,8 @@ func show_round():
 		timer.start()
 		yield(timer, 'timeout')
 		timer.queue_free()
-		camera.add_shake(.3)
+#		camera.add_shake(.3)
+		emit_signal("shook_screen", SCREEN_SHAKE_SCORE)
 		yield(tween, "tween_completed")
 	
 	if Global.scores[0] < 3 and Global.scores[1] < 3:
