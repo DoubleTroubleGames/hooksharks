@@ -5,6 +5,7 @@ const PROCESS = 2
 var players
 
 func _ready():
+	assert(false) # To remember to remove this node and script from existence
 	players = get_node('../Players').get_children()
 
 func remove_player(player, is_player_collision):

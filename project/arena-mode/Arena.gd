@@ -1,15 +1,18 @@
 extends Node2D
 
-onready var blink = $Blink
 onready var bg = $BG
+onready var blink = $Blink
 onready var camera = $Camera2D
 onready var hud = $HUD
+onready var players = $Players.get_children()
 onready var stages = STAGES_DB.new()
 
 const HOOK = preload('res://hook/Hook.tscn')
 const ROPE = preload('res://rope/Rope.tscn')
 const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
+
 const BG_SPEED = 20
+const SHOW_ROUND_DELAY = 1
 
 export(bool) var use_keyboard = false
 export(int, '0', '1', '2', '3') var keyboard_id = 0
@@ -23,7 +26,7 @@ func _ready():
 	for player in $Players.get_children():
 		player.connect("hook_shot", self, "_on_player_hook_shot")
 		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("died", $RoundManager, "remove_player")
+		player.connect("died", self, "remove_player")
 		player.connect("shook_screen", camera, "add_shake")
 	
 	if Global.scores == [0, 0]:
@@ -69,12 +72,47 @@ func blink_screen():
 	tween.queue_free()
 
 func show_round():
+	$Mirage.visible = false
+	$Blur.visible = true
 	hud.show_round()
 	yield(hud, "finished")
 	if Global.winner != -1:
 		Global.round_number += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func remove_player(player, is_player_collision):
+	players.erase(player)
+	if players.size() == 1:
+		# var timer = Timer.new()
+		var winner = players[0]
+		# timer.wait_time = 1
+		# self.add_child(timer)
+		# timer.connect('timeout', get_parent(), 'show_round')
+		# timer.one_shot = true
+		# timer.pause_mode = PROCESS
+		# timer.start()
+		if not is_player_collision:
+			var winner_id = get_winner_id(winner)
+			Global.scores[winner_id] += 1
+			Global.winner = winner_id
+		else:
+			Global.winner = -1
+		winner.set_physics_process(false)
+		winner.set_process_input(false)
+
+		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+		show_round()
+
+func get_winner_id(winner):
+	if not use_keyboard:
+		return winner.id 
+	if winner.id == -1:
+		return keyboard_id
+	if winner.id >= keyboard_id:
+		return winner.id + 1
+	
+	return winner.id
 
 func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
