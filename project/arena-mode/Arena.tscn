@@ -50,7 +50,7 @@ load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
-use_keyboard = true
+use_keyboard = false
 keyboard_id = 0
 
 [node name="BG" type="Sprite" parent="." index="0"]

@@ -25,9 +25,16 @@ var screen_shake = 0
 # be multiplied by.
 var shake_factor = 0
 
+var target = null
+
+
 func _ready():
 	position = get_viewport().size / 2
 	randomize()
+
+func _physics_process(delta):
+	if target:
+		position = target.position
 
 func _process(delta):
 	if screen_shake == 0:

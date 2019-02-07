@@ -7,10 +7,17 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/tubarao_p1_sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/tubarao_p2_sheet.png" type="Texture" id=7]
+<<<<<<< HEAD
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
 [ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=11]
+=======
+[ext_resource path="res://RoundManager.gd" type="Script" id=8]
+[ext_resource path="res://hud/blur.tscn" type="PackedScene" id=9]
+[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/white.png" type="Texture" id=11]
+>>>>>>> race_split_screen
 [ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
@@ -167,6 +174,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+<<<<<<< HEAD
 [node name="Camera2D" type="Camera2D" parent="." index="9"]
 
 pause_mode = 2
@@ -202,6 +210,8 @@ violence = 0.3
 dec_ratio = 1.2
 exponent = 2
 
+=======
+>>>>>>> race_split_screen
 [node name="HookClink" parent="." index="10" instance=ExtResource( 12 )]
 
 

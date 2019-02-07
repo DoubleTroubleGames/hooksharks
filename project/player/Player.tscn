@@ -139,9 +139,7 @@ __meta__ = {
 }
 id = null
 initial_dir = Vector2( 1, 0 )
-
 input_type = "Keyboard_mouse"
-
 create_trail = true
 
 [node name="WaterParticles" parent="." index="0" instance=ExtResource( 2 )]
@@ -301,3 +299,5 @@ autostart = false
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+
+
