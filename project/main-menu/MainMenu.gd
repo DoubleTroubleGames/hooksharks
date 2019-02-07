@@ -11,7 +11,7 @@ func _on_StartRace_pressed():
 
 func _on_StartArena_pressed():
 	BGM.get_node('Click').play()
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene("res://arena-mode/Arena.tscn")
 
 
 func _on_Quit_pressed():
