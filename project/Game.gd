@@ -39,7 +39,7 @@ func _ready():
 			player.connect("shook_screen", camera, "add_shake")
 	for player in $Players.get_children():
 		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("hook_shot", self, "create_hook")
+		player.connect("hook_shot", self, "_on_player_hook_shot")
 		player.connect("died", self, "remove_player")
 	
 	if use_keyboard:
@@ -66,23 +66,6 @@ func _input(event):
 	if event.is_action_pressed('ui_cancel'):
 		get_tree().quit()
 
-func create_hook(player, dir):
-	var hook = HOOK.instance()
-	hook.init(player, dir.normalized())
-	get_node('Hooks').add_child(hook)
-	for camera in Cameras:
-		hook.connect("shook_screen", camera, "add_shake")
-	var rope = ROPE.instance()
-	rope.add_point(player.position)
-	rope.add_point(player.position)
-	rope.player = player
-	rope.hook = hook
-	player.get_node('HarpoonSFX').play()
-	player.hook = hook
-	hook.rope = rope
-	get_node('Ropes').add_child(rope)
-	return hook
-
 func blink_screen():
 	var tween = Tween.new()
 	tween.interpolate_property(blink, 'modulate', Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -90,6 +73,15 @@ func blink_screen():
 	self.add_child(tween)
 	yield(tween, 'tween_completed')
 	tween.queue_free()
+
+func create_rope(player, hook):
+	var rope = ROPE.instance()
+	rope.add_point(player.position)
+	rope.add_point(player.position)
+	rope.player = player
+	rope.hook = hook
+	get_node('Ropes').add_child(rope)
+	return rope
 
 func show_round():
 	hud.show_round()
@@ -145,20 +137,13 @@ func _on_hook_clinked(clink_position):
 func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
+	new_hook.rope = create_rope(player, new_hook)
 	get_node('Hooks').add_child(new_hook)
 	for camera in Cameras:
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
-
-	var rope = ROPE.instance()
-	rope.add_point(player.position)
-	rope.add_point(player.position)
-	rope.player = player
-	rope.hook = new_hook
-	get_node('Ropes').add_child(rope)
 	
 	player.get_node('HarpoonSFX').play()
-	new_hook.rope = rope
 	player.hook = new_hook
 
 func _on_player_created_trail(trail):
