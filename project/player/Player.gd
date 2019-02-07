@@ -126,7 +126,7 @@ func _queue_free(is_player_collision=false):
 	$Explosion2.emitting = true
 	sprite.visible = false
 	get_node('HookGuy').visible = false
-	BGM.get_node('Explosion').play()
+	$ExplosionSFX.play()
 	randomize()
 	var scream = 1 + randi() % 9
 	BGM.get_node(str('Scream', scream)).play()
@@ -158,7 +158,7 @@ func end_stun(hook):
 func _input(event):
 	if input_type == 'Gamepad':
 		if event.is_action_pressed('dive_'+str(id)) and can_dive:
-			$Dive.play()
+			$DiveSFX.play()
 			dive()
 		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 			if hook == null and not stunned:
@@ -170,7 +170,7 @@ func _input(event):
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
 		if event.is_action_pressed('dive_km') and can_dive:
-			$Dive.play()
+			$DiveSFX.play()
 			dive()
 		elif event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:
