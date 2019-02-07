@@ -1,13 +1,16 @@
 extends Node2D
 
+signal created_trail(trail)
+signal died(player, is_player_collision)
+signal hook_shot(player, direction)
 signal shook_screen(amount)
 
 const ROT_SPEED = PI/3.5
-const TRAIL = preload('res://player/Trail.tscn')
+const TRAIL = preload("res://player/Trail.tscn")
 const ACC = 4
 const INITIAL_SPEED = 100
 const AXIS_DEADZONE = .2
-const DIVE_PARTICLES = preload('res://fx/DiveParticles.tscn')
+const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
 const EXPLOSIONS = [preload("res://player/explosion/1.png"),
 		preload("res://player/explosion/2.png"),
 		preload("res://player/explosion/3.png"),
@@ -17,16 +20,15 @@ const SCREEN_SHAKE_EXPLOSION = 1
 onready var arrow = $Arrow
 onready var bar = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
-onready var map = get_node('../../')
-onready var sprite = get_node('Sprite')
-onready var area = get_node('Area2D')
-onready var round_manager = map.get_node('RoundManager')
+onready var sprite = $Sprite
+onready var sprite_animation = $Sprite/AnimationPlayer
+onready var area = $Area2D
 onready var tween = $Tween
 
-export (int, -1, 3)var id
-export (Vector2)var initial_dir = Vector2(1, 0)
-export (String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
-export (bool)var create_trail = true
+export(int, -1, 3) var id
+export(Vector2) var initial_dir = Vector2(1, 0)
+export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
+export(bool) var create_trail = true
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -36,7 +38,6 @@ var dive_cooldown = 1.5
 var stunned = false
 var hook = null
 var pull_dir = null
-var score = 0
 var speed2 = Vector2(INITIAL_SPEED, 0)
 
 
@@ -103,7 +104,7 @@ func create_trail(pos):
 	trail.position = pos
 	trail.rotation = speed2.angle()
 	last_trail_pos = trail.position
-	map.get_node("Trail").add_child(trail)
+	emit_signal("created_trail", trail)
 
 func _on_Area2D_area_exited(area):
 	var object = area.get_parent()
@@ -120,10 +121,10 @@ func _on_Area2D_area_entered(area):
 		if diving == object.diving:
 			_queue_free(true)
 
-func _queue_free(player_collision=false):
+func _queue_free(is_player_collision=false):
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
-	get_node('Sprite').visible = false
+	sprite.visible = false
 	get_node('HookGuy').visible = false
 	BGM.get_node('Explosion').play()
 	randomize()
@@ -131,11 +132,10 @@ func _queue_free(player_collision=false):
 	BGM.get_node(str('Scream', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
-	round_manager.remove_player(self, player_collision)
+	emit_signal("died", self, is_player_collision)
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
-#	camera.add_shake(1)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	$WaterParticles.visible = false
 	set_physics_process(false)
@@ -164,9 +164,7 @@ func _input(event):
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
 					hook_dir = speed2
-				hook = map.create_hook(self, hook_dir)
-				hook.get_node("Sprite").rotation = hook_dir.angle()
-				hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
+				emit_signal("hook_shot", self, hook_dir)
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
@@ -178,9 +176,7 @@ func _input(event):
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
 					hook_dir = speed2
-				hook = map.create_hook(self, hook_dir)
-				hook.get_node("Sprite").rotation = hook_dir.angle()
-				hook.get_node("WallParticles").rotation = hook_dir.angle() - PI
+				emit_signal("hook_shot", self, hook_dir)
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 		
@@ -196,9 +192,9 @@ func dive():
 	self.add_child(dive_particles)
 	can_dive = false
 	diving = true
-	$Sprite/AnimationPlayer.play("dive")
+	sprite_animation.play("dive")
 	var timer = Timer.new()
-	timer.wait_time = $Sprite/AnimationPlayer.current_animation_length
+	timer.wait_time = sprite_animation.current_animation_length
 	timer.start()
 	self.add_child(timer)
 	timer.connect("timeout",self,"emerge",[timer])
@@ -214,7 +210,7 @@ func emerge(_timer):
 	timer2.start()
 	$WaterParticles.visible = true
 	_timer.queue_free()
-	$Sprite/AnimationPlayer.play("walk")
+	sprite_animation.play("walk")
 	var timer = Timer.new()
 	diving = false
 	timer.wait_time = dive_cooldown

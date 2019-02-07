@@ -14,11 +14,19 @@ var acc = 500
 var retracting = false
 var pulling_object = null
 var kill_distance = 20
-var dir = Vector2()
+var direction = Vector2()
 var has_collided = false
 var player = null
 var rope = null
 var stop_at = null
+
+
+func init(player, direction):
+	self.player = player
+	self.direction = direction
+	self.position = player.position
+	$Sprite.rotation = direction.angle()
+	$WallParticles.rotation = direction.angle() - PI
 
 
 func _physics_process(delta):
@@ -26,15 +34,15 @@ func _physics_process(delta):
 	if stop_at != null:
 		position = stop_at.position
 	elif !has_collided:
-		position += dir * (delta * speed)
+		position += direction * (delta * speed)
 	if retracting:
-		dir = (player.position - self.position).normalized()
-		position += dir * (delta * speed * 2)
+		direction = (player.position - self.position).normalized()
+		position += direction * (delta * speed * 2)
 		if position.distance_to(player.position) <= kill_distance:
 			free_hook()
 	elif pulling_object:
-		dir = (player.position - self.position).normalized()
-		position += dir * (delta * speed * .3)
+		direction = (player.position - self.position).normalized()
+		position += direction * (delta * speed * .3)
 		if position.distance_to(player.position) <= kill_distance:
 			pulling_object.removeHook()
 			free_hook()
@@ -48,41 +56,33 @@ func is_colliding():
 	return has_collided
 
 
-func shoot(direction):
-	dir = direction
-
-
-func hit_hook(otherHook):
+func hit_hook(other_hook):
 	retract()
 	player.map.blink_screen()
 	BGM.get_node('HookHitHook').play()
-#	camera.add_shake(.8)
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
-	hook_clink.position = (otherHook.position + self.position)/2
+	hook_clink.position = (other_hook.position + self.position)/2
 	hook_clink.emitting = true
 
 
 func hit_object(object):
-#	camera.add_shake(.1)
 	emit_signal("shook_screen", SCREEN_SHAKE_OBJECT_HIT)
 	has_collided = true
 	object.setHook(self)
 	pulling_object = object
 
 
-func hit_shark(Shark):
-	if not Shark.stunned and not Shark.diving:
+func hit_shark(shark):
+	if not shark.stunned and not shark.diving:
 		$BloodParticles.emitting = true
-		stop_at = Shark
-		Shark.hook_collision(self)
+		stop_at = shark
+		shark.hook_collision(self)
 		BGM.get_node('HookHitPlayer').play()
-#		camera.add_shake(.7)
 		emit_signal("shook_screen", SCREEN_SHAKE_SHARK_HIT)
 
 
 func hit_wall():
 	$WallParticles.emitting = true
-#	camera.add_shake(.3)
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
 	has_collided = true
 	BGM.get_node('HookHitWall').play()

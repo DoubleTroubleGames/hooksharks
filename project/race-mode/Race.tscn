@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://race-mode/Race.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -7,12 +7,11 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/tubarao_p1_sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/tubarao_p2_sheet.png" type="Texture" id=7]
-[ext_resource path="res://RoundManager.gd" type="Script" id=8]
-[ext_resource path="res://hud/blur.tscn" type="PackedScene" id=9]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/white.png" type="Texture" id=11]
-[ext_resource path="res://camera/Camera.gd" type="Script" id=12]
-[ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=13]
+[ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
+[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/white.png" type="Texture" id=10]
+[ext_resource path="res://camera/Camera.gd" type="Script" id=11]
+[ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
 
@@ -47,10 +46,12 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Race" type="Node2D" index="0"]
+[node name="Race" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
+use_keyboard = false
+keyboard_id = 0
 
 [node name="BG" type="Sprite" parent="." index="0"]
 
@@ -146,31 +147,27 @@ offset = Vector2( 0, 0 )
 
 [node name="Ropes" type="Node2D" parent="." index="4"]
 
-[node name="RoundManager" type="Node2D" parent="." index="5"]
+[node name="Trail" type="Node2D" parent="." index="5"]
 
-script = ExtResource( 8 )
+[node name="Blur" parent="." index="6" instance=ExtResource( 8 )]
 
-[node name="Trail" type="Node2D" parent="." index="6"]
-
-[node name="Blur" parent="." index="7" instance=ExtResource( 9 )]
-
-[node name="HUD" parent="." index="8" instance=ExtResource( 10 )]
+[node name="HUD" parent="." index="7" instance=ExtResource( 9 )]
 
 margin_right = 1216.0
 margin_bottom = 656.0
 
-[node name="Blink" type="Sprite" parent="." index="9"]
+[node name="Blink" type="Sprite" parent="." index="8"]
 
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -264.124, -102.266 )
 scale = Vector2( 20, 11.25 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="10"]
+[node name="Camera2D" type="Camera2D" parent="." index="9"]
 
 pause_mode = 2
 offset = Vector2( 640, 360 )
@@ -196,10 +193,16 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Editor", "Pause", "Transform" ]
+max_angle = 10
+max_offset_x = 250
+max_offset_y = 250
+violence = 0.3
+dec_ratio = 1.2
+exponent = 2
 
-[node name="HookClink" parent="." index="11" instance=ExtResource( 13 )]
+[node name="HookClink" parent="." index="10" instance=ExtResource( 12 )]
 
 
 [editable path="Players/Player1"]

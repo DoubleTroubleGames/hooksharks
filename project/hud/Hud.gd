@@ -46,8 +46,6 @@ func show_round():
 		$Round/Number.visible = false
 	
 	# Fade in
-	get_node('../Mirage').visible = false
-	get_node('../Blur').visible = true
 	tween.interpolate_property(self, "modulate", Color(1, 1, 1, 0),
 		Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .1)
 	tween.start()
@@ -77,7 +75,6 @@ func show_round():
 		timer.start()
 		yield(timer, 'timeout')
 		timer.queue_free()
-#		camera.add_shake(.3)
 		emit_signal("shook_screen", SCREEN_SHAKE_SCORE)
 		yield(tween, "tween_completed")
 	
