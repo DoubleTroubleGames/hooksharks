@@ -24,13 +24,13 @@ There is no current executable for the game. To run it, open the project with th
 
 The game is developed by the [Marvellous Soft](marvellous.amoeba@gmail.com) team, which is currently composed of:
 
-#Developers
+### Developers
 - Ricardo Lira da Fonseca ([@rilifon](https://github.com/rilifon))
 - André Ferrari Moukarzel ([@Detril](https://github.com/Detril))
 - Arthur Vieira Barbosa ([@ArthurTui](https://github.com/ArthurTui))
 - Luiz Felipe Moumdjian Girotto ([@LuizGyro](https://github.com/LuizGyro))
 
-#Artists
+### Artists
 - Livia Maki Yoshikawa ([@Makiyoshi](https://github.com/Makiyoshi))
 
 ----------------------------------------------------
