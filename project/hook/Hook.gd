@@ -88,6 +88,7 @@ func hit_wall():
 
 func retract():
 	if pulling_object:
+		pulling_object.removeHook()
 		pulling_object = null
 	retracting = true
 
