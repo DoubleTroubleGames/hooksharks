@@ -129,7 +129,7 @@ func _queue_free(is_player_collision=false):
 	$ExplosionSFX.play()
 	randomize()
 	var scream = 1 + randi() % 9
-	BGM.get_node(str('Scream', scream)).play()
+	get_node(str('ScreamSFX', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
 	emit_signal("died", self, is_player_collision)
@@ -219,7 +219,7 @@ func emerge(_timer):
 	timer.connect('timeout', self, 'enable_diving', [timer])
 	timer.start()
 	self.add_child(timer)
-	BGM.get_node('Emerge').play()
+	$EmergeSFX.play()
 
 	# Cooldown progress bar
 	bar.value = 100

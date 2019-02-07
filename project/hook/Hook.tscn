@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://hook/Hook.gd" type="Script" id=1]
 [ext_resource path="res://hook/hook.png" type="Texture" id=2]
 [ext_resource path="res://hook/blood.png" type="Texture" id=3]
+[ext_resource path="res://sound/hook_hit_hook.wav" type="AudioStream" id=4]
+[ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=5]
+[ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -98,7 +101,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Animation", "Scale" ]
 
-[node name="Hook" type="Node2D" index="0" groups=[
+[node name="Hook" type="Node2D" groups=[
 "hook",
 ]]
 
@@ -170,6 +173,39 @@ normal_map = null
 h_frames = 4
 v_frames = 4
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visibility" ]
+
+[node name="HitHookSFX" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "SFX"
+area_mask = 1
+
+[node name="HitPlayerSFX" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 5 )
+volume_db = 10.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "SFX"
+area_mask = 1
+
+[node name="HitWallSFX" type="AudioStreamPlayer2D" parent="." index="6"]
+
+stream = ExtResource( 6 )
+volume_db = -10.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "SFX"
+area_mask = 1
 
 [connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]
 

@@ -58,7 +58,7 @@ func is_colliding():
 
 func hit_hook(other_hook):
 	retract()
-	BGM.get_node('HookHitHook').play()
+	$HitHookSFX.play()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
 	hook_clink.position = (other_hook.position + self.position)/2
 	hook_clink.emitting = true
@@ -76,7 +76,7 @@ func hit_shark(shark):
 		$BloodParticles.emitting = true
 		stop_at = shark
 		shark.hook_collision(self)
-		BGM.get_node('HookHitPlayer').play()
+		$HitPlayerSFX.play()
 		emit_signal("shook_screen", SCREEN_SHAKE_SHARK_HIT)
 
 
@@ -84,7 +84,7 @@ func hit_wall():
 	$WallParticles.emitting = true
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
 	has_collided = true
-	BGM.get_node('HookHitWall').play()
+	$HitWallSFX.play()
 
 
 func retract():

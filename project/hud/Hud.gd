@@ -58,7 +58,7 @@ func show_round():
 	elif Global.winner == 1:
 		marker = right_markers[Global.scores[1] - 1]
 	
-	BGM.get_node('Score').play()
+	$ScoreSFX.play()
 	
 	if marker:
 		marker.visible = true

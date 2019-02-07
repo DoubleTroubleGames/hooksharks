@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://hud/Hud.gd" type="Script" id=1]
 [ext_resource path="res://hud/round_screen/ui_round.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=9]
 [ext_resource path="res://main-menu/ui_title_restart.png" type="Texture" id=10]
 [ext_resource path="res://main-menu/ui_title_restart_select.png" type="Texture" id=11]
+[ext_resource path="res://sound/score.wav" type="AudioStream" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -388,6 +389,15 @@ process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
+
+[node name="ScoreSFX" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "SFX"
 
 [connection signal="pressed" from="Round/Restart" to="." method="_on_Restart_pressed"]
 
