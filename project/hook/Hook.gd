@@ -58,7 +58,6 @@ func is_colliding():
 
 func hit_hook(other_hook):
 	retract()
-	player.map.blink_screen()
 	BGM.get_node('HookHitHook').play()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
 	hook_clink.position = (other_hook.position + self.position)/2

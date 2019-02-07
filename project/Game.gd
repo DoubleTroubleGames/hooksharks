@@ -3,16 +3,20 @@ extends Node2D
 onready var blink = $Blink
 onready var bg = $BG
 onready var hud = $HUD
+onready var players = $Players.get_children()
 onready var stages = STAGES_DB.new()
 
 const HOOK = preload('res://hook/Hook.tscn')
+const HOOK_CLINK = preload("res://hook/HookClink.tscn")
 const ROPE = preload('res://rope/Rope.tscn')
 const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
 const BG_SPEED = 20
+const SHOW_ROUND_DELAY = 1
 
 export (bool)var use_keyboard = false
 export (int, '0', '1', '2', '3')var keyboard_id = 0
 
+var hook_clink_positions = []
 var ids = [0, 1, 2, 3]
 var Cameras = []
 
@@ -33,6 +37,10 @@ func _ready():
 		hud.connect("shook_screen", camera, "add_shake")
 		for player in $Players.get_children():
 			player.connect("shook_screen", camera, "add_shake")
+	for player in $Players.get_children():
+		player.connect("created_trail", self, "_on_player_created_trail")
+		player.connect("hook_shot", self, "create_hook")
+		player.connect("died", self, "remove_player")
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -60,9 +68,7 @@ func _input(event):
 
 func create_hook(player, dir):
 	var hook = HOOK.instance()
-	hook.position = player.position
-	hook.shoot(dir.normalized())
-	hook.player = player
+	hook.init(player, dir.normalized())
 	get_node('Hooks').add_child(hook)
 	for camera in Cameras:
 		hook.connect("shook_screen", camera, "add_shake")
@@ -91,6 +97,71 @@ func show_round():
 		Global.round_number += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func remove_player(player, is_player_collision):
+	players.erase(player)
+	if players.size() == 1:
+		var winner = players[0]
+		if not is_player_collision:
+			var winner_id = get_winner_id(winner)
+			Global.scores[winner_id] += 1
+			Global.winner = winner_id
+		else:
+			Global.winner = -1
+		winner.set_physics_process(false)
+		winner.set_process_input(false)
+		
+		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+		show_round()
+
+func get_winner_id(winner):
+	if not use_keyboard:
+		return winner.id 
+	if winner.id == -1:
+		return keyboard_id
+	if winner.id >= keyboard_id:
+		return winner.id + 1
+	
+	return winner.id
+
+func _on_hook_clinked(clink_position):
+	if clink_position in hook_clink_positions:
+		return
+	
+	blink_screen()
+	var hook_clink = HOOK_CLINK.instance()
+	add_child(hook_clink)
+	hook_clink.emitting = true
+	hook_clink.position = clink_position
+	hook_clink_positions.append(clink_position)
+	
+	var delay = hook_clink.lifetime / hook_clink.speed_scale
+	yield(get_tree().create_timer(delay), "timeout")
+	
+	hook_clink.queue_free()
+	hook_clink_positions.erase(clink_position)
+
+func _on_player_hook_shot(player, direction):
+	var new_hook = HOOK.instance()
+	new_hook.init(player, direction.normalized())
+	get_node('Hooks').add_child(new_hook)
+	for camera in Cameras:
+		new_hook.connect("shook_screen", camera, "add_shake")
+	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
+
+	var rope = ROPE.instance()
+	rope.add_point(player.position)
+	rope.add_point(player.position)
+	rope.player = player
+	rope.hook = new_hook
+	get_node('Ropes').add_child(rope)
+	
+	player.get_node('HarpoonSFX').play()
+	new_hook.rope = rope
+	player.hook = new_hook
+
+func _on_player_created_trail(trail):
+	$Trail.add_child(trail)
 
 # Used in inherited scripts
 func get_cameras():
