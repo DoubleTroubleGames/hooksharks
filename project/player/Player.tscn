@@ -127,7 +127,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 

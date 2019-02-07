@@ -28,9 +28,6 @@ var shake_factor = 0
 var target = null
 
 
-var target = null
-
-
 func _ready():
 	position = get_viewport().size / 2
 	randomize()

@@ -27,7 +27,6 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 	self.move_child(hud, self.get_child_count())
-<<<<<<< HEAD
 	
 	# Screen shake signals
 	hud.connect("shook_screen", camera, "add_shake")
