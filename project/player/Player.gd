@@ -45,6 +45,7 @@ func _ready():
 	speed2 = speed2.rotated(initial_dir.angle())
 	$Explosion.texture = EXPLOSIONS[randi() % 4]
 	$Explosion2.texture = EXPLOSIONS[randi() % 4]
+	$DiveCooldown/CooldownTimer.connect('timeout', self, 'enable_diving')
 
 
 func _physics_process(delta):
@@ -186,39 +187,30 @@ func dive():
 	$WaterParticles.visible = false
 	var dive_particles = DIVE_PARTICLES.instance()
 	dive_particles.emitting = true
-	var timer2 = Timer.new()
-	timer2.wait_time = dive_particles.lifetime
-	timer2.start()
-	self.add_child(timer2)
+	$ParticleTimer.wait_time = dive_particles.lifetime
+	$ParticleTimer.start()
 	self.add_child(dive_particles)
 	can_dive = false
 	diving = true
 	sprite_animation.play("dive")
-	var timer = Timer.new()
-	timer.wait_time = sprite_animation.current_animation_length
-	timer.start()
-	self.add_child(timer)
-	timer.connect("timeout",self,"emerge",[timer])
-	yield(timer2, 'timeout')
-	timer2.queue_free()
+	$AnimationTimer.wait_time = sprite_animation.current_animation_length
+	$AnimationTimer.start()
+	$AnimationTimer.connect("timeout",self,"emerge")
+	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
-func emerge(_timer):
+func emerge():
+	print("emerging")
 	var dive_particles = DIVE_PARTICLES.instance()
 	dive_particles.emitting = true
-	var timer2 = Timer.new()
-	timer2.wait_time = dive_particles.lifetime
-	timer2.start()
+	$ParticleTimer.wait_time = dive_particles.lifetime
+	$ParticleTimer.start()
 	$WaterParticles.visible = true
-	_timer.queue_free()
 	sprite_animation.play("walk")
-	var timer = Timer.new()
 	diving = false
-	timer.wait_time = dive_cooldown
 	area.visible = true
-	timer.connect('timeout', self, 'enable_diving', [timer])
-	timer.start()
-	self.add_child(timer)
+	$DiveCooldown/CooldownTimer.wait_time = dive_cooldown
+	$DiveCooldown/CooldownTimer.start()
 	$EmergeSFX.play()
 
 	# Cooldown progress bar
@@ -226,11 +218,9 @@ func emerge(_timer):
 	bar.visible = true
 	tween.interpolate_property(bar, "value", 100, 0, dive_cooldown, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
-	yield(timer2, 'timeout')
-	timer2.queue_free()
+	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
-func enable_diving(timer):
-	timer.queue_free()
+func enable_diving():
 	can_dive = true
 	bar.visible = false
