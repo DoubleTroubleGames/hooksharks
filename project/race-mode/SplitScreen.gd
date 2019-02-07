@@ -12,6 +12,8 @@ func _ready():
 		viewport.world_2d = all_viewports[0].world_2d
 	for i in range(all_players.size()):
 		all_cameras[i].target = all_players[i]
+	
+	world.get_node("HUD").rect_size = all_viewports[0].size
 
 
 func get_all_viewports():

@@ -4,7 +4,7 @@
 [ext_resource path="res://camera/Camera.gd" type="Script" id=2]
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=3]
 
-[node name="SplitScreen2" type="Node"]
+[node name="SplitScreen2" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -104,6 +104,8 @@ dec_ratio = 1.2
 exponent = 2
 
 [node name="Race" parent="Viewports/ViewportContainer1/Viewport" index="1" instance=ExtResource( 3 )]
+
+SplitScreen = NodePath("../../../..")
 
 [node name="ViewportContainer2" type="ViewportContainer" parent="Viewports" index="1"]
 
