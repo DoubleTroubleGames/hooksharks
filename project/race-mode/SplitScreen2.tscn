@@ -4,7 +4,7 @@
 [ext_resource path="res://camera/Camera.gd" type="Script" id=2]
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=3]
 
-[node name="SplitScreen2" type="Node" index="0"]
+[node name="SplitScreen2" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -96,6 +96,12 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 script = ExtResource( 2 )
 _sections_unfolded = [ "Limit" ]
+max_angle = 10
+max_offset_x = 250
+max_offset_y = 250
+violence = 0.3
+dec_ratio = 1.2
+exponent = 2
 
 [node name="Race" parent="Viewports/ViewportContainer1/Viewport" index="1" instance=ExtResource( 3 )]
 
@@ -170,5 +176,11 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 script = ExtResource( 2 )
 _sections_unfolded = [ "Limit" ]
+max_angle = 10
+max_offset_x = 250
+max_offset_y = 250
+violence = 0.3
+dec_ratio = 1.2
+exponent = 2
 
 

@@ -137,6 +137,7 @@ func _queue_free(player_collision=false):
 		hook.queue_free()
 #	camera.add_shake(1)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
+	print("emit shake")
 	$WaterParticles.visible = false
 	set_physics_process(false)
 	set_process_input(false)
