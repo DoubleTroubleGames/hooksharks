@@ -16,6 +16,7 @@ export (int, '0', '1', '2', '3')var keyboard_id = 0
 
 var ids = [0, 1, 2, 3]
 
+
 func _ready():
 	if Global.scores == [0, 0]:
 		self.add_child(stages.get_first_stage().instance())
@@ -26,6 +27,7 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
 	self.move_child(hud, self.get_child_count())
+<<<<<<< HEAD
 	
 	# Screen shake signals
 	hud.connect("shook_screen", camera, "add_shake")
