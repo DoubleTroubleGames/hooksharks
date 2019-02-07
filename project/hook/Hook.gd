@@ -1,8 +1,7 @@
 extends Node2D
 
+signal hook_clinked(position)
 signal shook_screen(amount)
-
-onready var hook_clink = get_node('../../HookClink')
 
 const SCREEN_SHAKE_HOOK_HIT = .8
 const SCREEN_SHAKE_OBJECT_HIT = .1
@@ -58,10 +57,10 @@ func is_colliding():
 
 func hit_hook(other_hook):
 	retract()
+
 	$HitHookSFX.play()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
-	hook_clink.position = (other_hook.position + self.position)/2
-	hook_clink.emitting = true
+	emit_signal("hook_clinked", (other_hook.position + self.position) / 2)
 
 
 func hit_object(object):

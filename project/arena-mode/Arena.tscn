@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://arena-mode/Arena.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=11]
-[ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
 
@@ -46,7 +45,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -108,14 +107,11 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 
 [node name="Players" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
-
 [node name="Player1" parent="Players" index="0" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 position = Vector2( 200, 200 )
 id = 0
-input_type = "Gamepad"
 
 [node name="Arrow" parent="Players/Player1" index="1"]
 
@@ -134,7 +130,6 @@ editor/display_folded = true
 position = Vector2( 1100, 550 )
 id = 1
 initial_dir = Vector2( -1, 0 )
-input_type = "Gamepad"
 
 [node name="Arrow" parent="Players/Player2" index="1"]
 
@@ -197,8 +192,6 @@ max_offset_y = 250
 violence = 0.3
 dec_ratio = 1.2
 exponent = 2
-
-[node name="HookClink" parent="." index="10" instance=ExtResource( 12 )]
 
 
 [editable path="Players/Player1"]
