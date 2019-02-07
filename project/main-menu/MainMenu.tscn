@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://main-menu/ilustra_menu.png" type="Texture" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://main-menu/ui_title_start_select.png" type="Texture" id=5]
 [ext_resource path="res://main-menu/ui_title_quit.png" type="Texture" id=6]
 [ext_resource path="res://main-menu/ui_title_quit_select.png" type="Texture" id=7]
+[ext_resource path="res://sound/click.wav" type="AudioStream" id=8]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -136,6 +137,15 @@ texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 7 )
 texture_focused = ExtResource( 7 )
 _sections_unfolded = [ "Margin", "Rect", "custom_fonts" ]
+
+[node name="Click" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "SFX"
 
 [connection signal="pressed" from="StartRace" to="." method="_on_StartRace_pressed"]
 

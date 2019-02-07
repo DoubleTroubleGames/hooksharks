@@ -158,7 +158,7 @@ func end_stun(hook):
 func _input(event):
 	if input_type == 'Gamepad':
 		if event.is_action_pressed('dive_'+str(id)) and can_dive:
-			BGM.get_node('Dive').play()
+			$Dive.play()
 			dive()
 		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 			if hook == null and not stunned:
@@ -170,7 +170,7 @@ func _input(event):
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
 		if event.is_action_pressed('dive_km') and can_dive:
-			BGM.get_node('Dive').play()
+			$Dive.play()
 			dive()
 		elif event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:

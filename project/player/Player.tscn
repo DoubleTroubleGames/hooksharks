@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://fx/WaterParticles.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://player/circle.png" type="Texture" id=6]
 [ext_resource path="res://player/explosion/4.png" type="Texture" id=7]
 [ext_resource path="res://player/explosion/3.png" type="Texture" id=8]
+[ext_resource path="res://sound/dive.wav" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -295,6 +296,17 @@ process_mode = 1
 wait_time = 0.4
 one_shot = true
 autostart = false
+
+[node name="Dive" type="AudioStreamPlayer2D" parent="." index="10"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "SFX"
+area_mask = 1
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
