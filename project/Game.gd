@@ -77,7 +77,8 @@ func create_hook(player, dir):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
-	player.get_node('Harpoon').play()
+	player.get_node('HarpoonSFX').play()
+	player.hook = hook
 	hook.rope = rope
 	get_node('Ropes').add_child(rope)
 	return hook
