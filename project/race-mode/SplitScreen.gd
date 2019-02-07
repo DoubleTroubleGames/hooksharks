@@ -1,6 +1,6 @@
 extends Node
 
-onready var world = $Viewports/ViewportContainer1/Viewport/Race
+onready var world = get_tree().get_nodes_in_group("world")[0]
 
 
 func _ready():
@@ -10,6 +10,7 @@ func _ready():
 	
 	for viewport in all_viewports:
 		viewport.world_2d = all_viewports[0].world_2d
+		viewport.size = viewport.get_parent().rect_size
 	for i in range(all_players.size()):
 		all_cameras[i].target = all_players[i]
 	
@@ -17,14 +18,11 @@ func _ready():
 
 
 func get_all_viewports():
-	var viewports = []
-	
-	for i in range(1, 5):
-		var path = str("Viewports/ViewportContainer", i, "/Viewport")
-		if self.has_node(path):
-			viewports.append(get_node(path))
-	
-	return viewports
+	return get_tree().get_nodes_in_group("viewport")
+
+
+func get_all_cameras():
+	return get_tree().get_nodes_in_group("viewport camera")
 
 
 func get_all_players():
@@ -36,14 +34,3 @@ func get_all_players():
 			players.append(world.get_node(path))
 	
 	return players
-
-
-func get_all_cameras():
-	var cams = []
-	
-	for i in range(1, 5):
-		var path = str("Viewports/ViewportContainer", i, "/Viewport/Camera2D")
-		if self.has_node(path):
-			cams.append(get_node(path))
-	
-	return cams

@@ -4,7 +4,7 @@
 [ext_resource path="res://camera/Camera.gd" type="Script" id=2]
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=3]
 
-[node name="SplitScreen2" type="Node" index="0"]
+[node name="SplitScreen2" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -44,7 +44,9 @@ stretch = false
 stretch_shrink = 1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Viewport" type="Viewport" parent="Viewports/ViewportContainer1" index="0"]
+[node name="Viewport" type="Viewport" parent="Viewports/ViewportContainer1" index="0" groups=[
+"viewport",
+]]
 
 arvr = false
 size = Vector2( 1280, 360 )
@@ -70,7 +72,9 @@ shadow_atlas_quad_1 = 2
 shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 
-[node name="Camera2D" type="Camera2D" parent="Viewports/ViewportContainer1/Viewport" index="0"]
+[node name="Camera2D" type="Camera2D" parent="Viewports/ViewportContainer1/Viewport" index="0" groups=[
+"viewport camera",
+]]
 
 anchor_mode = 1
 rotating = false
@@ -103,7 +107,9 @@ violence = 0.3
 dec_ratio = 1.2
 exponent = 2
 
-[node name="Race" parent="Viewports/ViewportContainer1/Viewport" index="1" instance=ExtResource( 3 )]
+[node name="Race" parent="Viewports/ViewportContainer1/Viewport" index="1" groups=[
+"world",
+] instance=ExtResource( 3 )]
 
 SplitScreen = NodePath("../../../..")
 
@@ -126,7 +132,9 @@ stretch = false
 stretch_shrink = 1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Viewport" type="Viewport" parent="Viewports/ViewportContainer2" index="0"]
+[node name="Viewport" type="Viewport" parent="Viewports/ViewportContainer2" index="0" groups=[
+"viewport",
+]]
 
 arvr = false
 size = Vector2( 1280, 360 )
@@ -152,7 +160,9 @@ shadow_atlas_quad_1 = 2
 shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 
-[node name="Camera2D" type="Camera2D" parent="Viewports/ViewportContainer2/Viewport" index="0"]
+[node name="Camera2D" type="Camera2D" parent="Viewports/ViewportContainer2/Viewport" index="0" groups=[
+"viewport camera",
+]]
 
 anchor_mode = 1
 rotating = false
