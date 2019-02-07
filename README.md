@@ -31,7 +31,7 @@ The game is developed by the [Marvellous Soft](marvellous.amoeba@gmail.com) team
 - Luiz Felipe Moumdjian Girotto ([@LuizGyro](https://github.com/LuizGyro))
 
 #Artists
-- Livia
+- Livia Maki Yoshikawa ([@Makiyoshi](https://github.com/Makiyoshi))
 
 ----------------------------------------------------
 
