@@ -49,33 +49,23 @@ load_path = "res://.import/UI_TITLE_QUIT.png-52609523bccd1b564089bcdb4e8f5cc2.st
 flags = 4
 load_path = "res://.import/UI_TITLE_QUIT_SELECT.png-46b3f0d4584b90c3ac18f739f9408ab7.stex"
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="CanvasLayer" index="0"]
 
 pause_mode = 2
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 1280, 720 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Visibility" ]
 
 [node name="Background" type="ColorRect" parent="." index="0"]
 
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -768.0
-margin_top = -432.0
-margin_right = 768.0
-margin_bottom = 432.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -85,7 +75,7 @@ size_flags_vertical = 1
 color = Color( 0, 0, 0, 0.501961 )
 _sections_unfolded = [ "Material" ]
 
-[node name="Round" type="Control" parent="." index="1"]
+[node name="Round" type="Control" parent="Background" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -98,7 +88,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Text" type="TextureRect" parent="Round" index="0"]
+[node name="Text" type="TextureRect" parent="Background/Round" index="0"]
 
 anchor_left = 0.5
 anchor_top = 0.0
@@ -118,7 +108,7 @@ texture = ExtResource( 2 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Draw" type="TextureRect" parent="Round" index="1"]
+[node name="Draw" type="TextureRect" parent="Background/Round" index="1"]
 
 visible = false
 anchor_left = 0.5
@@ -140,7 +130,7 @@ texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Number" type="TextureRect" parent="Round" index="2"]
+[node name="Number" type="TextureRect" parent="Background/Round" index="2"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -160,7 +150,7 @@ texture = ExtResource( 4 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Winner" type="Label" parent="Round" index="3"]
+[node name="Winner" type="Label" parent="Background/Round" index="3"]
 
 editor/display_folded = true
 visible = false
@@ -189,7 +179,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Round/Winner" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Round/Winner" index="0"]
 
 root_node = NodePath("..")
 autoplay = "glow"
@@ -200,7 +190,7 @@ anims/glow = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="SharkLeft" type="TextureRect" parent="Round" index="4"]
+[node name="SharkLeft" type="TextureRect" parent="Background/Round" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.5
@@ -220,7 +210,7 @@ texture = ExtResource( 6 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="SharkRight" type="TextureRect" parent="Round" index="5"]
+[node name="SharkRight" type="TextureRect" parent="Background/Round" index="5"]
 
 anchor_left = 1.0
 anchor_top = 0.5
@@ -240,7 +230,7 @@ texture = ExtResource( 7 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="BallsLeft" type="TextureRect" parent="Round" index="6"]
+[node name="BallsLeft" type="TextureRect" parent="Background/Round" index="6"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -261,25 +251,25 @@ texture = ExtResource( 8 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="X1" type="Sprite" parent="Round/BallsLeft" index="0"]
+[node name="X1" type="Sprite" parent="Background/Round/BallsLeft" index="0"]
 
 visible = false
 position = Vector2( 29, 30 )
 texture = ExtResource( 9 )
 
-[node name="X2" type="Sprite" parent="Round/BallsLeft" index="1"]
+[node name="X2" type="Sprite" parent="Background/Round/BallsLeft" index="1"]
 
 visible = false
 position = Vector2( 117, 26 )
 texture = ExtResource( 9 )
 
-[node name="X3" type="Sprite" parent="Round/BallsLeft" index="2"]
+[node name="X3" type="Sprite" parent="Background/Round/BallsLeft" index="2"]
 
 visible = false
 position = Vector2( 200, 25 )
 texture = ExtResource( 9 )
 
-[node name="BallsRight" type="TextureRect" parent="Round" index="7"]
+[node name="BallsRight" type="TextureRect" parent="Background/Round" index="7"]
 
 editor/display_folded = true
 anchor_left = 1.0
@@ -300,25 +290,25 @@ texture = ExtResource( 8 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="X1" type="Sprite" parent="Round/BallsRight" index="0"]
+[node name="X1" type="Sprite" parent="Background/Round/BallsRight" index="0"]
 
 visible = false
 position = Vector2( 29, 28 )
 texture = ExtResource( 9 )
 
-[node name="X2" type="Sprite" parent="Round/BallsRight" index="1"]
+[node name="X2" type="Sprite" parent="Background/Round/BallsRight" index="1"]
 
 visible = false
 position = Vector2( 119, 28 )
 texture = ExtResource( 9 )
 
-[node name="X3" type="Sprite" parent="Round/BallsRight" index="2"]
+[node name="X3" type="Sprite" parent="Background/Round/BallsRight" index="2"]
 
 visible = false
 position = Vector2( 200, 28 )
 texture = ExtResource( 9 )
 
-[node name="Restart" type="TextureButton" parent="Round" index="8"]
+[node name="Restart" type="TextureButton" parent="Background/Round" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -346,7 +336,7 @@ texture_pressed = ExtResource( 11 )
 texture_focused = ExtResource( 11 )
 _sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="TextureButton" parent="Round" index="9"]
+[node name="Quit" type="TextureButton" parent="Background/Round" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -374,7 +364,7 @@ texture_pressed = SubResource( 4 )
 texture_focused = SubResource( 4 )
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
-[node name="Tween" type="Tween" parent="." index="2"]
+[node name="Tween" type="Tween" parent="." index="1"]
 
 repeat = false
 playback_process_mode = 1
@@ -383,14 +373,14 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="DisplayTimer" type="Timer" parent="." index="3"]
+[node name="DisplayTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="ScoreSFX" type="AudioStreamPlayer" parent="." index="4"]
+[node name="ScoreSFX" type="AudioStreamPlayer" parent="." index="3"]
 
 stream = ExtResource( 12 )
 volume_db = 0.0
@@ -399,8 +389,8 @@ autoplay = false
 mix_target = 0
 bus = "SFX"
 
-[connection signal="pressed" from="Round/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Background/Round/Restart" to="." method="_on_Restart_pressed"]
 
-[connection signal="pressed" from="Round/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Background/Round/Quit" to="." method="_on_Quit_pressed"]
 
 

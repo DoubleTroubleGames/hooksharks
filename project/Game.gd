@@ -29,12 +29,10 @@ func _ready():
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
 	get_node('Mirage').rect_size = OS.window_size
-	self.move_child(hud, self.get_child_count())
 	
 	# Screen shake signals
 	Cameras = get_cameras()
 	for camera in Cameras:
-		hud.connect("shook_screen", camera, "add_shake")
 		for player in $Players.get_children():
 			player.connect("shook_screen", camera, "add_shake")
 	for player in $Players.get_children():
