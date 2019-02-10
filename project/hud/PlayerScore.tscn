@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://hud/PlayerScore.gd" type="Script" id=1]
+[ext_resource path="res://hud/round_screen/ui_shark_red.png" type="Texture" id=2]
+[ext_resource path="res://hud/round_screen/ui_bolas.png" type="Texture" id=3]
+[ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=4]
+[ext_resource path="res://sound/score.wav" type="AudioStream" id=5]
+
+[node name="PlayerScore" type="VBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 227.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 40
+alignment = 0
+script = ExtResource( 1 )
+_sections_unfolded = [ "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
+portrait_texture = null
+
+[node name="Portrait" type="TextureRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 227.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+stretch_mode = 6
+_sections_unfolded = [ "Rect" ]
+
+[node name="ScoreMarkers" type="TextureRect" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 128.0
+margin_right = 227.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+stretch_mode = 0
+
+[node name="X1" type="Sprite" parent="ScoreMarkers" index="0"]
+
+visible = false
+position = Vector2( 30, 25 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="X2" type="Sprite" parent="ScoreMarkers" index="1"]
+
+visible = false
+position = Vector2( 118, 23 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="X3" type="Sprite" parent="ScoreMarkers" index="2"]
+
+visible = false
+position = Vector2( 200, 20 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Tween" type="Tween" parent="." index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="ScoreSFX" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "SFX"
+
+

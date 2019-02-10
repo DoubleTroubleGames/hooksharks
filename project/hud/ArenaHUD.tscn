@@ -1,17 +1,15 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://hud/Hud.gd" type="Script" id=1]
+[ext_resource path="res://hud/ArenaHUD.gd" type="Script" id=1]
 [ext_resource path="res://hud/round_screen/ui_round.png" type="Texture" id=2]
 [ext_resource path="res://main-menu/ui_draw.png" type="Texture" id=3]
 [ext_resource path="res://hud/round_screen/ui_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://hud/round_screen/ui_shark_red.png" type="Texture" id=6]
-[ext_resource path="res://hud/round_screen/ui_shark_blue.png" type="Texture" id=7]
-[ext_resource path="res://hud/round_screen/ui_bolas.png" type="Texture" id=8]
-[ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=9]
-[ext_resource path="res://main-menu/ui_title_restart.png" type="Texture" id=10]
-[ext_resource path="res://main-menu/ui_title_restart_select.png" type="Texture" id=11]
-[ext_resource path="res://sound/score.wav" type="AudioStream" id=12]
+[ext_resource path="res://hud/PlayerScore.tscn" type="PackedScene" id=6]
+[ext_resource path="res://hud/round_screen/ui_shark_red.png" type="Texture" id=7]
+[ext_resource path="res://hud/round_screen/ui_shark_blue.png" type="Texture" id=8]
+[ext_resource path="res://main-menu/ui_title_restart.png" type="Texture" id=9]
+[ext_resource path="res://main-menu/ui_title_restart_select.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -49,7 +47,7 @@ load_path = "res://.import/UI_TITLE_QUIT.png-52609523bccd1b564089bcdb4e8f5cc2.st
 flags = 4
 load_path = "res://.import/UI_TITLE_QUIT_SELECT.png-46b3f0d4584b90c3ac18f739f9408ab7.stex"
 
-[node name="HUD" type="CanvasLayer" index="0"]
+[node name="ArenaHUD" type="CanvasLayer" index="0"]
 
 pause_mode = 2
 layer = 1
@@ -159,11 +157,11 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 958.0
-margin_top = 200.0
-margin_right = 1200.0
-margin_bottom = 292.0
-rect_pivot_offset = Vector2( 0, 0 )
+margin_left = 50.0
+margin_top = 150.0
+margin_right = 292.0
+margin_bottom = 242.0
+rect_pivot_offset = Vector2( 121, 46 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
@@ -190,134 +188,67 @@ anims/glow = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="SharkLeft" type="TextureRect" parent="Background/Round" index="4"]
+[node name="ScoreGrid" type="GridContainer" parent="Background" index="1"]
 
-anchor_left = 0.0
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 150.0
-margin_top = -44.0
-margin_right = 247.0
-margin_bottom = 44.0
+margin_left = -577.0
+margin_top = -92.0
+margin_right = 577.0
+margin_bottom = 92.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 6 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+custom_constants/vseparation = 100
+custom_constants/hseparation = 700
+columns = 2
+_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="SharkRight" type="TextureRect" parent="Background/Round" index="5"]
-
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -248.0
-margin_top = -44.0
-margin_right = -150.0
-margin_bottom = 44.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 7 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="BallsLeft" type="TextureRect" parent="Background/Round" index="6"]
+[node name="Player1" parent="Background/ScoreGrid" index="0" instance=ExtResource( 6 )]
 
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-margin_left = 80.0
-margin_top = 72.0
-margin_right = 307.0
-margin_bottom = 128.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 8 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+portrait_texture = ExtResource( 7 )
 
-[node name="X1" type="Sprite" parent="Background/Round/BallsLeft" index="0"]
-
-visible = false
-position = Vector2( 29, 30 )
-texture = ExtResource( 9 )
-
-[node name="X2" type="Sprite" parent="Background/Round/BallsLeft" index="1"]
-
-visible = false
-position = Vector2( 117, 26 )
-texture = ExtResource( 9 )
-
-[node name="X3" type="Sprite" parent="Background/Round/BallsLeft" index="2"]
-
-visible = false
-position = Vector2( 200, 25 )
-texture = ExtResource( 9 )
-
-[node name="BallsRight" type="TextureRect" parent="Background/Round" index="7"]
+[node name="Player2" parent="Background/ScoreGrid" index="1" instance=ExtResource( 6 )]
 
 editor/display_folded = true
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -307.0
-margin_top = 72.0
-margin_right = -80.0
-margin_bottom = 128.0
+margin_left = 927.0
+margin_right = 1154.0
+portrait_texture = ExtResource( 8 )
+
+[node name="Buttons" type="HBoxContainer" parent="Background" index="2"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -368.0
+margin_top = 80.0
+margin_right = 367.0
+margin_bottom = 243.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 8 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+custom_constants/separation = 100
+alignment = 0
+_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="X1" type="Sprite" parent="Background/Round/BallsRight" index="0"]
-
-visible = false
-position = Vector2( 29, 28 )
-texture = ExtResource( 9 )
-
-[node name="X2" type="Sprite" parent="Background/Round/BallsRight" index="1"]
-
-visible = false
-position = Vector2( 119, 28 )
-texture = ExtResource( 9 )
-
-[node name="X3" type="Sprite" parent="Background/Round/BallsRight" index="2"]
-
-visible = false
-position = Vector2( 200, 28 )
-texture = ExtResource( 9 )
-
-[node name="Restart" type="TextureButton" parent="Background/Round" index="8"]
+[node name="Restart" type="TextureButton" parent="Background/Buttons" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 292.0
-margin_top = 740.0
-margin_right = 623.0
-margin_bottom = 903.0
+margin_right = 331.0
+margin_bottom = 163.0
 rect_min_size = Vector2( 331, 163 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -331,21 +262,20 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 10 )
-texture_pressed = ExtResource( 11 )
-texture_focused = ExtResource( 11 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
 _sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
 
-[node name="Quit" type="TextureButton" parent="Background/Round" index="9"]
+[node name="Quit" type="TextureButton" parent="Background/Buttons" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 690.0
-margin_top = 740.0
-margin_right = 994.0
-margin_bottom = 902.0
+margin_left = 431.0
+margin_right = 735.0
+margin_bottom = 163.0
 rect_min_size = Vector2( 304, 162 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -376,21 +306,8 @@ playback/speed = 1.0
 [node name="DisplayTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 1.5
 one_shot = true
 autostart = false
-
-[node name="ScoreSFX" type="AudioStreamPlayer" parent="." index="3"]
-
-stream = ExtResource( 12 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "SFX"
-
-[connection signal="pressed" from="Background/Round/Restart" to="." method="_on_Restart_pressed"]
-
-[connection signal="pressed" from="Background/Round/Quit" to="." method="_on_Quit_pressed"]
 
 

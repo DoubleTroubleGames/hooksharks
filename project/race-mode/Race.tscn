@@ -8,9 +8,10 @@
 [ext_resource path="res://assets/tubarao_p1_sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/tubarao_p2_sheet.png" type="Texture" id=7]
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
 [ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=11]
+
 
 [sub_resource type="Shader" id=1]
 
