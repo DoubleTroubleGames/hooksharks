@@ -21,7 +21,7 @@ var ids = [0, 1, 2, 3]
 var Cameras = []
 
 func _ready():
-	if Global.scores == [0, 0]:
+	if RoundManager.scores == [0, 0]:
 		self.add_child(stages.get_first_stage().instance())
 	else:
 		self.add_child(stages.get_random_stage().instance())
@@ -86,8 +86,8 @@ func create_rope(player, hook):
 func show_round():
 	hud.show_round()
 	yield(hud, "finished")
-	if Global.winner != -1:
-		Global.round_number += 1
+	if RoundManager.winner != -1:
+		RoundManager.round_number += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
@@ -97,10 +97,10 @@ func remove_player(player, is_player_collision):
 		var winner = players[0]
 		if not is_player_collision:
 			var winner_id = get_winner_id(winner)
-			Global.scores[winner_id] += 1
-			Global.winner = winner_id
+			RoundManager.scores[winner_id] += 1
+			RoundManager.winner = winner_id
 		else:
-			Global.winner = -1
+			RoundManager.winner = -1
 		winner.set_physics_process(false)
 		winner.set_process_input(false)
 		
