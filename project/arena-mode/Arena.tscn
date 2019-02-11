@@ -8,9 +8,10 @@
 [ext_resource path="res://assets/tubarao_p1_sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/tubarao_p2_sheet.png" type="Texture" id=7]
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=11]
+
 
 [sub_resource type="Shader" id=1]
 
@@ -45,7 +46,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
