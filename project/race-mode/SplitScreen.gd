@@ -13,8 +13,6 @@ func _ready():
 		viewport.size = viewport.get_parent().rect_size
 	for i in range(all_players.size()):
 		all_cameras[i].target = all_players[i]
-	
-	world.get_node("HUD").rect_size = all_viewports[0].size
 
 
 func get_all_viewports():
