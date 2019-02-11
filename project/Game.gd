@@ -4,15 +4,14 @@ onready var blink = $Blink
 onready var bg = $BG
 onready var hud = $HUD
 onready var players = $Players.get_children()
-onready var stages = STAGES_DB.new()
 
 const HOOK = preload('res://hook/Hook.tscn')
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
 const ROPE = preload('res://rope/Rope.tscn')
-const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
 const BG_SPEED = 20
 const SHOW_ROUND_DELAY = 1
 
+export (int)var stage_num = 10
 export (bool)var use_keyboard = false
 export (int, '0', '1', '2', '3')var keyboard_id = 0
 
@@ -22,9 +21,9 @@ var Cameras = []
 
 func _ready():
 	if RoundManager.scores == [0, 0]:
-		self.add_child(stages.get_first_stage().instance())
+		self.add_child(get_first_stage().instance())
 	else:
-		self.add_child(stages.get_random_stage().instance())
+		self.add_child(get_random_stage().instance())
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
@@ -146,6 +145,14 @@ func _on_player_hook_shot(player, direction):
 
 func _on_player_created_trail(trail):
 	$Trail.add_child(trail)
+
+func get_random_stage():
+	var base_dir = self.get_script().get_path().get_base_dir()
+	return load(str(base_dir, '/stages/Stage', (randi() % stage_num - 1) + 2, '.tscn'))
+
+func get_first_stage():
+	var base_dir = self.get_script().get_path().get_base_dir()
+	return load(str(base_dir, '/stages/Stage1.tscn'))
 
 # Used in inherited scripts
 func get_cameras():
