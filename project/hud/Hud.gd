@@ -8,6 +8,7 @@ onready var number = $Background/Round/Number
 onready var winner = $Background/Round/Winner
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
+onready var marker_timer = $MarkerTimer
 
 const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
 const MENU_POS = Vector2(292, 550)
@@ -65,12 +66,9 @@ func show_round():
 		tween.interpolate_property(marker, "modulate", marker.modulate,
 			Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
-		var timer = Timer.new()
-		timer.wait_time = .15
-		self.add_child(timer)
-		timer.start()
-		yield(timer, 'timeout')
-		timer.queue_free()
+		marker_timer.start()
+		yield(marker_timer, 'timeout')
+		emit_signal("shook_screen", SCREEN_SHAKE_SCORE)
 		yield(tween, "tween_completed")
 	
 	if RoundManager.scores[0] < 3 and RoundManager.scores[1] < 3:
