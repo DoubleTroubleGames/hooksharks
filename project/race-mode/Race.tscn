@@ -51,6 +51,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
 use_keyboard = false
 keyboard_id = 0
+SplitScreen = null
 
 [node name="BG" type="Sprite" parent="." index="0"]
 
@@ -154,6 +155,8 @@ offset = Vector2( 0, 0 )
 
 margin_right = 1216.0
 margin_bottom = 656.0
+rect_min_size = Vector2( 0, 0 )
+_sections_unfolded = [ "Pause", "Rect", "Visibility" ]
 
 [node name="Blink" type="Sprite" parent="." index="8"]
 
