@@ -140,7 +140,7 @@ func _on_player_hook_shot(player, direction):
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
 	
-	player.get_node('HarpoonSFX').play()
+	player.get_node('SFX/HarpoonSFX').play()
 	player.hook = new_hook
 
 func _on_player_created_trail(trail):
