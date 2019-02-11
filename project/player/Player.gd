@@ -127,10 +127,10 @@ func _queue_free(is_player_collision=false):
 	$Explosion2.emitting = true
 	sprite.visible = false
 	get_node('HookGuy').visible = false
-	$ExplosionSFX.play()
+	$SFX/ExplosionSFX.play()
 	randomize()
 	var scream = 1 + randi() % 9
-	get_node(str('ScreamSFX', scream)).play()
+	get_node(str('SFX/ScreamSFX', scream)).play()
 	can_dive = false
 	$DiveCooldown.visible = false
 	emit_signal("died", self, is_player_collision)
@@ -158,7 +158,7 @@ func end_stun(hook):
 func _input(event):
 	if input_type == 'Gamepad':
 		if event.is_action_pressed('dive_'+str(id)) and can_dive:
-			$DiveSFX.play()
+			$SFX/DiveSFX.play()
 			dive()
 		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 			if hook == null and not stunned:
@@ -170,7 +170,7 @@ func _input(event):
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
 		if event.is_action_pressed('dive_km') and can_dive:
-			$DiveSFX.play()
+			$SFX/DiveSFX.play()
 			dive()
 		elif event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:
@@ -192,14 +192,10 @@ func dive():
 	can_dive = false
 	diving = true
 	sprite_animation.play("dive")
-	$AnimationTimer.wait_time = sprite_animation.current_animation_length
-	$AnimationTimer.start()
-	$AnimationTimer.connect("timeout",self,"emerge")
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
 func emerge():
-	print("emerging")
 	var dive_particles = DIVE_PARTICLES.instance()
 	dive_particles.emitting = true
 	$ParticleTimer.wait_time = dive_particles.lifetime
@@ -210,7 +206,7 @@ func emerge():
 	area.visible = true
 	$DiveCooldown/CooldownTimer.wait_time = dive_cooldown
 	$DiveCooldown/CooldownTimer.start()
-	$EmergeSFX.play()
+	$SFX/EmergeSFX.play()
 
 	# Cooldown progress bar
 	bar.value = 100
