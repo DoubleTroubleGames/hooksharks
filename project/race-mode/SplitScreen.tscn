@@ -25,7 +25,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 stretch = false
 stretch_shrink = 1
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer1" index="0" groups=[
 "viewport",
@@ -85,7 +85,7 @@ script = ExtResource( 2 )
 _sections_unfolded = [ "Limit" ]
 max_angle = 10
 max_offset_x = 250
-max_offset_y = 250
+max_offset_y = 250.0
 violence = 0.3
 dec_ratio = 1.2
 exponent = 2
