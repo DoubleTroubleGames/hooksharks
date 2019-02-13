@@ -10,7 +10,7 @@
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
 [ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
-[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=11]
+[ext_resource path="res://camera/Camera.gd" type="Script" id=11]
 
 [sub_resource type="Shader" id=1]
 
@@ -193,10 +193,6 @@ max_offset_y = 250
 violence = 0.3
 dec_ratio = 1.2
 exponent = 2
-min_zoom = 1
-max_zoom = 0.75
-zooming_dist = 800
-min_dist = 100
 
 
 [editable path="Players/Player1"]

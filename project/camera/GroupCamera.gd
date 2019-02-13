@@ -11,8 +11,7 @@ export (int)var min_dist = 100 # the camera will reach max_zoom at this dist
 var children
 
 func _ready():
-	var players = get_parent().get_node("Players")
-	set_children(players.get_children())
+	set_physics_process(false)
 
 
 func _physics_process(delta):
@@ -60,3 +59,4 @@ func get_max_distance():
 
 func set_children(children):
 	self.children = children
+	set_physics_process(true)
