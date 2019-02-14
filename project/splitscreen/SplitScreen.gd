@@ -15,9 +15,8 @@ func _ready():
 	for viewport in all_viewports:
 		viewport.world_2d = all_viewports[0].world_2d
 		viewport.size = viewport.get_parent().rect_size
-#	for i in range(all_players.size()):
-#		all_cameras[i].target = all_players[i]
-	all_cameras[0].target = all_players[0]
+	for i in range(all_players.size()):
+		all_cameras[i].target = all_players[i]
 
 
 func create_viewports():
@@ -36,7 +35,9 @@ func create_viewports():
 		
 		Cam.add_to_group("viewport camera")
 		Cam.current = true
-		Cam.set_position(Vector2(600, 300)) # Remove when fix camera tracking
+		Cam.limit_left = 0
+		Cam.limit_top = 0
+		Cam.set_script(preload("res://camera/Camera.gd"))
 		
 		self.add_child(ViewCont)
 

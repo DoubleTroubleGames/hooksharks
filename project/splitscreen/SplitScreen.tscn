@@ -4,7 +4,7 @@
 [ext_resource path="res://camera/Camera.gd" type="Script" id=2]
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=3]
 
-[node name="SplitScreen" type="Node"]
+[node name="SplitScreen" type="Node" index="0"]
 
 script = ExtResource( 1 )
 player_num = 2
