@@ -31,28 +31,47 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 columns = 2
 
-[node name="SelectionBox1" parent="GridContainer" index="0" instance=ExtResource( 2 )]
+[node name="SelectionBox0" parent="GridContainer" index="0" instance=ExtResource( 2 )]
 
 margin_right = 100.0
 margin_bottom = 100.0
 
-[node name="SelectionBox2" parent="GridContainer" index="1" instance=ExtResource( 2 )]
+[node name="SelectionBox1" parent="GridContainer" index="1" instance=ExtResource( 2 )]
 
 margin_left = 104.0
 margin_right = 204.0
 margin_bottom = 100.0
+id = 1
 
-[node name="SelectionBox3" parent="GridContainer" index="2" instance=ExtResource( 2 )]
+[node name="SelectionBox2" parent="GridContainer" index="2" instance=ExtResource( 2 )]
 
 margin_top = 104.0
 margin_right = 100.0
 margin_bottom = 204.0
+id = 2
 
-[node name="SelectionBox4" parent="GridContainer" index="3" instance=ExtResource( 2 )]
+[node name="SelectionBox3" parent="GridContainer" index="3" instance=ExtResource( 2 )]
 
 margin_left = 104.0
 margin_top = 104.0
 margin_right = 204.0
 margin_bottom = 204.0
+id = 3
+
+[connection signal="selected" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="unselected" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_unselected"]
+
+[connection signal="selected" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="unselected" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_unselected"]
+
+[connection signal="selected" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="unselected" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_unselected"]
+
+[connection signal="selected" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="unselected" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_unselected"]
 
 
