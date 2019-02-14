@@ -21,10 +21,20 @@ var ids = [0, 1, 2, 3]
 var Cameras = []
 
 func _ready():
+	var stage
 	if RoundManager.scores == [0, 0]:
-		self.add_child(get_first_stage().instance())
+		stage = get_first_stage().instance()
 	else:
-		self.add_child(get_random_stage().instance())
+		stage = get_random_stage().instance()
+	self.add_child(stage)
+	
+	#Get players starting positions
+	for i in range($Players.get_child_count()):
+		var player = $Players.get_child(i)
+		var starting = stage.get_node("PlayerStartingPosition").get_child(i)
+		player.position = starting.position
+		player.initial_dir = starting.direction
+	
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=2]
+[ext_resource path="res://wall/StartingPosition.tscn" type="PackedScene" id=3]
 
-[node name="Walls" type="Node2D" index="0" groups=[
+[node name="Walls" type="Node2D" groups=[
 "wall",
 ]]
 
@@ -142,5 +143,18 @@ build_mode = 0
 polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -178, -57, -89, -44, -89, -44, -3, -41, -4, -41, 95, -46, 95, -46, 155, -52, 155, -52, 223, -36, 223, -36, 317, -47, 317, -47, 360, 0, 360, 1, -360 )
 
 [node name="Obstacles" type="Node2D" parent="." index="4"]
+
+[node name="PlayerStartingPosition" type="Node2D" parent="." index="5"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="StartingPosition" parent="PlayerStartingPosition" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 182.29, 159.164 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 1108.44, 558.592 )
+direction = Vector2( -1, 0 )
 
 

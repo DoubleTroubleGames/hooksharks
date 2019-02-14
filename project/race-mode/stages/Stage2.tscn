@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=2]
 [ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/caixas_02.png" type="Texture" id=4]
+[ext_resource path="res://wall/StartingPosition.tscn" type="PackedScene" id=5]
 
 [node name="Walls" type="Node2D" groups=[
 "wall",
@@ -156,6 +157,16 @@ texture = ExtResource( 4 )
 [node name="CollisionPolygon2D" parent="Obstacles/Obstacle/Area2D" index="0"]
 
 polygon = PoolVector2Array( -500, -60, 500, -60, 500, 60, -500, 60 )
+
+[node name="PlayerStartingPosition" type="Node2D" parent="." index="5"]
+
+[node name="StartingPosition" parent="PlayerStartingPosition" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( 203.491, 176.359 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 382.865, 177.866 )
 
 
 [editable path="Obstacles/Obstacle"]

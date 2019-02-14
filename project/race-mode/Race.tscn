@@ -45,7 +45,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Race" type="Node2D" index="0"]
+[node name="Race" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -174,8 +174,8 @@ current = true
 zoom = Vector2( 1, 1 )
 limit_left = 0
 limit_top = 0
-limit_right = 1280
-limit_bottom = 720
+limit_right = 3000
+limit_bottom = 3000
 limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -200,7 +200,7 @@ dec_ratio = 1.2
 exponent = 2
 min_zoom = 1
 max_zoom = 0.5
-zooming_dist = 1000
+zooming_dist = 400
 min_dist = 100
 
 
