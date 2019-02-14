@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://fx/WaterParticles.tscn" type="PackedScene" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://sound/scream7.wav" type="AudioStream" id=19]
 [ext_resource path="res://sound/scream8.wav" type="AudioStream" id=20]
 [ext_resource path="res://sound/scream9.wav" type="AudioStream" id=21]
+[ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=22]
+[ext_resource path="res://fx/BloodParticles.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Animation" id=1]
 
@@ -343,154 +345,138 @@ autostart = false
 
 [node name="SFX" type="Node2D" parent="." index="11"]
 
-editor/display_folded = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="DiveSFX" type="AudioStreamPlayer2D" parent="SFX" index="0"]
+[node name="DiveSFX" type="AudioStreamPlayer" parent="SFX" index="0"]
 
 stream = ExtResource( 9 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="EmergeSFX" type="AudioStreamPlayer2D" parent="SFX" index="1"]
+[node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX" index="1"]
 
 stream = ExtResource( 10 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="SFX" index="2"]
+[node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX" index="2"]
 
 stream = ExtResource( 11 )
-volume_db = 10.0
+volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="HarpoonSFX" type="AudioStreamPlayer2D" parent="SFX" index="3"]
+[node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX" index="3"]
 
 stream = ExtResource( 12 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX1" type="AudioStreamPlayer2D" parent="SFX" index="4"]
+[node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX" index="4"]
 
 stream = ExtResource( 13 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX2" type="AudioStreamPlayer2D" parent="SFX" index="5"]
+[node name="ScreamSFX2" type="AudioStreamPlayer" parent="SFX" index="5"]
 
 stream = ExtResource( 14 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX3" type="AudioStreamPlayer2D" parent="SFX" index="6"]
+[node name="ScreamSFX3" type="AudioStreamPlayer" parent="SFX" index="6"]
 
 stream = ExtResource( 15 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX4" type="AudioStreamPlayer2D" parent="SFX" index="7"]
+[node name="ScreamSFX4" type="AudioStreamPlayer" parent="SFX" index="7"]
 
 stream = ExtResource( 16 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX5" type="AudioStreamPlayer2D" parent="SFX" index="8"]
+[node name="ScreamSFX5" type="AudioStreamPlayer" parent="SFX" index="8"]
 
 stream = ExtResource( 17 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX6" type="AudioStreamPlayer2D" parent="SFX" index="9"]
+[node name="ScreamSFX6" type="AudioStreamPlayer" parent="SFX" index="9"]
 
 stream = ExtResource( 18 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX7" type="AudioStreamPlayer2D" parent="SFX" index="10"]
+[node name="ScreamSFX7" type="AudioStreamPlayer" parent="SFX" index="10"]
 
 stream = ExtResource( 19 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX8" type="AudioStreamPlayer2D" parent="SFX" index="11"]
+[node name="ScreamSFX8" type="AudioStreamPlayer" parent="SFX" index="11"]
 
 stream = ExtResource( 20 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
 
-[node name="ScreamSFX9" type="AudioStreamPlayer2D" parent="SFX" index="12"]
+[node name="ScreamSFX9" type="AudioStreamPlayer" parent="SFX" index="12"]
 
 stream = ExtResource( 21 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "SFX"
-area_mask = 1
+
+[node name="OnHit" type="AudioStreamPlayer" parent="SFX" index="13"]
+
+stream = ExtResource( 22 )
+volume_db = 10.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="BloodParticles" parent="." index="12" instance=ExtResource( 23 )]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

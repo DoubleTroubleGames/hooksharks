@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://race-mode/Race.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
 [ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
-[ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Shader" id=1]
 
@@ -45,7 +44,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Race" type="Node2D" index="0"]
+[node name="Race" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -114,6 +113,7 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 editor/display_folded = true
 position = Vector2( 198.772, 91.959 )
 id = 0
+input_type = "Gamepad"
 create_trail = false
 
 [node name="Arrow" parent="Players/Player1" index="1"]
@@ -132,6 +132,7 @@ _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 editor/display_folded = true
 position = Vector2( 197.103, 195.775 )
 id = 1
+input_type = "Gamepad"
 create_trail = false
 
 [node name="Arrow" parent="Players/Player2" index="1"]
@@ -166,8 +167,6 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="HookClink" parent="." index="9" instance=ExtResource( 11 )]
 
 
 [editable path="Players/Player1"]
