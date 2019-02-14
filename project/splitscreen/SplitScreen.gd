@@ -1,6 +1,7 @@
 extends Node
 
 export (int, 2, 4)var player_num = 2
+export (Vector2)var screen_size = Vector2(1280, 720)
 
 onready var world = get_tree().get_nodes_in_group("world")[0]
 
@@ -26,8 +27,8 @@ func create_viewports():
 		var Cam = Camera2D.new()
 		
 		ViewCont.set_name(str("ViewportContainer", i))
-		ViewCont.margin_right = 1280
-		ViewCont.margin_bottom = 720
+		ViewCont.margin_right = screen_size.x
+		ViewCont.margin_bottom = screen_size.y
 		ViewCont.add_child(View)
 		
 		View.add_to_group("viewport")
@@ -37,6 +38,8 @@ func create_viewports():
 		Cam.current = true
 		Cam.limit_left = 0
 		Cam.limit_top = 0
+		Cam.limit_right = screen_size.x
+		Cam.limit_bottom = screen_size.y
 		Cam.set_script(preload("res://camera/Camera.gd"))
 		
 		self.add_child(ViewCont)
@@ -46,21 +49,21 @@ func define_viewport_position(current_viewport_index):
 	var i = current_viewport_index
 	
 	if player_num > 2:
-		var pos = Vector2((i % 2) * 640, 0)
+		var pos = Vector2((i % 2) * screen_size.x/2, 0)
 		
 		if i > 1:
-			pos.y = 360
+			pos.y = screen_size.y/2
 		return pos
 	else:
-		return Vector2(0, i * 360)
+		return Vector2(0, i * screen_size.y/2)
 
 
 func set_viewports_size():
-	var size = Vector2(640, 360)
+	var size = Vector2(screen_size.x/2, screen_size.y/2)
 	var viewports = get_all_viewports()
 	
 	if player_num == 2:
-		size = Vector2(1280, 360)
+		size = Vector2(screen_size.x, screen_size.y/2)
 	
 	for i in range(viewports.size()):
 		var ViewCont = viewports[i].get_parent()
@@ -81,7 +84,7 @@ func get_all_cameras():
 func get_all_players():
 	var players = []
 	
-	for i in range(1, 5):
+	for i in range(1, player_num + 1):
 		var path = str("Players/Player", i)
 		if world.has_node(path):
 			players.append(world.get_node(path))

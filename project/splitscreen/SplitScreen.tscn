@@ -8,6 +8,7 @@
 
 script = ExtResource( 1 )
 player_num = 2
+screen_size = Vector2( 1280, 720 )
 
 [node name="ViewportContainer1" type="ViewportContainer" parent="." index="0"]
 
