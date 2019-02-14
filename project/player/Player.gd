@@ -25,7 +25,7 @@ onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
 onready var tween = $Tween
 
-export(int, -1, 3) var id
+export(int, -1, 3) var id = 0
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
 export(bool) var create_trail = true

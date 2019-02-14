@@ -3,7 +3,6 @@ extends Node2D
 onready var blink = $Blink
 onready var bg = $BG
 onready var hud = $HUD
-onready var players = $Players.get_children()
 
 const HOOK = preload("res://hook/Hook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
@@ -19,36 +18,22 @@ export (int, "0", "1", "2", "3")var keyboard_id = 0
 var hook_clink_positions = []
 var ids = [0, 1, 2, 3]
 var Cameras = []
+var players = []
+var player_num = 2
 
 func _ready():
-	var stage
-	if RoundManager.scores == [0, 0]:
-		stage = get_first_stage().instance()
-	else:
-		stage = get_random_stage().instance()
-	self.add_child(stage)
-	
-	#Get players starting positions
-	for i in range($Players.get_child_count()):
-		var player = $Players.get_child(i)
-		var starting = stage.get_node("PlayerStartingPosition").get_child(i)
-		player.position = starting.position
-		player.initial_dir = starting.direction
+	var stage = get_first_stage().instance()
+	stage.setup(self, player_num)
+	stage.set_name("Stage")
+	add_child(stage)
 	
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
 	
-	# Screen shake signals
 	Cameras = get_cameras()
-	for camera in Cameras:
-		for player in $Players.get_children():
-			player.connect("shook_screen", camera, "add_shake")
-	for player in $Players.get_children():
-		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("hook_shot", self, "_on_player_hook_shot")
-		player.connect("died", self, "remove_player")
+	connect_players()
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -96,8 +81,35 @@ func show_round():
 	yield(hud, "finished")
 	if RoundManager.winner != -1:
 		RoundManager.round_number += 1
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	hud.hide_round()
+
+func free_current_stage():
+	var stage = get_node("Stage")
+	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
+	stage.queue_free()
+
+func add_new_stage():
+	var stage = get_random_stage().instance()
+	
+	for child in $Hooks.get_children():
+		child.queue_free()
+	for child in $Trail.get_children():
+		child.queue_free()
+	players.clear()
+	stage.setup(self, player_num)
+	stage.set_name("Stage")
+	connect_players()
+	add_child(stage)
+
+
+func connect_players():
+	for player in players:
+		player.connect("created_trail", self, "_on_player_created_trail")
+		player.connect("hook_shot", self, "_on_player_hook_shot")
+		player.connect("died", self, "remove_player")
+		for camera in Cameras:
+			player.connect("shook_screen", camera, "add_shake")
+
 
 func remove_player(player, is_player_collision):
 	players.erase(player)
@@ -114,6 +126,9 @@ func remove_player(player, is_player_collision):
 		
 		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 		show_round()
+		yield(hud, "finished")
+		free_current_stage()
+		add_new_stage()
 
 func get_winner_id(winner):
 	if not use_keyboard:
