@@ -123,6 +123,7 @@ func _on_Area2D_area_entered(area):
 			_queue_free(true)
 
 func _queue_free(is_player_collision=false):
+	$Area2D.queue_free()
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
 	sprite.visible = false

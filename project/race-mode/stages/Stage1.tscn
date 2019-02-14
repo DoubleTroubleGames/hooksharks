@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/caixas_02.png" type="Texture" id=5]
 [ext_resource path="res://wall/StartingPosition.tscn" type="PackedScene" id=6]
 
-[node name="Walls" type="Node2D" groups=[
+[node name="Walls" type="Node2D" index="0" groups=[
 "wall",
 ]]
 

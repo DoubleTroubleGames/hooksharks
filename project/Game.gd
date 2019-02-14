@@ -10,6 +10,8 @@ const ROPE = preload("res://rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
 const BG_SPEED = 20
 const SHOW_ROUND_DELAY = 1
+const TRANSITION_OFFSET = 1000
+const TRANSITION_TIME = 1.0
 
 export (int)var stage_num = 10
 export (bool)var use_keyboard = false
@@ -83,23 +85,39 @@ func show_round():
 		RoundManager.round_number += 1
 	hud.hide_round()
 
-func free_current_stage():
-	var stage = get_node("Stage")
-	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
-	stage.queue_free()
 
-func add_new_stage():
-	var stage = get_random_stage().instance()
-	
+func transition_stage(stage):
+	var Twn = $StageTween
+	var stage_pos = stage.get_position()
+	Twn.interpolate_property(stage, "position", stage_pos, stage_pos + Vector2(0, TRANSITION_OFFSET), TRANSITION_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	Twn.start()
+
+
+func clean_all():
 	for child in $Hooks.get_children():
 		child.queue_free()
 	for child in $Trail.get_children():
 		child.queue_free()
 	players.clear()
+
+
+func free_current_stage():
+	var stage = get_node("Stage")
+	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
+	transition_stage(stage)
+	yield($StageTween, "tween_completed")
+	stage.queue_free()
+
+
+func add_new_stage():
+	var stage = get_random_stage().instance()
+	clean_all()
 	stage.setup(self, player_num)
 	stage.set_name("Stage")
+	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	connect_players()
 	add_child(stage)
+	transition_stage(stage)
 
 
 func connect_players():
@@ -115,6 +133,7 @@ func remove_player(player, is_player_collision):
 	players.erase(player)
 	if players.size() == 1:
 		var winner = players[0]
+		winner.get_node("Area2D").queue_free()
 		if not is_player_collision:
 			var winner_id = get_winner_id(winner)
 			RoundManager.scores[winner_id] += 1
@@ -128,7 +147,9 @@ func remove_player(player, is_player_collision):
 		show_round()
 		yield(hud, "finished")
 		free_current_stage()
+		yield($StageTween, "tween_completed")
 		add_new_stage()
+
 
 func get_winner_id(winner):
 	if not use_keyboard:
