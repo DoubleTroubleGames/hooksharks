@@ -5,15 +5,16 @@ onready var bg = $BG
 onready var hud = $HUD
 onready var players = $Players.get_children()
 
-const HOOK = preload('res://hook/Hook.tscn')
+const HOOK = preload("res://hook/Hook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
-const ROPE = preload('res://rope/Rope.tscn')
+const ROPE = preload("res://rope/Rope.tscn")
+const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
 const BG_SPEED = 20
 const SHOW_ROUND_DELAY = 1
 
 export (int)var stage_num = 10
 export (bool)var use_keyboard = false
-export (int, '0', '1', '2', '3')var keyboard_id = 0
+export (int, "0", "1", "2", "3")var keyboard_id = 0
 
 var hook_clink_positions = []
 var ids = [0, 1, 2, 3]
@@ -27,7 +28,7 @@ func _ready():
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
-	get_node('Mirage').rect_size = OS.window_size
+	get_node("Mirage").rect_size = OS.window_size
 	
 	# Screen shake signals
 	Cameras = get_cameras()
@@ -42,10 +43,10 @@ func _ready():
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
 		KeyboardPlayer.input_type = "Keyboard_mouse"
-		KeyboardPlayer.id = -1 # Sets keyboard user's id as an out of range value
+		KeyboardPlayer.id = -1 # Sets keyboard user"s id as an out of range value
 		ids.remove(keyboard_id)
 		
-		# Subtracts the id from all Players with id greater than keyboard user's, as to make sure they get
+		# Subtracts the id from all Players with id greater than keyboard user"s, as to make sure they get
 		# connected to the correct gamepad
 		for i in range(keyboard_id + 1, 4):
 			if $Players.has_node("Player" + str(i + 1)):
@@ -54,21 +55,21 @@ func _ready():
 
 
 func _physics_process(delta):
-	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
-	bg.get_node('Reflex2').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
-	bg.get_node('Reflex3').position = Vector2(bg.get_node('Reflex1').position.x - OS.window_size.x, bg.get_node('Reflex1').position.y)
-	bg.get_node('Reflex4').position = Vector2(bg.get_node('Reflex2').position.x - OS.window_size.x, bg.get_node('Reflex2').position.y)
+	bg.get_node("Reflex1").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
+	bg.get_node("Reflex2").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
+	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
+	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
 
 func _input(event):
-	if event.is_action_pressed('ui_cancel'):
+	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
 func blink_screen():
 	var tween = Tween.new()
-	tween.interpolate_property(blink, 'modulate', Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.interpolate_property(blink, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	self.add_child(tween)
-	yield(tween, 'tween_completed')
+	yield(tween, "tween_completed")
 	tween.queue_free()
 
 func create_rope(player, hook):
@@ -77,7 +78,7 @@ func create_rope(player, hook):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
-	get_node('Ropes').add_child(rope)
+	get_node("Ropes").add_child(rope)
 	return rope
 
 func show_round():
@@ -114,15 +115,29 @@ func get_winner_id(winner):
 	
 	return winner.id
 
+func _on_player_hook_shot(player, direction):
+	var new_hook = HOOK.instance()
+	new_hook.init(player, direction.normalized())
+	new_hook.rope = create_rope(player, new_hook)
+	get_node("Hooks").add_child(new_hook)
+	for camera in Cameras:
+		new_hook.connect("shook_screen", camera, "add_shake")
+	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
+	new_hook.connect("wall_hit", self, "_on_wall_hit")
+	
+	player.get_node("SFX/HarpoonSFX").play()
+	player.hook = new_hook
+
 func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
 	
 	blink_screen()
 	var hook_clink = HOOK_CLINK.instance()
-	add_child(hook_clink)
 	hook_clink.emitting = true
 	hook_clink.position = clink_position
+	add_child(hook_clink)
+	
 	hook_clink_positions.append(clink_position)
 	
 	var delay = hook_clink.lifetime / hook_clink.speed_scale
@@ -131,28 +146,28 @@ func _on_hook_clinked(clink_position):
 	hook_clink.queue_free()
 	hook_clink_positions.erase(clink_position)
 
-func _on_player_hook_shot(player, direction):
-	var new_hook = HOOK.instance()
-	new_hook.init(player, direction.normalized())
-	new_hook.rope = create_rope(player, new_hook)
-	get_node('Hooks').add_child(new_hook)
-	for camera in Cameras:
-		new_hook.connect("shook_screen", camera, "add_shake")
-	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
+func _on_wall_hit(position, rotation):
+	var wall_particles = WALL_PARTICLES.instance()
+	wall_particles.emitting = true
+	wall_particles.position = position
+	wall_particles.rotation = rotation
+	add_child(wall_particles)
 	
-	player.get_node('SFX/HarpoonSFX').play()
-	player.hook = new_hook
+	var delay = wall_particles.lifetime / wall_particles.speed_scale
+	yield(get_tree().create_timer(delay), "timeout")
+	
+	wall_particles.queue_free()
 
 func _on_player_created_trail(trail):
 	$Trail.add_child(trail)
 
 func get_random_stage():
 	var base_dir = self.get_script().get_path().get_base_dir()
-	return load(str(base_dir, '/stages/Stage', (randi() % stage_num - 1) + 2, '.tscn'))
+	return load(str(base_dir, "/stages/Stage", (randi() % stage_num - 1) + 2, ".tscn"))
 
 func get_first_stage():
 	var base_dir = self.get_script().get_path().get_base_dir()
-	return load(str(base_dir, '/stages/Stage1.tscn'))
+	return load(str(base_dir, "/stages/Stage1.tscn"))
 
 # Used in inherited scripts
 func get_cameras():

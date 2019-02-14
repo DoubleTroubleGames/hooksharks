@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://race-mode/Race.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -10,8 +10,7 @@
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=8]
 [ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/white.png" type="Texture" id=10]
-[ext_resource path="res://hook/HookClink.tscn" type="PackedScene" id=11]
-[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=12]
+[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=11]
 
 [sub_resource type="Shader" id=1]
 
@@ -159,17 +158,15 @@ _sections_unfolded = [ "Pause", "Rect", "Visibility" ]
 [node name="Blink" type="Sprite" parent="." index="8"]
 
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( -264.124, -102.266 )
 scale = Vector2( 20, 11.25 )
 texture = ExtResource( 10 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+centered = false
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HookClink" parent="." index="9" instance=ExtResource( 11 )]
-
-[node name="Camera2D" type="Camera2D" parent="." index="10"]
+[node name="Camera2D" type="Camera2D" parent="." index="9"]
 
 anchor_mode = 1
 rotating = false
@@ -193,7 +190,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Limit" ]
 max_angle = 10
 max_offset_x = 250

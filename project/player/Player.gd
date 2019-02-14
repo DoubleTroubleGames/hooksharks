@@ -144,6 +144,8 @@ func _queue_free(is_player_collision=false):
 
 func hook_collision(from_hook):
 	$HookTimer.start()
+	$SFX/OnHit.play()
+	$BloodParticles.emitting = true
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0)-from_hook.rope.get_point_position(1)).normalized()
 	yield($HookTimer, "timeout")

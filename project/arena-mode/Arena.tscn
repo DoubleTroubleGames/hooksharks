@@ -113,6 +113,7 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 editor/display_folded = true
 position = Vector2( 200, 200 )
 id = 0
+input_type = "Gamepad"
 
 [node name="Arrow" parent="Players/Player1" index="1"]
 
@@ -131,6 +132,7 @@ editor/display_folded = true
 position = Vector2( 1100, 550 )
 id = 1
 initial_dir = Vector2( -1, 0 )
+input_type = "Gamepad"
 
 [node name="Arrow" parent="Players/Player2" index="1"]
 
