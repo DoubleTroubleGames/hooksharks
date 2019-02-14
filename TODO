@@ -8,6 +8,15 @@ SFX:
 	- Breaking power-up container
 
 ART:
-	- Sharks
-	- Sharkz
-	- Zharkz
+	- Water tile
+	- Wall tile
+	- Finish line
+	- At least 1 shark
+	- At least 1 shark rider
+	- Hook
+	- Power-up barrel
+	- Menu buttons
+		- Button
+		- Checkbox
+		- Slider
+	
