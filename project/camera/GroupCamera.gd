@@ -17,14 +17,15 @@ func _ready():
 func _physics_process(delta):
 	var max_dist = get_max_distance()
 	
-	if max_dist.x < zooming_dist && max_dist.x > min_dist:
+	if max_dist.x < zooming_dist:
 		adjust_zoom(max_dist)
 	
 	set_position( get_average_position() )
 
 
 func adjust_zoom(dist):
-	var weight_x = (dist.x - zooming_dist) / -(zooming_dist - min_dist)
+	var dist_x = clamp(dist.x, min_dist, zooming_dist)
+	var weight_x = (dist_x - zooming_dist) / -(zooming_dist - min_dist)
 	var x = lerp(min_zoom, max_zoom, weight_x)
 	
 	set_zoom(Vector2(x, x))
