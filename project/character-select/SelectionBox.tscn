@@ -20,6 +20,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Margin", "Rect" ]
+id = 0
 
 [node name="Sprite" type="TextureRect" parent="." index="0"]
 
