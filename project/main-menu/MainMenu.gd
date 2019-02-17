@@ -6,12 +6,13 @@ func _ready():
 
 func _on_StartRace_pressed():
 	$Click.play()
-	get_tree().change_scene("res://splitscreen/SplitScreen.tscn")
+	RoundManager.gamemode = "Race"
+	get_tree().change_scene("res://character-select/CharacterSelect.tscn")
 
 func _on_StartArena_pressed():
 	$Click.play()
-	get_tree().change_scene("res://arena-mode/Arena.tscn")
-
+	RoundManager.gamemode = "Arena"
+	get_tree().change_scene("res://character-select/CharacterSelect.tscn")
 
 func _on_Quit_pressed():
 	get_tree().quit()

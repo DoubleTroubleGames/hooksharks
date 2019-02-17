@@ -1,7 +1,10 @@
 extends Control
 
-signal selected(id)
 signal unselected(id)
+signal selected(id)
+signal ready(id)
+signal unready(id)
+signal start_game
 
 const characters = [Color(1, 0, 0), Color(0, 1, 0), Color(0, 0, 1)]
 enum States {UNSELECTED, SELECTED, READY}
@@ -32,14 +35,22 @@ func _input(event):
 				return
 			if event.is_action_pressed("ui_cancel"):
 				change_state(UNSELECTED, device)
-			if event.is_action_pressed("ui_left"):
+			elif event.is_action_pressed("ui_accept"):
+				change_state(READY, device)
+			elif event.is_action_pressed("ui_left"):
 				current_character_id -= 1
 			elif event.is_action_pressed("ui_right"):
 				current_character_id += 1
 			current_character_id %= characters.size()
 			$Sprite.set_modulate(characters[current_character_id])
 		READY:
-			pass
+			if not device == RoundManager.control_map[id]:
+				return
+			if event.is_action_pressed("ui_cancel"):
+				emit_signal("unselected", id)
+				change_state(SELECTED, device)
+			elif event.is_action_pressed("ui_accept"):
+				emit_signal("start_game")
 
 
 func determine_device_type(event):
@@ -64,4 +75,4 @@ func change_state(new_state, device):
 		SELECTED:
 			emit_signal("selected", id)
 		READY:
-			pass
+			emit_signal("ready", id)

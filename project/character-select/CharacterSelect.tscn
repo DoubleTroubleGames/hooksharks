@@ -57,19 +57,43 @@ margin_right = 412.0
 margin_bottom = 100.0
 id = 3
 
+[connection signal="ready" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_ready"]
+
 [connection signal="selected" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="start_game" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_start_game"]
+
+[connection signal="unready" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_unready"]
 
 [connection signal="unselected" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_unselected"]
 
+[connection signal="ready" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_ready"]
+
 [connection signal="selected" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="start_game" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_start_game"]
+
+[connection signal="unready" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_unready"]
 
 [connection signal="unselected" from="GridContainer/SelectionBox1" to="." method="_on_SelectionBox_unselected"]
 
+[connection signal="ready" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_ready"]
+
 [connection signal="selected" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="start_game" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_start_game"]
+
+[connection signal="unready" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_unready"]
 
 [connection signal="unselected" from="GridContainer/SelectionBox2" to="." method="_on_SelectionBox_unselected"]
 
+[connection signal="ready" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_ready"]
+
 [connection signal="selected" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_selected"]
+
+[connection signal="start_game" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_start_game"]
+
+[connection signal="unready" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_unready"]
 
 [connection signal="unselected" from="GridContainer/SelectionBox3" to="." method="_on_SelectionBox_unselected"]
 
