@@ -29,7 +29,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-columns = 2
+columns = 4
 
 [node name="SelectionBox0" parent="GridContainer" index="0" instance=ExtResource( 2 )]
 
@@ -45,17 +45,16 @@ id = 1
 
 [node name="SelectionBox2" parent="GridContainer" index="2" instance=ExtResource( 2 )]
 
-margin_top = 104.0
-margin_right = 100.0
-margin_bottom = 204.0
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 100.0
 id = 2
 
 [node name="SelectionBox3" parent="GridContainer" index="3" instance=ExtResource( 2 )]
 
-margin_left = 104.0
-margin_top = 104.0
-margin_right = 204.0
-margin_bottom = 204.0
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 100.0
 id = 3
 
 [connection signal="selected" from="GridContainer/SelectionBox0" to="." method="_on_SelectionBox_selected"]

@@ -23,14 +23,11 @@ func _input(event):
 				if not device in RoundManager.control_map:
 					if(RoundManager.assign_to_port(device)):
 						change_state(SELECTED, device)
-						emit_signal("selected", id)
 		SELECTED:
 			if not device == RoundManager.control_map[id]:
 				return
 			if event.is_action_pressed("ui_cancel"):
-				RoundManager.unassign_port(device)
 				change_state(UNSELECTED, device)
-				emit_signal("unselected", id)
 			if event.is_action_pressed("ui_left"):
 				current_character_id -= 1
 			elif event.is_action_pressed("ui_right"):
@@ -54,4 +51,12 @@ func change_state(new_state, device):
 	$State.text = str(new_state)
 	$DeviceId.text = str(device)
 	
-	
+	match current_state:
+		UNSELECTED:
+			RoundManager.unassign_port(device)
+			set_process_input(false)
+			emit_signal("unselected", id)
+		SELECTED:
+			emit_signal("selected", id)
+		READY:
+			pass
