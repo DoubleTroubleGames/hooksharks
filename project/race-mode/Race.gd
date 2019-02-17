@@ -16,3 +16,9 @@ func connect_players():
 			player.connect("shook_screen", camera, "add_shake")
 	for camera in Cameras:
 		camera.set_children(players)
+
+func activate_players():
+	for player in players:
+		player.get_node("Area2D").monitoring = true
+		player.set_physics_process(true)
+		player.create_trail = false
