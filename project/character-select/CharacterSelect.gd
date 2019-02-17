@@ -1,8 +1,8 @@
 extends Control
 
+
 func _ready():
-	for i in range(1, 4):
-		get_node(str("GridContainer/SelectionBox", i)).set_process_input(false)
+	get_node("GridContainer/SelectionBox0").set_process_input(true)
 
 
 func _on_SelectionBox_selected(id):

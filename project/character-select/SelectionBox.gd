@@ -12,6 +12,10 @@ var current_state = States.UNSELECTED
 var current_character_id = 0
 
 
+func _ready():
+	set_process_input(false)
+
+
 func _input(event):
 	if not event is InputEventKey and not event is InputEventJoypadButton:
 		return
@@ -36,6 +40,7 @@ func _input(event):
 			$Sprite.set_modulate(characters[current_character_id])
 		READY:
 			pass
+
 
 func determine_device_type(event):
 	var device
