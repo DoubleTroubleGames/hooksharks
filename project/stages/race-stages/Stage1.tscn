@@ -1,0 +1,181 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Stage.gd" type="Script" id=1]
+[ext_resource path="res://assets/parede_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/parede_02.png" type="Texture" id=3]
+[ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/caixas_02.png" type="Texture" id=5]
+[ext_resource path="res://wall/StartingPosition.tscn" type="PackedScene" id=6]
+
+[node name="Walls" type="Node2D" groups=[
+"wall",
+]]
+
+script = ExtResource( 1 )
+
+[node name="Top" type="Area2D" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 1069.35, 0.376617 )
+scale = Vector2( 1.91708, 1.58198 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Top" index="0"]
+
+position = Vector2( 0, -34 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite2" type="Sprite" parent="Top" index="1"]
+
+position = Vector2( 0, 34 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Top" index="2"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -640, 0, -640, 63, -529, 63, -529, 51, -420, 51, -420, 36, -341, 36, -341, 60, -210, 60, -210, 52, -69, 52, -69, 64, 85, 64, 85, 50, 261, 50, 261, 64, 380, 64, 380, 47, 554, 47, 554, 43, 640, 43, 640, 0 )
+
+[node name="Bottom" type="Area2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 1095.54, 1292 )
+scale = Vector2( 1.79551, 1 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Bottom" index="0"]
+
+position = Vector2( 0, -34 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite2" type="Sprite" parent="Bottom" index="1"]
+
+position = Vector2( 0, 34 )
+scale = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bottom" index="2"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -640, 0, -640, -44, -554, -44, -554, -49, -379, -49, -379, -60, -262, -60, -262, -49, -85, -49, -85, -63, 68, -63, 68, -52, 209, -52, 209, -58, 339, -58, 339, -32, 420, -32, 420, -51, 528, -51, 528, -63, 640, -63, 640, 0 )
+
+[node name="Left" type="Area2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 2.91663, 645.723 )
+scale = Vector2( 1.92645, 1.72742 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Left" index="0"]
+
+position = Vector2( 34, 0 )
+scale = Vector2( -0.8, 0.8 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Sprite2" type="Sprite" parent="Left" index="1"]
+
+position = Vector2( -34, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Left" index="2"]
+
+visible = false
+position = Vector2( 0, -360 )
+build_mode = 0
+polygon = PoolVector2Array( 48, 0, 48, 42, 34, 42, 34, 136, 52, 136, 52, 205, 46, 205, 46, 264, 40, 264, 40, 364, 45, 365, 45, 449, 57, 449, 57, 540, 42, 540, 42, 644, 48, 644, 48, 720, 0, 720, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right" type="Area2D" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 2159.1, 620.147 )
+scale = Vector2( 1.97995, 1.6204 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Right" index="0"]
+
+position = Vector2( 34, 0 )
+rotation = -3.14159
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Sprite2" type="Sprite" parent="Right" index="1"]
+
+position = Vector2( -34, 0 )
+scale = Vector2( 0.8, -0.8 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Right" index="2"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -178, -57, -89, -44, -89, -44, -3, -41, -4, -41, 95, -46, 95, -46, 155, -52, 155, -52, 223, -36, 223, -36, 317, -47, 317, -47, 360, 0, 360, 1, -360 )
+
+[node name="Obstacles" type="Node2D" parent="." index="4"]
+
+[node name="Obstacle" parent="Obstacles" index="0" instance=ExtResource( 4 )]
+
+editor/display_folded = true
+position = Vector2( 1065.94, 634.155 )
+scale = Vector2( 1, 0.632509 )
+
+[node name="Sprite" parent="Obstacles/Obstacle" index="0"]
+
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" parent="Obstacles/Obstacle/Area2D" index="0"]
+
+polygon = PoolVector2Array( -500, -60, 500, -60, 500, 60, -500, 60 )
+
+[node name="PlayerStartingPosition" type="Node2D" parent="." index="5"]
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 389.024, 251.354 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 381.793, 425.981 )
+
+
+[editable path="Obstacles/Obstacle"]
