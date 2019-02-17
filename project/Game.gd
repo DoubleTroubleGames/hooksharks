@@ -36,6 +36,7 @@ func _ready():
 	
 	Cameras = get_cameras()
 	connect_players()
+	activate_players()
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -75,7 +76,7 @@ func create_rope(player, hook):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
-	get_node("Ropes").add_child(rope)
+	get_node("Stage/Ropes").add_child(rope)
 	return rope
 
 func show_round():
@@ -94,10 +95,10 @@ func transition_stage(stage):
 
 
 func clean_all():
-	for child in $Hooks.get_children():
+	for child in $"Old Stage/Trails".get_children():
 		child.queue_free()
-	for child in $Trail.get_children():
-		child.queue_free()
+	for child in $"Old Stage/Hooks".get_children():
+		child.free_hook()
 	players.clear()
 
 
@@ -106,18 +107,20 @@ func free_current_stage():
 	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
 	transition_stage(stage)
 	yield($StageTween, "tween_completed")
+	clean_all()
 	stage.queue_free()
 
 
 func add_new_stage():
 	var stage = get_random_stage().instance()
-	clean_all()
 	stage.setup(self, player_num)
 	stage.set_name("Stage")
 	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	connect_players()
 	add_child(stage)
 	transition_stage(stage)
+	yield($StageTween, "tween_completed")
+	activate_players()
 
 
 func connect_players():
@@ -128,6 +131,10 @@ func connect_players():
 		for camera in Cameras:
 			player.connect("shook_screen", camera, "add_shake")
 
+func activate_players():
+	for player in players:
+		player.get_node("Area2D").monitoring = true
+		player.set_physics_process(true)
 
 func remove_player(player, is_player_collision):
 	players.erase(player)
@@ -165,7 +172,7 @@ func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
 	new_hook.rope = create_rope(player, new_hook)
-	get_node("Hooks").add_child(new_hook)
+	get_node("Stage/Hooks").add_child(new_hook)
 	for camera in Cameras:
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
@@ -205,15 +212,17 @@ func _on_wall_hit(position, rotation):
 	wall_particles.queue_free()
 
 func _on_player_created_trail(trail):
-	$Trail.add_child(trail)
+	$Stage/Trails.add_child(trail)
 
 func get_random_stage():
-	var base_dir = self.get_script().get_path().get_base_dir()
-	return load(str(base_dir, "/stages/Stage", (randi() % stage_num - 1) + 2, ".tscn"))
+#	var base_dir = self.get_script().get_path().get_base_dir()
+#	return load(str(base_dir, "/stages/Stage", (randi() % stage_num - 1) + 2, ".tscn"))
+	return load("res://stages/BaseStage.tscn")
 
 func get_first_stage():
-	var base_dir = self.get_script().get_path().get_base_dir()
-	return load(str(base_dir, "/stages/Stage1.tscn"))
+#	var base_dir = self.get_script().get_path().get_base_dir()
+#	return load(str(base_dir, "/stages/Stage1.tscn"))
+	return load("res://stages/BaseStage.tscn")
 
 # Used in inherited scripts
 func get_cameras():

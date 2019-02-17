@@ -177,4 +177,6 @@ polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -17
 
 [node name="Hooks" type="Node2D" parent="." index="3"]
 
+[node name="Ropes" type="Node2D" parent="." index="4"]
+
 

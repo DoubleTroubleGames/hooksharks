@@ -42,7 +42,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -103,17 +103,11 @@ expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Material", "Pause", "Rect" ]
 
-[node name="Hooks" type="Node2D" parent="." index="2"]
+[node name="Blur" parent="." index="2" instance=ExtResource( 5 )]
 
-[node name="Ropes" type="Node2D" parent="." index="3"]
+[node name="HUD" parent="." index="3" instance=ExtResource( 6 )]
 
-[node name="Trail" type="Node2D" parent="." index="4"]
-
-[node name="Blur" parent="." index="5" instance=ExtResource( 5 )]
-
-[node name="HUD" parent="." index="6" instance=ExtResource( 6 )]
-
-[node name="Blink" type="Sprite" parent="." index="7"]
+[node name="Blink" type="Sprite" parent="." index="4"]
 
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 640, 360 )
@@ -121,7 +115,7 @@ scale = Vector2( 20, 11.25 )
 texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="8"]
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
 
 pause_mode = 2
 anchor_mode = 1
@@ -155,7 +149,7 @@ violence = 0.3
 dec_ratio = 1.2
 exponent = 2
 
-[node name="StageTween" type="Tween" parent="." index="9"]
+[node name="StageTween" type="Tween" parent="." index="6"]
 
 repeat = false
 playback_process_mode = 1

@@ -32,6 +32,9 @@ func adjust_zoom(dist):
 
 
 func get_average_position():
+	if children.empty():
+		return get_position()
+	
 	var avrg = children[0].get_position()
 	
 	for i in range(1, children.size()):

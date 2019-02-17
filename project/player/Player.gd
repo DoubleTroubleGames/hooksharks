@@ -46,6 +46,7 @@ func _ready():
 	$Explosion.texture = EXPLOSIONS[randi() % 4]
 	$Explosion2.texture = EXPLOSIONS[randi() % 4]
 	$DiveCooldown/CooldownTimer.connect('timeout', self, 'enable_diving')
+	set_physics_process(false)
 
 
 func _physics_process(delta):

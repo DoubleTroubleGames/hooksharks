@@ -104,19 +104,13 @@ expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Material", "Pause", "Rect" ]
 
-[node name="Hooks" type="Node2D" parent="." index="2"]
+[node name="Blur" parent="." index="2" instance=ExtResource( 5 )]
 
-[node name="Ropes" type="Node2D" parent="." index="3"]
-
-[node name="Trail" type="Node2D" parent="." index="4"]
-
-[node name="Blur" parent="." index="5" instance=ExtResource( 5 )]
-
-[node name="HUD" parent="." index="6" instance=ExtResource( 6 )]
+[node name="HUD" parent="." index="3" instance=ExtResource( 6 )]
 
 _sections_unfolded = [ "Pause", "Rect", "Visibility" ]
 
-[node name="Blink" type="Sprite" parent="." index="7"]
+[node name="Blink" type="Sprite" parent="." index="4"]
 
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 20, 11.25 )
@@ -127,7 +121,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="8"]
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
 
 anchor_mode = 1
 rotating = false
@@ -164,7 +158,7 @@ max_zoom = 0.8
 zooming_dist = 1000
 min_dist = 100
 
-[node name="StageTween" type="Tween" parent="." index="9"]
+[node name="StageTween" type="Tween" parent="." index="6"]
 
 repeat = false
 playback_process_mode = 1
