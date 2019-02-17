@@ -25,7 +25,7 @@ onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
 onready var tween = $Tween
 
-export(int, -1, 3) var id
+export(int, -1, 3) var id = 0
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
 export(bool) var create_trail = true
@@ -46,6 +46,7 @@ func _ready():
 	$Explosion.texture = EXPLOSIONS[randi() % 4]
 	$Explosion2.texture = EXPLOSIONS[randi() % 4]
 	$DiveCooldown/CooldownTimer.connect('timeout', self, 'enable_diving')
+	set_physics_process(false)
 
 
 func _physics_process(delta):
@@ -123,6 +124,7 @@ func _on_Area2D_area_entered(area):
 			_queue_free(true)
 
 func _queue_free(is_player_collision=false):
+	$Area2D.queue_free()
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
 	sprite.visible = false

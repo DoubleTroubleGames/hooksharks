@@ -65,6 +65,11 @@ func show_round():
 	else:
 		win_animation()
 
+func hide_round():
+	tween.interpolate_property(background, "modulate:a", 1, 0, DURATION,
+			Tween.TRANS_LINEAR, Tween.EASE_IN, DELAY)
+	tween.start()
+
 
 func win_animation():
 	# Winner label animation

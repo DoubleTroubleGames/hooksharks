@@ -166,7 +166,7 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
-id = null
+id = 0
 initial_dir = Vector2( 1, 0 )
 input_type = "Keyboard_mouse"
 create_trail = true
@@ -219,6 +219,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
 audio_bus_override = false
 audio_bus_name = "Master"
 
@@ -297,7 +298,7 @@ randomness = 0.0
 fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = false
+local_coords = true
 draw_order = 0
 process_material = SubResource( 6 )
 texture = ExtResource( 7 )
@@ -320,7 +321,7 @@ randomness = 0.0
 fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = false
+local_coords = true
 draw_order = 0
 process_material = SubResource( 6 )
 texture = ExtResource( 8 )
@@ -345,6 +346,7 @@ autostart = false
 
 [node name="SFX" type="Node2D" parent="." index="11"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

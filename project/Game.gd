@@ -3,7 +3,6 @@ extends Node2D
 onready var blink = $Blink
 onready var bg = $BG
 onready var hud = $HUD
-onready var players = $Players.get_children()
 
 const HOOK = preload("res://hook/Hook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
@@ -11,6 +10,8 @@ const ROPE = preload("res://rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
 const BG_SPEED = 20
 const SHOW_ROUND_DELAY = 1
+const TRANSITION_OFFSET = 1000
+const TRANSITION_TIME = 1.0
 
 export (int)var stage_num = 10
 export (bool)var use_keyboard = false
@@ -19,36 +20,23 @@ export (int, "0", "1", "2", "3")var keyboard_id = 0
 var hook_clink_positions = []
 var ids = [0, 1, 2, 3]
 var Cameras = []
+var players = []
+var player_num = 2
 
 func _ready():
-	var stage
-	if RoundManager.scores == [0, 0]:
-		stage = get_first_stage().instance()
-	else:
-		stage = get_random_stage().instance()
-	self.add_child(stage)
-	
-	#Get players starting positions
-	for i in range($Players.get_child_count()):
-		var player = $Players.get_child(i)
-		var starting = stage.get_node("PlayerStartingPosition").get_child(i)
-		player.position = starting.position
-		player.initial_dir = starting.direction
+	var stage = get_first_stage().instance()
+	stage.setup(self, player_num)
+	stage.set_name("Stage")
+	add_child(stage)
 	
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
 	
-	# Screen shake signals
 	Cameras = get_cameras()
-	for camera in Cameras:
-		for player in $Players.get_children():
-			player.connect("shook_screen", camera, "add_shake")
-	for player in $Players.get_children():
-		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("hook_shot", self, "_on_player_hook_shot")
-		player.connect("died", self, "remove_player")
+	connect_players()
+	activate_players()
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -88,7 +76,7 @@ func create_rope(player, hook):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
-	get_node("Ropes").add_child(rope)
+	get_node("Stage/Ropes").add_child(rope)
 	return rope
 
 func show_round():
@@ -96,13 +84,63 @@ func show_round():
 	yield(hud, "finished")
 	if RoundManager.winner != -1:
 		RoundManager.round_number += 1
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	hud.hide_round()
+
+
+func transition_stage(stage):
+	var Twn = $StageTween
+	var stage_pos = stage.get_position()
+	Twn.interpolate_property(stage, "position", stage_pos, stage_pos + Vector2(0, TRANSITION_OFFSET), TRANSITION_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	Twn.start()
+
+
+func clean_all():
+	for child in $"Old Stage/Trails".get_children():
+		child.queue_free()
+	for child in $"Old Stage/Hooks".get_children():
+		child.free_hook()
+	players.clear()
+
+
+func free_current_stage():
+	var stage = get_node("Stage")
+	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
+	transition_stage(stage)
+	yield($StageTween, "tween_completed")
+	clean_all()
+	stage.queue_free()
+
+
+func add_new_stage():
+	var stage = get_random_stage().instance()
+	stage.setup(self, player_num)
+	stage.set_name("Stage")
+	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
+	connect_players()
+	add_child(stage)
+	transition_stage(stage)
+	yield($StageTween, "tween_completed")
+	activate_players()
+
+
+func connect_players():
+	for player in players:
+		player.connect("created_trail", self, "_on_player_created_trail")
+		player.connect("hook_shot", self, "_on_player_hook_shot")
+		player.connect("died", self, "remove_player")
+		for camera in Cameras:
+			player.connect("shook_screen", camera, "add_shake")
+
+func activate_players():
+	for player in players:
+		player.get_node("Area2D").monitoring = true
+		player.set_physics_process(true)
 
 func remove_player(player, is_player_collision):
 	players.erase(player)
 	if players.size() == 1:
 		var winner = players[0]
+		winner.get_node("Area2D").queue_free()
 		if not is_player_collision:
 			var winner_id = get_winner_id(winner)
 			RoundManager.scores[winner_id] += 1
@@ -114,6 +152,11 @@ func remove_player(player, is_player_collision):
 		
 		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 		show_round()
+		yield(hud, "finished")
+		free_current_stage()
+		yield($StageTween, "tween_completed")
+		add_new_stage()
+
 
 func get_winner_id(winner):
 	if not use_keyboard:
@@ -129,7 +172,7 @@ func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
 	new_hook.rope = create_rope(player, new_hook)
-	get_node("Hooks").add_child(new_hook)
+	get_node("Stage/Hooks").add_child(new_hook)
 	for camera in Cameras:
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
@@ -169,15 +212,17 @@ func _on_wall_hit(position, rotation):
 	wall_particles.queue_free()
 
 func _on_player_created_trail(trail):
-	$Trail.add_child(trail)
+	$Stage/Trails.add_child(trail)
 
 func get_random_stage():
-	var base_dir = self.get_script().get_path().get_base_dir()
-	return load(str(base_dir, "/stages/Stage", (randi() % stage_num - 1) + 2, ".tscn"))
+#	var base_dir = self.get_script().get_path().get_base_dir()
+#	return load(str(base_dir, "/stages/Stage", (randi() % stage_num - 1) + 2, ".tscn"))
+	return load("res://stages/BaseStage.tscn")
 
 func get_first_stage():
-	var base_dir = self.get_script().get_path().get_base_dir()
-	return load(str(base_dir, "/stages/Stage1.tscn"))
+#	var base_dir = self.get_script().get_path().get_base_dir()
+#	return load(str(base_dir, "/stages/Stage1.tscn"))
+	return load("res://stages/BaseStage.tscn")
 
 # Used in inherited scripts
 func get_cameras():

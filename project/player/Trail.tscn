@@ -4,7 +4,6 @@
 [ext_resource path="res://player/oilspill_sheet.png" type="Texture" id=2]
 [ext_resource path="res://player/fumaca_sheet.png" type="Texture" id=3]
 
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -121,7 +120,7 @@ randomness = 0.0
 fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = false
+local_coords = true
 draw_order = 0
 process_material = SubResource( 6 )
 texture = ExtResource( 3 )
