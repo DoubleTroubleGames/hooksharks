@@ -1,28 +1,29 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://fx/WaterParticles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/flecha_cinza.png" type="Texture" id=3]
-[ext_resource path="res://player/hook_guy.png" type="Texture" id=4]
-[ext_resource path="res://player/bubble.png" type="Texture" id=5]
-[ext_resource path="res://player/circle.png" type="Texture" id=6]
-[ext_resource path="res://player/explosion/4.png" type="Texture" id=7]
-[ext_resource path="res://player/explosion/3.png" type="Texture" id=8]
-[ext_resource path="res://sound/dive.wav" type="AudioStream" id=9]
-[ext_resource path="res://sound/emerge.wav" type="AudioStream" id=10]
-[ext_resource path="res://sound/explosion.wav" type="AudioStream" id=11]
-[ext_resource path="res://sound/harpoon.wav" type="AudioStream" id=12]
-[ext_resource path="res://sound/scream1.wav" type="AudioStream" id=13]
-[ext_resource path="res://sound/scream2.wav" type="AudioStream" id=14]
-[ext_resource path="res://sound/scream3.wav" type="AudioStream" id=15]
-[ext_resource path="res://sound/scream4.wav" type="AudioStream" id=16]
-[ext_resource path="res://sound/scream5.wav" type="AudioStream" id=17]
-[ext_resource path="res://sound/scream6.wav" type="AudioStream" id=18]
-[ext_resource path="res://sound/scream7.wav" type="AudioStream" id=19]
-[ext_resource path="res://sound/scream8.wav" type="AudioStream" id=20]
-[ext_resource path="res://sound/scream9.wav" type="AudioStream" id=21]
-[ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=22]
-[ext_resource path="res://fx/BloodParticles.tscn" type="PackedScene" id=23]
+[ext_resource path="res://player/player_sheet.png" type="Texture" id=4]
+[ext_resource path="res://player/hook_guy.png" type="Texture" id=5]
+[ext_resource path="res://player/bubble.png" type="Texture" id=6]
+[ext_resource path="res://player/circle.png" type="Texture" id=7]
+[ext_resource path="res://player/explosion/4.png" type="Texture" id=8]
+[ext_resource path="res://player/explosion/3.png" type="Texture" id=9]
+[ext_resource path="res://sound/dive.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/emerge.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/explosion.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound/harpoon.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/scream1.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/scream2.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/scream3.wav" type="AudioStream" id=16]
+[ext_resource path="res://sound/scream4.wav" type="AudioStream" id=17]
+[ext_resource path="res://sound/scream5.wav" type="AudioStream" id=18]
+[ext_resource path="res://sound/scream6.wav" type="AudioStream" id=19]
+[ext_resource path="res://sound/scream7.wav" type="AudioStream" id=20]
+[ext_resource path="res://sound/scream8.wav" type="AudioStream" id=21]
+[ext_resource path="res://sound/scream9.wav" type="AudioStream" id=22]
+[ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=23]
+[ext_resource path="res://fx/BloodParticles.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Animation" id=1]
 
@@ -156,7 +157,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 
@@ -188,6 +189,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 editor/display_folded = true
 scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, -5 )
 hframes = 6
 frame = 4
@@ -208,7 +210,7 @@ blend_times = [  ]
 
 position = Vector2( 19.4, 0 )
 scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Area2D" type="Area2D" parent="." index="4"]
@@ -259,9 +261,9 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 5 )
+texture_under = ExtResource( 6 )
 texture_over = null
-texture_progress = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
 fill_mode = 4
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
@@ -301,7 +303,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 6 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 normal_map = null
 h_frames = 8
 v_frames = 8
@@ -324,7 +326,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 6 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 normal_map = null
 h_frames = 8
 v_frames = 8
@@ -354,7 +356,7 @@ __meta__ = {
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX" index="0"]
 
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -363,7 +365,7 @@ bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX" index="1"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -372,7 +374,7 @@ bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX" index="2"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -381,7 +383,7 @@ bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX" index="3"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -390,7 +392,7 @@ bus = "SFX"
 
 [node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX" index="4"]
 
-stream = ExtResource( 13 )
+stream = ExtResource( 14 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -399,7 +401,7 @@ bus = "SFX"
 
 [node name="ScreamSFX2" type="AudioStreamPlayer" parent="SFX" index="5"]
 
-stream = ExtResource( 14 )
+stream = ExtResource( 15 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -408,7 +410,7 @@ bus = "SFX"
 
 [node name="ScreamSFX3" type="AudioStreamPlayer" parent="SFX" index="6"]
 
-stream = ExtResource( 15 )
+stream = ExtResource( 16 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -417,7 +419,7 @@ bus = "SFX"
 
 [node name="ScreamSFX4" type="AudioStreamPlayer" parent="SFX" index="7"]
 
-stream = ExtResource( 16 )
+stream = ExtResource( 17 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -426,7 +428,7 @@ bus = "SFX"
 
 [node name="ScreamSFX5" type="AudioStreamPlayer" parent="SFX" index="8"]
 
-stream = ExtResource( 17 )
+stream = ExtResource( 18 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -435,7 +437,7 @@ bus = "SFX"
 
 [node name="ScreamSFX6" type="AudioStreamPlayer" parent="SFX" index="9"]
 
-stream = ExtResource( 18 )
+stream = ExtResource( 19 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -444,7 +446,7 @@ bus = "SFX"
 
 [node name="ScreamSFX7" type="AudioStreamPlayer" parent="SFX" index="10"]
 
-stream = ExtResource( 19 )
+stream = ExtResource( 20 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -453,7 +455,7 @@ bus = "SFX"
 
 [node name="ScreamSFX8" type="AudioStreamPlayer" parent="SFX" index="11"]
 
-stream = ExtResource( 20 )
+stream = ExtResource( 21 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -462,7 +464,7 @@ bus = "SFX"
 
 [node name="ScreamSFX9" type="AudioStreamPlayer" parent="SFX" index="12"]
 
-stream = ExtResource( 21 )
+stream = ExtResource( 22 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -471,14 +473,14 @@ bus = "SFX"
 
 [node name="OnHit" type="AudioStreamPlayer" parent="SFX" index="13"]
 
-stream = ExtResource( 22 )
+stream = ExtResource( 23 )
 volume_db = 10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="BloodParticles" parent="." index="12" instance=ExtResource( 23 )]
+[node name="BloodParticles" parent="." index="12" instance=ExtResource( 24 )]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
