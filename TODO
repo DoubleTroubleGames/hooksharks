@@ -6,6 +6,7 @@ SFX:
 	- Round transition
 	- Reaching finish line
 	- Breaking power-up container
+	- End of game
 
 ART:
 	- Water tile
@@ -19,4 +20,8 @@ ART:
 		- Button
 		- Checkbox
 		- Slider
+	- HUD
+		- Main Menu background
+		- Round Score
+		- Loading screen
 	
