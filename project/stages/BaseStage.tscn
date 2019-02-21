@@ -5,9 +5,10 @@
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=4]
 
-[node name="Walls" type="Node2D"]
+[node name="Stage" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+game_mode = 1
 
 [node name="PlayerStartingPosition" type="Node2D" parent="." index="0"]
 
@@ -32,8 +33,6 @@ position = Vector2( 300, 900 )
 [node name="Obstacles" type="Node2D" parent="." index="1" groups=[
 "wall",
 ]]
-
-editor/display_folded = true
 
 [node name="Top" type="Area2D" parent="Obstacles" index="0"]
 

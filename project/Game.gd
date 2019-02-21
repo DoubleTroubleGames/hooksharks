@@ -26,7 +26,6 @@ var player_num = 2
 func _ready():
 	var stage = get_first_stage().instance()
 	stage.setup(self, player_num)
-	stage.set_name("Stage")
 	add_child(stage)
 	
 	bg.visible = true
@@ -35,8 +34,8 @@ func _ready():
 	get_node("Mirage").rect_size = OS.window_size
 	
 	Cameras = get_cameras()
-	connect_players()
-	activate_players()
+	stage.connect_players(players,Cameras)
+	stage.activate_players(players)
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -121,20 +120,6 @@ func add_new_stage():
 	transition_stage(stage)
 	yield($StageTween, "tween_completed")
 	activate_players()
-
-
-func connect_players():
-	for player in players:
-		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("hook_shot", self, "_on_player_hook_shot")
-		player.connect("died", self, "remove_player")
-		for camera in Cameras:
-			player.connect("shook_screen", camera, "add_shake")
-
-func activate_players():
-	for player in players:
-		player.get_node("Area2D").monitoring = true
-		player.set_physics_process(true)
 
 func remove_player(player, is_player_collision):
 	players.erase(player)
