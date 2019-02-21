@@ -215,14 +215,12 @@ func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
 
 func get_random_stage():
-#	var base_dir = self.get_script().get_path().get_base_dir()
-#	return load(str(base_dir, "/stages/Stage", (randi() % stage_num - 1) + 2, ".tscn"))
-	return load("res://stages/BaseStage.tscn")
+	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
+	return load(str(base_path, (randi() % stage_num - 1) + 2, ".tscn"))
 
 func get_first_stage():
-#	var base_dir = self.get_script().get_path().get_base_dir()
-#	return load(str(base_dir, "/stages/Stage1.tscn"))
-	return load("res://stages/BaseStage.tscn")
+	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
+	return load(str(base_path, "1.tscn"))
 
 # Used in inherited scripts
 func get_cameras():
