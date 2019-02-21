@@ -3,7 +3,7 @@
 [ext_resource path="res://character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[node name="SelectionBox" type="Control"]
+[node name="SelectionBox" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -20,7 +20,6 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Margin", "Rect" ]
-id = 0
 
 [node name="Sprite" type="TextureRect" parent="." index="0"]
 
@@ -53,11 +52,12 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+text = "CLOSED"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DeviceId" type="Label" parent="." index="2"]
+[node name="Device" type="Label" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -67,6 +67,26 @@ margin_left = 12.0
 margin_top = 57.0
 margin_right = 52.0
 margin_bottom = 71.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Character" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 14.0
+margin_top = 112.0
+margin_right = 54.0
+margin_bottom = 126.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
