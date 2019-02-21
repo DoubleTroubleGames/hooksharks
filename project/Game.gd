@@ -34,9 +34,9 @@ func _ready():
 	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
 	
-	Cameras = get_cameras()
-	connect_players()
-	activate_players()
+	Cameras = get_cameras() # on Arena.gd and Race.gd
+	connect_players() # on Arena.gd and Race.gd
+	activate_players() # on Arena.gd and Race.gd
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
@@ -122,20 +122,6 @@ func add_new_stage():
 	yield($StageTween, "tween_completed")
 	activate_players()
 
-
-func connect_players():
-	for player in players:
-		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("hook_shot", self, "_on_player_hook_shot")
-		player.connect("died", self, "remove_player")
-		for camera in Cameras:
-			player.connect("shook_screen", camera, "add_shake")
-
-func activate_players():
-	for player in players:
-		player.get_node("Area2D").monitoring = true
-		player.set_physics_process(true)
-
 func remove_player(player, is_player_collision):
 	players.erase(player)
 	if players.size() == 1:
@@ -220,8 +206,5 @@ func get_random_stage():
 
 func get_first_stage():
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
+	print(base_path)
 	return load(str(base_path, "1.tscn"))
-
-# Used in inherited scripts
-func get_cameras():
-	pass

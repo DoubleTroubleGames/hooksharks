@@ -9,7 +9,7 @@
 
 [node name="PlayerStartingPosition" parent="." index="0"]
 
-editor/display_folded = true
+editor/display_folded = false
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 
@@ -18,18 +18,16 @@ position = Vector2( 200, 150 )
 [node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
 
 position = Vector2( 1080, 580 )
+direction = Vector2( -1, 0 )
 
 [node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
 
 position = Vector2( 1080, 150 )
+direction = Vector2( -1, 0 )
 
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 
 position = Vector2( 200, 580 )
-
-[node name="Obstacles" parent="." index="1"]
-
-editor/display_folded = false
 
 [node name="Obstacle" parent="Obstacles" index="4" instance=ExtResource( 2 )]
 

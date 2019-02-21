@@ -5,11 +5,13 @@
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=4]
 
-[node name="Walls" type="Node2D" index="0"]
+[node name="Stage" type="Node2D"]
 
 script = ExtResource( 1 )
 
 [node name="PlayerStartingPosition" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0" instance=ExtResource( 2 )]
 
@@ -169,20 +171,8 @@ polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -17
 
 [node name="Trails" type="Node2D" parent="." index="2"]
 
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Hooks" type="Node2D" parent="." index="3"]
 
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Ropes" type="Node2D" parent="." index="4"]
-
-__meta__ = {
-"_edit_lock_": true
-}
 
 
