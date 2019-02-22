@@ -45,7 +45,7 @@ func _ready():
 	randomize()
 	speed2 = speed2.rotated(initial_dir.angle())
 	$Explosion.texture = load(str(EXPLOSIONS_PATH, 1 + (randi() % 4), ".png"))
-	$Explosion2.texture = load(str(EXPLOSIONS_PATH, randi() % 4, ".png"))
+	$Explosion2.texture = load(str(EXPLOSIONS_PATH, 1 + randi() % 4, ".png"))
 	$DiveCooldown/CooldownTimer.connect('timeout', self, 'enable_diving')
 	set_physics_process(false)
 
