@@ -5,16 +5,19 @@ signal died(player, is_player_collision)
 signal hook_shot(player, direction)
 signal shook_screen(amount)
 
-const ROT_SPEED = PI/3.5
+export(int, -1, 3) var id = 0
+export(Vector2) var initial_dir = Vector2(1, 0)
+export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
+export(bool) var create_trail = true
+export(float) var ROT_SPEED = PI/3.5
+export(int) var ACC = 4
+export(int) var INITIAL_SPEED = 100
+export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
+
 const TRAIL = preload("res://player/Trail.tscn")
-const ACC = 4
-const INITIAL_SPEED = 100
-const AXIS_DEADZONE = .2
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
-const EXPLOSIONS = [preload("res://player/explosion/1.png"),
-		preload("res://player/explosion/2.png"),
-		preload("res://player/explosion/3.png"),
-		preload("res://player/explosion/4.png")]
+const EXPLOSIONS_PATH = "res://player/explosion/"
+const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 
 onready var arrow = $Arrow
@@ -24,11 +27,6 @@ onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
 onready var tween = $Tween
-
-export(int, -1, 3) var id = 0
-export(Vector2) var initial_dir = Vector2(1, 0)
-export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
-export(bool) var create_trail = true
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
@@ -42,9 +40,10 @@ var speed2 = Vector2(INITIAL_SPEED, 0)
 
 
 func _ready():
+	randomize()
 	speed2 = speed2.rotated(initial_dir.angle())
-	$Explosion.texture = EXPLOSIONS[randi() % 4]
-	$Explosion2.texture = EXPLOSIONS[randi() % 4]
+	$Explosion.texture = load(str(EXPLOSIONS_PATH, 1 + (randi() % 4), ".png"))
+	$Explosion2.texture = load(str(EXPLOSIONS_PATH, randi() % 4, ".png"))
 	$DiveCooldown/CooldownTimer.connect('timeout', self, 'enable_diving')
 	set_physics_process(false)
 
@@ -74,6 +73,8 @@ func _physics_process(delta):
 	if stunned:
 		position += pull_dir * 100 * delta
 		applying_force = pull_dir * 200
+	if MAX_SPEED != -1:
+		speed2 = speed2.clamped(MAX_SPEED)
 	
 	position += speed2 * delta
 	speed2 += applying_force * delta

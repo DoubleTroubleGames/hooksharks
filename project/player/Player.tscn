@@ -157,7 +157,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -171,6 +171,10 @@ id = 0
 initial_dir = Vector2( 1, 0 )
 input_type = "Keyboard_mouse"
 create_trail = true
+ROT_SPEED = 0.897598
+ACC = 4
+INITIAL_SPEED = 100
+MAX_SPEED = -1
 
 [node name="WaterParticles" parent="." index="0" instance=ExtResource( 2 )]
 
