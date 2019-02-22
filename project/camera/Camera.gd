@@ -29,7 +29,6 @@ var target = null
 
 
 func _ready():
-	position = get_viewport().size / 2
 	randomize()
 
 func _physics_process(delta):
