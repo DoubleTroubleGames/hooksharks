@@ -25,4 +25,6 @@ func activate_players():
 		player.INITIAL_SPEED = 0
 		player.ACC = 50
 		player.MAX_SPEED = 500
+		player.checkpoint_number = 0
+		player.lap = 0
 		player.set_physics_process(true)

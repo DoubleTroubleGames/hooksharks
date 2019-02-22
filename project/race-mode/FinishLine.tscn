@@ -7,10 +7,12 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 300 )
 
-[node name="FinishLine" type="Node2D"]
+[node name="FinishLine" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 size = 300
+last_checkpoint_number = null
+total_laps = 1
 
 [node name="Line" type="Sprite" parent="." index="0"]
 

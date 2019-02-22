@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/caixas_01.png" type="Texture" id=3]
 [ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=4]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=5]
+[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=6]
 
 [node name="Stage1" instance=ExtResource( 1 )]
 
@@ -23,6 +24,10 @@ position = Vector2( 300, 515 )
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 
 position = Vector2( 300, 665 )
+
+[node name="Obstacles" parent="." index="1"]
+
+editor/display_folded = false
 
 [node name="Top" parent="Obstacles" index="0"]
 
@@ -46,7 +51,8 @@ scale = Vector2( 2, 2 )
 
 [node name="Obstacle" parent="Obstacles" index="4" instance=ExtResource( 2 )]
 
-position = Vector2( 1125, 820 )
+position = Vector2( 1146.56, 820 )
+scale = Vector2( 0.326351, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" parent="Obstacles/Obstacle" index="0"]
@@ -59,8 +65,10 @@ polygon = PoolVector2Array( -1000, -60, 1000, -60, 1000, 60, -1000, 60 )
 
 [node name="FinishLine" parent="." index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 202.062, 1109.63 )
+position = Vector2( 909.489, 1102.08 )
 size = 250
+last_checkpoint_number = 2
+total_laps = 2
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 
@@ -97,6 +105,18 @@ min_zoom = 1.5
 max_zoom = 1.0
 zooming_dist = 1000
 min_dist = 400
+
+[node name="Checkpoint1" parent="." index="7" instance=ExtResource( 6 )]
+
+position = Vector2( 1366.86, 1099.99 )
+scale = Vector2( 1, 1.37752 )
+number = 2
+
+[node name="Checkpoint2" parent="." index="8" instance=ExtResource( 6 )]
+
+position = Vector2( 1989.59, 809.881 )
+rotation = 1.5708
+scale = Vector2( 1, 2.88048 )
 
 
 [editable path="Obstacles/Obstacle"]
