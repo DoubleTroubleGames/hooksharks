@@ -1,6 +1,7 @@
 extends Node2D
 
 signal hook_clinked(position)
+signal wall_hit(position, rotation)
 signal shook_screen(amount)
 
 const SCREEN_SHAKE_HOOK_HIT = .8
@@ -25,7 +26,6 @@ func init(player, direction):
 	self.direction = direction
 	self.position = player.position
 	$Sprite.rotation = direction.angle()
-	$WallParticles.rotation = direction.angle() - PI
 
 
 func _physics_process(delta):
@@ -44,6 +44,8 @@ func _physics_process(delta):
 		position += direction * (delta * speed * .3)
 		if position.distance_to(player.position) <= kill_distance:
 			pulling_object.removeHook()
+			if pulling_object.is_in_group('powerup'):
+				pulling_object.activate(player)
 			free_hook()
 
 
@@ -57,8 +59,6 @@ func is_colliding():
 
 func hit_hook(other_hook):
 	retract()
-
-	$HitHookSFX.play()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
 	emit_signal("hook_clinked", (other_hook.position + self.position) / 2)
 
@@ -72,18 +72,15 @@ func hit_object(object):
 
 func hit_shark(shark):
 	if not shark.stunned and not shark.diving:
-		$BloodParticles.emitting = true
 		stop_at = shark
 		shark.hook_collision(self)
-		$HitPlayerSFX.play()
 		emit_signal("shook_screen", SCREEN_SHAKE_SHARK_HIT)
 
 
 func hit_wall():
-	$WallParticles.emitting = true
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
+	emit_signal("wall_hit", position, $Sprite.rotation - PI)
 	has_collided = true
-	$HitWallSFX.play()
 
 
 func retract():

@@ -1,21 +1,19 @@
-extends Control
+extends CanvasLayer
 
 signal finished
-signal shook_screen(amount)
 
-onready var left_markers = [$Round/BallsLeft/X1, $Round/BallsLeft/X2,
-		$Round/BallsLeft/X3]
-onready var right_markers = [$Round/BallsRight/X1, $Round/BallsRight/X2,
-		$Round/BallsRight/X3]
-onready var winner = $Round/Winner
+onready var left_markers = $Background/Round/BallsLeft.get_children()
+onready var right_markers = $Background/Round/BallsRight.get_children()
+onready var number = $Background/Round/Number
+onready var winner = $Background/Round/Winner
 onready var tween = $Tween
 onready var display_timer = $DisplayTimer
+onready var marker_timer = $MarkerTimer
 
 const WINNER_POS = [Vector2(80, 200), Vector2(958, 200)]
 const MENU_POS = Vector2(292, 550)
-const SCREEN_SHAKE_SCORE = .3
 
-var round_texture = [
+const ROUND_TEXTURES = [
 		preload("res://hud/round_screen/ui_01.png"),
 		preload("res://hud/round_screen/ui_02.png"),
 		preload("res://hud/round_screen/ui_03.png"),
@@ -23,9 +21,9 @@ var round_texture = [
 		preload("res://hud/round_screen/ui_05.png")]
 
 func _ready():
-	modulate = Color(1, 1, 1, 0)
+	$Background.modulate = Color(1, 1, 1, 0)
 	
-	$Round/Number.texture = round_texture[RoundManager.round_number - 1]
+	number.texture = round_texture[RoundManager.round_number - 1]
 	
 	randomize()
 	for x in left_markers:
@@ -37,16 +35,15 @@ func _ready():
 		left_markers[i].visible = true
 	for i in range(RoundManager.scores[1]):
 		right_markers[i].visible = true
-	
 
 func show_round():
 	if RoundManager.winner == -1:
-		$Round/Draw.visible = true
-		$Round/Text.visible = false
-		$Round/Number.visible = false
+		$Background/Round/Draw.visible = true
+		$Background/Round/Text.visible = false
+		$Background/Round/Number.visible = false
 	
 	# Fade in
-	tween.interpolate_property(self, "modulate", Color(1, 1, 1, 0),
+	tween.interpolate_property($Background, "modulate", Color(1, 1, 1, 0),
 		Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .1)
 	tween.start()
 	yield(tween, "tween_completed")
@@ -69,12 +66,8 @@ func show_round():
 		tween.interpolate_property(marker, "modulate", marker.modulate,
 			Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
-		var timer = Timer.new()
-		timer.wait_time = .15
-		self.add_child(timer)
-		timer.start()
-		yield(timer, 'timeout')
-		timer.queue_free()
+		marker_timer.start()
+		yield(marker_timer, 'timeout')
 		emit_signal("shook_screen", SCREEN_SHAKE_SCORE)
 		yield(tween, "tween_completed")
 	
@@ -92,15 +85,17 @@ func show_round():
 		.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	
 	# Menu animation
-	tween.interpolate_property($Round/Restart, "rect_position", $Round/Restart.rect_position,
-		MENU_POS, .5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
-	tween.interpolate_property($Round/Quit, "rect_position", $Round/Quit.rect_position,
-		MENU_POS + Vector2(690-292, 0), .5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
+	tween.interpolate_property($Background/Round/Restart, "rect_position",
+			$Background/Round/Restart.rect_position, MENU_POS, .5,
+			Tween.TRANS_BACK, Tween.EASE_OUT, .5)
+	tween.interpolate_property($Background/Round/Quit, "rect_position",
+			$Background/Round/Quit.rect_position, MENU_POS + Vector2(398, 0),
+			.5, Tween.TRANS_BACK, Tween.EASE_OUT, .5)
 	tween.start()
 	yield(tween, "tween_completed")
-	$Round/Restart.disabled = false
-	$Round/Restart.grab_focus()
-	$Round/Quit.disabled = false
+	$Background/Round/Restart.disabled = false
+	$Background/Round/Quit.disabled = false
+	$Background/Round/Restart.grab_focus()
 	
 	RoundManager.scores = [0, 0]
 	RoundManager.round_number = 1

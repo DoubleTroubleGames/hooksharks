@@ -1,5 +1,6 @@
 extends Node2D
 
+export (PackedScene)var powerup
 var hook
 
 func _physics_process(delta):
@@ -13,3 +14,10 @@ func setHook(new_hook):
 
 func removeHook():
 	hook = null	
+
+func activate(player):
+	var power = powerup.instance()
+	power.init(player)
+	player.add_child(power)
+	queue_free()
+	

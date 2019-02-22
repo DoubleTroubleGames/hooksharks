@@ -3,52 +3,48 @@ extends Node2D
 onready var blink = $Blink
 onready var bg = $BG
 onready var hud = $HUD
-onready var players = $Players.get_children()
-onready var stages = STAGES_DB.new()
 
-const HOOK = preload('res://hook/Hook.tscn')
+const HOOK = preload("res://hook/Hook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
-const ROPE = preload('res://rope/Rope.tscn')
-const STAGES_DB = preload('res://arena-mode/stages/StagesDb.gd')
+const ROPE = preload("res://rope/Rope.tscn")
+const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
 const BG_SPEED = 20
 const SHOW_ROUND_DELAY = 1
+const TRANSITION_OFFSET = 1000
+const TRANSITION_TIME = 1.0
 
+export (int)var stage_num = 10
 export (bool)var use_keyboard = false
-export (int, '0', '1', '2', '3')var keyboard_id = 0
+export (int, "0", "1", "2", "3")var keyboard_id = 0
 
 var hook_clink_positions = []
 var ids = [0, 1, 2, 3]
 var Cameras = []
+var players = []
+var player_num = 2
 
 func _ready():
-	if RoundManager.scores == [0, 0]:
-		self.add_child(stages.get_first_stage().instance())
-	else:
-		self.add_child(stages.get_random_stage().instance())
+	var stage = get_first_stage().instance()
+	stage.setup(self, player_num)
+	stage.set_name("Stage")
+	add_child(stage)
+	
 	bg.visible = true
 	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 	bg.position = OS.window_size / 2
-	get_node('Mirage').rect_size = OS.window_size
-	self.move_child(hud, self.get_child_count())
+	get_node("Mirage").rect_size = OS.window_size
 	
-	# Screen shake signals
-	Cameras = get_cameras()
-	for camera in Cameras:
-		hud.connect("shook_screen", camera, "add_shake")
-		for player in $Players.get_children():
-			player.connect("shook_screen", camera, "add_shake")
-	for player in $Players.get_children():
-		player.connect("created_trail", self, "_on_player_created_trail")
-		player.connect("hook_shot", self, "_on_player_hook_shot")
-		player.connect("died", self, "remove_player")
+	Cameras = get_cameras() # on Arena.gd and Race.gd
+	connect_players() # on Arena.gd and Race.gd
+	activate_players() # on Arena.gd and Race.gd
 	
 	if use_keyboard:
 		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
 		KeyboardPlayer.input_type = "Keyboard_mouse"
-		KeyboardPlayer.id = -1 # Sets keyboard user's id as an out of range value
+		KeyboardPlayer.id = -1 # Sets keyboard user"s id as an out of range value
 		ids.remove(keyboard_id)
 		
-		# Subtracts the id from all Players with id greater than keyboard user's, as to make sure they get
+		# Subtracts the id from all Players with id greater than keyboard user"s, as to make sure they get
 		# connected to the correct gamepad
 		for i in range(keyboard_id + 1, 4):
 			if $Players.has_node("Player" + str(i + 1)):
@@ -57,21 +53,21 @@ func _ready():
 
 
 func _physics_process(delta):
-	bg.get_node('Reflex1').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
-	bg.get_node('Reflex2').position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
-	bg.get_node('Reflex3').position = Vector2(bg.get_node('Reflex1').position.x - OS.window_size.x, bg.get_node('Reflex1').position.y)
-	bg.get_node('Reflex4').position = Vector2(bg.get_node('Reflex2').position.x - OS.window_size.x, bg.get_node('Reflex2').position.y)
+	bg.get_node("Reflex1").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
+	bg.get_node("Reflex2").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
+	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
+	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
 
 func _input(event):
-	if event.is_action_pressed('ui_cancel'):
+	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
 func blink_screen():
 	var tween = Tween.new()
-	tween.interpolate_property(blink, 'modulate', Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.interpolate_property(blink, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	self.add_child(tween)
-	yield(tween, 'tween_completed')
+	yield(tween, "tween_completed")
 	tween.queue_free()
 
 func create_rope(player, hook):
@@ -80,7 +76,7 @@ func create_rope(player, hook):
 	rope.add_point(player.position)
 	rope.player = player
 	rope.hook = hook
-	get_node('Ropes').add_child(rope)
+	get_node("Stage/Ropes").add_child(rope)
 	return rope
 
 func show_round():
@@ -88,13 +84,54 @@ func show_round():
 	yield(hud, "finished")
 	if RoundManager.winner != -1:
 		RoundManager.round_number += 1
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	hud.hide_round()
+
+
+func transition_stage(stage):
+	var Twn = $StageTween
+	var stage_pos = stage.get_position()
+	Twn.interpolate_property(stage, "position", stage_pos, stage_pos + Vector2(0, TRANSITION_OFFSET), TRANSITION_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	Twn.start()
+
+
+func clean_all():
+	for child in $"Old Stage/Trails".get_children():
+		child.queue_free()
+	for child in $"Old Stage/Hooks".get_children():
+		child.free_hook()
+	players.clear()
+
+
+func free_current_stage():
+	var stage = get_node("Stage")
+	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
+	for camera in Cameras:
+		camera.current = false
+	transition_stage(stage)
+	yield($StageTween, "tween_completed")
+	clean_all()
+	stage.queue_free()
+
+
+func add_new_stage():
+	var stage = get_random_stage().instance()
+	stage.setup(self, player_num)
+	stage.set_name("Stage")
+	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
+	add_child(stage)
+	transition_stage(stage)
+	Cameras = get_cameras()
+	for camera in Cameras:
+		camera.current = true
+	connect_players()
+	yield($StageTween, "tween_completed")
+	activate_players()
 
 func remove_player(player, is_player_collision):
 	players.erase(player)
 	if players.size() == 1:
 		var winner = players[0]
+		winner.get_node("Area2D").queue_free()
 		if not is_player_collision:
 			var winner_id = get_winner_id(winner)
 			RoundManager.scores[winner_id] += 1
@@ -106,6 +143,11 @@ func remove_player(player, is_player_collision):
 		
 		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 		show_round()
+		yield(hud, "finished")
+		free_current_stage()
+		yield($StageTween, "tween_completed")
+		add_new_stage()
+
 
 func get_winner_id(winner):
 	if not use_keyboard:
@@ -117,15 +159,29 @@ func get_winner_id(winner):
 	
 	return winner.id
 
+func _on_player_hook_shot(player, direction):
+	var new_hook = HOOK.instance()
+	new_hook.init(player, direction.normalized())
+	new_hook.rope = create_rope(player, new_hook)
+	get_node("Stage/Hooks").add_child(new_hook)
+	for camera in Cameras:
+		new_hook.connect("shook_screen", camera, "add_shake")
+	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
+	new_hook.connect("wall_hit", self, "_on_wall_hit")
+	
+	player.get_node("SFX/HarpoonSFX").play()
+	player.hook = new_hook
+
 func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
 	
 	blink_screen()
 	var hook_clink = HOOK_CLINK.instance()
-	add_child(hook_clink)
 	hook_clink.emitting = true
 	hook_clink.position = clink_position
+	add_child(hook_clink)
+	
 	hook_clink_positions.append(clink_position)
 	
 	var delay = hook_clink.lifetime / hook_clink.speed_scale
@@ -134,21 +190,25 @@ func _on_hook_clinked(clink_position):
 	hook_clink.queue_free()
 	hook_clink_positions.erase(clink_position)
 
-func _on_player_hook_shot(player, direction):
-	var new_hook = HOOK.instance()
-	new_hook.init(player, direction.normalized())
-	new_hook.rope = create_rope(player, new_hook)
-	get_node('Hooks').add_child(new_hook)
-	for camera in Cameras:
-		new_hook.connect("shook_screen", camera, "add_shake")
-	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
+func _on_wall_hit(position, rotation):
+	var wall_particles = WALL_PARTICLES.instance()
+	wall_particles.emitting = true
+	wall_particles.position = position
+	wall_particles.rotation = rotation
+	add_child(wall_particles)
 	
-	player.get_node('HarpoonSFX').play()
-	player.hook = new_hook
+	var delay = wall_particles.lifetime / wall_particles.speed_scale
+	yield(get_tree().create_timer(delay), "timeout")
+	
+	wall_particles.queue_free()
 
 func _on_player_created_trail(trail):
-	$Trail.add_child(trail)
+	$Stage/Trails.add_child(trail)
 
-# Used in inherited scripts
-func get_cameras():
-	pass
+func get_random_stage():
+	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
+	return load(str(base_path, (randi() % stage_num - 1) + 2, ".tscn"))
+
+func get_first_stage():
+	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
+	return load(str(base_path, "1.tscn"))
