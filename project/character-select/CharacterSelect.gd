@@ -52,7 +52,13 @@ func _on_box_readied():
 	if ready_boxes < 2:
 		return
 
+	update_device_map()
 	if RoundManager.gamemode == "Arena":
 		get_tree().change_scene("res://arena-mode/Arena.tscn")
 	elif RoundManager.gamemode == "Race":
 		get_tree().change_scene("res://race-mode/Race.tscn")
+
+func update_device_map():
+	for box in boxes:
+		if box.is_ready():
+			RoundManager.device_map.append(box.device_name)

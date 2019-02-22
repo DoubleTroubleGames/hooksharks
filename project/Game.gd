@@ -21,11 +21,10 @@ var hook_clink_positions = []
 var ids = [0, 1, 2, 3]
 var Cameras = []
 var players = []
-var player_num = 2
 
 func _ready():
 	var stage = get_first_stage().instance()
-	stage.setup(self, player_num)
+	stage.setup(self)
 	stage.set_name("Stage")
 	add_child(stage)
 	
@@ -37,19 +36,6 @@ func _ready():
 	Cameras = get_cameras() # on Arena.gd and Race.gd
 	connect_players() # on Arena.gd and Race.gd
 	activate_players() # on Arena.gd and Race.gd
-	
-	if use_keyboard:
-		var KeyboardPlayer = get_node("Players/Player" + str(keyboard_id + 1))
-		KeyboardPlayer.input_type = "Keyboard_mouse"
-		KeyboardPlayer.id = -1 # Sets keyboard user"s id as an out of range value
-		ids.remove(keyboard_id)
-		
-		# Subtracts the id from all Players with id greater than keyboard user"s, as to make sure they get
-		# connected to the correct gamepad
-		for i in range(keyboard_id + 1, 4):
-			if $Players.has_node("Player" + str(i + 1)):
-				var Player = get_node("Players/Player" + str(i + 1))
-				Player.id -= 1
 
 
 func _physics_process(delta):
@@ -115,7 +101,7 @@ func free_current_stage():
 
 func add_new_stage():
 	var stage = get_random_stage().instance()
-	stage.setup(self, player_num)
+	stage.setup(self)
 	stage.set_name("Stage")
 	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	add_child(stage)

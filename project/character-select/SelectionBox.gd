@@ -78,7 +78,6 @@ func open_with(event):
 
 func update_available_characters(characters):
 	available_chars = characters
-	print(str(self.get_name(), " ", available_chars, " ", char_index, " ", CHARACTERS))
 	set_character(char_index)
 
 

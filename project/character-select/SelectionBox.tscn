@@ -3,7 +3,7 @@
 [ext_resource path="res://character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[node name="SelectionBox" type="Control" index="0"]
+[node name="SelectionBox" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
