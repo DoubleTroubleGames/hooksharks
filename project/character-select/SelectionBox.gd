@@ -62,7 +62,9 @@ func change_state(new_state):
 
 func is_closed():
 	return state == States.CLOSED
-
+	
+func is_open():
+	return state == States.OPEN
 
 func is_ready():
 	return state == States.READY

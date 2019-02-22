@@ -42,8 +42,17 @@ func _on_box_unselected(character):
 
 
 func _on_box_readied():
+	var ready_boxes = 0
+	
 	for box in boxes:
-		if not box.is_closed() and not box.is_ready():
+		if box.is_open():
 			return
+		elif box.is_ready():
+			ready_boxes += 1
+	if ready_boxes < 2:
+		return
 
-	# Go to next screen
+	if RoundManager.gamemode == "Arena":
+		get_tree().change_scene("res://arena-mode/Arena.tscn")
+	elif RoundManager.gamemode == "Race":
+		get_tree().change_scene("res://race-mode/Race.tscn")
