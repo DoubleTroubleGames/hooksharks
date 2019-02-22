@@ -50,8 +50,9 @@ func change_state(new_state):
 	match new_state:
 		States.CLOSED:
 			device_name = ""
+			$DeviceSprite.set_texture(null)
+			$DeviceNumber.set_text("")
 			$State.set_text("CLOSED")
-			$Device.set_text("")
 		States.OPEN:
 			$State.set_text("OPEN")
 			if state == States.READY:
@@ -75,7 +76,11 @@ func is_ready():
 
 func open_with(event):
 	device_name = get_device_name_from(event)
-	$Device.set_text(str(device_name))
+	if device_name == "keyboard":
+		$DeviceSprite.set_texture(load("res://hud/character-select/keyboard.png"))
+	else:
+		$DeviceSprite.set_texture(load("res://hud/character-select/gamepad.png"))
+		$DeviceNumber.set_text(str(device_name.split("_")[1]))
 	change_state(States.OPEN)
 
 
