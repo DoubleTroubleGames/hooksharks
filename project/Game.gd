@@ -105,6 +105,8 @@ func clean_all():
 func free_current_stage():
 	var stage = get_node("Stage")
 	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
+	for camera in Cameras:
+		camera.current = false
 	transition_stage(stage)
 	yield($StageTween, "tween_completed")
 	clean_all()
@@ -116,9 +118,12 @@ func add_new_stage():
 	stage.setup(self, player_num)
 	stage.set_name("Stage")
 	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
-	connect_players()
 	add_child(stage)
 	transition_stage(stage)
+	Cameras = get_cameras()
+	for camera in Cameras:
+		camera.current = true
+	connect_players()
 	yield($StageTween, "tween_completed")
 	activate_players()
 
@@ -206,5 +211,4 @@ func get_random_stage():
 
 func get_first_stage():
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
-	print(base_path)
 	return load(str(base_path, "1.tscn"))

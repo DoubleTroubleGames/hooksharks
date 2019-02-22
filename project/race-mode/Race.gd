@@ -5,7 +5,7 @@ export (NodePath)var SplitScreen = null
 func get_cameras():
 	if SplitScreen:
 		return get_node(SplitScreen).get_all_cameras()
-	return [$Camera2D]
+	return [get_node("Stage/Camera2D")]
 
 func connect_players():
 	for player in players:
@@ -20,5 +20,9 @@ func connect_players():
 func activate_players():
 	for player in players:
 		player.get_node("Area2D").monitoring = true
-		player.set_physics_process(true)
 		player.create_trail = false
+		player.ROT_SPEED = PI/2
+		player.INITIAL_SPEED = 0
+		player.ACC = 50
+		player.MAX_SPEED = 500
+		player.set_physics_process(true)
