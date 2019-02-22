@@ -22,17 +22,12 @@ func _ready():
 		m.rotation_degrees = rand_range(-MAX_ROTATION, MAX_ROTATION)
 
 
-func set_score(s):
-	score = s
-	for i in range(score):
-		markers[i].visible = true
-
-
 func marker_animation():
 	var marker = markers[score]
 	marker.modulate.a = 0
 	marker.scale = Vector2(2, 2)
 	marker.visible = true
+	score += 1
 	
 	tween.interpolate_property(marker, "modulate:a", null, 1, DURATION,
 			Tween.TRANS_LINEAR, Tween.EASE_IN)

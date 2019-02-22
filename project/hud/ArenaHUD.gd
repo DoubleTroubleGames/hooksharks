@@ -28,10 +28,7 @@ const WINNER_POS = [Vector2(50, 150), Vector2(980, 150)]
 func _ready():
 	background.modulate.a = 0
 	round_number.texture = ROUND_TEXTURES[RoundManager.round_number - 1]
-
-	for i in range(player_scores.size()):
-		player_scores[i].set_score(RoundManager.scores[i])
-
+	
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
 
