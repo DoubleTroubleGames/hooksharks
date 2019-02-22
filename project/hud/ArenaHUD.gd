@@ -28,10 +28,7 @@ const WINNER_POS = [Vector2(50, 150), Vector2(980, 150)]
 func _ready():
 	background.modulate.a = 0
 	round_number.texture = ROUND_TEXTURES[RoundManager.round_number - 1]
-
-	for i in range(player_scores.size()):
-		player_scores[i].set_score(RoundManager.scores[i])
-
+	
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
 
@@ -64,6 +61,11 @@ func show_round():
 		emit_signal("finished")
 	else:
 		win_animation()
+
+func hide_round():
+	tween.interpolate_property(background, "modulate:a", 1, 0, DURATION,
+			Tween.TRANS_LINEAR, Tween.EASE_IN, DELAY)
+	tween.start()
 
 
 func win_animation():

@@ -1,105 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://hook/Hook.gd" type="Script" id=1]
 [ext_resource path="res://hook/hook.png" type="Texture" id=2]
-[ext_resource path="res://hook/blood.png" type="Texture" id=3]
-[ext_resource path="res://sound/hook_hit_hook.wav" type="AudioStream" id=4]
-[ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=5]
-[ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 20.0
-
-[sub_resource type="Gradient" id=2]
-
-offsets = PoolRealArray( 0, 0.788235, 0.945098 )
-colors = PoolColorArray( 0.523438, 0.344752, 0.0368042, 1, 0.521569, 0.341176, 0.0352941, 1, 0.521569, 0.341176, 0.0352941, 0 )
-
-[sub_resource type="GradientTexture" id=3]
-
-flags = 4
-gradient = SubResource( 2 )
-width = 2048
-
-[sub_resource type="ParticlesMaterial" id=4]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 30.0
-flatness = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-initial_velocity_random = 0.0
-angular_velocity = 4.55997e-41
-angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 100.0
-damping_random = 1.0
-angle = 0.0
-angle_random = 0.0
-scale = 5.0
-scale_random = 0.0
-color_ramp = SubResource( 3 )
-hue_variation = 0.1
-hue_variation_random = 1.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Color", "Damping", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
-
-[sub_resource type="ParticlesMaterial" id=5]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 45.0
-flatness = 0.0
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 1.0
-initial_velocity_random = 0.0
-angular_velocity = 0.0
-angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
-scale = 0.4
-scale_random = 0.0
-color = Color( 1, 1, 1, 1 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 1.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Animation", "Scale" ]
 
 [node name="Hook" type="Node2D" groups=[
 "hook",
@@ -127,85 +34,6 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea" index="0"]
 
 shape = SubResource( 1 )
-
-[node name="WallParticles" type="Particles2D" parent="." index="2"]
-
-position = Vector2( 20, 0 )
-rotation = 3.14159
-emitting = false
-amount = 20
-lifetime = 1.0
-one_shot = true
-preprocess = 0.0
-speed_scale = 2.0
-explosiveness = 0.8
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = false
-draw_order = 0
-process_material = SubResource( 4 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
-
-[node name="BloodParticles" type="Particles2D" parent="." index="3"]
-
-emitting = false
-amount = 1
-lifetime = 0.8
-one_shot = true
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = false
-draw_order = 0
-process_material = SubResource( 5 )
-texture = ExtResource( 3 )
-normal_map = null
-h_frames = 4
-v_frames = 4
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visibility" ]
-
-[node name="HitHookSFX" type="AudioStreamPlayer2D" parent="." index="4"]
-
-stream = ExtResource( 4 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "SFX"
-area_mask = 1
-
-[node name="HitPlayerSFX" type="AudioStreamPlayer2D" parent="." index="5"]
-
-stream = ExtResource( 5 )
-volume_db = 10.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "SFX"
-area_mask = 1
-
-[node name="HitWallSFX" type="AudioStreamPlayer2D" parent="." index="6"]
-
-stream = ExtResource( 6 )
-volume_db = -10.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "SFX"
-area_mask = 1
 
 [connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]
 
