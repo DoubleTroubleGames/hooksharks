@@ -3,6 +3,7 @@ extends Control
 signal selected(character)
 signal unselected(character)
 signal readied
+signal try_to_start
 
 enum States {CLOSED, OPEN, READY}
 
@@ -24,7 +25,9 @@ func _input(event):
 	if event.is_action_pressed("ui_start"):
 		if state == States.OPEN and CHARACTERS[char_index] in available_chars:
 			change_state(States.READY)
-		emit_signal("readied")
+			emit_signal("readied")
+		elif state == States.READY:
+			emit_signal("try_to_start")
 	
 	elif event.is_action_pressed("ui_cancel"):
 		if state == States.OPEN:
@@ -89,14 +92,6 @@ func set_character(index):
 	if not CHARACTERS[char_index] in available_chars:
 		# Display as unavailable
 		pass
-
-
-
-
-
-
-
-
 
 
 func get_device_name_from(event):

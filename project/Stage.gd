@@ -6,7 +6,6 @@ const PLAYER = preload("res://player/Player.tscn")
 func setup(GameScene):
 	var players = []
 	var player_num = RoundManager.device_map.size()
-	print(RoundManager.device_map)
 	
 	for i in range(1, player_num + 1):
 		var StartPos = get_node(str("PlayerStartingPosition/StartingPosition", i))
