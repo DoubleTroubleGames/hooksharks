@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tubarao_p2_sheet.png-a96de4f10b5134db5b1472a4ed0205c9.stex"
+path="res://.import/c4.png-c381c9f33547733075afe022de912724.stex"
 
 [deps]
 
-source_file="res://assets/tubarao_p2_sheet.png"
-dest_files=[ "res://.import/tubarao_p2_sheet.png-a96de4f10b5134db5b1472a4ed0205c9.stex" ]
+source_file="res://characters/c4.png"
+dest_files=[ "res://.import/c4.png-c381c9f33547733075afe022de912724.stex" ]
 
 [params]
 

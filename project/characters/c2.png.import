@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tubarao_p2_death_sheet.png-35d4ff0ceaa74ae0d031fff6f8778906.stex"
+path="res://.import/c2.png-9d9618de64139a07326cd5a12eaa569f.stex"
 
 [deps]
 
-source_file="res://assets/tubarao_p2_death_sheet.png"
-dest_files=[ "res://.import/tubarao_p2_death_sheet.png-35d4ff0ceaa74ae0d031fff6f8778906.stex" ]
+source_file="res://characters/c2.png"
+dest_files=[ "res://.import/c2.png-9d9618de64139a07326cd5a12eaa569f.stex" ]
 
 [params]
 

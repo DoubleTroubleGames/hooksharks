@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shockwave.png-3dd7cef0a44866e0612de7cd00510392.stex"
+path="res://.import/c3.png-ebe656322e274ecb578f453e95a5fe32.stex"
 
 [deps]
 
-source_file="res://assets/shockwave.png"
-dest_files=[ "res://.import/shockwave.png-3dd7cef0a44866e0612de7cd00510392.stex" ]
+source_file="res://characters/c3.png"
+dest_files=[ "res://.import/c3.png-ebe656322e274ecb578f453e95a5fe32.stex" ]
 
 [params]
 
