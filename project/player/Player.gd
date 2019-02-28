@@ -21,7 +21,7 @@ const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 
 onready var arrow = $Arrow
-onready var bar = $DiveCooldown/Bar
+onready var dive_meter = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
 onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
@@ -32,6 +32,8 @@ var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
 var diving = false
 var can_dive = true
+var dive_use_speed = 50
+var dive_regain_speed = 40
 var dive_cooldown = 1.5
 var stunned = false
 var hook = null
@@ -46,11 +48,27 @@ func _ready():
 	speed2 = speed2.rotated(initial_dir.angle())
 	$Explosion.texture = load(str(EXPLOSIONS_PATH, 1 + (randi() % 4), ".png"))
 	$Explosion2.texture = load(str(EXPLOSIONS_PATH, 1 + randi() % 4, ".png"))
-	$DiveCooldown/CooldownTimer.connect('timeout', self, 'enable_diving')
+	dive_meter.value = 100
 	set_physics_process(false)
 
 
 func _physics_process(delta):
+	#Update dive meter
+	if diving:
+		dive_meter.value -= dive_use_speed*delta
+		if dive_meter.value <= 0:
+			dive_meter.value = 0
+			emerge()
+	else:
+		dive_meter.value += dive_use_speed*delta
+		if dive_meter.value >= 100:
+			dive_meter.value = 100
+	if dive_meter.value < 100:
+		dive_bar.visible = true
+	else:
+		dive_bar.visible = false
+		
+	
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
 
@@ -164,9 +182,10 @@ func end_stun(hook):
 
 func _input(event):
 	if input_type == 'Gamepad':
-		if event.is_action_pressed('dive_'+str(id)) and can_dive:
-			$SFX/DiveSFX.play()
+		if event.is_action_pressed('dive_'+str(id)) and can_dive and not diving:
 			dive()
+		elif event.is_action_pressed('dive_'+str(id)) and can_dive and diving:
+			emerge()
 		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 			if hook == null and not stunned:
 				var hook_dir = get_arrow_direction()
@@ -176,9 +195,10 @@ func _input(event):
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
-		if event.is_action_pressed('dive_km') and can_dive:
-			$SFX/DiveSFX.play()
+		if event.is_action_pressed('dive_km') and can_dive and not diving:
 			dive()
+		elif event.is_action_released('dive_km') and can_dive and diving:
+			emerge()
 		elif event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:
 				var hook_dir = get_arrow_direction()
@@ -190,6 +210,7 @@ func _input(event):
 		
 
 func dive():
+	$SFX/DiveSFX.play()
 	$WaterParticles.visible = false
 	var dive_particles = DIVE_PARTICLES.instance()
 	dive_particles.emitting = true
@@ -203,6 +224,7 @@ func dive():
 	dive_particles.queue_free()
 
 func emerge():
+	$SFX/EmergeSFX.play()
 	var dive_particles = DIVE_PARTICLES.instance()
 	dive_particles.emitting = true
 	$ParticleTimer.wait_time = dive_particles.lifetime
@@ -211,18 +233,7 @@ func emerge():
 	sprite_animation.play("walk")
 	diving = false
 	area.visible = true
-	$DiveCooldown/CooldownTimer.wait_time = dive_cooldown
-	$DiveCooldown/CooldownTimer.start()
-	$SFX/EmergeSFX.play()
-
-	# Cooldown progress bar
-	bar.value = 100
-	bar.visible = true
-	tween.interpolate_property(bar, "value", 100, 0, dive_cooldown, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.start()
+	
+	
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
-
-func enable_diving():
-	can_dive = true
-	bar.visible = false
