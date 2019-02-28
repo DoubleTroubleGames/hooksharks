@@ -58,6 +58,7 @@ func _physics_process(delta):
 		dive_meter.value -= dive_use_speed*delta
 		if dive_meter.value <= 0:
 			dive_meter.value = 0
+			print("had to emerge")
 			emerge()
 	else:
 		dive_meter.value += dive_use_speed*delta
@@ -146,6 +147,8 @@ func _on_Area2D_area_entered(area):
 
 func _queue_free(is_player_collision=false):
 	$Area2D.queue_free()
+	diving = false
+	dive_meter.value = 100
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
 	sprite.visible = false
@@ -184,7 +187,7 @@ func _input(event):
 	if input_type == 'Gamepad':
 		if event.is_action_pressed('dive_'+str(id)) and can_dive and not diving:
 			dive()
-		elif event.is_action_pressed('dive_'+str(id)) and can_dive and diving:
+		elif event.is_action_released('dive_'+str(id)) and diving:
 			emerge()
 		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
 			if hook == null and not stunned:
@@ -197,7 +200,8 @@ func _input(event):
 	elif input_type == "Keyboard_mouse":
 		if event.is_action_pressed('dive_km') and can_dive and not diving:
 			dive()
-		elif event.is_action_released('dive_km') and can_dive and diving:
+		elif event.is_action_released('dive_km') and diving:
+			print("here")
 			emerge()
 		elif event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:
@@ -232,7 +236,9 @@ func emerge():
 	$WaterParticles.visible = true
 	sprite_animation.play("walk")
 	diving = false
-	area.visible = true
+	can_dive = true
+	if weakref(area):
+		area.visible = true
 	
 	
 	yield($ParticleTimer, 'timeout')
