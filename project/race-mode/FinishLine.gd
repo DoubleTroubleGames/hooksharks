@@ -1,24 +1,21 @@
-tool
-
 extends Node2D
 
 const WIDTH = 10
 
-export (int)var size = 300 setget set_size
 export (int)var last_checkpoint_number
 export (int)var total_laps = 1
 
+var line_polygon
+
+
+func _ready():
+	update_line_polygon()
+	$LineArea/CollisionPolygon2D.polygon = line_polygon
+
+
 func _draw():
-#	var rect = Rect2(0, 0, 10, 300)
-#	draw_rect(rect, Color(1, 1, 1))
-	var PullTop_pos = $PullableObjectTop.get_position()
-	var PullBot_pos = $PullableObjectBot.get_position()
-	var polygon = PoolVector2Array([Vector2(PullTop_pos.x - WIDTH, PullTop_pos.y),
-								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y),
-								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y),
-								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y)])
 	var color_array = [Color(1, 1, 1), Color(0, 0, 0), Color(1, 1, 1), Color(0, 0, 0)]
-	draw_polygon(polygon, color_array)
+	draw_polygon(line_polygon, color_array)
 
 
 func _on_Area2D_area_entered(area):
@@ -37,11 +34,10 @@ func _on_Area2D_area_entered(area):
 		player.checkpoint_number = 0
 
 
-func set_size(s):
-	size = s
-	if $Area2D:
-		var shape = RectangleShape2D.new()
-		shape.set_extents(Vector2(WIDTH, size))
-		$Area2D/CollisionShape2D.set_shape(shape)
-		$PullableObjectTop.set_position(Vector2(0, -size))
-		$PullableObjectBot.set_position(Vector2(0, size))
+func update_line_polygon():
+	var PullTop_pos = $PullableObjectTop.get_position()
+	var PullBot_pos = $PullableObjectBot.get_position()
+	line_polygon = PoolVector2Array([Vector2(PullTop_pos.x - WIDTH, PullTop_pos.y),
+								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y),
+								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y),
+								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y)])
