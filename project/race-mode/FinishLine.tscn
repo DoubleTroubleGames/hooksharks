@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://race-mode/FinishLine.gd" type="Script" id=1]
+[ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -10,6 +11,7 @@ extents = Vector2( 10, 300 )
 [node name="FinishLine" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 size = 300
 last_checkpoint_number = null
 total_laps = 1
@@ -37,6 +39,14 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 shape = SubResource( 1 )
+
+[node name="PullableObjectTop" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 0, -300 )
+
+[node name="PullableObjectBot" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 300 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

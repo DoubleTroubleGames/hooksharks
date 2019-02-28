@@ -12,4 +12,4 @@ func setHook(new_hook):
 	hook = new_hook
 
 func removeHook():
-	hook = null	
+	hook = null
