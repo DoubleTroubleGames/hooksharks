@@ -25,10 +25,6 @@ position = Vector2( 300, 515 )
 
 position = Vector2( 300, 665 )
 
-[node name="Obstacles" parent="." index="1"]
-
-editor/display_folded = false
-
 [node name="Top" parent="Obstacles" index="0"]
 
 position = Vector2( 1280, 0 )
@@ -51,6 +47,7 @@ scale = Vector2( 2, 2 )
 
 [node name="Obstacle" parent="Obstacles" index="4" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 position = Vector2( 1146.56, 820 )
 scale = Vector2( 0.326351, 1 )
 _sections_unfolded = [ "Transform" ]
@@ -65,10 +62,12 @@ polygon = PoolVector2Array( -1000, -60, 1000, -60, 1000, 60, -1000, 60 )
 
 [node name="FinishLine" parent="." index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 909.489, 1102.08 )
-size = 250
-last_checkpoint_number = 2
-total_laps = 2
+position = Vector2( 920.194, 497.1 )
+last_checkpoint_number = 0
+
+[node name="PullableObjectBot" parent="FinishLine" index="3"]
+
+position = Vector2( 186.897, 166.104 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 
@@ -120,3 +119,4 @@ scale = Vector2( 1, 2.88048 )
 
 
 [editable path="Obstacles/Obstacle"]
+[editable path="FinishLine"]

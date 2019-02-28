@@ -1,16 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://race-mode/FinishLine.gd" type="Script" id=1]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 300 )
+[ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=2]
 
 [node name="FinishLine" type="Node2D" index="0"]
 
+position = Vector2( 300, 300 )
 script = ExtResource( 1 )
-size = 300
+_sections_unfolded = [ "Transform" ]
 last_checkpoint_number = null
 total_laps = 1
 
@@ -20,7 +17,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="LineArea" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -34,10 +31,27 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LineArea" index="0"]
 
-shape = SubResource( 1 )
+build_mode = 0
+polygon = PoolVector2Array(  )
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[node name="PullableObjectTop" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 0, -300 )
+
+[node name="PullableObjectBot" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 300 )
+
+[connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
+
+[connection signal="hooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_hooked"]
+
+[connection signal="unhooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_unhooked"]
+
+[connection signal="hooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_hooked"]
+
+[connection signal="unhooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_unhooked"]
 
 
