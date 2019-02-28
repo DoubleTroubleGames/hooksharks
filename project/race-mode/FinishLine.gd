@@ -43,7 +43,7 @@ func _on_LineArea_area_entered(area):
 				var winner = player
 				var players = winner.get_parent()
 				
-				$Area2D.queue_free()
+				$LineArea/CollisionPolygon2D.disabled = true
 				for child in players.get_children():
 					if child.is_in_group('player') and child != winner:
 						child._queue_free()
