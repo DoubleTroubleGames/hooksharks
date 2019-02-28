@@ -9,11 +9,10 @@ func _ready():
 	available_characters = $Boxes/SelectionBox0.CHARACTERS.duplicate()
 
 	for i in range(boxes.size()):
-		pass
 		boxes[i].connect("selected", self, "_on_box_selected")
 		boxes[i].connect("unselected", self, "_on_box_unselected")
 		boxes[i].connect("readied", self, "_on_box_readied")
-		boxes[i].connect("try_to_start", self, "_on_box_trying_to_start")
+		boxes[i].connect("tried_to_start", self, "_on_box_tried_to_start")
 		boxes[i].set_character(0)
 
 
@@ -39,11 +38,30 @@ func update_device_map():
 			RoundManager.device_map.append(box.device_name)
 
 
+func can_start():
+	var ready_players = 0
+	
+	for box in boxes:
+		if box.is_open():
+			return false
+		
+		if box.is_ready():
+			ready_players += 1
+	
+	if ready_players > 1:
+		return true
+	
+	return false
+
+
 func start_game():
 	if starting_game:
 		return
+	
 	starting_game = true
+	
 	update_device_map()
+	
 	if RoundManager.gamemode == "Arena":
 		get_tree().change_scene("res://arena-mode/Arena.tscn")
 	elif RoundManager.gamemode == "Race":
@@ -61,25 +79,11 @@ func _on_box_unselected(character):
 
 
 func _on_box_readied():
-	var ready_num = get_number_ready_boxes()
-	
-	if ready_num >= 2:
+	if can_start():
+		# Show "press start to begin" message
 		pass
-		# show "press start to begin" message
 
 
-func _on_box_trying_to_start():
-	var ready_num = get_number_ready_boxes()
-	
-	if ready_num >= 2:
+func _on_box_tried_to_start():
+	if can_start():
 		start_game()
-
-
-func get_number_ready_boxes():
-	var ready_boxes = 0
-	
-	for box in boxes:
-		if box.is_ready():
-			ready_boxes += 1
-	
-	return ready_boxes

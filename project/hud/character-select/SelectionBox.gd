@@ -3,7 +3,7 @@ extends Control
 signal selected(character)
 signal unselected(character)
 signal readied
-signal try_to_start
+signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
@@ -14,12 +14,9 @@ var char_index
 var device_name = ""
 var state = States.CLOSED
 
-func _ready():
-	pass
-
 
 func _input(event):
-	if get_device_name_from(event) != device_name:
+	if RoundManager.get_device_name_from(event) != device_name:
 		return
 	
 	if event.is_action_pressed("ui_start"):
@@ -27,7 +24,7 @@ func _input(event):
 			change_state(States.READY)
 			emit_signal("readied")
 		elif state == States.READY:
-			emit_signal("try_to_start")
+			emit_signal("tried_to_start")
 	
 	elif event.is_action_pressed("ui_cancel"):
 		if state == States.OPEN:
@@ -41,7 +38,6 @@ func _input(event):
 	
 	elif event.is_action_pressed("ui_right") and state == States.OPEN:
 		set_character(char_index + 1)
-		pass
 	
 	get_tree().set_input_as_handled()
 
@@ -66,16 +62,18 @@ func change_state(new_state):
 
 func is_closed():
 	return state == States.CLOSED
-	
+
+
 func is_open():
 	return state == States.OPEN
+
 
 func is_ready():
 	return state == States.READY
 
 
 func open_with(event):
-	device_name = get_device_name_from(event)
+	device_name = RoundManager.get_device_name_from(event)
 	if device_name == "keyboard":
 		$DeviceSprite.set_texture(load("res://hud/character-select/keyboard.png"))
 	else:
@@ -97,13 +95,3 @@ func set_character(index):
 	if not CHARACTERS[char_index] in available_chars:
 		# Display as unavailable
 		pass
-
-
-func get_device_name_from(event):
-	if event is InputEventKey:
-		return "keyboard"
-	
-	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		return str("gamepad_", event.device)
-	
-	return "invalid_device"
