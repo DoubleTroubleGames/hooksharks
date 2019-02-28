@@ -44,6 +44,14 @@ position = Vector2( 0, -300 )
 
 position = Vector2( 0, 300 )
 
-[connection signal="area_entered" from="LineArea" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
+
+[connection signal="hooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_hooked"]
+
+[connection signal="unhooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_unhooked"]
+
+[connection signal="hooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_hooked"]
+
+[connection signal="unhooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_unhooked"]
 
 
