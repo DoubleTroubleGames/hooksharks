@@ -1,11 +1,12 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Stage.gd" type="Script" id=1]
+[ext_resource path="res://stages/Stage.gd" type="Script" id=1]
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=2]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=3]
 [ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/caixas_01.png" type="Texture" id=5]
 [ext_resource path="res://wall/StartingPosition.tscn" type="PackedScene" id=6]
+
 
 [node name="Walls" type="Node2D" index="0" groups=[
 "wall",

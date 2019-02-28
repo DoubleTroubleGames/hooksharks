@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_sheet_death.png-ecf5379db403d1bd411b22b37693bd4b.stex"
+path="res://.import/c1.png-8bdf1733fabb5d42f8b8c3d262f37a48.stex"
 
 [deps]
 
-source_file="res://assets/sprite_sheet_death.png"
-dest_files=[ "res://.import/sprite_sheet_death.png-ecf5379db403d1bd411b22b37693bd4b.stex" ]
+source_file="res://characters/c1.png"
+dest_files=[ "res://.import/c1.png-8bdf1733fabb5d42f8b8c3d262f37a48.stex" ]
 
 [params]
 
