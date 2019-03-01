@@ -142,6 +142,7 @@ func _queue_free(is_player_collision=false):
 	if hook != null:
 		hook.rope.queue_free()
 		hook.queue_free()
+	arrow.visible = false
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	$WaterParticles.visible = false
 	set_physics_process(false)
