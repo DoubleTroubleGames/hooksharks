@@ -8,6 +8,7 @@ signal shook_screen(amount)
 export(int, -1, 3) var id = 0
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
+export(String, "Tank", "Direct") var movement_type = "Direct"
 export(bool) var create_trail = true
 export(float) var ROT_SPEED = PI/3.5
 export(int) var ACC = 4
@@ -85,16 +86,44 @@ func _physics_process(delta):
 			and not hook.is_pulling_object():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
-		if input_type == "Keyboard_mouse":
-			if Input.is_action_pressed("ui_right"):
-				speed2 = speed2.rotated(ROT_SPEED * delta)
-			if Input.is_action_pressed("ui_left"):
-				speed2 = speed2.rotated(-ROT_SPEED * delta)
-		elif input_type == "Gamepad":
-			if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
-				speed2 = speed2.rotated(ROT_SPEED * delta)
-			if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
-				speed2 = speed2.rotated(-ROT_SPEED * delta)
+		if movement_type == "Tank":
+			if input_type == "Keyboard_mouse":
+				if Input.is_action_pressed("ui_right"):
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				if Input.is_action_pressed("ui_left"):
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
+			elif input_type == "Gamepad":
+				if Input.get_joy_axis(id, 0) > AXIS_DEADZONE:
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE:
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
+		elif movement_type == "Direct":
+			var direction = Vector2(0,0)
+			if input_type == "Keyboard_mouse":
+				if Input.is_action_pressed("ui_right"):
+					direction += Vector2(1,0)
+				if Input.is_action_pressed("ui_left"):
+					direction += Vector2(-1,0)
+				if Input.is_action_pressed("ui_up"):
+					direction += Vector2(0,-1)
+				if Input.is_action_pressed("ui_down"):
+					direction += Vector2(0,1)
+			elif input_type == "Gamepad":
+				if abs(Input.get_joy_axis(id, 0)) > AXIS_DEADZONE:
+					direction += Vector2(Input.get_joy_axis(id, 0), 0)
+				if abs(Input.get_joy_axis(id, 1)) > AXIS_DEADZONE:
+					direction += Vector2(0, Input.get_joy_axis(id, 1))
+			if direction.length() > 0:
+				var margin = PI/30
+				if speed2.angle_to(direction) > margin:
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				elif speed2.angle_to(direction) < -margin:
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
+		else:
+			print("Not a valid movement type")
+			assert(false)
+					
+		
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj

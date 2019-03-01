@@ -156,6 +156,7 @@ __meta__ = {
 id = 0
 initial_dir = Vector2( 1, 0 )
 input_type = "Keyboard_mouse"
+movement_type = "Direct"
 create_trail = true
 ROT_SPEED = 0.897598
 ACC = 4
