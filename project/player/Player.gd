@@ -28,7 +28,6 @@ onready var dive_bar = $DiveCooldown
 onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
-onready var tween = $Tween
 
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
