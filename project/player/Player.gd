@@ -5,14 +5,13 @@ signal died(player, is_player_collision)
 signal hook_shot(player, direction)
 signal shook_screen(amount)
 
-export(int, -1, 3) var id = 0
-export(Vector2) var initial_dir = Vector2(1, 0)
-export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
-export(bool) var create_trail = true
-export(float) var ROT_SPEED = PI/3.5
-export(int) var ACC = 4
-export(int) var INITIAL_SPEED = 100
-export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
+onready var arrow = $Arrow
+onready var dive_meter = $DiveCooldown/Bar
+onready var dive_bar = $DiveCooldown
+onready var sprite = $Sprite
+onready var sprite_animation = $Sprite/AnimationPlayer
+onready var area = $Area2D
+onready var tween = $Tween
 
 const TRAIL = preload("res://player/Trail.tscn")
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
@@ -22,14 +21,15 @@ const COOLDOWN_BUBBLE = preload("res://player/cd_bubble.png")
 const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 
-onready var arrow = $Arrow
-onready var dive_meter = $DiveCooldown/Bar
-onready var dive_bar = $DiveCooldown
-onready var sprite = $Sprite
-onready var sprite_animation = $Sprite/AnimationPlayer
-onready var area = $Area2D
-onready var tween = $Tween
+export(Vector2) var initial_dir = Vector2(1, 0)
+export(bool) var create_trail = true
+export(float) var ROT_SPEED = PI/3.5
+export(int) var ACC = 4
+export(int) var INITIAL_SPEED = 100
+export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
 
+var id = 0
+var device_name = ""
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
 var diving = false
@@ -44,6 +44,7 @@ var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)
 var checkpoint_number
 var lap
+var turning_direction = 0
 
 
 func _ready():
@@ -54,6 +55,24 @@ func _ready():
 	dive_meter.texture_progress = NORMAL_BUBBLE
 	dive_meter.value = 100
 	set_physics_process(false)
+
+
+func _input(event):
+	if RoundManager.get_device_name_from(event) != device_name:
+		return
+	
+	if event.is_action_pressed("dive") and can_dive and not diving and not dive_on_cooldown:
+		dive()
+	elif event.is_action_released("dive") and diving:
+		emerge()
+	elif event.is_action_pressed("shoot") and !diving:
+		if hook == null and not stunned:
+			var hook_dir = get_arrow_direction()
+			if hook_dir.length() < AXIS_DEADZONE:
+				hook_dir = speed2
+			emit_signal("hook_shot", self, hook_dir)
+		elif hook and weakref(hook).get_ref() and not hook.retracting:
+			hook.retract()
 
 
 func _physics_process(delta):
@@ -79,7 +98,6 @@ func _physics_process(delta):
 		dive_bar.visible = true
 	else:
 		dive_bar.visible = false
-		
 	
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
@@ -88,16 +106,8 @@ func _physics_process(delta):
 			and not hook.is_pulling_object():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
-		if input_type == "Keyboard_mouse":
-			if Input.is_action_pressed("ui_right"):
-				speed2 = speed2.rotated(ROT_SPEED * delta)
-			if Input.is_action_pressed("ui_left"):
-				speed2 = speed2.rotated(-ROT_SPEED * delta)
-		elif input_type == "Gamepad":
-			if Input.get_joy_axis(id, 0) > AXIS_DEADZONE and not stunned:
-				speed2 = speed2.rotated(ROT_SPEED * delta)
-			if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE and not stunned:
-				speed2 = speed2.rotated(-ROT_SPEED * delta)
+		if turning_direction != 0:
+			speed2 = speed2.rotated(turning_direction * ROT_SPEED * delta)
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
@@ -179,6 +189,7 @@ func _queue_free(is_player_collision=false):
 	set_physics_process(false)
 	set_process_input(false)
 
+
 func hook_collision(from_hook):
 	$HookTimer.start()
 	$SFX/OnHit.play()
@@ -188,40 +199,13 @@ func hook_collision(from_hook):
 	yield($HookTimer, "timeout")
 	end_stun(from_hook)
 
+
 func end_stun(hook):
 	if weakref(hook).get_ref():
 		hook.retract()
 		hook.stop_at = null
 	stunned = false
 
-func _input(event):
-	if input_type == 'Gamepad':
-		if event.is_action_pressed('dive_'+str(id)) and can_dive and not diving and not dive_on_cooldown:
-			dive()
-		elif event.is_action_released('dive_'+str(id)) and diving:
-			emerge()
-		elif event.is_action_pressed('shoot_'+str(id)) and !diving:
-			if hook == null and not stunned:
-				var hook_dir = get_arrow_direction()
-				if hook_dir.length() < AXIS_DEADZONE:
-					hook_dir = speed2
-				emit_signal("hook_shot", self, hook_dir)
-			elif hook and weakref(hook).get_ref() and not hook.retracting:
-				hook.retract()
-	elif input_type == "Keyboard_mouse":
-		if event.is_action_pressed('dive_km') and can_dive and not diving and not dive_on_cooldown:
-			dive()
-		elif event.is_action_released('dive_km') and diving:
-			emerge()
-		elif event.is_action_pressed('shoot_km') and !diving:
-			if hook == null and not stunned:
-				var hook_dir = get_arrow_direction()
-				if hook_dir.length() < AXIS_DEADZONE:
-					hook_dir = speed2
-				emit_signal("hook_shot", self, hook_dir)
-			elif hook and weakref(hook).get_ref() and not hook.retracting:
-				hook.retract()
-		
 
 func dive():
 	$SFX/DiveSFX.play()
@@ -237,6 +221,7 @@ func dive():
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
+
 func emerge():
 	$SFX/EmergeSFX.play()
 	var dive_particles = DIVE_PARTICLES.instance()
@@ -249,7 +234,6 @@ func emerge():
 	can_dive = true
 	if weakref(area):
 		area.visible = true
-	
 	
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
