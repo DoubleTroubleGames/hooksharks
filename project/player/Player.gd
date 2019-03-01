@@ -11,7 +11,6 @@ onready var dive_bar = $DiveCooldown
 onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
-onready var tween = $Tween
 
 const TRAIL = preload("res://player/Trail.tscn")
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
@@ -42,8 +41,6 @@ var stunned = false
 var hook = null
 var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)
-var checkpoint_number
-var lap
 var turning_direction = 0
 
 
@@ -106,8 +103,42 @@ func _physics_process(delta):
 			and not hook.is_pulling_object():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
-		if turning_direction != 0:
-			speed2 = speed2.rotated(turning_direction * ROT_SPEED * delta)
+		if movement_type == "Tank":
+			if input_type == "Keyboard_mouse":
+				if Input.is_action_pressed("ui_right"):
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				if Input.is_action_pressed("ui_left"):
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
+			elif input_type == "Gamepad":
+				if Input.get_joy_axis(id, 0) > AXIS_DEADZONE:
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				if Input.get_joy_axis(id, 0) < -AXIS_DEADZONE:
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
+		elif movement_type == "Direct":
+			var direction = Vector2(0,0)
+			if input_type == "Keyboard_mouse":
+				if Input.is_action_pressed("ui_right"):
+					direction += Vector2(1,0)
+				if Input.is_action_pressed("ui_left"):
+					direction += Vector2(-1,0)
+				if Input.is_action_pressed("ui_up"):
+					direction += Vector2(0,-1)
+				if Input.is_action_pressed("ui_down"):
+					direction += Vector2(0,1)
+			elif input_type == "Gamepad":
+				if abs(Input.get_joy_axis(id, 0)) > AXIS_DEADZONE:
+					direction += Vector2(Input.get_joy_axis(id, 0), 0)
+				if abs(Input.get_joy_axis(id, 1)) > AXIS_DEADZONE:
+					direction += Vector2(0, Input.get_joy_axis(id, 1))
+			if direction.length() > 0:
+				var margin = PI/30
+				if speed2.angle_to(direction) > margin:
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				elif speed2.angle_to(direction) < -margin:
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
+		else:
+			print("Not a valid movement type")
+			assert(false)
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
@@ -129,10 +160,18 @@ func _physics_process(delta):
 	
 	# Update arrow direction
 	var arrow_dir = get_arrow_direction()
-	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and !diving)
+	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and can_dive)
 	arrow.global_rotation = arrow_dir.angle()
 	
 	dive_bar.global_rotation = 0
+	
+	if diving and input_type == "Gamepad":
+		if not Input.is_action_pressed('dive_'+str(id)):
+			emerge()
+	elif diving and input_type == "Keyboard_mouse":
+		if not Input.is_action_pressed('dive_km'):
+			emerge()
+
 
 func get_arrow_direction():
 	match input_type:
@@ -168,24 +207,22 @@ func _on_Area2D_area_entered(area):
 
 func _queue_free(is_player_collision=false):
 	$Area2D.queue_free()
-	diving = false
-	dive_meter.value = 100
+	sprite_animation.stop(false)
+	sprite.hide()
+	$HookGuy.hide()
+	$DiveCooldown.hide()
 	$Explosion.emitting = true
 	$Explosion2.emitting = true
-	sprite.visible = false
-	get_node('HookGuy').visible = false
 	$SFX/ExplosionSFX.play()
 	randomize()
 	var scream = 1 + randi() % 9
 	get_node(str('SFX/ScreamSFX', scream)).play()
-	can_dive = false
-	$DiveCooldown.visible = false
 	emit_signal("died", self, is_player_collision)
 	if hook != null:
-		hook.rope.queue_free()
-		hook.queue_free()
+		hook.free_hook()
+	arrow.visible = false
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
-	$WaterParticles.visible = false
+	$WaterParticles.hide()
 	set_physics_process(false)
 	set_process_input(false)
 
@@ -196,6 +233,9 @@ func hook_collision(from_hook):
 	$BloodParticles.emitting = true
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0)-from_hook.rope.get_point_position(1)).normalized()
+	if not can_dive: # player was diving or emerging when hooked
+		if sprite_animation.current_animation != "emerge":
+			emerge()
 	yield($HookTimer, "timeout")
 	end_stun(from_hook)
 
@@ -216,8 +256,10 @@ func dive():
 	$ParticleTimer.start()
 	self.add_child(dive_particles)
 	can_dive = false
-	diving = true
 	sprite_animation.play("dive")
+	yield(sprite_animation, "animation_finished")
+	if sprite_animation.assigned_animation == "dive": # verification in case diving was canceled
+		diving = true
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
@@ -229,11 +271,10 @@ func emerge():
 	$ParticleTimer.wait_time = dive_particles.lifetime
 	$ParticleTimer.start()
 	$WaterParticles.visible = true
-	sprite_animation.play("walk")
+	sprite_animation.play("emerge")
 	diving = false
+	yield(sprite_animation, "animation_finished")
 	can_dive = true
-	if weakref(area):
-		area.visible = true
-	
+	sprite_animation.play("walk")
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()

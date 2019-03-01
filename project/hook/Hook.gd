@@ -92,6 +92,8 @@ func retract():
 
 func free_hook():
 	rope.queue_free()
+	if pulling_object:
+		pulling_object.removeHook()
 	player.hook = null
 	pulling_object = null
 	self.queue_free()

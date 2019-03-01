@@ -5,8 +5,7 @@
 [ext_resource path="res://assets/parede_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/parede_02.png" type="Texture" id=4]
 
-
-[node name="Stage" type="Node2D" index="0"]
+[node name="Stage" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -178,18 +177,22 @@ polygon = PoolVector2Array( -47, -360, -47, -283, -43, -283, -43, -178, -56, -17
 
 [node name="Trails" type="Node2D" parent="." index="2"]
 
+z_index = 1
+_sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Hooks" type="Node2D" parent="." index="3"]
 
+z_index = 1
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Ropes" type="Node2D" parent="." index="4"]
 
+z_index = 1
 __meta__ = {
 "_edit_lock_": true
 }
