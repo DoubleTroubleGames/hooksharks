@@ -243,9 +243,7 @@ func _input(event):
 	elif input_type == "Keyboard_mouse":
 		if event.is_action_pressed('dive_km') and can_dive and not diving and not dive_on_cooldown:
 			dive()
-		elif event.is_action_released('dive_km') and diving:
-			emerge()
-		elif event.is_action_pressed('shoot_km') and !diving:
+		if event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
@@ -266,7 +264,8 @@ func dive():
 	can_dive = false
 	sprite_animation.play("dive")
 	yield(sprite_animation, "animation_finished")
-	diving = true
+	if sprite_animation.assigned_animation == "dive": # verification in case diving was canceled
+		diving = true
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
