@@ -229,7 +229,6 @@ blend_times = [  ]
 
 [node name="HookGuy" type="Sprite" parent="." index="3"]
 
-visible = false
 position = Vector2( 19.65, 0 )
 scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 5 )

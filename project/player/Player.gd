@@ -189,6 +189,9 @@ func hook_collision(from_hook):
 	$BloodParticles.emitting = true
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0)-from_hook.rope.get_point_position(1)).normalized()
+	if not can_dive: # player was diving or emerging when hooked
+		if sprite_animation.current_animation != "emerge":
+			emerge()
 	yield($HookTimer, "timeout")
 	end_stun(from_hook)
 
