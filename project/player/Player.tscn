@@ -5,8 +5,8 @@
 [ext_resource path="res://player/flecha_cinza.png" type="Texture" id=3]
 [ext_resource path="res://player/player_sheet.png" type="Texture" id=4]
 [ext_resource path="res://player/hook_guy.png" type="Texture" id=5]
-[ext_resource path="res://player/bubble.png" type="Texture" id=6]
-[ext_resource path="res://player/circle.png" type="Texture" id=7]
+[ext_resource path="res://player/circle.png" type="Texture" id=6]
+[ext_resource path="res://player/bubble.png" type="Texture" id=7]
 [ext_resource path="res://player/explosion/4.png" type="Texture" id=8]
 [ext_resource path="res://player/explosion/3.png" type="Texture" id=9]
 [ext_resource path="res://sound/dive.wav" type="AudioStream" id=10]
@@ -54,20 +54,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "emerge"
-} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -157,7 +143,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -191,12 +177,11 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-editor/display_folded = true
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -5 )
 hframes = 6
-frame = 4
+frame = 3
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
@@ -212,7 +197,7 @@ blend_times = [  ]
 
 [node name="HookGuy" type="Sprite" parent="." index="3"]
 
-position = Vector2( 19.4, 0 )
+position = Vector2( 18.6, 0 )
 scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -238,11 +223,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DiveCooldown" type="Node2D" parent="." index="5"]
 
-editor/display_folded = true
-
 [node name="Bar" type="TextureProgress" parent="DiveCooldown" index="0"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -262,8 +244,8 @@ min_value = 0.0
 max_value = 100.0
 step = 1.0
 page = 0.0
-value = 0.0
-exp_edit = false
+value = 100.0
+exp_edit = true
 rounded = false
 texture_under = ExtResource( 6 )
 texture_over = null
@@ -274,23 +256,7 @@ radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Rect", "Textures", "Visibility" ]
 
-[node name="CooldownTimer" type="Timer" parent="DiveCooldown" index="1"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
-
-[node name="Tween" type="Tween" parent="." index="6"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
-[node name="Explosion" type="Particles2D" parent="." index="7"]
+[node name="Explosion" type="Particles2D" parent="." index="6"]
 
 z_index = 1
 emitting = false
@@ -313,7 +279,7 @@ h_frames = 8
 v_frames = 8
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
 
-[node name="Explosion2" type="Particles2D" parent="." index="8"]
+[node name="Explosion2" type="Particles2D" parent="." index="7"]
 
 z_index = 1
 emitting = false
@@ -336,21 +302,21 @@ h_frames = 8
 v_frames = 8
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
 
-[node name="HookTimer" type="Timer" parent="." index="9"]
+[node name="HookTimer" type="Timer" parent="." index="8"]
 
 process_mode = 1
 wait_time = 0.4
 one_shot = true
 autostart = false
 
-[node name="ParticleTimer" type="Timer" parent="." index="10"]
+[node name="ParticleTimer" type="Timer" parent="." index="9"]
 
 process_mode = 1
 wait_time = 0.4
 one_shot = true
 autostart = false
 
-[node name="SFX" type="Node2D" parent="." index="11"]
+[node name="SFX" type="Node2D" parent="." index="10"]
 
 editor/display_folded = true
 __meta__ = {
@@ -484,7 +450,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="BloodParticles" parent="." index="12" instance=ExtResource( 24 )]
+[node name="BloodParticles" parent="." index="11" instance=ExtResource( 24 )]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
