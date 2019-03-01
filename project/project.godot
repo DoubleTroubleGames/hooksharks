@@ -88,4 +88,5 @@ ui_start=[ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resour
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0431373, 0.207843, 0.34902, 1 )
 environment/default_environment="res://default_env.tres"

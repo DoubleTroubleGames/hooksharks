@@ -174,7 +174,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "player",
 ]]
 
@@ -187,7 +187,7 @@ __meta__ = {
 id = 0
 initial_dir = Vector2( 1, 0 )
 input_type = "Keyboard_mouse"
-movement_type = "Direct"
+movement_type = "Tank"
 create_trail = true
 ROT_SPEED = 0.897598
 ACC = 4

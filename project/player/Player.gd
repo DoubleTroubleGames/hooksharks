@@ -8,7 +8,7 @@ signal shook_screen(amount)
 export(int, -1, 3) var id = 0
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(String, "Keyboard_mouse", "Gamepad") var input_type = "Keyboard_mouse"
-export(String, "Tank", "Direct") var movement_type = "Direct"
+export(String, "Tank", "Direct") var movement_type = "Tank"
 export(bool) var create_trail = true
 export(float) var ROT_SPEED = PI/3.5
 export(int) var ACC = 4
@@ -203,8 +203,7 @@ func _queue_free(is_player_collision=false):
 	get_node(str('SFX/ScreamSFX', scream)).play()
 	emit_signal("died", self, is_player_collision)
 	if hook != null:
-		hook.rope.queue_free()
-		hook.queue_free()
+		hook.free_hook()
 	arrow.visible = false
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	$WaterParticles.hide()

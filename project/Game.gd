@@ -18,7 +18,6 @@ export (bool)var use_keyboard = false
 export (int, "0", "1", "2", "3")var keyboard_id = 0
 
 var hook_clink_positions = []
-var ids = [0, 1, 2, 3]
 var Cameras = []
 var players = []
 
@@ -28,9 +27,9 @@ func _ready():
 	stage.set_name("Stage")
 	add_child(stage)
 	
-	bg.visible = true
-	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
-	bg.position = OS.window_size / 2
+#	bg.visible = true
+#	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
+#	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
 	
 	Cameras = get_cameras() # on Arena.gd and Race.gd
@@ -43,10 +42,6 @@ func _physics_process(delta):
 	bg.get_node("Reflex2").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
 	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
 	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
-
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
 
 func blink_screen():
 	var tween = Tween.new()
