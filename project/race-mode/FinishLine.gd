@@ -30,10 +30,10 @@ func _physics_process(delta):
 func update_line_polygon():
 	var PullTop_pos = $PullableObjectTop.get_position()
 	var PullBot_pos = $PullableObjectBot.get_position()
-	line_polygon = PoolVector2Array([Vector2(PullTop_pos.x - WIDTH, PullTop_pos.y),
-								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y),
-								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y),
-								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y)])
+	line_polygon = PoolVector2Array([Vector2(PullTop_pos.x - WIDTH, PullTop_pos.y + WIDTH),
+								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y - WIDTH),
+								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y - WIDTH),
+								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y + WIDTH)])
 
 
 func _on_LineArea_area_entered(area):
