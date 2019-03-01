@@ -41,8 +41,6 @@ var stunned = false
 var hook = null
 var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)
-var checkpoint_number
-var lap
 
 
 func _ready():

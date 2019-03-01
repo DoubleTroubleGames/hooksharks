@@ -7,7 +7,7 @@
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=5]
 [ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=6]
 
-[node name="Stage1" instance=ExtResource( 1 )]
+[node name="Stage1" index="0" instance=ExtResource( 1 )]
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 
@@ -62,12 +62,12 @@ polygon = PoolVector2Array( -1000, -60, 1000, -60, 1000, 60, -1000, 60 )
 
 [node name="FinishLine" parent="." index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 920.194, 497.1 )
-last_checkpoint_number = 0
+position = Vector2( 180.974, 1133.11 )
+total_checkpoint_number = 2
 
 [node name="PullableObjectBot" parent="FinishLine" index="3"]
 
-position = Vector2( 186.897, 166.104 )
+position = Vector2( 566.27, -294.165 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 
