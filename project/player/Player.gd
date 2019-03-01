@@ -17,6 +17,8 @@ export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
 const TRAIL = preload("res://player/Trail.tscn")
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
 const EXPLOSIONS_PATH = "res://player/explosion/"
+const NORMAL_BUBBLE = preload("res://player/bubble.png")
+const COOLDOWN_BUBBLE = preload("res://player/cd_bubble.png")
 const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 
@@ -32,9 +34,10 @@ var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
 var diving = false
 var can_dive = true
-var dive_use_speed = 50
+var dive_on_cooldown = false
+var dive_use_speed = 75
 var dive_regain_speed = 40
-var dive_cooldown = 1.5
+var dive_cooldown_speed = 40
 var stunned = false
 var hook = null
 var pull_dir = null
@@ -48,17 +51,25 @@ func _ready():
 	speed2 = speed2.rotated(initial_dir.angle())
 	$Explosion.texture = load(str(EXPLOSIONS_PATH, 1 + (randi() % 4), ".png"))
 	$Explosion2.texture = load(str(EXPLOSIONS_PATH, 1 + randi() % 4, ".png"))
+	dive_meter.texture_progress = NORMAL_BUBBLE
 	dive_meter.value = 100
 	set_physics_process(false)
 
 
 func _physics_process(delta):
 	#Update dive meter
-	if diving:
+	if dive_on_cooldown:
+		dive_meter.value += dive_cooldown_speed*delta
+		if dive_meter.value >= 100:
+			dive_meter.value = 100
+			dive_on_cooldown = false
+			dive_meter.texture_progress = NORMAL_BUBBLE
+	elif diving:
 		dive_meter.value -= dive_use_speed*delta
 		if dive_meter.value <= 0:
 			dive_meter.value = 0
-			print("had to emerge")
+			dive_meter.texture_progress = COOLDOWN_BUBBLE
+			dive_on_cooldown = true 
 			emerge()
 	else:
 		dive_meter.value += dive_use_speed*delta
@@ -185,7 +196,7 @@ func end_stun(hook):
 
 func _input(event):
 	if input_type == 'Gamepad':
-		if event.is_action_pressed('dive_'+str(id)) and can_dive and not diving:
+		if event.is_action_pressed('dive_'+str(id)) and can_dive and not diving and not dive_on_cooldown:
 			dive()
 		elif event.is_action_released('dive_'+str(id)) and diving:
 			emerge()
@@ -198,10 +209,9 @@ func _input(event):
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
-		if event.is_action_pressed('dive_km') and can_dive and not diving:
+		if event.is_action_pressed('dive_km') and can_dive and not diving and not dive_on_cooldown:
 			dive()
 		elif event.is_action_released('dive_km') and diving:
-			print("here")
 			emerge()
 		elif event.is_action_pressed('shoot_km') and !diving:
 			if hook == null and not stunned:
