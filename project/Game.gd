@@ -1,6 +1,5 @@
 extends Node2D
 
-onready var blink = $Blink
 onready var bg = $BG
 onready var hud = $HUD
 
@@ -42,17 +41,6 @@ func _physics_process(delta):
 	bg.get_node("Reflex2").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
 	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
 	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
-
-func blink_screen():
-	for camera in Cameras:
-		blink.scale = get_viewport().size*camera.zoom/Vector2(64,64)
-		blink.position = camera.position - get_viewport().size*camera.zoom/2
-	var tween = Tween.new()
-	tween.interpolate_property(blink, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween.start()
-	self.add_child(tween)
-	yield(tween, "tween_completed")
-	tween.queue_free()
 
 func create_rope(player, hook):
 	var rope = ROPE.instance()
@@ -144,7 +132,7 @@ func get_winner_id(winner):
 	return winner.id
 
 func _on_player_hook_shot(player, direction):
-	blink_screen()
+	hud.blink_screen()
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
 	new_hook.rope = create_rope(player, new_hook)
@@ -161,7 +149,7 @@ func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
 	
-	blink_screen()
+	hud.blink_screen()
 	var hook_clink = HOOK_CLINK.instance()
 	hook_clink.emitting = true
 	hook_clink.position = clink_position
