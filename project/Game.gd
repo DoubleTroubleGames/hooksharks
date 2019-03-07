@@ -132,7 +132,6 @@ func get_winner_id(winner):
 	return winner.id
 
 func _on_player_hook_shot(player, direction):
-	hud.blink_screen()
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
 	new_hook.rope = create_rope(player, new_hook)

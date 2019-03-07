@@ -10,6 +10,10 @@ var back_indicator_down_speed = 150
 var trying_to_leave_counter = 0
 
 func _ready():
+	
+	#Reset device map
+	RoundManager.device_map = []
+	
 	available_characters = $Boxes/SelectionBox0.CHARACTERS.duplicate()
 
 	for i in range(boxes.size()):
@@ -57,7 +61,6 @@ func update_device_map():
 	for box in boxes:
 		if box.is_ready():
 			RoundManager.device_map.append(box.device_name)
-
 
 func can_start():
 	var ready_players = 0
