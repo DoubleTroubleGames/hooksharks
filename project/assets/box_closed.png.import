@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/box2_closed.png-0a12d824bdbe7f97c19ec1085b2f43b7.stex"
+path="res://.import/box_closed.png-4a653777b9083b3dfeca55fb9f34ba43.stex"
 
 [deps]
 
-source_file="res://assets/box2_closed.png"
-dest_files=[ "res://.import/box2_closed.png-0a12d824bdbe7f97c19ec1085b2f43b7.stex" ]
+source_file="res://assets/box_closed.png"
+dest_files=[ "res://.import/box_closed.png-4a653777b9083b3dfeca55fb9f34ba43.stex" ]
 
 [params]
 

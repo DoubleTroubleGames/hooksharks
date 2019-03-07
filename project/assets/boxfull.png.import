@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bigbox.png-5427c164ca43a50a5cfd8b552b5a305e.stex"
+path="res://.import/boxfull.png-0d3bfd82f383c7a9c90b2cdebbf96584.stex"
 
 [deps]
 
-source_file="res://assets/bigbox.png"
-dest_files=[ "res://.import/bigbox.png-5427c164ca43a50a5cfd8b552b5a305e.stex" ]
+source_file="res://assets/boxfull.png"
+dest_files=[ "res://.import/boxfull.png-0d3bfd82f383c7a9c90b2cdebbf96584.stex" ]
 
 [params]
 
