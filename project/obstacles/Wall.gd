@@ -4,7 +4,8 @@ extends Node2D
 
 export (int)var size = 1000 setget set_size
 
-var objects = ['Box', 'Roof', 'Tire']
+var objects = ['Box', 'Box2', 'Box3', 'BoxClosed', 'BoxFull', 'BoxMetal', 'Float', 'Floor', 'Floor2', 'Metal', 'Metal2',
+			   'Roof', 'Roof2', 'Tire', 'Tire2', 'Float', 'Float2', 'Dock']
 
 
 #func _ready():
