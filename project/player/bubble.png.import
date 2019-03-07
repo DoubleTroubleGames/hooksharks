@@ -7,7 +7,10 @@ path="res://.import/bubble.png-cd77c8fa4a4340c1c08626f68c053209.stex"
 [deps]
 
 source_file="res://player/bubble.png"
+source_md5="f15432b50450b6790745886504ff07e0"
+
 dest_files=[ "res://.import/bubble.png-cd77c8fa4a4340c1c08626f68c053209.stex" ]
+dest_md5="137541d5f689b646e362cecdc53a3846"
 
 [params]
 

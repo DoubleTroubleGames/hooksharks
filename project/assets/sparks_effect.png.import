@@ -7,7 +7,10 @@ path="res://.import/sparks_effect.png-fe53102f1e9d67dd0e65d0f3f2ebb74c.stex"
 [deps]
 
 source_file="res://assets/sparks_effect.png"
+source_md5="f57f59701c35cd3dfbd213fd1f2c1df9"
+
 dest_files=[ "res://.import/sparks_effect.png-fe53102f1e9d67dd0e65d0f3f2ebb74c.stex" ]
+dest_md5="14d173ff0e437ee02f4415b29f6fc2b7"
 
 [params]
 

@@ -7,7 +7,10 @@ path="res://.import/fundo.png-8539a3923645f72988081358fa7959f8.stex"
 [deps]
 
 source_file="res://assets/fundo.png"
+source_md5="d2a2dfdd2ccc05cc71ffbebc706cef72"
+
 dest_files=[ "res://.import/fundo.png-8539a3923645f72988081358fa7959f8.stex" ]
+dest_md5="98cfab39c24dca2b551dfb173d86360d"
 
 [params]
 

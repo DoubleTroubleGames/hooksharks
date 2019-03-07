@@ -7,7 +7,10 @@ path="res://.import/dock.png-58ad304ff046dcd6223b408506aaa088.stex"
 [deps]
 
 source_file="res://assets/dock.png"
+source_md5="552d8d55fd343f04da2d89bbec8cfeae"
+
 dest_files=[ "res://.import/dock.png-58ad304ff046dcd6223b408506aaa088.stex" ]
+dest_md5="219d346b63beacca3c56dba62d49dfa0"
 
 [params]
 

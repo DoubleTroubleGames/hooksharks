@@ -7,7 +7,10 @@ path="res://.import/flecha_cinza.png-5149a2fcc1b13b3405a5d07e01858631.stex"
 [deps]
 
 source_file="res://player/flecha_cinza.png"
+source_md5="ae1fb902c0ba16b3c8d5afc994b08a11"
+
 dest_files=[ "res://.import/flecha_cinza.png-5149a2fcc1b13b3405a5d07e01858631.stex" ]
+dest_md5="702d05fc21a394348f8e68820144f357"
 
 [params]
 

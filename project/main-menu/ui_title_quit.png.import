@@ -7,7 +7,10 @@ path="res://.import/ui_title_quit.png-34dd98e1fbd72128e0128b998cb25c52.stex"
 [deps]
 
 source_file="res://main-menu/ui_title_quit.png"
+source_md5="8d7d02185ab4f0caa8e784eceebf45b0"
+
 dest_files=[ "res://.import/ui_title_quit.png-34dd98e1fbd72128e0128b998cb25c52.stex" ]
+dest_md5="113d35e4015c192116e4c2fb29127008"
 
 [params]
 

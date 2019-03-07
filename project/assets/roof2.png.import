@@ -7,7 +7,10 @@ path="res://.import/roof2.png-8fcd779d20a428bc140395168a1e898c.stex"
 [deps]
 
 source_file="res://assets/roof2.png"
+source_md5="9335de7cc961171371bafeab4928d4be"
+
 dest_files=[ "res://.import/roof2.png-8fcd779d20a428bc140395168a1e898c.stex" ]
+dest_md5="9084264af46635ba0be09c30f4a89eac"
 
 [params]
 

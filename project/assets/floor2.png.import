@@ -7,7 +7,10 @@ path="res://.import/floor2.png-e34f1ce0f77d806f31b30db5f1181bfe.stex"
 [deps]
 
 source_file="res://assets/floor2.png"
+source_md5="e2eacfaad391117838ebabf562114e47"
+
 dest_files=[ "res://.import/floor2.png-e34f1ce0f77d806f31b30db5f1181bfe.stex" ]
+dest_md5="b67fedb40c072809f689e5b60dcbc06c"
 
 [params]
 

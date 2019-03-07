@@ -7,7 +7,10 @@ path="res://.import/float2.png-6efeb67961121c69d3569ae6ecf9ba4c.stex"
 [deps]
 
 source_file="res://assets/float2.png"
+source_md5="4d42f1d838851a1ce6556a1c0a08f6fa"
+
 dest_files=[ "res://.import/float2.png-6efeb67961121c69d3569ae6ecf9ba4c.stex" ]
+dest_md5="7fe4872bcfa5c2c24b4471d3b5de71e0"
 
 [params]
 

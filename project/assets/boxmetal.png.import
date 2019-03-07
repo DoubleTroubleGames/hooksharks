@@ -7,7 +7,10 @@ path="res://.import/boxmetal.png-7633db31fbacf4a1c62336ee6ba3b078.stex"
 [deps]
 
 source_file="res://assets/boxmetal.png"
+source_md5="7041d408536acf23c43f560a722a0ada"
+
 dest_files=[ "res://.import/boxmetal.png-7633db31fbacf4a1c62336ee6ba3b078.stex" ]
+dest_md5="9c70515c4b926f4f9164fe4c7adbe80b"
 
 [params]
 

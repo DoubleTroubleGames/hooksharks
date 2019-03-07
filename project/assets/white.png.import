@@ -7,7 +7,10 @@ path="res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 [deps]
 
 source_file="res://assets/white.png"
+source_md5="b68844373120b3795a9b80a7922d0c76"
+
 dest_files=[ "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex" ]
+dest_md5="f17f3e225bc88873851ebd43ba696987"
 
 [params]
 

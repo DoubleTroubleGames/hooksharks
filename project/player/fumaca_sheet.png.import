@@ -7,7 +7,10 @@ path="res://.import/fumaca_sheet.png-b0042b5e823b8bab745b671d10719ac8.stex"
 [deps]
 
 source_file="res://player/fumaca_sheet.png"
+source_md5="be9a7cc310916d1300114b028ff81069"
+
 dest_files=[ "res://.import/fumaca_sheet.png-b0042b5e823b8bab745b671d10719ac8.stex" ]
+dest_md5="3799ec0418904a62fefb41dd9656851a"
 
 [params]
 

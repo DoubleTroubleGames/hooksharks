@@ -7,7 +7,10 @@ path="res://.import/ilustra_menu.png-ae46735e7482f44f0035315fe2978f8d.stex"
 [deps]
 
 source_file="res://main-menu/ilustra_menu.png"
+source_md5="24d6b07575559f6d3ad68f29292ac2d4"
+
 dest_files=[ "res://.import/ilustra_menu.png-ae46735e7482f44f0035315fe2978f8d.stex" ]
+dest_md5="810e4246b0792de9ac6db91458c17490"
 
 [params]
 

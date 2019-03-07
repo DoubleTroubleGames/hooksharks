@@ -7,7 +7,10 @@ path="res://.import/score.wav-fd9143d0dce998d7727bcf51265e459b.sample"
 [deps]
 
 source_file="res://sound/score.wav"
+source_md5="23db76c0c7a60e157df0404d243a16d1"
+
 dest_files=[ "res://.import/score.wav-fd9143d0dce998d7727bcf51265e459b.sample" ]
+dest_md5="0a8ae83f1d05ceef7968d50aea12ba17"
 
 [params]
 
