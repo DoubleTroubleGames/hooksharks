@@ -17,7 +17,8 @@ func removeHook():
 
 func activate(player):
 	var power = powerup.instance()
-	power.init(player)
-	player.add_child(power)
+	# If initialized sucessfully, add it to player
+	if power.init(player):
+		player.get_node("PowerUps").add_child(power)
 	queue_free()
 	
