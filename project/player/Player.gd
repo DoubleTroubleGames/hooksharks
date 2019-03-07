@@ -188,6 +188,8 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('player') and object != self:
 		if diving == object.diving:
 			_queue_free(true)
+	if object.is_in_group('powerup') and not diving:
+		object.activate(self)
 
 func _queue_free(is_player_collision=false):
 	$Area2D.queue_free()
