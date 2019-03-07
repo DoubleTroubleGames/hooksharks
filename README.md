@@ -1,6 +1,6 @@
 ###### Hooksharks
-###### Copyright (C) 2018  MarvellousSoft & USPGameDev
-###### Code under license **GPLv3.0**, original assets under license **CC BY-AS 4.0**
+###### Copyright (C) 2018-2019  MarvellousSoft & USPGameDev
+###### Code under license **GPLv3.0**, original assets under license **CC BY-SA 4.0**
 
 # Hooksharks
 
