@@ -8,7 +8,7 @@
 position = Vector2( 300, 300 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-last_checkpoint_number = null
+total_checkpoint_number = 0
 total_laps = 1
 
 [node name="Line" type="Sprite" parent="." index="0"]

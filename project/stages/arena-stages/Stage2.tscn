@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://obstacles/Obstacle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/caixas_03.png" type="Texture" id=3]
 [ext_resource path="res://assets/caixas_02.png" type="Texture" id=4]
+
 
 [node name="Stage2" index="0" instance=ExtResource( 1 )]
 
