@@ -14,7 +14,6 @@ const TRANSITION_OFFSET = 1000
 const TRANSITION_TIME = 1.0
 
 export (int)var stage_num = 10
-export (bool)var use_keyboard = false
 export (int, "0", "1", "2", "3")var keyboard_id = 0
 
 var hook_clink_positions = []
@@ -26,12 +25,12 @@ func _ready():
 	stage.setup(self)
 	stage.set_name("Stage")
 	add_child(stage)
-	
+
 #	bg.visible = true
 #	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 #	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
-	
+
 	Cameras = get_cameras() # on Arena.gd and Race.gd
 	connect_players() # on Arena.gd and Race.gd
 	activate_players() # on Arena.gd and Race.gd
@@ -114,14 +113,13 @@ func remove_player(player, is_player_collision):
 		var winner = players[0]
 		winner.get_node("Area2D").queue_free()
 		if not is_player_collision:
-			var winner_id = get_winner_id(winner)
-			RoundManager.scores[winner_id] += 1
-			RoundManager.winner = winner_id
+			RoundManager.scores[winner.id] += 1
+			RoundManager.winner = winner.id
 		else:
 			RoundManager.winner = -1
 		winner.set_physics_process(false)
 		winner.set_process_input(false)
-		
+
 		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 		show_round()
 		yield(hud, "finished")
@@ -129,16 +127,6 @@ func remove_player(player, is_player_collision):
 		yield($StageTween, "tween_completed")
 		add_new_stage()
 
-
-func get_winner_id(winner):
-	if not use_keyboard:
-		return winner.id 
-	if winner.id == -1:
-		return keyboard_id
-	if winner.id >= keyboard_id:
-		return winner.id + 1
-	
-	return winner.id
 
 func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
@@ -149,25 +137,25 @@ func _on_player_hook_shot(player, direction):
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
 	new_hook.connect("wall_hit", self, "_on_wall_hit")
-	
+
 	player.get_node("SFX/HarpoonSFX").play()
 	player.hook = new_hook
 
 func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
-	
+
 	blink_screen()
 	var hook_clink = HOOK_CLINK.instance()
 	hook_clink.emitting = true
 	hook_clink.position = clink_position
 	add_child(hook_clink)
-	
+
 	hook_clink_positions.append(clink_position)
-	
+
 	var delay = hook_clink.lifetime / hook_clink.speed_scale
 	yield(get_tree().create_timer(delay), "timeout")
-	
+
 	hook_clink.queue_free()
 	hook_clink_positions.erase(clink_position)
 
@@ -177,10 +165,10 @@ func _on_wall_hit(position, rotation):
 	wall_particles.position = position
 	wall_particles.rotation = rotation
 	add_child(wall_particles)
-	
+
 	var delay = wall_particles.lifetime / wall_particles.speed_scale
 	yield(get_tree().create_timer(delay), "timeout")
-	
+
 	wall_particles.queue_free()
 
 func _on_player_created_trail(trail):
