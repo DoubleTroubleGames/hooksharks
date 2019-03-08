@@ -14,18 +14,17 @@ const TRANSITION_OFFSET = 1000
 const TRANSITION_TIME = 1.0
 
 export (int)var stage_num = 10
-export (int, "0", "1", "2", "3")var keyboard_id = 0
 
 var hook_clink_positions = []
 var Cameras = []
-var players = []
+var players
 
 func _ready():
 	var stage = get_first_stage().instance()
-	stage.setup(self)
+	players = stage.setup_players()
 	stage.set_name("Stage")
 	add_child(stage)
-
+	
 #	bg.visible = true
 #	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 #	bg.position = OS.window_size / 2
@@ -42,6 +41,7 @@ func _physics_process(delta):
 	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
 	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
 
+
 func blink_screen():
 	var tween = Tween.new()
 	tween.interpolate_property(blink, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -49,6 +49,7 @@ func blink_screen():
 	self.add_child(tween)
 	yield(tween, "tween_completed")
 	tween.queue_free()
+
 
 func create_rope(player, hook):
 	var rope = ROPE.instance()
@@ -59,10 +60,11 @@ func create_rope(player, hook):
 	get_node("Stage/Ropes").add_child(rope)
 	return rope
 
+
 func show_round():
 	hud.show_round()
 	yield(hud, "finished")
-	if RoundManager.winner != -1:
+	if RoundManager.round_winner != -1:
 		RoundManager.round_number += 1
 	hud.hide_round()
 
@@ -95,7 +97,7 @@ func free_current_stage():
 
 func add_new_stage():
 	var stage = get_random_stage().instance()
-	stage.setup(self)
+	players = stage.setup_players()
 	stage.set_name("Stage")
 	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	add_child(stage)
@@ -107,6 +109,7 @@ func add_new_stage():
 	yield($StageTween, "tween_completed")
 	activate_players()
 
+
 func remove_player(player, is_player_collision):
 	players.erase(player)
 	if players.size() == 1:
@@ -114,9 +117,9 @@ func remove_player(player, is_player_collision):
 		winner.get_node("Area2D").queue_free()
 		if not is_player_collision:
 			RoundManager.scores[winner.id] += 1
-			RoundManager.winner = winner.id
+			RoundManager.round_winner = winner.id
 		else:
-			RoundManager.winner = -1
+			RoundManager.round_winner = -1
 		winner.set_physics_process(false)
 		winner.set_process_input(false)
 
@@ -141,6 +144,7 @@ func _on_player_hook_shot(player, direction):
 	player.get_node("SFX/HarpoonSFX").play()
 	player.hook = new_hook
 
+
 func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
@@ -159,6 +163,7 @@ func _on_hook_clinked(clink_position):
 	hook_clink.queue_free()
 	hook_clink_positions.erase(clink_position)
 
+
 func _on_wall_hit(position, rotation):
 	var wall_particles = WALL_PARTICLES.instance()
 	wall_particles.emitting = true
@@ -171,12 +176,15 @@ func _on_wall_hit(position, rotation):
 
 	wall_particles.queue_free()
 
+
 func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
+
 
 func get_random_stage():
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
 	return load(str(base_path, (randi() % stage_num - 1) + 2, ".tscn"))
+
 
 func get_first_stage():
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")

@@ -8,9 +8,8 @@ var player_laps = [0, 0, 0, 0]
 
 func setup_players():
 	var players = []
-	var player_num = RoundManager.device_map.size()
 	
-	for i in range(player_num):
+	for i in range(RoundManager.players_total):
 		var start = get_node(str("PlayerStartingPosition/StartingPosition", i + 1))
 		var player = PLAYER.instance()
 		
@@ -20,9 +19,12 @@ func setup_players():
 		player.id = i
 		player.device_name = RoundManager.device_map[i]
 		player.set_name(str("Player", i + 1))
+		players.append(player)
 		add_child(player)
 	
 	get_node("PlayerStartingPosition").queue_free()
+	
+	return players
 
 
 func increase_player_checkpoint(player):

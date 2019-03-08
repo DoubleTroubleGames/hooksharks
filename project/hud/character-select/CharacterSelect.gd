@@ -11,7 +11,7 @@ var trying_to_leave = false
 
 
 func _ready():
-	RoundManager.device_map.clear()
+	RoundManager.reset_device_map()
 	available_characters = $Boxes/SelectionBox0.CHARACTERS.duplicate()
 
 	for i in range(boxes.size()):
@@ -56,9 +56,14 @@ func update_boxes():
 
 
 func set_device_map():
+	var num_players = 0
+	
 	for box in boxes:
 		if box.is_ready():
 			RoundManager.device_map.append(box.device_name)
+			num_players += 1
+	
+	RoundManager.players_total = num_players
 
 
 func can_start():
@@ -84,6 +89,7 @@ func start_game():
 	starting_game = true
 	
 	set_device_map()
+	RoundManager.reset_round()
 	
 	if RoundManager.gamemode == "Arena":
 		get_tree().change_scene("res://arena-mode/Arena.tscn")

@@ -23,25 +23,29 @@ const ROUND_TEXTURES = [
 		preload("res://hud/round_screen/ui_03.png"),
 		preload("res://hud/round_screen/ui_04.png"),
 		preload("res://hud/round_screen/ui_05.png")]
-const WINNER_POS = [Vector2(50, 150), Vector2(980, 150)]
+const WINNER_POS = [Vector2(50, 150), Vector2(980, 150), Vector2(50, 450),
+		Vector2(980, 450)]
 
 func _ready():
 	background.modulate.a = 0
 	round_number.texture = ROUND_TEXTURES[RoundManager.round_number - 1]
-	
+
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
+
+	for i in range(player_scores.size()):
+		player_scores[i].visible = i < RoundManager.players_total
 
 func show_round():
 	var player_score = null
 
 	# Check draw
-	if RoundManager.winner == -1:
+	if RoundManager.round_winner == -1:
 		round_draw.visible = true
 		round_text.visible = false
 		round_number.visible = false
 	else:
-		player_score = player_scores[RoundManager.winner]
+		player_score = player_scores[RoundManager.round_winner]
 
 	# Fade in
 	tween.interpolate_property(background, "modulate:a", null, 1, DURATION,
@@ -55,12 +59,13 @@ func show_round():
 		yield(player_score, "marker_animation_ended")
 
 	# Check win condition
-	if RoundManager.scores[0] < 3 and RoundManager.scores[1] < 3:
+	var match_winner = RoundManager.get_match_winner()
+	if match_winner == -1:
 		display_timer.start()
 		yield(display_timer, "timeout")
 		emit_signal("finished")
 	else:
-		win_animation()
+		win_animation(match_winner)
 
 func hide_round():
 	tween.interpolate_property(background, "modulate:a", 1, 0, DURATION,
@@ -68,9 +73,9 @@ func hide_round():
 	tween.start()
 
 
-func win_animation():
+func win_animation(match_winner):
 	# Winner label animation
-	round_winner.rect_position = WINNER_POS[RoundManager.winner]
+	round_winner.rect_position = WINNER_POS[match_winner]
 	round_winner.rect_scale = Vector2(2, 2)
 	round_winner.modulate.a = 0
 	round_winner.visible = true
@@ -93,11 +98,9 @@ func win_animation():
 	button_restart.disabled = false
 	button_restart.grab_focus()
 
-	RoundManager.scores = [0, 0]
-	RoundManager.round_number = 1
-
 
 func _on_Restart_pressed():
+	RoundManager.reset_round()
 	get_tree().reload_current_scene()
 
 

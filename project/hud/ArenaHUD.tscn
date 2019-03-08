@@ -47,7 +47,7 @@ load_path = "res://.import/UI_TITLE_QUIT.png-52609523bccd1b564089bcdb4e8f5cc2.st
 flags = 4
 load_path = "res://.import/UI_TITLE_QUIT_SELECT.png-46b3f0d4584b90c3ac18f739f9408ab7.stex"
 
-[node name="ArenaHUD" type="CanvasLayer"]
+[node name="ArenaHUD" type="CanvasLayer" index="0"]
 
 pause_mode = 2
 layer = 1
@@ -196,9 +196,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -577.0
-margin_top = -92.0
+margin_top = -234.0
 margin_right = 577.0
-margin_bottom = 92.0
+margin_bottom = 234.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -220,6 +220,22 @@ portrait_texture = ExtResource( 7 )
 editor/display_folded = true
 margin_left = 927.0
 margin_right = 1154.0
+portrait_texture = ExtResource( 8 )
+
+[node name="Player3" parent="Background/ScoreGrid" index="2" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+margin_top = 284.0
+margin_bottom = 468.0
+portrait_texture = ExtResource( 8 )
+
+[node name="Player4" parent="Background/ScoreGrid" index="3" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+margin_left = 927.0
+margin_top = 284.0
+margin_right = 1154.0
+margin_bottom = 468.0
 portrait_texture = ExtResource( 8 )
 
 [node name="Buttons" type="HBoxContainer" parent="Background" index="2"]
