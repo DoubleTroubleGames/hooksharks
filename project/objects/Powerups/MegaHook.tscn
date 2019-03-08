@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 20.0
 
-[node name="MegaHook" type="Node2D"]
+[node name="MegaHook" type="Node2D" index="0"]
 
 visible = false
 script = ExtResource( 1 )
@@ -34,6 +34,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea" index="0"]
 
 shape = SubResource( 1 )
+disabled = true
 
 [connection signal="area_entered" from="HookArea" to="." method="_on_MegaHookArea_area_entered"]
 

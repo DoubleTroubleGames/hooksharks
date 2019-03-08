@@ -22,6 +22,7 @@ func activate(direction):
 	$Sprite.rotation = direction.angle()
 
 	show()
+	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
 
 func _physics_process(delta):
@@ -37,5 +38,5 @@ func _on_MegaHookArea_area_entered(area):
 		if (object != player) and (!object.diving):
 			object._queue_free()
 			queue_free()
-	elif object != player:
+	elif object.is_in_group('wall') or object.is_in_group('hook'):
 		queue_free()
