@@ -41,11 +41,11 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Arena" type="Node2D"]
+[node name="Arena" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
-stage_num = 2
+stage_num = 5
 use_keyboard = false
 keyboard_id = 0
 
@@ -92,6 +92,7 @@ margin_right = 1410.0
 margin_bottom = 790.0
 rect_min_size = Vector2( 1536, 864 )
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
