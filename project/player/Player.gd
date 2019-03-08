@@ -239,7 +239,12 @@ func _input(event):
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
 					hook_dir = speed2
-				emit_signal("hook_shot", self, hook_dir)
+				if not $PowerUps.has_node("MegaHook"):
+					emit_signal("hook_shot", self, hook_dir)
+				else:
+					var megahook = $PowerUps/MegaHook
+					megahook.activate(hook_dir)
+					megahook.set_name("UsedMegaHook")
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 	elif input_type == "Keyboard_mouse":
@@ -250,7 +255,12 @@ func _input(event):
 				var hook_dir = get_arrow_direction()
 				if hook_dir.length() < AXIS_DEADZONE:
 					hook_dir = speed2
-				emit_signal("hook_shot", self, hook_dir)
+				if not $PowerUps.has_node("MegaHook"):
+					emit_signal("hook_shot", self, hook_dir)
+				else:
+					var megahook = $PowerUps/MegaHook
+					megahook.activate(hook_dir)
+					megahook.set_name("UsedMegaHook")
 			elif hook and weakref(hook).get_ref() and not hook.retracting:
 				hook.retract()
 		
