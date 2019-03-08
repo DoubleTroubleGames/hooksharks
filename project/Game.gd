@@ -18,6 +18,8 @@ export (int)var stage_num = 10
 var hook_clink_positions = []
 var Cameras = []
 var players
+var calling_check_winner = false
+
 
 func _ready():
 	var stage = get_first_stage().instance()
@@ -112,23 +114,53 @@ func add_new_stage():
 
 func remove_player(player, is_player_collision):
 	players.erase(player)
+	
+	if not calling_check_winner:
+		call_deferred("check_winner")
+		calling_check_winner = true
+	
+#	if players.size() == 1:
+#		var winner = players[0]
+#		winner.get_node("Area2D").queue_free()
+#		if not is_player_collision:
+#			RoundManager.scores[winner.id] += 1
+#			RoundManager.round_winner = winner.id
+#		else:
+#			RoundManager.round_winner = -1
+#		winner.set_physics_process(false)
+#		winner.set_process_input(false)
+#
+#		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+#		show_round()
+#		yield(hud, "finished")
+#		free_current_stage()
+#		yield($StageTween, "tween_completed")
+#		add_new_stage()
+
+
+func check_winner():
+	calling_check_winner = false
+	
 	if players.size() == 1:
 		var winner = players[0]
 		winner.get_node("Area2D").queue_free()
-		if not is_player_collision:
-			RoundManager.scores[winner.id] += 1
-			RoundManager.round_winner = winner.id
-		else:
-			RoundManager.round_winner = -1
 		winner.set_physics_process(false)
 		winner.set_process_input(false)
-
-		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
-		show_round()
-		yield(hud, "finished")
-		free_current_stage()
-		yield($StageTween, "tween_completed")
-		add_new_stage()
+		RoundManager.scores[winner.id] += 1
+		RoundManager.round_winner = winner.id
+	elif players.size() == 0:
+		RoundManager.round_winner = -1
+	else:
+		return
+	
+	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+	show_round()
+	
+	yield(hud, "finished")
+	free_current_stage()
+	
+	yield($StageTween, "tween_completed")
+	add_new_stage()
 
 
 func _on_player_hook_shot(player, direction):

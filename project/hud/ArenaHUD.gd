@@ -26,25 +26,28 @@ const ROUND_TEXTURES = [
 const WINNER_POS = [Vector2(50, 150), Vector2(980, 150), Vector2(50, 450),
 		Vector2(980, 450)]
 
+
 func _ready():
 	background.modulate.a = 0
-	round_number.texture = ROUND_TEXTURES[RoundManager.round_number - 1]
-
+	
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
 
 	for i in range(player_scores.size()):
 		player_scores[i].visible = i < RoundManager.players_total
 
+
 func show_round():
 	var player_score = null
-
+	
+	round_number.texture = ROUND_TEXTURES[RoundManager.round_number - 1]
+	
 	# Check draw
-	if RoundManager.round_winner == -1:
-		round_draw.visible = true
-		round_text.visible = false
-		round_number.visible = false
-	else:
+	var is_draw = RoundManager.round_winner == -1
+	round_draw.visible = is_draw
+	round_text.visible = not is_draw
+	round_number.visible = not is_draw
+	if not is_draw:
 		player_score = player_scores[RoundManager.round_winner]
 
 	# Fade in
@@ -54,7 +57,7 @@ func show_round():
 	yield(tween, "tween_completed")
 
 	# Marker animation
-	if player_score:
+	if not is_draw:
 		player_score.marker_animation()
 		yield(player_score, "marker_animation_ended")
 
@@ -66,6 +69,7 @@ func show_round():
 		emit_signal("finished")
 	else:
 		win_animation(match_winner)
+
 
 func hide_round():
 	tween.interpolate_property(background, "modulate:a", 1, 0, DURATION,
