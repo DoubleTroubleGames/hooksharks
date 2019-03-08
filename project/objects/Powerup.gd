@@ -13,12 +13,14 @@ func setHook(new_hook):
 	hook = new_hook
 
 func removeHook():
-	hook = null	
+	hook = null
 
 func activate(player):
 	var power = powerup.instance()
 	# If initialized sucessfully, add it to player
 	if power.init(player):
 		player.get_node("PowerUps").add_child(power)
+	if hook:
+		hook.free_hook()
 	queue_free()
 	
