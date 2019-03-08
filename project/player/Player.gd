@@ -68,20 +68,11 @@ func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
 	
-	if event is InputEventJoypadMotion:
-		if event.axis == JOY_ANALOG_LX:
-			input_direction.x = event.axis_value
-		elif event.axis == JOY_ANALOG_LY:
-			input_direction.y = event.axis_value
-#	else:
 	for action in is_pressed.keys():
 		if event.is_action(action):
 			is_pressed[action] = event.is_pressed() or\
 					(event is InputEventKey and event.is_echo())
 			break
-	
-	if event is InputEventMouseButton:
-		print(event.as_text())
 	
 	if event.is_action_pressed("dive"):
 		dive()
@@ -89,8 +80,6 @@ func _input(event):
 		emerge()
 	elif event.is_action_pressed("shoot"):
 		shoot()
-	elif event.is_action_pressed("pause"):
-		get_tree().paused = !get_tree().paused
 
 
 func _physics_process(delta):
@@ -130,22 +119,7 @@ func _physics_process(delta):
 			if is_pressed["left"]:
 				speed2 = speed2.rotated(-ROT_SPEED * delta)
 		elif movement_type == DIRECT:
-			var direction = Vector2(0,0)
-			if device_name == "keyboard":
-				if is_pressed["right"]:
-					direction += Vector2(1, 0)
-				if is_pressed["left"]:
-					direction += Vector2(-1, 0)
-				if is_pressed["up"]:
-					direction += Vector2(0, -1)
-				if is_pressed["down"]:
-					direction += Vector2(0, 1)
-				
-				print(direction)
-				direction = direction.normalized()
-			else:
-				if input_direction.length() > AXIS_DEADZONE:
-					direction = input_direction
+			var direction = get_movement_direction()
 			
 			if direction.length() > 0:
 				if speed2.angle_to(direction) > DIRECT_MOVEMENT_MARGIN:
@@ -170,9 +144,10 @@ func _physics_process(delta):
 	
 	rotation = speed2.angle()
 	
-	if self.create_trail and self.position.distance_to(last_trail_pos) > 2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
-		if not diving:
-			create_trail(self.position)
+	if self.create_trail and not diving and\
+			self.position.distance_to(last_trail_pos) >\
+			2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
+		create_trail(self.position)
 	
 	# Update arrow direction
 	var arrow_dir = get_arrow_direction()
@@ -189,8 +164,30 @@ func get_arrow_direction():
 	if gamepad_id != -1:
 		return Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
 				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY))
-	else:
-		return get_global_mouse_position() - get_position()
+	
+	return get_global_mouse_position() - get_position()
+
+
+func get_movement_direction():
+	var direction
+	
+	if gamepad_id != -1:
+		direction = Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_LX),
+				Input.get_joy_axis(gamepad_id, JOY_ANALOG_LY))
+		if direction.length() > AXIS_DEADZONE:
+			return direction
+		return Vector2()
+	
+	if is_pressed["right"]:
+		direction += Vector2(1, 0)
+	if is_pressed["left"]:
+		direction += Vector2(-1, 0)
+	if is_pressed["up"]:
+		direction += Vector2(0, -1)
+	if is_pressed["down"]:
+		direction += Vector2(0, 1)
+	
+	return direction.normalized()
 
 
 func create_trail(pos):
@@ -228,10 +225,13 @@ func hook_collision(from_hook):
 	$SFX/OnHit.play()
 	$BloodParticles.emitting = true
 	stunned = true
-	pull_dir = (from_hook.rope.get_point_position(0)-from_hook.rope.get_point_position(1)).normalized()
+	pull_dir = (from_hook.rope.get_point_position(0) - \
+			from_hook.rope.get_point_position(1)).normalized()
+	
 	if not can_dive: # player was diving or emerging when hooked
 		if sprite_animation.current_animation != "emerge":
 			emerge()
+	
 	yield($HookTimer, "timeout")
 	end_stun(from_hook)
 
@@ -257,7 +257,8 @@ func dive():
 	can_dive = false
 	sprite_animation.play("dive")
 	yield(sprite_animation, "animation_finished")
-	if sprite_animation.assigned_animation == "dive": # verification in case diving was canceled
+	if sprite_animation.assigned_animation == "dive":
+		# Verification in case diving was canceled
 		diving = true
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()

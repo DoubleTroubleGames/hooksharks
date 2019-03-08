@@ -1,6 +1,6 @@
 extends Node
 
-const DEBUG_KEYS = [KEY_PERIOD, KEY_SEMICOLON, KEY_J, KEY_K, KEY_L, KEY_I]
+const DEBUG_KEYS = [KEY_PERIOD, KEY_SEMICOLON, KEY_J, KEY_K, KEY_L, KEY_I, KEY_SLASH]
 
 var scores = [0, 0]
 var round_number = 1

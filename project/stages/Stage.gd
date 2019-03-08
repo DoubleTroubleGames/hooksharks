@@ -6,7 +6,7 @@ var player_checkpoints = [0, 0, 0, 0]
 var player_laps = [0, 0, 0, 0]
 
 
-func setup(GameScene):
+func setup_players():
 	var players = []
 	var player_num = RoundManager.device_map.size()
 	
@@ -20,7 +20,6 @@ func setup(GameScene):
 		player.id = i
 		player.device_name = RoundManager.device_map[i]
 		player.set_name(str("Player", i + 1))
-		GameScene.players.append(player)
 		add_child(player)
 	
 	get_node("PlayerStartingPosition").queue_free()

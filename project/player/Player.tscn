@@ -190,7 +190,7 @@ ROT_SPEED = 0.897598
 ACC = 4
 INITIAL_SPEED = 100
 MAX_SPEED = -1
-movement_type = 0
+movement_type = 1
 
 [node name="WaterParticles" parent="." index="0" instance=ExtResource( 2 )]
 
