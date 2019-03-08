@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=1]
+[ext_resource path="res://assets/noise.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = ""
+
+[sub_resource type="Shader" id=2]
+
+code = "shader_type canvas_item;
+
+void fragment() {
+    COLOR = vec4(11.0/255.0, 53.0/255.0, 89.0/255.0, 1);
+}
+
+/*void fragment() {
+	
+	vec2 uv = SCREEN_UV;
+	uv.y += sin(uv.x*frequency+TIME)*depth;
+	uv.y = clamp(uv.y,0,1);
+	vec3 c = textureLod(SCREEN_TEXTURE,uv,amount).rgb;
+	
+	COLOR.rgb = c;
+}*/
+"
+script = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+
+render_priority = 0
+shader = SubResource( 2 )
+
+[sub_resource type="Shader" id=4]
+
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+uniform float noise_cutoff;
+uniform vec4 wave_color: hint_color;
+uniform vec2 wave_scroll_speed;
+uniform sampler2D distortion;
+uniform float distortion_strength;
+
+void fragment(){
+	float aa_factor = 0.02; //Anti-Aliasing factor
+	
+	vec2 distortMod = (texture(distortion, UV).xy * 2.0 - 1.0) * distortion_strength;
+	
+	float noise_x = mod(UV.x + wave_scroll_speed.x*TIME, 1.0) + distortMod.x;
+	float noise_y = mod(UV.y + wave_scroll_speed.y*TIME, 1.0) + distortMod.y;
+	vec2 noiseUV = vec2(noise_x, noise_y);
+	vec4 noisePixel = texture(noise, noiseUV);
+	
+	vec2 pos = SCREEN_UV;
+	
+	vec4 pixel = texture(SCREEN_TEXTURE, pos);
+	
+	float value = (noisePixel.r + noisePixel.g + noisePixel.g)/3.0;
+	if (value >= noise_cutoff - aa_factor) {
+		float alpha = smoothstep(noise_cutoff - aa_factor, noise_cutoff + aa_factor, value);
+		COLOR = vec4(wave_color.rgb, alpha);
+	}
+	else {
+		COLOR = pixel;
+	}
+}"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="ShaderMaterial" id=5]
+
+render_priority = 0
+shader = SubResource( 4 )
+shader_param/noise_cutoff = 0.74
+shader_param/wave_color = Plane( 1, 1, 1, 1 )
+shader_param/wave_scroll_speed = Vector2( -0.03, 0.025 )
+shader_param/distortion_strength = 0.2
+shader_param/noise = ExtResource( 2 )
+shader_param/distortion = ExtResource( 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[node name="Water" type="CanvasLayer" index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="BG" type="ColorRect" parent="." index="0"]
+
+material = SubResource( 3 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "Material" ]
+
+[node name="Waves" type="ColorRect" parent="." index="1"]
+
+material = SubResource( 5 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "Material" ]
+
+
