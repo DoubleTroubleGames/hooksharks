@@ -42,9 +42,9 @@ uniform vec4 wave_color: hint_color;
 uniform vec2 wave_scroll_speed;
 uniform sampler2D distortion;
 uniform float distortion_strength;
+uniform float aa_factor; //Anti-Aliasing factor
 
 void fragment(){
-	float aa_factor = 0.02; //Anti-Aliasing factor
 	
 	vec2 distortMod = (texture(distortion, UV).xy * 2.0 - 1.0) * distortion_strength;
 	
@@ -76,6 +76,7 @@ shader_param/noise_cutoff = 0.74
 shader_param/wave_color = Plane( 1, 1, 1, 1 )
 shader_param/wave_scroll_speed = Vector2( -0.03, 0.025 )
 shader_param/distortion_strength = 0.2
+shader_param/aa_factor = null
 shader_param/noise = ExtResource( 2 )
 shader_param/distortion = ExtResource( 1 )
 _sections_unfolded = [ "shader_param" ]
