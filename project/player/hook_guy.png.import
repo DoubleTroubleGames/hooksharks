@@ -7,7 +7,10 @@ path="res://.import/hook_guy.png-c59b1b98ceedcfaef8f6b513da9143cb.stex"
 [deps]
 
 source_file="res://player/hook_guy.png"
+source_md5="d96b6b871ef7091e1372f60fdef9e782"
+
 dest_files=[ "res://.import/hook_guy.png-c59b1b98ceedcfaef8f6b513da9143cb.stex" ]
+dest_md5="9a5dbb256e22af2d0adf2a75658f8da8"
 
 [params]
 

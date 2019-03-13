@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://race-mode/Race.gd" type="Script" id=1]
 [ext_resource path="res://assets/fundo.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/reflex_02.png" type="Texture" id=4]
 [ext_resource path="res://hud/blur.tscn" type="PackedScene" id=5]
 [ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/white.png" type="Texture" id=7]
 
 [sub_resource type="Shader" id=1]
 
@@ -41,7 +40,7 @@ _sections_unfolded = [ "shader_param" ]
 flags = 4
 load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
 
-[node name="Race" type="Node2D" index="0"]
+[node name="Race" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Z Index" ]
@@ -93,7 +92,6 @@ margin_right = 1408.0
 margin_bottom = 792.0
 rect_min_size = Vector2( 1536, 864 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -107,20 +105,10 @@ _sections_unfolded = [ "Material", "Pause", "Rect" ]
 
 [node name="HUD" parent="." index="3" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 _sections_unfolded = [ "Pause", "Rect", "Visibility" ]
 
-[node name="Blink" type="Sprite" parent="." index="4"]
-
-modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 20, 11.25 )
-texture = ExtResource( 7 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="StageTween" type="Tween" parent="." index="5"]
+[node name="StageTween" type="Tween" parent="." index="4"]
 
 repeat = false
 playback_process_mode = 1

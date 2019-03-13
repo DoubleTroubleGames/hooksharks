@@ -7,7 +7,10 @@ path="res://.import/ui_title_restart_select.png-e4cf9b5d2523c3b46ff56f46bf70f967
 [deps]
 
 source_file="res://main-menu/ui_title_restart_select.png"
+source_md5="c5feb0e2f9fb7465f990159bce59334d"
+
 dest_files=[ "res://.import/ui_title_restart_select.png-e4cf9b5d2523c3b46ff56f46bf70f967.stex" ]
+dest_md5="d4d6ec34b7e00b3b31adde6ecc3f576f"
 
 [params]
 

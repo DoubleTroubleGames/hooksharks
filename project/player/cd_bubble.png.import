@@ -7,7 +7,10 @@ path="res://.import/cd_bubble.png-9de39588a741b561bd0ca7b929b523ee.stex"
 [deps]
 
 source_file="res://player/cd_bubble.png"
+source_md5="da29f4d575a3de1f74fa04352b776592"
+
 dest_files=[ "res://.import/cd_bubble.png-9de39588a741b561bd0ca7b929b523ee.stex" ]
+dest_md5="b2787e89e02fa81fb26d209bc90f0521"
 
 [params]
 

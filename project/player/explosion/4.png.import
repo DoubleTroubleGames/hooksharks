@@ -7,7 +7,10 @@ path="res://.import/4.png-71931780f914186347b1449a09899ed4.stex"
 [deps]
 
 source_file="res://player/explosion/4.png"
+source_md5="59770b05dc6e198be097506afdcda11f"
+
 dest_files=[ "res://.import/4.png-71931780f914186347b1449a09899ed4.stex" ]
+dest_md5="15fcd6b60b0e4603c5daeac6c8141a14"
 
 [params]
 

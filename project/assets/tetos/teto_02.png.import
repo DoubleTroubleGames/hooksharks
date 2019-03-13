@@ -7,7 +7,10 @@ path="res://.import/teto_02.png-fc467678ca658eb98b73f12aee3361b1.stex"
 [deps]
 
 source_file="res://assets/tetos/teto_02.png"
+source_md5="1c0039060f381b847713f4ad37c148f3"
+
 dest_files=[ "res://.import/teto_02.png-fc467678ca658eb98b73f12aee3361b1.stex" ]
+dest_md5="86a68debf053910543cb801403e51fd6"
 
 [params]
 

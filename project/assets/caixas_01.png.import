@@ -7,7 +7,10 @@ path="res://.import/caixas_01.png-7625f8eafe3dfe9e94de0dbf1b609862.stex"
 [deps]
 
 source_file="res://assets/caixas_01.png"
+source_md5="7799c48ff8411e9476173c954103af87"
+
 dest_files=[ "res://.import/caixas_01.png-7625f8eafe3dfe9e94de0dbf1b609862.stex" ]
+dest_md5="7dd613feca61a233e36b6f7411a84213"
 
 [params]
 

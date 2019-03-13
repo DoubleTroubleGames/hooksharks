@@ -103,6 +103,15 @@ func win_animation(match_winner):
 	button_restart.grab_focus()
 
 
+func blink_screen():
+	var tween = Tween.new()
+	tween.interpolate_property($Blink, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
+	self.add_child(tween)
+	yield(tween, "tween_completed")
+	tween.queue_free()
+
+
 func _on_Restart_pressed():
 	RoundManager.reset_round()
 	get_tree().reload_current_scene()

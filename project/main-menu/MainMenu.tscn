@@ -9,14 +9,13 @@
 [ext_resource path="res://main-menu/ui_title_quit_select.png" type="Texture" id=7]
 [ext_resource path="res://sound/click.wav" type="AudioStream" id=8]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -30,7 +29,6 @@ anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -48,7 +46,6 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 0.2, 0.2 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -69,7 +66,6 @@ margin_right = 556.0
 margin_bottom = 708.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -96,7 +92,6 @@ margin_right = 886.0
 margin_bottom = 708.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -123,7 +118,6 @@ margin_right = 1224.0
 margin_bottom = 712.0
 rect_min_size = Vector2( 250, 112 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -142,7 +136,6 @@ _sections_unfolded = [ "Margin", "Rect", "custom_fonts" ]
 
 stream = ExtResource( 8 )
 volume_db = 0.0
-pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "SFX"

@@ -7,7 +7,10 @@ path="res://.import/box2_closed.png-0a12d824bdbe7f97c19ec1085b2f43b7.stex"
 [deps]
 
 source_file="res://assets/box2_closed.png"
+source_md5="452bb08c954cca398f6792d77aa9e67d"
+
 dest_files=[ "res://.import/box2_closed.png-0a12d824bdbe7f97c19ec1085b2f43b7.stex" ]
+dest_md5="61addd2e9ba8ca92837e3e543b742ae7"
 
 [params]
 

@@ -7,7 +7,10 @@ path="res://.import/tire.png-cd4e261964a0d0d58a2948509750e7bc.stex"
 [deps]
 
 source_file="res://assets/tire.png"
+source_md5="a6639c7cd2d2e2ad056bd17e5910ec14"
+
 dest_files=[ "res://.import/tire.png-cd4e261964a0d0d58a2948509750e7bc.stex" ]
+dest_md5="03cdbfd8114946a2c4684696c5cbd691"
 
 [params]
 

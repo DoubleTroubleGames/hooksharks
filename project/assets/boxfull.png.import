@@ -2,12 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/parede_01.png-abfe2b40bb358c301dc722a47521ba90.stex"
+path="res://.import/boxfull.png-0d3bfd82f383c7a9c90b2cdebbf96584.stex"
 
 [deps]
 
-source_file="res://assets/parede_01.png"
-dest_files=[ "res://.import/parede_01.png-abfe2b40bb358c301dc722a47521ba90.stex" ]
+source_file="res://assets/boxfull.png"
+source_md5="612f99b55a3e1ab0db0b760797cbebd6"
+
+dest_files=[ "res://.import/boxfull.png-0d3bfd82f383c7a9c90b2cdebbf96584.stex" ]
+dest_md5="be78ffef577176df7b47040b82ce50a3"
 
 [params]
 

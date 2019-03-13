@@ -7,7 +7,10 @@ path="res://.import/metal.png-e9fa04987e64c74b735b94a2b3ba789b.stex"
 [deps]
 
 source_file="res://assets/metal.png"
+source_md5="ac16970334725a62921d8c242e762cd8"
+
 dest_files=[ "res://.import/metal.png-e9fa04987e64c74b735b94a2b3ba789b.stex" ]
+dest_md5="ce25275b6f37922e423253df21d45e1a"
 
 [params]
 

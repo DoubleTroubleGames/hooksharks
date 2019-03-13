@@ -7,7 +7,10 @@ path="res://.import/box2.png-912381eacc85a8daef5c7b8894279362.stex"
 [deps]
 
 source_file="res://assets/box2.png"
+source_md5="4d2204f463c3441437ec49e0754319d5"
+
 dest_files=[ "res://.import/box2.png-912381eacc85a8daef5c7b8894279362.stex" ]
+dest_md5="8156cc5a28230cbc641b03e12f8c9a02"
 
 [params]
 

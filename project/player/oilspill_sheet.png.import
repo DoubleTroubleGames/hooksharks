@@ -7,7 +7,10 @@ path="res://.import/oilspill_sheet.png-3ca8623d4d075f3eedab77c4dd81de6d.stex"
 [deps]
 
 source_file="res://player/oilspill_sheet.png"
+source_md5="34fae22caff50c21fc8eee375b44c28d"
+
 dest_files=[ "res://.import/oilspill_sheet.png-3ca8623d4d075f3eedab77c4dd81de6d.stex" ]
+dest_md5="96fcf17a9b1c9211c1d30084a956f7b7"
 
 [params]
 

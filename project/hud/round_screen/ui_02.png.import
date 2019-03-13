@@ -7,7 +7,10 @@ path="res://.import/ui_02.png-98b7166318a8daa3fb83bbb1550025e5.stex"
 [deps]
 
 source_file="res://hud/round_screen/ui_02.png"
+source_md5="4e9094707ae041a0149545396d4d9781"
+
 dest_files=[ "res://.import/ui_02.png-98b7166318a8daa3fb83bbb1550025e5.stex" ]
+dest_md5="8c97b674f9cce236e3bd50974fee36a0"
 
 [params]
 

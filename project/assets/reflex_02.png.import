@@ -7,7 +7,10 @@ path="res://.import/reflex_02.png-778e6ac023263ec3065be7ff59732fc8.stex"
 [deps]
 
 source_file="res://assets/reflex_02.png"
+source_md5="50eb29c2b57ece83921a8ce58ca2034d"
+
 dest_files=[ "res://.import/reflex_02.png-778e6ac023263ec3065be7ff59732fc8.stex" ]
+dest_md5="d7aa1a40a0914bb8b7b0644465d59d57"
 
 [params]
 

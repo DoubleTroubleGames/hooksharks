@@ -7,7 +7,10 @@ path="res://.import/scream7.wav-066c73883e354f6acc9dfae0510ba2e2.sample"
 [deps]
 
 source_file="res://sound/scream7.wav"
+source_md5="d6399b242816647151e9470e052c4588"
+
 dest_files=[ "res://.import/scream7.wav-066c73883e354f6acc9dfae0510ba2e2.sample" ]
+dest_md5="e0b9029b6972bd2acd1e443f4439f836"
 
 [params]
 

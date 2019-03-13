@@ -7,7 +7,10 @@ path="res://.import/keyboard.png-65c154364bb09a871ba15b4882903356.stex"
 [deps]
 
 source_file="res://hud/character-select/keyboard.png"
+source_md5="99ffce993000561de5555d31f6d4617d"
+
 dest_files=[ "res://.import/keyboard.png-65c154364bb09a871ba15b4882903356.stex" ]
+dest_md5="e81cfa06abb9319e7a16330c1abb8720"
 
 [params]
 

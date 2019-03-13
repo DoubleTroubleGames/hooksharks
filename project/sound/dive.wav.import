@@ -7,7 +7,10 @@ path="res://.import/dive.wav-da97857c5fbb6cc321a39cc3c7070067.sample"
 [deps]
 
 source_file="res://sound/dive.wav"
+source_md5="f84a4e7fc1f0f9a596fcc871ca67f356"
+
 dest_files=[ "res://.import/dive.wav-da97857c5fbb6cc321a39cc3c7070067.sample" ]
+dest_md5="ddcb3a8aff34471b6d7a1fdf4055794f"
 
 [params]
 

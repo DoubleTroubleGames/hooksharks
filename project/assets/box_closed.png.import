@@ -2,12 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/square.png-a07b0c09e99da012e8f7e5d58d728c57.stex"
+path="res://.import/box_closed.png-4a653777b9083b3dfeca55fb9f34ba43.stex"
 
 [deps]
 
-source_file="res://assets/square.png"
-dest_files=[ "res://.import/square.png-a07b0c09e99da012e8f7e5d58d728c57.stex" ]
+source_file="res://assets/box_closed.png"
+source_md5="452bb08c954cca398f6792d77aa9e67d"
+
+dest_files=[ "res://.import/box_closed.png-4a653777b9083b3dfeca55fb9f34ba43.stex" ]
+dest_md5="61addd2e9ba8ca92837e3e543b742ae7"
 
 [params]
 

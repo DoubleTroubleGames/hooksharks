@@ -7,11 +7,12 @@ var available_characters
 var starting_game = false
 var back_indicator_up_speed = 100
 var back_indicator_down_speed = 150
-var trying_to_leave = false
+var trying_to_leave_counter = 0
 
 
 func _ready():
 	RoundManager.reset_device_map()
+  
 	available_characters = $Boxes/SelectionBox0.CHARACTERS.duplicate()
 
 	for i in range(boxes.size()):
@@ -22,8 +23,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	if trying_to_leave:
-		bar.value = min(100, bar.value + back_indicator_up_speed * delta) 
+	if trying_to_leave_counter > 0:
+		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
 	else:
 		bar.value = max(0, bar.value - back_indicator_down_speed * delta) 
 	if bar.value >= 100:
@@ -37,15 +38,16 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("ui_start"):
-		trying_to_leave = false
+		trying_to_leave_counter = max(0, trying_to_leave_counter - 1)
 		for box in boxes:
 			if box.is_closed():
 				box.open_with(event)
 				return
 	elif event.is_action_pressed("ui_cancel"):
-		trying_to_leave = true
+		trying_to_leave_counter += 1
 	elif event.is_action_released("ui_cancel"):
-		trying_to_leave = false
+		if not Input.is_action_pressed("ui_cancel"):
+			trying_to_leave_counter = max(0, trying_to_leave_counter - 1)
 
 
 func update_boxes():
@@ -64,7 +66,6 @@ func set_device_map():
 			num_players += 1
 	
 	RoundManager.players_total = num_players
-
 
 func can_start():
 	var ready_players = 0

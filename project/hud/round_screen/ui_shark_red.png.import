@@ -7,7 +7,10 @@ path="res://.import/ui_shark_red.png-bbc97964e83eb77f090ad47843518072.stex"
 [deps]
 
 source_file="res://hud/round_screen/ui_shark_red.png"
+source_md5="ec2394acdd161d56a8b5d24df6da211d"
+
 dest_files=[ "res://.import/ui_shark_red.png-bbc97964e83eb77f090ad47843518072.stex" ]
+dest_md5="4ef0fbd68409f347b17bc97136fa2e94"
 
 [params]
 

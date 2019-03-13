@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://wall/Obstacle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/caixas_01.png" type="Texture" id=3]
+[ext_resource path="res://obstacles/BoxMetal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://obstacles/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=4]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=5]
 [ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=6]
 
-[node name="Stage1" index="0" instance=ExtResource( 1 )]
+[node name="Stage1" instance=ExtResource( 1 )]
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 
@@ -25,40 +25,38 @@ position = Vector2( 300, 515 )
 
 position = Vector2( 300, 665 )
 
-[node name="Top" parent="Obstacles" index="0"]
+[node name="BoxMetal" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 1280, 0 )
-scale = Vector2( 2, 2 )
-
-[node name="Bottom" parent="Obstacles" index="1"]
-
-position = Vector2( 1280, 1440 )
-scale = Vector2( 2, 2 )
-
-[node name="Left" parent="Obstacles" index="2"]
-
-position = Vector2( 0, 720 )
-scale = Vector2( 2, 2 )
-
-[node name="Right" parent="Obstacles" index="3"]
-
-position = Vector2( 2560, 720 )
-scale = Vector2( 2, 2 )
-
-[node name="Obstacle" parent="Obstacles" index="4" instance=ExtResource( 2 )]
-
-editor/display_folded = true
-position = Vector2( 1146.56, 820 )
-scale = Vector2( 0.326351, 1 )
+position = Vector2( 1100, 790 )
+scale = Vector2( 1.5, 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" parent="Obstacles/Obstacle" index="0"]
+[node name="Walls" parent="Obstacles" index="1" instance=ExtResource( 3 )]
 
-texture = ExtResource( 3 )
+position = Vector2( 0, -100 )
+_sections_unfolded = [ "Transform" ]
+size = 3000
 
-[node name="CollisionPolygon2D" parent="Obstacles/Obstacle/Area2D" index="0"]
+[node name="Walls2" parent="Obstacles" index="2" instance=ExtResource( 3 )]
 
-polygon = PoolVector2Array( -1000, -60, 1000, -60, 1000, 60, -1000, 60 )
+position = Vector2( -17.1233, 1485.72 )
+scale = Vector2( 1, -1 )
+_sections_unfolded = [ "Transform" ]
+size = 2800
+
+[node name="Walls3" parent="Obstacles" index="3" instance=ExtResource( 3 )]
+
+rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
+size = 1400
+
+[node name="Walls4" parent="Obstacles" index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 2703.73, -35.1133 )
+rotation = 1.5708
+scale = Vector2( 1, -1 )
+_sections_unfolded = [ "Transform" ]
+size = 1400
 
 [node name="FinishLine" parent="." index="5" instance=ExtResource( 4 )]
 
@@ -118,5 +116,4 @@ rotation = 1.5708
 scale = Vector2( 1, 2.88048 )
 
 
-[editable path="Obstacles/Obstacle"]
 [editable path="FinishLine"]
