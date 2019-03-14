@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 30, 30 )
 
-[node name="PullableObject" type="Node2D" index="0" groups=[
+[node name="PullableObject" type="Node2D" groups=[
 "object",
 ]]
 

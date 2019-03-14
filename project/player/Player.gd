@@ -311,3 +311,5 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('player') and object != self:
 		if diving == object.diving:
 			die(true)
+	if object.is_in_group('powerup') and not diving:
+		object.activate(self)
