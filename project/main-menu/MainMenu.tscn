@@ -40,7 +40,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="MainMenu" type="Control" index="0"]
+[node name="MainMenu" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -227,5 +227,4 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Rect", "Visibility" ]
-
 
