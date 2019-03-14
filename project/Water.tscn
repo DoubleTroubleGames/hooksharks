@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Water.gd" type="Script" id=1]
 [ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=2]
 [ext_resource path="res://assets/noise.png" type="Texture" id=3]
-[ext_resource path="res://assets/floor.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -141,7 +140,7 @@ _sections_unfolded = [ "Resource" ]
 
 render_priority = 0
 shader = SubResource( 4 )
-shader_param/rect_size = Vector2( 1280, 720 )
+shader_param/rect_size = Vector2( 1920, 1080 )
 shader_param/noise_size = Vector2( 700, 700 )
 shader_param/noise_cutoff = 0.75
 shader_param/h_foam_distance = 0.07
@@ -154,7 +153,7 @@ shader_param/noise = ExtResource( 3 )
 shader_param/distortion = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
 
-[node name="Water" type="ColorRect" index="0"]
+[node name="Water" type="ColorRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -201,12 +200,6 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Material", "Pause" ]
-
-[node name="floor" type="Sprite" parent="Waves" index="0"]
-
-position = Vector2( 847.373, -113.274 )
-scale = Vector2( 0.513043, 0.513043 )
-texture = ExtResource( 4 )
 
 [connection signal="resized" from="." to="." method="_on_Water_resized"]
 
