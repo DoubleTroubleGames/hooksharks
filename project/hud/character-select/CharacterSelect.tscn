@@ -5,7 +5,7 @@
 [ext_resource path="res://player/circle.png" type="Texture" id=3]
 [ext_resource path="res://player/bubble.png" type="Texture" id=4]
 
-[node name="CharacterSelect" type="Control" index="0"]
+[node name="CharacterSelect" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -35,26 +35,45 @@ columns = 4
 
 [node name="SelectionBox0" parent="Boxes" index="0" instance=ExtResource( 2 )]
 
-margin_right = 100.0
-margin_bottom = 100.0
+margin_left = 116.0
+margin_top = 410.0
+margin_right = 376.0
+margin_bottom = 670.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
 [node name="SelectionBox1" parent="Boxes" index="1" instance=ExtResource( 2 )]
 
-margin_left = 104.0
-margin_right = 204.0
-margin_bottom = 100.0
+margin_left = 612.0
+margin_top = 410.0
+margin_right = 872.0
+margin_bottom = 670.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
 [node name="SelectionBox2" parent="Boxes" index="2" instance=ExtResource( 2 )]
 
-margin_left = 208.0
-margin_right = 308.0
-margin_bottom = 100.0
+margin_left = 1108.0
+margin_top = 410.0
+margin_right = 1368.0
+margin_bottom = 670.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="SelectionBox3" parent="Boxes" index="3" instance=ExtResource( 2 )]
 
-margin_left = 312.0
-margin_right = 412.0
-margin_bottom = 100.0
+margin_left = 1604.0
+margin_top = 410.0
+margin_right = 1864.0
+margin_bottom = 670.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="." index="1"]
 

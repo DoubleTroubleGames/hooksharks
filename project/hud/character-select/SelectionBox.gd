@@ -6,7 +6,7 @@ signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
-const CHARACTERS = ["a", "b", "c", "d"]
+const CHARACTERS = [Color(1, 1, 1), Color(1, .4, .4), Color(.4, .4, 1), Color(.4, 1, .4)]
 
 var available_chars = CHARACTERS.duplicate()
 var char_index
@@ -22,6 +22,7 @@ func _input(event):
 		if state == States.OPEN and CHARACTERS[char_index] in available_chars:
 			change_state(States.READY)
 		elif state == States.READY:
+			$Sprite/AnimationPlayer.play("shake")
 			emit_signal("tried_to_start")
 	
 	elif event.is_action_pressed("ui_cancel"):
@@ -46,8 +47,10 @@ func change_state(new_state):
 			device_name = ""
 			$DeviceSprite.set_texture(null)
 			$DeviceNumber.set_text("")
+			$SharkSprite.hide()
 			$State.set_text("CLOSED")
 		States.OPEN:
+			$SharkSprite.show()
 			$State.set_text("OPEN")
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
@@ -76,7 +79,8 @@ func open_with(event):
 		$DeviceSprite.set_texture(load("res://hud/character-select/keyboard.png"))
 	else:
 		$DeviceSprite.set_texture(load("res://hud/character-select/gamepad.png"))
-		$DeviceNumber.set_text(str(device_name.split("_")[1]))
+		var num = int(device_name.split("_")[1]) + 1
+		$DeviceNumber.set_text(str(num))
 	change_state(States.OPEN)
 
 
@@ -86,9 +90,8 @@ func update_available_characters(characters):
 
 
 func set_character(index):
-	char_index = wrapi(index, 0, CHARACTERS.size())
-	$Character.set_text(str(char_index))
-	# Change image here
+	char_index = wrapi(index, 0, CHARACTERS.size()) 
+	$SharkSprite.set_modulate(CHARACTERS[char_index])
 	
 	if not CHARACTERS[char_index] in available_chars:
 		# Display as unavailable
