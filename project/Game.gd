@@ -4,6 +4,7 @@ onready var bg = $BG
 onready var hud = $HUD
 
 const HOOK = preload("res://hook/Hook.tscn")
+const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
 const ROPE = preload("res://rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
@@ -13,16 +14,16 @@ const TRANSITION_OFFSET = 1000
 const TRANSITION_TIME = 1.0
 
 export (int)var stage_num = 10
-export (bool)var use_keyboard = false
-export (int, "0", "1", "2", "3")var keyboard_id = 0
 
 var hook_clink_positions = []
 var Cameras = []
-var players = []
+var players
+var calling_check_winner = false
+
 
 func _ready():
 	var stage = get_first_stage().instance()
-	stage.setup(self)
+	players = stage.setup_players()
 	stage.set_name("Stage")
 	add_child(stage)
 	
@@ -30,7 +31,7 @@ func _ready():
 #	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
 #	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
-	
+
 	Cameras = get_cameras() # on Arena.gd and Race.gd
 	connect_players() # on Arena.gd and Race.gd
 	activate_players() # on Arena.gd and Race.gd
@@ -42,6 +43,7 @@ func _physics_process(delta):
 	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
 	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
 
+
 func create_rope(player, hook):
 	var rope = ROPE.instance()
 	rope.add_point(player.position)
@@ -51,10 +53,11 @@ func create_rope(player, hook):
 	get_node("Stage/Ropes").add_child(rope)
 	return rope
 
+
 func show_round():
 	hud.show_round()
 	yield(hud, "finished")
-	if RoundManager.winner != -1:
+	if RoundManager.round_winner != -1:
 		RoundManager.round_number += 1
 	hud.hide_round()
 
@@ -87,7 +90,7 @@ func free_current_stage():
 
 func add_new_stage():
 	var stage = get_random_stage().instance()
-	stage.setup(self)
+	players = stage.setup_players()
 	stage.set_name("Stage")
 	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	add_child(stage)
@@ -99,37 +102,57 @@ func add_new_stage():
 	yield($StageTween, "tween_completed")
 	activate_players()
 
+
 func remove_player(player, is_player_collision):
 	players.erase(player)
+	
+	if not calling_check_winner:
+		call_deferred("check_winner")
+		calling_check_winner = true
+	
+#	if players.size() == 1:
+#		var winner = players[0]
+#		winner.get_node("Area2D").queue_free()
+#		if not is_player_collision:
+#			RoundManager.scores[winner.id] += 1
+#			RoundManager.round_winner = winner.id
+#		else:
+#			RoundManager.round_winner = -1
+#		winner.set_physics_process(false)
+#		winner.set_process_input(false)
+#
+#		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+#		show_round()
+#		yield(hud, "finished")
+#		free_current_stage()
+#		yield($StageTween, "tween_completed")
+#		add_new_stage()
+
+
+func check_winner():
+	calling_check_winner = false
+	
 	if players.size() == 1:
 		var winner = players[0]
 		winner.get_node("Area2D").queue_free()
-		if not is_player_collision:
-			var winner_id = get_winner_id(winner)
-			RoundManager.scores[winner_id] += 1
-			RoundManager.winner = winner_id
-		else:
-			RoundManager.winner = -1
 		winner.set_physics_process(false)
 		winner.set_process_input(false)
-		
-		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
-		show_round()
-		yield(hud, "finished")
-		free_current_stage()
-		yield($StageTween, "tween_completed")
-		add_new_stage()
-
-
-func get_winner_id(winner):
-	if not use_keyboard:
-		return winner.id 
-	if winner.id == -1:
-		return keyboard_id
-	if winner.id >= keyboard_id:
-		return winner.id + 1
+		RoundManager.scores[winner.id] += 1
+		RoundManager.round_winner = winner.id
+	elif players.size() == 0:
+		RoundManager.round_winner = -1
+	else:
+		return
 	
-	return winner.id
+	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+	show_round()
+	
+	yield(hud, "finished")
+	free_current_stage()
+	
+	yield($StageTween, "tween_completed")
+	add_new_stage()
+
 
 func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
@@ -140,9 +163,15 @@ func _on_player_hook_shot(player, direction):
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
 	new_hook.connect("wall_hit", self, "_on_wall_hit")
-	
+
 	player.get_node("SFX/HarpoonSFX").play()
 	player.hook = new_hook
+	
+func _on_player_megahook_shot(player, direction):
+	var new_megahook = MEGAHOOK.instance()
+	get_node("Stage/Hooks").add_child(new_megahook)
+	new_megahook.activate(player, direction)
+
 
 func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
@@ -153,14 +182,15 @@ func _on_hook_clinked(clink_position):
 	hook_clink.emitting = true
 	hook_clink.position = clink_position
 	add_child(hook_clink)
-	
+
 	hook_clink_positions.append(clink_position)
-	
+
 	var delay = hook_clink.lifetime / hook_clink.speed_scale
 	yield(get_tree().create_timer(delay), "timeout")
-	
+
 	hook_clink.queue_free()
 	hook_clink_positions.erase(clink_position)
+
 
 func _on_wall_hit(position, rotation):
 	var wall_particles = WALL_PARTICLES.instance()
@@ -168,18 +198,21 @@ func _on_wall_hit(position, rotation):
 	wall_particles.position = position
 	wall_particles.rotation = rotation
 	add_child(wall_particles)
-	
+
 	var delay = wall_particles.lifetime / wall_particles.speed_scale
 	yield(get_tree().create_timer(delay), "timeout")
-	
+
 	wall_particles.queue_free()
+
 
 func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
 
+
 func get_random_stage():
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
 	return load(str(base_path, (randi() % stage_num - 1) + 2, ".tscn"))
+
 
 func get_first_stage():
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")

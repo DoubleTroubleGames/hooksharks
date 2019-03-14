@@ -16,14 +16,14 @@ margin_right = 227.0
 margin_bottom = 184.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_constants/separation = 40
 alignment = 0
 script = ExtResource( 1 )
-_sections_unfolded = [ "custom_constants" ]
+_sections_unfolded = [ "Mouse", "custom_constants" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -39,13 +39,13 @@ margin_right = 227.0
 margin_bottom = 88.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 6
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="ScoreMarkers" type="TextureRect" parent="." index="1"]
 
@@ -58,12 +58,13 @@ margin_right = 227.0
 margin_bottom = 184.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 3 )
 stretch_mode = 0
+_sections_unfolded = [ "Mouse" ]
 
 [node name="X1" type="Sprite" parent="ScoreMarkers" index="0"]
 

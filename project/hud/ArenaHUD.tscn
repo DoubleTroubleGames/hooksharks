@@ -65,12 +65,13 @@ anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+rect_clip_content = false
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0, 0, 0, 0.501961 )
-_sections_unfolded = [ "Material" ]
+_sections_unfolded = [ "Material", "Mouse" ]
 
 [node name="Round" type="Control" parent="Background" index="0"]
 
@@ -79,10 +80,12 @@ anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+rect_clip_content = false
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="Text" type="TextureRect" parent="Background/Round" index="0"]
 
@@ -95,13 +98,14 @@ margin_top = 40.0
 margin_right = 215.0
 margin_bottom = 220.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+rect_clip_content = false
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="Draw" type="TextureRect" parent="Background/Round" index="1"]
 
@@ -116,13 +120,14 @@ margin_right = 2859.0
 margin_bottom = 1415.0
 rect_scale = Vector2( 0.14, 0.14 )
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+rect_clip_content = false
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 3 )
 stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="Number" type="TextureRect" parent="Background/Round" index="2"]
 
@@ -135,13 +140,14 @@ margin_top = -110.0
 margin_right = 80.0
 margin_bottom = 169.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+rect_clip_content = false
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 4 )
 stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="Winner" type="Label" parent="Background/Round" index="3"]
 
@@ -157,6 +163,7 @@ margin_top = 150.0
 margin_right = 292.0
 margin_bottom = 242.0
 rect_pivot_offset = Vector2( 121, 46 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -169,7 +176,7 @@ text = "Winner!"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+_sections_unfolded = [ "Mouse", "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Round/Winner" index="0"]
 
@@ -180,7 +187,6 @@ playback_default_blend_time = 0.0
 playback_speed = 0.5
 anims/glow = SubResource( 2 )
 blend_times = [  ]
-autoplay = "glow"
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="ScoreGrid" type="GridContainer" parent="Background" index="1"]
@@ -190,22 +196,24 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -577.0
-margin_top = -92.0
+margin_top = -234.0
 margin_right = 577.0
-margin_bottom = 92.0
+margin_bottom = 234.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+rect_clip_content = false
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_constants/vseparation = 100
 custom_constants/hseparation = 700
 columns = 2
-_sections_unfolded = [ "Rect", "custom_constants" ]
+_sections_unfolded = [ "Mouse", "Rect", "custom_constants" ]
 
 [node name="Player1" parent="Background/ScoreGrid" index="0" instance=ExtResource( 6 )]
 
 editor/display_folded = true
+_sections_unfolded = [ "Margin", "Mouse", "custom_constants" ]
 portrait_texture = ExtResource( 7 )
 
 [node name="Player2" parent="Background/ScoreGrid" index="1" instance=ExtResource( 6 )]
@@ -213,6 +221,22 @@ portrait_texture = ExtResource( 7 )
 editor/display_folded = true
 margin_left = 927.0
 margin_right = 1154.0
+portrait_texture = ExtResource( 8 )
+
+[node name="Player3" parent="Background/ScoreGrid" index="2" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+margin_top = 284.0
+margin_bottom = 468.0
+portrait_texture = ExtResource( 8 )
+
+[node name="Player4" parent="Background/ScoreGrid" index="3" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+margin_left = 927.0
+margin_top = 284.0
+margin_right = 1154.0
+margin_bottom = 468.0
 portrait_texture = ExtResource( 8 )
 
 [node name="Buttons" type="HBoxContainer" parent="Background" index="2"]
@@ -226,6 +250,7 @@ margin_top = 80.0
 margin_right = 367.0
 margin_bottom = 243.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -244,6 +269,8 @@ margin_right = 331.0
 margin_bottom = 163.0
 rect_min_size = Vector2( 331, 163 )
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -256,7 +283,7 @@ group = null
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 10 )
 texture_focused = ExtResource( 10 )
-_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
+_sections_unfolded = [ "Mouse", "Rect", "Textures", "custom_fonts" ]
 
 [node name="Quit" type="TextureButton" parent="Background/Buttons" index="1"]
 
@@ -269,6 +296,8 @@ margin_right = 735.0
 margin_bottom = 163.0
 rect_min_size = Vector2( 304, 162 )
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -306,6 +335,7 @@ anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1

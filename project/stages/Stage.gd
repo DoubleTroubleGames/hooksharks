@@ -6,54 +6,55 @@ var player_checkpoints = [0, 0, 0, 0]
 var player_laps = [0, 0, 0, 0]
 
 
-func setup(GameScene):
+func setup_players():
 	var players = []
-	var player_num = RoundManager.device_map.size()
 	
-	for i in range(1, player_num + 1):
-		var StartPos = get_node(str("PlayerStartingPosition/StartingPosition", i))
-		var Player = PLAYER.instance()
+	for i in range(RoundManager.players_total):
+		var start = get_node(str("PlayerStartingPosition/StartingPosition", i + 1))
+		var player = PLAYER.instance()
 		
-		Player.set_position(StartPos.position)
-		Player.initial_dir = StartPos.direction
-		Player.set_name(str("Player", i))
-		set_player_control(Player, i - 1)
-		GameScene.players.append(Player)
-		add_child(Player)
+		player.position = start.position
+		player.initial_dir = start.direction
+		player.rotation = start.direction.angle()
+		player.id = i
+		player.device_name = RoundManager.device_map[i]
+		player.get_node("Sprite").set_modulate(RoundManager.color_map[i])
+		player.set_name(str("Player", i + 1))
+		players.append(player)
+		add_child(player)
 	
 	get_node("PlayerStartingPosition").queue_free()
+	
+	return players
 
-func increase_player_checkpoint(Player):
-	var player_num = int(Player.get_name()[-1])
+
+func increase_player_checkpoint(player):
+	var player_num = int(player.get_name()[-1])
 	player_checkpoints[player_num - 1] += 1
 
-func inscrease_player_lap(Player):
-	var player_num = int(Player.get_name()[-1])
+
+func inscrease_player_lap(player):
+	var player_num = int(player.get_name()[-1])
 	player_laps[player_num - 1] += 1
 
-func reset_player_checkpoint(Player):
-	var player_num = int(Player.get_name()[-1])
+
+func reset_player_checkpoint(player):
+	var player_num = int(player.get_name()[-1])
 	player_checkpoints[player_num - 1] = 0
 
-func reset_player_lap(Player):
-	var player_num = int(Player.get_name()[-1])
+
+func reset_player_lap(player):
+	var player_num = int(player.get_name()[-1])
 	player_laps[player_num - 1] = 0
 
-func set_player_control(Player, index):
-	var device = RoundManager.device_map[index]
-	if device == "keyboard":
-		Player.input_type = "Keyboard_mouse"
-		Player.id = -1
-	else:
-		Player.input_type = "Gamepad"
-		Player.id = int(device.split("_")[1])
 
-func get_player_checkpoint(Player):
-	var player_num = int(Player.get_name()[-1])
+func get_player_checkpoint(player):
+	var player_num = int(player.get_name()[-1])
 	
 	return player_checkpoints[player_num - 1]
 
-func get_player_lap(Player):
-	var player_num = int(Player.get_name()[-1])
+
+func get_player_lap(player):
+	var player_num = int(player.get_name()[-1])
 	
 	return player_laps[player_num - 1]
