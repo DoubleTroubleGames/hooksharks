@@ -19,8 +19,11 @@ func _input(event):
 		return
 	
 	if event.is_action_pressed("ui_start"):
-		if state == States.OPEN and CHARACTERS[char_index] in available_chars:
-			change_state(States.READY)
+		if state == States.OPEN:
+			if CHARACTERS[char_index] in available_chars:
+				change_state(States.READY)
+			else:
+				$Sprite/AnimationPlayer.play("shake")
 		elif state == States.READY:
 			$Sprite/AnimationPlayer.play("shake")
 			emit_signal("tried_to_start")
@@ -94,4 +97,4 @@ func set_character(index):
 	$SharkSprite.set_modulate(CHARACTERS[char_index])
 	
 	if not CHARACTERS[char_index] in available_chars:
-		$Sprite/AnimationPlayer.play("shake")
+		pass
