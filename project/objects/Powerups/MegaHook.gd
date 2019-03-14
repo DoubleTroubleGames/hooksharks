@@ -9,16 +9,16 @@ func _ready():
 	set_physics_process(false)
 
 func init(_player):
-	self.player = _player
-	if not player.get_node("PowerUps").has_node("MegaHook"):
+	if not _player.get_node("PowerUps").has_node("MegaHook"):
 		return true
 	else:
 		queue_free()
 		return false
 
-func activate(direction):
+func activate(player, direction):
+	self.player = player
 	self.direction = direction
-	position = Vector2()
+	self.position = player.position
 	$Sprite.rotation = direction.angle()
 
 	show()
@@ -36,7 +36,7 @@ func _on_MegaHookArea_area_entered(area):
 	print(object.get_name())
 	if object.is_in_group('player'):
 		if (object != player) and (!object.diving):
-			object._queue_free()
+			object.die()
 			queue_free()
 	elif object.is_in_group('wall') or object.is_in_group('hook'):
 		queue_free()

@@ -4,6 +4,7 @@ onready var bg = $BG
 onready var hud = $HUD
 
 const HOOK = preload("res://hook/Hook.tscn")
+const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
 const ROPE = preload("res://rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
@@ -165,6 +166,11 @@ func _on_player_hook_shot(player, direction):
 
 	player.get_node("SFX/HarpoonSFX").play()
 	player.hook = new_hook
+	
+func _on_player_megahook_shot(player, direction):
+	var new_megahook = MEGAHOOK.instance()
+	get_node("Stage/Hooks").add_child(new_megahook)
+	new_megahook.activate(player, direction)
 
 
 func _on_hook_clinked(clink_position):
