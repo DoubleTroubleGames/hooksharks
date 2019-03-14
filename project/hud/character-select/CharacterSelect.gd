@@ -62,7 +62,9 @@ func set_device_map():
 	
 	for box in boxes:
 		if box.is_ready():
+			var color = box.CHARACTERS[box.char_index]
 			RoundManager.device_map.append(box.device_name)
+			RoundManager.color_map.append(color)
 			num_players += 1
 	
 	RoundManager.players_total = num_players

@@ -18,6 +18,7 @@ func setup_players():
 		player.rotation = start.direction.angle()
 		player.id = i
 		player.device_name = RoundManager.device_map[i]
+		player.get_node("Sprite").set_modulate(RoundManager.color_map[i])
 		player.set_name(str("Player", i + 1))
 		players.append(player)
 		add_child(player)

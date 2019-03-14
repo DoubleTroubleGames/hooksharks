@@ -94,5 +94,4 @@ func set_character(index):
 	$SharkSprite.set_modulate(CHARACTERS[char_index])
 	
 	if not CHARACTERS[char_index] in available_chars:
-		# Display as unavailable
-		pass
+		$Sprite/AnimationPlayer.play("shake")
