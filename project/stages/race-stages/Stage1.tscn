@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://obstacles/BoxMetal.tscn" type="PackedScene" id=2]
@@ -6,8 +6,15 @@
 [ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=4]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=5]
 [ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/Powerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/Powerups/MegaHook.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/Powerups/TrailPower.tscn" type="PackedScene" id=9]
 
-[node name="Stage1" instance=ExtResource( 1 )]
+[node name="Stage1" index="0" instance=ExtResource( 1 )]
+
+[node name="PlayerStartingPosition" parent="." index="0"]
+
+editor/display_folded = false
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 
@@ -24,6 +31,10 @@ position = Vector2( 300, 515 )
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 
 position = Vector2( 300, 665 )
+
+[node name="Obstacles" parent="." index="1"]
+
+editor/display_folded = true
 
 [node name="BoxMetal" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 
@@ -60,6 +71,7 @@ size = 1400
 
 [node name="FinishLine" parent="." index="5" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( 180.974, 1133.11 )
 total_checkpoint_number = 2
 
@@ -114,6 +126,32 @@ number = 2
 position = Vector2( 1989.59, 809.881 )
 rotation = 1.5708
 scale = Vector2( 1, 2.88048 )
+
+[node name="PowerUps" type="Node2D" parent="." index="9"]
+
+[node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 900, 245 )
+_sections_unfolded = [ "Transform" ]
+powerup = ExtResource( 8 )
+
+[node name="Powerup2" parent="PowerUps" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( 900, 365 )
+_sections_unfolded = [ "Transform" ]
+powerup = ExtResource( 8 )
+
+[node name="Powerup3" parent="PowerUps" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 900, 515 )
+_sections_unfolded = [ "Transform" ]
+powerup = ExtResource( 9 )
+
+[node name="Powerup4" parent="PowerUps" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 900, 635 )
+_sections_unfolded = [ "Transform" ]
+powerup = ExtResource( 9 )
 
 
 [editable path="FinishLine"]

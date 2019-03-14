@@ -1,13 +1,40 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Powerup.gd" type="Script" id=2]
+[ext_resource path="res://assets/barrel.png" type="Texture" id=3]
 
-[node name="Powerup" groups=[
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 35.0
+height = 20.0
+
+[node name="Powerup" index="0" groups=[
 "powerup",
 ] instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 powerup = null
+
+[node name="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+
+rotation = 1.40926
+shape = SubResource( 1 )
+
+[node name="RespawnTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="RespawnTimer" to="." method="spawn"]
 
 
