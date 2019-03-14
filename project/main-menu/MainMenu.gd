@@ -56,5 +56,4 @@ func show_title():
 
 
 func change_screen():
-	pass
-#	get_tree().change_scene()
+	get_tree().change_scene("res://mode-select/ModeSelect.tscn")
