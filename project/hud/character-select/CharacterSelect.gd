@@ -1,7 +1,8 @@
 extends Control
 
 onready var boxes = $Boxes.get_children()
-onready var bar = $BackIndicator/bar
+onready var bar = $BackIndicator/Progress
+onready var anim_player = $BackIndicator/AnimationPlayer
 
 var available_characters
 var starting_game = false
@@ -31,9 +32,11 @@ func _physics_process(delta):
 		RoundManager.gamemode = "None"
 		get_tree().change_scene("res://main-menu/MainMenu.tscn")
 	elif bar.value > 0:
-		bar.visible = true
+		if anim_player.assigned_animation != "show":
+			anim_player.play("show")
 	else:
-		bar.visible = false
+		if anim_player.assigned_animation == "show":
+			anim_player.play("hide")
 
 
 func _input(event):
