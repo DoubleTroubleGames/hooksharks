@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Water.gd" type="Script" id=1]
 [ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=2]
 [ext_resource path="res://assets/noise.png" type="Texture" id=3]
+[ext_resource path="res://assets/floor.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -64,12 +65,12 @@ _sections_unfolded = [ "Resource" ]
 
 render_priority = 0
 shader = SubResource( 2 )
-shader_param/shallow_color = Color( 0.0610352, 0.364708, 0.625, 1 )
-shader_param/deep_color = Color( 0.0431373, 0.207843, 0.34902, 1 )
+shader_param/shallow_color = Color( 0.0594177, 0.27562, 0.460938, 1 )
+shader_param/deep_color = Color( 0.0397797, 0.184525, 0.308594, 1 )
 shader_param/h_shallow_edge = 0.0
-shader_param/h_deep_edge = 0.15
-shader_param/v_shallow_edge = 0.05
-shader_param/v_deep_edge = 0.2
+shader_param/h_deep_edge = 0.08
+shader_param/v_shallow_edge = 0.01
+shader_param/v_deep_edge = 0.15
 _sections_unfolded = [ "shader_param" ]
 
 [sub_resource type="Shader" id=4]
@@ -141,14 +142,14 @@ _sections_unfolded = [ "Resource" ]
 render_priority = 0
 shader = SubResource( 4 )
 shader_param/rect_size = Vector2( 1280, 720 )
-shader_param/noise_size = Vector2( 800, 800 )
-shader_param/noise_cutoff = 0.7
-shader_param/h_foam_distance = 0.1
-shader_param/v_foam_distance = 0.1
-shader_param/wave_color = Plane( 1, 1, 1, 0.6 )
-shader_param/wave_scroll_speed = Vector2( -0.05, 0.01 )
+shader_param/noise_size = Vector2( 700, 700 )
+shader_param/noise_cutoff = 0.75
+shader_param/h_foam_distance = 0.07
+shader_param/v_foam_distance = 0.07
+shader_param/wave_color = Plane( 1, 1, 1, 0.4 )
+shader_param/wave_scroll_speed = Vector2( 0.05, 0.04 )
 shader_param/distortion_strength = 0.4
-shader_param/aa_factor = 0.06
+shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 3 )
 shader_param/distortion = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
@@ -199,7 +200,13 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
-_sections_unfolded = [ "Material" ]
+_sections_unfolded = [ "Material", "Pause" ]
+
+[node name="floor" type="Sprite" parent="Waves" index="0"]
+
+position = Vector2( 847.373, -113.274 )
+scale = Vector2( 0.513043, 0.513043 )
+texture = ExtResource( 4 )
 
 [connection signal="resized" from="." to="." method="_on_Water_resized"]
 
