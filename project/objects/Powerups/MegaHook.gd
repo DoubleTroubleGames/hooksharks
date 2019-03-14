@@ -1,8 +1,8 @@
 extends Node2D
 
 var player
-var speed = 2
-var acc = 4
+var speed = 4
+var acc = 2
 var direction = Vector2()
 
 func _ready():
@@ -26,17 +26,17 @@ func activate(player, direction):
 	set_physics_process(true)
 
 func _physics_process(delta):
-	print(str("Position:", position))
-	print(str("Player position:", player.position))
 	speed += acc * delta
 	position += direction * (delta * speed)
 
 func _on_MegaHookArea_area_entered(area):
 	var object = area.get_parent()
-	print(object.get_name())
 	if object.is_in_group('player'):
 		if (object != player) and (!object.diving):
 			object.die()
 			queue_free()
 	elif object.is_in_group('wall') or object.is_in_group('hook'):
 		queue_free()
+
+func free_hook():
+	queue_free()
