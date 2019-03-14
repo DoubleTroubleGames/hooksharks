@@ -80,7 +80,8 @@ uniform vec2 rect_size; // Width/Height of the water
 uniform sampler2D noise;
 uniform vec2 noise_size; //Width/Height of the noise (determine size of wave effect)
 uniform float noise_cutoff : hint_range(0.0,1.0);
-uniform float foam_distance : hint_range(0.0,1.0);
+uniform float h_foam_distance : hint_range(0.0,.5);
+uniform float v_foam_distance : hint_range(0.0,.5);
 uniform vec4 wave_color : hint_color;
 uniform vec2 wave_scroll_speed;
 uniform sampler2D distortion;
@@ -103,8 +104,30 @@ void fragment(){
 	vec4 pixel = texture(SCREEN_TEXTURE, pos);
 	
 	float value = (noisePixel.r + noisePixel.g + noisePixel.g)/3.0;
-	if (value >= noise_cutoff - aa_factor) {
-		float alpha = smoothstep(noise_cutoff - aa_factor, noise_cutoff + aa_factor, value);
+	
+	//Amplify cutoff for foam effect
+	float modifier = 1.0;
+	float x = UV.x*scale.x;
+	float y = UV.y*scale.y;
+	
+	
+	if (x <= h_foam_distance) {
+		modifier *= smoothstep(0, h_foam_distance, x);
+	}
+	else if (x >= scale.x - h_foam_distance) {
+		modifier *= 1.0 - smoothstep(scale.x - h_foam_distance, scale.x, x);
+	}
+	if (y <= v_foam_distance) {
+		modifier *= smoothstep(0, v_foam_distance, y);
+	}
+	else if (y >= scale.y - v_foam_distance) {
+		modifier *= 1.0 - smoothstep(scale.y - v_foam_distance, scale.y, y);
+	}
+	
+	float mod_cutoff = noise_cutoff * modifier;
+	
+	if (value >= mod_cutoff - aa_factor) {
+		float alpha = smoothstep(mod_cutoff - aa_factor, mod_cutoff + aa_factor, value);
 		COLOR = vec4(wave_color.rgb, alpha*wave_color.a);
 	}
 	else {
@@ -120,7 +143,8 @@ shader = SubResource( 4 )
 shader_param/rect_size = Vector2( 1280, 720 )
 shader_param/noise_size = Vector2( 800, 800 )
 shader_param/noise_cutoff = 0.7
-shader_param/foam_distance = null
+shader_param/h_foam_distance = 0.1
+shader_param/v_foam_distance = 0.1
 shader_param/wave_color = Plane( 1, 1, 1, 0.5 )
 shader_param/wave_scroll_speed = Vector2( -0.05, 0.01 )
 shader_param/distortion_strength = 0.4
