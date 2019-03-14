@@ -10,6 +10,7 @@ func _ready():
 	if has_node("Camera2D"):
 		var stage_size = Vector2($Camera2D.limit_right, $Camera2D.limit_bottom)
 		$Water.rect_size = stage_size
+		$Water._on_Water_resized()
 
 func setup_players():
 	var players = []

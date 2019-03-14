@@ -4,7 +4,7 @@
 [ext_resource path="res://Water.tscn" type="PackedScene" id=2]
 [ext_resource path="res://stages/StartingPosition.tscn" type="PackedScene" id=3]
 
-[node name="Stage" type="Node2D"]
+[node name="Stage" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 

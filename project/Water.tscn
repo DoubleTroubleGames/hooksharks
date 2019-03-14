@@ -153,7 +153,7 @@ shader_param/noise = ExtResource( 3 )
 shader_param/distortion = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
 
-[node name="Water" type="ColorRect"]
+[node name="Water" type="ColorRect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
