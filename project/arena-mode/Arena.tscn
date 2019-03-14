@@ -100,9 +100,12 @@ size_flags_vertical = 1
 texture = SubResource( 3 )
 expand = true
 stretch_mode = 0
-_sections_unfolded = [ "Material", "Pause", "Rect" ]
+_sections_unfolded = [ "Material", "Mouse", "Pause", "Rect" ]
 
 [node name="Blur" parent="." index="2" instance=ExtResource( 5 )]
+
+mouse_filter = 2
+_sections_unfolded = [ "Material", "Mouse", "Rect" ]
 
 [node name="HUD" parent="." index="3" instance=ExtResource( 6 )]
 
