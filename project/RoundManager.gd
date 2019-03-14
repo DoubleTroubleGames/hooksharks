@@ -8,6 +8,7 @@ var round_number
 var round_winner
 var gamemode # 'Arena' or 'Race'
 var device_map = []
+var color_map = []
 var players_total = 0
 
 
