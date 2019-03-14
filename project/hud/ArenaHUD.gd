@@ -16,15 +16,13 @@ onready var tween = $Tween
 
 const DELAY = .1
 const DURATION = .5
-const MENU_POS = Vector2(272, 550)
+const MENU_POS = Vector2(622, 840)
 const ROUND_TEXTURES = [
 		preload("res://hud/round_screen/ui_01.png"),
 		preload("res://hud/round_screen/ui_02.png"),
 		preload("res://hud/round_screen/ui_03.png"),
 		preload("res://hud/round_screen/ui_04.png"),
 		preload("res://hud/round_screen/ui_05.png")]
-const WINNER_POS = [Vector2(50, 150), Vector2(980, 150), Vector2(50, 450),
-		Vector2(980, 450)]
 
 
 func _ready():
@@ -79,7 +77,8 @@ func hide_round():
 
 func win_animation(match_winner):
 	# Winner label animation
-	round_winner.rect_position = WINNER_POS[match_winner]
+	var win_label_pos = get_node(str("Background/ScoreGrid/Player", match_winner + 1)).rect_position + $Background/ScoreGrid.rect_position + Vector2(0, 250)
+	round_winner.rect_position =  win_label_pos
 	round_winner.rect_scale = Vector2(2, 2)
 	round_winner.modulate.a = 0
 	round_winner.visible = true

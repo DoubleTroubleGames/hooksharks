@@ -174,7 +174,7 @@ anim_offset_random = 0.0
 anim_loop = true
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity" ]
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "player",
 ]]
 
@@ -481,6 +481,8 @@ mix_target = 0
 bus = "Master"
 
 [node name="BloodParticles" parent="." index="11" instance=ExtResource( 24 )]
+
+[node name="PowerUps" type="Node2D" parent="." index="12"]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

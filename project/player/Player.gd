@@ -3,6 +3,7 @@ extends Node2D
 signal created_trail(trail)
 signal died(player, is_player_collision)
 signal hook_shot(player, direction)
+signal megahook_shot(player, direction)
 signal shook_screen(amount)
 
 onready var arrow = $Arrow
@@ -291,7 +292,11 @@ func shoot():
 		var hook_dir = get_arrow_direction()
 		if hook_dir.length() < AXIS_DEADZONE:
 			hook_dir = speed2
-		emit_signal("hook_shot", self, hook_dir)
+		if not $PowerUps.has_node("MegaHook"):
+			emit_signal("hook_shot", self, hook_dir)
+		else:
+			$PowerUps/MegaHook.queue_free()
+			emit_signal("megahook_shot", self, hook_dir)
 	elif hook and weakref(hook).get_ref() and not hook.retracting:
 		hook.retract()
 
@@ -311,3 +316,5 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('player') and object != self:
 		if diving == object.diving:
 			die(true)
+	if object.is_in_group('powerup') and not diving:
+		object.activate(self)
