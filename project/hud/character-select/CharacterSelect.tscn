@@ -20,16 +20,16 @@
 [sub_resource type="DynamicFont" id=1]
 
 size = 100
-use_mipmaps = false
-use_filter = false
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 13 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
 
 size = 45
-use_mipmaps = false
-use_filter = false
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 13 )
 _sections_unfolded = [ "Settings" ]
 
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="CharacterSelect" type="Control"]
+[node name="CharacterSelect" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -240,7 +240,6 @@ _sections_unfolded = [ "Rect", "custom_colors", "custom_constants", "custom_font
 
 [node name="Boxes" type="GridContainer" parent="." index="3"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -300,7 +299,6 @@ size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="." index="4"]
 
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
 _sections_unfolded = [ "Visibility" ]
