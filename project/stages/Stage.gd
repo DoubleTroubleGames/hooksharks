@@ -6,6 +6,11 @@ var player_checkpoints = [0, 0, 0, 0]
 var player_laps = [0, 0, 0, 0]
 
 
+func _ready():
+	if has_node("Camera2D"):
+		var stage_size = Vector2($Camera2D.limit_right, $Camera2D.limit_bottom)
+		$Water.rect_size = stage_size
+
 func setup_players():
 	var players = []
 	

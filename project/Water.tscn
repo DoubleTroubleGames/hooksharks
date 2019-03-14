@@ -1,0 +1,206 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Water.gd" type="Script" id=1]
+[ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=2]
+[ext_resource path="res://assets/noise.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = ""
+
+[sub_resource type="Shader" id=2]
+
+code = "shader_type canvas_item;
+
+uniform vec4 shallow_color : hint_color;
+uniform vec4 deep_color : hint_color;
+//Horizontal point of transition
+uniform float h_shallow_edge : hint_range(0,.5); //Must be <= h_deep_edge
+uniform float h_deep_edge : hint_range(0,.5); //Must be >= h_shallow_edge
+//Vertical point of transition
+uniform float v_shallow_edge : hint_range(0,.5); //Must be <= v_deep_edge
+uniform float v_deep_edge : hint_range(0,.5); //Must be >= v_shallow_edge
+
+//float pixel_distance = 1.0 - distance(UV, vec2(.5,.5)); //Pixel distance from edge to the middle
+//float color_factor = smoothstep(shallow_edge, deep_edge, pixel_distance);
+
+void fragment() {
+	float color_factor = 1.0;
+
+	//Left side
+	if (UV.x <= h_deep_edge){
+		color_factor *= smoothstep(h_shallow_edge, h_deep_edge, UV.x);
+	}
+	//Right side
+	else if (UV.x >= 1.0 - h_deep_edge) {
+		color_factor *= 1.0 - smoothstep(1.0 - h_deep_edge, 1.0 - h_shallow_edge, UV.x);
+	}
+	//Top side
+	if (UV.y <= v_deep_edge){
+		color_factor *= smoothstep(v_shallow_edge, v_deep_edge, UV.y);
+	}
+	//Bottom side
+	else if (UV.y >= 1.0 - v_deep_edge) {
+		color_factor *= 1.0 - smoothstep(1.0 - v_deep_edge, 1.0 - v_shallow_edge, UV.y);
+	}
+	vec4 color = mix(shallow_color, deep_color, color_factor);
+    COLOR = vec4(color.x, color.y, color.z, 1);
+}
+
+/*void fragment() {
+	
+	vec2 uv = SCREEN_UV;
+	uv.y += sin(uv.x*frequency+TIME)*depth;
+	uv.y = clamp(uv.y,0,1);
+	vec3 c = textureLod(SCREEN_TEXTURE,uv,amount).rgb;
+	
+	COLOR.rgb = c;
+}*/
+"
+script = SubResource( 1 )
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="ShaderMaterial" id=3]
+
+render_priority = 0
+shader = SubResource( 2 )
+shader_param/shallow_color = Color( 0.0594177, 0.27562, 0.460938, 1 )
+shader_param/deep_color = Color( 0.0397797, 0.184525, 0.308594, 1 )
+shader_param/h_shallow_edge = 0.0
+shader_param/h_deep_edge = 0.08
+shader_param/v_shallow_edge = 0.01
+shader_param/v_deep_edge = 0.15
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="Shader" id=4]
+
+code = "shader_type canvas_item;
+
+uniform vec2 rect_size; // Width/Height of the water
+uniform sampler2D noise;
+uniform vec2 noise_size; //Width/Height of the noise (determine size of wave effect)
+uniform float noise_cutoff : hint_range(0.0,1.0);
+uniform float h_foam_distance : hint_range(0.0,.5);
+uniform float v_foam_distance : hint_range(0.0,.5);
+uniform vec4 wave_color : hint_color;
+uniform vec2 wave_scroll_speed;
+uniform sampler2D distortion;
+uniform float distortion_strength;
+uniform float aa_factor; // Anti-Aliasing factor
+
+
+void fragment(){
+	
+	vec2 distortMod = (texture(distortion, UV).xy * 2.0 - 1.0) * distortion_strength;
+	vec2 scale = vec2(rect_size.x/noise_size.x, rect_size.y/noise_size.y);
+	
+	float noise_x = mod(UV.x*scale.x + wave_scroll_speed.x*TIME*scale.x, 1.0) + distortMod.x*scale.x;
+	float noise_y = mod(UV.y*scale.y + wave_scroll_speed.y*TIME*scale.y, 1.0) + distortMod.y*scale.y;
+	vec2 noiseUV = vec2(noise_x, noise_y);
+	vec4 noisePixel = texture(noise, noiseUV);
+	
+	vec2 pos = SCREEN_UV;
+	
+	vec4 pixel = texture(SCREEN_TEXTURE, pos);
+	
+	float value = (noisePixel.r + noisePixel.g + noisePixel.g)/3.0;
+	
+	//Amplify cutoff for foam effect
+	float modifier = 1.0;
+	float x = UV.x*scale.x;
+	float y = UV.y*scale.y;
+	
+	
+	if (x <= h_foam_distance) {
+		modifier *= smoothstep(0, h_foam_distance, x);
+	}
+	else if (x >= scale.x - h_foam_distance) {
+		modifier *= 1.0 - smoothstep(scale.x - h_foam_distance, scale.x, x);
+	}
+	if (y <= v_foam_distance) {
+		modifier *= smoothstep(0, v_foam_distance, y);
+	}
+	else if (y >= scale.y - v_foam_distance) {
+		modifier *= 1.0 - smoothstep(scale.y - v_foam_distance, scale.y, y);
+	}
+	
+	float mod_cutoff = noise_cutoff * modifier;
+	
+	if (value >= mod_cutoff - aa_factor) {
+		float alpha = smoothstep(mod_cutoff - aa_factor, mod_cutoff + aa_factor, value);
+		COLOR = vec4(wave_color.rgb, alpha*wave_color.a);
+	}
+	else {
+		COLOR = pixel;
+	}
+}"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="ShaderMaterial" id=5]
+
+render_priority = 0
+shader = SubResource( 4 )
+shader_param/rect_size = Vector2( 1920, 1080 )
+shader_param/noise_size = Vector2( 700, 700 )
+shader_param/noise_cutoff = 0.75
+shader_param/h_foam_distance = 0.07
+shader_param/v_foam_distance = 0.07
+shader_param/wave_color = Plane( 1, 1, 1, 0.4 )
+shader_param/wave_scroll_speed = Vector2( 0.05, 0.04 )
+shader_param/distortion_strength = 0.4
+shader_param/aa_factor = 0.04
+shader_param/noise = ExtResource( 3 )
+shader_param/distortion = ExtResource( 2 )
+_sections_unfolded = [ "shader_param" ]
+
+[node name="Water" type="ColorRect"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Rect" ]
+
+[node name="BG" type="ColorRect" parent="." index="0"]
+
+material = SubResource( 3 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "Material" ]
+
+[node name="Waves" type="ColorRect" parent="." index="1"]
+
+material = SubResource( 5 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "Material", "Pause" ]
+
+[connection signal="resized" from="." to="." method="_on_Water_resized"]
+
+
