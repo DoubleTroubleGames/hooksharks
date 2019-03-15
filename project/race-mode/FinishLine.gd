@@ -47,11 +47,11 @@ func _on_LineArea_area_entered(area):
 			var lap_num = Stage.get_player_lap(Player)
 			if lap_num >= total_laps:
 				var winner = Player
-				var players = winner.get_parent()
+				var players = get_parent().get_parent().players
 
 				$LineArea/CollisionPolygon2D.disabled = true
-				for child in players.get_children():
-					if child.is_in_group('player') and child != winner:
+				for child in players:
+					if child != winner:
 						child.die()
 
 
