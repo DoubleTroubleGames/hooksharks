@@ -77,7 +77,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2, 1 ]
 }
 
-[node name="SelectionBox" type="Control"]
+[node name="SelectionBox" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -153,10 +153,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -98.0
-margin_top = -71.0
-margin_right = 97.0
-margin_bottom = 18.0
+margin_left = -100.0
+margin_top = -84.0
+margin_right = 98.0
+margin_bottom = 63.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -166,8 +166,9 @@ size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "CLOSED"
+text = "PRESS START"
 align = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
