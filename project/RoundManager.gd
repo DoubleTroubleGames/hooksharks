@@ -36,6 +36,7 @@ func get_match_winner():
 
 func reset_device_map():
 	device_map.clear()
+	color_map.clear()
 	players_total = 0
 
 
