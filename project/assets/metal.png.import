@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/metal.png-e9fa04987e64c74b735b94a2b3ba789b.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/metal.png"
-source_md5="ac16970334725a62921d8c242e762cd8"
-
 dest_files=[ "res://.import/metal.png-e9fa04987e64c74b735b94a2b3ba789b.stex" ]
-dest_md5="ce25275b6f37922e423253df21d45e1a"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

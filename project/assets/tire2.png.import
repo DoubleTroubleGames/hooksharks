@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/tire2.png-0ff4ed92fc196f753b93868ed656cbea.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tire2.png"
-source_md5="5a233c441c75ce6498590027ea73559d"
-
 dest_files=[ "res://.import/tire2.png-0ff4ed92fc196f753b93868ed656cbea.stex" ]
-dest_md5="aa86e03ca4dfb471888beacba34cd0df"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

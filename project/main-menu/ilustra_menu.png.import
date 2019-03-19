@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/ilustra_menu.png-ae46735e7482f44f0035315fe2978f8d.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://main-menu/ilustra_menu.png"
-source_md5="24d6b07575559f6d3ad68f29292ac2d4"
-
 dest_files=[ "res://.import/ilustra_menu.png-ae46735e7482f44f0035315fe2978f8d.stex" ]
-dest_md5="810e4246b0792de9ac6db91458c17490"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

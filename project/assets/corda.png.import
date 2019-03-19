@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/corda.png-574c949613b8374d1b1cff24d2874626.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/corda.png"
-source_md5="1a2e5c1d1991620e7ab4d5cfe869eec9"
-
 dest_files=[ "res://.import/corda.png-574c949613b8374d1b1cff24d2874626.stex" ]
-dest_md5="f88b52162def2b70de042dde225050e0"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=1
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

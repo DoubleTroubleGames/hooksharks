@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/caixas_04.png-534bdfd7802c093c65bb0068193ae1be.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/caixas_04.png"
-source_md5="972e2e8b1009a54d0742ce334e7362c8"
-
 dest_files=[ "res://.import/caixas_04.png-534bdfd7802c093c65bb0068193ae1be.stex" ]
-dest_md5="01b99c8bccdd0be01b1f683fbcaaf351"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/ui_x.png-e1cb02f9c011ea3346b65c352b39120c.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://hud/round_screen/ui_x.png"
-source_md5="28a4c342c178c55f76b9ab608068fca5"
-
 dest_files=[ "res://.import/ui_x.png-e1cb02f9c011ea3346b65c352b39120c.stex" ]
-dest_md5="81f00a2579536bdd9a289b9899f7ebe4"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
