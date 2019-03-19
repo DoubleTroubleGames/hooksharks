@@ -32,9 +32,9 @@ func _ready():
 #	bg.position = OS.window_size / 2
 	get_node("Mirage").rect_size = OS.window_size
 
-	Cameras = get_cameras() # on Arena.gd and Race.gd
-	connect_players() # on Arena.gd and Race.gd
-	activate_players() # on Arena.gd and Race.gd
+	Cameras = get_cameras() 
+	connect_players()
+	activate_players()
 
 
 func _physics_process(delta):
@@ -42,6 +42,21 @@ func _physics_process(delta):
 	bg.get_node("Reflex2").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
 	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
 	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
+
+
+func get_cameras():
+	# Override on Arena.gd and Race.gd
+	assert(false)
+
+
+func connect_players():
+	# Override on Arena.gd and Race.gd
+	assert(false)
+
+
+func activate_players():
+	# Override on Arena.gd and Race.gd
+	assert(false)
 
 
 func create_rope(player, hook):
