@@ -8,6 +8,9 @@ onready var title_pos = title.rect_position
 onready var subtitle_pos = subtitle.rect_position
 
 const TITLE_OFFSET = Vector2(5000, 0)
+const TITLE_DELAY = .5
+const GLOW_DURATION = 1
+const PRESS_START_DELAY = 3
 
 var title_shown = false
 
@@ -19,9 +22,9 @@ func _ready():
 			TITLE_OFFSET.rotated(deg2rad(title.rect_rotation))
 	
 	tween.interpolate_property(title, "rect_position", null, title_pos, 1.5,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT, .5)
+			Tween.TRANS_LINEAR, Tween.EASE_OUT, TITLE_DELAY)
 	tween.interpolate_property(subtitle, "rect_position", null, subtitle_pos,
-			1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, .5)
+			1.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, TITLE_DELAY)
 	tween.start()
 	
 	yield(tween, "tween_completed")
@@ -46,12 +49,12 @@ func show_title():
 	title.rect_position = title_pos
 	subtitle.rect_position = subtitle_pos
 	
-	tween.interpolate_property($ColorRect, "modulate:a", 1, 0, 1,
-			Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property($CanvasLayer/ScreenGlow, "modulate:a", 1, 0,
+			GLOW_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 	camera.add_shake(1)
 	
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(PRESS_START_DELAY), "timeout")
 	$PressStart/AnimationPlayer.play("show")
 
 
