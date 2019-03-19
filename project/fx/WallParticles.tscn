@@ -3,86 +3,40 @@
 [ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=1]
 
 [sub_resource type="Gradient" id=1]
-
 offsets = PoolRealArray( 0, 0.788235, 0.945098 )
 colors = PoolColorArray( 0.523438, 0.344752, 0.0368042, 1, 0.521569, 0.341176, 0.0352941, 1, 0.521569, 0.341176, 0.0352941, 0 )
 
 [sub_resource type="GradientTexture" id=2]
-
-flags = 4
 gradient = SubResource( 1 )
-width = 2048
 
 [sub_resource type="ParticlesMaterial" id=3]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
 flag_disable_z = true
 spread = 30.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 100.0
-initial_velocity_random = 0.0
 angular_velocity = 4.55997e-41
-angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
 damping = 100.0
 damping_random = 1.0
-angle = 0.0
-angle_random = 0.0
 scale = 5.0
-scale_random = 0.0
 color_ramp = SubResource( 2 )
 hue_variation = 0.1
 hue_variation_random = 1.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Color", "Damping", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
 
 [node name="WallParticles" type="Particles2D"]
-
 position = Vector2( 20, 0 )
 rotation = 3.14159
 emitting = false
 amount = 20
-lifetime = 1.0
 one_shot = true
-preprocess = 0.0
 speed_scale = 2.0
 explosiveness = 0.8
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
-draw_order = 0
 process_material = SubResource( 3 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
 
-[node name="SFX" type="AudioStreamPlayer" parent="." index="0"]
-
+[node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -10.0
-pitch_scale = 1.0
 autoplay = true
-mix_target = 0
-bus = "Master"
-
 
