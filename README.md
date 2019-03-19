@@ -16,7 +16,7 @@ Now, it is under further development by the Marvellous Soft group.
 
 ## Running
 
-There is no current executable for the game. To run it, open the project with the [Godot 3.0.6](https://godotengine.org/) engine editor.
+There is currently no executable for the game. To run it, open the project with the [Godot Engine v3.1](https://godotengine.org/) editor.
 
 ----------------------------------------------------
 
@@ -37,8 +37,7 @@ The game is developed by the [Marvellous Soft](marvellous.amoeba@gmail.com) team
 
 ## Platform
 
-Made using [Godot 3.0.6](https://godotengine.org/).
-Works in any OS that can run it.
+Originally made using [Godot Engine v3.0.6](https://godotengine.org/).
 
 Github
     ~ https://github.com/MarvellousSoft/hooksharks
