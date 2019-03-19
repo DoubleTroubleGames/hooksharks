@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/reflex_02.png-778e6ac023263ec3065be7ff59732fc8.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/reflex_02.png"
-source_md5="50eb29c2b57ece83921a8ce58ca2034d"
-
 dest_files=[ "res://.import/reflex_02.png-778e6ac023263ec3065be7ff59732fc8.stex" ]
-dest_md5="d7aa1a40a0914bb8b7b0644465d59d57"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

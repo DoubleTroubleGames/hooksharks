@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/cd_bubble.png-9de39588a741b561bd0ca7b929b523ee.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://player/cd_bubble.png"
-source_md5="da29f4d575a3de1f74fa04352b776592"
-
 dest_files=[ "res://.import/cd_bubble.png-9de39588a741b561bd0ca7b929b523ee.stex" ]
-dest_md5="b2787e89e02fa81fb26d209bc90f0521"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -33,7 +33,7 @@ export(float) var ROT_SPEED = PI/3.5
 export(int) var ACC = 4
 export(int) var INITIAL_SPEED = 100
 export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
-export(MovementTypes) var movement_type = TANK
+export(MovementTypes) var movement_type = MovementTypes.TANK
 
 var id = 0
 var gamepad_id = -1
@@ -114,12 +114,12 @@ func _physics_process(delta):
 			and not hook.is_pulling_object():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
-		if movement_type == TANK:
+		if movement_type == MovementTypes.TANK:
 			if is_pressed["right"]:
 				speed2 = speed2.rotated(ROT_SPEED * delta)
 			if is_pressed["left"]:
 				speed2 = speed2.rotated(-ROT_SPEED * delta)
-		elif movement_type == DIRECT:
+		elif movement_type == MovementTypes.DIRECT:
 			var direction = get_movement_direction()
 			
 			if direction.length() > 0:

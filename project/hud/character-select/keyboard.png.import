@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/keyboard.png-65c154364bb09a871ba15b4882903356.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://hud/character-select/keyboard.png"
-source_md5="99ffce993000561de5555d31f6d4617d"
-
 dest_files=[ "res://.import/keyboard.png-65c154364bb09a871ba15b4882903356.stex" ]
-dest_md5="e81cfa06abb9319e7a16330c1abb8720"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

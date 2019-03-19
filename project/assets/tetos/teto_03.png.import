@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/teto_03.png-15d7eea65821e5a9c7e9c2d13fd2904a.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tetos/teto_03.png"
-source_md5="07805883eb0e056368daad33e627e28f"
-
 dest_files=[ "res://.import/teto_03.png-15d7eea65821e5a9c7e9c2d13fd2904a.stex" ]
-dest_md5="ee55ccae163b31e9115441d74d652faa"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/roof2.png-8fcd779d20a428bc140395168a1e898c.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/roof2.png"
-source_md5="9335de7cc961171371bafeab4928d4be"
-
 dest_files=[ "res://.import/roof2.png-8fcd779d20a428bc140395168a1e898c.stex" ]
-dest_md5="9084264af46635ba0be09c30f4a89eac"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

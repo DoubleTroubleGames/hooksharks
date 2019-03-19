@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/float.png-afb7142dac35b9ab132391f43faab60a.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/float.png"
-source_md5="e432da8e9ac71e7c60255f29330ba9b1"
-
 dest_files=[ "res://.import/float.png-afb7142dac35b9ab132391f43faab60a.stex" ]
-dest_md5="2ebdb55d21f559b47b5ce0fed10a0bd1"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

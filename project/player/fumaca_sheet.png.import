@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/fumaca_sheet.png-b0042b5e823b8bab745b671d10719ac8.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://player/fumaca_sheet.png"
-source_md5="be9a7cc310916d1300114b028ff81069"
-
 dest_files=[ "res://.import/fumaca_sheet.png-b0042b5e823b8bab745b671d10719ac8.stex" ]
-dest_md5="3799ec0418904a62fefb41dd9656851a"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/gamepad.png-c3590fcf3ccbc9cd2f6b29041b0de3f2.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://hud/character-select/gamepad.png"
-source_md5="2155bbd3de8a52a43ef94c814ba2efb1"
-
 dest_files=[ "res://.import/gamepad.png-c3590fcf3ccbc9cd2f6b29041b0de3f2.stex" ]
-dest_md5="71787d6fdbfa93601df07ceb4e21038c"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

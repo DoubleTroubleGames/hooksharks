@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/c3.png-ebe656322e274ecb578f453e95a5fe32.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://characters/c3.png"
-source_md5="5fa313a8fe9907838b3e14c8b6931fb6"
-
 dest_files=[ "res://.import/c3.png-ebe656322e274ecb578f453e95a5fe32.stex" ]
-dest_md5="2a4dae9e553a8a3383c172c752df017a"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

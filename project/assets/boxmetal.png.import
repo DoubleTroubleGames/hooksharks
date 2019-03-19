@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/boxmetal.png-7633db31fbacf4a1c62336ee6ba3b078.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/boxmetal.png"
-source_md5="7041d408536acf23c43f560a722a0ada"
-
 dest_files=[ "res://.import/boxmetal.png-7633db31fbacf4a1c62336ee6ba3b078.stex" ]
-dest_md5="9c70515c4b926f4f9164fe4c7adbe80b"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
