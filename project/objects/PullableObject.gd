@@ -14,6 +14,12 @@ func setHook(new_hook):
 	if hook:
 		hook.retract()
 	hook = new_hook
+	$Timer.start()
 
 func removeHook():
 	hook = null
+
+func _on_Timer_timeout():
+	if hook:
+		hook.retract()
+		removeHook()
