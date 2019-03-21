@@ -47,8 +47,10 @@ func activate_players():
 
 func create_rope(player, hook):
 	var rope = ROPE.instance()
-	rope.add_point(player.position)
-	rope.add_point(player.position)
+	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	var rider_pos = player.position + player.rider_offset * angle
+	rope.add_point(rider_pos)
+	rope.add_point(rider_pos)
 	rope.player = player
 	rope.hook = hook
 	get_node("Stage/Ropes").add_child(rope)

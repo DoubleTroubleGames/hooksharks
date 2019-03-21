@@ -22,9 +22,11 @@ var stop_at = null
 
 
 func init(player, direction):
+	var angle = Vector2(cos(player.rotation), sin(player.rotation))
 	self.player = player
 	self.direction = direction
 	self.position = player.position
+	self.position += player.rider_offset * angle
 	$Sprite.rotation = direction.angle()
 
 
@@ -94,7 +96,7 @@ func free_hook():
 	rope.queue_free()
 	if pulling_object:
 		pulling_object.removeHook()
-	player.hook = null
+	player.hook_retracted()
 	pulling_object = null
 	self.queue_free()
 
