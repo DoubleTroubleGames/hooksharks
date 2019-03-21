@@ -27,7 +27,7 @@ const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
-const PULLFORCE = 450
+const PULLFORCE = 350
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -295,11 +295,17 @@ func shoot():
 			hook_dir = speed2
 		if not $PowerUps.has_node("MegaHook"):
 			emit_signal("hook_shot", self, hook_dir)
+			$Sprite/Rider/Hook.hide()
 		else:
 			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)
 	elif hook and weakref(hook).get_ref() and not hook.retracting:
 		hook.retract()
+
+
+func hook_retracted():
+	hook = null
+	$Sprite/Rider/Hook.show()
 
 
 func _on_Area2D_area_exited(area):
