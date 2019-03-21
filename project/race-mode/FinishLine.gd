@@ -10,6 +10,7 @@ export (int)var total_laps = 1
 var line_polygon
 var top_pulling = false
 var bot_pulling = false
+var tex = preload("res://race-mode/line.png")
 
 
 func _ready():
@@ -19,7 +20,8 @@ func _ready():
 
 func _draw():
 	var color_array = [Color(1, 1, 1), Color(0, 0, 0), Color(1, 1, 1), Color(0, 0, 0)]
-	draw_polygon(line_polygon, color_array)
+	var uvs = PoolVector2Array([Vector2(1, 1), Vector2(1,1), Vector2(0, 0), Vector2(0, 0)])
+	draw_polygon(line_polygon, color_array, uvs, tex)
 
 func _physics_process(delta):
 	update_line_polygon()

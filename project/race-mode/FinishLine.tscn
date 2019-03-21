@@ -3,55 +3,31 @@
 [ext_resource path="res://race-mode/FinishLine.gd" type="Script" id=1]
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=2]
 
-[node name="FinishLine" type="Node2D" index="0"]
-
+[node name="FinishLine" type="Node2D"]
 position = Vector2( 300, 300 )
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-total_checkpoint_number = 0
-total_laps = 1
 
-[node name="Line" type="Sprite" parent="." index="0"]
-
+[node name="Line" type="Sprite" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LineArea" type="Area2D" parent="." index="1"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+[node name="LineArea" type="Area2D" parent="."]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LineArea" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LineArea"]
 
-build_mode = 0
-polygon = PoolVector2Array(  )
-
-[node name="PullableObjectTop" parent="." index="2" instance=ExtResource( 2 )]
-
+[node name="PullableObjectTop" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -300 )
 
-[node name="PullableObjectBot" parent="." index="3" instance=ExtResource( 2 )]
-
+[node name="PullableObjectBot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 300 )
 
 [connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
-
 [connection signal="hooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_hooked"]
-
 [connection signal="unhooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_unhooked"]
-
 [connection signal="hooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_hooked"]
-
 [connection signal="unhooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_unhooked"]
-
-
