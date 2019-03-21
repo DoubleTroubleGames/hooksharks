@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://race-mode/FinishLine.gd" type="Script" id=1]
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=2]
-[ext_resource path="res://race-mode/line.png" type="Texture" id=3]
 
 [node name="FinishLine" type="Node2D"]
 position = Vector2( 300, 300 )
@@ -18,7 +17,6 @@ __meta__ = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LineArea"]
 
 [node name="PullableObjectTop" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
 position = Vector2( 0, -300 )
 
 [node name="Sprites" type="Node2D" parent="PullableObjectTop"]
@@ -27,33 +25,6 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
-
-[node name="Sprite" type="Sprite" parent="PullableObjectTop/Sprites"]
-texture = ExtResource( 3 )
-
-[node name="Sprite2" type="Sprite" parent="PullableObjectTop/Sprites"]
-position = Vector2( -115, 0 )
-texture = ExtResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="PullableObjectTop/Sprites"]
-position = Vector2( -230, 0 )
-texture = ExtResource( 3 )
-
-[node name="Sprite4" type="Sprite" parent="PullableObjectTop/Sprites"]
-position = Vector2( -345, 0 )
-texture = ExtResource( 3 )
-
-[node name="Sprite5" type="Sprite" parent="PullableObjectTop/Sprites"]
-position = Vector2( -460, 0 )
-texture = ExtResource( 3 )
-
-[node name="Sprite6" type="Sprite" parent="PullableObjectTop/Sprites"]
-position = Vector2( -460, 0 )
-texture = ExtResource( 3 )
-
-[node name="Sprite7" type="Sprite" parent="PullableObjectTop/Sprites"]
-position = Vector2( -575, 0 )
-texture = ExtResource( 3 )
 
 [node name="PullableObjectBot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 291.598, 315.978 )
