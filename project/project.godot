@@ -26,6 +26,10 @@ config/icon="res://hud/round_screen/ui_shark_red.png"
 RoundManager="*res://RoundManager.gd"
 Sound="*res://Sound.tscn"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [display]
 
 window/size/width=1920

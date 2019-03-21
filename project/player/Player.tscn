@@ -112,30 +112,31 @@ tracks/1/keys = {
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 7.0
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=5]
 particles_animation = true
 particles_anim_h_frames = 8
 particles_anim_v_frames = 8
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.901961, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 1
 emission_sphere_radius = 50.0
 flag_disable_z = true
 gravity = Vector3( 0, -100, 0 )
 initial_velocity = 1.0
+angular_velocity = 0.0191222
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 180.0
 angle_random = 1.0
-color_ramp = SubResource( 6 )
+color_ramp = SubResource( 7 )
 anim_speed = 1.0
 
 [sub_resource type="CanvasItemMaterial" id=9]
@@ -204,14 +205,14 @@ texture_progress = ExtResource( 7 )
 fill_mode = 4
 
 [node name="Explosion" type="Particles2D" parent="."]
-material = SubResource( 8 )
+material = SubResource( 5 )
 z_index = 1
 emitting = false
 amount = 2
 lifetime = 1.3
 one_shot = true
 explosiveness = 0.2
-process_material = SubResource( 7 )
+process_material = SubResource( 8 )
 texture = ExtResource( 8 )
 
 [node name="Explosion2" type="Particles2D" parent="."]
@@ -222,7 +223,7 @@ amount = 3
 lifetime = 1.3
 one_shot = true
 explosiveness = 0.2
-process_material = SubResource( 7 )
+process_material = SubResource( 8 )
 texture = ExtResource( 9 )
 
 [node name="HookTimer" type="Timer" parent="."]
