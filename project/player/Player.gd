@@ -12,6 +12,7 @@ onready var dive_bar = $DiveCooldown
 onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
+onready var rider_offset = -$Sprite/Rider.position.x
 
 enum MovementTypes {DIRECT, TANK}
 
@@ -27,7 +28,6 @@ const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
 const PULLFORCE = 450
-const RIDER_OFFSET = 50
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true

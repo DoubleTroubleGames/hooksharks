@@ -26,7 +26,7 @@ func init(player, direction):
 	self.player = player
 	self.direction = direction
 	self.position = player.position
-	self.position += player.RIDER_OFFSET * angle
+	self.position += player.rider_offset * angle
 	$Sprite.rotation = direction.angle()
 
 
