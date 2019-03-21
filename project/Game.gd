@@ -1,14 +1,12 @@
 extends Node2D
 
-onready var bg = $BG
-onready var hud = $HUD
+onready var round_screen = $RoundScreen
 
 const HOOK = preload("res://hook/Hook.tscn")
 const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
 const ROPE = preload("res://rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
-const BG_SPEED = 20
 const SHOW_ROUND_DELAY = 1
 const TRANSITION_OFFSET = 1000
 const TRANSITION_TIME = 1.0
@@ -27,21 +25,9 @@ func _ready():
 	stage.set_name("Stage")
 	add_child(stage)
 	
-#	bg.visible = true
-#	bg.scale = Vector2(OS.window_size.x/1600, OS.window_size.y/1280) * 1.2
-#	bg.position = OS.window_size / 2
-	get_node("Mirage").rect_size = OS.window_size
-
 	Cameras = get_cameras() 
 	connect_players()
 	activate_players()
-
-
-func _physics_process(delta):
-	bg.get_node("Reflex1").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0)
-	bg.get_node("Reflex2").position += Vector2(fmod(BG_SPEED * delta, OS.window_size.x), 0) * 2
-	bg.get_node("Reflex3").position = Vector2(bg.get_node("Reflex1").position.x - OS.window_size.x, bg.get_node("Reflex1").position.y)
-	bg.get_node("Reflex4").position = Vector2(bg.get_node("Reflex2").position.x - OS.window_size.x, bg.get_node("Reflex2").position.y)
 
 
 func get_cameras():
@@ -69,19 +55,11 @@ func create_rope(player, hook):
 	return rope
 
 
-func show_round():
-	hud.show_round()
-	yield(hud, "finished")
-	if RoundManager.round_winner != -1:
-		RoundManager.round_number += 1
-	hud.hide_round()
-
-
-func transition_stage(stage):
-	var Twn = $StageTween
-	var stage_pos = stage.get_position()
-	Twn.interpolate_property(stage, "position", stage_pos, stage_pos + Vector2(0, TRANSITION_OFFSET), TRANSITION_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	Twn.start()
+#func transition_stage(stage):
+#	var Twn = $StageTween
+#	var stage_pos = stage.get_position()
+#	Twn.interpolate_property(stage, "position", stage_pos, stage_pos + Vector2(0, TRANSITION_OFFSET), TRANSITION_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+#	Twn.start()
 
 
 func clean_all():
@@ -97,8 +75,8 @@ func free_current_stage():
 	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
 	for camera in Cameras:
 		camera.current = false
-	transition_stage(stage)
-	yield($StageTween, "tween_completed")
+#	transition_stage(stage)
+#	yield($StageTween, "tween_completed")
 	clean_all()
 	stage.queue_free()
 
@@ -107,15 +85,15 @@ func add_new_stage():
 	var stage = get_random_stage().instance()
 	players = stage.setup_players()
 	stage.set_name("Stage")
-	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
+#	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	add_child(stage)
-	transition_stage(stage)
+#	transition_stage(stage)
 	Cameras = get_cameras()
 	for camera in Cameras:
 		camera.current = true
 	connect_players()
-	yield($StageTween, "tween_completed")
-	activate_players()
+#	yield($StageTween, "tween_completed")
+#	activate_players()
 
 
 func remove_player(player, is_player_collision):
@@ -124,24 +102,6 @@ func remove_player(player, is_player_collision):
 	if not calling_check_winner:
 		call_deferred("check_winner")
 		calling_check_winner = true
-	
-#	if players.size() == 1:
-#		var winner = players[0]
-#		winner.get_node("Area2D").queue_free()
-#		if not is_player_collision:
-#			RoundManager.scores[winner.id] += 1
-#			RoundManager.round_winner = winner.id
-#		else:
-#			RoundManager.round_winner = -1
-#		winner.set_physics_process(false)
-#		winner.set_process_input(false)
-#
-#		yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
-#		show_round()
-#		yield(hud, "finished")
-#		free_current_stage()
-#		yield($StageTween, "tween_completed")
-#		add_new_stage()
 
 
 func check_winner():
@@ -160,13 +120,14 @@ func check_winner():
 		return
 	
 	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
-	show_round()
+	round_screen.show_round()
 	
-	yield(hud, "finished")
+	yield(round_screen, "shown")
 	free_current_stage()
-	
-	yield($StageTween, "tween_completed")
 	add_new_stage()
+	
+	yield(round_screen, "hidden")
+	activate_players()
 
 
 func _on_player_hook_shot(player, direction):
@@ -192,7 +153,12 @@ func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
 	
-	hud.blink_screen()
+	$ScreenBlink.blink()
+	# Opa, deletei o blink quando fiz a hud ser só roundscreen, se isso tá aqui
+	# ainda é porque eu esqueci de consertar isso depois. Vou fazer uma cena
+	# chamada BlinkScreen com um script built-in na pasta fx e instanciar nas
+	# cenas de arena e race.
+	
 	var hook_clink = HOOK_CLINK.instance()
 	hook_clink.emitting = true
 	hook_clink.position = clink_position

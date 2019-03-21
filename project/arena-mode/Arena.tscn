@@ -1,156 +1,26 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://arena-mode/Arena.gd" type="Script" id=1]
 [ext_resource path="res://Water.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fundo.png" type="Texture" id=3]
-[ext_resource path="res://assets/reflex_01.png" type="Texture" id=4]
-[ext_resource path="res://assets/reflex_02.png" type="Texture" id=5]
-[ext_resource path="res://hud/blur.tscn" type="PackedScene" id=6]
-[ext_resource path="res://hud/ArenaHUD.tscn" type="PackedScene" id=7]
-[ext_resource path="res://camera/Camera.gd" type="Script" id=8]
+[ext_resource path="res://hud/round_screen/RoundScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fx/ScreenBlink.tscn" type="PackedScene" id=4]
+[ext_resource path="res://camera/Camera.gd" type="Script" id=5]
 
-[sub_resource type="Shader" id=1]
-
-code = "shader_type canvas_item;
-
-uniform float frequency = 60;
-uniform float depth = 0.005;
-uniform float amount : hint_range(0,5);
-
-void fragment() {
-	
-	vec2 uv = SCREEN_UV;
-	uv.y += sin(uv.x*frequency+TIME)*depth;
-	uv.y = clamp(uv.y,0,1);
-	vec3 c = textureLod(SCREEN_TEXTURE,uv,amount).rgb;
-	
-	COLOR.rgb = c;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=2]
-
-render_priority = 0
-shader = SubResource( 1 )
-shader_param/frequency = 120.0
-shader_param/depth = 0.005
-shader_param/amount = 0.5
-_sections_unfolded = [ "shader_param" ]
-
-[sub_resource type="StreamTexture" id=3]
-
-flags = 4
-load_path = "res://.import/white.png-936ea7d0834e1e21adf362ba74ff2135.stex"
-
-[node name="Arena" type="Node2D" index="0"]
-
+[node name="Arena" type="Node2D"]
 script = ExtResource( 1 )
-_sections_unfolded = [ "Pause", "Z Index" ]
 stage_num = 5
-use_keyboard = false
-keyboard_id = 0
 
-[node name="Water" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Water" parent="." instance=ExtResource( 2 )]
 
-[node name="BG" type="Sprite" parent="." index="1"]
+[node name="RoundScreen" parent="." instance=ExtResource( 3 )]
 
-editor/display_folded = true
-visible = false
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
+[node name="ScreenBlink" parent="." instance=ExtResource( 4 )]
 
-[node name="Reflex1" type="Sprite" parent="BG" index="0"]
-
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Offset" ]
-
-[node name="Reflex2" type="Sprite" parent="BG" index="1"]
-
-texture = ExtResource( 5 )
-offset = Vector2( -20, 20 )
-_sections_unfolded = [ "Offset" ]
-
-[node name="Reflex3" type="Sprite" parent="BG" index="2"]
-
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Offset" ]
-
-[node name="Reflex4" type="Sprite" parent="BG" index="3"]
-
-texture = ExtResource( 5 )
-offset = Vector2( -20, 20 )
-_sections_unfolded = [ "Offset" ]
-
-[node name="Mirage" type="TextureRect" parent="." index="2"]
-
+[node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
-visible = false
-material = SubResource( 2 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -126.0
-margin_top = -74.0
-margin_right = 1410.0
-margin_bottom = 790.0
-rect_min_size = Vector2( 1536, 864 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = SubResource( 3 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Material", "Mouse", "Pause", "Rect" ]
-
-[node name="Blur" parent="." index="3" instance=ExtResource( 6 )]
-
-[node name="HUD" parent="." index="4" instance=ExtResource( 7 )]
-
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
-
-pause_mode = 2
-anchor_mode = 1
 rotating = true
 current = true
-zoom = Vector2( 1, 1 )
 limit_left = 0
 limit_top = 0
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-script = ExtResource( 8 )
-_sections_unfolded = [ "Editor", "Limit", "Pause", "Transform" ]
-max_angle = 10
-max_offset_x = 250
-max_offset_y = 250
-violence = 0.3
-dec_ratio = 1.2
-exponent = 2
-
-[node name="StageTween" type="Tween" parent="." index="6"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
+script = ExtResource( 5 )
 
