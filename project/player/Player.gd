@@ -26,6 +26,7 @@ const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
+const PULLFORCE = 450
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -135,8 +136,8 @@ func _physics_process(delta):
 	applying_force -= proj
 	
 	if stunned:
-		position += pull_dir * 100 * delta
-		applying_force = pull_dir * 200
+		position += pull_dir * PULLFORCE * delta
+		applying_force = pull_dir * PULLFORCE * 2
 	if MAX_SPEED != -1:
 		speed2 = speed2.clamped(MAX_SPEED)
 	

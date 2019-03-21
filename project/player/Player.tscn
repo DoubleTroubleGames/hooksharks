@@ -227,7 +227,7 @@ process_material = SubResource( 8 )
 texture = ExtResource( 9 )
 
 [node name="HookTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.1
 one_shot = true
 
 [node name="ParticleTimer" type="Timer" parent="."]
