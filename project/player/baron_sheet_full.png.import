@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/flecha_cinza.png-5149a2fcc1b13b3405a5d07e01858631.stex"
+path="res://.import/baron_sheet_full.png-33e30fbe0d1d730522bf74e9b17c96b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/flecha_cinza.png"
-dest_files=[ "res://.import/flecha_cinza.png-5149a2fcc1b13b3405a5d07e01858631.stex" ]
+source_file="res://player/baron_sheet_full.png"
+dest_files=[ "res://.import/baron_sheet_full.png-33e30fbe0d1d730522bf74e9b17c96b9.stex" ]
 
 [params]
 

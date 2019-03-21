@@ -6,7 +6,9 @@ var force = 700
 
 func _physics_process(delta):
 	if hook:
-		self.set_point_position(0, player.position)
+		var angle = Vector2(cos(player.rotation), sin(player.rotation))
+		var rider_pos = player.position + player.RIDER_OFFSET * angle
+		self.set_point_position(0, rider_pos)
 		self.set_point_position(1, hook.position)
 
 func get_applying_force():

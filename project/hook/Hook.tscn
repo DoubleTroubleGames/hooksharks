@@ -12,9 +12,9 @@ radius = 20.0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 4.77306, -0.412826 )
-scale = Vector2( 0.209665, 0.205871 )
+scale = Vector2( -1.5, 1.5 )
 texture = ExtResource( 2 )
+offset = Vector2( 5, 0 )
 
 [node name="HookArea" type="Area2D" parent="."]
 
