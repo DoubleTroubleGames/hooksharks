@@ -38,7 +38,7 @@ func _ready():
 func show_round():
 	var player_score = null
 	
-	round_number.texture = ROUND_TEXTURES[RoundManager.round_number - 1]
+	round_number.texture = ROUND_TEXTURES[min(RoundManager.round_number - 1, 4)]
 	
 	# Check draw
 	var is_draw = RoundManager.round_winner == -1
