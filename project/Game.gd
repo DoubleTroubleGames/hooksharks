@@ -147,8 +147,8 @@ func _on_player_hook_shot(player, direction):
 	
 func _on_player_megahook_shot(player, direction):
 	var new_megahook = MEGAHOOK.instance()
+	new_megahook.activate(player, direction.normalized())
 	get_node("Stage/Hooks").add_child(new_megahook)
-	new_megahook.activate(player, direction)
 
 
 func _on_hook_clinked(clink_position):
@@ -156,10 +156,6 @@ func _on_hook_clinked(clink_position):
 		return
 	
 	$ScreenBlink.blink()
-	# Opa, deletei o blink quando fiz a hud ser só roundscreen, se isso tá aqui
-	# ainda é porque eu esqueci de consertar isso depois. Vou fazer uma cena
-	# chamada BlinkScreen com um script built-in na pasta fx e instanciar nas
-	# cenas de arena e race.
 	
 	var hook_clink = HOOK_CLINK.instance()
 	hook_clink.emitting = true
