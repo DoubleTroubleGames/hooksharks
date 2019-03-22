@@ -70,7 +70,7 @@ func show_round():
 
 func hide_round():
 	tween.interpolate_property(background, "rect_position:y", null,
-			BACKGROUND_OFFSCREEN_Y, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT, 1)
+			BACKGROUND_OFFSCREEN_Y, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 	
 	yield(tween, "tween_completed")
