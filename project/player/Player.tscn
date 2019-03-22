@@ -162,7 +162,6 @@ position = Vector2( 30, 0 )
 rotation = 1.5708
 
 [node name="Sprite" type="Sprite" parent="."]
-editor/display_folded = true
 scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
 offset = Vector2( 40, 4 )
@@ -170,11 +169,13 @@ vframes = 4
 hframes = 5
 
 [node name="Rider" type="Sprite" parent="Sprite"]
-position = Vector2( -50, 0 )
+position = Vector2( -40, 0 )
 texture = ExtResource( 4 )
+offset = Vector2( -15, 0 )
 
 [node name="Hook" type="Sprite" parent="Sprite/Rider"]
 show_behind_parent = true
+position = Vector2( -15, 0 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 5 )
 
