@@ -279,6 +279,9 @@ func emerge():
 	sprite_animation.play("emerge")
 	diving = false
 	yield(sprite_animation, "animation_finished")
+	for area in $Area2D.get_overlapping_areas():
+		if area.get_parent().is_in_group('wall'):
+			die()
 	can_dive = true
 	sprite_animation.play("idle")
 	yield($ParticleTimer, 'timeout')
@@ -319,7 +322,10 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('trail') and object.can_collide and not diving:
 		die()
 	if object.is_in_group('wall'):
-		die()
+		if diving and area.is_in_group('underpass'):
+			pass
+		else:
+			die()
 	if object.is_in_group('player') and object != self:
 		if diving == object.diving:
 			die(true)

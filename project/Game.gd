@@ -1,7 +1,5 @@
 extends Node2D
 
-onready var round_screen = $RoundScreen
-
 const HOOK = preload("res://hook/Hook.tscn")
 const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://hook/HookClink.tscn")
@@ -57,11 +55,17 @@ func create_rope(player, hook):
 	return rope
 
 
-#func transition_stage(stage):
-#	var Twn = $StageTween
-#	var stage_pos = stage.get_position()
-#	Twn.interpolate_property(stage, "position", stage_pos, stage_pos + Vector2(0, TRANSITION_OFFSET), TRANSITION_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-#	Twn.start()
+func transition_stage():
+	var rs = $RoundScreen
+	rs.show_round()
+	
+	yield(rs, "shown")
+	free_current_stage()
+	add_new_stage()
+	
+	yield(rs, "hidden")
+	connect_players()
+	activate_players()
 
 
 func clean_all():
@@ -77,8 +81,6 @@ func free_current_stage():
 	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
 	for camera in Cameras:
 		camera.current = false
-#	transition_stage(stage)
-#	yield($StageTween, "tween_completed")
 	clean_all()
 	stage.queue_free()
 
@@ -87,15 +89,10 @@ func add_new_stage():
 	var stage = get_random_stage().instance()
 	players = stage.setup_players()
 	stage.set_name("Stage")
-#	stage.set_position(Vector2(0, -TRANSITION_OFFSET))
 	add_child(stage)
-#	transition_stage(stage)
 	Cameras = get_cameras()
 	for camera in Cameras:
 		camera.current = true
-	connect_players()
-#	yield($StageTween, "tween_completed")
-#	activate_players()
 
 
 func remove_player(player, is_player_collision):
@@ -122,14 +119,7 @@ func check_winner():
 		return
 	
 	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
-	round_screen.show_round()
-	
-	yield(round_screen, "shown")
-	free_current_stage()
-	add_new_stage()
-	
-	yield(round_screen, "hidden")
-	activate_players()
+	transition_stage()
 
 
 func _on_player_hook_shot(player, direction):
