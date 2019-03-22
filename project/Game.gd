@@ -146,9 +146,17 @@ func _on_player_hook_shot(player, direction):
 	player.hook = new_hook
 	
 func _on_player_megahook_shot(player, direction):
+	var explosion = load("res://fx/Explosion.tscn").instance()
 	var new_megahook = MEGAHOOK.instance()
+	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	
+	explosion.position = player.position + player.rider_offset * angle
 	new_megahook.activate(player, direction.normalized())
 	get_node("Stage/Hooks").add_child(new_megahook)
+	get_node("Stage/Trails").add_child(explosion)
+	
+	yield(explosion.get_node("AnimationPlayer"), "animation_finished")
+	explosion.queue_free()
 
 
 func _on_hook_clinked(clink_position):
