@@ -10,6 +10,8 @@ var hook
 func _ready():
 	if (powerup == null):
 		set_random_power()
+	
+	$Sprite/Tween.init(self)
 
 func _physics_process(delta):
 	if hook:
