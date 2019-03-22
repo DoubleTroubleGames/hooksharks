@@ -7,10 +7,7 @@ path="res://.import/parede_02.png-47a5632237ba1d09f78d8f3bb690dc78.stex"
 [deps]
 
 source_file="res://assets/parede_02.png"
-source_md5="b6eb76e401d6e6942eea40c251b4db89"
-
 dest_files=[ "res://.import/parede_02.png-47a5632237ba1d09f78d8f3bb690dc78.stex" ]
-dest_md5="714511fd4f0a37826a795e4e69eb60cc"
 
 [params]
 

@@ -7,10 +7,7 @@ path="res://.import/scream1.wav-975a08f6eba6f7e72ecd9d032a4f3b8d.sample"
 [deps]
 
 source_file="res://sound/scream1.wav"
-source_md5="642739dbd79739d42d7200c5ad9c31ab"
-
 dest_files=[ "res://.import/scream1.wav-975a08f6eba6f7e72ecd9d032a4f3b8d.sample" ]
-dest_md5="2aeeb2d72b7d61633be7ebf6ea89cd4f"
 
 [params]
 
