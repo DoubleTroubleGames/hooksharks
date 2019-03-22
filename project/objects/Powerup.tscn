@@ -3,7 +3,34 @@
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Powerup.gd" type="Script" id=2]
 [ext_resource path="res://assets/barrel2.png" type="Texture" id=3]
-[ext_resource path="res://objects/FloatAnimation.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "float"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Hitbox:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 35.0
@@ -11,14 +38,21 @@ radius = 35.0
 [node name="Powerup" groups=[
 "powerup",
 ] instance=ExtResource( 1 )]
+position = Vector2( 0, 5 )
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
+position = Vector2( 0, 2.67884 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 
-[node name="Tween" type="Tween" parent="Sprite" index="0"]
-script = ExtResource( 4 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
+autoplay = "float"
+playback_speed = 0.5
+anims/float = SubResource( 2 )
+
+[node name="Hitbox" parent="." index="1"]
+position = Vector2( 0, 2.67884 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 rotation = 1.5708
