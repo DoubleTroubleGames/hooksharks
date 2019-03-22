@@ -16,6 +16,7 @@ func init(_player):
 		return false
 
 func activate(player, direction):
+	var angle = Vector2(cos(player.rotation), sin(player.rotation))
 	self.player = player
 	self.direction = direction
 	self.position = player.position
