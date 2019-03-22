@@ -197,6 +197,7 @@ monitoring = false
 polygon = PoolVector2Array( -23.2921, -1.11684, -18.4391, -10.8228, 20.3849, -22.1465, 64.7089, -3.05804, 21.3555, 21.5305, -16.8214, 9.88329 )
 
 [node name="DiveCooldown" type="Node2D" parent="."]
+visible = false
 
 [node name="Bar" type="TextureProgress" parent="DiveCooldown"]
 margin_left = -13.0
