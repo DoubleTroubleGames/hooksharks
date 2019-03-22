@@ -44,10 +44,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -960.0
-margin_top = -1080.0
-margin_right = 1152.0
-margin_bottom = 108.0
+margin_left = -1056.0
+margin_top = -1188.0
+margin_right = 1056.0
 rect_pivot_offset = Vector2( 1056, 594 )
 texture = ExtResource( 2 )
 

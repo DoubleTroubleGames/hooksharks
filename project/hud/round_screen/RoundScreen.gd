@@ -17,7 +17,7 @@ const DELAY = .1
 const DURATION = .5
 const BACKGROUND_Y = -108
 const BACKGROUND_OFFSCREEN_Y = -2000
-const OFFSET_X = -90
+const OFFSET_X = -96
 
 
 func _ready():
