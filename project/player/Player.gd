@@ -18,9 +18,10 @@ enum MovementTypes {DIRECT, TANK}
 
 const TRAIL = preload("res://fx/trails/Trail.tscn")
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
-const EXPLOSIONS_PATH = "res://fx/explosion/"
 const NORMAL_BUBBLE = preload("res://fx/bubble.png")
 const COOLDOWN_BUBBLE = preload("res://fx/cd_bubble.png")
+const BLOOD_PARTICLE = preload("res://fx/BloodParticles.tscn")
+const EXPLOSION_PARTICLE = preload("res://fx/explosion/DeathExplosion.tscn")
 const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36
@@ -58,8 +59,6 @@ func _ready():
 	
 	randomize()
 	speed2 = speed2.rotated(initial_dir.angle())
-	$Explosion.texture = load(str(EXPLOSIONS_PATH, 1 + (randi() % 4), ".png"))
-	$Explosion2.texture = load(str(EXPLOSIONS_PATH, 1 + randi() % 4, ".png"))
 	dive_meter.texture_progress = NORMAL_BUBBLE
 	dive_meter.value = 100
 	set_physics_process(false)
@@ -201,14 +200,18 @@ func create_trail(pos):
 
 
 func die(is_player_collision=false):
+	var EP = EXPLOSION_PARTICLE.instance()
+	EP.position = self.position
+	EP.z_index = 2
 	$Area2D.queue_free()
 	sprite_animation.stop(false)
 	sprite.hide()
 	rider.hide()
 	$DiveCooldown.hide()
-	$Explosion.emitting = true
-	$Explosion2.emitting = true
 	$SFX/ExplosionSFX.play()
+	for particle in EP.get_children():
+		particle.emitting = true
+	get_parent().add_child(EP)
 	randomize()
 	var scream = 1 + randi() % 9
 	get_node(str('SFX/ScreamSFX', scream)).play()
@@ -223,9 +226,11 @@ func die(is_player_collision=false):
 
 
 func hook_collision(from_hook):
+	var BP = BLOOD_PARTICLE.instance()
+	BP.position = self.position
 	$HookTimer.start()
 	$SFX/OnHit.play()
-	$BloodParticles.emitting = true
+	get_parent().add_child(BP)
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0) - \
 			from_hook.rope.get_point_position(1)).normalized()
