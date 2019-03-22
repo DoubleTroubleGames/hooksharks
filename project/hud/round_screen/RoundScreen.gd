@@ -93,10 +93,21 @@ func win_animation(match_winner):
 	button_restart.grab_focus()
 
 
+func transition():
+	button_quit.disabled = true
+	button_restart.disabled = true
+	
+	Transition.transition_in()
+
+
 func _on_Restart_pressed():
 	RoundManager.reset_round()
+	transition()
+	yield(Transition, "finished")
 	get_tree().reload_current_scene()
 
 
 func _on_Quit_pressed():
+	transition()
+	yield(Transition, "finished")
 	get_tree().change_scene("res://main-menu/MainMenu.tscn")

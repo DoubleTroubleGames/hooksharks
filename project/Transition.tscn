@@ -1,26 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Transition.gd" type="Script" id=1]
-[ext_resource path="res://assets/shark_transition.png" type="Texture" id=2]
-[ext_resource path="res://assets/jaw_upper.png" type="Texture" id=3]
-[ext_resource path="res://assets/jaw_lower.png" type="Texture" id=4]
+[ext_resource path="res://assets/jaw_upper.png" type="Texture" id=2]
+[ext_resource path="res://assets/jaw_lower.png" type="Texture" id=3]
 
 [node name="Transition" type="CanvasLayer"]
 layer = 7
 script = ExtResource( 1 )
-
-[node name="Shark" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="Mask" type="TextureRect" parent="Shark"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = -1265.0
-margin_top = -540.0
-margin_bottom = 540.0
-texture = ExtResource( 2 )
 
 [node name="Jaw" type="Control" parent="."]
 anchor_right = 1.0
@@ -32,7 +18,7 @@ anchor_right = 0.5
 margin_left = -960.0
 margin_top = -1765.0
 margin_right = 960.0
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="Lower" type="TextureRect" parent="Jaw"]
 anchor_left = 0.5
@@ -41,7 +27,8 @@ margin_left = -960.0
 margin_top = 1080.0
 margin_right = 960.0
 margin_bottom = 2680.0
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

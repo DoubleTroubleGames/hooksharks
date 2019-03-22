@@ -10,7 +10,6 @@ onready var subtitle_pos = subtitle.rect_position
 const TITLE_OFFSET = Vector2(5000, 0)
 const TITLE_DELAY = .5
 const GLOW_DURATION = 1
-const PRESS_START_DELAY = 3
 
 var title_shown = false
 
@@ -20,6 +19,10 @@ func _ready():
 			TITLE_OFFSET.rotated(deg2rad(title.rect_rotation))
 	subtitle.rect_position = subtitle.rect_position +\
 			TITLE_OFFSET.rotated(deg2rad(title.rect_rotation))
+	
+	if Transition.is_black_screen:
+		Transition.transition_out()
+		yield(Transition, "finished")
 	
 	tween.interpolate_property(title, "rect_position", null, title_pos, 1.5,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT, TITLE_DELAY)
@@ -54,9 +57,15 @@ func show_title():
 	tween.start()
 	camera.add_shake(1)
 	
-	yield(get_tree().create_timer(PRESS_START_DELAY), "timeout")
-	$PressStart/AnimationPlayer.play("show")
+	$PressStartTimer.start()
 
 
 func change_screen():
+	Transition.transition_in()
+	set_process_input(false)
+	yield(Transition, "finished")
 	get_tree().change_scene("res://mode-select/ModeSelect.tscn")
+
+
+func _on_PressStartTimer_timeout():
+	$PressStart/AnimationPlayer.play("show")

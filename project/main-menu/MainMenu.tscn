@@ -101,6 +101,15 @@ text = "Press Start"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PressStart"]
 anims/show = SubResource( 3 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenGlow" type="ColorRect" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Tween" type="Tween" parent="."]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 960, 540 )
 rotating = true
@@ -109,12 +118,8 @@ limit_left = 0
 limit_top = 0
 script = ExtResource( 4 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="PressStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ScreenGlow" type="ColorRect" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-
+[connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

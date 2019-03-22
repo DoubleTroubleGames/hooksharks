@@ -8,11 +8,9 @@
 [ext_resource path="res://mode-select/m_racingt_selected.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
-
 resource_name = "idle"
 length = 3.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 2
@@ -39,11 +37,9 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "idle"
 length = 3.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 2
@@ -70,101 +66,47 @@ tracks/1/keys = {
 }
 
 [node name="ModeSelect" type="Control"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="Water" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Water" parent="." instance=ExtResource( 2 )]
 
-[node name="ArenaButton" type="TextureButton" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="ArenaButton" type="TextureButton" parent="."]
 margin_left = 161.0
 margin_top = 241.301
 margin_right = 865.0
 margin_bottom = 866.301
 rect_rotation = 2.70973
 rect_pivot_offset = Vector2( 358.61, 325.188 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
+disabled = true
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
 texture_focused = ExtResource( 4 )
-_sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ArenaButton" index="0"]
-
-root_node = NodePath("..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ArenaButton"]
 autoplay = "idle"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
 playback_speed = 0.7
 anims/idle = SubResource( 1 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
-[node name="RacingButton" type="TextureButton" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="RacingButton" type="TextureButton" parent="."]
 margin_left = 1015.0
 margin_top = 254.664
 margin_right = 1719.0
 margin_bottom = 879.664
 rect_rotation = 1.05035
 rect_pivot_offset = Vector2( 352.534, 316.153 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
+disabled = true
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
-_sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RacingButton" index="0"]
-
-root_node = NodePath("..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RacingButton"]
 autoplay = "idle"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
 playback_speed = 0.6
 anims/idle = SubResource( 2 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
 [connection signal="pressed" from="ArenaButton" to="." method="_on_ArenaButton_pressed"]
-
 [connection signal="pressed" from="RacingButton" to="." method="_on_RacingButton_pressed"]
-
-
