@@ -26,12 +26,15 @@ func removeHook():
 	
 func despawn():
 	$Hitbox/CollisionShape2D.set_disabled(true)
+	$Sprite.set_modulate(Color(1, 1, 1, 0))
+	$Sprite/AnimationPlayer.stop()
 	hide()
 
 func spawn():
 	set_random_power()
-	$Hitbox/CollisionShape2D.set_disabled(false)
 	position = initial_position
+	$Hitbox/CollisionShape2D.set_disabled(false)
+	$Sprite/AnimationPlayer.play("spawn")
 	show()
 	
 func set_random_power():
