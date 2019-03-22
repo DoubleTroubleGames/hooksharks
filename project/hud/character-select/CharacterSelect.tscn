@@ -18,27 +18,20 @@
 [ext_resource path="res://player/bubble.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFont" id=1]
-
 size = 100
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 13 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
-
 size = 45
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 13 )
-_sections_unfolded = [ "Settings" ]
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "hide"
 length = 0.4
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -53,11 +46,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
 resource_name = "show"
 length = 0.4
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -72,191 +62,128 @@ tracks/0/keys = {
 }
 
 [node name="CharacterSelect" type="Control"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="Water" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Water" parent="." instance=ExtResource( 2 )]
 
-[node name="Objects" type="Node2D" parent="." index="1"]
-
+[node name="Objects" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="floor" type="Sprite" parent="Objects" index="0"]
-
+[node name="floor" type="Sprite" parent="Objects"]
 position = Vector2( 510, 50 )
 texture = ExtResource( 3 )
 
-[node name="floor2" type="Sprite" parent="Objects" index="1"]
-
+[node name="floor2" type="Sprite" parent="Objects"]
 position = Vector2( 793.797, 60.3605 )
 texture = ExtResource( 3 )
 
-[node name="floor3" type="Sprite" parent="Objects" index="2"]
-
+[node name="floor3" type="Sprite" parent="Objects"]
 position = Vector2( 1225.23, 65.2134 )
 texture = ExtResource( 4 )
 
-[node name="floor4" type="Sprite" parent="Objects" index="3"]
-
+[node name="floor4" type="Sprite" parent="Objects"]
 position = Vector2( 1750.9, 60 )
 texture = ExtResource( 3 )
 
-[node name="floor5" type="Sprite" parent="Objects" index="4"]
-
+[node name="floor5" type="Sprite" parent="Objects"]
 position = Vector2( 240, 60 )
 texture = ExtResource( 4 )
 
-[node name="roof2" type="Sprite" parent="Objects" index="5"]
-
+[node name="roof2" type="Sprite" parent="Objects"]
 position = Vector2( 586.399, 12.2129 )
 texture = ExtResource( 5 )
 
-[node name="tire2" type="Sprite" parent="Objects" index="6"]
-
+[node name="tire2" type="Sprite" parent="Objects"]
 position = Vector2( 1488.12, 36.3168 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="dock" type="Sprite" parent="Objects" index="7"]
-
+[node name="dock" type="Sprite" parent="Objects"]
 position = Vector2( 23.5812, 77.2803 )
 rotation = 2.45284
 texture = ExtResource( 7 )
 
-[node name="metal" type="Sprite" parent="Objects" index="8"]
-
+[node name="metal" type="Sprite" parent="Objects"]
 position = Vector2( 1900.97, 2.63797 )
 rotation = 0.189877
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="floor6" type="Sprite" parent="Objects" index="9"]
-
+[node name="floor6" type="Sprite" parent="Objects"]
 position = Vector2( 211.811, 1032 )
 rotation = 3.14159
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="float2" type="Sprite" parent="Objects" index="10"]
-
+[node name="float2" type="Sprite" parent="Objects"]
 position = Vector2( 1775.97, 938.379 )
 rotation = 1.57834
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 9 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="floor7" type="Sprite" parent="Objects" index="11"]
-
+[node name="floor7" type="Sprite" parent="Objects"]
 position = Vector2( 632.284, 1032 )
 rotation = 3.14159
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="floor8" type="Sprite" parent="Objects" index="12"]
-
+[node name="floor8" type="Sprite" parent="Objects"]
 position = Vector2( 1784.38, 1032 )
 rotation = 3.14159
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="box2" type="Sprite" parent="Objects" index="13"]
-
+[node name="box2" type="Sprite" parent="Objects"]
 position = Vector2( 472.495, 1047.95 )
 rotation = -3.14159
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="floor9" type="Sprite" parent="Objects" index="14"]
-
+[node name="floor9" type="Sprite" parent="Objects"]
 position = Vector2( 1426.55, 1023.2 )
 rotation = -3.14159
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="floor10" type="Sprite" parent="Objects" index="15"]
-
+[node name="floor10" type="Sprite" parent="Objects"]
 position = Vector2( 1049.26, 1025.96 )
 rotation = 3.14159
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="metal2" type="Sprite" parent="Objects" index="16"]
-
+[node name="metal2" type="Sprite" parent="Objects"]
 position = Vector2( 1223.81, 1082.36 )
 rotation = -3.14159
 texture = ExtResource( 11 )
 
-[node name="roof" type="Sprite" parent="Objects" index="17"]
-
+[node name="roof" type="Sprite" parent="Objects"]
 position = Vector2( 656.165, 1086.49 )
 rotation = -3.14159
 texture = ExtResource( 12 )
 
-[node name="roof3" type="Sprite" parent="Objects" index="18"]
-
+[node name="roof3" type="Sprite" parent="Objects"]
 position = Vector2( 993.223, 1067.14 )
 rotation = -3.14159
 texture = ExtResource( 5 )
 
-[node name="Title" type="Label" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Title" type="Label" parent="."]
 margin_left = 670.0
 margin_top = 70.0
 margin_right = 1314.0
 margin_bottom = 213.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
 custom_constants/shadow_offset_y = 10
 text = "Shark Select"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors", "custom_constants", "custom_fonts" ]
 
-[node name="Boxes" type="GridContainer" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="Boxes" type="GridContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 columns = 4
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SelectionBox0" parent="Boxes" index="0" instance=ExtResource( 14 )]
-
+[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 14 )]
 margin_left = 108.0
 margin_top = 410.0
 margin_right = 368.0
@@ -264,10 +191,8 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
-_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
-[node name="SelectionBox1" parent="Boxes" index="1" instance=ExtResource( 14 )]
-
+[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 14 )]
 margin_left = 589.0
 margin_top = 410.0
 margin_right = 849.0
@@ -275,10 +200,8 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
-_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
-[node name="SelectionBox2" parent="Boxes" index="2" instance=ExtResource( 14 )]
-
+[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 14 )]
 margin_left = 1070.0
 margin_top = 410.0
 margin_right = 1330.0
@@ -287,8 +210,7 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox3" parent="Boxes" index="3" instance=ExtResource( 14 )]
-
+[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 14 )]
 margin_left = 1551.0
 margin_top = 410.0
 margin_right = 1811.0
@@ -297,85 +219,37 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="BackIndicator" type="Node2D" parent="." index="4"]
-
+[node name="BackIndicator" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
-_sections_unfolded = [ "Visibility" ]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="Progress" type="TextureProgress" parent="BackIndicator" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Progress" type="TextureProgress" parent="BackIndicator"]
 margin_left = -50.0
 margin_top = -50.0
 margin_right = 462.0
 margin_bottom = 462.0
 rect_scale = Vector2( 0.2, 0.2 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = true
-rounded = false
 texture_under = ExtResource( 15 )
-texture_over = null
 texture_progress = ExtResource( 16 )
 fill_mode = 4
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-_sections_unfolded = [ "Rect" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Message" type="Label" parent="BackIndicator" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Message" type="Label" parent="BackIndicator"]
 margin_left = 100.0
 margin_top = -30.0
 margin_right = 548.0
 margin_bottom = 35.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Hold BACK to leave"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BackIndicator" index="2"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackIndicator"]
 anims/hide = SubResource( 3 )
 anims/show = SubResource( 4 )
-blend_times = [  ]
-
 
