@@ -1,0 +1,396 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://hud/hud.gd" type="Script" id=1]
+[ext_resource path="res://hud/round_screen/UI_round.png" type="Texture" id=2]
+[ext_resource path="res://main_menu/UI_draw.png" type="Texture" id=3]
+[ext_resource path="res://hud/round_screen/UI_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/PermanentMarker-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://hud/round_screen/UI_shark_red.png" type="Texture" id=6]
+[ext_resource path="res://hud/round_screen/UI_shark_blue.png" type="Texture" id=7]
+[ext_resource path="res://hud/round_screen/UI_bolas.png" type="Texture" id=8]
+[ext_resource path="res://hud/round_screen/UI_X.png" type="Texture" id=9]
+[ext_resource path="res://main_menu/UI_TITLE_RESTART.png" type="Texture" id=10]
+[ext_resource path="res://main_menu/UI_TITLE_RESTART_SELECT.png" type="Texture" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Animation" id=2]
+
+length = 0.7
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.580392, 0, 0.827451, 1 ), Color( 0.294118, 0, 0.509804, 1 ), Color( 0, 0, 1, 1 ), Color( 0, 1, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 1, 0.498039, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.580392, 0, 0.827451, 1 ) ]
+}
+
+[sub_resource type="StreamTexture" id=3]
+
+flags = 4
+load_path = "res://.import/UI_TITLE_QUIT.png-52609523bccd1b564089bcdb4e8f5cc2.stex"
+
+[sub_resource type="StreamTexture" id=4]
+
+flags = 4
+load_path = "res://.import/UI_TITLE_QUIT_SELECT.png-46b3f0d4584b90c3ac18f739f9408ab7.stex"
+
+[node name="HUD" type="Control" index="0"]
+
+pause_mode = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1280, 720 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause", "Visibility" ]
+
+[node name="Background" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -768.0
+margin_top = -432.0
+margin_right = 768.0
+margin_bottom = 432.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.501961 )
+_sections_unfolded = [ "Material" ]
+
+[node name="Round" type="Control" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Text" type="TextureRect" parent="Round" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -216.0
+margin_top = 40.0
+margin_right = 215.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Draw" type="TextureRect" parent="Round" index="1"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -216.0
+margin_top = 300.0
+margin_right = 2859.0
+margin_bottom = 1415.0
+rect_scale = Vector2( 0.14, 0.14 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Number" type="TextureRect" parent="Round" index="2"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -110.0
+margin_right = 80.0
+margin_bottom = 169.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Winner" type="Label" parent="Round" index="3"]
+
+editor/display_folded = true
+visible = false
+modulate = Color( 0.115404, 0, 0.80766, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 958.0
+margin_top = 200.0
+margin_right = 1200.0
+margin_bottom = 292.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 5
+custom_constants/shadow_offset_y = 5
+text = "Winner!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Round/Winner" index="0"]
+
+root_node = NodePath("..")
+autoplay = "glow"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 0.5
+anims/glow = SubResource( 2 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="SharkLeft" type="TextureRect" parent="Round" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = 150.0
+margin_top = -44.0
+margin_right = 247.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 6 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="SharkRight" type="TextureRect" parent="Round" index="5"]
+
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -248.0
+margin_top = -44.0
+margin_right = -150.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 7 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="BallsLeft" type="TextureRect" parent="Round" index="6"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = 80.0
+margin_top = 72.0
+margin_right = 307.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 8 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="X1" type="Sprite" parent="Round/BallsLeft" index="0"]
+
+visible = false
+position = Vector2( 29, 30 )
+texture = ExtResource( 9 )
+
+[node name="X2" type="Sprite" parent="Round/BallsLeft" index="1"]
+
+visible = false
+position = Vector2( 117, 26 )
+texture = ExtResource( 9 )
+
+[node name="X3" type="Sprite" parent="Round/BallsLeft" index="2"]
+
+visible = false
+position = Vector2( 200, 25 )
+texture = ExtResource( 9 )
+
+[node name="BallsRight" type="TextureRect" parent="Round" index="7"]
+
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -307.0
+margin_top = 72.0
+margin_right = -80.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 8 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="X1" type="Sprite" parent="Round/BallsRight" index="0"]
+
+visible = false
+position = Vector2( 29, 28 )
+texture = ExtResource( 9 )
+
+[node name="X2" type="Sprite" parent="Round/BallsRight" index="1"]
+
+visible = false
+position = Vector2( 119, 28 )
+texture = ExtResource( 9 )
+
+[node name="X3" type="Sprite" parent="Round/BallsRight" index="2"]
+
+visible = false
+position = Vector2( 200, 28 )
+texture = ExtResource( 9 )
+
+[node name="Restart" type="TextureButton" parent="Round" index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 292.0
+margin_top = 740.0
+margin_right = 623.0
+margin_bottom = 903.0
+rect_min_size = Vector2( 331, 163 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_focused = ExtResource( 11 )
+_sections_unfolded = [ "Rect", "Textures", "custom_fonts" ]
+
+[node name="Quit" type="TextureButton" parent="Round" index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 690.0
+margin_top = 740.0
+margin_right = 994.0
+margin_bottom = 902.0
+rect_min_size = Vector2( 304, 162 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = SubResource( 3 )
+texture_pressed = SubResource( 4 )
+texture_focused = SubResource( 4 )
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="Tween" type="Tween" parent="." index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="DisplayTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="pressed" from="Round/Restart" to="." method="_on_Restart_pressed"]
+
+[connection signal="pressed" from="Round/Quit" to="." method="_on_Quit_pressed"]
+
+

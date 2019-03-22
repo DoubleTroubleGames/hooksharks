@@ -7,10 +7,7 @@ path="res://.import/emerge.wav-c5da7ff9ed735e380d169af79fb5ffd1.sample"
 [deps]
 
 source_file="res://sound/emerge.wav"
-source_md5="cf6cc47adbc0678b714f671f292872cb"
-
 dest_files=[ "res://.import/emerge.wav-c5da7ff9ed735e380d169af79fb5ffd1.sample" ]
-dest_md5="892604620d8774e79608f94806871c76"
 
 [params]
 
