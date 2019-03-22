@@ -27,7 +27,7 @@ __meta__ = {
 }
 
 [node name="PullableObjectBot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 291.598, 315.978 )
+position = Vector2( 0, 300 )
 
 [connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
 [connection signal="hooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_hooked"]
