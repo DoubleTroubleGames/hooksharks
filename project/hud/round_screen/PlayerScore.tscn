@@ -2,10 +2,12 @@
 
 [ext_resource path="res://hud/round_screen/PlayerScore.gd" type="Script" id=1]
 [ext_resource path="res://hud/round_screen/character.png" type="Texture" id=2]
-[ext_resource path="res://hud/round_screen/coroa.png" type="Texture" id=3]
-[ext_resource path="res://hud/round_screen/ui_bolas.png" type="Texture" id=4]
+[ext_resource path="res://hud/round_screen/crown.png" type="Texture" id=3]
+[ext_resource path="res://hud/round_screen/ui_circles.png" type="Texture" id=4]
 [ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=5]
 [ext_resource path="res://sound/score.wav" type="AudioStream" id=6]
+
+
 
 [node name="PlayerScore" type="VBoxContainer"]
 margin_right = 227.0

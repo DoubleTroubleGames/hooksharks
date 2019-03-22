@@ -16,11 +16,11 @@ onready var rider_offset = -$Sprite/Rider.position.x
 
 enum MovementTypes {DIRECT, TANK}
 
-const TRAIL = preload("res://player/Trail.tscn")
+const TRAIL = preload("res://fx/trails/Trail.tscn")
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
-const EXPLOSIONS_PATH = "res://player/explosion/"
-const NORMAL_BUBBLE = preload("res://player/bubble.png")
-const COOLDOWN_BUBBLE = preload("res://player/cd_bubble.png")
+const EXPLOSIONS_PATH = "res://fx/explosion/"
+const NORMAL_BUBBLE = preload("res://fx/bubble.png")
+const COOLDOWN_BUBBLE = preload("res://fx/cd_bubble.png")
 const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36

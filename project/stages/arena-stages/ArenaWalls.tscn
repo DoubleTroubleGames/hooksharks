@@ -1,16 +1,17 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://obstacles/Floor.tscn" type="PackedScene" id=1]
-[ext_resource path="res://obstacles/BoxMetal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://obstacles/Roof2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://obstacles/Box3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://obstacles/Roof.tscn" type="PackedScene" id=5]
-[ext_resource path="res://obstacles/Tire2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://obstacles/Floor2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://obstacles/Dock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://obstacles/BoxClosed.tscn" type="PackedScene" id=9]
-[ext_resource path="res://obstacles/Float2.tscn" type="PackedScene" id=10]
-[ext_resource path="res://obstacles/Box2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/obstacles/Roof2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/BoxClosed.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/Float2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=11]
+
 
 [node name="ArenaWalls" type="Node2D" index="0" groups=[
 "wall",
