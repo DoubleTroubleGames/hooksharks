@@ -7,7 +7,10 @@ path="res://.import/oilyshark.ogg-2be694bcdad1a34a00c1fe3b432c7516.oggstr"
 [deps]
 
 source_file="res://sound/oilyshark.ogg"
+source_md5="444eadd731b005e105d505549d9565e3"
+
 dest_files=[ "res://.import/oilyshark.ogg-2be694bcdad1a34a00c1fe3b432c7516.oggstr" ]
+dest_md5="5236887a7762bf6ef3998c4b5d953d62"
 
 [params]
 

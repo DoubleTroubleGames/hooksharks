@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://hud/round_screen/PlayerScore.gd" type="Script" id=1]
+[ext_resource path="res://hud/round_screen/character.png" type="Texture" id=2]
+[ext_resource path="res://hud/round_screen/coroa.png" type="Texture" id=3]
+[ext_resource path="res://hud/round_screen/ui_bolas.png" type="Texture" id=4]
+[ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=5]
+[ext_resource path="res://sound/score.wav" type="AudioStream" id=6]
+
+[node name="PlayerScore" type="VBoxContainer"]
+margin_right = 227.0
+margin_bottom = 184.0
+mouse_filter = 2
+custom_constants/separation = 40
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Portrait" type="TextureRect" parent="."]
+margin_right = 227.0
+margin_bottom = 170.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+stretch_mode = 6
+
+[node name="Crown" type="TextureRect" parent="Portrait"]
+visible = false
+margin_left = -20.0
+margin_top = -110.0
+margin_right = 203.0
+margin_bottom = 48.0
+texture = ExtResource( 3 )
+
+[node name="ScoreMarkers" type="TextureRect" parent="."]
+margin_top = 210.0
+margin_right = 227.0
+margin_bottom = 266.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+
+[node name="X1" type="Sprite" parent="ScoreMarkers"]
+visible = false
+position = Vector2( 30, 25 )
+texture = ExtResource( 5 )
+
+[node name="X2" type="Sprite" parent="ScoreMarkers"]
+visible = false
+position = Vector2( 118, 23 )
+texture = ExtResource( 5 )
+
+[node name="X3" type="Sprite" parent="ScoreMarkers"]
+visible = false
+position = Vector2( 200, 20 )
+texture = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ScoreSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
+
