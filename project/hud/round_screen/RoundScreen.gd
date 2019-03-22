@@ -99,4 +99,4 @@ func _on_Restart_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().change_scene("res://main-menu/MainMenu.tscn")
+	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
