@@ -1,9 +1,9 @@
 extends Node2D
 
-const HOOK = preload("res://hook/Hook.tscn")
+const HOOK = preload("res://player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
-const HOOK_CLINK = preload("res://hook/HookClink.tscn")
-const ROPE = preload("res://rope/Rope.tscn")
+const HOOK_CLINK = preload("res://player/hook/HookClink.tscn")
+const ROPE = preload("res://player/rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
 const SHOW_ROUND_DELAY = 1
 const TRANSITION_OFFSET = 1000
@@ -136,7 +136,7 @@ func _on_player_hook_shot(player, direction):
 	player.hook = new_hook
 	
 func _on_player_megahook_shot(player, direction):
-	var explosion = load("res://fx/Explosion.tscn").instance()
+	var explosion = load("res://fx/explosion/Explosion.tscn").instance()
 	var new_megahook = MEGAHOOK.instance()
 	var angle = Vector2(cos(player.rotation), sin(player.rotation))
 	
