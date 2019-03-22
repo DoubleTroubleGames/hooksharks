@@ -6,12 +6,11 @@ const POWERS = [preload("res://objects/Powerups/MegaHook.tscn"),
                 preload("res://objects/Powerups/TrailPower.tscn")]
 
 var hook
+onready var initial_position = position
 
 func _ready():
 	if (powerup == null):
 		set_random_power()
-	
-	$Sprite/Tween.init(self)
 
 func _physics_process(delta):
 	if hook:
@@ -32,6 +31,7 @@ func despawn():
 func spawn():
 	set_random_power()
 	$Hitbox/CollisionShape2D.set_disabled(false)
+	position = initial_position
 	show()
 	
 func set_random_power():
