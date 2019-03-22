@@ -17,10 +17,11 @@ const DELAY = .1
 const DURATION = .5
 const BACKGROUND_Y = -108
 const BACKGROUND_OFFSCREEN_Y = -2000
-const MENU_POS = Vector2(622, 840)
+const OFFSET_X = -90
 
 
 func _ready():
+	background.set_position(Vector2(OFFSET_X, BACKGROUND_OFFSCREEN_Y))
 	
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
@@ -77,10 +78,11 @@ func hide_round():
 
 
 func win_animation(match_winner):
-	buttons.visible = true
+	var button_pos = 880
+	buttons.show()
 	
 	# Menu animation
-	tween.interpolate_property(buttons, "rect_position", null, MENU_POS,
+	tween.interpolate_property(buttons, "rect_position:y", null, button_pos,
 			DURATION, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.start()
 
