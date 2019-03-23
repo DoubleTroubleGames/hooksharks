@@ -1,0 +1,51 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 substitute_color : hint_color;
+uniform sampler2D noise;
+uniform float noise_cutoff : hint_range(0.0,1.0);
+uniform vec4 wave_color : hint_color;
+uniform vec2 wave_scroll_speed;
+uniform sampler2D distortion;
+uniform float distortion_strength;
+
+bool close(float a, float b){
+	if (abs(a - b)	<= .2)
+		return true;
+	else
+		return false;
+}
+
+void fragment(){
+	vec2 distortMod = (texture(distortion, UV).xy * 2.0 - 1.0) * distortion_strength;
+	
+	float noise_x = mod(UV.x + wave_scroll_speed.x*TIME, 1.0) + distortMod.x;
+	float noise_y = mod(UV.y + wave_scroll_speed.y*TIME, 1.0) + distortMod.y;
+	vec2 noiseUV = vec2(noise_x, noise_y);
+	vec4 noisePixel = texture(noise, noiseUV);
+
+	
+	float value = (noisePixel.r + noisePixel.g + noisePixel.g)/3.0;
+	
+	vec4 pixel = texture(SCREEN_TEXTURE, SCREEN_UV);
+	
+	if (close(pixel.r, substitute_color.r) &&
+	    close(pixel.g, substitute_color.g) &&
+		close(pixel.b, substitute_color.b)) {
+		COLOR = wave_color;
+	}
+	else
+		COLOR = pixel;
+	
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/substitute_color = Color( 0, 1, 0.392157, 1 )
+shader_param/noise_cutoff = 0.75
+shader_param/wave_color = Color( 0.411765, 0.588235, 0.784314, 1 )
+shader_param/wave_scroll_speed = null
+shader_param/distortion_strength = null
+
