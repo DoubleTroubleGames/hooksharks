@@ -7,7 +7,6 @@
 [ext_resource path="res://hud/mode-select/m_racingt.png" type="Texture" id=5]
 [ext_resource path="res://hud/mode-select/m_racingt_selected.png" type="Texture" id=6]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 3.0
@@ -80,6 +79,7 @@ margin_right = 865.0
 margin_bottom = 866.301
 rect_rotation = 2.70973
 rect_pivot_offset = Vector2( 358.61, 325.188 )
+disabled = true
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
@@ -97,6 +97,7 @@ margin_right = 1719.0
 margin_bottom = 879.664
 rect_rotation = 1.05035
 rect_pivot_offset = Vector2( 352.534, 316.153 )
+disabled = true
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 6 )

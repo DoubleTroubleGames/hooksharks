@@ -15,23 +15,21 @@
 [ext_resource path="res://assets/box2.png" type="Texture" id=13]
 [ext_resource path="res://assets/metal2.png" type="Texture" id=14]
 [ext_resource path="res://assets/roof.png" type="Texture" id=15]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=17]
-[ext_resource path="res://fx/circle.png" type="Texture" id=18]
-[ext_resource path="res://fx/bubble.png" type="Texture" id=19]
-
+[ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=16]
+[ext_resource path="res://fx/circle.png" type="Texture" id=17]
+[ext_resource path="res://fx/bubble.png" type="Texture" id=18]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 45
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 16 )
+font_data = ExtResource( 19 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "hide"
@@ -190,7 +188,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 17 )]
+[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 16 )]
 margin_left = 108.0
 margin_top = 410.0
 margin_right = 368.0
@@ -199,7 +197,7 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 17 )]
+[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 16 )]
 margin_left = 589.0
 margin_top = 410.0
 margin_right = 849.0
@@ -208,7 +206,7 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 17 )]
+[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 16 )]
 margin_left = 1070.0
 margin_top = 410.0
 margin_right = 1330.0
@@ -217,7 +215,7 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 17 )]
+[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 16 )]
 margin_left = 1551.0
 margin_top = 410.0
 margin_right = 1811.0
@@ -240,8 +238,8 @@ margin_top = -50.0
 margin_right = 462.0
 margin_bottom = 462.0
 rect_scale = Vector2( 0.2, 0.2 )
-texture_under = ExtResource( 18 )
-texture_progress = ExtResource( 19 )
+texture_under = ExtResource( 17 )
+texture_progress = ExtResource( 18 )
 fill_mode = 4
 __meta__ = {
 "_edit_lock_": true

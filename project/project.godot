@@ -25,6 +25,7 @@ config/icon="res://hud/round_screen/sticker.png"
 
 RoundManager="*res://RoundManager.gd"
 Sound="*res://Sound.tscn"
+Transition="*res://Transition.tscn"
 
 [debug]
 

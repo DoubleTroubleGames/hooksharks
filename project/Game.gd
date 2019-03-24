@@ -25,6 +25,11 @@ func _ready():
 	
 	Cameras = get_cameras() 
 	connect_players()
+	
+	if Transition.is_black_screen:
+		Transition.transition_out()
+		yield(Transition, "finished")
+	
 	activate_players()
 
 

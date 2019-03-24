@@ -17,7 +17,7 @@ const DELAY = .1
 const DURATION = .5
 const BACKGROUND_Y = -108
 const BACKGROUND_OFFSCREEN_Y = -2000
-const OFFSET_X = -90
+const OFFSET_X = -96
 
 
 func _ready():
@@ -93,10 +93,21 @@ func win_animation(match_winner):
 	button_restart.grab_focus()
 
 
+func transition():
+	button_quit.disabled = true
+	button_restart.disabled = true
+	
+	Transition.transition_in()
+
+
 func _on_Restart_pressed():
 	RoundManager.reset_round()
+	transition()
+	yield(Transition, "finished")
 	get_tree().reload_current_scene()
 
 
 func _on_Quit_pressed():
+	transition()
+	yield(Transition, "finished")
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
