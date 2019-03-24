@@ -7,10 +7,7 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = ""
-
 [sub_resource type="Shader" id=2]
-
 code = "shader_type canvas_item;
 
 uniform vec4 shallow_color : hint_color;
@@ -59,22 +56,17 @@ void fragment() {
 }*/
 "
 script = SubResource( 1 )
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="ShaderMaterial" id=3]
-
-render_priority = 0
 shader = SubResource( 2 )
 shader_param/shallow_color = Color( 0.0594177, 0.27562, 0.460938, 1 )
 shader_param/deep_color = Color( 0.0397797, 0.184525, 0.308594, 1 )
 shader_param/h_shallow_edge = 0.0
-shader_param/h_deep_edge = 0.08
+shader_param/h_deep_edge = 0.203
 shader_param/v_shallow_edge = 0.01
-shader_param/v_deep_edge = 0.15
-_sections_unfolded = [ "shader_param" ]
+shader_param/v_deep_edge = 0.294
 
 [sub_resource type="Shader" id=4]
-
 code = "shader_type canvas_item;
 
 uniform vec2 rect_size; // Width/Height of the water
@@ -135,73 +127,34 @@ void fragment(){
 		COLOR = pixel;
 	}
 }"
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="ShaderMaterial" id=5]
-
-render_priority = 0
 shader = SubResource( 4 )
 shader_param/rect_size = Vector2( 1920, 1080 )
 shader_param/noise_size = Vector2( 700, 700 )
 shader_param/noise_cutoff = 0.75
 shader_param/h_foam_distance = 0.07
 shader_param/v_foam_distance = 0.07
-shader_param/wave_color = Plane( 1, 1, 1, 0.4 )
+shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.05, 0.04 )
 shader_param/distortion_strength = 0.4
 shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 3 )
 shader_param/distortion = ExtResource( 2 )
-_sections_unfolded = [ "shader_param" ]
 
-[node name="Water" type="ColorRect" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="Water" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
 script = ExtResource( 1 )
-_sections_unfolded = [ "Material", "Rect" ]
 
-[node name="BG" type="ColorRect" parent="." index="0"]
-
+[node name="BG" type="ColorRect" parent="."]
 material = SubResource( 3 )
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
-_sections_unfolded = [ "Material" ]
 
-[node name="Waves" type="ColorRect" parent="." index="1"]
-
+[node name="Waves" type="ColorRect" parent="."]
 material = SubResource( 5 )
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
-_sections_unfolded = [ "Material", "Pause" ]
 
 [connection signal="resized" from="." to="." method="_on_Water_resized"]
-
-
