@@ -21,6 +21,7 @@ func connect_players():
 func activate_players():
 	for player in players:
 		player.get_node("Area2D").monitoring = true
+		player.get_node("WaterParticles").show()
 		player.create_trail = false
 		player.ROT_SPEED = PI/2
 		player.INITIAL_SPEED = 0

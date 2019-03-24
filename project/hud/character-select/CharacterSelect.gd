@@ -4,6 +4,10 @@ onready var boxes = $Boxes.get_children()
 onready var bar = $BackIndicator/Progress
 onready var anim_player = $BackIndicator/AnimationPlayer
 
+export (PackedScene)var ModeSelect 
+export (PackedScene)var ArenaMode
+export (PackedScene)var RaceMode
+
 var available_characters
 var starting_game = false
 var back_indicator_up_speed = 100
@@ -34,7 +38,7 @@ func _physics_process(delta):
 	else:
 		bar.value = max(0, bar.value - back_indicator_down_speed * delta) 
 	if bar.value >= 100:
-		transition_to("res://mode-select/ModeSelect.tscn")
+		transition_to(ModeSelect)
 	elif bar.value > 0:
 		if anim_player.assigned_animation != "show":
 			anim_player.play("show")
@@ -102,9 +106,9 @@ func start_game():
 	RoundManager.reset_round()
 	
 	if RoundManager.gamemode == "Arena":
-		transition_to("res://arena-mode/Arena.tscn")
+		transition_to(ArenaMode)
 	elif RoundManager.gamemode == "Race":
-		transition_to("res://race-mode/Race.tscn")
+		transition_to(RaceMode)
 
 
 func try_start_message():
@@ -116,8 +120,7 @@ func try_start_message():
 		pass
 
 
-func transition_to(scene_path):
-	printt("CharacterSelect", "transition_to", scene_path)
+func transition_to(packed_scene):
 	set_physics_process(false)
 	set_process_input(false)
 	for box in boxes:
@@ -125,7 +128,7 @@ func transition_to(scene_path):
 	
 	Transition.transition_in()
 	yield(Transition, "finished")
-	get_tree().change_scene(scene_path)
+	get_tree().change_scene_to(packed_scene)
 
 
 func _on_box_selected(character):

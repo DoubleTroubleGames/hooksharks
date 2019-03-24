@@ -1,9 +1,9 @@
 extends Node2D
 
-const HOOK = preload("res://hook/Hook.tscn")
+const HOOK = preload("res://player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
-const HOOK_CLINK = preload("res://hook/HookClink.tscn")
-const ROPE = preload("res://rope/Rope.tscn")
+const HOOK_CLINK = preload("res://player/hook/HookClink.tscn")
+const ROPE = preload("res://player/rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
 const SHOW_ROUND_DELAY = 1
 const TRANSITION_OFFSET = 1000
@@ -141,9 +141,17 @@ func _on_player_hook_shot(player, direction):
 	player.hook = new_hook
 	
 func _on_player_megahook_shot(player, direction):
+	var explosion = load("res://fx/explosion/Explosion.tscn").instance()
 	var new_megahook = MEGAHOOK.instance()
+	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	
+	explosion.position = player.position + player.rider_offset * angle
+	new_megahook.activate(player, direction.normalized())
 	get_node("Stage/Hooks").add_child(new_megahook)
-	new_megahook.activate(player, direction)
+	get_node("Stage/Trails").add_child(explosion)
+	
+	yield(explosion.get_node("AnimationPlayer"), "animation_finished")
+	explosion.queue_free()
 
 
 func _on_hook_clinked(clink_position):
@@ -151,10 +159,6 @@ func _on_hook_clinked(clink_position):
 		return
 	
 	$ScreenBlink.blink()
-	# Opa, deletei o blink quando fiz a hud ser só roundscreen, se isso tá aqui
-	# ainda é porque eu esqueci de consertar isso depois. Vou fazer uma cena
-	# chamada BlinkScreen com um script built-in na pasta fx e instanciar nas
-	# cenas de arena e race.
 	
 	var hook_clink = HOOK_CLINK.instance()
 	hook_clink.emitting = true

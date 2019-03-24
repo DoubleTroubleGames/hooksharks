@@ -16,10 +16,10 @@ _global_script_class_icons={
 [application]
 
 config/name="Hooksharks"
-run/main_scene="res://main-menu/MainMenu.tscn"
+run/main_scene="res://hud/main-menu/MainMenu.tscn"
 config/use_custom_user_dir=true
-boot_splash/image="res://main-menu/main_menu.png"
-config/icon="res://hook/hook.png"
+boot_splash/image="res://hud/main-menu/main_menu.png"
+config/icon="res://hud/round_screen/sticker.png"
 
 [autoload]
 
