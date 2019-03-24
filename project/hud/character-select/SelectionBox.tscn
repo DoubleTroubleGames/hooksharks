@@ -122,6 +122,7 @@ anims/idle = SubResource( 3 )
 anims/shake = SubResource( 4 )
 
 [node name="SharkSprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 100, 420 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 4 )
