@@ -6,26 +6,29 @@ signal hook_shot(player, direction)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
 
-onready var arrow = $Arrow
+onready var rider = $Sprite/Rider
 onready var dive_meter = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
 onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
+onready var rider_offset = -$Sprite/Rider.position.x
 
 enum MovementTypes {DIRECT, TANK}
 
-const TRAIL = preload("res://player/Trail.tscn")
+const TRAIL = preload("res://fx/trails/Trail.tscn")
 const DIVE_PARTICLES = preload("res://fx/DiveParticles.tscn")
-const EXPLOSIONS_PATH = "res://player/explosion/"
-const NORMAL_BUBBLE = preload("res://player/bubble.png")
-const COOLDOWN_BUBBLE = preload("res://player/cd_bubble.png")
+const NORMAL_BUBBLE = preload("res://fx/bubble.png")
+const COOLDOWN_BUBBLE = preload("res://fx/cd_bubble.png")
+const BLOOD_PARTICLE = preload("res://fx/BloodParticles.tscn")
+const EXPLOSION_PARTICLE = preload("res://fx/explosion/DeathExplosion.tscn")
 const AXIS_DEADZONE = .2
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
+const PULLFORCE = 350
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -47,10 +50,8 @@ var stunned = false
 var hook = null
 var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)
-var turning_direction = 0
 var is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
-var input_direction = Vector2()
 
 func _ready():
 	if device_name.begins_with("gamepad"):
@@ -58,8 +59,6 @@ func _ready():
 	
 	randomize()
 	speed2 = speed2.rotated(initial_dir.angle())
-	$Explosion.texture = load(str(EXPLOSIONS_PATH, 1 + (randi() % 4), ".png"))
-	$Explosion2.texture = load(str(EXPLOSIONS_PATH, 1 + randi() % 4, ".png"))
 	dive_meter.texture_progress = NORMAL_BUBBLE
 	dive_meter.value = 100
 	set_physics_process(false)
@@ -135,8 +134,8 @@ func _physics_process(delta):
 	applying_force -= proj
 	
 	if stunned:
-		position += pull_dir * 100 * delta
-		applying_force = pull_dir * 200
+		position += pull_dir * PULLFORCE * delta
+		applying_force = pull_dir * PULLFORCE * 2
 	if MAX_SPEED != -1:
 		speed2 = speed2.clamped(MAX_SPEED)
 	
@@ -150,10 +149,11 @@ func _physics_process(delta):
 			2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
 		create_trail(self.position)
 	
-	# Update arrow direction
-	var arrow_dir = get_arrow_direction()
-	arrow.visible = (arrow_dir.length() > AXIS_DEADZONE and can_dive)
-	arrow.global_rotation = arrow_dir.angle()
+	# Update rider direction
+	var rider_dir = get_rider_direction()
+	rider_dir.x *= -1
+	rider.visible = (rider_dir.length() > AXIS_DEADZONE and can_dive)
+	rider.global_rotation = rider_dir.angle()
 	
 	dive_bar.global_rotation = 0
 	
@@ -161,7 +161,7 @@ func _physics_process(delta):
 		emerge()
 
 
-func get_arrow_direction():
+func get_rider_direction():
 	if gamepad_id != -1:
 		return Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
 				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY))
@@ -200,21 +200,25 @@ func create_trail(pos):
 
 
 func die(is_player_collision=false):
+	var EP = EXPLOSION_PARTICLE.instance()
+	EP.position = self.position
+	EP.z_index = 2
 	$Area2D.queue_free()
 	sprite_animation.stop(false)
 	sprite.hide()
-	$HookGuy.hide()
+	rider.hide()
 	$DiveCooldown.hide()
-	$Explosion.emitting = true
-	$Explosion2.emitting = true
 	$SFX/ExplosionSFX.play()
+	for particle in EP.get_children():
+		particle.emitting = true
+	get_parent().add_child(EP)
 	randomize()
 	var scream = 1 + randi() % 9
 	get_node(str('SFX/ScreamSFX', scream)).play()
 	emit_signal("died", self, is_player_collision)
 	if hook != null:
 		hook.free_hook()
-	arrow.visible = false
+	rider.hide()
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	$WaterParticles.hide()
 	set_physics_process(false)
@@ -222,9 +226,11 @@ func die(is_player_collision=false):
 
 
 func hook_collision(from_hook):
+	var BP = BLOOD_PARTICLE.instance()
+	BP.position = self.position
 	$HookTimer.start()
 	$SFX/OnHit.play()
-	$BloodParticles.emitting = true
+	get_parent().add_child(BP)
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0) - \
 			from_hook.rope.get_point_position(1)).normalized()
@@ -278,8 +284,11 @@ func emerge():
 	sprite_animation.play("emerge")
 	diving = false
 	yield(sprite_animation, "animation_finished")
+	for area in $Area2D.get_overlapping_areas():
+		if area.get_parent().is_in_group('wall'):
+			die()
 	can_dive = true
-	sprite_animation.play("walk")
+	sprite_animation.play("idle")
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
@@ -289,16 +298,22 @@ func shoot():
 		return
 	
 	if hook == null and not stunned:
-		var hook_dir = get_arrow_direction()
+		var hook_dir = get_rider_direction()
 		if hook_dir.length() < AXIS_DEADZONE:
 			hook_dir = speed2
 		if not $PowerUps.has_node("MegaHook"):
 			emit_signal("hook_shot", self, hook_dir)
+			$Sprite/Rider/Hook.hide()
 		else:
 			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)
 	elif hook and weakref(hook).get_ref() and not hook.retracting:
 		hook.retract()
+
+
+func hook_retracted():
+	hook = null
+	$Sprite/Rider/Hook.show()
 
 
 func _on_Area2D_area_exited(area):
@@ -312,7 +327,10 @@ func _on_Area2D_area_entered(area):
 	if object.is_in_group('trail') and object.can_collide and not diving:
 		die()
 	if object.is_in_group('wall'):
-		die()
+		if diving and area.is_in_group('underpass'):
+			pass
+		else:
+			die()
 	if object.is_in_group('player') and object != self:
 		if diving == object.diving:
 			die(true)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/obstacles/outline_final.tres" type="Material" id=1]
+[ext_resource path="res://assets/boxfull_o.png" type="Texture" id=2]
+[ext_resource path="res://assets/boxfull.png" type="Texture" id=3]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 230, 115 )
+
+[node name="BoxFull" type="Area2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 1 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+

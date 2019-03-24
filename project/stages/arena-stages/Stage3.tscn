@@ -2,7 +2,8 @@
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/arena-stages/ArenaWalls.tscn" type="PackedScene" id=2]
-[ext_resource path="res://obstacles/Metal2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/obstacles/Metal2.tscn" type="PackedScene" id=3]
+
 
 [node name="Stage3" index="0" instance=ExtResource( 1 )]
 

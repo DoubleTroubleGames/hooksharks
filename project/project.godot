@@ -16,15 +16,20 @@ _global_script_class_icons={
 [application]
 
 config/name="Hooksharks"
-run/main_scene="res://main-menu/MainMenu.tscn"
+run/main_scene="res://hud/main-menu/MainMenu.tscn"
 config/use_custom_user_dir=true
-boot_splash/image="res://main-menu/main_menu.png"
-config/icon="res://hud/round_screen/ui_shark_red.png"
+boot_splash/image="res://hud/main-menu/main_menu.png"
+config/icon="res://hud/round_screen/sticker.png"
 
 [autoload]
 
 RoundManager="*res://RoundManager.gd"
 Sound="*res://Sound.tscn"
+Transition="*res://Transition.tscn"
+
+[debug]
+
+gdscript/warnings/enable=false
 
 [display]
 

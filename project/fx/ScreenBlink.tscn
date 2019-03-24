@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CanvasLayer
+
+const DURATION = .3
+
+
+func blink():
+	$Tween.interpolate_property($ColorRect, \"color:a\", 1, 0, DURATION,
+			Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+"
+
+[node name="ScreenBlink" type="CanvasLayer"]
+script = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+
+[node name="Tween" type="Tween" parent="."]
+
