@@ -5,10 +5,9 @@
 [ext_resource path="res://hud/round_screen/RoundScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fx/ScreenBlink.tscn" type="PackedScene" id=4]
 
-
 [node name="Race" type="Node2D"]
 script = ExtResource( 1 )
-stage_num = 2
+stage_num = 3
 
 [node name="Water" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true

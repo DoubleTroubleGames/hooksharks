@@ -8,9 +8,12 @@ var player_laps = [0, 0, 0, 0]
 
 func _ready():
 	if has_node("Camera2D"):
-		var stage_size = Vector2($Camera2D.limit_right, $Camera2D.limit_bottom)
+		var stage_size = Vector2($Camera2D.limit_right - $Camera2D.limit_left + 100, $Camera2D.limit_bottom - $Camera2D.limit_top + 100)
+		$Water.rect_position.x = $Camera2D.limit_left - 50
+		$Water.rect_position.y = $Camera2D.limit_top - 50
 		$Water.rect_size = stage_size
 		$Water._on_Water_resized()
+
 
 func setup_players():
 	var players = []
@@ -19,7 +22,7 @@ func setup_players():
 		var start = get_node(str("PlayerStartingPosition/StartingPosition", i + 1))
 		var player = PLAYER.instance()
 		
-		player.position = start.position
+		player.position = start.position + start.get_parent().position
 		player.initial_dir = start.direction
 		player.rotation = start.direction.angle()
 		player.id = i
