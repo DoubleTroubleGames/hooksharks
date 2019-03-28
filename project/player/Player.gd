@@ -186,7 +186,7 @@ func get_rider_direction():
 
 
 func get_movement_direction():
-	var direction
+	var direction = Vector2()
 	
 	if gamepad_id != -1:
 		direction = Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_LX),
