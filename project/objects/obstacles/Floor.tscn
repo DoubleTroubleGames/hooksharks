@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/floor_o.png" type="Texture" id=2]
 [ext_resource path="res://assets/floor.png" type="Texture" id=3]
 
-
 [node name="Floor" type="Area2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
