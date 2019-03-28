@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://race-mode/FinishLine.gd" type="Script" id=1]
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/line.png" type="Texture" id=3]
 
 [node name="FinishLine" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,7 +16,18 @@ __meta__ = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LineArea"]
 
-[node name="LineSprites" type="Node2D" parent="."]
+[node name="PullableObjectBot" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 0, 300 )
+
+[node name="Line" type="TextureRect" parent="PullableObjectBot"]
+show_behind_parent = true
+margin_top = -57.5
+margin_right = 642.0
+margin_bottom = 57.5
+rect_pivot_offset = Vector2( 0, 57.5 )
+texture = ExtResource( 3 )
+stretch_mode = 2
 
 [node name="PullableObjectTop" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true
@@ -24,16 +36,12 @@ position = Vector2( 0, -300 )
 [node name="Hitbox" parent="PullableObjectTop" index="1"]
 editor/display_folded = true
 
-[node name="PullableObjectBot" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 0, 300 )
-
 [connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
-[connection signal="hooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_hooked"]
-[connection signal="unhooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_unhooked"]
 [connection signal="hooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_hooked"]
 [connection signal="unhooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_unhooked"]
-
-[editable path="PullableObjectTop"]
+[connection signal="hooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_hooked"]
+[connection signal="unhooked" from="PullableObjectTop" to="." method="_on_PullableObjectTop_unhooked"]
 
 [editable path="PullableObjectBot"]
+
+[editable path="PullableObjectTop"]
