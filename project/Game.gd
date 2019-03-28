@@ -113,9 +113,7 @@ func check_winner():
 	
 	if players.size() == 1:
 		var winner = players[0]
-		winner.get_node("Area2D").queue_free()
-		winner.set_physics_process(false)
-		winner.set_process_input(false)
+		winner.disable()
 		RoundManager.scores[winner.id] += 1
 		RoundManager.round_winner = winner.id
 	elif players.size() == 0:

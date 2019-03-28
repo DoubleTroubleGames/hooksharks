@@ -13,6 +13,7 @@ onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
 onready var area = $Area2D
 onready var rider_offset = -$Sprite/Rider.position.x
+onready var water_particles = $WaterParticles
 
 enum MovementTypes {DIRECT, TANK}
 
@@ -28,7 +29,8 @@ const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
-const PULLFORCE = 350
+const PULL_FORCE = 300
+const DISPLACEMENT_FACTOR = .7
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -62,6 +64,7 @@ func _ready():
 	dive_meter.texture_progress = NORMAL_BUBBLE
 	dive_meter.value = 100
 	set_physics_process(false)
+	set_process_input(false)
 
 
 func _input(event):
@@ -134,8 +137,8 @@ func _physics_process(delta):
 	applying_force -= proj
 	
 	if stunned:
-		position += pull_dir * PULLFORCE * delta
-		applying_force = pull_dir * PULLFORCE * 2
+		position += pull_dir * PULL_FORCE * delta * DISPLACEMENT_FACTOR
+		applying_force = pull_dir * PULL_FORCE
 	if MAX_SPEED != -1:
 		speed2 = speed2.clamped(MAX_SPEED)
 	
@@ -159,6 +162,20 @@ func _physics_process(delta):
 	
 	if diving and not is_pressed["dive"]:
 		emerge()
+
+
+func disable():
+	area.set_deferred("monitoring", false)
+	area.set_deferred("monitorable", false)
+	water_particles.ripples.emitting = false
+	set_physics_process(false)
+	set_process_input(false)
+
+
+func enable():
+	water_particles.ripples.emitting = true
+	set_physics_process(true)
+	set_process_input(true)
 
 
 func get_rider_direction():
@@ -220,9 +237,7 @@ func die(is_player_collision=false):
 		hook.free_hook()
 	rider.hide()
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
-	$WaterParticles.hide()
-	set_physics_process(false)
-	set_process_input(false)
+	disable()
 
 
 func hook_collision(from_hook):
