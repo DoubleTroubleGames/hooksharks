@@ -3,6 +3,7 @@ extends Node2D
 onready var Stage = get_parent()
 
 const WIDTH = 10
+const LINE_SPRITE_SIZE = 115
 
 export (int)var total_checkpoint_number = 0
 export (int)var total_laps = 1
@@ -10,21 +11,20 @@ export (int)var total_laps = 1
 var line_polygon
 var top_pulling = false
 var bot_pulling = false
+var line_tex = preload("res://assets/line.png")
 
 
 func _ready():
 	update_line_polygon()
-	$LineArea/CollisionPolygon2D.polygon = line_polygon
+	rotate_line()
+	adjust_line_size()
+	set_physics_process(false)
 
-
-func _draw():
-	var color_array = [Color(1, 1, 1), Color(0, 0, 0), Color(1, 1, 1), Color(0, 0, 0)]
-	draw_polygon(line_polygon, color_array)
 
 func _physics_process(delta):
 	update_line_polygon()
-	update()
-	$LineArea/CollisionPolygon2D.polygon = line_polygon
+	rotate_line()
+	adjust_line_size()
 
 
 func update_line_polygon():
@@ -34,6 +34,18 @@ func update_line_polygon():
 								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y - WIDTH),
 								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y - WIDTH),
 								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y + WIDTH)])
+	$LineArea/CollisionPolygon2D.polygon = line_polygon
+
+
+func rotate_line():
+	var angle = $PullableObjectTop.position.angle_to_point($PullableObjectBot.position)
+	$PullableObjectTop.rotation = angle
+	$PullableObjectBot.rotation = angle
+
+
+func adjust_line_size():
+	var distance = abs($PullableObjectTop.position.distance_to($PullableObjectBot.position))
+	$PullableObjectBot/Line.rect_size.x = distance
 
 
 func _on_LineArea_area_entered(area):
