@@ -9,11 +9,11 @@ var player_laps = [0, 0, 0, 0]
 func _ready():
 	if has_node("Camera2D"):
 		var stage_size = Vector2($Camera2D.limit_right - $Camera2D.limit_left + 100, $Camera2D.limit_bottom - $Camera2D.limit_top + 100)
-		print(stage_size)
 		$Water.rect_position.x = $Camera2D.limit_left - 50
 		$Water.rect_position.y = $Camera2D.limit_top - 50
 		$Water.rect_size = stage_size
 		$Water._on_Water_resized()
+
 
 func setup_players():
 	var players = []

@@ -152,7 +152,6 @@ func _physics_process(delta):
 	# Update rider direction
 	var rider_dir = get_rider_direction()
 	rider_dir.x *= -1
-	rider.visible = (rider_dir.length() > AXIS_DEADZONE and can_dive)
 	rider.global_rotation = rider_dir.angle()
 	
 	dive_bar.global_rotation = 0

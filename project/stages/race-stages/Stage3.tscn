@@ -50,11 +50,11 @@ rotation = -1.57079
 position = Vector2( 330, 1010 )
 
 [node name="BoxMetal3" parent="Obstacles" index="7" instance=ExtResource( 3 )]
-position = Vector2( 840, 100 )
+position = Vector2( 749.684, 21.7259 )
 rotation = 1.0472
 
 [node name="BoxMetal4" parent="Obstacles" index="8" instance=ExtResource( 3 )]
-position = Vector2( 790, 880 )
+position = Vector2( 699.684, 964.295 )
 rotation = -0.785397
 
 [node name="Float" parent="Obstacles" index="9" instance=ExtResource( 5 )]
