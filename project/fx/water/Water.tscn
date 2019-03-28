@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=2]
 [ext_resource path="res://assets/noise.png" type="Texture" id=3]
 
-
 [sub_resource type="GDScript" id=1]
 
 [sub_resource type="Shader" id=2]
@@ -133,8 +132,8 @@ shader = SubResource( 4 )
 shader_param/rect_size = Vector2( 1920, 1080 )
 shader_param/noise_size = Vector2( 700, 700 )
 shader_param/noise_cutoff = 0.75
-shader_param/h_foam_distance = 0.07
-shader_param/v_foam_distance = 0.07
+shader_param/h_foam_distance = 0.0
+shader_param/v_foam_distance = 0.0
 shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.05, 0.04 )
 shader_param/distortion_strength = 0.4
