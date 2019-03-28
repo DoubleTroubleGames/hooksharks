@@ -12,6 +12,7 @@ uniform vec4 wave_color : hint_color;
 uniform vec2 wave_scroll_speed;
 uniform sampler2D distortion;
 uniform float distortion_strength;
+uniform float aa_factor;
 
 /*Making outline images on gimp: 
 	- grow shape by 40 pixel
@@ -34,8 +35,10 @@ void fragment(){
 		
 		float cutoff = 1.0 - smoothstep(1.0 - wave_length, 1.0, pixel.a);
 		
-		if (value > cutoff)
-			COLOR = wave_color;
+		if (value > cutoff - aa_factor) {
+			float alpha = smoothstep(cutoff - aa_factor, cutoff + aa_factor, value);
+			COLOR = vec4(wave_color.rgb, wave_color.a * alpha);
+		}
 		else
 			COLOR = vec4(0);
 	}else
@@ -49,6 +52,7 @@ shader_param/wave_length = 0.515
 shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
 shader_param/distortion_strength = 0.3
+shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 2 )
 shader_param/distortion = ExtResource( 1 )
 
