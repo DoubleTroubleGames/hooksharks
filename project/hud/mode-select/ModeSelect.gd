@@ -36,3 +36,19 @@ func _on_ArenaButton_pressed():
 func _on_RacingButton_pressed():
 	RoundManager.gamemode = "Race"
 	transition_to("res://hud/character-select/CharacterSelect.tscn")
+
+
+func _on_ArenaButton_focus_entered():
+	$ArenaButton.material.set_shader_param("active", true)
+
+
+func _on_ArenaButton_focus_exited():
+	$ArenaButton.material.set_shader_param("active", false)
+
+
+func _on_RacingButton_focus_entered():
+	$RacingButton.material.set_shader_param("active", true)
+
+
+func _on_RacingButton_focus_exited():
+	$RacingButton.material.set_shader_param("active", false)
