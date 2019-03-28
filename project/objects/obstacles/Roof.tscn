@@ -7,7 +7,6 @@
 [node name="Roof" type="Area2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 material = ExtResource( 1 )
 texture = ExtResource( 2 )
 
