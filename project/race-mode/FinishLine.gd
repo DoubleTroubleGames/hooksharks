@@ -10,7 +10,7 @@ export (int)var total_laps = 1
 var line_polygon
 var top_pulling = false
 var bot_pulling = false
-var line_tex = preload("res://race-mode/line.png")
+var line_tex = preload("res://assets/line.png")
 
 
 func _ready():
@@ -25,11 +25,11 @@ func _draw():
 	var color_array = [Color(1, 1, 1), Color(0, 0, 0), Color(1, 1, 1), Color(0, 0, 0)]
 	draw_polygon(line_polygon, color_array)
 
+
 func _physics_process(delta):
 	update_line_polygon()
 	update()
 	rotate_line()
-	$LineArea/CollisionPolygon2D.polygon = line_polygon
 
 
 func update_line_polygon():
@@ -39,16 +39,20 @@ func update_line_polygon():
 								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y - WIDTH),
 								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y - WIDTH),
 								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y + WIDTH)])
+	$LineArea/CollisionPolygon2D.polygon = line_polygon
 
 
 func rotate_line():
 	var angle = $PullableObjectTop.position.angle_to_point($PullableObjectBot.position)
-	$PullableObjectTop/Sprites.rotation = angle
+	$PullableObjectTop.rotation = angle
+	$PullableObjectBot.rotation = angle
+	$LineSprites.rotation = angle
+	$LineSprites.position = $PullableObjectBot.position
 
 
 func add_line_sprites():
 	var distance = abs($PullableObjectTop.position.distance_to($PullableObjectBot.position))
-	var pos = -57.5
+	var pos = 57.5
 	
 	while distance > 0:
 		var sprite = Sprite.new()
@@ -60,10 +64,11 @@ func add_line_sprites():
 			sprite.region_enabled = true
 			sprite.region_rect = rect
 			sprite.position.x += 115 - distance
-		$PullableObjectTop/Sprites.add_child(sprite)
+		$LineSprites.add_child(sprite)
 		
-		pos -= 115
+		pos += 115
 		distance -= 115
+
 
 func _on_LineArea_area_entered(area):
 	if area.get_parent().is_in_group('player'):

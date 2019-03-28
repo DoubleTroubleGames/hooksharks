@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/line.png-7be09a2ed924132ae88941136ef04970.stex"
+path="res://.import/line.png-29a98d6bb4ae05edfd78b010925c957d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://race-mode/line.png"
-dest_files=[ "res://.import/line.png-7be09a2ed924132ae88941136ef04970.stex" ]
+source_file="res://assets/line.png"
+dest_files=[ "res://.import/line.png-29a98d6bb4ae05edfd78b010925c957d.stex" ]
 
 [params]
 
