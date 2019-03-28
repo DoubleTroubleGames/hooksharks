@@ -177,14 +177,6 @@ texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
 fill_mode = 4
 
-[node name="HookTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="ParticleTimer" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
 [node name="SFX" type="Node2D" parent="."]
 editor/display_folded = true
 __meta__ = {
@@ -248,7 +240,15 @@ bus = "SFX"
 stream = ExtResource( 21 )
 volume_db = 10.0
 
-[node name="PowerUps" type="Node2D" parent="."]
+[node name="HookTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ParticleTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="PowerUps" type="Node" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
