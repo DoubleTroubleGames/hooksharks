@@ -15,4 +15,5 @@ func connect_players():
 func activate_players():
 	for player in players:
 		player.get_node("Area2D").monitoring = true
+		player.get_node("WaterParticles").show()
 		player.set_physics_process(true)

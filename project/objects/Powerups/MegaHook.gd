@@ -1,12 +1,9 @@
 extends Node2D
 
 var player
-var speed = 4
-var acc = 2
+var speed = 800
 var direction = Vector2()
 
-func _ready():
-	set_physics_process(false)
 
 func init(_player):
 	if not _player.get_node("PowerUps").has_node("MegaHook"):
@@ -16,18 +13,18 @@ func init(_player):
 		return false
 
 func activate(player, direction):
+	var angle = Vector2(cos(player.rotation), sin(player.rotation))
 	self.player = player
 	self.direction = direction
-	self.position = player.position
-	$Sprite.rotation = direction.angle()
+	self.position = player.position + player.rider_offset * angle
+	$Sprite.rotation = Vector2(-direction.x, -direction.y).angle()
 
 	show()
 	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
 
 func _physics_process(delta):
-	speed += acc * delta
-	position += direction * (delta * speed)
+	position += direction * speed * delta
 
 func _on_MegaHookArea_area_entered(area):
 	var object = area.get_parent()

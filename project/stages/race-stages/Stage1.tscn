@@ -1,21 +1,21 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://obstacles/Dock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://obstacles/Float.tscn" type="PackedScene" id=3]
-[ext_resource path="res://obstacles/BoxFull.tscn" type="PackedScene" id=4]
-[ext_resource path="res://obstacles/Floor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://obstacles/BoxMetal.tscn" type="PackedScene" id=6]
-[ext_resource path="res://obstacles/Floor2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://obstacles/Roof2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://obstacles/Box3.tscn" type="PackedScene" id=9]
-[ext_resource path="res://obstacles/Float2.tscn" type="PackedScene" id=10]
-[ext_resource path="res://obstacles/Roof.tscn" type="PackedScene" id=11]
-[ext_resource path="res://obstacles/BoxClosed.tscn" type="PackedScene" id=12]
-[ext_resource path="res://obstacles/Tire.tscn" type="PackedScene" id=13]
-[ext_resource path="res://obstacles/Metal.tscn" type="PackedScene" id=14]
-[ext_resource path="res://obstacles/Box2.tscn" type="PackedScene" id=15]
-[ext_resource path="res://obstacles/Box.tscn" type="PackedScene" id=16]
+[ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/obstacles/Float.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/obstacles/BoxFull.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Roof2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/Float2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/obstacles/BoxClosed.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/obstacles/Tire.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/obstacles/Metal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://objects/obstacles/Box.tscn" type="PackedScene" id=16]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=17]
 [ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=18]
 [ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=19]
@@ -23,206 +23,141 @@
 [node name="Stage1" index="0" instance=ExtResource( 1 )]
 
 [node name="PlayerStartingPosition" parent="." index="1"]
-
 editor/display_folded = false
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
-
 position = Vector2( 350, 670 )
 direction = Vector2( 0, -1 )
 
 [node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
-
 position = Vector2( 500, 670 )
 direction = Vector2( 0, -1 )
 
 [node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
-
 position = Vector2( 650, 670 )
 direction = Vector2( 0, -1 )
 
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
-
 position = Vector2( 800, 670 )
 direction = Vector2( 0, -1 )
 
 [node name="Obstacles" parent="." index="2"]
-
 editor/display_folded = true
 
 [node name="Dock" parent="Obstacles" index="0" instance=ExtResource( 2 )]
-
 position = Vector2( 1200, 780 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Float" parent="Obstacles" index="1" instance=ExtResource( 3 )]
-
 position = Vector2( 61.2571, 794.886 )
 rotation = -1.53574
 
 [node name="BoxFull" parent="Obstacles" index="2" instance=ExtResource( 4 )]
-
 position = Vector2( 92.4895, 788.643 )
 rotation = 2.53964
 scale = Vector2( 0.5, 0.5 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Floor" parent="Obstacles" index="3" instance=ExtResource( 5 )]
-
 position = Vector2( 379.536, 140.059 )
 rotation = -0.704037
 
 [node name="BoxMetal" parent="Obstacles" index="4" instance=ExtResource( 6 )]
-
 position = Vector2( 166.375, 344.979 )
 rotation = 1.97101
 scale = Vector2( 0.8, 0.8 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Floor2" parent="Obstacles" index="5" instance=ExtResource( 7 )]
-
 position = Vector2( 944.254, -4.015 )
 rotation = -0.00354902
 
 [node name="Roof2" parent="Obstacles" index="6" instance=ExtResource( 8 )]
-
 position = Vector2( 742.426, -29.2435 )
 rotation = -0.0638477
 
 [node name="Box3" parent="Obstacles" index="7" instance=ExtResource( 9 )]
-
 position = Vector2( 1696.9, -9.21973 )
 rotation = 0.664304
 
 [node name="Float2" parent="Obstacles" index="8" instance=ExtResource( 10 )]
-
 position = Vector2( 2186.47, 702.192 )
 rotation = -0.213572
-_sections_unfolded = [ "Transform" ]
 
 [node name="Roof" parent="Obstacles" index="9" instance=ExtResource( 11 )]
-
 position = Vector2( 1331.22, -46.0624 )
 rotation = -0.00354902
 
 [node name="BoxClosed" parent="Obstacles" index="10" instance=ExtResource( 12 )]
-
 position = Vector2( 2071.12, 273.498 )
 rotation = 0.988179
 
 [node name="Tire" parent="Obstacles" index="11" instance=ExtResource( 13 )]
-
 position = Vector2( 1877.71, 4.39456 )
 rotation = 0.266356
 scale = Vector2( 0.8, 0.8 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Floor3" parent="Obstacles" index="12" instance=ExtResource( 7 )]
-
 position = Vector2( 2151.51, 1118.4 )
 rotation = 1.88979
 
 [node name="Floor4" parent="Obstacles" index="13" instance=ExtResource( 5 )]
-
 position = Vector2( 1854.68, 1557.99 )
 rotation = 2.38403
 
 [node name="Metal" parent="Obstacles" index="14" instance=ExtResource( 14 )]
-
 position = Vector2( 1972.41, 1362.65 )
 rotation = 2.50147
 scale = Vector2( 0.7, 0.7 )
-_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Dock2" parent="Obstacles" index="15" instance=ExtResource( 2 )]
-
 position = Vector2( 2237.31, 1484.59 )
 rotation = 2.38403
 
 [node name="Floor5" parent="Obstacles" index="16" instance=ExtResource( 5 )]
-
 position = Vector2( 897.361, 1629.81 )
 rotation = 3.141
 
 [node name="Box2" parent="Obstacles" index="17" instance=ExtResource( 15 )]
-
 position = Vector2( 1242.15, 1688.68 )
 rotation = 3.29896
-_sections_unfolded = [ "Transform" ]
 
 [node name="Roof3" parent="Obstacles" index="18" instance=ExtResource( 11 )]
-
 position = Vector2( 1540.84, 1641.44 )
 rotation = -3.21849
 
 [node name="Box" parent="Obstacles" index="19" instance=ExtResource( 16 )]
-
 position = Vector2( 154.45, 1360.71 )
 rotation = -0.298879
 
 [node name="Roof4" parent="Obstacles" index="20" instance=ExtResource( 11 )]
-
 position = Vector2( 158.655, 1486.85 )
 rotation = -3.10775
 scale = Vector2( -1.2, 1 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Roof5" parent="Obstacles" index="21" instance=ExtResource( 8 )]
-
 position = Vector2( 535.753, 1516.28 )
 rotation = -2.88745
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
-
-anchor_mode = 1
-rotating = false
 current = true
-zoom = Vector2( 1, 1 )
 limit_left = 0
 limit_top = 0
 limit_right = 2300
 limit_bottom = 1500
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
 script = ExtResource( 17 )
-_sections_unfolded = [ "Limit", "Transform" ]
-max_angle = 10
-max_offset_x = 250
-max_offset_y = 250
-violence = 0.3
-dec_ratio = 1.2
-exponent = 2
 min_zoom = 1.5
 max_zoom = 1.0
-zooming_dist = 1000
 min_dist = 400
 
 [node name="Checkpoint1" parent="." index="6" instance=ExtResource( 18 )]
-
 position = Vector2( 1175, 290 )
 scale = Vector2( 1, 1.4 )
 
 [node name="Checkpoint2" parent="." index="7" instance=ExtResource( 18 )]
-
 position = Vector2( 1800, 800 )
 rotation = 1.5708
 scale = Vector2( 1, 2 )
 number = 2
 
 [node name="Checkpoint3" parent="." index="8" instance=ExtResource( 18 )]
-
 position = Vector2( 1175, 1300 )
 scale = Vector2( 1, 1.4 )
 number = 3
@@ -230,13 +165,11 @@ number = 3
 [node name="PowerUps" type="Node2D" parent="." index="9"]
 
 [node name="FinishLine" parent="." index="10" instance=ExtResource( 19 )]
-
 editor/display_folded = true
 position = Vector2( 330, 1100 )
 total_checkpoint_number = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="3"]
-
 position = Vector2( 566.27, -294.165 )
 
 
