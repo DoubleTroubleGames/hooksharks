@@ -182,6 +182,8 @@ func disable():
 
 
 func enable():
+	$Area2D.monitoring = true
+	$WaterParticles.show()
 	water_particles.ripples.emitting = true
 	set_physics_process(true)
 	set_process_input(true)
