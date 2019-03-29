@@ -150,7 +150,7 @@ func _on_box_tried_to_start():
 			if tutorial_shown:
 				start_game()
 			else:
-				$Tutorial/AnimationPlayer.play("show")
+				$TutorialNode/Tutorial/AnimationPlayer.play("show")
 				yield($Tutorial/AnimationPlayer, "animation_finished")
 				$Tutorial/Continue/AnimationPlayer.play("show")
 				tutorial_shown = true
