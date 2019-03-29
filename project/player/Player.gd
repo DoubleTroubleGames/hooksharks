@@ -56,7 +56,6 @@ var is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
 
 func _ready():
-	device_name = "gamepad_0"
 	if device_name.begins_with("gamepad"):
 		gamepad_id = device_name.split("_")[1].to_int()
 	
@@ -66,8 +65,6 @@ func _ready():
 	dive_meter.value = 100
 	set_physics_process(false)
 	set_process_input(false)
-	
-	enable()
 
 
 func _input(event):
