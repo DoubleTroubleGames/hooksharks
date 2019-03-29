@@ -7,13 +7,13 @@ signal hook_shot(player, direction)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
 
-onready var rider = $Sprite/Rider
+onready var rider = $Shark/Rider
 onready var dive_meter = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
-onready var sprite = $Sprite
-onready var sprite_animation = $Sprite/AnimationPlayer
-onready var area = $Area2D
-onready var rider_offset = -$Sprite/Rider.position.x
+onready var sprite = $Shark
+onready var sprite_animation = $Shark/AnimationPlayer
+onready var area = $Shark/Area2D
+onready var rider_offset = -$Shark/Rider.position.x
 onready var water_particles = $WaterParticles
 
 enum MovementTypes {DIRECT, TANK}
@@ -89,27 +89,7 @@ func _input(event):
 
 func _physics_process(delta):
 	# Update dive meter
-	if dive_on_cooldown:
-		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
-		if dive_meter.value >= 100:
-			dive_meter.value = 100
-			dive_on_cooldown = false
-			dive_meter.texture_progress = NORMAL_BUBBLE
-	elif diving:
-		dive_meter.value -= DIVE_USE_SPEED * delta
-		if dive_meter.value <= 0:
-			dive_meter.value = 0
-			dive_meter.texture_progress = COOLDOWN_BUBBLE
-			dive_on_cooldown = true 
-			emerge()
-	else:
-		dive_meter.value += DIVE_USE_SPEED * delta
-		if dive_meter.value >= 100:
-			dive_meter.value = 100
-	if dive_meter.value < 100:
-		dive_bar.visible = true
-	else:
-		dive_bar.visible = false
+	update_dive_meter(delta)
 	
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
@@ -154,7 +134,7 @@ func _physics_process(delta):
 	position += speed2 * delta
 	speed2 += applying_force * delta
 	
-	rotation = speed2.angle()
+	sprite.rotation = speed2.angle()
 	
 	if self.create_trail and not diving and\
 			self.position.distance_to(last_trail_pos) >\
@@ -165,8 +145,6 @@ func _physics_process(delta):
 	var rider_dir = get_rider_direction()
 	rider_dir.x *= -1
 	rider.global_rotation = rider_dir.angle()
-	
-	dive_bar.global_rotation = 0
 	
 	if diving and not is_pressed["dive"]:
 		emerge()
@@ -181,12 +159,47 @@ func disable():
 
 
 func enable():
-	$Area2D.monitoring = true
-	$Area2D.monitorable = true
+	area.monitoring = true
+	area.monitorable = true
 	$WaterParticles.show()
 	water_particles.ripples.emitting = true
 	set_physics_process(true)
 	set_process_input(true)
+
+
+func add_shark(shark_name):
+	var old = $Shark
+	var new_path = str("res://player/characters/", shark_name, ".tscn")
+	var new = load(new_path).instance()
+	
+	old.set_name("old shark")
+	old.queue_free()
+	new.set_name("Shark")
+	add_child(new)
+
+
+func update_dive_meter(delta):
+	if dive_on_cooldown:
+		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
+		if dive_meter.value >= 100:
+			dive_meter.value = 100
+			dive_on_cooldown = false
+			dive_meter.texture_progress = NORMAL_BUBBLE
+	elif diving:
+		dive_meter.value -= DIVE_USE_SPEED * delta
+		if dive_meter.value <= 0:
+			dive_meter.value = 0
+			dive_meter.texture_progress = COOLDOWN_BUBBLE
+			dive_on_cooldown = true 
+			emerge()
+	else:
+		dive_meter.value += DIVE_USE_SPEED * delta
+		if dive_meter.value >= 100:
+			dive_meter.value = 100
+	if dive_meter.value < 100:
+		dive_bar.show()
+	else:
+		dive_bar.hide()
 
 
 func get_rider_direction():
@@ -300,6 +313,7 @@ func dive():
 	if sprite_animation.assigned_animation == "dive":
 		# Verification in case diving was canceled
 		diving = true
+		sprite_animation.play("dive_idle")
 	yield($ParticleTimer, 'timeout')
 	dive_particles.queue_free()
 
@@ -317,8 +331,8 @@ func emerge():
 	sprite_animation.play("emerge")
 	diving = false
 	yield(sprite_animation, "animation_finished")
-	for area in $Area2D.get_overlapping_areas():
-		if area.get_parent().is_in_group('wall'):
+	for a in area.get_overlapping_areas():
+		if a.get_parent().is_in_group('wall'):
 			die()
 	can_dive = true
 	sprite_animation.play("idle")
@@ -342,7 +356,6 @@ func shoot():
 			emit_signal("megahook_shot", self, hook_dir)
 	elif hook and weakref(hook).get_ref() and not hook.retracting:
 		hook.retract()
-
 
 func hook_retracted():
 	hook = null

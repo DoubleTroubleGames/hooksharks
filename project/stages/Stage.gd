@@ -27,12 +27,14 @@ func setup_players():
 		player.rotation = start.direction.angle()
 		player.id = i
 		player.device_name = RoundManager.device_map[i]
-		player.get_node("Sprite").set_modulate(RoundManager.color_map[i])
+		if RoundManager.character_map[i] == "Black":
+			player.add_shark("Red")
+			$SharkSprite/Shark.set_modulate(Color(0.1, 0.1, 0.1))
+		else:
+			player.add_shark(RoundManager.character_map[i])
 		player.set_name(str("Player", i + 1))
 		players.append(player)
 		add_child(player)
-	
-	#get_node("PlayerStartingPosition").queue_free()
 	
 	return players
 

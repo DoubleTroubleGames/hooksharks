@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://hud/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/box.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://player/baron_sheet_full.png" type="Texture" id=4]
+[ext_resource path="res://player/Shark.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -60,22 +60,6 @@ tracks/0/keys = {
 "values": [ -8.99563, 9.44294, -10.0057, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-loop = true
-step = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 2, 1 ]
-}
-
 [node name="SelectionBox" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -121,16 +105,10 @@ autoplay = "idle"
 anims/idle = SubResource( 3 )
 anims/shake = SubResource( 4 )
 
-[node name="SharkSprite" type="Sprite" parent="."]
-visible = false
+[node name="SharkSprite" type="Node2D" parent="."]
 position = Vector2( 100, 420 )
 scale = Vector2( -1, 1 )
-texture = ExtResource( 4 )
-vframes = 4
-hframes = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SharkSprite"]
-autoplay = "walk"
-anims/walk = SubResource( 5 )
+[node name="Shark" parent="SharkSprite" instance=ExtResource( 4 )]
 
 [connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
