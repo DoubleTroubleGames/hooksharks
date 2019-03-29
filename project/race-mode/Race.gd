@@ -2,6 +2,9 @@ extends "res://Game.gd"
 
 export (NodePath)var SplitScreen = null
 
+const RESPAWN_TIME = 2.0
+
+
 func get_cameras():
 	if SplitScreen:
 		return get_node(SplitScreen).get_all_cameras()
@@ -21,25 +24,43 @@ func connect_players():
 
 func activate_players():
 	for player in players:
-		player.create_trail = false
-		player.respawn = true
-		player.ROT_SPEED = PI/2
-		player.INITIAL_SPEED = 0
-		player.ACC = 50
-		player.MAX_SPEED = 500
+		set_race_attributes(player)
 		player.enable()
 
+
+func set_race_attributes(player):
+	player.create_trail = false
+	player.respawn = true
+	player.ROT_SPEED = PI/2
+	player.INITIAL_SPEED = 1
+	player.ACC = 50
+	player.MAX_SPEED = 500
+
+
 func respawn_player(player):
+	var check_n = $Stage.get_player_checkpoint(player)
+	var RespTimer = player.get_node("RespawnTimer")
+	var final_position
+	var final_rotation
 	player.reset_input_map()
 	player.can_dive = true
-	var check_n = $Stage.get_player_checkpoint(player)
 	if check_n > 0:
 		var check = $Stage.get_checkpoint(check_n)
-		player.position = check.get_respawn_position(player.id + 1) + check.position
-		player.rotation = check.rotation
-		
+		final_position = check.get_respawn_position(player.id + 1)
+		final_rotation = check.rotation
 	else:
 		var start = $Stage.get_start_position(player.id + 1)
-		player.position = start.position + start.get_parent().position
-		player.rotation = start.direction.angle()
-	player.speed2 = Vector2(cos(player.rotation), sin(player.rotation))
+		final_position = start.position + start.get_parent().position
+		final_rotation = start.direction.angle()
+	
+	RespTimer.wait_time = RESPAWN_TIME
+	RespTimer.start()
+	$Tween.interpolate_property(player, "global_position", null, final_position, RESPAWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(player, "rotation", null, final_rotation, RESPAWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.start()
+	yield(RespTimer, "timeout")
+	player.sprite_animation.play("idle")
+	player.sprite.show()
+	player.rider.show()
+	player.enable()
+	player.speed2 = Vector2(200 * cos(player.rotation), 200 *  sin(player.rotation))

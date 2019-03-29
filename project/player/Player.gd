@@ -250,7 +250,7 @@ func die(is_player_collision=false):
 	if respawn:
 		if hook:
 			hook.retract()
-		$RespawnTimer.start()
+		emit_signal("respawned", self)
 	else:
 		if hook != null:
 			hook.free_hook()
@@ -372,12 +372,3 @@ func _on_Area2D_area_entered(area):
 			die(true)
 	if object.is_in_group('powerup') and not diving:
 		object.activate(self)
-
-
-func _on_RespawnTimer_timeout():
-	sprite_animation.play("idle")
-	sprite.show()
-	rider.show()
-	enable()
-	#speed2 = Vector2(INITIAL_SPEED, INITIAL_SPEED)
-	emit_signal("respawned", self)

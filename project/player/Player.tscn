@@ -128,6 +128,7 @@ position = Vector2( 30, 0 )
 rotation = 1.5708
 
 [node name="Sprite" type="Sprite" parent="."]
+editor/display_folded = true
 scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
 offset = Vector2( 40, 4 )
@@ -163,6 +164,7 @@ monitoring = false
 polygon = PoolVector2Array( -23.2921, -1.11684, -18.4391, -10.8228, 20.3849, -22.1465, 64.7089, -3.05804, 21.3555, 21.5305, -16.8214, 9.88329 )
 
 [node name="DiveCooldown" type="Node2D" parent="."]
+editor/display_folded = true
 visible = false
 
 [node name="Bar" type="TextureProgress" parent="DiveCooldown"]
@@ -249,11 +251,9 @@ wait_time = 0.4
 one_shot = true
 
 [node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [node name="PowerUps" type="Node" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
-[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

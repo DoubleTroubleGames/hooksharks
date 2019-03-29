@@ -17,5 +17,7 @@ editor/display_folded = true
 
 [node name="ScreenBlink" parent="." instance=ExtResource( 4 )]
 
+[node name="Tween" type="Tween" parent="."]
+
 
 [editable path="Water"]
