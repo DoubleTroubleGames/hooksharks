@@ -52,7 +52,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/wave_length = 0.499
+shader_param/wave_length = 0.33
 shader_param/wave_color = Color( 0.713726, 0.6, 0.145098, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
 shader_param/distortion_strength = 0.3
@@ -149,7 +149,7 @@ tracks/0/keys = {
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 35.0
 
-[node name="Powerup" index="0" groups=[
+[node name="Powerup" groups=[
 "powerup",
 ] instance=ExtResource( 1 )]
 position = Vector2( 0, 5 )
