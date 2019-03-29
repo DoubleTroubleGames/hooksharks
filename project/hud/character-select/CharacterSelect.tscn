@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://fx/circle.png" type="Texture" id=17]
 [ext_resource path="res://fx/bubble.png" type="Texture" id=18]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -63,10 +64,27 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="CharacterSelect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+tutorial = true
 ModeSelect = ExtResource( 2 )
 ArenaMode = ExtResource( 3 )
 RaceMode = ExtResource( 4 )
@@ -181,6 +199,7 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="GridContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 columns = 4
@@ -225,6 +244,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
 __meta__ = {
@@ -257,4 +277,10 @@ text = "Hold BACK to leave"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BackIndicator"]
 anims/hide = SubResource( 3 )
 anims/show = SubResource( 4 )
+
+[node name="Tutorial" parent="." instance=ExtResource( 20 )]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial"]
+anims/show = SubResource( 5 )
 
