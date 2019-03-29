@@ -26,4 +26,5 @@ shape = SubResource( 1 )
 wait_time = 0.1
 one_shot = true
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
