@@ -53,7 +53,7 @@ func _on_LineArea_area_entered(area):
 		var Player = area.get_parent()
 		var checkpoint_num = Stage.get_player_checkpoint(Player)
 		if checkpoint_num == total_checkpoint_number:
-			Stage.inscrease_player_lap(Player)
+			Stage.increase_player_lap(Player)
 			Stage.reset_player_checkpoint(Player)
 
 			var lap_num = Stage.get_player_lap(Player)

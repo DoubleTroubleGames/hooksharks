@@ -64,6 +64,11 @@ func get_player_checkpoint(player):
 	var player_num = int(player.get_name()[-1])
 	return player_checkpoints[player_num - 1]
 
+func get_checkpoint(n):
+	for check in $Checkpoints.get_children():
+		if check.number == n:
+			return check
+	assert(false)
 
 func get_player_lap(player):
 	var player_num = int(player.get_name()[-1])

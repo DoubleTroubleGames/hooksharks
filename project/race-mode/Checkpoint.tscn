@@ -3,51 +3,26 @@
 [ext_resource path="res://race-mode/Checkpoint.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
 extents = Vector2( 20, 200 )
 
 [node name="Checkpoint" type="Node2D"]
-
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-number = 1
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
+[node name="Area2D" type="Area2D" parent="."]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Pos1" type="Position2D" parent="." index="1"]
-
+[node name="Pos1" type="Position2D" parent="."]
 position = Vector2( 0, -120 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Pos2" type="Position2D" parent="." index="2"]
-
+[node name="Pos2" type="Position2D" parent="."]
 position = Vector2( 0, -40 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Pos3" type="Position2D" parent="." index="3"]
-
+[node name="Pos3" type="Position2D" parent="."]
 position = Vector2( 0, 40 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Pos4" type="Position2D" parent="." index="4"]
-
+[node name="Pos4" type="Position2D" parent="."]
 position = Vector2( 0, 120 )
-_sections_unfolded = [ "Transform" ]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-
-

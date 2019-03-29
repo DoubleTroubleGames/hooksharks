@@ -30,11 +30,16 @@ func activate_players():
 		player.enable()
 
 func respawn_player(player):
+	player.reset_input_map()
+	player.can_dive = true
 	var check_n = $Stage.get_player_checkpoint(player)
-	if check_n > 0:
-		$Stage.get_checkpoint(check_n)
-	else:
-		var start = $Stage.get_start_position(player.id + 1)
-		player.position = start.position + start.get_parent().position
-		player.rotation = start.direction.angle()
-		player.speed2 = Vector2(cos(player.rotation), sin(player.rotation))
+	#if check_n > 0:
+	#	var check = $Stage.get_checkpoint(check_n)
+	#	player.position = check.get_respawn_position(player.id + 1) + check.get_parent().position
+	#	player.rotation = check.rotation
+	#	
+	#else:
+	var start = $Stage.get_start_position(player.id + 1)
+	player.position = start.position + start.get_parent().position
+	player.rotation = start.direction.angle()
+	player.speed2 = Vector2(cos(player.rotation), sin(player.rotation))

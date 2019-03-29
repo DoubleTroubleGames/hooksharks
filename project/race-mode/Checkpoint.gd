@@ -12,4 +12,4 @@ func _on_Area2D_area_entered(area):
 			Stage.increase_player_checkpoint(Player)
 
 func get_respawn_position(player_number):
-	return get_node("Pos" + player_number).position
+	return get_node("Pos" + str(player_number)).position

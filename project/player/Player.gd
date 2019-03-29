@@ -348,6 +348,10 @@ func hook_retracted():
 	hook = null
 	$Sprite/Rider/Hook.show()
 
+func reset_input_map():
+	is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
+		"up": false, "down": false, "pause": false}
+
 func _on_Area2D_area_exited(area):
 	var object = area.get_parent()
 	if object.is_in_group('trail'):
