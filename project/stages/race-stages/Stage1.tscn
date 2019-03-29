@@ -17,10 +17,10 @@
 [ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://objects/obstacles/Box.tscn" type="PackedScene" id=16]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=17]
-[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=18]
-[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=19]
+[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=18]
+[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 
-[node name="Stage1" index="0" instance=ExtResource( 1 )]
+[node name="Stage1" instance=ExtResource( 1 )]
 
 [node name="PlayerStartingPosition" parent="." index="1"]
 editor/display_folded = false
@@ -147,30 +147,30 @@ min_zoom = 1.5
 max_zoom = 1.0
 min_dist = 400
 
-[node name="Checkpoint1" parent="." index="6" instance=ExtResource( 18 )]
+[node name="PowerUps" type="Node2D" parent="." index="6"]
+
+[node name="FinishLine" parent="." index="7" instance=ExtResource( 18 )]
+editor/display_folded = true
+position = Vector2( 330, 1100 )
+total_checkpoint_number = 3
+
+[node name="PullableObjectBot" parent="FinishLine" index="1"]
+position = Vector2( 566.27, -294.165 )
+
+[node name="Checkpoint1" parent="Checkpoints" index="0" instance=ExtResource( 19 )]
 position = Vector2( 1175, 290 )
 scale = Vector2( 1, 1.4 )
 
-[node name="Checkpoint2" parent="." index="7" instance=ExtResource( 18 )]
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 19 )]
 position = Vector2( 1800, 800 )
 rotation = 1.5708
 scale = Vector2( 1, 2 )
 number = 2
 
-[node name="Checkpoint3" parent="." index="8" instance=ExtResource( 18 )]
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 19 )]
 position = Vector2( 1175, 1300 )
 scale = Vector2( 1, 1.4 )
 number = 3
-
-[node name="PowerUps" type="Node2D" parent="." index="9"]
-
-[node name="FinishLine" parent="." index="10" instance=ExtResource( 19 )]
-editor/display_folded = true
-position = Vector2( 330, 1100 )
-total_checkpoint_number = 3
-
-[node name="PullableObjectBot" parent="FinishLine" index="3"]
-position = Vector2( 566.27, -294.165 )
 
 
 [editable path="FinishLine"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 signal created_trail(trail)
+signal respawned(player)
 signal died(player, is_player_collision)
 signal hook_shot(player, direction)
 signal megahook_shot(player, direction)
@@ -370,8 +371,9 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_RespawnTimer_timeout():
-	print("Respawned")
 	sprite_animation.play("idle")
 	sprite.show()
 	rider.show()
 	enable()
+	#speed2 = Vector2(INITIAL_SPEED, INITIAL_SPEED)
+	emit_signal("respawned", self)

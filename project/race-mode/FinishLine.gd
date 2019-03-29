@@ -64,6 +64,7 @@ func _on_LineArea_area_entered(area):
 				$LineArea/CollisionPolygon2D.disabled = true
 				for child in players:
 					if child != winner:
+						child.respawn = false
 						child.call_deferred("die")
 
 

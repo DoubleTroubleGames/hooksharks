@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var Stage = get_parent()
+onready var Stage = get_parent().get_parent()
 
 export(int, 1, 20, 1) var number = 1
 

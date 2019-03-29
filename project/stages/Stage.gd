@@ -19,7 +19,7 @@ func setup_players():
 	var players = []
 	
 	for i in range(RoundManager.players_total):
-		var start = get_node(str("PlayerStartingPosition/StartingPosition", i + 1))
+		var start = get_start_position(i+1)
 		var player = PLAYER.instance()
 		
 		player.position = start.position + start.get_parent().position
@@ -32,17 +32,20 @@ func setup_players():
 		players.append(player)
 		add_child(player)
 	
-	get_node("PlayerStartingPosition").queue_free()
+	#get_node("PlayerStartingPosition").queue_free()
 	
 	return players
 
+func get_start_position(i):
+	return get_node(str("PlayerStartingPosition/StartingPosition", i))
+	
 
 func increase_player_checkpoint(player):
 	var player_num = int(player.get_name()[-1])
 	player_checkpoints[player_num - 1] += 1
 
 
-func inscrease_player_lap(player):
+func increase_player_lap(player):
 	var player_num = int(player.get_name()[-1])
 	player_laps[player_num - 1] += 1
 
@@ -59,11 +62,9 @@ func reset_player_lap(player):
 
 func get_player_checkpoint(player):
 	var player_num = int(player.get_name()[-1])
-	
 	return player_checkpoints[player_num - 1]
 
 
 func get_player_lap(player):
 	var player_num = int(player.get_name()[-1])
-	
 	return player_laps[player_num - 1]
