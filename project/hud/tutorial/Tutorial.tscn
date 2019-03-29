@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://hud/tutorial/tutorial.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://hud/tutorial/right.png" type="Texture" id=3]
+[ext_resource path="res://player/hook/hook.png" type="Texture" id=4]
+[ext_resource path="res://player/rider.png" type="Texture" id=5]
+[ext_resource path="res://player/baron_sheet_full.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "show"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Tutorial" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Continue" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 1130.0
+margin_top = 1000.0
+margin_right = 1170.0
+margin_bottom = 1040.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Continue"]
+margin_right = 607.0
+margin_bottom = 117.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "PRESS ANY KEY TO CONTINUE
+"
+
+[node name="right" type="Sprite" parent="Continue"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 650, 30 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Continue"]
+anims/show = SubResource( 2 )
+
+[node name="hook" type="Sprite" parent="."]
+position = Vector2( 778.639, 495.326 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="hook2" type="Sprite" parent="."]
+position = Vector2( 433, 495.326 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="rider" type="Sprite" parent="."]
+position = Vector2( 697.191, 749.26 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+
+[node name="baron_sheet_full" type="Sprite" parent="."]
+position = Vector2( 418.833, 695.148 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+vframes = 5
+hframes = 5
+

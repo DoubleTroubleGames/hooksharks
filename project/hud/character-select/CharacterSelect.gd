@@ -4,6 +4,7 @@ onready var boxes = $Boxes.get_children()
 onready var bar = $BackIndicator/Progress
 onready var anim_player = $BackIndicator/AnimationPlayer
 
+export (bool)var tutorial = false
 export (PackedScene)var ModeSelect 
 export (PackedScene)var ArenaMode
 export (PackedScene)var RaceMode
@@ -13,6 +14,7 @@ var starting_game = false
 var back_indicator_up_speed = 100
 var back_indicator_down_speed = 150
 var trying_to_leave_counter = 0
+var tutorial_shown = false
 
 
 func _ready():
@@ -80,6 +82,7 @@ func set_device_map():
 	
 	RoundManager.players_total = num_players
 
+
 func can_start():
 	var ready_players = 0
 	
@@ -143,4 +146,13 @@ func _on_box_unselected(character):
 
 func _on_box_tried_to_start():
 	if can_start():
-		start_game()
+		if tutorial:
+			if tutorial_shown:
+				start_game()
+			else:
+				$Tutorial/AnimationPlayer.play("show")
+				yield($Tutorial/AnimationPlayer, "animation_finished")
+				$Tutorial/Continue/AnimationPlayer.play("show")
+				tutorial_shown = true
+		else:
+			start_game()

@@ -1,6 +1,7 @@
 extends Node2D
 
 signal created_trail(trail)
+signal respawned(player)
 signal died(player, is_player_collision)
 signal hook_shot(player, direction)
 signal megahook_shot(player, direction)
@@ -34,6 +35,7 @@ const DISPLACEMENT_FACTOR = .7
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
+export(bool) var respawn = false
 export(float) var ROT_SPEED = PI/3.5
 export(int) var ACC = 4
 export(int) var INITIAL_SPEED = 100
@@ -180,6 +182,7 @@ func disable():
 
 func enable():
 	$Area2D.monitoring = true
+	$Area2D.monitorable = true
 	$WaterParticles.show()
 	water_particles.ripples.emitting = true
 	set_physics_process(true)
@@ -231,7 +234,6 @@ func die(is_player_collision=false):
 	var EP = EXPLOSION_PARTICLE.instance()
 	EP.position = self.position
 	EP.z_index = 2
-	$Area2D.queue_free()
 	sprite_animation.stop(false)
 	sprite.hide()
 	rider.hide()
@@ -240,15 +242,20 @@ func die(is_player_collision=false):
 	for particle in EP.get_children():
 		particle.emitting = true
 	get_parent().add_child(EP)
+	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	randomize()
 	var scream = 1 + randi() % 9
 	get_node(str('SFX/ScreamSFX', scream)).play()
-	emit_signal("died", self, is_player_collision)
-	if hook != null:
-		hook.free_hook()
-	rider.hide()
-	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	disable()
+	if respawn:
+		if hook:
+			hook.retract()
+		$RespawnTimer.start()
+	else:
+		if hook != null:
+			hook.free_hook()
+		emit_signal("died", self, is_player_collision)
+
 
 
 func hook_collision(from_hook):
@@ -341,6 +348,9 @@ func hook_retracted():
 	hook = null
 	$Sprite/Rider/Hook.show()
 
+func reset_input_map():
+	is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
+		"up": false, "down": false, "pause": false}
 
 func _on_Area2D_area_exited(area):
 	var object = area.get_parent()
@@ -362,3 +372,12 @@ func _on_Area2D_area_entered(area):
 			die(true)
 	if object.is_in_group('powerup') and not diving:
 		object.activate(self)
+
+
+func _on_RespawnTimer_timeout():
+	sprite_animation.play("idle")
+	sprite.show()
+	rider.show()
+	enable()
+	#speed2 = Vector2(INITIAL_SPEED, INITIAL_SPEED)
+	emit_signal("respawned", self)
