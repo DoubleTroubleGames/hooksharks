@@ -3,6 +3,7 @@ extends "res://camera/Camera.gd"
 # All chidren of the Camera2D containing this script should be nodes inhereting from Node2D
 # Needs a call of set_children() to work
 
+export (int)var speed = 10
 export (float)var min_zoom = 1
 export (float)var max_zoom = 0.5
 export (int)var zooming_dist = 1000 # the camera will start zooming in when max_dist < zooming_dist
@@ -20,7 +21,7 @@ func _physics_process(delta):
 	if max_dist.x < zooming_dist:
 		adjust_zoom(max_dist)
 	
-	set_position( get_average_position() )
+	set_position(lerp(get_position(), get_average_position(), .5))
 
 
 func adjust_zoom(dist):
