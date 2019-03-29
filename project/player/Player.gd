@@ -23,7 +23,7 @@ const NORMAL_BUBBLE = preload("res://fx/bubble.png")
 const COOLDOWN_BUBBLE = preload("res://fx/cd_bubble.png")
 const BLOOD_PARTICLE = preload("res://fx/BloodParticles.tscn")
 const EXPLOSION_PARTICLE = preload("res://fx/explosion/DeathExplosion.tscn")
-const AXIS_DEADZONE = .2
+const AXIS_DEADZONE = .5
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
@@ -117,10 +117,17 @@ func _physics_process(delta):
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
 		if movement_type == MovementTypes.TANK:
-			if is_pressed["right"]:
-				speed2 = speed2.rotated(ROT_SPEED * delta)
-			if is_pressed["left"]:
-				speed2 = speed2.rotated(-ROT_SPEED * delta)
+			
+			# Workaround for gamepad bug
+			if device_name.begins_with("gamepad"):
+				var direction = get_movement_direction()
+				is_pressed["right"] = direction.x > AXIS_DEADZONE
+				is_pressed["left"] = direction.x < - AXIS_DEADZONE
+			else:
+				if is_pressed["right"]:
+					speed2 = speed2.rotated(ROT_SPEED * delta)
+				if is_pressed["left"]:
+					speed2 = speed2.rotated(-ROT_SPEED * delta)
 		elif movement_type == MovementTypes.DIRECT:
 			var direction = get_movement_direction()
 			
@@ -179,8 +186,11 @@ func enable():
 
 func get_rider_direction():
 	if gamepad_id != -1:
-		return Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
+		var direction = Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
 				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY))
+		if direction.length() > AXIS_DEADZONE:
+			return direction
+		return speed2.normalized()
 	
 	return get_global_mouse_position() - get_position()
 
