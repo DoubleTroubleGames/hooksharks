@@ -181,6 +181,7 @@ func disable():
 
 func enable():
 	$Area2D.monitoring = true
+	$Area2D.monitorable = true
 	$WaterParticles.show()
 	water_particles.ripples.emitting = true
 	set_physics_process(true)
@@ -370,3 +371,7 @@ func _on_Area2D_area_entered(area):
 
 func _on_RespawnTimer_timeout():
 	print("Respawned")
+	sprite_animation.play("idle")
+	sprite.show()
+	rider.show()
+	enable()
