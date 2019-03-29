@@ -14,4 +14,5 @@ func connect_players():
 
 func activate_players():
 	for player in players:
+		player.respawn = false
 		player.enable()
