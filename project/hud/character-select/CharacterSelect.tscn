@@ -1,17 +1,17 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://arena-mode/Arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=4]
 [ext_resource path="res://fx/water/Water.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/floor.png" type="Texture" id=6]
-[ext_resource path="res://assets/floor2.png" type="Texture" id=7]
-[ext_resource path="res://assets/roof2.png" type="Texture" id=8]
-[ext_resource path="res://assets/tire2.png" type="Texture" id=9]
-[ext_resource path="res://assets/dock.png" type="Texture" id=10]
-[ext_resource path="res://assets/metal.png" type="Texture" id=11]
-[ext_resource path="res://assets/float2.png" type="Texture" id=12]
+[ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Float2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/roof2.png" type="Texture" id=11]
+[ext_resource path="res://assets/metal.png" type="Texture" id=12]
 [ext_resource path="res://assets/box2.png" type="Texture" id=13]
 [ext_resource path="res://assets/metal2.png" type="Texture" id=14]
 [ext_resource path="res://assets/roof.png" type="Texture" id=15]
@@ -19,7 +19,6 @@
 [ext_resource path="res://fx/circle.png" type="Texture" id=17]
 [ext_resource path="res://fx/bubble.png" type="Texture" id=18]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=19]
-[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -64,27 +63,10 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "show"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
 [node name="CharacterSelect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-tutorial = true
 ModeSelect = ExtResource( 2 )
 ArenaMode = ExtResource( 3 )
 RaceMode = ExtResource( 4 )
@@ -92,99 +74,91 @@ RaceMode = ExtResource( 4 )
 [node name="Water" parent="." instance=ExtResource( 5 )]
 
 [node name="Objects" type="Node2D" parent="."]
-editor/display_folded = true
 
-[node name="floor" type="Sprite" parent="Objects"]
+[node name="Floor" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 510, 50 )
-texture = ExtResource( 6 )
 
-[node name="floor2" type="Sprite" parent="Objects"]
-position = Vector2( 793.797, 60.3605 )
-texture = ExtResource( 6 )
+[node name="Dock" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 24, 75 )
+rotation = 2.44346
 
-[node name="floor3" type="Sprite" parent="Objects"]
+[node name="Float2" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 1776, 940 )
+rotation = 1.5708
+scale = Vector2( 0.7, 0.7 )
+
+[node name="Floor2" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 795, 60 )
+
+[node name="Floor3" parent="Objects" instance=ExtResource( 9 )]
 position = Vector2( 1225.23, 65.2134 )
-texture = ExtResource( 7 )
 
-[node name="floor4" type="Sprite" parent="Objects"]
+[node name="Floor4" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 1750.9, 60 )
-texture = ExtResource( 6 )
 
-[node name="floor5" type="Sprite" parent="Objects"]
+[node name="Floor5" parent="Objects" instance=ExtResource( 9 )]
 position = Vector2( 240, 60 )
-texture = ExtResource( 7 )
+
+[node name="Tire2" parent="Objects" instance=ExtResource( 10 )]
+position = Vector2( 1488.12, 36.3168 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Floor6" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 211.811, 1032 )
+rotation = 3.14159
+
+[node name="Floor7" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 632.284, 1032 )
+rotation = 3.14159
+
+[node name="Floor8" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 1784.38, 1032 )
+rotation = 3.14159
+
+[node name="Floor9" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( 1426.55, 1023.2 )
+rotation = -3.14159
+
+[node name="Floor10" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 1049.26, 1025.96 )
+rotation = 3.14159
 
 [node name="roof2" type="Sprite" parent="Objects"]
 position = Vector2( 586.399, 12.2129 )
-texture = ExtResource( 8 )
-
-[node name="tire2" type="Sprite" parent="Objects"]
-position = Vector2( 1488.12, 36.3168 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 9 )
-
-[node name="dock" type="Sprite" parent="Objects"]
-position = Vector2( 23.5812, 77.2803 )
-rotation = 2.45284
-texture = ExtResource( 10 )
+z_index = 1
+texture = ExtResource( 11 )
 
 [node name="metal" type="Sprite" parent="Objects"]
 position = Vector2( 1900.97, 2.63797 )
 rotation = 0.189877
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 11 )
-
-[node name="floor6" type="Sprite" parent="Objects"]
-position = Vector2( 211.811, 1032 )
-rotation = 3.14159
-texture = ExtResource( 6 )
-
-[node name="float2" type="Sprite" parent="Objects"]
-position = Vector2( 1775.97, 938.379 )
-rotation = 1.57834
-scale = Vector2( 0.7, 0.7 )
+z_index = 1
 texture = ExtResource( 12 )
-
-[node name="floor7" type="Sprite" parent="Objects"]
-position = Vector2( 632.284, 1032 )
-rotation = 3.14159
-texture = ExtResource( 6 )
-
-[node name="floor8" type="Sprite" parent="Objects"]
-position = Vector2( 1784.38, 1032 )
-rotation = 3.14159
-texture = ExtResource( 6 )
 
 [node name="box2" type="Sprite" parent="Objects"]
 position = Vector2( 472.495, 1047.95 )
 rotation = -3.14159
 scale = Vector2( 0.7, 0.7 )
+z_index = 1
 texture = ExtResource( 13 )
-
-[node name="floor9" type="Sprite" parent="Objects"]
-position = Vector2( 1426.55, 1023.2 )
-rotation = -3.14159
-texture = ExtResource( 7 )
-
-[node name="floor10" type="Sprite" parent="Objects"]
-position = Vector2( 1049.26, 1025.96 )
-rotation = 3.14159
-texture = ExtResource( 6 )
 
 [node name="metal2" type="Sprite" parent="Objects"]
 position = Vector2( 1223.81, 1082.36 )
 rotation = -3.14159
+z_index = 1
 texture = ExtResource( 14 )
 
 [node name="roof" type="Sprite" parent="Objects"]
 position = Vector2( 656.165, 1086.49 )
 rotation = -3.14159
+z_index = 1
 texture = ExtResource( 15 )
 
 [node name="roof3" type="Sprite" parent="Objects"]
 position = Vector2( 993.223, 1067.14 )
 rotation = -3.14159
-texture = ExtResource( 8 )
+z_index = 1
+texture = ExtResource( 11 )
 
 [node name="Title" type="Label" parent="."]
 margin_left = 670.0
@@ -199,7 +173,6 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="GridContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 columns = 4
@@ -244,7 +217,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
 __meta__ = {
@@ -277,10 +249,4 @@ text = "Hold BACK to leave"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BackIndicator"]
 anims/hide = SubResource( 3 )
 anims/show = SubResource( 4 )
-
-[node name="Tutorial" parent="." instance=ExtResource( 20 )]
-modulate = Color( 1, 1, 1, 0 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial"]
-anims/show = SubResource( 5 )
 
