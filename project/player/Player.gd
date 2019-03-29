@@ -8,6 +8,7 @@ signal megahook_shot(player, direction)
 signal shook_screen(amount)
 
 onready var rider = $Shark/Rider
+onready var riders_hook = $Shark/Rider/Hook
 onready var dive_meter = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
 onready var sprite = $Shark
@@ -350,7 +351,7 @@ func shoot():
 			hook_dir = speed2
 		if not $PowerUps.has_node("MegaHook"):
 			emit_signal("hook_shot", self, hook_dir)
-			$Sprite/Rider/Hook.hide()
+			riders_hook.hide()
 		else:
 			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)
@@ -359,7 +360,7 @@ func shoot():
 
 func hook_retracted():
 	hook = null
-	$Sprite/Rider/Hook.show()
+	riders_hook.show()
 
 func reset_input_map():
 	is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,

@@ -29,7 +29,7 @@ func setup_players():
 		player.device_name = RoundManager.device_map[i]
 		if RoundManager.character_map[i] == "Black":
 			player.add_shark("Red")
-			$SharkSprite/Shark.set_modulate(Color(0.1, 0.1, 0.1))
+			player.get_node("Shark").set_modulate(Color(0.1, 0.1, 0.1))
 		else:
 			player.add_shark(RoundManager.character_map[i])
 		player.set_name(str("Player", i + 1))
