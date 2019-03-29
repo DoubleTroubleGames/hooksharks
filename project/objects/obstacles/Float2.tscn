@@ -4,7 +4,9 @@
 [ext_resource path="res://assets/float2_o.png" type="Texture" id=2]
 [ext_resource path="res://assets/float2.png" type="Texture" id=3]
 
-[node name="Float2" type="Area2D"]
+[node name="Float2" type="Area2D" groups=[
+"underpass",
+]]
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 1 )

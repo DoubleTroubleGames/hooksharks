@@ -7,7 +7,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 230, 115 )
 
-[node name="Metal" type="Area2D"]
+[node name="Metal" type="Area2D" groups=[
+"underpass",
+]]
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 1 )
