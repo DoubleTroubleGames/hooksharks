@@ -56,7 +56,7 @@ func respawn_player(player):
 	RespTimer.wait_time = RESPAWN_TIME
 	RespTimer.start()
 	$Tween.interpolate_property(player, "global_position", null, final_position, RESPAWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	$Tween.interpolate_property(player, "rotation", null, final_rotation, RESPAWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(player.sprite, "rotation", null, final_rotation, RESPAWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield(RespTimer, "timeout")
 	player.sprite_animation.play("idle")
