@@ -178,6 +178,7 @@ func add_shark(shark_name):
 	new.set_name("Shark")
 	new.rotation = initial_dir.angle()
 	new.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered")
+	new.get_node("Area2D").connect("area_exited", self, "_on_Area2D_area_exited")
 	add_child(new)
 
 
@@ -372,7 +373,6 @@ func _on_Area2D_area_exited(area):
 	var object = area.get_parent()
 	if object.is_in_group('trail'):
 		object.can_collide = true
-
 
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()
