@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://sound/hook_hit_wall.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/sound/hook_wall2.wav" type="AudioStream" id=1]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.788235, 0.945098 )
@@ -37,6 +37,5 @@ process_material = SubResource( 3 )
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = -10.0
 autoplay = true
 

@@ -29,26 +29,33 @@ func _input(event):
 		if state == States.OPEN:
 			if CHARACTERS[char_index] in available_chars:
 				change_state(States.READY)
+				$Sounds/ConfirmSFX.play()
 			else:
 				$Sprite/AnimationPlayer.play("shake")
+				$Sounds/CancelSFX.play()
 		elif state == States.READY:
 			$Sprite/AnimationPlayer.play("shake")
+			$Sounds/CancelSFX.play()
 			emit_signal("tried_to_start")
 	
 	elif event.is_action_pressed("ui_cancel"):
 		if state == States.OPEN:
 			device_name = ""
 			change_state(States.CLOSED)
+			$Sounds/CancelSFX.play()
 		elif state == States.READY:
 			change_state(States.OPEN)
+			$Sounds/CancelSFX.play()
 	
 	elif event.is_action_pressed("ui_left") and state == States.OPEN:
 		set_character(char_index - 1)
 		$Sprite/State.set_text(str("Char ", char_index + 1)) # Can't be in set_charater() or will overwrite initial state
+		$Sounds/SelectSFX.play()
 	
 	elif event.is_action_pressed("ui_right") and state == States.OPEN:
 		set_character(char_index + 1)
 		$Sprite/State.set_text(str("Char ", char_index + 1)) # Can't be in set_charater() or will overwrite initial state
+		$Sounds/SelectSFX.play()
 	
 	get_tree().set_input_as_handled()
 
@@ -93,6 +100,8 @@ func open_with(event):
 		$Sprite/DeviceSprite.set_texture(load("res://hud/character-select/gamepad.png"))
 		var num = int(device_name.split("_")[1]) + 1
 		$Sprite/DeviceNumber.set_text(str(num))
+		
+	$Sounds/ConfirmSFX.play()	
 	change_state(States.OPEN)
 
 

@@ -261,7 +261,7 @@ func die(is_player_collision=false):
 	get_parent().add_child(EP)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	randomize()
-	var scream = 1 + randi() % 9
+	var scream = 1 + randi() % 6
 	get_node(str('SFX/ScreamSFX', scream)).play()
 	disable()
 	if respawn:

@@ -30,16 +30,19 @@ func transition_to(scene_path):
 
 func _on_ArenaButton_pressed():
 	RoundManager.gamemode = "Arena"
+	$Sounds/ConfirmSFX.play()
 	transition_to("res://hud/character-select/CharacterSelect.tscn")
 
 
 func _on_RacingButton_pressed():
 	RoundManager.gamemode = "Race"
+	$Sounds/ConfirmSFX.play()
 	transition_to("res://hud/character-select/CharacterSelect.tscn")
 
 
 func _on_ArenaButton_focus_entered():
 	$ArenaButton.material.set_shader_param("active", true)
+	$Sounds/SelectSFX.play()
 
 
 func _on_ArenaButton_focus_exited():
@@ -48,6 +51,7 @@ func _on_ArenaButton_focus_exited():
 
 func _on_RacingButton_focus_entered():
 	$RacingButton.material.set_shader_param("active", true)
+	$Sounds/SelectSFX.play()
 
 
 func _on_RacingButton_focus_exited():

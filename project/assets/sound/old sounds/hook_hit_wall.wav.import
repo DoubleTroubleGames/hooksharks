@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hook_hit_wall.wav-27d44515f21583816a7b0adb0c11e2f1.sample"
+
+[deps]
+
+source_file="res://assets/sound/old sounds/hook_hit_wall.wav"
+dest_files=[ "res://.import/hook_hit_wall.wav-27d44515f21583816a7b0adb0c11e2f1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

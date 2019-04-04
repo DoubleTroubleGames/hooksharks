@@ -110,4 +110,5 @@ func _on_Restart_pressed():
 func _on_Quit_pressed():
 	transition()
 	yield(Transition, "finished")
+	Sound.stop_ambience()
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
