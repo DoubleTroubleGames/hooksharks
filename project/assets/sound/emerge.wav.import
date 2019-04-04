@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/emerge.wav-5f0e9f34bb50a154a408520167b0edee.sample"
+
+[deps]
+
+source_file="res://assets/sound/emerge.wav"
+dest_files=[ "res://.import/emerge.wav-5f0e9f34bb50a154a408520167b0edee.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -169,8 +169,8 @@ func _physics_process(delta):
 
 
 func disable():
-	area2D.set_deferred("monitoring", false)
-	area2D.set_deferred("monitorable", false)
+	area.set_deferred("monitoring", false)
+	area.set_deferred("monitorable", false)
 	water_particles.ripples.emitting = false
 	set_physics_process(false)
 	set_process_input(false)
