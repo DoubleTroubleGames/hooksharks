@@ -6,9 +6,9 @@
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=4]
 [ext_resource path="res://fx/water/Water.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/roof2.png" type="Texture" id=10]
 [ext_resource path="res://assets/metal.png" type="Texture" id=11]
 [ext_resource path="res://assets/box2.png" type="Texture" id=12]
@@ -91,29 +91,30 @@ RaceMode = ExtResource( 4 )
 [node name="Water" parent="." instance=ExtResource( 5 )]
 
 [node name="Objects" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Floor" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 510, 50 )
 
-[node name="Dock" parent="Objects" instance=ExtResource( 7 )]
-position = Vector2( 24, 75 )
-rotation = 2.44346
-
 [node name="Floor2" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 795, 60 )
 
-[node name="Floor3" parent="Objects" instance=ExtResource( 8 )]
+[node name="Floor3" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( 1225.23, 65.2134 )
 
 [node name="Floor4" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 1750.9, 60 )
 
-[node name="Floor5" parent="Objects" instance=ExtResource( 8 )]
+[node name="Floor5" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( 240, 60 )
 
-[node name="Tire2" parent="Objects" instance=ExtResource( 9 )]
+[node name="Tire2" parent="Objects" instance=ExtResource( 8 )]
 position = Vector2( 1488.12, 36.3168 )
 scale = Vector2( 0.6, 0.6 )
+
+[node name="Dock" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( 24, 75 )
+rotation = 2.44346
 
 [node name="Floor6" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 211.811, 1032 )
@@ -127,7 +128,7 @@ rotation = 3.14159
 position = Vector2( 1784.38, 1032 )
 rotation = 3.14159
 
-[node name="Floor9" parent="Objects" instance=ExtResource( 8 )]
+[node name="Floor9" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( 1426.55, 1023.2 )
 rotation = -3.14159
 

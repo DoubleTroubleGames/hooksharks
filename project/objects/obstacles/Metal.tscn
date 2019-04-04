@@ -67,6 +67,8 @@ extents = Vector2( 230, 115 )
 [node name="Metal" type="Area2D" groups=[
 "underpass",
 ]]
+collision_layer = 2
+collision_mask = 9
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )

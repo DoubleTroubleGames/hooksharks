@@ -1,174 +1,21 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
-[ext_resource path="res://fx/trails/WaterParticles.tscn" type="PackedScene" id=2]
-[ext_resource path="res://player/baron_sheet_full.png" type="Texture" id=3]
-[ext_resource path="res://player/rider.png" type="Texture" id=4]
-[ext_resource path="res://player/hook/hook.png" type="Texture" id=5]
-[ext_resource path="res://fx/circle.png" type="Texture" id=6]
-[ext_resource path="res://fx/bubble.png" type="Texture" id=7]
-[ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sound/old sounds/emerge.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/explosion2.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sound/old sounds/scream3.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sound/old sounds/hook_hit_player.wav" type="AudioStream" id=18]
-
-[sub_resource type="Animation" id=1]
-resource_name = "dive"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 5, 6, 7, 8 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Rider:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "dive_idle"
-length = 1.2
-loop = true
-step = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 10, 11, 12, 13, 14, 13, 12 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "dive_left"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 14 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "dive_right"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 11 ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 15, 16, 17, 18 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Rider:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 2, 1, 0 ]
-}
-
-[sub_resource type="Animation" id=7]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=8]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
-}
+[ext_resource path="res://player/Shark.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fx/trails/WaterParticles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fx/circle.png" type="Texture" id=4]
+[ext_resource path="res://fx/bubble.png" type="Texture" id=5]
+[ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/old sounds/emerge.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/explosion2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/old sounds/scream3.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/old sounds/hook_hit_player.wav" type="AudioStream" id=16]
 
 [node name="Player" type="Node2D" groups=[
 "player",
@@ -181,49 +28,12 @@ __meta__ = {
 }
 ROT_SPEED = 0.897598
 
-[node name="WaterParticles" parent="." instance=ExtResource( 2 )]
+[node name="Shark" parent="." instance=ExtResource( 2 )]
+
+[node name="WaterParticles" parent="." instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 30, 0 )
 rotation = 1.5708
-
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( -1, 1 )
-texture = ExtResource( 3 )
-offset = Vector2( 70, 4 )
-vframes = 4
-hframes = 5
-frame = 11
-
-[node name="Rider" type="Sprite" parent="Sprite"]
-position = Vector2( -10, 0 )
-texture = ExtResource( 4 )
-offset = Vector2( -7, 0 )
-
-[node name="Hook" type="Sprite" parent="Sprite/Rider"]
-show_behind_parent = true
-position = Vector2( -15, 0 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 5 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-autoplay = "idle"
-anims/dive = SubResource( 1 )
-anims/dive_idle = SubResource( 2 )
-anims/dive_left = SubResource( 3 )
-anims/dive_right = SubResource( 4 )
-anims/emerge = SubResource( 5 )
-anims/idle = SubResource( 6 )
-anims/left = SubResource( 7 )
-anims/right = SubResource( 8 )
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 15, 0 )
-rotation = -3.14159
-scale = Vector2( 1, -1 )
-monitoring = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -23.2921, -1.11684, -18.4391, -10.8228, 20.3849, -22.1465, 64.7089, -3.05804, 21.3555, 21.5305, -16.8214, 9.88329 )
 
 [node name="DiveCooldown" type="Node2D" parent="."]
 editor/display_folded = true
@@ -237,8 +47,8 @@ margin_bottom = 442.0
 rect_scale = Vector2( 0.05, 0.05 )
 mouse_filter = 2
 value = 100.0
-texture_under = ExtResource( 6 )
-texture_progress = ExtResource( 7 )
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
 fill_mode = 4
 
 [node name="SFX" type="Node2D" parent="."]
@@ -248,47 +58,47 @@ __meta__ = {
 }
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 8 )
+stream = ExtResource( 6 )
 bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 9 )
+stream = ExtResource( 7 )
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 10 )
+stream = ExtResource( 8 )
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 11 )
+stream = ExtResource( 9 )
 bus = "SFX"
 
 [node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 12 )
+stream = ExtResource( 10 )
 bus = "SFX"
 
 [node name="ScreamSFX2" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 13 )
+stream = ExtResource( 11 )
 bus = "SFX"
 
 [node name="ScreamSFX3" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 14 )
+stream = ExtResource( 12 )
 bus = "SFX"
 
 [node name="ScreamSFX4" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 15 )
+stream = ExtResource( 13 )
 bus = "SFX"
 
 [node name="ScreamSFX5" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 16 )
+stream = ExtResource( 14 )
 bus = "SFX"
 
 [node name="ScreamSFX6" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 17 )
+stream = ExtResource( 15 )
 bus = "SFX"
 
 [node name="OnHit" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 18 )
+stream = ExtResource( 16 )
 volume_db = 10.0
 
 [node name="HookTimer" type="Timer" parent="."]
@@ -304,6 +114,3 @@ one_shot = true
 
 [node name="PowerUps" type="Node" parent="."]
 
-[connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

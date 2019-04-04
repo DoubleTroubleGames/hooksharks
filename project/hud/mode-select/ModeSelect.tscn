@@ -23,7 +23,7 @@ uniform sampler2D distortion;
 uniform float distortion_strength;
 uniform float aa_factor;
 
-/*Making outline images on gimp: 
+/*Making outline images on gimp:
 	- grow shape by 40 pixel
 	- paint it white
 	- use filter \"gaussian blur\" with values (100,100)
@@ -33,17 +33,17 @@ void fragment(){
 	vec4 pixel = texture(TEXTURE, UV);
 	if (active) {
 		if (pixel.a < 1.0 && pixel.a > 0.0){
-			
+
 			vec2 distortMod = (texture(distortion, UV).xy * 2.0 - 1.0) * distortion_strength;
 			float noise_x = mod(UV.x + wave_scroll_speed.x*TIME, 1.0) + distortMod.x;
 			float noise_y = mod(UV.y + wave_scroll_speed.y*TIME, 1.0) + distortMod.y;
 			vec2 noiseUV = vec2(noise_x, noise_y);
 			vec4 noisePixel = texture(noise, noiseUV);
-	
+
 			float value = (noisePixel.r + noisePixel.g + noisePixel.g)/3.0;
-			
+
 			float cutoff = 1.0 - smoothstep(1.0 - wave_length, 1.0, pixel.a);
-			
+
 			if (value > cutoff - aa_factor) {
 				float alpha = smoothstep(cutoff - aa_factor, cutoff + aa_factor, value);
 				COLOR = vec4(wave_color.rgb, wave_color.a * alpha);
@@ -149,6 +149,7 @@ margin_right = 865.0
 margin_bottom = 866.301
 rect_rotation = 2.70973
 rect_pivot_offset = Vector2( 358.61, 325.188 )
+focus_neighbour_right = NodePath("../RacingButton")
 disabled = true
 texture_normal = ExtResource( 5 )
 texture_focused = ExtResource( 6 )
@@ -166,6 +167,7 @@ margin_right = 1719.0
 margin_bottom = 879.664
 rect_rotation = 1.05035
 rect_pivot_offset = Vector2( 352.534, 316.153 )
+focus_neighbour_left = NodePath("../ArenaButton")
 disabled = true
 texture_normal = ExtResource( 7 )
 texture_focused = ExtResource( 8 )
