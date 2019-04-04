@@ -32,6 +32,7 @@ The game is developed by the [Marvellous Soft](marvellous.amoeba@gmail.com) team
 
 ### Artists
 - Livia Maki Yoshikawa ([@Makiyoshi](https://github.com/Makiyoshi))
+- Marina de Novaes Benedicto ([@Mariip](https://github.com/Mariip))
 
 ----------------------------------------------------
 
