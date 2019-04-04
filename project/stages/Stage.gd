@@ -24,7 +24,6 @@ func setup_players():
 		
 		player.position = start.position + start.get_parent().position
 		player.initial_dir = start.direction
-		player.rotation = start.direction.angle()
 		player.id = i
 		player.device_name = RoundManager.device_map[i]
 		if RoundManager.character_map[i] == "Black":

@@ -176,6 +176,8 @@ func add_shark(shark_name):
 	old.set_name("old shark")
 	old.queue_free()
 	new.set_name("Shark")
+	new.rotation = initial_dir.angle()
+	new.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered")
 	add_child(new)
 
 
