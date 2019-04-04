@@ -45,11 +45,11 @@ func _input(event):
 	
 	elif event.is_action_pressed("ui_left") and state == States.OPEN:
 		set_character(char_index - 1)
-		$Sprite/State.set_text(str("Char ", char_index + 1)) # Can't be in set_charater() or will overwrite initial state
+		$Sprite/State.set_text(CHARACTERS[char_index]) # Can't be in set_charater() or will overwrite initial state
 	
 	elif event.is_action_pressed("ui_right") and state == States.OPEN:
 		set_character(char_index + 1)
-		$Sprite/State.set_text(str("Char ", char_index + 1)) # Can't be in set_charater() or will overwrite initial state
+		$Sprite/State.set_text(CHARACTERS[char_index]) # Can't be in set_charater() or will overwrite initial state
 	
 	get_tree().set_input_as_handled()
 
@@ -63,7 +63,7 @@ func change_state(new_state):
 			$Sprite/State.set_text("PRESS START")
 			$SharkSprite.hide()
 		States.OPEN:
-			$Sprite/State.set_text(str("Char ", char_index + 1))
+			$Sprite/State.set_text(CHARACTERS[char_index])
 			$SharkSprite.show()
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
