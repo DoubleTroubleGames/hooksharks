@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sea_ambience.ogg-9c53bfdde577783e94f5c83e8ba4626c.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/sea_ambience.ogg"
+dest_files=[ "res://.import/sea_ambience.ogg-9c53bfdde577783e94f5c83e8ba4626c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
