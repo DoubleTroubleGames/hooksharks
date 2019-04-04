@@ -64,6 +64,8 @@ shader_param/distortion = ExtResource( 1 )
 [node name="Float2" type="Area2D" groups=[
 "underpass",
 ]]
+collision_layer = 2
+collision_mask = 9
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
