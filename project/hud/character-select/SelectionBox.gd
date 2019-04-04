@@ -6,7 +6,7 @@ signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
-const CHARACTERS = ["Red", "Green", "Blue", "Black"]
+const CHARACTERS = ["Red", "Green", "Purple", "Yellow"]
 
 var available_chars = CHARACTERS.duplicate()
 var char_index
@@ -105,11 +105,7 @@ func update_available_characters(characters):
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size()) 
 	
-	if CHARACTERS[char_index] != "Black":
-		add_shark(CHARACTERS[char_index])
-	else:
-		add_shark("Red")
-		$SharkSprite/Shark.set_modulate(Color(0.1, 0.1, 0.1))
+	add_shark(CHARACTERS[char_index])
 	
 	if not CHARACTERS[char_index] in available_chars:
 		pass

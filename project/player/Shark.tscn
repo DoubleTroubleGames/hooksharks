@@ -100,7 +100,7 @@ scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 40, 4 )
 vframes = 4
-hframes = 5
+hframes = 4
 frame = 5
 
 [node name="Rider" type="Sprite" parent="."]
