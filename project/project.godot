@@ -18,7 +18,7 @@ _global_script_class_icons={
 config/name="Hooksharks"
 run/main_scene="res://hud/main-menu/MainMenu.tscn"
 config/use_custom_user_dir=true
-boot_splash/image="res://boot_splash.png"
+boot_splash/image="res://hud/main-menu/main_menu.png"
 config/icon="res://hud/round_screen/sticker.png"
 
 [autoload]
@@ -181,14 +181,16 @@ pause={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-
-[layer_names]
-
-2d_physics/layer_1="Shark Above"
-2d_physics/layer_2="Shark Below"
-2d_physics/layer_3="Obstacles"
-2d_physics/layer_4="Hook"
-2d_physics/layer_5="PowerUp"
+ui_joy_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
+ ]
+}
+ui_joy_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
+ ]
+}
 
 [rendering]
 
