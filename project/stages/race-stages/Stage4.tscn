@@ -33,6 +33,9 @@ position = Vector2( 240, 580 )
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 position = Vector2( 240, 730 )
 
+[node name="Obstacles" parent="." index="2"]
+editor/display_folded = true
+
 [node name="Box7" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1640, 0 )
 
@@ -307,12 +310,14 @@ position = Vector2( 1045.5, 290.002 )
 [node name="Camera2D" type="Camera2D" parent="." index="8"]
 current = true
 limit_left = 0
-limit_top = -150
+limit_top = -1000
 limit_right = 8500
 limit_bottom = 1500
 script = ExtResource( 15 )
-min_zoom = 1.5
+min_zoom = 4.5
 max_zoom = 1.0
+zooming_dist = 5000
+min_dist = 400
 
 
 [editable path="FinishLine"]
