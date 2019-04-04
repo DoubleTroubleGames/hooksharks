@@ -109,5 +109,5 @@ func _on_HookArea_area_entered(area):
 		hit_hook(object)
 	elif object.is_in_group('wall') and not retracting:
 		hit_wall()
-	elif object.is_in_group('player') and object != player and not retracting:
-		hit_shark(object)
+	elif object.is_in_group('player') and object.get_parent() != player and not retracting:
+		hit_shark(object.get_parent())

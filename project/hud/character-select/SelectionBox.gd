@@ -6,7 +6,7 @@ signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
-const CHARACTERS = [Color(1, 1, 1), Color(1, .4, .4), Color(.4, .4, 1), Color(.4, 1, .4)]
+const CHARACTERS = ["Red", "Green", "Purple", "Yellow"]
 
 var available_chars = CHARACTERS.duplicate()
 var char_index
@@ -19,6 +19,7 @@ func _ready():
 	var anim_player = $Sprite/AnimationPlayer
 	var anim_length = anim_player.current_animation_length
 	anim_player.advance(rand_range(0, anim_length))
+	$SharkSprite.hide()
 
 
 func _input(event):
@@ -103,10 +104,22 @@ func update_available_characters(characters):
 
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size()) 
-	$SharkSprite.set_modulate(CHARACTERS[char_index])
+	
+	add_shark(CHARACTERS[char_index])
 	
 	if not CHARACTERS[char_index] in available_chars:
 		pass
+
+
+func add_shark(shark_name):
+	var old = $SharkSprite/Shark
+	var new_path = str("res://player/characters/", shark_name, ".tscn")
+	var new = load(new_path).instance()
+	
+	old.set_name("old shark")
+	old.queue_free()
+	new.set_name("Shark")
+	$SharkSprite.add_child(new)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

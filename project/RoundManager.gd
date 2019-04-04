@@ -8,7 +8,7 @@ var round_number
 var round_winner
 var gamemode # 'Arena' or 'Race'
 var device_map = []
-var color_map = []
+var character_map = []
 var players_total = 0
 
 
@@ -36,7 +36,7 @@ func get_match_winner():
 
 func reset_device_map():
 	device_map.clear()
-	color_map.clear()
+	character_map.clear()
 	players_total = 0
 
 

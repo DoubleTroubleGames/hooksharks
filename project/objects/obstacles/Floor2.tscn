@@ -5,6 +5,8 @@
 [ext_resource path="res://assets/floor2.png" type="Texture" id=3]
 
 [node name="Floor2" type="Area2D"]
+collision_layer = 2
+collision_mask = 11
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 1 )
