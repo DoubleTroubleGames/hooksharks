@@ -12,7 +12,7 @@ onready var dive_meter = $DiveCooldown/Bar
 onready var dive_bar = $DiveCooldown
 onready var sprite = $Sprite
 onready var sprite_animation = $Sprite/AnimationPlayer
-onready var area2D = $Sprite/Area2D
+onready var area2D = $Area2D
 onready var rider_offset = -$Sprite/Rider.position.x
 onready var water_particles = $WaterParticles
 
