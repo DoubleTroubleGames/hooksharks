@@ -9,8 +9,8 @@ signal shook_screen(amount)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
-onready var dive_meter = $DiveCooldown/Bar
-onready var dive_bar = $DiveCooldown
+onready var dive_meter = $DiveMeter
+onready var label_position = $LabelPosition
 onready var sprite = $Shark
 onready var sprite_animation = $Shark/AnimationPlayer
 onready var area = $Shark/Area2D
@@ -25,6 +25,7 @@ const NORMAL_BUBBLE = preload("res://fx/bubble.png")
 const COOLDOWN_BUBBLE = preload("res://fx/cd_bubble.png")
 const BLOOD_PARTICLE = preload("res://fx/BloodParticles.tscn")
 const EXPLOSION_PARTICLE = preload("res://fx/explosion/DeathExplosion.tscn")
+const PLAYER_LABEL = preload("res://player/PlayerLabel.tscn")
 const AXIS_DEADZONE = .5
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36
@@ -199,6 +200,12 @@ func add_shark(shark_name):
 	add_child(new)
 
 
+func add_label(text):
+	var label = PLAYER_LABEL.instance()
+	label.text = text
+	label_position.add_child(label)
+
+
 func update_dive_meter(delta):
 	if dive_on_cooldown:
 		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
@@ -218,9 +225,9 @@ func update_dive_meter(delta):
 		if dive_meter.value >= 100:
 			dive_meter.value = 100
 	if dive_meter.value < 100:
-		dive_bar.show()
+		dive_meter.show()
 	else:
-		dive_bar.hide()
+		dive_meter.hide()
 
 
 func get_rider_direction():
@@ -271,7 +278,7 @@ func die(is_player_collision=false):
 	sprite_animation.stop(false)
 	sprite.hide()
 	rider.hide()
-	$DiveCooldown.hide()
+	dive_meter.hide()
 	$SFX/ExplosionSFX.play()
 	for particle in EP.get_children():
 		particle.emitting = true
