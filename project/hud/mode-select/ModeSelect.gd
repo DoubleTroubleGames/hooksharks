@@ -1,9 +1,7 @@
 extends Control
 
-const DEADZONE = .5
-
-onready var _moved_left = false
-onready var _moved_right = false
+var _moved_left = false
+var _moved_right = false
 
 func _ready():
 	set_process(true)

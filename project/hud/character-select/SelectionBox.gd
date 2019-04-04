@@ -7,25 +7,45 @@ signal tried_to_start
 enum States {CLOSED, OPEN, READY}
 
 const CHARACTERS = ["Red", "Green", "Purple", "Yellow"]
+const DEADZONE = .5
 
 var available_chars = CHARACTERS.duplicate()
 var char_index
 var device_name = ""
 var state = States.CLOSED
+var _moved_left = false
+var _moved_right = false
+var _moved_device = null
 
 
 func _ready():
+	set_process(true)
 	randomize()
 	var anim_player = $Sprite/AnimationPlayer
 	var anim_length = anim_player.current_animation_length
 	anim_player.advance(rand_range(0, anim_length))
 	$SharkSprite.hide()
 
+func _process(delta):
+	if (_moved_left or _moved_right) and abs(Input.get_joy_axis(_moved_device,0)) < DEADZONE:
+		_moved_left = false
+		_moved_right = false
+		_moved_device = null
 
 func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
-
+	
+	if event is InputEventJoypadMotion and event.axis == 0:
+		if event.axis_value > DEADZONE and not _moved_left:
+			_moved_left = true
+			_moved_device = event.device
+			toggle_left()
+		if  event.axis_value < -DEADZONE and not _moved_right:
+			_moved_right = true
+			_moved_device = event.device
+			toggle_right()
+	
 	if event.is_action_pressed("ui_start"):
 		if state == States.OPEN:
 			if CHARACTERS[char_index] in available_chars:
@@ -49,17 +69,22 @@ func _input(event):
 			$Sounds/CancelSFX.play()
 
 	elif event.is_action_pressed("ui_left") and state == States.OPEN:
-		set_character(char_index - 1)
-		$Sprite/State.set_text(str("Char ", char_index + 1)) # Can't be in set_charater() or will overwrite initial state
-		$Sounds/SelectSFX.play()
+		toggle_left()
 
 	elif event.is_action_pressed("ui_right") and state == States.OPEN:
-		set_character(char_index + 1)
-		$Sprite/State.set_text(str("Char ", char_index + 1)) # Can't be in set_charater() or will overwrite initial state
-		$Sounds/SelectSFX.play()
+		toggle_right()
 
 	get_tree().set_input_as_handled()
 
+func toggle_left():
+	set_character(char_index - 1)
+	$Sprite/State.set_text(CHARACTERS[char_index]) # Can't be in set_charater() or will overwrite initial state
+	$Sounds/SelectSFX.play()
+
+func toggle_right():
+	set_character(char_index + 1)
+	$Sprite/State.set_text(CHARACTERS[char_index]) # Can't be in set_charater() or will overwrite initial state
+	$Sounds/SelectSFX.play()
 
 func change_state(new_state):
 	match new_state:
