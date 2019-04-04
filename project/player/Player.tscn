@@ -35,11 +35,8 @@ visible = false
 position = Vector2( 30, 0 )
 rotation = 1.5708
 
-[node name="DiveCooldown" type="Node2D" parent="."]
-editor/display_folded = true
+[node name="DiveMeter" type="TextureProgress" parent="."]
 visible = false
-
-[node name="Bar" type="TextureProgress" parent="DiveCooldown"]
 margin_left = -13.0
 margin_top = -70.0
 margin_right = 499.0
@@ -50,6 +47,9 @@ value = 100.0
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 5 )
 fill_mode = 4
+
+[node name="LabelPosition" type="Node2D" parent="."]
+position = Vector2( 0, -70 )
 
 [node name="SFX" type="Node2D" parent="."]
 __meta__ = {
