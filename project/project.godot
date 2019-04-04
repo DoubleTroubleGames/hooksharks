@@ -182,6 +182,14 @@ pause={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Shark Above"
+2d_physics/layer_2="Shark Below"
+2d_physics/layer_3="Obstacles"
+2d_physics/layer_4="Hook"
+2d_physics/layer_5="PowerUp"
+
 [rendering]
 
 environment/default_clear_color=Color( 0.0392157, 0.184314, 0.305882, 1 )
