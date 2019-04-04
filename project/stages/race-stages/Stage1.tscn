@@ -153,6 +153,7 @@ min_dist = 400
 editor/display_folded = true
 position = Vector2( 330, 1100 )
 total_checkpoint_number = 3
+total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 566.27, -294.165 )
@@ -169,6 +170,7 @@ number = 2
 
 [node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 19 )]
 position = Vector2( 1175, 1300 )
+rotation = 3.14159
 scale = Vector2( 1, 1.4 )
 number = 3
 

@@ -2,7 +2,7 @@ extends Line2D
 
 var hook = null
 var player = null
-var force = 400
+var force = 500
 
 func _physics_process(delta):
 	if hook:
