@@ -314,10 +314,6 @@ limit_top = -1000
 limit_right = 8500
 limit_bottom = 1500
 script = ExtResource( 15 )
-min_zoom = 4.5
-max_zoom = 1.0
-zooming_dist = 5000
-min_dist = 400
 
 
 [editable path="FinishLine"]

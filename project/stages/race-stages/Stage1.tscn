@@ -140,10 +140,6 @@ limit_top = 0
 limit_right = 2300
 limit_bottom = 1500
 script = ExtResource( 17 )
-min_zoom = 1.5
-max_zoom = 1.0
-zooming_dist = 1500
-min_dist = 400
 
 [node name="PowerUps" type="Node2D" parent="." index="6"]
 

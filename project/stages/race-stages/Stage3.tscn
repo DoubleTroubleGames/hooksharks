@@ -191,8 +191,5 @@ limit_right = 3400
 limit_bottom = 1000
 drag_margin_h_enabled = false
 script = ExtResource( 18 )
-min_zoom = 2.2
 max_zoom = 1.3
-zooming_dist = 2500
-min_dist = 400
 

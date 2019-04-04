@@ -3,34 +3,50 @@ extends "res://camera/Camera.gd"
 # All chidren of the Camera2D containing this script should be nodes inhereting from Node2D
 # Needs a call of set_children() to work
 
-export (int)var speed = 10
-export (float)var min_zoom = 1
-export (float)var max_zoom = 0.5
-export (int)var zooming_dist = 1000 # the camera will start zooming in when max_dist < zooming_dist
-export (int)var min_dist = 100 # the camera will reach max_zoom at this dist
+export (float)var max_zoom = 1.0
 
+const CAM_MARGIN = 200
+
+var cam_margin = [Vector2(0, 0), Vector2(0, 0)] # top left and bottom right corners
 var children
 
+
 func _ready():
-	set_physics_process(false)
+	set_physics_process(true)
 
 
 func _physics_process(delta):
-	var max_dist = get_max_distance()
-	
-	if max_dist.x < zooming_dist:
-		adjust_zoom(max_dist)
-	
 	set_position(lerp(get_position(), get_average_position(), .5))
+	adjust_zoom()
 
 
-func adjust_zoom(dist):
-	var dist_x = clamp(dist.x, min_dist, zooming_dist)
-	var weight_x = (dist_x - zooming_dist) / -(zooming_dist - min_dist)
-	var x = lerp(min_zoom, max_zoom, weight_x)
+func adjust_zoom():
+	cam_margin = [children[0].get_global_position(), children[0].get_global_position()]
+	for child in children:
+		var pos = child.get_global_position()
+		
+		if pos.x < cam_margin[0].x:
+			cam_margin[0].x = pos.x
+		if pos.x > cam_margin[1].x:
+			cam_margin[1].x = pos.x
+		if pos.y < cam_margin[0].y:
+			cam_margin[0].y = pos.y
+		if pos.y > cam_margin[1].y:
+			cam_margin[1].y = pos.y
+		
+	var max_dist = Vector2(abs(cam_margin[1].x - cam_margin[0].x), abs(cam_margin[1].y - cam_margin[0].y))
+	var new_zoom
 	
-	set_zoom(Vector2(x, x))
-
+	if max_dist.x > max_dist.y:
+		new_zoom = (max_dist.x + CAM_MARGIN)/OS.get_screen_size().x
+	else:
+		new_zoom = (max_dist.y + CAM_MARGIN)/OS.get_screen_size().y
+	new_zoom = lerp(get_zoom().x, new_zoom, 0.2)
+	
+	if new_zoom > max_zoom:
+		set_zoom(Vector2(new_zoom, new_zoom))
+	else:
+		set_zoom(Vector2(max_zoom, max_zoom))
 
 func get_average_position():
 	if children.empty():
