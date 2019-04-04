@@ -2,7 +2,7 @@
 
 [ext_resource path="res://hud/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://hud/main-menu/main_menu.png" type="Texture" id=3]
+[ext_resource path="res://hud/main-menu/openingtitle.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=5]
 
@@ -46,13 +46,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1152.0
-margin_top = -648.0
-margin_right = 1152.0
-margin_bottom = 648.0
+margin_left = -1440.0
+margin_top = -810.0
+margin_right = 1440.0
+margin_bottom = 810.0
 texture = ExtResource( 3 )
 
 [node name="Title" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -69,6 +70,7 @@ custom_constants/shadow_offset_y = 15
 text = "HookSharks"
 
 [node name="Subtitle" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -90,15 +92,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -435.0
-margin_top = -103.0
-margin_right = -27.0
+margin_left = -220.0
+margin_top = -209.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0.403333, 0.577765, 0.616667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 8
 custom_constants/shadow_offset_y = 8
-text = "Press Start"
+text = "Press
+Start"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PressStart"]
 anims/show = SubResource( 3 )

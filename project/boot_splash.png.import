@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/main_menu.png-f1569303bd24e0d48858d1476509f30c.stex"
+path="res://.import/boot_splash.png-939509db304f9fb6a281cb6f13babf6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/main-menu/main_menu.png"
-dest_files=[ "res://.import/main_menu.png-f1569303bd24e0d48858d1476509f30c.stex" ]
+source_file="res://boot_splash.png"
+dest_files=[ "res://.import/boot_splash.png-939509db304f9fb6a281cb6f13babf6e.stex" ]
 
 [params]
 
