@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/corda_02.png" type="Texture" id=1]
 [ext_resource path="res://player/rope/Rope.gd" type="Script" id=2]
 
-
 [node name="Rope" type="Line2D"]
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
