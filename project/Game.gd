@@ -9,12 +9,13 @@ const SHOW_ROUND_DELAY = 1
 const TRANSITION_OFFSET = 1000
 const TRANSITION_TIME = 1.0
 
-export (int)var stage_num = 10
+export (int)var total_stages = 10
 
 var hook_clink_positions = []
 var Cameras = []
 var players
 var calling_check_winner = false
+var current_stage = 0
 
 
 func _ready():
@@ -189,11 +190,17 @@ func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
 
 
-func get_random_stage():
+func get_stage(stage_number):
+	current_stage = stage_number
 	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
-	return load(str(base_path, (randi() % stage_num - 1) + 2, ".tscn"))
+	return load(str(base_path, stage_number, ".tscn"))
+
+
+func get_random_stage():
+	var available_stages = range(1, total_stages + 1)
+	available_stages.erase(current_stage)
+	return get_stage(available_stages[randi() % available_stages.size()])
 
 
 func get_first_stage():
-	var base_path = str("stages/", self.get_name().to_lower(), "-stages/Stage")
-	return load(str(base_path, "1.tscn"))
+	return get_stage(1)

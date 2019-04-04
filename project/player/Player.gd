@@ -38,7 +38,7 @@ export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
 export(bool) var respawn = false
 export(float) var ROT_SPEED = PI/3.5
-export(int) var ACC = 4
+export(int) var ACC = 8
 export(int) var INITIAL_SPEED = 100
 export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
 export(MovementTypes) var movement_type = MovementTypes.TANK
@@ -94,34 +94,51 @@ func _physics_process(delta):
 	
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
-
+	var turning_left = false
+	var turning_right = false
+	
 	if hook != null and weakref(hook).get_ref() and hook.is_colliding()\
 			and not hook.is_pulling_object():
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
 		if movement_type == MovementTypes.TANK:
-			
 			# Workaround for gamepad bug
 			if device_name.begins_with("gamepad"):
 				var direction = get_movement_direction()
 				is_pressed["right"] = direction.x > AXIS_DEADZONE
 				is_pressed["left"] = direction.x < - AXIS_DEADZONE
-			
-			if is_pressed["right"]:
-				speed2 = speed2.rotated(ROT_SPEED * delta)
-			if is_pressed["left"]:
-				speed2 = speed2.rotated(-ROT_SPEED * delta)
+			turning_right = is_pressed["right"]
+			turning_left = is_pressed["left"]
 		elif movement_type == MovementTypes.DIRECT:
 			var direction = get_movement_direction()
 			
 			if direction.length() > 0:
-				if speed2.angle_to(direction) > DIRECT_MOVEMENT_MARGIN:
-					speed2 = speed2.rotated(ROT_SPEED * delta)
-				elif speed2.angle_to(direction) < -DIRECT_MOVEMENT_MARGIN:
-					speed2 = speed2.rotated(-ROT_SPEED * delta)
+				turning_right = speed2.angle_to(direction) > DIRECT_MOVEMENT_MARGIN
+				turning_left = speed2.angle_to(direction) < -DIRECT_MOVEMENT_MARGIN
 		else:
 			print("Not a valid movement type: ", movement_type)
 			assert(false)
+	
+	if turning_left == turning_right:
+		pass
+	elif turning_left:
+		speed2 = speed2.rotated(-ROT_SPEED * delta)
+	else: # turning_right:
+		speed2 = speed2.rotated(ROT_SPEED * delta)
+	
+	var anim = sprite_animation.current_animation
+	
+	if anim != "dive" and anim != "emerge":
+		var new_anim = "dive_" if diving else ""
+		if turning_left == turning_right:
+			new_anim += "idle"
+		elif turning_left:
+			new_anim += "left"
+		else: #turning_right
+			new_anim += "right"
+		
+		if anim != new_anim:
+			sprite_animation.play(new_anim)
 	
 	var proj = (applying_force.dot(speed2) / speed2.length_squared()) * speed2
 	applying_force -= proj
@@ -152,8 +169,8 @@ func _physics_process(delta):
 
 
 func disable():
-	area.set_deferred("monitoring", false)
-	area.set_deferred("monitorable", false)
+	area2D.set_deferred("monitoring", false)
+	area2D.set_deferred("monitorable", false)
 	water_particles.ripples.emitting = false
 	set_physics_process(false)
 	set_process_input(false)
@@ -305,7 +322,6 @@ func dive():
 		return
 	
 	$SFX/DiveSFX.play()
-	$WaterParticles.visible = false
 	var dive_particles = DIVE_PARTICLES.instance()
 	dive_particles.emitting = true
 	$ParticleTimer.wait_time = dive_particles.lifetime
@@ -314,7 +330,7 @@ func dive():
 	can_dive = false
 	sprite_animation.play("dive")
 	yield(sprite_animation, "animation_finished")
-	if sprite_animation.assigned_animation == "dive":
+	if sprite_animation.assigned_animation.begins_with("dive"):
 		# Verification in case diving was canceled
 		diving = true
 		sprite_animation.play("dive_idle")
@@ -331,7 +347,6 @@ func emerge():
 	dive_particles.emitting = true
 	$ParticleTimer.wait_time = dive_particles.lifetime
 	$ParticleTimer.start()
-	$WaterParticles.visible = true
 	sprite_animation.play("emerge")
 	diving = false
 	yield(sprite_animation, "animation_finished")
@@ -388,3 +403,8 @@ func _on_Area2D_area_entered(area):
 			die(true)
 	if object.is_in_group('powerup') and not diving:
 		object.activate(self)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "dive":
+		sprite_animation.play("dive_idle")

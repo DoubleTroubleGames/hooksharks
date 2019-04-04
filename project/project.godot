@@ -18,7 +18,7 @@ _global_script_class_icons={
 config/name="Hooksharks"
 run/main_scene="res://hud/main-menu/MainMenu.tscn"
 config/use_custom_user_dir=true
-boot_splash/image="res://hud/main-menu/main_menu.png"
+boot_splash/image="res://boot_splash.png"
 config/icon="res://hud/round_screen/sticker.png"
 
 [autoload]
