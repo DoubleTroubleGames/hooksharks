@@ -13,6 +13,13 @@ onready var round_number = $Background/Round/Number
 onready var round_label = $Background/Round/Label
 onready var tween = $Tween
 
+const TRIVIA = [
+	"Girotto, you are fired",
+	"Great White Sharks aren't so great after all",
+	"Sharks can't fly",
+	"Hammersharks eat nails",
+]
+
 const DELAY = .1
 const DURATION = .5
 const BACKGROUND_Y = -108
@@ -54,6 +61,15 @@ func show_round():
 	
 	round_number.text = str(RoundManager.round_number)
 	
+	var match_winner = RoundManager.get_match_winner()
+	if match_winner == -1:
+		$Background/TriviaHeader.show()
+		$Background/Trivia.show()
+		$Background/Trivia.text = getRandomTrivia()
+	else:
+		$Background/TriviaHeader.hide()
+		$Background/Trivia.hide()
+	
 	# Check draw
 	var is_draw = RoundManager.round_winner == -1
 	round_label.text = "Draw" if is_draw else "Round"
@@ -78,7 +94,6 @@ func show_round():
 		yield(player_score, "marker_animation_ended")
 
 	# Check win condition
-	var match_winner = RoundManager.get_match_winner()
 	if match_winner == -1:
 		display_timer.start()
 		yield(display_timer, "timeout")
@@ -131,3 +146,7 @@ func _on_Quit_pressed():
 	yield(Transition, "finished")
 	Sound.stop_ambience()
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
+
+func getRandomTrivia():
+	var index = randi() % TRIVIA.size()
+	return TRIVIA[index]

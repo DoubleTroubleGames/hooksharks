@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://hud/round_screen/RoundScreen.gd" type="Script" id=1]
 [ext_resource path="res://hud/round_screen/gatebasic.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://hud/main-menu/ui_title_restart_select.png" type="Texture" id=6]
 [ext_resource path="res://hud/round_screen/gate_multi.png" type="Texture" id=7]
 [ext_resource path="res://hud/round_screen/gate_sub.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 256
@@ -34,6 +35,14 @@ blend_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 40
+font_data = ExtResource( 9 )
 
 [node name="RoundScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -173,9 +182,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
 
+[node name="TriviaHeader" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = -214.0
+margin_right = -200.0
+margin_bottom = -100.0
+custom_fonts/font = SubResource( 8 )
+text = "fact of the day"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Trivia" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = -164.0
+margin_right = -200.0
+margin_bottom = -50.0
+custom_fonts/font = SubResource( 9 )
+text = "Random Trivia"
+align = 1
+valign = 1
+autowrap = true
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="DisplayTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.5
 one_shot = true
 
