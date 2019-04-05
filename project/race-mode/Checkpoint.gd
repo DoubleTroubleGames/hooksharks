@@ -11,5 +11,6 @@ func _on_Area2D_area_entered(area):
 		if checkpoint_num == number - 1:
 			Stage.increase_player_checkpoint(Player)
 
+
 func get_respawn_position(player_number):
 	return get_node("Pos" + str(player_number)).get_global_position()

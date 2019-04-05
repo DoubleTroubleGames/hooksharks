@@ -155,9 +155,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[node name="Shark" type="Sprite" groups=[
-"player",
-]]
+[node name="Shark" type="Sprite"]
 scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 40, 4 )

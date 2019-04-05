@@ -31,9 +31,9 @@ func update_line_polygon():
 	var PullTop_pos = $PullableObjectTop.get_position()
 	var PullBot_pos = $PullableObjectBot.get_position()
 	line_polygon = PoolVector2Array([Vector2(PullTop_pos.x - WIDTH, PullTop_pos.y + WIDTH),
-								   Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y - WIDTH),
-								   Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y - WIDTH),
-								   Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y + WIDTH)])
+			Vector2(PullTop_pos.x + WIDTH, PullTop_pos.y - WIDTH),
+			Vector2(PullBot_pos.x + WIDTH, PullBot_pos.y - WIDTH),
+			Vector2(PullBot_pos.x - WIDTH, PullBot_pos.y + WIDTH)])
 	$LineArea/CollisionPolygon2D.polygon = line_polygon
 
 
@@ -50,15 +50,18 @@ func adjust_line_size():
 
 func _on_LineArea_area_entered(area):
 	if area.get_parent().is_in_group('player'):
-		var Player = area.get_parent()
-		var checkpoint_num = Stage.get_player_checkpoint(Player)
+		var player = area.get_parent().get_parent() #  Ugly fix TODO TO DO REFACTOR!!!!!!
+		var checkpoint_num = Stage.get_player_checkpoint(player)
 		if checkpoint_num == total_checkpoint_number:
-			Stage.increase_player_lap(Player)
-			Stage.reset_player_checkpoint(Player)
+			Stage.increase_player_lap(player)
+			Stage.reset_player_checkpoint(player)
 
-			var lap_num = Stage.get_player_lap(Player)
+			var lap_num = Stage.get_player_lap(player)
+			
+			player.add_label("Lap %s/%s" % [lap_num, total_laps])
+			
 			if lap_num >= total_laps:
-				var winner = Player
+				var winner = player
 				var players = get_parent().get_parent().players
 
 				$LineArea/CollisionPolygon2D.disabled = true

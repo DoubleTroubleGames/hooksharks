@@ -9,7 +9,7 @@ signal shook_screen(amount)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
-onready var dive_meter = $DiveMeter
+onready var dive_meter = $DiveMeter/Bar
 onready var label_position = $LabelPosition
 onready var sprite = $Shark
 onready var sprite_animation = $Shark/AnimationPlayer
@@ -58,6 +58,7 @@ var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)
 var is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
+var label_stack = []
 
 func _ready():
 	if device_name.begins_with("gamepad"):
@@ -203,6 +204,15 @@ func add_shark(shark_name):
 func add_label(text):
 	var label = PLAYER_LABEL.instance()
 	label.text = text
+	
+	if label_stack.empty():
+		display_label(label)
+	
+	label_stack.append(label)
+
+
+func display_label(label):
+	label.connect("display_ended", self, "_on_label_display_ended")
 	label_position.add_child(label)
 
 
@@ -385,18 +395,29 @@ func shoot():
 	elif hook and weakref(hook).get_ref() and not hook.retracting:
 		hook.retract()
 
+
 func hook_retracted():
 	hook = null
 	riders_hook.show()
+
 
 func reset_input_map():
 	is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
 
+
+func _on_label_display_ended():
+	label_stack.pop_front()
+	
+	if not label_stack.empty():
+		display_label(label_stack.front())
+
+
 func _on_Area2D_area_exited(area):
 	var object = area.get_parent()
 	if object.is_in_group('trail'):
 		object.can_collide = true
+
 
 func _on_Area2D_area_entered(area):
 	var object = area.get_parent()

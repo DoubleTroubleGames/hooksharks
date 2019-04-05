@@ -3,13 +3,13 @@
 [ext_resource path="res://objects/Powerups/MegaHook.gd" type="Script" id=1]
 [ext_resource path="res://player/hook/hook.png" type="Texture" id=2]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
 [node name="MegaHook" type="Node2D"]
 visible = false
 script = ExtResource( 1 )
+power_name = "MegaHooooook!"
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.640625, 0.00250244, 0.00250244, 1 )
