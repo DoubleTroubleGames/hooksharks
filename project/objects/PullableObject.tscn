@@ -6,9 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45, 45 )
 
-[node name="PullableObject" type="Node2D" groups=[
-"object",
-]]
+[node name="PullableObject" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -18,8 +16,8 @@ __meta__ = {
 texture = ExtResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 11
+collision_layer = 1024
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )

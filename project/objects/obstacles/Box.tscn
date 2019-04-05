@@ -9,7 +9,7 @@ extents = Vector2( 130, 130 )
 
 [node name="Box" type="Area2D"]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 1 )

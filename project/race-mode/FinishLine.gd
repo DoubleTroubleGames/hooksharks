@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var Stage = get_parent()
+onready var stage = get_parent()
 
 const WIDTH = 10
 const LINE_SPRITE_SIZE = 115
@@ -49,26 +49,25 @@ func adjust_line_size():
 
 
 func _on_LineArea_area_entered(area):
-	if area.get_parent().is_in_group('player'):
-		var player = area.get_parent().get_parent() #  Ugly fix TODO TO DO REFACTOR!!!!!!
-		var checkpoint_num = Stage.get_player_checkpoint(player)
-		if checkpoint_num == total_checkpoint_number:
-			Stage.increase_player_lap(player)
-			Stage.reset_player_checkpoint(player)
-
-			var lap_num = Stage.get_player_lap(player)
+	# This area only monitors PLAYER_ABOVE.
+	var player = area.get_parent().get_parent()
+	var checkpoint_num = stage.get_player_checkpoint(player)
+	if checkpoint_num == total_checkpoint_number:
+		stage.increase_player_lap(player)
+		stage.reset_player_checkpoint(player)
+		var lap_num = stage.get_player_lap(player)
+		
+		player.add_label("Lap %s/%s" % [lap_num, total_laps])
+		
+		if lap_num >= total_laps:
+			var winner = player
+			var players = get_parent().get_parent().players
 			
-			player.add_label("Lap %s/%s" % [lap_num, total_laps])
-			
-			if lap_num >= total_laps:
-				var winner = player
-				var players = get_parent().get_parent().players
-
-				$LineArea/CollisionPolygon2D.disabled = true
-				for child in players:
-					if child != winner:
-						child.respawn = false
-						child.call_deferred("die")
+			$LineArea/CollisionPolygon2D.set_deferred("disabled", true)
+			for child in players:
+				if child != winner:
+					child.respawn = false
+					child.call_deferred("die")
 
 
 func _on_PullableObjectTop_hooked():

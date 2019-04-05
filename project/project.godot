@@ -26,6 +26,7 @@ config/icon="res://hud/round_screen/sticker.png"
 RoundManager="*res://RoundManager.gd"
 Sound="*res://Sound.tscn"
 Transition="*res://Transition.tscn"
+Collision="*res://Collision.gd"
 
 [debug]
 
@@ -191,6 +192,20 @@ ui_joy_right={
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="player_above"
+2d_physics/layer_2="player_below"
+2d_physics/layer_3="obstacle"
+2d_physics/layer_4="floating_obstacle"
+2d_physics/layer_5="trail"
+2d_physics/layer_6="powerup"
+2d_physics/layer_7="hook"
+2d_physics/layer_8="checkpoint"
+2d_physics/layer_9="finish_line"
+2d_physics/layer_10="megahook"
+2d_physics/layer_11="pullable_object"
 
 [rendering]
 

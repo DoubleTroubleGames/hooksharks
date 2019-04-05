@@ -6,9 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
-[node name="Hook" type="Node2D" groups=[
-"hook",
-]]
+[node name="Hook" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -17,8 +15,8 @@ texture = ExtResource( 2 )
 offset = Vector2( 5, 0 )
 
 [node name="HookArea" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 13
+collision_layer = 64
+collision_mask = 1645
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
 shape = SubResource( 1 )

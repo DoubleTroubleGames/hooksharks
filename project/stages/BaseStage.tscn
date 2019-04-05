@@ -29,9 +29,7 @@ position = Vector2( 300, 400 )
 [node name="StartingPosition4" parent="PlayerStartingPosition" instance=ExtResource( 3 )]
 position = Vector2( 300, 550 )
 
-[node name="Obstacles" type="Node2D" parent="." groups=[
-"wall",
-]]
+[node name="Obstacles" type="Node2D" parent="."]
 z_index = 1
 __meta__ = {
 "_edit_lock_": true

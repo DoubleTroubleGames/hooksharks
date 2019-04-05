@@ -5,6 +5,10 @@ var speed = 800
 var direction = Vector2()
 
 
+func _physics_process(delta):
+	position += direction * speed * delta
+
+
 func init(_player):
 	if not _player.get_node("PowerUps").has_node("MegaHook"):
 		return true
@@ -25,19 +29,20 @@ func activate(player, direction):
 	set_physics_process(true)
 
 
-func _physics_process(delta):
-	position += direction * speed * delta
+func free_hook():
+	queue_free()
 
 
 func _on_MegaHookArea_area_entered(area):
-	var object = area.get_parent()
-	if object.is_in_group('player'):
-		if (object != player) and (!object.diving):
-			object.die()
+	match area.collision_layer:
+		Collision.PLAYER_ABOVE:
+			var other_player = area.get_parent().get_parent()
+			if other_player != player and not other_player.diving:
+				other_player.die()
+				queue_free()
+		Collision.OBSTACLE:
 			queue_free()
-	elif object.is_in_group('wall') or object.is_in_group('hook'):
-		queue_free()
-
-
-func free_hook():
-	queue_free()
+		Collision.FLOATING_OBSTACLE:
+			queue_free()
+		Collision.HOOK:
+			queue_free()

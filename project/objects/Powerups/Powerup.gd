@@ -20,13 +20,13 @@ func _physics_process(delta):
 		position = hook.position
 
 
-func setHook(new_hook):
+func set_hook(new_hook):
 	if hook:
 		hook.retract()
 	hook = new_hook
 
 
-func removeHook():
+func remove_hook():
 	hook = null
 
 

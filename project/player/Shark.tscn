@@ -188,7 +188,7 @@ anims/right = SubResource( 8 )
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -45, 0 )
 monitoring = false
-collision_mask = 13
+collision_mask = 61
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -23.2921, -1.11684, -18.4391, -10.8228, 20.3849, -22.1465, 64.7089, -3.05804, 21.3555, 21.5305, -16.8214, 9.88329 )
