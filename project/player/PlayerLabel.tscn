@@ -13,8 +13,15 @@ font_data = ExtResource( 1 )
 [sub_resource type="GDScript" id=2]
 script/source = "extends Label
 
+signal display_ended
+
 func _ready():
 	pass
+
+
+# Called in AnimationPlayer
+func display_ended():
+	emit_signal(\"display_ended\")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -47,6 +54,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "display_ended"
+} ]
 }
 
 [node name="PlayerLabel" type="Label"]
