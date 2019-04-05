@@ -6,7 +6,7 @@ var force = 500
 
 func _physics_process(delta):
 	if hook:
-		var angle = Vector2(cos(player.rotation), sin(player.rotation))
+		var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 		var rider_pos = player.position + player.rider_offset * angle
 		self.set_point_position(0, rider_pos)
 		self.set_point_position(1, hook.position)
