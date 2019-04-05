@@ -50,7 +50,7 @@ tracks/0/keys = {
 "values": [ 10, 11, 12, 13, 14, 13, 12 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "dive_left"
 length = 0.001
 tracks/0/type = "value"
@@ -66,7 +66,7 @@ tracks/0/keys = {
 "values": [ 11 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "dive_right"
 length = 0.001
 tracks/0/type = "value"
@@ -82,7 +82,7 @@ tracks/0/keys = {
 "values": [ 8 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -109,7 +109,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -125,8 +125,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "left"
+[sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -141,8 +140,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "right"
+[sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -157,9 +155,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[node name="Shark" type="Sprite" groups=[
-"player",
-]]
+[node name="Shark" type="Sprite"]
 scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 40, 4 )
@@ -182,12 +178,12 @@ texture = ExtResource( 3 )
 autoplay = "idle"
 anims/dive = SubResource( 1 )
 anims/dive_idle = SubResource( 2 )
-anims/dive_left = SubResource( 8 )
-anims/dive_right = SubResource( 7 )
-anims/emerge = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/left = SubResource( 5 )
-anims/right = SubResource( 6 )
+anims/dive_left = SubResource( 3 )
+anims/dive_right = SubResource( 4 )
+anims/emerge = SubResource( 5 )
+anims/idle = SubResource( 6 )
+anims/left = SubResource( 7 )
+anims/right = SubResource( 8 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -45, 0 )

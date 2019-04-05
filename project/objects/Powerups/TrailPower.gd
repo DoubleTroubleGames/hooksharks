@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://objects/Powerups/GenericPower.gd"
 
 var player
 
@@ -18,6 +18,7 @@ func activate():
 	yield($Timer, "timeout")
 	player.create_trail = false
 	queue_free()
-	
+
+
 func _process(delta):
 	$Label.set_text("%.1f" % $Timer.time_left)

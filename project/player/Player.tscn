@@ -44,6 +44,7 @@ scale = Vector2( 0.07, 0.07 )
 z_index = 7
 
 [node name="Bar" type="TextureProgress" parent="DiveMeter"]
+visible = false
 margin_left = -256.0
 margin_top = -256.0
 margin_right = 256.0

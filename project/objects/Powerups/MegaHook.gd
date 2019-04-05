@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://objects/Powerups/GenericPower.gd"
 
 var player
 var speed = 800
@@ -12,6 +12,7 @@ func init(_player):
 		queue_free()
 		return false
 
+
 func activate(player, direction):
 	var angle = Vector2(cos(player.rotation), sin(player.rotation))
 	self.player = player
@@ -23,8 +24,10 @@ func activate(player, direction):
 	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
 
+
 func _physics_process(delta):
 	position += direction * speed * delta
+
 
 func _on_MegaHookArea_area_entered(area):
 	var object = area.get_parent()
@@ -34,6 +37,7 @@ func _on_MegaHookArea_area_entered(area):
 			queue_free()
 	elif object.is_in_group('wall') or object.is_in_group('hook'):
 		queue_free()
+
 
 func free_hook():
 	queue_free()

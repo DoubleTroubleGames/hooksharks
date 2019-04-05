@@ -6,10 +6,13 @@
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="PowerTrail" type="Node2D"]
 script = ExtResource( 1 )
+power_name = "Fire trail!"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
