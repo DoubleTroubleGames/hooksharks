@@ -31,15 +31,12 @@ func _process(delta):
 		var axis_value = Input.get_joy_axis(device_n, 0)
 		print(axis_value)
 		if axis_value >= DEADZONE and not _moved_right:
-			print("right")
 			_moved_right = true
 			toggle_left()
 		elif  axis_value <= -DEADZONE and not _moved_left:
-			print("left")
 			_moved_left = true
 			toggle_right()
 		if abs(axis_value) < DEADZONE:
-			print("reset")
 			_moved_right = false
 			_moved_left = false
 
