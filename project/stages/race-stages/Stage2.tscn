@@ -4,13 +4,13 @@
 [ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://objects/obstacles/Float2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/obstacles/Float.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/obstacles/Roof2.tscn" type="PackedScene" id=9]
-[ext_resource path="res://objects/obstacles/Metal.tscn" type="PackedScene" id=10]
-[ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/obstacles/Float.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Roof2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/Metal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/obstacles/Float2.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/obstacles/BoxClosed.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/obstacles/Tire.tscn" type="PackedScene" id=14]
@@ -43,9 +43,6 @@ position = Vector2( 300, 170 )
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 position = Vector2( 300, 770 )
 
-[node name="Obstacles" parent="." index="2"]
-editor/display_folded = true
-
 [node name="Floor" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 position = Vector2( 56.5043, 169.719 )
 rotation = -1.40794
@@ -58,27 +55,26 @@ rotation = -1.72902
 position = Vector2( -36.4174, 505.27 )
 rotation = -1.51333
 
-[node name="Float2" parent="Obstacles" index="3" instance=ExtResource( 5 )]
-position = Vector2( 1054.55, 37.2272 )
-rotation = 1.66499
-
-[node name="Floor4" parent="Obstacles" index="4" instance=ExtResource( 2 )]
+[node name="Floor4" parent="Obstacles" index="3" instance=ExtResource( 2 )]
 position = Vector2( 688.022, -35.0453 )
 rotation = 0.237108
 
-[node name="Roof" parent="Obstacles" index="5" instance=ExtResource( 6 )]
+[node name="Floor10" parent="Obstacles" index="4" instance=ExtResource( 2 )]
+position = Vector2( 1088.7, 11.5448 )
+
+[node name="Roof" parent="Obstacles" index="5" instance=ExtResource( 5 )]
 position = Vector2( 293.971, -26.449 )
 rotation = -0.0912007
 
-[node name="Tire2" parent="Obstacles" index="6" instance=ExtResource( 7 )]
+[node name="Tire2" parent="Obstacles" index="6" instance=ExtResource( 6 )]
 position = Vector2( 1388.38, 1062.8 )
 rotation = -2.42869
 
-[node name="Float" parent="Obstacles" index="7" instance=ExtResource( 8 )]
+[node name="Float" parent="Obstacles" index="7" instance=ExtResource( 7 )]
 position = Vector2( 882.476, 1047.31 )
 rotation = 2.80401
 
-[node name="Roof2" parent="Obstacles" index="8" instance=ExtResource( 9 )]
+[node name="Roof2" parent="Obstacles" index="8" instance=ExtResource( 8 )]
 position = Vector2( 319.783, 1021.5 )
 rotation = -3.32247
 
@@ -86,7 +82,7 @@ rotation = -3.32247
 position = Vector2( 1687.8, 1057.64 )
 rotation = -3.02791
 
-[node name="Metal" parent="Obstacles" index="10" instance=ExtResource( 10 )]
+[node name="Metal" parent="Obstacles" index="10" instance=ExtResource( 9 )]
 position = Vector2( 1326.44, 923.419 )
 rotation = 3.19635
 
@@ -99,20 +95,20 @@ position = Vector2( 2742.63, 37.2272 )
 rotation = -0.201835
 scale = Vector2( -0.9, 1 )
 
-[node name="Roof4" parent="Obstacles" index="13" instance=ExtResource( 6 )]
+[node name="Roof4" parent="Obstacles" index="13" instance=ExtResource( 5 )]
 position = Vector2( 2348.86, 82.5972 )
 rotation = 0.161902
 
-[node name="Roof3" parent="Obstacles" index="14" instance=ExtResource( 9 )]
+[node name="Roof3" parent="Obstacles" index="14" instance=ExtResource( 8 )]
 position = Vector2( 1901.17, 52.7141 )
 rotation = 0.192359
 scale = Vector2( -1.2, 1 )
 
-[node name="Box3" parent="Obstacles" index="15" instance=ExtResource( 11 )]
+[node name="Box3" parent="Obstacles" index="15" instance=ExtResource( 10 )]
 position = Vector2( 3116.61, 84.6904 )
 rotation = -2.561
 
-[node name="Float3" parent="Obstacles" index="16" instance=ExtResource( 5 )]
+[node name="Float3" parent="Obstacles" index="16" instance=ExtResource( 11 )]
 position = Vector2( 2471.41, 1037 )
 rotation = 1.34156
 
@@ -143,12 +139,12 @@ rotation = -0.470533
 position = Vector2( 3855.86, 304.333 )
 rotation = 2.19453
 
-[node name="Roof5" parent="Obstacles" index="24" instance=ExtResource( 9 )]
+[node name="Roof5" parent="Obstacles" index="24" instance=ExtResource( 8 )]
 position = Vector2( 3759.15, 607.074 )
 rotation = 1.78771
 scale = Vector2( -1, 1 )
 
-[node name="Roof6" parent="Obstacles" index="25" instance=ExtResource( 6 )]
+[node name="Roof6" parent="Obstacles" index="25" instance=ExtResource( 5 )]
 position = Vector2( 3890.91, 211.828 )
 rotation = 1.35388
 
@@ -162,7 +158,7 @@ position = Vector2( 2581.61, 691.704 )
 rotation = 1.87467
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Box5" parent="Obstacles" index="28" instance=ExtResource( 11 )]
+[node name="Box5" parent="Obstacles" index="28" instance=ExtResource( 10 )]
 position = Vector2( 2072.8, 710.109 )
 rotation = -2.5332e-05
 scale = Vector2( 0.6, 0.6 )
