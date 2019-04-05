@@ -9,7 +9,6 @@
 [ext_resource path="res://hud/round_screen/gate_multi.png" type="Texture" id=7]
 [ext_resource path="res://hud/round_screen/gate_sub.png" type="Texture" id=8]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 256
 use_mipmaps = true
@@ -140,6 +139,7 @@ custom_constants/separation = 100
 margin_right = 331.0
 margin_bottom = 163.0
 rect_min_size = Vector2( 331, 163 )
+focus_neighbour_right = NodePath("../Quit")
 disabled = true
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
@@ -150,6 +150,7 @@ margin_left = 431.0
 margin_right = 735.0
 margin_bottom = 163.0
 rect_min_size = Vector2( 304, 162 )
+focus_neighbour_left = NodePath("../Restart")
 disabled = true
 texture_normal = SubResource( 3 )
 texture_pressed = SubResource( 4 )
