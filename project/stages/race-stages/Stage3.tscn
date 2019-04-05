@@ -183,14 +183,13 @@ position = Vector2( 2750, -1270 )
 rotation = 1.83259
 
 [node name="Camera2D" type="Camera2D" parent="." index="7"]
-position = Vector2( 70, 390 )
+position = Vector2( 295.013, 479.523 )
 current = true
-limit_left = 0
-limit_top = -1500
-limit_right = 3400
-limit_bottom = 1000
+limit_left = -100000
+limit_top = -100000
+limit_right = 100000
+limit_bottom = 100000
 drag_margin_h_enabled = false
 script = ExtResource( 18 )
-min_zoom = 2.0
-max_zoom = 1.5
+max_zoom = 1.3
 

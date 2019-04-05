@@ -186,6 +186,7 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="GridContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 columns = 4
@@ -232,6 +233,7 @@ size_flags_vertical = 6
 [node name="BackIndicator" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
+z_index = 1
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -264,6 +266,7 @@ anims/hide = SubResource( 3 )
 anims/show = SubResource( 4 )
 
 [node name="TutorialNode" type="Node2D" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 z_index = 1
 

@@ -3,33 +3,56 @@ extends "res://camera/Camera.gd"
 # All chidren of the Camera2D containing this script should be nodes inhereting from Node2D
 # Needs a call of set_children() to work
 
-export (int)var speed = 10
-export (float)var min_zoom = 1
-export (float)var max_zoom = 0.5
-export (int)var zooming_dist = 1000 # the camera will start zooming in when max_dist < zooming_dist
-export (int)var min_dist = 100 # the camera will reach max_zoom at this dist
+export (float)var max_zoom = 1.0
 
+const CAM_MARGIN = 800
+const MARGIN_MULTIPLIER = 1.6
+
+var cam_margin = [Vector2(0, 0), Vector2(0, 0)] # top left and bottom right corners
 var children
+
 
 func _ready():
 	set_physics_process(false)
 
 
 func _physics_process(delta):
-	var max_dist = get_max_distance()
-	
-	if max_dist.x < zooming_dist:
-		adjust_zoom(max_dist)
-	
 	set_position(lerp(get_position(), get_average_position(), .5))
+	adjust_zoom()
 
 
-func adjust_zoom(dist):
-	var dist_x = clamp(dist.x, min_dist, zooming_dist)
-	var weight_x = (dist_x - zooming_dist) / -(zooming_dist - min_dist)
-	var x = lerp(min_zoom, max_zoom, weight_x)
+func adjust_zoom():
+	cam_margin = [children[0].get_global_position(), children[0].get_global_position()]
+	for child in children:
+		var pos = child.get_global_position()
+		
+		cam_margin[0].x = min(cam_margin[0].x, pos.x)
+		cam_margin[1].x = max(cam_margin[1].x, pos.x)
+		cam_margin[0].y = min(cam_margin[0].y, pos.y)
+		cam_margin[1].y = max(cam_margin[1].y, pos.y)
+		
+	var max_margin = get_max_margin()
+	var new_zoom
 	
-	set_zoom(Vector2(x, x))
+	max_margin[0] *= MARGIN_MULTIPLIER
+	if max_margin[1] == "x":
+		new_zoom = max_margin[0]/OS.get_window_size().x
+	elif max_margin[1] == "y":
+		new_zoom = max_margin[0]/OS.get_window_size().y
+	new_zoom = max(new_zoom, max_zoom)
+	new_zoom = lerp(get_zoom().x, new_zoom, 0.05)
+	set_zoom(Vector2(new_zoom, new_zoom))
+
+
+func get_max_margin():
+	var c_pos = self.get_global_position()
+	var mx = max(abs(c_pos.x - cam_margin[0].x), abs(c_pos.x - cam_margin[1].x))
+	var my = max(abs(c_pos.y - cam_margin[0].y), abs(c_pos.y - cam_margin[1].y))
+	
+	if mx >= my:
+		return [mx + CAM_MARGIN, "x"]
+	else:
+		return [my + CAM_MARGIN, "y"]
 
 
 func get_average_position():
@@ -43,23 +66,6 @@ func get_average_position():
 	avrg /= children.size()
 	
 	return avrg
-
-
-func get_max_distance():
-	var max_dist = Vector2(0, 0)
-	
-	for i in range(children.size() - 1):
-		for j in range(i + 1, children.size()):
-			var pos1 = children[i].get_position()
-			var pos2 = children[j].get_position()
-			var dist = Vector2(abs(pos1.x - pos2.x), abs(pos1.y - pos2.y))
-			
-			if dist.x > max_dist.x:
-				max_dist.x = dist.x
-			if dist.y > max_dist.y:
-				max_dist.y = dist.y
-	
-	return max_dist
 
 
 func set_children(children):
