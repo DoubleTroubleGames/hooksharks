@@ -5,7 +5,8 @@ extends "res://camera/Camera.gd"
 
 export (float)var max_zoom = 1.0
 
-const CAM_MARGIN = 200
+const CAM_MARGIN = 800
+const MARGIN_MULTIPLIER = 1.6
 
 var cam_margin = [Vector2(0, 0), Vector2(0, 0)] # top left and bottom right corners
 var children
@@ -25,28 +26,34 @@ func adjust_zoom():
 	for child in children:
 		var pos = child.get_global_position()
 		
-		if pos.x < cam_margin[0].x:
-			cam_margin[0].x = pos.x
-		if pos.x > cam_margin[1].x:
-			cam_margin[1].x = pos.x
-		if pos.y < cam_margin[0].y:
-			cam_margin[0].y = pos.y
-		if pos.y > cam_margin[1].y:
-			cam_margin[1].y = pos.y
+		cam_margin[0].x = min(cam_margin[0].x, pos.x)
+		cam_margin[1].x = max(cam_margin[1].x, pos.x)
+		cam_margin[0].y = min(cam_margin[0].y, pos.y)
+		cam_margin[1].y = max(cam_margin[1].y, pos.y)
 		
-	var max_dist = Vector2(abs(cam_margin[1].x - cam_margin[0].x), abs(cam_margin[1].y - cam_margin[0].y))
+	var max_margin = get_max_margin()
 	var new_zoom
 	
-	if max_dist.x > max_dist.y:
-		new_zoom = (max_dist.x + CAM_MARGIN)/OS.get_screen_size().x
-	else:
-		new_zoom = (max_dist.y + CAM_MARGIN)/OS.get_screen_size().y
-	new_zoom = lerp(get_zoom().x, new_zoom, 0.2)
+	max_margin[0] *= MARGIN_MULTIPLIER
+	if max_margin[1] == "x":
+		new_zoom = max_margin[0]/OS.get_window_size().x
+	elif max_margin[1] == "y":
+		new_zoom = max_margin[0]/OS.get_window_size().y
+	new_zoom = max(new_zoom, max_zoom)
+	new_zoom = lerp(get_zoom().x, new_zoom, 0.01)
+	set_zoom(Vector2(new_zoom, new_zoom))
+
+
+func get_max_margin():
+	var c_pos = self.get_global_position()
+	var mx = max(abs(c_pos.x - cam_margin[0].x), abs(c_pos.x - cam_margin[1].x))
+	var my = max(abs(c_pos.y - cam_margin[0].y), abs(c_pos.y - cam_margin[1].y))
 	
-	if new_zoom > max_zoom:
-		set_zoom(Vector2(new_zoom, new_zoom))
+	if mx >= my:
+		return [mx + CAM_MARGIN, "x"]
 	else:
-		set_zoom(Vector2(max_zoom, max_zoom))
+		return [my + CAM_MARGIN, "y"]
+
 
 func get_average_position():
 	if children.empty():
