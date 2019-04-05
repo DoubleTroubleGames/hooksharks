@@ -158,6 +158,8 @@ func _physics_process(delta):
 	
 	sprite.rotation = speed2.angle()
 	
+	water_particles.ripples.speed_scale = max(0.5, int(speed2.length() / 200))
+	
 	if self.create_trail and not diving and\
 			self.position.distance_to(last_trail_pos) >\
 			2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
