@@ -31,6 +31,7 @@ func _ready():
 		Transition.transition_out()
 		yield(Transition, "finished")
 	
+	Sound.play_ambience()
 	activate_players()
 
 

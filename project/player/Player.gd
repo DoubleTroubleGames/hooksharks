@@ -286,8 +286,10 @@ func die(is_player_collision=false):
 	EP.position = self.position
 	EP.z_index = 2
 	sprite_animation.stop(false)
-	sprite.hide()
-	rider.hide()
+	if respawn:
+		sprite.set_modulate(Color(1, 1, 1, 0.2))
+	else:
+		sprite.hide()
 	dive_meter.hide()
 	$SFX/ExplosionSFX.play()
 	for particle in EP.get_children():
@@ -295,7 +297,7 @@ func die(is_player_collision=false):
 	get_parent().add_child(EP)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	randomize()
-	var scream = 1 + randi() % 9
+	var scream = 1 + randi() % 6
 	get_node(str('SFX/ScreamSFX', scream)).play()
 	disable()
 	if respawn:
@@ -427,7 +429,7 @@ func _on_Area2D_area_entered(area):
 		else:
 			die()
 	if object.is_in_group('player') and object != self:
-		if diving == object.diving:
+		if diving == object.get_parent().diving:
 			die(true)
 	if object.is_in_group('powerup') and not diving:
 		object.activate(self)

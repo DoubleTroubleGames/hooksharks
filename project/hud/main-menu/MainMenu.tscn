@@ -87,6 +87,7 @@ custom_constants/shadow_offset_y = 8
 text = "- Beyond Waterdome -"
 
 [node name="PressStart" type="Label" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_top = 1.0

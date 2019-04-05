@@ -1,24 +1,21 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/Shark.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fx/trails/WaterParticles.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fx/circle.png" type="Texture" id=4]
 [ext_resource path="res://fx/bubble.png" type="Texture" id=5]
-[ext_resource path="res://sound/dive.wav" type="AudioStream" id=6]
-[ext_resource path="res://sound/emerge.wav" type="AudioStream" id=7]
-[ext_resource path="res://sound/explosion.wav" type="AudioStream" id=8]
-[ext_resource path="res://sound/harpoon.wav" type="AudioStream" id=9]
-[ext_resource path="res://sound/scream1.wav" type="AudioStream" id=10]
-[ext_resource path="res://sound/scream2.wav" type="AudioStream" id=11]
-[ext_resource path="res://sound/scream3.wav" type="AudioStream" id=12]
-[ext_resource path="res://sound/scream4.wav" type="AudioStream" id=13]
-[ext_resource path="res://sound/scream5.wav" type="AudioStream" id=14]
-[ext_resource path="res://sound/scream6.wav" type="AudioStream" id=15]
-[ext_resource path="res://sound/scream7.wav" type="AudioStream" id=16]
-[ext_resource path="res://sound/scream8.wav" type="AudioStream" id=17]
-[ext_resource path="res://sound/scream9.wav" type="AudioStream" id=18]
-[ext_resource path="res://sound/hook_hit_player.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/old sounds/emerge.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/explosion2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/old sounds/scream3.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/old sounds/hook_hit_player.wav" type="AudioStream" id=16]
 
 [node name="Player" type="Node2D" groups=[
 "player",
@@ -61,7 +58,6 @@ position = Vector2( 0, -70 )
 z_index = 7
 
 [node name="SFX" type="Node2D" parent="."]
-editor/display_folded = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -107,20 +103,8 @@ bus = "SFX"
 stream = ExtResource( 15 )
 bus = "SFX"
 
-[node name="ScreamSFX7" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 16 )
-bus = "SFX"
-
-[node name="ScreamSFX8" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 17 )
-bus = "SFX"
-
-[node name="ScreamSFX9" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 18 )
-bus = "SFX"
-
 [node name="OnHit" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 19 )
+stream = ExtResource( 16 )
 volume_db = 10.0
 
 [node name="HookTimer" type="Timer" parent="."]

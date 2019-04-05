@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/scream5.wav-c85eb01a1e47b56d193194aee5f6582e.sample"
+
+[deps]
+
+source_file="res://assets/sound/old sounds/scream5.wav"
+dest_files=[ "res://.import/scream5.wav-c85eb01a1e47b56d193194aee5f6582e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -6,7 +6,7 @@ export(int, 1, 20, 1) var number = 1
 
 func _on_Area2D_area_entered(area):
 	if area.get_parent().is_in_group('player'):
-		var Player = area.get_parent().get_parent() #  Ugly fix TODO TO DO REFACTOR!!!!!!
+		var Player = area.get_parent().get_parent()
 		var checkpoint_num = Stage.get_player_checkpoint(Player)
 		if checkpoint_num == number - 1:
 			Stage.increase_player_checkpoint(Player)

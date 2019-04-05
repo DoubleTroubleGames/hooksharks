@@ -5,7 +5,8 @@
 [ext_resource path="res://hud/round_screen/crown.png" type="Texture" id=3]
 [ext_resource path="res://hud/round_screen/ui_circles.png" type="Texture" id=4]
 [ext_resource path="res://hud/round_screen/ui_x.png" type="Texture" id=5]
-[ext_resource path="res://sound/score.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/old sounds/score.wav" type="AudioStream" id=6]
+
 
 
 

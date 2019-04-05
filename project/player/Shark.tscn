@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 10, 11, 12, 13, 14, 13, 12 ]
+"values": [ 10, 11, 12, 9, 8, 9, 12 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -161,7 +161,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 40, 4 )
 vframes = 4
 hframes = 4
-frame = 15
+frame = 10
 
 [node name="Rider" type="Sprite" parent="."]
 position = Vector2( -30, 0 )
