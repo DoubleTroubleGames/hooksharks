@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/obstacles/BoxClosed.tscn" type="PackedScene" id=2]
@@ -16,10 +16,19 @@
 [ext_resource path="res://objects/obstacles/Metal.tscn" type="PackedScene" id=14]
 [ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=15]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=16]
-[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=17]
-[ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=18]
+[ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=17]
+[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=18]
+[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=19]
 
 [node name="Stage" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -2300, -2000 )
+stage_end = Vector2( 4400, 2000 )
+
+[node name="Water" parent="." index="0"]
+margin_left = -2300.0
+margin_top = -2000.0
+margin_right = 4400.0
+margin_bottom = 2000.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 290, 240 )
@@ -298,33 +307,75 @@ limit_bottom = 100000
 script = ExtResource( 16 )
 max_zoom = 1.5
 
-[node name="FinishLine" parent="." index="7" instance=ExtResource( 17 )]
+[node name="Powerups" type="Node2D" parent="." index="7"]
+editor/display_folded = true
+
+[node name="Powerup" parent="Powerups" index="0" instance=ExtResource( 17 )]
+position = Vector2( 1040, 332 )
+
+[node name="Powerup3" parent="Powerups" index="1" instance=ExtResource( 17 )]
+position = Vector2( 3400, 500 )
+rotation = 0.523598
+
+[node name="Powerup2" parent="Powerups" index="2" instance=ExtResource( 17 )]
+position = Vector2( 1040, 590 )
+
+[node name="Powerup4" parent="Powerups" index="3" instance=ExtResource( 17 )]
+position = Vector2( 2270, -940 )
+rotation = -0.139626
+
+[node name="Powerup5" parent="Powerups" index="4" instance=ExtResource( 17 )]
+position = Vector2( 900, -770 )
+rotation = -0.20944
+
+[node name="Checkpoints" parent="." index="8"]
+editor/display_folded = true
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 18 )]
+position = Vector2( 1652.46, 534.003 )
+rotation = 0.46439
+scale = Vector2( 1, 1.94824 )
+
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 18 )]
+position = Vector2( 2670.01, 1093.23 )
+rotation = -0.119566
+scale = Vector2( 1, 1.94824 )
+number = 2
+
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 18 )]
+position = Vector2( 3401.64, 227.056 )
+rotation = -1.60482
+scale = Vector2( 1, 1.94824 )
+number = 3
+
+[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource( 18 )]
+position = Vector2( 1935.65, -739.615 )
+rotation = -3.06167
+scale = Vector2( 1, 1.57661 )
+number = 4
+
+[node name="Checkpoint5" parent="Checkpoints" index="4" instance=ExtResource( 18 )]
+position = Vector2( 102.175, -699.67 )
+rotation = -3.30374
+scale = Vector2( 1, 1.57661 )
+number = 5
+
+[node name="Checkpoint6" parent="Checkpoints" index="5" instance=ExtResource( 18 )]
+position = Vector2( -532.952, -52.5591 )
+rotation = -4.91988
+scale = Vector2( 1, 2.01542 )
+number = 6
+
+[node name="FinishLine" parent="." index="9" instance=ExtResource( 19 )]
+editor/display_folded = true
+total_checkpoint_number = 6
+total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 40, 242 )
 
 [node name="PullableObjectTop" parent="FinishLine" index="2"]
 position = Vector2( 40, 690 )
-
-[node name="Powerups" type="Node2D" parent="." index="8"]
-
-[node name="Powerup" parent="Powerups" index="0" instance=ExtResource( 18 )]
-position = Vector2( 1040, 332 )
-
-[node name="Powerup3" parent="Powerups" index="1" instance=ExtResource( 18 )]
-position = Vector2( 3400, 500 )
-rotation = 0.523598
-
-[node name="Powerup2" parent="Powerups" index="2" instance=ExtResource( 18 )]
-position = Vector2( 1040, 590 )
-
-[node name="Powerup4" parent="Powerups" index="3" instance=ExtResource( 18 )]
-position = Vector2( 2270, -940 )
-rotation = -0.139626
-
-[node name="Powerup5" parent="Powerups" index="4" instance=ExtResource( 18 )]
-position = Vector2( 900, -770 )
-rotation = -0.20944
 
 
 [editable path="FinishLine"]

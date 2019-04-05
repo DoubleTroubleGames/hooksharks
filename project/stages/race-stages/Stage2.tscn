@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=2]
@@ -17,10 +17,19 @@
 [ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://objects/obstacles/Box.tscn" type="PackedScene" id=16]
 [ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=17]
-[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=18]
-[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=19]
+[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=18]
+[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=19]
+[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=20]
 
-[node name="Stage2" instance=ExtResource( 1 )]
+[node name="Stage2" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -1600, -1100 )
+stage_end = Vector2( 5500, 2000 )
+
+[node name="Water" parent="." index="0"]
+margin_left = -1600.0
+margin_top = -1100.0
+margin_right = 5500.0
+margin_bottom = 2000.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 300, 370 )
@@ -167,15 +176,35 @@ position = Vector2( 1830.98, 595.07 )
 [node name="Powerup2" parent="PowerUps" index="1" instance=ExtResource( 17 )]
 position = Vector2( 2319.09, 849.598 )
 
-[node name="FinishLine" parent="." index="6" instance=ExtResource( 18 )]
-position = Vector2( 3478.28, 417.077 )
-
-[node name="Camera2D" type="Camera2D" parent="." index="7"]
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
 position = Vector2( 0, 500 )
 current = true
 limit_left = -100000
 limit_top = -100000
 limit_right = 100000
 limit_bottom = 100000
-script = ExtResource( 19 )
+script = ExtResource( 18 )
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 19 )]
+position = Vector2( 777.925, 491.923 )
+scale = Vector2( 1, 2.32 )
+
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 19 )]
+position = Vector2( 1294.1, 491.923 )
+scale = Vector2( 1, 2.32 )
+number = 2
+
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 19 )]
+position = Vector2( 2400.64, 535.195 )
+scale = Vector2( 1, 2.32 )
+number = 3
+
+[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource( 19 )]
+position = Vector2( 3068.27, 491.923 )
+scale = Vector2( 1, 2.32 )
+number = 4
+
+[node name="FinishLine" parent="." index="9" instance=ExtResource( 20 )]
+position = Vector2( 3478.28, 417.077 )
+total_checkpoint_number = 4
 
