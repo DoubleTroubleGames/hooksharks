@@ -102,7 +102,7 @@ func add_new_stage():
 		camera.current = true
 
 
-func remove_player(player, is_player_collision):
+func remove_player(player):
 	players.erase(player)
 	
 	if not calling_check_winner:

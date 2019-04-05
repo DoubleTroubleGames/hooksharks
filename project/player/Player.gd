@@ -281,7 +281,7 @@ func create_trail(pos):
 	emit_signal("created_trail", trail)
 
 
-func die(is_player_collision=false):
+func die():
 	var EP = EXPLOSION_PARTICLE.instance()
 	EP.position = self.position
 	EP.z_index = 2
@@ -307,7 +307,7 @@ func die(is_player_collision=false):
 	else:
 		if hook != null:
 			hook.free_hook()
-		emit_signal("died", self, is_player_collision)
+		emit_signal("died", self)
 
 
 
@@ -430,7 +430,7 @@ func _on_Area2D_area_entered(area):
 			die()
 	if object.is_in_group('player') and object != self:
 		if diving == object.get_parent().diving:
-			die(true)
+			die()
 	if object.is_in_group('powerup') and not diving:
 		object.activate(self)
 
