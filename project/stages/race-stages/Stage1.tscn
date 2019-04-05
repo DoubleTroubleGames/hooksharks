@@ -19,8 +19,7 @@
 [ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=17]
 [ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=18]
 
-[node name="Stage1" index="0" instance=ExtResource( 1 )]
-stage_end = Vector2( 4000, 2700 )
+[node name="Stage1" instance=ExtResource( 1 )]
 
 [node name="Water" parent="." index="0"]
 margin_right = 4000.0
@@ -141,12 +140,24 @@ limit_top = -100000
 limit_right = 100000
 limit_bottom = 100000
 script = ExtResource( 16 )
-max_zoom = 0.8
-
+max_zoom = 0.8 
 [node name="PowerUps" type="Node2D" parent="." index="6"]
 
-[node name="Checkpoints" parent="." index="8"]
+[node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 18 )]
+position = Vector2( 814.537, 398.321 )
+powerup = ExtResource( 19 )
+
+[node name="Powerup2" parent="PowerUps" index="1" instance=ExtResource( 18 )]
+position = Vector2( 1015.54, 398.321 )
+powerup = ExtResource( 20 )
+
+[node name="FinishLine" parent="." index="7" instance=ExtResource( 21 )]
 editor/display_folded = true
+position = Vector2( 330, 1100 )
+total_checkpoint_number = 3
+
+[node name="PullableObjectBot" parent="FinishLine" index="1"]
+position = Vector2( 566.27, -294.165 )
 
 [node name="Checkpoint1" parent="Checkpoints" index="0" instance=ExtResource( 17 )]
 position = Vector2( 1175, 290 )
@@ -171,6 +182,5 @@ total_checkpoint_number = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 566.27, -294.165 )
-
 
 [editable path="FinishLine"]
