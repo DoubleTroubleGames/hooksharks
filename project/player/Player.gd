@@ -289,25 +289,20 @@ func create_trail(pos):
 
 
 func die():
+	var scream = 1 + randi() % 6
 	var EP = EXPLOSION_PARTICLE.instance()
+	
 	EP.position = self.position
-	EP.z_index = 2
+	get_parent().add_child(EP)
 	sprite_animation.stop(false)
-	if respawn:
-		sprite.set_modulate(Color(1, 1, 1, 0.2))
-	else:
-		sprite.hide()
 	dive_meter.hide()
 	$SFX/ExplosionSFX.play()
-	for particle in EP.get_children():
-		particle.emitting = true
-	get_parent().add_child(EP)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
-	randomize()
-	var scream = 1 + randi() % 6
 	get_node(str('SFX/ScreamSFX', scream)).play()
 	disable()
+	
 	if respawn:
+		sprite.set_modulate(Color(1, 1, 1, 0.2))
 		if hook:
 			hook.retract()
 		emit_signal("respawned", self)
@@ -315,7 +310,7 @@ func die():
 		if hook != null:
 			hook.free_hook()
 		emit_signal("died", self)
-
+		sprite.hide()
 
 
 func hook_collision(from_hook):
