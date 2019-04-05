@@ -26,10 +26,10 @@ stage_begin = Vector2( -1600, -1100 )
 stage_end = Vector2( 5500, 2000 )
 
 [node name="Water" parent="." index="0"]
-margin_left = -1600.0
-margin_top = -1100.0
-margin_right = 5500.0
-margin_bottom = 2000.0
+margin_left = -1907.49
+margin_top = -1207.16
+margin_right = 5192.51
+margin_bottom = 1892.84
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 300, 370 )
@@ -154,7 +154,7 @@ rotation = 0.890257
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Box4" parent="Obstacles" index="27" instance=ExtResource( 16 )]
-position = Vector2( 2581.61, 691.704 )
+position = Vector2( 2628.2, 677.727 )
 rotation = 1.87467
 scale = Vector2( 0.5, 0.5 )
 
@@ -164,13 +164,33 @@ rotation = -2.5332e-05
 scale = Vector2( 0.6, 0.6 )
 
 [node name="PowerUps" type="Node2D" parent="." index="5"]
-editor/display_folded = true
 
 [node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 17 )]
-position = Vector2( 1830.98, 595.07 )
+position = Vector2( 1052.92, 236.326 )
 
 [node name="Powerup2" parent="PowerUps" index="1" instance=ExtResource( 17 )]
-position = Vector2( 2319.09, 849.598 )
+position = Vector2( 1043.61, 404.05 )
+
+[node name="Powerup3" parent="PowerUps" index="2" instance=ExtResource( 17 )]
+position = Vector2( 1052.93, 543.821 )
+
+[node name="Powerup4" parent="PowerUps" index="3" instance=ExtResource( 17 )]
+position = Vector2( 1052.93, 688.25 )
+
+[node name="Powerup5" parent="PowerUps" index="4" instance=ExtResource( 17 )]
+position = Vector2( 1719.16, 702.227 )
+
+[node name="Powerup6" parent="PowerUps" index="5" instance=ExtResource( 17 )]
+position = Vector2( 2049.95, 418.027 )
+
+[node name="Powerup7" parent="PowerUps" index="6" instance=ExtResource( 17 )]
+position = Vector2( 2669.6, 296.893 )
+
+[node name="Powerup8" parent="PowerUps" index="7" instance=ExtResource( 17 )]
+position = Vector2( 2660.29, 487.913 )
+
+[node name="Powerup9" parent="PowerUps" index="8" instance=ExtResource( 17 )]
+position = Vector2( 2557.79, 846.657 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 position = Vector2( 0, 500 )
