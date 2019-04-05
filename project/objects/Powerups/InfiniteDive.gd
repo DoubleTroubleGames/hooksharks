@@ -4,7 +4,7 @@ var player
 
 func init(_player):
 	self.player = _player
-	if not player.get_node("PowerUps").has_node("PowerTrail"):
+	if not player.get_node("PowerUps").has_node("InfiniteDive"):
 		activate()
 		return true
 	else:
@@ -13,10 +13,10 @@ func init(_player):
 		
 
 func activate():
-	player.create_trail = true
+	player.start_infinite_dive()
 	set_process(true)
 	yield($Timer, "timeout")
-	player.create_trail = false
+	player.infinite_dive = false
 	queue_free()
 
 

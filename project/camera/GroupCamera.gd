@@ -4,8 +4,8 @@ extends "res://camera/Camera.gd"
 # Needs a call of set_children() to work
 
 export (float)var max_zoom = 1.0
+export (int)var CAM_MARGIN = 800
 
-const CAM_MARGIN = 800
 const MARGIN_MULTIPLIER = 1.6
 
 var cam_margin = [Vector2(0, 0), Vector2(0, 0)] # top left and bottom right corners

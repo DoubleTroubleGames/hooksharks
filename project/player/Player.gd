@@ -34,6 +34,7 @@ const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
 const PULL_FORCE = 300
 const DISPLACEMENT_FACTOR = .7
+const WALL_PULL_FORCE_MUL = 2
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -52,6 +53,7 @@ var trail = TRAIL.instance()
 var diving = false
 var can_dive = true
 var dive_on_cooldown = false
+var infinite_dive = false
 var stunned = false
 var hook = null
 var pull_dir = null
@@ -152,9 +154,11 @@ func _physics_process(delta):
 		speed2 = speed2.clamped(MAX_SPEED)
 	
 	position += speed2 * delta
-	speed2 += applying_force * delta
+	speed2 += applying_force.normalized() * speed2.length() * WALL_PULL_FORCE_MUL * delta
 	
 	sprite.rotation = speed2.angle()
+	
+	water_particles.ripples.speed_scale = max(0.5, int(speed2.length() / 200))
 	
 	if self.create_trail and not diving and\
 			self.position.distance_to(last_trail_pos) >\
@@ -218,9 +222,15 @@ func display_label(label):
 	label.connect("display_ended", self, "_on_label_display_ended")
 	label_position.add_child(label)
 
+func start_infinite_dive():
+	infinite_dive = true
+	dive_on_cooldown = false
+	dive_meter.value = 100
 
 func update_dive_meter(delta):
-	if dive_on_cooldown:
+	if infinite_dive:
+		return
+	elif dive_on_cooldown:
 		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
 		if dive_meter.value >= 100:
 			dive_meter.value = 100
@@ -285,25 +295,20 @@ func create_trail(pos):
 
 
 func die():
+	var scream = 1 + randi() % 6
 	var EP = EXPLOSION_PARTICLE.instance()
+	
 	EP.position = self.position
-	EP.z_index = 2
+	get_parent().add_child(EP)
 	sprite_animation.stop(false)
-	if respawn:
-		sprite.set_modulate(Color(1, 1, 1, 0.2))
-	else:
-		sprite.hide()
 	dive_meter.hide()
 	$SFX/ExplosionSFX.play()
-	for particle in EP.get_children():
-		particle.emitting = true
-	get_parent().add_child(EP)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
-	randomize()
-	var scream = 1 + randi() % 6
 	get_node(str('SFX/ScreamSFX', scream)).play()
 	disable()
+	
 	if respawn:
+		sprite.set_modulate(Color(1, 1, 1, 0.2))
 		if hook:
 			hook.retract()
 		emit_signal("respawned", self)
@@ -311,7 +316,7 @@ func die():
 		if hook != null:
 			hook.free_hook()
 		emit_signal("died", self)
-
+		sprite.hide()
 
 
 func hook_collision(from_hook):
