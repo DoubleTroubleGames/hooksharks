@@ -7,7 +7,7 @@ signal tried_to_start
 enum States {CLOSED, OPEN, READY}
 
 const CHARACTERS = ["Red", "Green", "Purple", "Yellow"]
-const DEADZONE = .5
+const DEADZONE = .55
 
 var available_chars = CHARACTERS.duplicate()
 var char_index
@@ -15,7 +15,6 @@ var device_name = ""
 var state = States.CLOSED
 var _moved_left = false
 var _moved_right = false
-var _moved_device = null
 
 
 func _ready():
@@ -27,24 +26,27 @@ func _ready():
 	$SharkSprite.hide()
 
 func _process(delta):
-	if (_moved_left or _moved_right) and abs(Input.get_joy_axis(_moved_device,0)) < DEADZONE:
-		_moved_left = false
-		_moved_right = false
-		_moved_device = null
+	if device_name.left(8) == "gamepad_":
+		var device_n = int(device_name.right(8))
+		var axis_value = Input.get_joy_axis(device_n, 0)
+		print(axis_value)
+		if axis_value >= DEADZONE and not _moved_right:
+			print("right")
+			_moved_right = true
+			toggle_left()
+		elif  axis_value <= -DEADZONE and not _moved_left:
+			print("left")
+			_moved_left = true
+			toggle_right()
+		if abs(axis_value) < DEADZONE:
+			print("reset")
+			_moved_right = false
+			_moved_left = false
+
 
 func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
-	
-	if event is InputEventJoypadMotion and event.axis == 0:
-		if event.axis_value > DEADZONE and not _moved_left:
-			_moved_left = true
-			_moved_device = event.device
-			toggle_left()
-		if  event.axis_value < -DEADZONE and not _moved_right:
-			_moved_right = true
-			_moved_device = event.device
-			toggle_right()
 	
 	if event.is_action_pressed("ui_start"):
 		if state == States.OPEN:
