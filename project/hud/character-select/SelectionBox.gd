@@ -29,7 +29,6 @@ func _process(delta):
 	if device_name.left(8) == "gamepad_":
 		var device_n = int(device_name.right(8))
 		var axis_value = Input.get_joy_axis(device_n, 0)
-		print(axis_value)
 		if axis_value >= DEADZONE and not _moved_right:
 			_moved_right = true
 			toggle_left()
