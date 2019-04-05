@@ -21,6 +21,13 @@
 [ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 
 [node name="Stage1" instance=ExtResource( 1 )]
+stage_end = Vector2( 4000, 2700 )
+
+[node name="Water" parent="." index="0"]
+margin_left = -1500.0
+margin_top = -900.0
+margin_right = 4000.0
+margin_bottom = 2700.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 350, 670 )
@@ -140,6 +147,7 @@ limit_top = -100000
 limit_right = 100000
 limit_bottom = 100000
 script = ExtResource( 17 )
+max_zoom = 0.8
 
 [node name="PowerUps" type="Node2D" parent="." index="6"]
 

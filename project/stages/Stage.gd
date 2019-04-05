@@ -1,7 +1,9 @@
+tool
+
 extends Node2D
 
-export (Vector2)var stage_begin = Vector2(-1500, -900)
-export (Vector2)var stage_end = Vector2(2200, 1400)
+export (Vector2)var stage_begin = Vector2(-1500, -900) setget set_stage_begin
+export (Vector2)var stage_end = Vector2(2200, 1400) setget set_stage_end
 
 const PLAYER = preload("res://player/Player.tscn")
 
@@ -10,6 +12,10 @@ var player_laps = [0, 0, 0, 0]
 
 
 func _ready():
+	resize_water()
+
+
+func resize_water():
 	$Water.rect_position.x = stage_begin.x
 	$Water.rect_position.y = stage_begin.y
 	$Water.rect_size = stage_end - stage_begin
@@ -33,6 +39,17 @@ func setup_players():
 		add_child(player)
 	
 	return players
+
+
+func set_stage_begin(pos):
+	stage_begin = pos
+	resize_water()
+
+
+func set_stage_end(pos):
+	stage_end = pos
+	resize_water()
+
 
 func get_start_position(i):
 	return get_node(str("PlayerStartingPosition/StartingPosition", i))

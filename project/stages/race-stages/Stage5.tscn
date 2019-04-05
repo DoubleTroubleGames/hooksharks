@@ -20,6 +20,14 @@
 [ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=18]
 
 [node name="Stage" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -2300, -2000 )
+stage_end = Vector2( 4400, 2000 )
+
+[node name="Water" parent="." index="0"]
+margin_left = -2300.0
+margin_top = -2000.0
+margin_right = 4400.0
+margin_bottom = 2000.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 290, 240 )

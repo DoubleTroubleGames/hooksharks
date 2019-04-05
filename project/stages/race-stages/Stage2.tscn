@@ -21,6 +21,14 @@
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=19]
 
 [node name="Stage2" instance=ExtResource( 1 )]
+stage_begin = Vector2( -1600, -1100 )
+stage_end = Vector2( 5500, 2000 )
+
+[node name="Water" parent="." index="0"]
+margin_left = -1600.0
+margin_top = -1100.0
+margin_right = 5500.0
+margin_bottom = 2000.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 300, 370 )
