@@ -2,7 +2,8 @@ extends Node2D
 
 onready var initial_position = position
 
-const POWERS = [preload("res://objects/Powerups/MegaHook.tscn"),
+const POWERS = [preload("res://objects/Powerups/InfiniteDive.tscn"),
+				preload("res://objects/Powerups/MegaHook.tscn"),
                 preload("res://objects/Powerups/TrailPower.tscn")]
 
 export(PackedScene) var powerup

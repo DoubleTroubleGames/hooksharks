@@ -52,6 +52,7 @@ var trail = TRAIL.instance()
 var diving = false
 var can_dive = true
 var dive_on_cooldown = false
+var infinite_dive = false
 var stunned = false
 var hook = null
 var pull_dir = null
@@ -215,9 +216,15 @@ func display_label(label):
 	label.connect("display_ended", self, "_on_label_display_ended")
 	label_position.add_child(label)
 
+func start_infinite_dive():
+	infinite_dive = true
+	dive_on_cooldown = false
+	dive_meter.value = 100
 
 func update_dive_meter(delta):
-	if dive_on_cooldown:
+	if infinite_dive:
+		return
+	elif dive_on_cooldown:
 		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
 		if dive_meter.value >= 100:
 			dive_meter.value = 100
