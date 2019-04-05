@@ -308,23 +308,42 @@ script = ExtResource( 16 )
 max_zoom = 1.5
 
 [node name="Powerups" type="Node2D" parent="." index="7"]
-editor/display_folded = true
 
 [node name="Powerup" parent="Powerups" index="0" instance=ExtResource( 17 )]
-position = Vector2( 1040, 332 )
+position = Vector2( 1040, 256.294 )
 
 [node name="Powerup3" parent="Powerups" index="1" instance=ExtResource( 17 )]
 position = Vector2( 3400, 500 )
 rotation = 0.523598
 
 [node name="Powerup2" parent="Powerups" index="2" instance=ExtResource( 17 )]
-position = Vector2( 1040, 590 )
+position = Vector2( 1032.79, 640.47 )
 
-[node name="Powerup4" parent="Powerups" index="3" instance=ExtResource( 17 )]
-position = Vector2( 2270, -940 )
-rotation = -0.139626
+[node name="Powerup6" parent="Powerups" index="3" instance=ExtResource( 17 )]
+position = Vector2( 2142.47, 594.71 )
 
-[node name="Powerup5" parent="Powerups" index="4" instance=ExtResource( 17 )]
+[node name="Powerup7" parent="Powerups" index="4" instance=ExtResource( 17 )]
+position = Vector2( 2102.43, 743.431 )
+
+[node name="Powerup8" parent="Powerups" index="5" instance=ExtResource( 17 )]
+position = Vector2( 2005.19, 886.431 )
+
+[node name="Powerup9" parent="Powerups" index="6" instance=ExtResource( 17 )]
+position = Vector2( 1890.79, 1012.27 )
+
+[node name="Powerup10" parent="Powerups" index="7" instance=ExtResource( 17 )]
+position = Vector2( 2965.04, -789.676 )
+
+[node name="Powerup11" parent="Powerups" index="8" instance=ExtResource( 17 )]
+position = Vector2( 2753.39, -376.691 )
+
+[node name="Powerup12" parent="Powerups" index="9" instance=ExtResource( 17 )]
+position = Vector2( -669.229, -433.476 )
+
+[node name="Powerup13" parent="Powerups" index="10" instance=ExtResource( 17 )]
+position = Vector2( -436.925, -376.691 )
+
+[node name="Powerup5" parent="Powerups" index="11" instance=ExtResource( 17 )]
 position = Vector2( 900, -770 )
 rotation = -0.20944
 
