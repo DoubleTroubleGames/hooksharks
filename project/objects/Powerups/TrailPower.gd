@@ -21,4 +21,5 @@ func activate():
 
 
 func _process(delta):
+	self.position = player.position
 	$Label.set_text("%.1f" % $Timer.time_left)
