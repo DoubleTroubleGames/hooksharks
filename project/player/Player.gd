@@ -34,6 +34,7 @@ const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
 const PULL_FORCE = 300
 const DISPLACEMENT_FACTOR = .7
+const WALL_PULL_FORCE_MUL = 2
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -153,7 +154,7 @@ func _physics_process(delta):
 		speed2 = speed2.clamped(MAX_SPEED)
 	
 	position += speed2 * delta
-	speed2 += applying_force * delta
+	speed2 += applying_force.normalized() * speed2.length() * WALL_PULL_FORCE_MUL * delta
 	
 	sprite.rotation = speed2.angle()
 	
