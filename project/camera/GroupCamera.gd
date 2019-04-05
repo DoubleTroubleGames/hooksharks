@@ -13,7 +13,7 @@ var children
 
 
 func _ready():
-	set_physics_process(true)
+	set_physics_process(false)
 
 
 func _physics_process(delta):
@@ -40,7 +40,7 @@ func adjust_zoom():
 	elif max_margin[1] == "y":
 		new_zoom = max_margin[0]/OS.get_window_size().y
 	new_zoom = max(new_zoom, max_zoom)
-	new_zoom = lerp(get_zoom().x, new_zoom, 0.01)
+	new_zoom = lerp(get_zoom().x, new_zoom, 0.05)
 	set_zoom(Vector2(new_zoom, new_zoom))
 
 
@@ -66,23 +66,6 @@ func get_average_position():
 	avrg /= children.size()
 	
 	return avrg
-
-
-func get_max_distance():
-	var max_dist = Vector2(0, 0)
-	
-	for i in range(children.size() - 1):
-		for j in range(i + 1, children.size()):
-			var pos1 = children[i].get_position()
-			var pos2 = children[j].get_position()
-			var dist = Vector2(abs(pos1.x - pos2.x), abs(pos1.y - pos2.y))
-			
-			if dist.x > max_dist.x:
-				max_dist.x = dist.x
-			if dist.y > max_dist.y:
-				max_dist.y = dist.y
-	
-	return max_dist
 
 
 func set_children(children):

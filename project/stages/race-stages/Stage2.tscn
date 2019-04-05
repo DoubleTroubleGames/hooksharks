@@ -173,9 +173,9 @@ position = Vector2( 3478.28, 417.077 )
 [node name="Camera2D" type="Camera2D" parent="." index="7"]
 position = Vector2( 0, 500 )
 current = true
-limit_left = -10000
-limit_top = -10000
-limit_right = 10000
-limit_bottom = 10000
+limit_left = -100000
+limit_top = -100000
+limit_right = 100000
+limit_bottom = 100000
 script = ExtResource( 19 )
 

@@ -135,10 +135,10 @@ rotation = -2.88745
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 current = true
-limit_left = 0
-limit_top = 0
-limit_right = 2300
-limit_bottom = 1500
+limit_left = -100000
+limit_top = -100000
+limit_right = 100000
+limit_bottom = 100000
 script = ExtResource( 17 )
 
 [node name="PowerUps" type="Node2D" parent="." index="6"]
