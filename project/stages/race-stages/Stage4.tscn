@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=2]
@@ -13,9 +13,10 @@
 [ext_resource path="res://objects/obstacles/Float.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/obstacles/Metal2.tscn" type="PackedScene" id=13]
-[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=14]
-[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=15]
+[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=15]
 [ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=17]
 
 [node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -2400, -4000 )
@@ -38,9 +39,6 @@ position = Vector2( 240, 580 )
 
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 position = Vector2( 240, 730 )
-
-[node name="Obstacles" parent="." index="2"]
-editor/display_folded = true
 
 [node name="Box7" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1640, 0 )
@@ -278,14 +276,14 @@ position = Vector2( 7330, -340 )
 position = Vector2( 5290, 690 )
 
 [node name="Metal2" parent="Obstacles" index="61" instance=ExtResource( 13 )]
-position = Vector2( 5800, 370 )
-rotation = -0.261799
+position = Vector2( 6011.93, 342.83 )
+rotation = -0.222709
 
 [node name="Float9" parent="Obstacles" index="62" instance=ExtResource( 7 )]
 position = Vector2( 5290, 210 )
 
 [node name="Box22" parent="Obstacles" index="63" instance=ExtResource( 3 )]
-position = Vector2( 6200, 810 )
+position = Vector2( 6026.11, 782.83 )
 
 [node name="Float11" parent="Obstacles" index="64" instance=ExtResource( 7 )]
 position = Vector2( 6660, 130 )
@@ -302,43 +300,84 @@ position = Vector2( 7250, 1070 )
 [node name="Float15" parent="Obstacles" index="68" instance=ExtResource( 7 )]
 position = Vector2( 7240, 600 )
 
-[node name="BoxClosed" parent="." index="6" instance=ExtResource( 5 )]
+[node name="BoxClosed4" parent="Obstacles" index="69" instance=ExtResource( 5 )]
 position = Vector2( 7840, 1400 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="7"]
-current = true
-limit_left = -2400
-limit_top = -100000
-limit_right = 100000
-limit_bottom = 100000
-script = ExtResource( 14 )
-CAM_MARGIN = 1000
+[node name="Checkpoints" parent="." index="6"]
+editor/display_folded = true
 
-[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 15 )]
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 14 )]
 position = Vector2( 1346.45, 540.445 )
 scale = Vector2( 1, 2 )
 
-[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 15 )]
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 14 )]
 position = Vector2( 2483.25, 540.445 )
 scale = Vector2( 1, 2.12 )
 number = 2
 
-[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 15 )]
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 14 )]
 position = Vector2( 3247.33, 507.832 )
 scale = Vector2( 1, 2.12 )
 number = 3
 
-[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource( 15 )]
+[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource( 14 )]
 position = Vector2( 4850.03, 507.832 )
 scale = Vector2( 1, 2.2 )
 number = 4
 
-[node name="Checkpoint5" parent="Checkpoints" index="4" instance=ExtResource( 15 )]
+[node name="Checkpoint5" parent="Checkpoints" index="4" instance=ExtResource( 14 )]
 position = Vector2( 6886.01, 507.832 )
 scale = Vector2( 1, 3.84 )
 number = 5
 
-[node name="FinishLine" parent="." index="9" instance=ExtResource( 16 )]
+[node name="PowerUps" type="Node2D" parent="." index="7"]
+
+[node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 15 )]
+position = Vector2( 722.727, 195.191 )
+
+[node name="Powerup2" parent="PowerUps" index="1" instance=ExtResource( 15 )]
+position = Vector2( 722.727, 374.515 )
+
+[node name="Powerup3" parent="PowerUps" index="2" instance=ExtResource( 15 )]
+position = Vector2( 722.727, 602.744 )
+
+[node name="Powerup4" parent="PowerUps" index="3" instance=ExtResource( 15 )]
+position = Vector2( 711.859, 765.765 )
+
+[node name="Powerup5" parent="PowerUps" index="4" instance=ExtResource( 15 )]
+position = Vector2( 1804.1, 260.4 )
+
+[node name="Powerup6" parent="PowerUps" index="5" instance=ExtResource( 15 )]
+position = Vector2( 2287.73, 417.987 )
+
+[node name="Powerup7" parent="PowerUps" index="6" instance=ExtResource( 15 )]
+position = Vector2( 2293.16, 602.744 )
+
+[node name="Powerup8" parent="PowerUps" index="7" instance=ExtResource( 15 )]
+position = Vector2( 1809.54, 782.068 )
+
+[node name="Powerup9" parent="PowerUps" index="8" instance=ExtResource( 15 )]
+position = Vector2( 3667.98, 836.408 )
+
+[node name="Powerup10" parent="PowerUps" index="9" instance=ExtResource( 15 )]
+position = Vector2( 3673.41, 635.349 )
+
+[node name="Powerup11" parent="PowerUps" index="10" instance=ExtResource( 15 )]
+position = Vector2( 4417.87, 195.192 )
+
+[node name="Powerup13" parent="PowerUps" index="11" instance=ExtResource( 15 )]
+position = Vector2( 6249.14, 320.174 )
+
+[node name="Powerup14" parent="PowerUps" index="12" instance=ExtResource( 15 )]
+position = Vector2( 6651.26, 559.272 )
+
+[node name="Powerup15" parent="PowerUps" index="13" instance=ExtResource( 15 )]
+position = Vector2( 5678.57, 798.37 )
+
+[node name="Powerup12" parent="PowerUps" index="14" instance=ExtResource( 15 )]
+position = Vector2( 4423.31, 401.685 )
+
+[node name="FinishLine" parent="." index="8" instance=ExtResource( 16 )]
 editor/display_folded = true
 position = Vector2( 8130, 124.5 )
 rotation = 1.57079
@@ -346,6 +385,15 @@ total_checkpoint_number = 5
 
 [node name="PullableObjectTop" parent="FinishLine" index="2"]
 position = Vector2( 1045.5, 290.002 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="9"]
+current = true
+limit_left = -2400
+limit_top = -100000
+limit_right = 100000
+limit_bottom = 100000
+script = ExtResource( 17 )
+CAM_MARGIN = 1000
 
 
 [editable path="FinishLine"]
