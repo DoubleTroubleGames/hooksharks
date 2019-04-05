@@ -38,13 +38,17 @@ visible = false
 position = Vector2( 30, 0 )
 rotation = 1.5708
 
-[node name="DiveMeter" type="TextureProgress" parent="."]
-visible = false
-margin_left = -13.0
-margin_top = -70.0
-margin_right = 499.0
-margin_bottom = 442.0
-rect_scale = Vector2( 0.05, 0.05 )
+[node name="DiveMeter" type="Node2D" parent="."]
+position = Vector2( 0, -70 )
+scale = Vector2( 0.07, 0.07 )
+z_index = 7
+
+[node name="Bar" type="TextureProgress" parent="DiveMeter"]
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+rect_pivot_offset = Vector2( 256, 256 )
 mouse_filter = 2
 value = 100.0
 texture_under = ExtResource( 4 )
@@ -53,6 +57,7 @@ fill_mode = 4
 
 [node name="LabelPosition" type="Node2D" parent="."]
 position = Vector2( 0, -70 )
+z_index = 7
 
 [node name="SFX" type="Node2D" parent="."]
 editor/display_folded = true
