@@ -52,7 +52,7 @@ func activate_players():
 
 func create_rope(player, hook):
 	var rope = ROPE.instance()
-	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	var rider_pos = player.position + player.rider_offset * angle
 	rope.add_point(rider_pos)
 	rope.add_point(rider_pos)
@@ -143,7 +143,7 @@ func _on_player_hook_shot(player, direction):
 func _on_player_megahook_shot(player, direction):
 	var explosion = load("res://fx/explosion/Explosion.tscn").instance()
 	var new_megahook = MEGAHOOK.instance()
-	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	
 	explosion.position = player.position + player.rider_offset * angle
 	new_megahook.activate(player, direction.normalized())

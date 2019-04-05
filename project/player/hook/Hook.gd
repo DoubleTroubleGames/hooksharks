@@ -22,7 +22,7 @@ var stop_at = null
 
 
 func init(player, direction):
-	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	self.player = player
 	self.direction = direction
 	self.position = player.position

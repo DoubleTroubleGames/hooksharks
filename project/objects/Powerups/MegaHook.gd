@@ -14,7 +14,7 @@ func init(_player):
 
 
 func activate(player, direction):
-	var angle = Vector2(cos(player.rotation), sin(player.rotation))
+	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	self.player = player
 	self.direction = direction
 	self.position = player.position + player.rider_offset * angle
