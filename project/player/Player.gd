@@ -158,6 +158,8 @@ func _physics_process(delta):
 	
 	sprite.rotation = speed2.angle()
 	
+	water_particles.ripples.speed_scale = max(0.5, int(speed2.length() / 200))
+	
 	if self.create_trail and not diving and\
 			self.position.distance_to(last_trail_pos) >\
 			2 * trail.get_node('Area2D/CollisionShape2D').get_shape().radius:
@@ -198,8 +200,11 @@ func add_shark(shark_name):
 	old.queue_free()
 	new.set_name("Shark")
 	new.rotation = initial_dir.angle()
-	new.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered")
-	new.get_node("Area2D").connect("area_exited", self, "_on_Area2D_area_exited")
+	
+	area = new.get_node("Area2D")
+	area.connect("area_entered", self, "_on_Area2D_area_entered")
+	area.connect("area_exited", self, "_on_Area2D_area_exited")
+	
 	add_child(new)
 
 
@@ -417,25 +422,30 @@ func _on_label_display_ended():
 
 
 func _on_Area2D_area_exited(area):
-	var object = area.get_parent()
-	if object.is_in_group('trail'):
-		object.can_collide = true
+	if area.collision_layer == Collision.TRAIL:
+		var trail = area.get_parent()
+		trail.can_collide = true
 
 
 func _on_Area2D_area_entered(area):
-	var object = area.get_parent()
-	if object.is_in_group('trail') and object.can_collide and not diving:
-		die()
-	if object.is_in_group('wall'):
-		if diving and area.is_in_group('underpass'):
-			pass
-		else:
+	match area.collision_layer:
+		Collision.PLAYER_ABOVE:
+			var other_player = area.get_parent().get_parent()
+			if diving == other_player.diving:
+				die()
+		Collision.OBSTACLE:
 			die()
-	if object.is_in_group('player') and object != self:
-		if diving == object.get_parent().diving:
-			die()
-	if object.is_in_group('powerup') and not diving:
-		object.activate(self)
+		Collision.FLOATING_OBSTACLE:
+			if not diving:
+				die()
+		Collision.TRAIL:
+			var trail = area.get_parent()
+			if not diving and trail.can_collide:
+				die()
+		Collision.POWERUP:
+			if not diving:
+				var powerup = area.get_parent()
+				powerup.activate(self)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

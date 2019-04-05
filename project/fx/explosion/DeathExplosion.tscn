@@ -144,5 +144,6 @@ process_material = SubResource( 4 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "death"
 anims/death = SubResource( 5 )
 

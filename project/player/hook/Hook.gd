@@ -45,7 +45,7 @@ func _physics_process(delta):
 		direction = (player.position - self.position).normalized()
 		position += direction * (delta * speed * .3)
 		if position.distance_to(player.position) <= kill_distance:
-			pulling_object.removeHook()
+			pulling_object.remove_hook()
 			if pulling_object.is_in_group('powerup'):
 				pulling_object.activate(player)
 			free_hook()
@@ -68,7 +68,7 @@ func hit_hook(other_hook):
 func hit_object(object):
 	emit_signal("shook_screen", SCREEN_SHAKE_OBJECT_HIT)
 	has_collided = true
-	object.setHook(self)
+	object.set_hook(self)
 	pulling_object = object
 
 
@@ -87,7 +87,7 @@ func hit_wall():
 
 func retract():
 	if pulling_object:
-		pulling_object.removeHook()
+		pulling_object.remove_hook()
 		pulling_object = null
 	retracting = true
 
@@ -95,19 +95,28 @@ func retract():
 func free_hook():
 	rope.queue_free()
 	if pulling_object:
-		pulling_object.removeHook()
+		pulling_object.remove_hook()
 	player.hook_retracted()
 	pulling_object = null
 	self.queue_free()
 
 
 func _on_HookArea_area_entered(area):
-	var object = area.get_parent()
-	if object.is_in_group('object') and not retracting:
-		hit_object(object)
-	elif object.is_in_group('hook') and not retracting:
-		hit_hook(object)
-	elif object.is_in_group('wall') and not retracting:
-		hit_wall()
-	elif object.is_in_group('player') and object.get_parent() != player and not retracting:
-		hit_shark(object.get_parent())
+	if retracting:
+		return
+	
+	match area.collision_layer:
+		Collision.PLAYER_ABOVE:
+			var player = area.get_parent().get_parent()
+		Collision.OBSTACLE:
+			hit_wall()
+		Collision.FLOATING_OBSTACLE:
+			hit_wall()
+		Collision.POWERUP:
+			hit_object(area.get_parent())
+		Collision.HOOK:
+			hit_hook(area.get_parent())
+		Collision.MEGAHOOK:
+			hit_hook(area.get_parent())
+		Collision.PULLABLE_OBJECT:
+			hit_object(area.get_parent())

@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/dock.png" type="Texture" id=3]
 
 [node name="Dock" type="Area2D"]
-collision_layer = 2
-collision_mask = 11
+collision_layer = 4
+collision_mask = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 1 )

@@ -17,9 +17,7 @@
 [ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/old sounds/hook_hit_player.wav" type="AudioStream" id=16]
 
-[node name="Player" type="Node2D" groups=[
-"player",
-]]
+[node name="Player" type="Node2D"]
 z_index = 1
 script = ExtResource( 1 )
 __meta__ = {
