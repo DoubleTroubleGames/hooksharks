@@ -129,7 +129,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 4 )
-shader_param/rect_size = Vector2( 1920, 1080 )
+shader_param/rect_size = Vector2( 3700, 2300 )
 shader_param/noise_size = Vector2( 700, 700 )
 shader_param/noise_cutoff = 0.75
 shader_param/h_foam_distance = 0.0
