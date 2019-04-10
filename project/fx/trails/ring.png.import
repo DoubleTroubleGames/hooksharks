@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white_power.png-988a269c423bcc4a624908dbde643813.stex"
+path="res://.import/ring.png-da45e793048a067796d09b1fe62f8999.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fx/trails/white_power.png"
-dest_files=[ "res://.import/white_power.png-988a269c423bcc4a624908dbde643813.stex" ]
+source_file="res://fx/trails/ring.png"
+dest_files=[ "res://.import/ring.png-da45e793048a067796d09b1fe62f8999.stex" ]
 
 [params]
 
