@@ -73,7 +73,7 @@ func activate(player):
 func set_random_power():
 	var index = randi() % POWERS.size()
 	powerup = POWERS[index]
-	$Sprite.load(str("res://assets/", CRATES[index], ".png"))
-#	$Sprite2.load(str("res://assets/", CRATES[index], "_o.png"))
-
+	$Sprite.set_texture(load(str("res://assets/", CRATES[index], ".png")))
+	$Sprite2.set_texture(load(str("res://assets/", CRATES[index], "_o.png")))
+	
 
