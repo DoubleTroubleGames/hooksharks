@@ -20,7 +20,7 @@ var _moved_right = false
 func _ready():
 	set_process(true)
 	randomize()
-	var anim_player = $Sprite/AnimationPlayer
+	var anim_player = $AnimationPlayer
 	var anim_length = anim_player.current_animation_length
 	anim_player.advance(rand_range(0, anim_length))
 	$SharkSprite.hide()
@@ -53,7 +53,7 @@ func _input(event):
 				$Sprite/AnimationPlayer.play("shake")
 				$Sounds/CancelSFX.play()
 		elif state == States.READY:
-			$Sprite/AnimationPlayer.play("shake")
+			$AnimationPlayer.play("shake")
 			$Sounds/CancelSFX.play()
 			emit_signal("tried_to_start")
 
@@ -63,6 +63,7 @@ func _input(event):
 			change_state(States.CLOSED)
 			$Sounds/CancelSFX.play()
 		elif state == States.READY:
+			$Boarder/AnimationPlayer.play("unready")
 			change_state(States.OPEN)
 			$Sounds/CancelSFX.play()
 
@@ -74,32 +75,32 @@ func _input(event):
 
 	get_tree().set_input_as_handled()
 
+
 func toggle_left():
 	set_character(char_index - 1)
-	$Sprite/State.set_text(CHARACTERS[char_index]) # Can't be in set_charater() or will overwrite initial state
 	$Sounds/SelectSFX.play()
+
 
 func toggle_right():
 	set_character(char_index + 1)
-	$Sprite/State.set_text(CHARACTERS[char_index]) # Can't be in set_charater() or will overwrite initial state
 	$Sounds/SelectSFX.play()
+
 
 func change_state(new_state):
 	match new_state:
 		States.CLOSED:
 			device_name = ""
-			$Sprite/DeviceSprite.set_texture(null)
-			$Sprite/DeviceNumber.set_text("")
-			$Sprite/State.set_text("PRESS START")
+			$Boarder/DeviceSprite.set_texture(null)
+			$Boarder/DeviceNumber.set_text("")
 			$SharkSprite.hide()
+			$Boarder/AnimationPlayer.play("close")
 		States.OPEN:
-			$Sprite/State.set_text(CHARACTERS[char_index])
 			$SharkSprite.show()
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
 		States.READY:
-			$Sprite/State.set_text("READY")
 			emit_signal("selected", CHARACTERS[char_index])
+			$Boarder/AnimationPlayer.play("ready")
 
 	state = new_state
 
@@ -119,12 +120,13 @@ func is_ready():
 func open_with(event):
 	device_name = RoundManager.get_device_name_from(event)
 	if device_name == "keyboard" or (OS.is_debug_build() and device_name == "test_keyboard"):
-		$Sprite/DeviceSprite.set_texture(load("res://hud/character-select/keyboard.png"))
+		$Boarder/DeviceSprite.set_texture(load("res://hud/character-select/keyboard.png"))
 	else:
-		$Sprite/DeviceSprite.set_texture(load("res://hud/character-select/gamepad.png"))
 		var num = int(device_name.split("_")[1]) + 1
-		$Sprite/DeviceNumber.set_text(str(num))
+		$Boarder/DeviceSprite.set_texture(load("res://hud/character-select/gamepad.png"))
+		$Boarder/DeviceNumber.set_text(str(num))
 
+	$Boarder/AnimationPlayer.play("open")
 	$Sounds/ConfirmSFX.play()
 	change_state(States.OPEN)
 
@@ -154,5 +156,9 @@ func add_shark(shark_name):
 	$SharkSprite.add_child(new)
 
 
+func shake():
+	$AnimationPlayer.play("shake")
+
+
 func _on_AnimationPlayer_animation_finished(anim_name):
-	$Sprite/AnimationPlayer.play("idle")
+	$AnimationPlayer.play("idle")

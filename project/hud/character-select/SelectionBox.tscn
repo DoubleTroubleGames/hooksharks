@@ -1,29 +1,404 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://hud/character-select/SelectionBox.gd" type="Script" id=1]
-[ext_resource path="res://assets/box.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://player/Shark.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=7]
+[ext_resource path="res://hud/character-select/boarder.png" type="Texture" id=2]
+[ext_resource path="res://hud/character-select/cover2.png" type="Texture" id=3]
+[ext_resource path="res://hud/character-select/cover.png" type="Texture" id=4]
+[ext_resource path="res://hud/character-select/char2.png" type="Texture" id=5]
+[ext_resource path="res://hud/character-select/grid.png" type="Texture" id=6]
+[ext_resource path="res://hud/character-select/gate.png" type="Texture" id=7]
+[ext_resource path="res://hud/character-select/ready.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://player/Shark.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=13]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
-font_data = ExtResource( 3 )
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 50
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 3 )
+[sub_resource type="Animation" id=10]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Portrait:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Gate:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -385 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Gate:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Portrait:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -223 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Portrait:region_rect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 446 ), Rect2( 0, 0, 301, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Ready:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DeviceSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DeviceNumber:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Portrait:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Gate:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -385 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Gate:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Portrait:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -223 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Portrait:region_rect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 0 ), Rect2( 0, 0, 301, 446 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Ready:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DeviceSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shake"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "ready"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gate:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -385 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grid:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -223 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Grid:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 0 ), Rect2( 0, 0, 301, 446 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Gate:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Ready:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Ready:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -15.0, 15.0, -8.0, 0.0 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shake"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "unready"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gate:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -385 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grid:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -223 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Grid:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 446 ), Rect2( 0, 0, 301, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Gate:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Ready:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Ready:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -15.0, 15.0, -8.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
 resource_name = "idle"
 length = 3.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/path = NodePath("Boarder:rotation_degrees")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -35,7 +410,7 @@ tracks/0/keys = {
 "values": [ -4.0, 6.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath("Boarder:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -47,11 +422,11 @@ tracks/1/keys = {
 "values": [ Vector2( 130, 130 ), Vector2( 130, 120 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 resource_name = "shake"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/path = NodePath("Boarder:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -69,65 +444,88 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 100, 100 )
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 130, 121.022 )
-rotation = 0.088566
+[node name="Boarder" type="Sprite" parent="."]
+position = Vector2( 130, 130 )
 texture = ExtResource( 2 )
 
-[node name="DeviceSprite" type="TextureRect" parent="Sprite"]
+[node name="Cover" type="AnimatedSprite" parent="Boarder"]
+show_behind_parent = true
+frames = SubResource( 4 )
+
+[node name="Portrait" type="Sprite" parent="Boarder"]
+visible = false
+show_behind_parent = true
+position = Vector2( 0, -223 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 301, 0 )
+
+[node name="Grid" type="Sprite" parent="Boarder"]
+position = Vector2( 0, -223 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 301, 0 )
+
+[node name="Gate" type="Sprite" parent="Boarder"]
+visible = false
+position = Vector2( 0, -385 )
+texture = ExtResource( 7 )
+
+[node name="Ready" type="Sprite" parent="Boarder"]
+visible = false
+texture = ExtResource( 8 )
+
+[node name="DeviceSprite" type="TextureRect" parent="Boarder"]
+visible = false
 margin_left = -55.0
-margin_top = 24.0
+margin_top = 150.0
 margin_right = 73.0
-margin_bottom = 152.0
+margin_bottom = 278.0
 rect_scale = Vector2( 0.8, 0.8 )
 
-[node name="DeviceNumber" type="Label" parent="Sprite"]
+[node name="DeviceNumber" type="Label" parent="Boarder"]
+visible = false
 margin_left = 30.0
-margin_top = 70.0
+margin_top = 150.0
 margin_right = 70.0
-margin_bottom = 117.0
+margin_bottom = 197.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 align = 1
 
-[node name="State" type="Label" parent="Sprite"]
-margin_left = -100.0
-margin_top = -84.0
-margin_right = 98.0
-margin_bottom = 63.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "PRESS START"
-align = 1
-autowrap = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-autoplay = "idle"
-anims/idle = SubResource( 3 )
-anims/shake = SubResource( 4 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder"]
+anims/close = SubResource( 10 )
+anims/open = SubResource( 7 )
+anims/ready = SubResource( 8 )
+anims/unready = SubResource( 9 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 100, 420 )
 scale = Vector2( -1, 1 )
 
-[node name="Shark" parent="SharkSprite" instance=ExtResource( 4 )]
+[node name="Shark" parent="SharkSprite" instance=ExtResource( 10 )]
 
 [node name="Sounds" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 5 )
+stream = ExtResource( 11 )
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 6 )
+stream = ExtResource( 12 )
 bus = "SFX"
 
 [node name="CancelSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 7 )
+stream = ExtResource( 13 )
 volume_db = -6.0
 bus = "SFX"
 
-[connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 5 )
+anims/shake = SubResource( 6 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
