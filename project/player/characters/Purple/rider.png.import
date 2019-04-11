@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/yellow.png-3ed5c2d5e13789e09ca6fe098fea849f.stex"
+path="res://.import/rider.png-bd46b0e38318d263787c2af24983a915.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/characters/yellow.png"
-dest_files=[ "res://.import/yellow.png-3ed5c2d5e13789e09ca6fe098fea849f.stex" ]
+source_file="res://player/characters/Purple/rider.png"
+dest_files=[ "res://.import/rider.png-bd46b0e38318d263787c2af24983a915.stex" ]
 
 [params]
 

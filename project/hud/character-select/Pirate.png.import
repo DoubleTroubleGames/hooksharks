@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/purple.png-55365067475c949c09f29042adf6c7e5.stex"
+path="res://.import/Pirate.png-8ba3d60e6d1b347257657719282b49b7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/characters/purple.png"
-dest_files=[ "res://.import/purple.png-55365067475c949c09f29042adf6c7e5.stex" ]
+source_file="res://hud/character-select/Pirate.png"
+dest_files=[ "res://.import/Pirate.png-8ba3d60e6d1b347257657719282b49b7.stex" ]
 
 [params]
 

@@ -6,7 +6,7 @@ signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
-const CHARACTERS = ["Red", "Green", "Purple", "Yellow"]
+const CHARACTERS = ["Pirate", "Green", "Purple", "Yellow"]
 const DEADZONE = .55
 
 var available_chars = CHARACTERS.duplicate()
@@ -139,6 +139,7 @@ func update_available_characters(characters):
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
 
+	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	add_shark(CHARACTERS[char_index])
 
 	if not CHARACTERS[char_index] in available_chars:
@@ -147,7 +148,7 @@ func set_character(index):
 
 func add_shark(shark_name):
 	var old = $SharkSprite/Shark
-	var new_path = str("res://player/characters/", shark_name, ".tscn")
+	var new_path = str("res://player/characters/", shark_name, "/Shark.tscn")
 	var new = load(new_path).instance()
 
 	old.set_name("old shark")

@@ -4,7 +4,7 @@
 [ext_resource path="res://hud/character-select/boarder.png" type="Texture" id=2]
 [ext_resource path="res://hud/character-select/cover2.png" type="Texture" id=3]
 [ext_resource path="res://hud/character-select/cover.png" type="Texture" id=4]
-[ext_resource path="res://hud/character-select/char2.png" type="Texture" id=5]
+[ext_resource path="res://hud/character-select/Pirate.png" type="Texture" id=5]
 [ext_resource path="res://hud/character-select/grid.png" type="Texture" id=6]
 [ext_resource path="res://hud/character-select/gate.png" type="Texture" id=7]
 [ext_resource path="res://hud/character-select/ready.png" type="Texture" id=8]
@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=13]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
@@ -22,11 +22,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 9 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=3]
 resource_name = "close"
 length = 0.3
 tracks/0/type = "value"
@@ -126,7 +126,7 @@ tracks/7/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "open"
 length = 0.3
 tracks/0/type = "value"
@@ -228,7 +228,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "ready"
 length = 0.6
 tracks/0/type = "value"
@@ -318,7 +318,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "unready"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Gate:position")
@@ -393,8 +393,7 @@ tracks/5/keys = {
 "values": [ -15.0, 15.0, -8.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "idle"
+[sub_resource type="Animation" id=7]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -422,8 +421,7 @@ tracks/1/keys = {
 "values": [ Vector2( 130, 130 ), Vector2( 130, 120 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "shake"
+[sub_resource type="Animation" id=8]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Boarder:rotation_degrees")
@@ -450,7 +448,7 @@ texture = ExtResource( 2 )
 
 [node name="Cover" type="AnimatedSprite" parent="Boarder"]
 show_behind_parent = true
-frames = SubResource( 4 )
+frames = SubResource( 1 )
 
 [node name="Portrait" type="Sprite" parent="Boarder"]
 visible = false
@@ -489,16 +487,16 @@ margin_left = 30.0
 margin_top = 150.0
 margin_right = 70.0
 margin_bottom = 197.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder"]
-anims/close = SubResource( 10 )
-anims/open = SubResource( 7 )
-anims/ready = SubResource( 8 )
-anims/unready = SubResource( 9 )
+anims/close = SubResource( 3 )
+anims/open = SubResource( 4 )
+anims/ready = SubResource( 5 )
+anims/unready = SubResource( 6 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
 editor/display_folded = true
@@ -525,7 +523,7 @@ bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/idle = SubResource( 5 )
-anims/shake = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/shake = SubResource( 8 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

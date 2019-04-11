@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/char1.png-5c31faef6811f8a0f0ee6a1b6a6b71a2.stex"
+path="res://.import/green.png-98b8c3e08fbd0f8eb38de27cda7fd682.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/character-select/char1.png"
-dest_files=[ "res://.import/char1.png-5c31faef6811f8a0f0ee6a1b6a6b71a2.stex" ]
+source_file="res://player/characters/Green/green.png"
+dest_files=[ "res://.import/green.png-98b8c3e08fbd0f8eb38de27cda7fd682.stex" ]
 
 [params]
 

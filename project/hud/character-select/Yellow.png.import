@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/char2.png-b700fe14a1e1bcf971508430d2deaa33.stex"
+path="res://.import/Yellow.png-4e6b6b8ae17f684edbeef480abd690b1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/character-select/char2.png"
-dest_files=[ "res://.import/char2.png-b700fe14a1e1bcf971508430d2deaa33.stex" ]
+source_file="res://hud/character-select/Yellow.png"
+dest_files=[ "res://.import/Yellow.png-4e6b6b8ae17f684edbeef480abd690b1.stex" ]
 
 [params]
 

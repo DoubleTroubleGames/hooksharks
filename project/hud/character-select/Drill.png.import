@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green.png-4781ec44f05bb602011825e6b34e93d8.stex"
+path="res://.import/Drill.png-5d02b52827537c7d01eb098785b6118f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/characters/green.png"
-dest_files=[ "res://.import/green.png-4781ec44f05bb602011825e6b34e93d8.stex" ]
+source_file="res://hud/character-select/Drill.png"
+dest_files=[ "res://.import/Drill.png-5d02b52827537c7d01eb098785b6118f.stex" ]
 
 [params]
 
