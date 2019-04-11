@@ -62,4 +62,5 @@ func respawn_player(player):
 	player.sprite_animation.play("idle")
 	player.sprite.set_modulate(Color(1, 1, 1, 1))
 	player.enable()
+	player.start_invincibility()
 	player.speed2 = Vector2(200 * cos(player.sprite.rotation), 200 *  sin(player.sprite.rotation))

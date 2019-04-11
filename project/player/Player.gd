@@ -54,6 +54,7 @@ var diving = false
 var can_dive = true
 var dive_on_cooldown = false
 var infinite_dive = false
+var invincible = false
 var stunned = false
 var hook = null
 var pull_dir = null
@@ -99,6 +100,10 @@ func _input(event):
 func _physics_process(delta):
 	# Update dive meter
 	update_dive_meter(delta)
+	
+	#Update "invincible animation"
+	if invincible:
+		$Shark.modulate.a = 0.5 if Engine.get_frames_drawn() % 16 <= 7 else 1.0
 	
 	speed2 += speed2.normalized() * ACC * delta
 	var applying_force = Vector2(0, 0)
@@ -426,6 +431,13 @@ func reset_input_map():
 		"up": false, "down": false, "pause": false}
 
 
+func start_invincibility():
+	invincible = true
+	$InvencibilityTimer.start()
+	yield($InvencibilityTimer, "timeout")
+	invincible = false
+	$Shark.modulate.a = 1.0
+
 func _on_label_display_ended():
 	label_stack.pop_front()
 	
@@ -443,7 +455,7 @@ func _on_Area2D_area_entered(area):
 	match area.collision_layer:
 		Collision.PLAYER_ABOVE:
 			var other_player = area.get_parent().get_parent()
-			if diving == other_player.diving:
+			if diving == other_player.diving and not invincible:
 				die()
 		Collision.OBSTACLE:
 			die()
@@ -452,7 +464,7 @@ func _on_Area2D_area_entered(area):
 				die()
 		Collision.TRAIL:
 			var trail = area.get_parent()
-			if not diving and trail.can_collide:
+			if not diving and trail.can_collide and not invincible:
 				die()
 		Collision.POWERUP:
 			if not diving:
