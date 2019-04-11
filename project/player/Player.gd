@@ -65,6 +65,8 @@ var label_stack = []
 func _ready():
 	if device_name.begins_with("gamepad"):
 		gamepad_id = device_name.split("_")[1].to_int()
+	else:
+		movement_type = MovementTypes.TANK
 	
 	randomize()
 	speed2 = speed2.rotated(initial_dir.angle())
