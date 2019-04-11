@@ -6,6 +6,7 @@ signal died(player, is_player_collision)
 signal hook_shot(player, direction)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
+signal paused(player)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
@@ -93,7 +94,9 @@ func _input(event):
 	elif event.is_action_pressed("shoot"):
 		shoot()
 	elif event.is_action_released("shoot"):
-		retract()		
+		retract()
+	elif event.is_action_pressed("pause"):
+		emit_signal("paused", self)
 
 
 func _physics_process(delta):

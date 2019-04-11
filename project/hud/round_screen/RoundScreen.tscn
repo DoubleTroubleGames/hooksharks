@@ -36,11 +36,11 @@ blend_mode = 2
 [sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 30
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=8]
 size = 40
 font_data = ExtResource( 9 )
 
@@ -190,7 +190,7 @@ margin_left = 200.0
 margin_top = -214.0
 margin_right = -200.0
 margin_bottom = -100.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 text = "fact of the day"
 align = 1
 valign = 1
@@ -204,7 +204,7 @@ margin_left = 200.0
 margin_top = -164.0
 margin_right = -200.0
 margin_bottom = -50.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Random Trivia"
 align = 1
 valign = 1
