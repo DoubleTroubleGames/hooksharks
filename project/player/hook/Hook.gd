@@ -8,8 +8,9 @@ const SCREEN_SHAKE_HOOK_HIT = .8
 const SCREEN_SHAKE_OBJECT_HIT = .1
 const SCREEN_SHAKE_SHARK_HIT = .7
 const SCREEN_SHAKE_WALL_HIT = .3
+const SPEED_MOD = .5
 
-var speed = 700
+var speed = 500
 var acc = 500
 var retracting = false
 var pulling_object = null
@@ -27,6 +28,7 @@ func init(player, direction):
 	self.direction = direction
 	self.position = player.position
 	self.position += player.rider_offset * angle
+	self.speed += self.player.speed2.length()*SPEED_MOD
 	$Sprite.rotation = direction.angle()
 
 
