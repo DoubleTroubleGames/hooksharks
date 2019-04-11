@@ -5,6 +5,10 @@ onready var initial_position = position
 const POWERS = [preload("res://objects/Powerups/InfiniteDive.tscn"),
 				preload("res://objects/Powerups/MegaHook.tscn"),
                 preload("res://objects/Powerups/TrailPower.tscn")]
+				
+const CRATES = ["barrel2",
+				"barrel2",
+                "Barrel3"]
 
 export(PackedScene) var powerup
 
@@ -70,5 +74,7 @@ func activate(player):
 func set_random_power():
 	var index = randi() % POWERS.size()
 	powerup = POWERS[index]
-
+	$Sprite.set_texture(load(str("res://assets/", CRATES[index], ".png")))
+	$Sprite2.set_texture(load(str("res://assets/", CRATES[index], "_o.png")))
+	
 
