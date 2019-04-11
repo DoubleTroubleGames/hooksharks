@@ -107,7 +107,9 @@ func _on_HookArea_area_entered(area):
 	
 	match area.collision_layer:
 		Collision.PLAYER_ABOVE:
-			var player = area.get_parent().get_parent()
+			var shark = area.get_parent().get_parent()
+			if shark != player:
+				hit_shark(shark)
 		Collision.OBSTACLE:
 			hit_wall()
 		Collision.FLOATING_OBSTACLE:
