@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var pause_screen = $PauseScreen
+
 const HOOK = preload("res://player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://player/hook/HookClink.tscn")
@@ -189,6 +191,10 @@ func _on_wall_hit(position, rotation):
 
 func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
+
+
+func _on_player_paused(player):
+	pause_screen.pause(player)
 
 
 func get_stage(stage_number):

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://arena-mode/Arena.gd" type="Script" id=1]
 [ext_resource path="res://fx/water/Water.tscn" type="PackedScene" id=2]
 [ext_resource path="res://hud/round_screen/RoundScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fx/ScreenBlink.tscn" type="PackedScene" id=4]
-[ext_resource path="res://camera/Camera.gd" type="Script" id=5]
+[ext_resource path="res://hud/pause_screen/PauseScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://camera/Camera.gd" type="Script" id=6]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,11 +17,13 @@ total_stages = 5
 
 [node name="ScreenBlink" parent="." instance=ExtResource( 4 )]
 
+[node name="PauseScreen" parent="." instance=ExtResource( 5 )]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
 rotating = true
 current = true
 limit_left = 0
 limit_top = 0
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
