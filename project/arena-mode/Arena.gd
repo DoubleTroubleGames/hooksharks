@@ -9,6 +9,7 @@ func connect_players():
 		player.connect("hook_shot", self, "_on_player_hook_shot")
 		player.connect("megahook_shot", self, "_on_player_megahook_shot")
 		player.connect("died", self, "remove_player")
+		player.connect("paused", self, "_on_player_paused")
 		for camera in Cameras:
 			player.connect("shook_screen", camera, "add_shake")
 
