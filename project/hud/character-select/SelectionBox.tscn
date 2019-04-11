@@ -317,6 +317,18 @@ tracks/6/keys = {
 "method": "shake"
 } ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Portrait:region_rect")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 446 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "unready"
