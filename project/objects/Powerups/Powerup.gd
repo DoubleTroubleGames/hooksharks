@@ -8,11 +8,14 @@ const POWERS = [preload("res://objects/Powerups/InfiniteDive.tscn"),
 
 export(PackedScene) var powerup
 
+var random = false
 var hook
 
 
 func _ready():
-	if (powerup == null):
+	randomize()
+	if not powerup:
+		random = true
 		set_random_power()
 
 
@@ -41,17 +44,13 @@ func despawn():
 
 
 func spawn():
-	set_random_power()
+	if random:
+		set_random_power()
 	position = initial_position
 	$Hitbox/CollisionShape2D.set_disabled(false)
 	$Sprite2/AnimationPlayer.play("spawn")
 	$Sprite/AnimationPlayer.play("spawn")
 	show()
-
-
-func set_random_power():
-	var index = randi() % POWERS.size()
-	powerup = POWERS[index]
 
 
 func activate(player):
@@ -65,3 +64,10 @@ func activate(player):
 	
 	despawn()
 	$RespawnTimer.start()
+
+
+func set_random_power():
+	var index = randi() % POWERS.size()
+	powerup = POWERS[index]
+
+
