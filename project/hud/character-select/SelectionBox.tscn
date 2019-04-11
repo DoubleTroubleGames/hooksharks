@@ -140,7 +140,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "open"
-length = 0.3
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Portrait:visible")
 tracks/0/interp = 1
@@ -160,7 +160,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -385 ), Vector2( 0, 0 ) ]
@@ -172,7 +172,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -184,7 +184,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -223 ), Vector2( 0, 0 ) ]
@@ -196,7 +196,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 301, 0 ), Rect2( 0, 0, 301, 446 ) ]
@@ -220,7 +220,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -232,7 +232,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -503,7 +503,6 @@ rect_min_size = Vector2( 100, 100 )
 script = ExtResource( 1 )
 
 [node name="Boarder" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 130, 130 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 2 )
@@ -561,7 +560,6 @@ anims/ready = SubResource( 5 )
 anims/unready = SubResource( 6 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 100, 460 )
 scale = Vector2( -1, 1 )
 

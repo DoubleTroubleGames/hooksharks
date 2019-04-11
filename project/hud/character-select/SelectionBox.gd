@@ -15,6 +15,7 @@ var device_name = ""
 var state = States.CLOSED
 var _moved_left = false
 var _moved_right = false
+var changing = false
 
 
 func _ready():
@@ -67,10 +68,10 @@ func _input(event):
 			change_state(States.OPEN)
 			$Sounds/CancelSFX.play()
 
-	elif event.is_action_pressed("ui_left") and state == States.OPEN:
+	elif event.is_action_pressed("ui_left") and state == States.OPEN and not changing:
 		toggle_left()
 
-	elif event.is_action_pressed("ui_right") and state == States.OPEN:
+	elif event.is_action_pressed("ui_right") and state == States.OPEN and not changing:
 		toggle_right()
 
 	get_tree().set_input_as_handled()
@@ -78,21 +79,37 @@ func _input(event):
 
 func toggle_left():
 	set_character(char_index - 1)
-#	$Boarder/AnimationPlayer.play("close")
-#	yield($Boarder/AnimationPlayer, "animation_finished")
+	#### Visuals for character changing ####
+	changing = true
+	$SharkSprite/Shark/AnimationPlayer.play("dive")
+	$Boarder/AnimationPlayer.play("close")
+	yield($Boarder/AnimationPlayer, "animation_finished")
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	add_shark(CHARACTERS[char_index])
-#	$Boarder/AnimationPlayer.play("open")
+	$SharkSprite/Shark/AnimationPlayer.play("emerge")
+	$Boarder/AnimationPlayer.play("open")
+	yield($Boarder/AnimationPlayer, "animation_finished")
+	$SharkSprite/Shark/AnimationPlayer.play("idle")
+	changing = false
+	########################################
 	$Sounds/SelectSFX.play()
 
 
 func toggle_right():
 	set_character(char_index + 1)
-#	$Boarder/AnimationPlayer.play("close")
-#	yield($Boarder/AnimationPlayer, "animation_finished")
+	#### Visuals for character changing ####
+	changing = true
+	$SharkSprite/Shark/AnimationPlayer.play("dive")
+	$Boarder/AnimationPlayer.play("close")
+	yield($Boarder/AnimationPlayer, "animation_finished")
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	add_shark(CHARACTERS[char_index])
-#	$Boarder/AnimationPlayer.play("open")
+	$SharkSprite/Shark/AnimationPlayer.play("emerge")
+	$Boarder/AnimationPlayer.play("open")
+	yield($Boarder/AnimationPlayer, "animation_finished")
+	$SharkSprite/Shark/AnimationPlayer.play("idle")
+	changing = false
+	########################################
 	$Sounds/SelectSFX.play()
 
 

@@ -105,7 +105,6 @@ rotation = 0.261799
 [node name="Box" parent="Objects" instance=ExtResource( 8 )]
 position = Vector2( 1988.31, 688.659 )
 rotation = -0.139626
-scale = Vector2( 1, 1 )
 
 [node name="Box2" parent="Objects" instance=ExtResource( 9 )]
 position = Vector2( -106.524, 1025.2 )
@@ -135,7 +134,6 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
