@@ -149,7 +149,7 @@ tracks/0/keys = {
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 35.0
 
-[node name="Powerup" index="0" instance=ExtResource( 1 )]
+[node name="Powerup" instance=ExtResource( 1 )]
 position = Vector2( 0, 5 )
 script = ExtResource( 2 )
 
@@ -178,6 +178,7 @@ anims/spawn = SubResource( 6 )
 
 [node name="Hitbox" parent="." index="2"]
 position = Vector2( 0, 2.67884 )
+collision_layer = 32
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 rotation = 1.5708
