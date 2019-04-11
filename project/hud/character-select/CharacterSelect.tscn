@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -6,19 +6,16 @@
 [ext_resource path="res://race-mode/Race.tscn" type="PackedScene" id=4]
 [ext_resource path="res://fx/water/Water.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/obstacles/Dock.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/roof2.png" type="Texture" id=10]
-[ext_resource path="res://assets/metal.png" type="Texture" id=11]
-[ext_resource path="res://assets/box2.png" type="Texture" id=12]
-[ext_resource path="res://assets/metal2.png" type="Texture" id=13]
-[ext_resource path="res://assets/roof.png" type="Texture" id=14]
-[ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=15]
-[ext_resource path="res://fx/circle.png" type="Texture" id=16]
-[ext_resource path="res://fx/bubble.png" type="Texture" id=17]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=18]
-[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Box.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/roof.png" type="Texture" id=11]
+[ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=12]
+[ext_resource path="res://fx/circle.png" type="Texture" id=13]
+[ext_resource path="res://fx/bubble.png" type="Texture" id=14]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -29,7 +26,7 @@ use_filter = true
 size = 45
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 18 )
+font_data = ExtResource( 15 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "hide"
@@ -94,84 +91,36 @@ RaceMode = ExtResource( 4 )
 editor/display_folded = true
 
 [node name="Floor" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 510, 50 )
-
-[node name="Floor2" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 795, 60 )
-
-[node name="Floor3" parent="Objects" instance=ExtResource( 7 )]
-position = Vector2( 1225.23, 65.2134 )
+position = Vector2( 22.5696, 58.809 )
+rotation = -1.0472
 
 [node name="Floor4" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 1750.9, 60 )
+position = Vector2( 1934.76, -76.9915 )
+rotation = 1.309
 
-[node name="Floor5" parent="Objects" instance=ExtResource( 7 )]
-position = Vector2( 240, 60 )
+[node name="Tire2" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( -9.40705, 470.893 )
+rotation = 0.261799
 
-[node name="Tire2" parent="Objects" instance=ExtResource( 8 )]
-position = Vector2( 1488.12, 36.3168 )
-scale = Vector2( 0.6, 0.6 )
+[node name="Box" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 1988.31, 688.659 )
+rotation = -0.139626
+scale = Vector2( 1, 1 )
 
-[node name="Dock" parent="Objects" instance=ExtResource( 9 )]
-position = Vector2( 24, 75 )
-rotation = 2.44346
+[node name="Box2" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( -106.524, 1025.2 )
+rotation = -1.79769
+scale = Vector2( 1.5, 1.5 )
 
-[node name="Floor6" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 211.811, 1032 )
-rotation = 3.14159
-
-[node name="Floor7" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 632.284, 1032 )
-rotation = 3.14159
-
-[node name="Floor8" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 1784.38, 1032 )
-rotation = 3.14159
-
-[node name="Floor9" parent="Objects" instance=ExtResource( 7 )]
-position = Vector2( 1426.55, 1023.2 )
-rotation = -3.14159
-
-[node name="Floor10" parent="Objects" instance=ExtResource( 6 )]
-position = Vector2( 1049.26, 1025.96 )
-rotation = 3.14159
-
-[node name="roof2" type="Sprite" parent="Objects"]
-position = Vector2( 586.399, 12.2129 )
-z_index = 1
-texture = ExtResource( 10 )
-
-[node name="metal" type="Sprite" parent="Objects"]
-position = Vector2( 1900.97, 2.63797 )
-rotation = 0.189877
-scale = Vector2( 0.7, 0.7 )
-z_index = 1
-texture = ExtResource( 11 )
-
-[node name="box2" type="Sprite" parent="Objects"]
-position = Vector2( 472.495, 1047.95 )
-rotation = -3.14159
-scale = Vector2( 0.7, 0.7 )
-z_index = 1
-texture = ExtResource( 12 )
-
-[node name="metal2" type="Sprite" parent="Objects"]
-position = Vector2( 1223.81, 1082.36 )
-rotation = -3.14159
-z_index = 1
-texture = ExtResource( 13 )
+[node name="BoxMetal" parent="Objects" instance=ExtResource( 10 )]
+position = Vector2( 1908.42, 1125.95 )
+rotation = -1.0472
 
 [node name="roof" type="Sprite" parent="Objects"]
-position = Vector2( 656.165, 1086.49 )
-rotation = -3.14159
+position = Vector2( 1937.39, 406.277 )
+rotation = -4.45058
 z_index = 1
-texture = ExtResource( 14 )
-
-[node name="roof3" type="Sprite" parent="Objects"]
-position = Vector2( 993.223, 1067.14 )
-rotation = -3.14159
-z_index = 1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Title" type="Label" parent="."]
 margin_left = 670.0
@@ -185,51 +134,50 @@ custom_constants/shadow_offset_y = 10
 text = "Shark Select"
 align = 1
 
-[node name="Boxes" type="GridContainer" parent="."]
+[node name="Boxes" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-columns = 4
+custom_constants/separation = 150
+alignment = 1
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 15 )]
-margin_left = 108.0
+[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 12 )]
+margin_left = 215.0
 margin_top = 410.0
-margin_right = 368.0
+margin_right = 475.0
 margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 15 )]
-margin_left = 589.0
+[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 12 )]
+margin_left = 625.0
 margin_top = 410.0
-margin_right = 849.0
+margin_right = 885.0
 margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 15 )]
-margin_left = 1070.0
+[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 12 )]
+margin_left = 1035.0
 margin_top = 410.0
-margin_right = 1330.0
+margin_right = 1295.0
 margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 15 )]
-margin_left = 1551.0
+[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 12 )]
+margin_left = 1445.0
 margin_top = 410.0
-margin_right = 1811.0
+margin_right = 1705.0
 margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
-size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
 z_index = 1
@@ -244,8 +192,8 @@ margin_top = -50.0
 margin_right = 462.0
 margin_bottom = 462.0
 rect_scale = Vector2( 0.2, 0.2 )
-texture_under = ExtResource( 16 )
-texture_progress = ExtResource( 17 )
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 14 )
 fill_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -269,7 +217,7 @@ editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 z_index = 1
 
-[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 19 )]
+[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 16 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
 anims/show = SubResource( 5 )

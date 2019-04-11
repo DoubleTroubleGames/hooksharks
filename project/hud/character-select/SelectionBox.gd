@@ -78,21 +78,21 @@ func _input(event):
 
 func toggle_left():
 	set_character(char_index - 1)
-	$Boarder/AnimationPlayer.play("close")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+#	$Boarder/AnimationPlayer.play("close")
+#	yield($Boarder/AnimationPlayer, "animation_finished")
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	add_shark(CHARACTERS[char_index])
-	$Boarder/AnimationPlayer.play("open")
+#	$Boarder/AnimationPlayer.play("open")
 	$Sounds/SelectSFX.play()
 
 
 func toggle_right():
 	set_character(char_index + 1)
-	$Boarder/AnimationPlayer.play("close")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+#	$Boarder/AnimationPlayer.play("close")
+#	yield($Boarder/AnimationPlayer, "animation_finished")
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	add_shark(CHARACTERS[char_index])
-	$Boarder/AnimationPlayer.play("open")
+#	$Boarder/AnimationPlayer.play("open")
 	$Sounds/SelectSFX.play()
 
 

@@ -503,7 +503,9 @@ rect_min_size = Vector2( 100, 100 )
 script = ExtResource( 1 )
 
 [node name="Boarder" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 130, 130 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 2 )
 
 [node name="Cover" type="AnimatedSprite" parent="Boarder"]
@@ -560,7 +562,7 @@ anims/unready = SubResource( 6 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
 editor/display_folded = true
-position = Vector2( 100, 420 )
+position = Vector2( 100, 460 )
 scale = Vector2( -1, 1 )
 
 [node name="Shark" parent="SharkSprite" instance=ExtResource( 10 )]
