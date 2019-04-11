@@ -21,7 +21,7 @@ func _ready():
 
 
 func _on_Timer_timeout():
-	$Area2D/CollisionShape2D.disabled = true
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	$Fire.emitting = false
 	var duration = $Fire.lifetime + .5
 	$KillTimer.wait_time = duration
