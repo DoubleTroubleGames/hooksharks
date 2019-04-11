@@ -60,34 +60,6 @@ shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 4 )
 shader_param/distortion = ExtResource( 3 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "float"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Hitbox:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
-}
-
 [sub_resource type="Animation" id=4]
 resource_name = "spawn"
 length = 0.5
@@ -104,7 +76,8 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
+resource_name = "float"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -146,6 +119,33 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Hitbox:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
+}
+
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 35.0
 
@@ -160,10 +160,13 @@ scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2" index="0"]
+playback_speed = 0.5
+anims/spawn = SubResource( 4 )
+
+[node name="Idle" type="AnimationPlayer" parent="Sprite2" index="1"]
 autoplay = "float"
 playback_speed = 0.5
-anims/float = SubResource( 3 )
-anims/spawn = SubResource( 4 )
+anims/float = SubResource( 8 )
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( 0, 2.67884 )
@@ -171,10 +174,13 @@ scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
+playback_speed = 0.5
+anims/spawn = SubResource( 6 )
+
+[node name="Idle" type="AnimationPlayer" parent="Sprite" index="1"]
 autoplay = "float"
 playback_speed = 0.5
-anims/float = SubResource( 5 )
-anims/spawn = SubResource( 6 )
+anims/float = SubResource( 10 )
 
 [node name="Hitbox" parent="." index="2"]
 position = Vector2( 0, 2.67884 )
