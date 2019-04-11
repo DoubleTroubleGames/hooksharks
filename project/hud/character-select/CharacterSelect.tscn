@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/roof.png" type="Texture" id=11]
 [ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=12]
 [ext_resource path="res://fx/circle.png" type="Texture" id=13]
-[ext_resource path="res://fx/bubble.png" type="Texture" id=14]
+[ext_resource path="res://assets/timer.png" type="Texture" id=14]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=16]
 
@@ -175,7 +175,6 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
 z_index = 1
