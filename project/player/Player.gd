@@ -90,6 +90,8 @@ func _input(event):
 		emerge()
 	elif event.is_action_pressed("shoot"):
 		shoot()
+	elif event.is_action_released("shoot"):
+		retract()		
 
 
 func _physics_process(delta):
@@ -172,6 +174,7 @@ func _physics_process(delta):
 	
 	if diving and not is_pressed["dive"]:
 		emerge()
+		retract()
 
 
 func disable():
@@ -400,7 +403,11 @@ func shoot():
 		else:
 			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)
-	elif hook and weakref(hook).get_ref() and not hook.retracting:
+
+func retract():
+	if diving:
+		return
+	if hook and weakref(hook).get_ref() and not hook.retracting:
 		hook.retract()
 
 
