@@ -383,7 +383,7 @@ func emerge():
 	diving = false
 	yield(sprite_animation, "animation_finished")
 	for a in area.get_overlapping_areas():
-		if a.get_parent().is_in_group('wall'):
+		if a.collision_layer == Collision.FLOATING_OBSTACLE:
 			die()
 	can_dive = true
 	sprite_animation.play("idle")

@@ -67,6 +67,7 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
+z_index = 1
 texture = ExtResource( 3 )
 
 [node name="Sprite2" type="Sprite" parent="."]
