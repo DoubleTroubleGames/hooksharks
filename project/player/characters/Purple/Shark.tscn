@@ -3,7 +3,9 @@
 [ext_resource path="res://player/Shark.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/characters/Purple/purple.png" type="Texture" id=2]
 
-
 [node name="Purple" index="0" instance=ExtResource( 1 )]
 texture = ExtResource( 2 )
+
+[node name="Rider" parent="." index="0"]
+visible = true
 
