@@ -6,7 +6,7 @@ const POWERS = [preload("res://objects/Powerups/InfiniteDive.tscn"),
 				preload("res://objects/Powerups/MegaHook.tscn"),
                 preload("res://objects/Powerups/TrailPower.tscn")]
 				
-const CRATES = ["barrel2",
+const CRATES = ["barrelo2",
 				"barrel2",
                 "Barrel3"]
 				
