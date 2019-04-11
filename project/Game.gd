@@ -141,7 +141,7 @@ func _on_player_hook_shot(player, direction):
 	player.hook = new_hook
 	
 func _on_player_megahook_shot(player, direction):
-	var explosion = load("res://fx/explosion/Explosion.tscn").instance()
+	var explosion = load("res://fx/explosion/DeathExplosion.tscn").instance()
 	var new_megahook = MEGAHOOK.instance()
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	
