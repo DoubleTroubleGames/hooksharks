@@ -57,7 +57,10 @@ func _on_LineArea_area_entered(area):
 		stage.reset_player_checkpoint(player)
 		var lap_num = stage.get_player_lap(player)
 		
-		player.add_label("Lap %s/%s" % [lap_num, total_laps])
+		if lap_num == total_laps:
+			player.add_label("Winner!")
+		else:
+			player.add_label("Lap %s/%s" % [lap_num, total_laps])
 		
 		if lap_num >= total_laps:
 			var winner = player
@@ -68,6 +71,8 @@ func _on_LineArea_area_entered(area):
 				if child != winner:
 					child.respawn = false
 					child.call_deferred("die")
+	elif not player.invincible:
+		player.add_label("Wrong Way")
 
 
 func _on_PullableObjectTop_hooked():

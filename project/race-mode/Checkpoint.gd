@@ -15,3 +15,5 @@ func _on_Area2D_area_entered(area):
 	var checkpoint_num = stage.get_player_checkpoint(player)
 	if checkpoint_num == number - 1:
 		stage.increase_player_checkpoint(player)
+	elif not player.invincible:
+		player.add_label("Wrong Way")
