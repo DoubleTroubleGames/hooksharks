@@ -43,7 +43,7 @@ export(float) var ROT_SPEED = PI/3.5
 export(int) var ACC = 8
 export(int) var INITIAL_SPEED = 100
 export(int) var MAX_SPEED = -1 # -1 lets speed grow without limit
-export(MovementTypes) var movement_type = MovementTypes.TANK
+export(MovementTypes) var movement_type = MovementTypes.DIRECT
 
 var id = 0
 var gamepad_id = -1
