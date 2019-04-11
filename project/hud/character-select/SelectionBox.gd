@@ -10,7 +10,7 @@ const CHARACTERS = ["Pirate", "Green", "Purple", "Yellow"]
 const DEADZONE = .55
 
 var available_chars = CHARACTERS.duplicate()
-var char_index
+var char_index = 0
 var device_name = ""
 var state = States.CLOSED
 var _moved_left = false
@@ -78,11 +78,21 @@ func _input(event):
 
 func toggle_left():
 	set_character(char_index - 1)
+	$Boarder/AnimationPlayer.play("close")
+	yield($Boarder/AnimationPlayer, "animation_finished")
+	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	add_shark(CHARACTERS[char_index])
+	$Boarder/AnimationPlayer.play("open")
 	$Sounds/SelectSFX.play()
 
 
 func toggle_right():
 	set_character(char_index + 1)
+	$Boarder/AnimationPlayer.play("close")
+	yield($Boarder/AnimationPlayer, "animation_finished")
+	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	add_shark(CHARACTERS[char_index])
+	$Boarder/AnimationPlayer.play("open")
 	$Sounds/SelectSFX.play()
 
 
@@ -138,10 +148,7 @@ func update_available_characters(characters):
 
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
-
-	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
-	add_shark(CHARACTERS[char_index])
-
+	
 	if not CHARACTERS[char_index] in available_chars:
 		pass
 

@@ -227,6 +227,18 @@ tracks/7/keys = {
 "method": "shake"
 } ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Grid:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "ready"
@@ -328,6 +340,18 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 301, 446 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Grid:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -471,10 +495,10 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 301, 0 )
 
 [node name="Grid" type="Sprite" parent="Boarder"]
-position = Vector2( 0, -223 )
+visible = false
 texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 301, 0 )
+region_rect = Rect2( 0, 0, 301, 446 )
 
 [node name="Gate" type="Sprite" parent="Boarder"]
 visible = false
