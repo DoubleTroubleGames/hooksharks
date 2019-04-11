@@ -1,18 +1,21 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://hud/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://hud/character-select/boarder.png" type="Texture" id=2]
 [ext_resource path="res://hud/character-select/cover2.png" type="Texture" id=3]
 [ext_resource path="res://hud/character-select/cover.png" type="Texture" id=4]
 [ext_resource path="res://hud/character-select/Pirate.png" type="Texture" id=5]
-[ext_resource path="res://hud/character-select/grid.png" type="Texture" id=6]
-[ext_resource path="res://hud/character-select/gate.png" type="Texture" id=7]
-[ext_resource path="res://hud/character-select/ready.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://player/Shark.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=13]
+[ext_resource path="res://hud/character-select/Drill.png" type="Texture" id=6]
+[ext_resource path="res://hud/character-select/grid.png" type="Texture" id=7]
+[ext_resource path="res://hud/character-select/gate.png" type="Texture" id=8]
+[ext_resource path="res://hud/character-select/ready.png" type="Texture" id=9]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://hud/character-select/left.png" type="Texture" id=11]
+[ext_resource path="res://hud/character-select/right.png" type="Texture" id=12]
+[ext_resource path="res://player/Shark.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -24,7 +27,110 @@ animations = [ {
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "change_char_left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChangePortrait:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 446 ), Rect2( 301, 0, 301, 446 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChangePortrait:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Portrait:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 150, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Portrait:region_rect")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 0, 446 ), Rect2( 0, 0, 301, 446 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "change_char_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Portrait:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 301, 0, 301, 446 ), Rect2( 0, 0, 301, 446 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChangePortrait:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChangePortrait:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 150, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ChangePortrait:region_rect")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 301, 446 ), Rect2( 0, 0, 0, 446 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "close"
@@ -132,6 +238,30 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Left:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Right:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -250,6 +380,30 @@ tracks/8/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Right:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Left:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -377,6 +531,30 @@ tracks/9/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Left:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Right:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "unready"
@@ -452,6 +630,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [ -15.0, 15.0, -8.0, 0.0 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Right:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Left:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 3.0
@@ -512,30 +714,33 @@ show_behind_parent = true
 frames = SubResource( 1 )
 
 [node name="Portrait" type="Sprite" parent="Boarder"]
-visible = false
 show_behind_parent = true
-position = Vector2( 0, -223 )
 texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 301, 0 )
-
-[node name="Grid" type="Sprite" parent="Boarder"]
-visible = false
-texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 301, 446 )
 
-[node name="Gate" type="Sprite" parent="Boarder"]
-visible = false
-position = Vector2( 0, -385 )
-texture = ExtResource( 7 )
+[node name="ChangePortrait" type="Sprite" parent="Boarder"]
+show_behind_parent = true
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 301, 0, 301, 446 )
 
-[node name="Ready" type="Sprite" parent="Boarder"]
+[node name="Grid" type="Sprite" parent="Boarder"]
+visible = false
+position = Vector2( 0, -223 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 301, 0 )
+
+[node name="Gate" type="Sprite" parent="Boarder"]
 visible = false
 texture = ExtResource( 8 )
 
-[node name="DeviceSprite" type="TextureRect" parent="Boarder"]
+[node name="Ready" type="Sprite" parent="Boarder"]
 visible = false
+texture = ExtResource( 9 )
+
+[node name="DeviceSprite" type="TextureRect" parent="Boarder"]
 margin_left = -55.0
 margin_top = 150.0
 margin_right = 73.0
@@ -553,31 +758,50 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 align = 1
 
+[node name="Left" type="TextureRect" parent="Boarder"]
+margin_left = -140.0
+margin_top = -50.0
+margin_right = -60.0
+margin_bottom = 30.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Boarder"]
+margin_left = 50.0
+margin_top = -40.0
+margin_right = 130.0
+margin_bottom = 40.0
+texture = ExtResource( 12 )
+expand = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder"]
+anims/change_char_left = SubResource( 9 )
+anims/change_char_right = SubResource( 10 )
 anims/close = SubResource( 3 )
 anims/open = SubResource( 4 )
 anims/ready = SubResource( 5 )
 anims/unready = SubResource( 6 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 100, 460 )
 scale = Vector2( -1, 1 )
 
-[node name="Shark" parent="SharkSprite" instance=ExtResource( 10 )]
+[node name="Shark" parent="SharkSprite" instance=ExtResource( 13 )]
 
 [node name="Sounds" type="Node" parent="."]
 editor/display_folded = true
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 11 )
+stream = ExtResource( 14 )
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 12 )
+stream = ExtResource( 15 )
 bus = "SFX"
 
 [node name="CancelSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 13 )
+stream = ExtResource( 16 )
 volume_db = -6.0
 bus = "SFX"
 
