@@ -313,6 +313,9 @@ func die():
 	disable()
 	
 	if respawn:
+		#Remove all powerups from player
+		for i in range(0, $PowerUps.get_child_count()):
+    		$PowerUps.get_child(i).queue_free()
 		sprite.set_modulate(Color(1, 1, 1, 0.2))
 		if hook:
 			hook.retract()
