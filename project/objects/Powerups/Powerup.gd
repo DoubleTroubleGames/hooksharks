@@ -10,9 +10,9 @@ const CRATES = ["barrel2",
 				"barrel2",
                 "Barrel3"]
 				
-const PARTICLES = ["barril_quebrando_particula",
-				   "barril_quebrando_particula",
-                   "metalbarrel_particle"]
+const PARTICLES = [preload("res://assets/barril_quebrando_particula.png"),
+				   preload("res://assets/barril_quebrando_particula.png"),
+                   preload("res://assets/metalbarrel_particle.png")]
 
 export(PackedScene) var powerup
 
@@ -85,6 +85,6 @@ func set_random_power():
 	powerup = POWERS[index]
 	$Sprite.set_texture(load(str("res://assets/", CRATES[index], ".png")))
 	$Sprite2.set_texture(load(str("res://assets/", CRATES[index], "_o.png")))
-	$Particles2D.set_texture(load(str("res://assets/", PARTICLES[index], ".png")))
+	$Particles2D.set_texture(PARTICLES[index])
 	
 
