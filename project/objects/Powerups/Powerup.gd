@@ -9,6 +9,10 @@ const POWERS = [preload("res://objects/Powerups/InfiniteDive.tscn"),
 const CRATES = ["barrel2",
 				"barrel2",
                 "Barrel3"]
+				
+const PARTICLES = ["barril_quebrando_particula",
+				   "barril_quebrando_particula",
+                   "metalbarrel_particle"]
 
 export(PackedScene) var powerup
 
@@ -45,7 +49,10 @@ func despawn():
 	$Sprite2/AnimationPlayer.stop()
 	$Sprite.set_modulate(Color(1, 1, 1, 0))
 	$Sprite/AnimationPlayer.stop()
-	hide()
+	$Particles2D.emitting = true
+	$Sprite.hide()
+	$Sprite2.hide()
+	
 
 
 func spawn():
@@ -55,7 +62,9 @@ func spawn():
 	$Hitbox/CollisionShape2D.set_deferred("disabled", false)
 	$Sprite2/AnimationPlayer.play("spawn")
 	$Sprite/AnimationPlayer.play("spawn")
-	show()
+	$Sprite.show()
+	$Sprite2.show()
+	
 
 
 func activate(player):
@@ -76,5 +85,6 @@ func set_random_power():
 	powerup = POWERS[index]
 	$Sprite.set_texture(load(str("res://assets/", CRATES[index], ".png")))
 	$Sprite2.set_texture(load(str("res://assets/", CRATES[index], "_o.png")))
+	$Particles2D.set_texture(load(str("res://assets/", PARTICLES[index], ".png")))
 	
 
