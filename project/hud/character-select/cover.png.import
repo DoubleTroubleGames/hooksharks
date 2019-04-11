@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rider.png-777736bad02efca152258126f59172e7.stex"
+path="res://.import/cover.png-fc0d5c4ea5cd2b8100130729833302e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/characters/rider.png"
-dest_files=[ "res://.import/rider.png-777736bad02efca152258126f59172e7.stex" ]
+source_file="res://hud/character-select/cover.png"
+dest_files=[ "res://.import/cover.png-fc0d5c4ea5cd2b8100130729833302e8.stex" ]
 
 [params]
 
