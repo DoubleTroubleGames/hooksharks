@@ -43,8 +43,10 @@ func respawn_player(player):
 	var RespTimer = player.get_node("RespawnTimer")
 	var final_position
 	var final_rotation
+	
 	player.reset_input_map()
 	player.can_dive = true
+	player.get_node("InvencibilityTimer").stop()
 	if check_n > 0:
 		var check = $Stage.get_checkpoint(check_n)
 		final_position = check.get_respawn_position(player.id + 1)
