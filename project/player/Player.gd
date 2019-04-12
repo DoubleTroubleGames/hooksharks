@@ -17,6 +17,7 @@ onready var sprite_animation = $Shark/AnimationPlayer
 onready var area = $Shark/Area2D
 onready var rider_offset = -$Shark/Rider.position.x
 onready var water_particles = $WaterParticles
+onready var dont_collide = false
 
 enum MovementTypes {DIRECT, TANK}
 
@@ -188,16 +189,14 @@ func _physics_process(delta):
 
 
 func disable():
-	area.set_deferred("monitoring", false)
-	area.set_deferred("monitorable", false)
+	dont_collide = true
 	water_particles.ripples.emitting = false
 	set_physics_process(false)
 	set_process_input(false)
 
 
 func enable():
-	area.monitoring = true
-	area.monitorable = true
+	dont_collide = false
 	$WaterParticles.show()
 	water_particles.ripples.emitting = true
 	set_physics_process(true)
@@ -455,24 +454,26 @@ func _on_Area2D_area_exited(area):
 
 
 func _on_Area2D_area_entered(area):
-	match area.collision_layer:
-		Collision.PLAYER_ABOVE:
-			var other_player = area.get_parent().get_parent()
-			if diving == other_player.diving and not invincible:
+	if not dont_collide:
+		match area.collision_layer:
+			Collision.PLAYER_ABOVE:
+				var other_player = area.get_parent().get_parent()
+				if diving == other_player.diving and not invincible and not other_player.dont_collide:
+					die()
+					other_player.die()
+			Collision.OBSTACLE:
 				die()
-		Collision.OBSTACLE:
-			die()
-		Collision.FLOATING_OBSTACLE:
-			if not diving:
-				die()
-		Collision.TRAIL:
-			var trail = area.get_parent()
-			if not diving and trail.can_collide and not invincible:
-				die()
-		Collision.POWERUP:
-			if not diving:
-				var powerup = area.get_parent()
-				powerup.activate(self)
+			Collision.FLOATING_OBSTACLE:
+				if not diving:
+					die()
+			Collision.TRAIL:
+				var trail = area.get_parent()
+				if not diving and trail.can_collide and not invincible:
+					die()
+			Collision.POWERUP:
+				if not diving:
+					var powerup = area.get_parent()
+					powerup.activate(self)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
