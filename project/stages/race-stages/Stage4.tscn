@@ -18,7 +18,6 @@
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=16]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=17]
 
-
 [node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -2400, -4000 )
 stage_end = Vector2( 9000, 5000 )
@@ -388,13 +387,18 @@ total_checkpoint_number = 5
 position = Vector2( 1045.5, 290.002 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="9"]
+position = Vector2( 241.153, 495.556 )
 current = true
-limit_left = -2400
-limit_top = -100000
-limit_right = 100000
-limit_bottom = 100000
+limit_left = -300
+limit_top = -600
+limit_right = 8500
+limit_bottom = 1650
+limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+editor_draw_limits = true
 script = ExtResource( 17 )
-CAM_MARGIN = 1000
 
 
 [editable path="FinishLine"]

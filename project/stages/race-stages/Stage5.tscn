@@ -299,14 +299,18 @@ rotation = -0.122173
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
-position = Vector2( 960, 540 )
+position = Vector2( 287.242, 455.905 )
 current = true
-limit_left = -100000
-limit_top = -100000
-limit_right = 100000
-limit_bottom = 100000
+limit_left = -1200
+limit_top = -1400
+limit_right = 4200
+limit_bottom = 1800
+limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+editor_draw_limits = true
 script = ExtResource( 16 )
-max_zoom = 1.5
 
 [node name="Powerups" type="Node2D" parent="." index="7"]
 

@@ -20,13 +20,13 @@ func connect_players():
 		player.connect("paused", self, "_on_player_paused")
 		for camera in Cameras:
 			player.connect("shook_screen", camera, "add_shake")
-	for camera in Cameras:
-		camera.set_children(players)
 
 func activate_players():
 	for player in players:
 		set_race_attributes(player)
 		player.enable()
+	for camera in Cameras:
+		camera.set_focuses()
 
 
 func set_race_attributes(player):

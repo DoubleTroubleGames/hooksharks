@@ -1,73 +1,55 @@
 extends "res://camera/Camera.gd"
 
-# All chidren of the Camera2D containing this script should be nodes inhereting from Node2D
-# Needs a call of set_children() to work
+const MIN_ZOOM = 1
+const ZOOM_LERP = 1
 
-export (float)var max_zoom = 1.0
-export (int)var CAM_MARGIN = 800
-
-const MARGIN_MULTIPLIER = 1.6
-
-var cam_margin = [Vector2(0, 0), Vector2(0, 0)] # top left and bottom right corners
-var children
-
+var focuses = []
+var max_limit = Vector2()
+var min_limit = Vector2()
 
 func _ready():
 	set_physics_process(false)
 
 
 func _physics_process(delta):
-	set_position(lerp(get_position(), get_average_position(), .5))
-	adjust_zoom()
+	update_camera()
+	update()
 
 
-func adjust_zoom():
-	cam_margin = [children[0].get_global_position(), children[0].get_global_position()]
-	for child in children:
-		var pos = child.get_global_position()
-		
-		cam_margin[0].x = min(cam_margin[0].x, pos.x)
-		cam_margin[1].x = max(cam_margin[1].x, pos.x)
-		cam_margin[0].y = min(cam_margin[0].y, pos.y)
-		cam_margin[1].y = max(cam_margin[1].y, pos.y)
-		
-	var max_margin = get_max_margin()
-	var new_zoom
+func update_camera():
+	print("update_camera")
+	get_focus_limits()
 	
-	max_margin[0] *= MARGIN_MULTIPLIER
-	if max_margin[1] == "x":
-		new_zoom = max_margin[0]/OS.get_window_size().x
-	elif max_margin[1] == "y":
-		new_zoom = max_margin[0]/OS.get_window_size().y
-	new_zoom = max(new_zoom, max_zoom)
-	new_zoom = lerp(get_zoom().x, new_zoom, 0.05)
-	set_zoom(Vector2(new_zoom, new_zoom))
-
-
-func get_max_margin():
-	var c_pos = self.get_global_position()
-	var mx = max(abs(c_pos.x - cam_margin[0].x), abs(c_pos.x - cam_margin[1].x))
-	var my = max(abs(c_pos.y - cam_margin[0].y), abs(c_pos.y - cam_margin[1].y))
+	#Update camera position
+	position = min_limit + (max_limit - min_limit) / 2
+#	set_position(lerp(position, target_pos, POS_LERP))
 	
-	if mx >= my:
-		return [mx + CAM_MARGIN, "x"]
-	else:
-		return [my + CAM_MARGIN, "y"]
-
-
-func get_average_position():
-	if children.empty():
-		return get_position()
+	#Update camera zoom
+	var screen_size = get_tree().root.size
+	print(screen_size)
 	
-	var avrg = children[0].get_position()
-	
-	for i in range(1, children.size()):
-		avrg += children[i].get_position()
-	avrg /= children.size()
-	
-	return avrg
+	var target_zoom = (max_limit-min_limit)/screen_size
+	var final_zoom = max(max(target_zoom.x, target_zoom.y), MIN_ZOOM)
+#	zoom = Vector2(final_zoom, final_zoom)
+	set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_LERP))
 
 
-func set_children(children):
-	self.children = children
+func get_focus_limits():
+	if focuses.empty():
+		print("GroupCamera.gd: Should have at least one focus")
+		assert(false)
+	
+	max_limit = focuses[0].global_position
+	min_limit = focuses[0].global_position
+	for f in focuses:
+		var pos = f.global_position
+		max_limit.x = max(max_limit.x, pos.x)
+		max_limit.y = max(max_limit.y, pos.y)
+		min_limit.x = min(min_limit.x, pos.x)
+		min_limit.y = min(min_limit.y, pos.y)
+
+
+func set_focuses():
+	focuses = get_tree().get_nodes_in_group("camera_focus")
 	set_physics_process(true)
+	update_camera()
