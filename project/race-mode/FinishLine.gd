@@ -57,8 +57,11 @@ func _on_LineArea_area_entered(area):
 		stage.reset_player_checkpoint(player)
 		var lap_num = stage.get_player_lap(player)
 		
-		if lap_num == total_laps:
-			player.add_label("Winner!")
+		if lap_num >= total_laps:
+			if randf() < .01:
+				player.add_label("A winner is you!")
+			else:
+				player.add_label("Winner!")
 		else:
 			player.add_label("Lap %s/%s" % [lap_num, total_laps])
 		
