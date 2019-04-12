@@ -8,6 +8,7 @@ enum States {CLOSED, OPEN, READY}
 
 const CHARACTERS = ["Pirate", "Green", "Drill", "Yellow"]
 const DEADZONE = .55
+const TWN_TIME = 0.6
 
 var available_chars = CHARACTERS.duplicate()
 var char_index = 0
@@ -16,7 +17,6 @@ var state = States.CLOSED
 var _moved_left = false
 var _moved_right = false
 var changing = false
-var rechange_shark = false
 
 
 func _ready():
@@ -75,9 +75,9 @@ func _input(event):
 func toggle_left():
 	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	set_character(char_index - 1)
+	change_shark()
 	#### Visuals for character changing ####
 	changing = true
-	change_shark()
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	$Boarder/AnimationPlayer.play("change_char_left")
 	yield($Boarder/AnimationPlayer, "animation_finished")
@@ -89,9 +89,9 @@ func toggle_left():
 func toggle_right():
 	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	set_character(char_index + 1)
+	change_shark()
 	#### Visuals for character changing ####
 	changing = true
-	change_shark()
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	$Boarder/AnimationPlayer.play("change_char_right")
 	yield($Boarder/AnimationPlayer, "animation_finished")
@@ -165,27 +165,40 @@ func add_shark(shark_name):
 	old.set_name("old shark")
 	old.queue_free()
 	new.set_name("Shark")
+	new.set_modulate(Color(1, 1, 1, 0))
+	new.get_node("Rider").hide()
 	$SharkSprite.add_child(new)
+	emerge_shark()
 
 
 func change_shark():
-	var shark_anim = $SharkSprite/Shark/AnimationPlayer
+	var SharkTimer = $SharkSprite/SharkChangeTimer
 	
-	if shark_anim.current_animation != "idle": # shark already changing
-		rechange_shark = true
-		return
+	if SharkTimer.time_left == 0: # not dived
+		dive_shark()
+	SharkTimer.start()
+
+
+func emerge_shark():
+	var Twn = $SharkSprite/SharkChangeTween
+	var SharkAnim = $SharkSprite/Shark/AnimationPlayer
+	var Shark = $SharkSprite/Shark
 	
-	shark_anim.play("dive")
-	yield(shark_anim, "animation_finished")
+	Twn.interpolate_property(Shark, "modulate", null, Color(1, 1, 1, 1), TWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	Twn.start()
+	SharkAnim.play("emerge")
+	SharkAnim.queue("idle")
+
+
+func dive_shark():
+	var Twn = $SharkSprite/SharkChangeTween
+	var SharkAnim = $SharkSprite/Shark/AnimationPlayer
+	var Shark = $SharkSprite/Shark
+	
+	Twn.interpolate_property(Shark, "modulate", null, Color(1, 1, 1, 0), TWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	Twn.start()
+	SharkAnim.play("dive")
+
+
+func _on_SharkChangeTimer_timeout():
 	add_shark(CHARACTERS[char_index])
-	shark_anim = $SharkSprite/Shark/AnimationPlayer # since the shark scene was change, we have to update this node
-	shark_anim.play("dive_idle")
-	yield(get_tree().create_timer(shark_anim.current_animation_length/2), "timeout")
-	shark_anim.play("emerge")
-	shark_anim.queue("idle")
-	
-	if rechange_shark:
-		yield(get_tree().create_timer(shark_anim.current_animation_length/2), "timeout")
-		rechange_shark = false
-		shark_anim.play("idle")
-		change_shark()
