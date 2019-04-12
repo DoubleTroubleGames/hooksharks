@@ -9,14 +9,31 @@ enum {RESUME, QUIT}
 
 const UNSELECTED_COLOR = Color(1, 1, 1)
 const SELECTED_COLOR = Color(1, 1, .5)
+const DEADZONE = .55
 
 var btn_index = 0
 var player_device = "keyboard"
+onready var _moved_up = false
+onready var _moved_down = false
 
 func _ready():
 	buttons[btn_index].modulate = SELECTED_COLOR
 	set_process_input(false)
+	set_process(true)
 
+func _process(delta):
+	if player_device.left(8) == "gamepad_":
+			var device_n = int(player_device.right(8))
+			var axis_value = Input.get_joy_axis(device_n, 1)
+			if axis_value >= DEADZONE and not _moved_down:
+				_moved_down = true
+				change_button(+1)
+			elif  axis_value <= -DEADZONE and not _moved_up:
+				_moved_up = true
+				change_button(-1)
+			if abs(axis_value) < DEADZONE:
+				_moved_down = false
+				_moved_up = false
 
 func _input(event):
 	if RoundManager.get_device_name_from(event) != player_device:
