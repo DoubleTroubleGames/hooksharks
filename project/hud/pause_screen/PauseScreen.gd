@@ -64,9 +64,12 @@ func press_button():
 
 
 func pause(player):
+	var color = RoundManager.CHAR_COLOR[RoundManager.character_map[player.id]]
 	get_tree().paused = true
 	background.visible = true
 	set_process_input(true)
+	player_device.set_modulate(color)
+	player_label.set_modulate(color)
 	player_device = player.device_name
 	player_label.text = str("P", player.id + 1)
 

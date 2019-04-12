@@ -2,6 +2,10 @@ extends Node
 
 const DEBUG_KEYS = [KEY_PERIOD, KEY_SEMICOLON, KEY_J, KEY_K, KEY_L, KEY_I, KEY_SLASH]
 const MATCH_POINTS = 3
+const CHAR_COLOR = { "Pirate" : Color(.5, 0, .2), 
+                      "Drill" : Color(.4, .4, .7), 
+                      "Green" : Color(0, .8, 0),
+                     "Yellow" : Color(0, .8, .8) }
 
 var scores
 var round_number
