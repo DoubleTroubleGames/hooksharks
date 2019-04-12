@@ -206,7 +206,6 @@ func enable():
 func add_shark(shark_name):
 	var old = $Shark
 	var new_path = str("res://characters/", shark_name, "/Shark.tscn")
-	print(new_path)
 	var new = load(new_path).instance()
 	
 	old.set_name("old shark")
