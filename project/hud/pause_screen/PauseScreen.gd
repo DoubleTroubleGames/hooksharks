@@ -65,4 +65,5 @@ func quit():
 	Transition.transition_in()
 	yield(Transition, "finished")
 	Sound.stop_ambience()
+	get_tree().paused = false
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
