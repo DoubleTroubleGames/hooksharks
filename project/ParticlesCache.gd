@@ -2,10 +2,18 @@ extends CanvasLayer
 
 var CrateParticleMaterial = preload("res://fx/crates/materials/crate_particle.material")
 var TrailParticleMaterial = preload("res://fx/trails/trail.material")
+var RippleParticleMaterial = preload("res://fx/trails/ripples.material")
+var BloodParticleMaterial = preload("res://fx/blood.material")
+var DiveParticleMaterial = preload("res://fx/dive.material")
+var WallParticleMaterial = preload("res://fx/wall.material")
 
 var materials = [
     CrateParticleMaterial,
-	TrailParticleMaterial
+	TrailParticleMaterial,
+	RippleParticleMaterial,
+	BloodParticleMaterial,
+	DiveParticleMaterial,
+	WallParticleMaterial
 ]
 
 func _ready():
