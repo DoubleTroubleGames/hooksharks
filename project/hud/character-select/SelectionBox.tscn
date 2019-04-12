@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://hud/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://hud/character-select/boarder.png" type="Texture" id=2]
@@ -16,15 +16,6 @@
 [ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=16]
-
-
-
-
-
-
-
-
-
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -709,49 +700,6 @@ tracks/7/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=9]
-length = 3.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Boarder:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.5, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -4.0, 6.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Boarder:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 130, 130 ), Vector2( 130, 120 ) ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Boarder:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ -8.99563, 9.44294, -10.0057, 0.0 ]
-}
-
 [node name="SelectionBox" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -865,9 +813,3 @@ stream = ExtResource( 16 )
 volume_db = -6.0
 bus = "SFX"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
-anims/idle = SubResource( 9 )
-anims/shake = SubResource( 10 )
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

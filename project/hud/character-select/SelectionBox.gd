@@ -21,10 +21,6 @@ var rechange_shark = false
 
 func _ready():
 	set_process(true)
-	randomize()
-	var anim_player = $AnimationPlayer
-	var anim_length = anim_player.current_animation_length
-	anim_player.advance(rand_range(0, anim_length))
 	$SharkSprite.hide()
 
 func _process(delta):
@@ -52,10 +48,8 @@ func _input(event):
 				change_state(States.READY)
 				$Sounds/ConfirmSFX.play()
 			else:
-				$AnimationPlayer.play("shake")
 				$Sounds/CancelSFX.play()
 		elif state == States.READY:
-			$AnimationPlayer.play("shake")
 			$Sounds/CancelSFX.play()
 			emit_signal("tried_to_start")
 
@@ -174,10 +168,6 @@ func add_shark(shark_name):
 	$SharkSprite.add_child(new)
 
 
-func shake():
-	$AnimationPlayer.play("shake")
-
-
 func change_shark():
 	var shark_anim = $SharkSprite/Shark/AnimationPlayer
 	
@@ -199,7 +189,3 @@ func change_shark():
 		rechange_shark = false
 		shark_anim.play("idle")
 		change_shark()
-
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	$AnimationPlayer.play("idle")
