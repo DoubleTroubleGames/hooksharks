@@ -5,7 +5,7 @@
 [ext_resource path="res://hud/character-select/cover2.png" type="Texture" id=3]
 [ext_resource path="res://hud/character-select/cover.png" type="Texture" id=4]
 [ext_resource path="res://hud/character-select/Pirate.png" type="Texture" id=5]
-[ext_resource path="res://hud/character-select/Purple.png" type="Texture" id=6]
+[ext_resource path="res://player/characters/Drill/Drill.png" type="Texture" id=6]
 [ext_resource path="res://hud/character-select/grid.png" type="Texture" id=7]
 [ext_resource path="res://hud/character-select/gate.png" type="Texture" id=8]
 [ext_resource path="res://hud/character-select/ready.png" type="Texture" id=9]
@@ -16,6 +16,15 @@
 [ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=16]
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

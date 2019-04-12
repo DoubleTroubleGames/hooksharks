@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/purple.png-2c4e51a65af2468aec277e550c8e0bf1.stex"
+path="res://.import/drill_hook.png-d09b5fc57f59d8eed32c99c555c72ae7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/characters/Purple/purple.png"
-dest_files=[ "res://.import/purple.png-2c4e51a65af2468aec277e550c8e0bf1.stex" ]
+source_file="res://player/characters/Drill/drill_hook.png"
+dest_files=[ "res://.import/drill_hook.png-d09b5fc57f59d8eed32c99c555c72ae7.stex" ]
 
 [params]
 
