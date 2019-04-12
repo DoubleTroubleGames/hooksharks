@@ -66,7 +66,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.28 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 130, 0 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 120, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Portrait:region_rect")
@@ -78,7 +78,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.28 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 0, 446 ), Rect2( 0, 0, 301, 446 ) ]
+"values": [ Rect2( 0, 0, 0, 446 ), Rect2( 0, 0, 290, 446 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("ChangePortrait:position")
@@ -142,7 +142,19 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 301, 446 ), Rect2( 0, 0, 0, 446 ) ]
+"values": [ Rect2( 0, 0, 290, 446 ), Rect2( 0, 0, 0, 446 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Portrait:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 0 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -274,6 +286,18 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ChangePortrait:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -565,6 +589,18 @@ tracks/11/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("ChangePortrait:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=8]
 tracks/0/type = "value"
@@ -723,12 +759,15 @@ show_behind_parent = true
 frames = SubResource( 1 )
 
 [node name="Portrait" type="Sprite" parent="Boarder"]
+visible = false
 show_behind_parent = true
+position = Vector2( 0, -223 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 301, 446 )
+region_rect = Rect2( 0, 0, 301, 0 )
 
 [node name="ChangePortrait" type="Sprite" parent="Boarder"]
+visible = false
 show_behind_parent = true
 position = Vector2( 10, 0 )
 texture = ExtResource( 6 )
@@ -737,13 +776,13 @@ region_rect = Rect2( 301, 0, 301, 446 )
 
 [node name="Grid" type="Sprite" parent="Boarder"]
 visible = false
-position = Vector2( 0, -223 )
 texture = ExtResource( 7 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 301, 0 )
+region_rect = Rect2( 0, 0, 301, 446 )
 
 [node name="Gate" type="Sprite" parent="Boarder"]
 visible = false
+position = Vector2( 0, -385 )
 texture = ExtResource( 8 )
 
 [node name="Ready" type="Sprite" parent="Boarder"]
@@ -751,6 +790,7 @@ visible = false
 texture = ExtResource( 9 )
 
 [node name="DeviceSprite" type="TextureRect" parent="Boarder"]
+visible = false
 margin_left = -55.0
 margin_top = 150.0
 margin_right = 73.0
@@ -769,6 +809,7 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="Left" type="TextureRect" parent="Boarder"]
+visible = false
 margin_left = -140.0
 margin_top = -50.0
 margin_right = -60.0
@@ -777,6 +818,7 @@ texture = ExtResource( 11 )
 expand = true
 
 [node name="Right" type="TextureRect" parent="Boarder"]
+visible = false
 margin_left = 50.0
 margin_top = -40.0
 margin_right = 130.0
@@ -793,7 +835,6 @@ anims/ready = SubResource( 7 )
 anims/unready = SubResource( 8 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 100, 460 )
 scale = Vector2( -1, 1 )
 
