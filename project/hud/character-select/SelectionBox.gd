@@ -73,12 +73,12 @@ func _input(event):
 
 
 func toggle_left():
-	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	$Boarder/ChangePortrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
 	set_character(char_index - 1)
 	change_shark()
 	#### Visuals for character changing ####
 	changing = true
-	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
 	$Boarder/AnimationPlayer.play("change_char_left")
 	yield($Boarder/AnimationPlayer, "animation_finished")
 	changing = false
@@ -87,12 +87,12 @@ func toggle_left():
 
 
 func toggle_right():
-	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	$Boarder/ChangePortrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
 	set_character(char_index + 1)
 	change_shark()
 	#### Visuals for character changing ####
 	changing = true
-	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
 	$Boarder/AnimationPlayer.play("change_char_right")
 	yield($Boarder/AnimationPlayer, "animation_finished")
 	changing = false
@@ -159,7 +159,7 @@ func set_character(index):
 
 func add_shark(shark_name):
 	var old = $SharkSprite/Shark
-	var new_path = str("res://player/characters/", shark_name, "/Shark.tscn")
+	var new_path = str("res://characters/", shark_name, "/Shark.tscn")
 	var new = load(new_path).instance()
 
 	old.set_name("old shark")

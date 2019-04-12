@@ -68,8 +68,8 @@ func pause(player):
 	get_tree().paused = true
 	background.visible = true
 	set_process_input(true)
-	player_device.set_modulate(color)
 	player_label.set_modulate(color)
+	$Background/CenterContainer/VBoxContainer/HBoxContainer/Paused.set_modulate(color)
 	player_device = player.device_name
 	player_label.text = str("P", player.id + 1)
 

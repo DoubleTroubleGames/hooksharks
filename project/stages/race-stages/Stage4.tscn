@@ -13,10 +13,11 @@
 [ext_resource path="res://objects/obstacles/Float.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/obstacles/Metal2.tscn" type="PackedScene" id=13]
-[ext_resource path="res://race-mode/Checkpoint.tscn" type="PackedScene" id=14]
+[ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=14]
 [ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=15]
-[ext_resource path="res://race-mode/FinishLine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=16]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=17]
+
 
 [node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -2400, -4000 )
