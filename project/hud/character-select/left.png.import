@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/c3.png-ebe656322e274ecb578f453e95a5fe32.stex"
+path="res://.import/left.png-8642520ba49ed49d4ca0e415e3229a81.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/c3.png"
-dest_files=[ "res://.import/c3.png-ebe656322e274ecb578f453e95a5fe32.stex" ]
+source_file="res://hud/character-select/left.png"
+dest_files=[ "res://.import/left.png-8642520ba49ed49d4ca0e415e3229a81.stex" ]
 
 [params]
 
