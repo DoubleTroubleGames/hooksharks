@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rider.png-c19c1c233ec037446ca8005b194eaced.stex"
+path="res://.import/drill_rider.png-1d5eceb9183870bce655529f70037bfd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/characters/Green/rider.png"
-dest_files=[ "res://.import/rider.png-c19c1c233ec037446ca8005b194eaced.stex" ]
+source_file="res://player/characters/Drill/drill_rider.png"
+dest_files=[ "res://.import/drill_rider.png-1d5eceb9183870bce655529f70037bfd.stex" ]
 
 [params]
 

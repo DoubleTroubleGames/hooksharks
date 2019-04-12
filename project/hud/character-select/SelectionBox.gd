@@ -6,7 +6,7 @@ signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
-const CHARACTERS = ["Pirate", "Green", "Purple", "Yellow"]
+const CHARACTERS = ["Pirate", "Green", "Drill", "Yellow"]
 const DEADZONE = .55
 
 var available_chars = CHARACTERS.duplicate()
