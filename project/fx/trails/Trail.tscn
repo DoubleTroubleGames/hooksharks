@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fx/trails/Trail.gd" type="Script" id=1]
 [ext_resource path="res://fx/trails/oilspill_sheet.png" type="Texture" id=2]
-[ext_resource path="res://fx/grad.tres" type="Gradient" id=3]
+[ext_resource path="res://fx/trails/trail.material" type="Material" id=3]
 [ext_resource path="res://fx/trails/fumaca_sheet.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
@@ -12,43 +12,7 @@ particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Curve" id=2]
-min_value = -360.0
-max_value = 360.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
-
-[sub_resource type="GradientTexture" id=4]
-gradient = ExtResource( 3 )
-
-[sub_resource type="Curve" id=5]
-_data = [ Vector2( 0, 0.5033 ), 0.0, 0.311964, 0, 0, Vector2( 1, 0.7849 ), 0.636326, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
-
-[sub_resource type="ParticlesMaterial" id=7]
-trail_divisor = 5
-emission_shape = 2
-emission_box_extents = Vector3( 10, 10, 1 )
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-angular_velocity = -2.37327e-34
-angular_velocity_curve = SubResource( 3 )
-radial_accel = 10.0
-radial_accel_random = 1.0
-damping = 5.0
-damping_random = 1.0
-scale = 1.5
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 4 )
-anim_speed = 1.5
-anim_offset = 1.0
-anim_offset_random = 1.0
-
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=2]
 
 [node name="Trail" type="Node2D"]
 z_index = 1
@@ -69,7 +33,7 @@ material = SubResource( 1 )
 amount = 50
 lifetime = 2.0
 speed_scale = 1.45
-process_material = SubResource( 7 )
+process_material = ExtResource( 3 )
 texture = ExtResource( 4 )
 normal_map = ExtResource( 4 )
 __meta__ = {
@@ -85,7 +49,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 8 )
+shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 8.0

@@ -2,17 +2,37 @@ extends Node2D
 
 onready var initial_position = position
 
-const POWERS = [preload("res://objects/Powerups/InfiniteDive.tscn"),
-				preload("res://objects/Powerups/MegaHook.tscn"),
-                preload("res://objects/Powerups/TrailPower.tscn")]
+const infinite_dive = preload("res://objects/Powerups/InfiniteDive.tscn")
+const megahook = preload("res://objects/Powerups/MegaHook.tscn")
+const trail_power = preload("res://objects/Powerups/TrailPower.tscn")
+
+const oxygen_barrel = preload("res://assets/barrelo2.png")
+const wooden_barrel = preload("res://assets/barrel2.png")
+const metal_barrel = preload("res://assets/Barrel3.png")
+
+const ob_shader = preload("res://assets/barrelo2_o.png")
+const wb_shader = preload("res://assets/barrel2_o.png")
+const mb_shader = preload("res://assets/Barrel3_o.png")
+
+const wooden_particle = preload("res://assets/barril_quebrando_particula.png")
+const metal_particle = preload("res://assets/metalbarrel_particle.png")
+
+
+const POWERS = [infinite_dive,
+				megahook,
+                trail_power]
 				
-const CRATES = ["barrelo2",
-				"barrel2",
-                "Barrel3"]
+const CRATES = [oxygen_barrel,
+				wooden_barrel,
+                metal_barrel]
+
+const SHADERS = [ob_shader,
+				 wb_shader,
+                 mb_shader]
 				
-const PARTICLES = [preload("res://assets/barril_quebrando_particula.png"),
-				   preload("res://assets/barril_quebrando_particula.png"),
-                   preload("res://assets/metalbarrel_particle.png")]
+const PARTICLES = [wooden_particle,
+				   wooden_particle,
+                   metal_particle]
 
 export(PackedScene) var powerup
 
@@ -83,8 +103,8 @@ func activate(player):
 func set_random_power():
 	var index = randi() % POWERS.size()
 	powerup = POWERS[index]
-	$Sprite.set_texture(load(str("res://assets/", CRATES[index], ".png")))
-	$Sprite2.set_texture(load(str("res://assets/", CRATES[index], "_o.png")))
+	$Sprite.set_texture(CRATES[index])
+	$Sprite2.set_texture(SHADERS[index])
 	$Particles2D.set_texture(PARTICLES[index])
 	
 
