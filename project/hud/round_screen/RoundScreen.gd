@@ -36,9 +36,11 @@ func _ready():
 	
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
-
+	
 	for i in range(player_scores.size()):
 		player_scores[i].visible = i < RoundManager.players_total
+	for i in range(RoundManager.players_total):
+		set_player_sticker(i)
 
 func _process(delta):
 	if not _moved_left and Input.is_action_just_pressed("ui_joy_left"):
@@ -134,6 +136,16 @@ func transition():
 	Transition.transition_in()
 
 
+func set_player_sticker(index):
+	var Sticker = get_node(str("Background/ScoreGrid/Player", index + 1, "/Portrait"))
+	var character = RoundManager.character_map[index]
+	var char_sticker = load(str("res://characters/", character, "/sticker.png"))
+	var char_color = RoundManager.CHAR_COLOR[RoundManager.character_map[index]]
+	
+	Sticker.set_modulate(char_color.lightened(.2))
+	Sticker.texture = char_sticker
+
+
 func _on_Restart_pressed():
 	RoundManager.reset_round()
 	transition()
@@ -146,6 +158,7 @@ func _on_Quit_pressed():
 	yield(Transition, "finished")
 	Sound.stop_ambience()
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
+
 
 func getRandomTrivia():
 	var index = randi() % TRIVIA.size()

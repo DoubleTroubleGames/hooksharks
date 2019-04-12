@@ -27,7 +27,6 @@ RoundManager="*res://RoundManager.gd"
 Sound="*res://Sound.tscn"
 Transition="*res://Transition.tscn"
 Collision="*res://Collision.gd"
-ParticlesCache="*res://ParticlesCache.tscn"
 
 [debug]
 
