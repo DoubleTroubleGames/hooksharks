@@ -107,6 +107,7 @@ Start"
 anims/show = SubResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="ScreenGlow" type="ColorRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )

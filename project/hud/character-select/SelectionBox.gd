@@ -6,7 +6,7 @@ signal tried_to_start
 
 enum States {CLOSED, OPEN, READY}
 
-const CHARACTERS = ["Pirate", "Green", "Purple", "Yellow"]
+const CHARACTERS = ["Pirate", "Green", "Drill", "Yellow"]
 const DEADZONE = .55
 
 var available_chars = CHARACTERS.duplicate()
@@ -16,6 +16,7 @@ var state = States.CLOSED
 var _moved_left = false
 var _moved_right = false
 var changing = false
+var rechange_shark = false
 
 
 func _ready():
@@ -51,7 +52,7 @@ func _input(event):
 				change_state(States.READY)
 				$Sounds/ConfirmSFX.play()
 			else:
-				$Sprite/AnimationPlayer.play("shake")
+				$AnimationPlayer.play("shake")
 				$Sounds/CancelSFX.play()
 		elif state == States.READY:
 			$AnimationPlayer.play("shake")
@@ -78,36 +79,28 @@ func _input(event):
 
 
 func toggle_left():
+	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	set_character(char_index - 1)
 	#### Visuals for character changing ####
 	changing = true
-	$SharkSprite/Shark/AnimationPlayer.play("dive")
-	$Boarder/AnimationPlayer.play("close")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	change_shark()
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
-	add_shark(CHARACTERS[char_index])
-	$SharkSprite/Shark/AnimationPlayer.play("emerge")
-	$Boarder/AnimationPlayer.play("open")
+	$Boarder/AnimationPlayer.play("change_char_left")
 	yield($Boarder/AnimationPlayer, "animation_finished")
-	$SharkSprite/Shark/AnimationPlayer.play("idle")
 	changing = false
 	########################################
 	$Sounds/SelectSFX.play()
 
 
 func toggle_right():
+	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	set_character(char_index + 1)
 	#### Visuals for character changing ####
 	changing = true
-	$SharkSprite/Shark/AnimationPlayer.play("dive")
-	$Boarder/AnimationPlayer.play("close")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	change_shark()
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
-	add_shark(CHARACTERS[char_index])
-	$SharkSprite/Shark/AnimationPlayer.play("emerge")
-	$Boarder/AnimationPlayer.play("open")
+	$Boarder/AnimationPlayer.play("change_char_right")
 	yield($Boarder/AnimationPlayer, "animation_finished")
-	$SharkSprite/Shark/AnimationPlayer.play("idle")
 	changing = false
 	########################################
 	$Sounds/SelectSFX.play()
@@ -183,6 +176,29 @@ func add_shark(shark_name):
 
 func shake():
 	$AnimationPlayer.play("shake")
+
+
+func change_shark():
+	var shark_anim = $SharkSprite/Shark/AnimationPlayer
+	
+	if shark_anim.current_animation != "idle": # shark already changing
+		rechange_shark = true
+		return
+	
+	shark_anim.play("dive")
+	yield(shark_anim, "animation_finished")
+	add_shark(CHARACTERS[char_index])
+	shark_anim = $SharkSprite/Shark/AnimationPlayer # since the shark scene was change, we have to update this node
+	shark_anim.play("dive_idle")
+	yield(get_tree().create_timer(shark_anim.current_animation_length/2), "timeout")
+	shark_anim.play("emerge")
+	shark_anim.queue("idle")
+	
+	if rechange_shark:
+		yield(get_tree().create_timer(shark_anim.current_animation_length/2), "timeout")
+		rechange_shark = false
+		shark_anim.play("idle")
+		change_shark()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
