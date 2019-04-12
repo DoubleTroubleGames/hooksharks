@@ -78,17 +78,17 @@ func _input(event):
 
 
 func toggle_left():
+	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	set_character(char_index - 1)
 	#### Visuals for character changing ####
 	changing = true
 	$SharkSprite/Shark/AnimationPlayer.play("dive")
-	$Boarder/AnimationPlayer.play("close")
-	yield($Boarder/AnimationPlayer, "animation_finished")
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	$Boarder/AnimationPlayer.play("change_char_left")
+	yield($Boarder/AnimationPlayer, "animation_finished")
 	add_shark(CHARACTERS[char_index])
 	$SharkSprite/Shark/AnimationPlayer.play("emerge")
-	$Boarder/AnimationPlayer.play("open")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	yield($SharkSprite/Shark/AnimationPlayer, "animation_finished")
 	$SharkSprite/Shark/AnimationPlayer.play("idle")
 	changing = false
 	########################################
@@ -96,17 +96,17 @@ func toggle_left():
 
 
 func toggle_right():
+	$Boarder/ChangePortrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
 	set_character(char_index + 1)
 	#### Visuals for character changing ####
 	changing = true
 	$SharkSprite/Shark/AnimationPlayer.play("dive")
-	$Boarder/AnimationPlayer.play("close")
-	yield($Boarder/AnimationPlayer, "animation_finished")
 	$Boarder/Portrait.set_texture(load(str("res://hud/character-select/", CHARACTERS[char_index], ".png")))
+	$Boarder/AnimationPlayer.play("change_char_right")
+	yield($Boarder/AnimationPlayer, "animation_finished")
 	add_shark(CHARACTERS[char_index])
 	$SharkSprite/Shark/AnimationPlayer.play("emerge")
-	$Boarder/AnimationPlayer.play("open")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	yield($SharkSprite/Shark/AnimationPlayer, "animation_finished")
 	$SharkSprite/Shark/AnimationPlayer.play("idle")
 	changing = false
 	########################################

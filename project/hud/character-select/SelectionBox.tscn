@@ -5,7 +5,7 @@
 [ext_resource path="res://hud/character-select/cover2.png" type="Texture" id=3]
 [ext_resource path="res://hud/character-select/cover.png" type="Texture" id=4]
 [ext_resource path="res://hud/character-select/Pirate.png" type="Texture" id=5]
-[ext_resource path="res://hud/character-select/Drill.png" type="Texture" id=6]
+[ext_resource path="res://hud/character-select/Purple.png" type="Texture" id=6]
 [ext_resource path="res://hud/character-select/grid.png" type="Texture" id=7]
 [ext_resource path="res://hud/character-select/gate.png" type="Texture" id=8]
 [ext_resource path="res://hud/character-select/ready.png" type="Texture" id=9]
@@ -29,8 +29,9 @@ animations = [ {
 size = 32
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 resource_name = "change_char_left"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ChangePortrait:region_rect")
 tracks/0/interp = 2
@@ -38,7 +39,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 301, 446 ), Rect2( 301, 0, 301, 446 ) ]
@@ -62,10 +63,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.28 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 150, 0 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 130, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Portrait:region_rect")
@@ -74,15 +75,27 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.28 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 0, 446 ), Rect2( 0, 0, 301, 446 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChangePortrait:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 0 ) ]
+}
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 resource_name = "change_char_right"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Portrait:region_rect")
 tracks/0/interp = 2
@@ -90,10 +103,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 301, 0, 301, 446 ), Rect2( 0, 0, 301, 446 ) ]
+"values": [ Rect2( 250, 0, 301, 446 ), Rect2( 0, 0, 301, 446 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ChangePortrait:visible")
@@ -114,10 +127,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 150, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 130, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ChangePortrait:region_rect")
@@ -126,14 +139,13 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Rect2( 0, 0, 301, 446 ), Rect2( 0, 0, 0, 446 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "close"
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Portrait:visible")
@@ -268,8 +280,7 @@ tracks/10/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "open"
+[sub_resource type="Animation" id=6]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Portrait:visible")
@@ -406,8 +417,7 @@ tracks/10/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "ready"
+[sub_resource type="Animation" id=7]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Gate:position")
@@ -556,8 +566,7 @@ tracks/11/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "unready"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Gate:position")
 tracks/0/interp = 1
@@ -655,7 +664,7 @@ tracks/7/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -683,7 +692,7 @@ tracks/1/keys = {
 "values": [ Vector2( 130, 130 ), Vector2( 130, 120 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Boarder:rotation_degrees")
@@ -721,6 +730,7 @@ region_rect = Rect2( 0, 0, 301, 446 )
 
 [node name="ChangePortrait" type="Sprite" parent="Boarder"]
 show_behind_parent = true
+position = Vector2( 10, 0 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 301, 0, 301, 446 )
@@ -775,12 +785,12 @@ texture = ExtResource( 12 )
 expand = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder"]
-anims/change_char_left = SubResource( 9 )
-anims/change_char_right = SubResource( 10 )
-anims/close = SubResource( 3 )
-anims/open = SubResource( 4 )
-anims/ready = SubResource( 5 )
-anims/unready = SubResource( 6 )
+anims/change_char_left = SubResource( 3 )
+anims/change_char_right = SubResource( 4 )
+anims/close = SubResource( 5 )
+anims/open = SubResource( 6 )
+anims/ready = SubResource( 7 )
+anims/unready = SubResource( 8 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
 editor/display_folded = true
@@ -807,7 +817,7 @@ bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/idle = SubResource( 7 )
-anims/shake = SubResource( 8 )
+anims/idle = SubResource( 9 )
+anims/shake = SubResource( 10 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
