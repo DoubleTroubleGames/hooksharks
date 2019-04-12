@@ -75,6 +75,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 10, 11, 12, 9, 8, 9, 12 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rider:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "dive_left"
@@ -199,6 +211,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 1, 2, 3, 2, 1, 0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rider:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.001
@@ -260,7 +284,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 40, 4 )
 vframes = 4
 hframes = 4
-frame = 7
+frame = 1
 
 [node name="UnderWater" type="Sprite" parent="."]
 show_behind_parent = true
@@ -268,10 +292,9 @@ texture = ExtResource( 2 )
 offset = Vector2( 40, 4 )
 vframes = 4
 hframes = 4
-frame = 7
+frame = 1
 
 [node name="Rider" type="Sprite" parent="."]
-visible = false
 position = Vector2( -30, 0 )
 texture = ExtResource( 3 )
 offset = Vector2( -15, 0 )
@@ -294,6 +317,7 @@ anims/left = SubResource( 7 )
 anims/right = SubResource( 8 )
 
 [node name="Area2D" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( -45, 0 )
 collision_mask = 61
 
