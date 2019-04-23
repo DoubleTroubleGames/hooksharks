@@ -146,6 +146,7 @@ func _on_box_unselected(character):
 
 func _on_box_tried_to_start():
 	if can_start():
+		$Sounds/PressStartSFX.play()
 		if tutorial:
 			if tutorial_shown:
 				start_game()
@@ -156,3 +157,5 @@ func _on_box_tried_to_start():
 				tutorial_shown = true
 		else:
 			start_game()
+	else:
+		$Sounds/DenySFX.play()

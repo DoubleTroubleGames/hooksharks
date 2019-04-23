@@ -62,6 +62,7 @@ func show_title():
 	tween.interpolate_property($CanvasLayer/ScreenGlow, "modulate:a", 1, 0,
 			GLOW_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+	$PressStartSFX.play()
 	camera.add_shake(1)
 	
 	$PressStartTimer.start()

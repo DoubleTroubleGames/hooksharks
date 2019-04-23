@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://fx/bubble.png" type="Texture" id=14]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -218,4 +220,12 @@ z_index = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
 anims/show = SubResource( 5 )
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 17 )
+
+[node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 18 )
 
