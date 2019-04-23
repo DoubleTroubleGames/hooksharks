@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://hud/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://hud/character-select/boarder.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -778,7 +779,6 @@ one_shot = true
 [node name="SharkChangeTween" type="Tween" parent="SharkSprite"]
 
 [node name="Sounds" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 14 )
@@ -790,6 +790,11 @@ bus = "SFX"
 
 [node name="CancelSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 16 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 17 )
 volume_db = -6.0
 bus = "SFX"
 

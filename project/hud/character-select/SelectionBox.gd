@@ -50,7 +50,7 @@ func _input(event):
 			else:
 				$Sounds/CancelSFX.play()
 		elif state == States.READY:
-			$Sounds/CancelSFX.play()
+			$Sounds/DenySFX.play()
 			emit_signal("tried_to_start")
 
 	elif event.is_action_pressed("ui_cancel"):
