@@ -20,20 +20,20 @@ var changing = false
 
 
 func _ready():
-	set_process(true)
+	set_physics_process(true)
 	$SharkSprite.hide()
 
-func _process(delta):
+func _physics_process(delta):
 	if device_name.left(8) == "gamepad_":
 		var device_n = int(device_name.right(8))
 		var axis_value = Input.get_joy_axis(device_n, 0)
-		if axis_value >= DEADZONE and not _moved_right:
+		if axis_value >= DEADZONE and not _moved_right and not changing:
 			_moved_right = true
 			toggle_left()
-		elif  axis_value <= -DEADZONE and not _moved_left:
+		elif  axis_value <= -DEADZONE and not _moved_left and not changing:
 			_moved_left = true
 			toggle_right()
-		if abs(axis_value) < DEADZONE:
+		elif abs(axis_value) < DEADZONE:
 			_moved_right = false
 			_moved_left = false
 
