@@ -13,8 +13,8 @@ size = 60
 font_data = ExtResource( 4 )
 
 [node name="PlayerScore" type="Control"]
-margin_right = 227.0
-margin_bottom = 184.0
+margin_right = 250.0
+margin_bottom = 280.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
