@@ -33,6 +33,8 @@ func _ready():
 		Transition.transition_out()
 		yield(Transition, "finished")
 	
+	Sound.menu_bgm.stop()
+	Sound.game_bgm.play()
 	Sound.play_ambience()
 	activate_players()
 

@@ -104,6 +104,7 @@ func start_game():
 		return
 	
 	starting_game = true
+	Sound.fade_out(Sound.menu_bgm)
 	
 	set_device_map()
 	RoundManager.reset_round()
