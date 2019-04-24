@@ -16,9 +16,11 @@ func activate():
 	player.create_trail = true
 	set_process(true)
 	yield($Timer, "timeout")
+	deactivate()
+
+func deactivate():
 	player.create_trail = false
 	queue_free()
-
 
 func _process(delta):
 	self.position = player.position

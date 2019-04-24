@@ -16,6 +16,9 @@ func activate():
 	player.start_infinite_dive()
 	set_process(true)
 	yield($Timer, "timeout")
+	deactivate()
+
+func deactivate():
 	player.infinite_dive = false
 	queue_free()
 

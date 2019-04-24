@@ -28,6 +28,8 @@ func activate(player, direction):
 	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
 
+func deactivate():
+	queue_free()
 
 func free_hook():
 	queue_free()
