@@ -105,10 +105,14 @@ func change_state(new_state):
 			device_name = ""
 			$Boarder/DeviceSprite.set_texture(null)
 			$Boarder/DeviceNumber.set_text("")
+			$Boarder/Left.hide()
+			$Boarder/Right.hide()
 			$SharkSprite.hide()
 			$Boarder/AnimationPlayer.play("close")
 		States.OPEN:
 			$SharkSprite.show()
+			$Boarder/Left.show()
+			$Boarder/Right.show()
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
 		States.READY:
