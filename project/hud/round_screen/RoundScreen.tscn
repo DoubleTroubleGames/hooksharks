@@ -106,31 +106,33 @@ margin_top = -244.0
 margin_right = 827.0
 margin_bottom = 388.0
 mouse_filter = 2
-custom_constants/vseparation = 100
+custom_constants/vseparation = 400
 custom_constants/hseparation = 1200
 columns = 2
 
 [node name="Player1" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
 editor/display_folded = true
-margin_bottom = 266.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="Player2" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
 editor/display_folded = true
-margin_left = 1427.0
-margin_right = 1654.0
-margin_bottom = 266.0
+margin_left = 1200.0
+margin_right = 1200.0
+margin_bottom = 0.0
 
 [node name="Player3" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
 editor/display_folded = true
-margin_top = 366.0
-margin_bottom = 632.0
+margin_top = 400.0
+margin_right = 0.0
+margin_bottom = 400.0
 
 [node name="Player4" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
 editor/display_folded = true
-margin_left = 1427.0
-margin_top = 366.0
-margin_right = 1654.0
-margin_bottom = 632.0
+margin_left = 1200.0
+margin_top = 400.0
+margin_right = 1200.0
+margin_bottom = 400.0
 
 [node name="Buttons" type="HBoxContainer" parent="Background"]
 visible = false
