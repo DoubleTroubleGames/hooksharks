@@ -7,13 +7,6 @@
 [ext_resource path="res://characters/Pirate/pirate_rider.png" type="Texture" id=5]
 [ext_resource path="res://characters/Pirate/pirate.png" type="Texture" id=6]
 
-
-
-
-
-
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 2 )
@@ -77,22 +70,26 @@ texture = ExtResource( 3 )
 anims/show = SubResource( 2 )
 
 [node name="hook" type="Sprite" parent="."]
+visible = false
 position = Vector2( 778.639, 495.326 )
 rotation = 1.5708
 texture = ExtResource( 4 )
 
 [node name="hook2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 433, 495.326 )
 rotation = 1.5708
 texture = ExtResource( 4 )
 
 [node name="rider" type="Sprite" parent="."]
+visible = false
 position = Vector2( 697.191, 749.26 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 
 [node name="baron_sheet_full" type="Sprite" parent="."]
+visible = false
 position = Vector2( 418.833, 695.148 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
