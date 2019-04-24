@@ -138,10 +138,13 @@ func transition():
 
 func set_player_sticker(index):
 	var Sticker = get_node(str("Background/ScoreGrid/Player", index + 1, "/Portrait"))
+	var PlayerNumber = get_node(str("Background/ScoreGrid/Player", index + 1, "/PlayerNumber"))
 	var character = RoundManager.character_map[index]
 	var char_sticker = load(str("res://characters/", character, "/sticker.png"))
 	var char_color = RoundManager.CHAR_COLOR[RoundManager.character_map[index]]
 	
+	PlayerNumber.set_modulate(char_color.lightened(.2))
+	PlayerNumber.set_text(str("P", index + 1))
 	Sticker.set_modulate(char_color.lightened(.2))
 	Sticker.texture = char_sticker
 

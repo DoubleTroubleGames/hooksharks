@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Control
 
 signal marker_animation_ended()
 
