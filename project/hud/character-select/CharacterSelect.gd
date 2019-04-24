@@ -74,7 +74,7 @@ func set_device_map():
 	var num_players = 0
 	
 	for box in boxes:
-		if box.is_ready():
+		if box.is_locked():
 			var character = box.CHARACTERS[box.char_index]
 			RoundManager.device_map.append(box.device_name)
 			RoundManager.character_map.append(character)
@@ -90,7 +90,7 @@ func can_start():
 		if box.is_open():
 			return false
 		
-		if box.is_ready():
+		if box.is_ready() or box.is_locked():
 			ready_players += 1
 	
 	if ready_players > 1:
@@ -151,6 +151,11 @@ func _on_box_tried_to_start():
 			if tutorial_shown:
 				start_game()
 			else:
+				for box in boxes:
+					if box.is_ready() or box.is_locked():
+						box.change_state(box.States.LOCKED)
+					else:
+						box.change_state(box.States.INACTIVE)
 				$TutorialNode/Tutorial/AnimationPlayer.play("show")
 				yield($TutorialNode/Tutorial/AnimationPlayer, "animation_finished")
 				$TutorialNode/Tutorial/Continue/AnimationPlayer.play("show")

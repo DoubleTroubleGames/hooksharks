@@ -4,7 +4,7 @@ signal selected(character)
 signal unselected(character)
 signal tried_to_start
 
-enum States {CLOSED, OPEN, READY}
+enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
 
 const CHARACTERS = ["Pirate", "Green", "Drill", "Yellow"]
 const DEADZONE = .55
@@ -49,7 +49,7 @@ func _input(event):
 				$Sounds/ConfirmSFX.play()
 			else:
 				$Sounds/CancelSFX.play()
-		elif state == States.READY:
+		elif state == States.READY or state == States.LOCKED:
 			emit_signal("tried_to_start")
 
 	elif event.is_action_pressed("ui_cancel") and not mid_animation:
@@ -131,17 +131,20 @@ func change_state(new_state):
 
 	state = new_state
 
+func is_inactive():
+	return state == States.INACTIVE
 
 func is_closed():
 	return state == States.CLOSED
 
-
 func is_open():
 	return state == States.OPEN
 
-
 func is_ready():
 	return state == States.READY
+
+func is_locked():
+	return state == States.LOCKED
 
 
 func open_with(event):
