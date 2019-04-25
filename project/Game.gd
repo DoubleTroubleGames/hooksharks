@@ -112,6 +112,8 @@ func add_new_stage():
 
 func remove_player(player):
 	players.erase(player)
+	player.set_physics_process(false)
+	player.set_process_input(false)
 	
 	if not calling_check_winner:
 		call_deferred("check_winner")
@@ -120,6 +122,7 @@ func remove_player(player):
 
 func check_winner():
 	calling_check_winner = false
+	
 	
 	if players.size() == 1:
 		var winner = players[0]
