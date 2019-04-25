@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float grey_factor : hint_range(0,1);
+
+void fragment() {
+	vec4 sample = texture(TEXTURE, UV);
+	float grey = 0.21 * sample.r + 0.71 * sample.g + 0.07 * sample.b;
+    COLOR = vec4(sample.r * (1.0 - grey_factor) + grey * grey_factor, sample.g * (1.0 - grey_factor) + grey * grey_factor, sample.b * (1.0 - grey_factor) + grey * grey_factor, 1.0);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/grey_factor = 1.0
+
