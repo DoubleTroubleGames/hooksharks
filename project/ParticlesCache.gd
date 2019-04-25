@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var ExplosionParticleMaterial = preload("res://fx/explosion/explosion.material")
 var CrateParticleMaterial = preload("res://fx/crates/materials/crate_particle.material")
 var TrailParticleMaterial = preload("res://fx/trails/trail.material")
 var RippleParticleMaterial = preload("res://fx/trails/ripples.material")
@@ -8,7 +9,8 @@ var DiveParticleMaterial = preload("res://fx/dive.material")
 var WallParticleMaterial = preload("res://fx/wall.material")
 
 var materials = [
-    CrateParticleMaterial,
+	ExplosionParticleMaterial,
+	CrateParticleMaterial,
 	TrailParticleMaterial,
 	RippleParticleMaterial,
 	BloodParticleMaterial,
