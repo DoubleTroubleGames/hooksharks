@@ -136,7 +136,6 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150

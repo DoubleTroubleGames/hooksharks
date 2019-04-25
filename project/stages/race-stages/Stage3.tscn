@@ -21,7 +21,7 @@
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=19]
 [ext_resource path="res://camera/GroupCamera.gd" type="Script" id=20]
 
-[node name="Stage" instance=ExtResource( 1 )]
+[node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1000, -3000 )
 stage_end = Vector2( 4000, 2000 )
 
@@ -189,6 +189,7 @@ position = Vector2( 3130, -570 )
 
 [node name="PowerUps" type="Node2D" parent="." index="6"]
 editor/display_folded = true
+z_index = 2
 
 [node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 17 )]
 position = Vector2( 1190.49, 173.475 )

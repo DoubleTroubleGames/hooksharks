@@ -21,8 +21,7 @@
 [ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=20]
 
-
-[node name="Stage2" instance=ExtResource( 1 )]
+[node name="Stage2" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1600, -1100 )
 stage_end = Vector2( 5500, 2000 )
 
@@ -43,6 +42,9 @@ position = Vector2( 300, 170 )
 
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 position = Vector2( 300, 770 )
+
+[node name="Obstacles" parent="." index="2"]
+editor/display_folded = true
 
 [node name="Floor" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 position = Vector2( 56.5043, 169.719 )
@@ -165,6 +167,8 @@ rotation = -2.5332e-05
 scale = Vector2( 0.6, 0.6 )
 
 [node name="PowerUps" type="Node2D" parent="." index="5"]
+editor/display_folded = true
+z_index = 2
 
 [node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 17 )]
 position = Vector2( 1052.92, 236.326 )

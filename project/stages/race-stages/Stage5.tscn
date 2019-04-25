@@ -20,7 +20,6 @@
 [ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=18]
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=19]
 
-
 [node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -2300, -2000 )
 stage_end = Vector2( 4400, 2000 )
@@ -313,6 +312,7 @@ editor_draw_limits = true
 script = ExtResource( 16 )
 
 [node name="Powerups" type="Node2D" parent="." index="7"]
+z_index = 2
 
 [node name="Powerup" parent="Powerups" index="0" instance=ExtResource( 17 )]
 position = Vector2( 1040, 256.294 )
