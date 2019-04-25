@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://hud/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://camera/Camera.gd" type="Script" id=5]
 [ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=6]
+[ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 160
@@ -88,6 +89,7 @@ custom_constants/shadow_offset_y = 8
 text = "- Beyond Waterdome -"
 
 [node name="PressStart" type="Label" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_top = 1.0
@@ -130,5 +132,7 @@ one_shot = true
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="BackIndicator" parent="." instance=ExtResource( 7 )]
 
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
