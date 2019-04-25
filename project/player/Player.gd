@@ -372,7 +372,7 @@ func dive():
 	self.add_child(dive_particles)
 	can_dive = false
 	sprite_animation.play("dive")
-	yield(sprite_animation, "animation_finished")
+	yield(get_tree().create_timer(0.2), "timeout")
 	if sprite_animation.assigned_animation.begins_with("dive"):
 		# Verification in case diving was canceled
 		diving = true

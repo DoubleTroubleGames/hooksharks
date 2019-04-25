@@ -8,7 +8,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "dive"
-length = 0.2
+length = 0.3
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -17,7 +17,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.2 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7 ]
@@ -285,7 +285,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 40, 4 )
 vframes = 4
 hframes = 4
-frame = 1
+frame = 7
 
 [node name="UnderWater" type="Sprite" parent="."]
 z_index = -1
@@ -293,9 +293,10 @@ texture = ExtResource( 2 )
 offset = Vector2( 40, 4 )
 vframes = 4
 hframes = 4
-frame = 1
+frame = 7
 
 [node name="Rider" type="Sprite" parent="."]
+visible = false
 position = Vector2( -30, 0 )
 texture = ExtResource( 3 )
 offset = Vector2( -15, 0 )
