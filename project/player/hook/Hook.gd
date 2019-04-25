@@ -75,7 +75,7 @@ func hit_object(object):
 
 
 func hit_shark(shark):
-	if not shark.stunned and not shark.diving:
+	if not shark.stunned and not shark.diving and not shark.invincible:
 		stop_at = shark
 		shark.hook_collision(self)
 		emit_signal("shook_screen", SCREEN_SHAKE_SHARK_HIT)
