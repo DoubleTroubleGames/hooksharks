@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -12,57 +12,17 @@
 [ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/roof.png" type="Texture" id=11]
 [ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=12]
-[ext_resource path="res://fx/circle.png" type="Texture" id=13]
-[ext_resource path="res://fx/bubble.png" type="Texture" id=14]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=15]
-[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=18]
+[ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=13]
+[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 use_mipmaps = true
 use_filter = true
 
-[sub_resource type="DynamicFont" id=2]
-size = 45
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 15 )
-
-[sub_resource type="Animation" id=3]
-resource_name = "hide"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "show"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "show"
 length = 0.5
 tracks/0/type = "value"
@@ -136,6 +96,7 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -176,58 +137,27 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
-[node name="BackIndicator" type="Node2D" parent="."]
-editor/display_folded = true
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 70.1099, 1006.6 )
-z_index = 1
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="Progress" type="TextureProgress" parent="BackIndicator"]
-margin_left = -50.0
-margin_top = -50.0
-margin_right = 462.0
-margin_bottom = 462.0
-rect_scale = Vector2( 0.2, 0.2 )
-texture_under = ExtResource( 13 )
-texture_progress = ExtResource( 14 )
-fill_mode = 4
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Message" type="Label" parent="BackIndicator"]
-margin_left = 100.0
-margin_top = -30.0
-margin_right = 548.0
-margin_bottom = 35.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Hold BACK to leave"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BackIndicator"]
-anims/hide = SubResource( 3 )
-anims/show = SubResource( 4 )
+[node name="BackIndicator" parent="." instance=ExtResource( 13 )]
+editor/display_folded = false
 
 [node name="TutorialNode" type="Node2D" parent="."]
 editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 z_index = 1
 
-[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 16 )]
+[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 14 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
-anims/show = SubResource( 5 )
+anims/show = SubResource( 2 )
 
 [node name="Sounds" type="Node" parent="."]
 editor/display_folded = true
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 17 )
+stream = ExtResource( 15 )
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 18 )
+stream = ExtResource( 16 )
 
+
+[editable path="BackIndicator"]
