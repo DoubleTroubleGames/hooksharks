@@ -7,7 +7,7 @@ const megahook = preload("res://objects/Powerups/MegaHook.tscn")
 const trail_power = preload("res://objects/Powerups/TrailPower.tscn")
 
 const oxygen_barrel = preload("res://assets/barrelo2.png")
-const wooden_barrel = preload("res://assets/barrel2.png")
+const wooden_barrel = preload("res://assets/barrelo3.png")
 const metal_barrel = preload("res://assets/Barrel3.png")
 
 const ob_shader = preload("res://assets/barrelo2_o.png")
