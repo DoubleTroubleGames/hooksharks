@@ -53,9 +53,11 @@ func change_button(direction):
 	buttons[btn_index].modulate = UNSELECTED_COLOR
 	btn_index = wrapi(btn_index + direction, 0, buttons.size())
 	buttons[btn_index].modulate = SELECTED_COLOR
+	$MenuSelectionSFX.play()
 
 
 func press_button():
+	$MenuConfirmSFX.play()
 	match btn_index:
 		RESUME:
 			unpause()
@@ -72,6 +74,7 @@ func pause(player):
 	$Background/CenterContainer/VBoxContainer/HBoxContainer/Paused.set_modulate(color)
 	player_device = player.device_name
 	player_label.text = str("P", player.id + 1)
+	$PauseOpenSFX.play()
 
 
 func unpause():

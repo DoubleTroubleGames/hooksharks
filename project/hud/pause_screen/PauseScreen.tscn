@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://hud/pause_screen/PauseScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/sound/pause_open.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 160
@@ -79,4 +82,13 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Quit"
 align = 1
 valign = 1
+
+[node name="PauseOpenSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="MenuSelectionSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="MenuConfirmSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
