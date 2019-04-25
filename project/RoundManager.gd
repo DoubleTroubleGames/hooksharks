@@ -5,7 +5,7 @@ const MATCH_POINTS = 3
 const CHAR_COLOR = { "Pirate" : Color(.7, 0, .4), 
                       "Drill" : Color(.4, .4, .7), 
                       "Green" : Color(0, .8, 0),
-                     "Yellow" : Color(0, .8, .8) }
+                     "Yellow" : Color(.9, .9, .25) }
 
 var scores
 var round_number
