@@ -14,10 +14,15 @@ onready var round_label = $Background/Round/Label
 onready var tween = $Tween
 
 const TRIVIA = [
-	"Girotto, you are fired",
 	"Great White Sharks aren't so great after all",
-	"Sharks can't fly",
+	"There isn't always a bigger fish in the sea if you are a big-ass whale",
 	"Hammersharks eat nails",
+	"Sharks always swim fowards because they are afraid of looking back into their past",
+	"Sharks hunt fish without a fishing certificate",
+	"Sharks can see eletricity",
+	"Whale sharks are not actually whales",
+	"Goblin sharks are, indeed, goblins",
+	"Cookiecutter sharks prefer icecream to cookies"
 ]
 
 const DELAY = .1
