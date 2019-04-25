@@ -136,6 +136,7 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -177,6 +178,7 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
 [node name="BackIndicator" type="Node2D" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 70.1099, 1006.6 )
 z_index = 1
@@ -222,6 +224,7 @@ z_index = 1
 anims/show = SubResource( 5 )
 
 [node name="Sounds" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 17 )

@@ -13,7 +13,6 @@ var available_characters
 var starting_game = false
 var back_indicator_up_speed = 100
 var back_indicator_down_speed = 150
-var trying_to_leave_counter = 0
 var tutorial_shown = false
 
 
@@ -35,32 +34,27 @@ func _ready():
 
 
 func _physics_process(delta):
-	if trying_to_leave_counter > 0:
+	if Input.is_action_pressed("ui_cancel"):
 		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
 	else:
-		bar.value = max(0, bar.value - back_indicator_down_speed * delta) 
+		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
+	
 	if bar.value >= 100:
 		transition_to(ModeSelect)
-	elif bar.value > 0:
+	elif bar.value > 20:
 		if anim_player.assigned_animation != "show":
 			anim_player.play("show")
-	else:
+	elif bar.value < 1:
 		if anim_player.assigned_animation == "show":
 			anim_player.play("hide")
 
 
 func _input(event):
 	if event.is_action_pressed("ui_start"):
-		trying_to_leave_counter = max(0, trying_to_leave_counter - 1)
 		for box in boxes:
 			if box.is_closed():
 				box.open_with(event)
 				return
-	elif event.is_action_pressed("ui_cancel"):
-		trying_to_leave_counter += 1
-	elif event.is_action_released("ui_cancel"):
-		if not Input.is_action_pressed("ui_cancel"):
-			trying_to_leave_counter = max(0, trying_to_leave_counter - 1)
 
 
 func update_boxes():
