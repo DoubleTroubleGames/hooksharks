@@ -7,7 +7,7 @@ const MEGAHOOK = preload("res://objects/Powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://player/hook/HookClink.tscn")
 const ROPE = preload("res://player/rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://fx/WallParticles.tscn")
-const SHOW_ROUND_DELAY = 1
+const SHOW_ROUND_DELAY = 1.5
 const TRANSITION_OFFSET = 1000
 const TRANSITION_TIME = 1.0
 
@@ -27,6 +27,10 @@ func _ready():
 	add_child(stage)
 	
 	Cameras = get_cameras() 
+	for camera in Cameras:
+		if camera.has_method("reset_focus_point"):
+			camera.reset_focus_point()
+	
 	connect_players()
 	
 	if Transition.is_black_screen:
@@ -122,6 +126,9 @@ func check_winner():
 		winner.disable()
 		RoundManager.scores[winner.id] += 1
 		RoundManager.round_winner = winner.id
+		for camera in Cameras:
+			if camera.has_method("focus_on_point"):
+				camera.focus_on_point(winner.get_global_position())
 	elif players.size() == 0:
 		RoundManager.round_winner = -1
 	else:
