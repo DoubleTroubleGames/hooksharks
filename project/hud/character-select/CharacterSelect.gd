@@ -111,9 +111,11 @@ func start_game():
 
 func try_start_message():
 	if can_start():
-		$StartMessage.show()
+		pass
+		#$StartMessage.show()
 	else:
-		$StartMessage.hide()
+		pass
+		#$StartMessage.hide()
 
 
 func transition_to(packed_scene):
