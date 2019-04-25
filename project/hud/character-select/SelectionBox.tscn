@@ -753,9 +753,9 @@ anims/ready = SubResource( 7 )
 anims/unready = SubResource( 8 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 100, 460 )
 scale = Vector2( -1, 1 )
+z_index = 1
 
 [node name="Shark" parent="SharkSprite" instance=ExtResource( 13 )]
 

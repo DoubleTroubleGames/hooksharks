@@ -288,7 +288,7 @@ hframes = 4
 frame = 1
 
 [node name="UnderWater" type="Sprite" parent="."]
-show_behind_parent = true
+z_index = -1
 texture = ExtResource( 2 )
 offset = Vector2( 40, 4 )
 vframes = 4
