@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/board.png" type="Texture" id=17]
+[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -37,6 +39,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=3]
+size = 170
+font_data = ExtResource( 18 )
 
 [node name="CharacterSelect" type="Control"]
 anchor_right = 1.0
@@ -158,6 +164,28 @@ stream = ExtResource( 15 )
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 16 )
+
+[node name="StartMessage" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.901961 )
+position = Vector2( 972.688, 222.794 )
+rotation = 0.0523599
+scale = Vector2( 0.7, 0.7 )
+z_index = 5
+texture = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="StartMessage"]
+margin_left = -814.849
+margin_top = -216.956
+margin_right = 785.151
+margin_bottom = 183.044
+custom_fonts/font = SubResource( 3 )
+text = "Press start to begin"
+align = 1
+valign = 1
 
 
 [editable path="BackIndicator"]
