@@ -13,16 +13,20 @@
 [ext_resource path="res://assets/roof.png" type="Texture" id=11]
 [ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=12]
 [ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=13]
-[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/board.png" type="Texture" id=17]
-[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/board.png" type="Texture" id=14]
+[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 use_mipmaps = true
 use_filter = true
+
+[sub_resource type="DynamicFont" id=3]
+size = 170
+font_data = ExtResource( 15 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "show"
@@ -39,10 +43,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-
-[sub_resource type="DynamicFont" id=3]
-size = 170
-font_data = ExtResource( 18 )
 
 [node name="CharacterSelect" type="Control"]
 anchor_right = 1.0
@@ -102,7 +102,6 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -146,33 +145,14 @@ size_flags_vertical = 6
 [node name="BackIndicator" parent="." instance=ExtResource( 13 )]
 editor/display_folded = false
 
-[node name="TutorialNode" type="Node2D" parent="."]
-editor/display_folded = true
-modulate = Color( 1, 1, 1, 0 )
-z_index = 1
-
-[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 14 )]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
-anims/show = SubResource( 2 )
-
-[node name="Sounds" type="Node" parent="."]
-editor/display_folded = true
-
-[node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 15 )
-
-[node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 16 )
-
 [node name="StartMessage" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.901961 )
 position = Vector2( 972.688, 222.794 )
 rotation = 0.0523599
 scale = Vector2( 0.7, 0.7 )
-z_index = 5
-texture = ExtResource( 17 )
+z_index = 1
+texture = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -186,6 +166,25 @@ custom_fonts/font = SubResource( 3 )
 text = "Press start to begin"
 align = 1
 valign = 1
+
+[node name="TutorialNode" type="Node2D" parent="."]
+editor/display_folded = true
+modulate = Color( 1, 1, 1, 0 )
+z_index = 2
+
+[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 16 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
+anims/show = SubResource( 2 )
+
+[node name="Sounds" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 17 )
+
+[node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 18 )
 
 
 [editable path="BackIndicator"]

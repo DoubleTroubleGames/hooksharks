@@ -60,8 +60,6 @@ func _input(event):
 func update_boxes():
 	for box in boxes:
 		box.update_available_characters(available_characters)
-	
-	try_start_message()
 
 
 func set_device_map():
@@ -83,13 +81,11 @@ func can_start():
 	for box in boxes:
 		if box.is_open():
 			return false
-		
 		if box.is_ready() or box.is_locked():
 			ready_players += 1
 	
 	if ready_players > 1:
 		return true
-	
 	return false
 
 
@@ -109,13 +105,12 @@ func start_game():
 		transition_to(RaceMode)
 
 
-func try_start_message():
-	if can_start():
-		pass
-		#$StartMessage.show()
-	else:
-		pass
-		#$StartMessage.hide()
+func show_start_message():
+	$StartMessage.show()
+
+
+func hide_start_message():
+	$StartMessage.hide()
 
 
 func transition_to(packed_scene):
@@ -130,13 +125,28 @@ func transition_to(packed_scene):
 
 
 func _on_box_selected(character):
+	var open_boxes = 0
+	var ready_boxes = 0
+	
 	available_characters.erase(character)
 	update_boxes()
+	
+	for box in boxes:
+		if box.is_open():
+			open_boxes += 1
+		elif box.is_ready():
+			ready_boxes +=1
+	
+	if ready_boxes > 0 and open_boxes == 1:
+		# For some reason, the box that emits the selected signal is always identified as open, which is
+		# why this check is so weird
+		show_start_message()
 
 
 func _on_box_unselected(character):
 	available_characters.append(character)
 	update_boxes()
+	hide_start_message()
 
 
 func _on_box_tried_to_start():
