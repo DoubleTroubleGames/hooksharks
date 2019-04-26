@@ -16,9 +16,9 @@ onready var tween = $Tween
 const TRIVIA = [
 	"Great White Sharks aren't so great after all",
 	"There isn't always a bigger fish in the sea if you are a big-ass whale",
-	"Hammersharks eat nails",
+	"Hammerhead sharks eat nails",
 	"Sharks always swim fowards because they are afraid of looking back into their past",
-	"Sharks hunt fish without a fishing certificate",
+	"Sharks hunt fish without a fishing permit",
 	"Sharks can see eletricity",
 	"Whale sharks are not actually whales",
 	"Goblin sharks are, indeed, goblins",
@@ -163,8 +163,9 @@ func _on_Restart_pressed():
 
 func _on_Quit_pressed():
 	transition()
-	yield(Transition, "finished")
 	Sound.stop_ambience()
+	Sound.fade_out(Sound.game_bgm, Sound.menu_bgm)
+	yield(Transition, "finished")
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
 
 

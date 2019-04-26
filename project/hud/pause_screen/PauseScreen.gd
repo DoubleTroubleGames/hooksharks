@@ -19,7 +19,7 @@ onready var _moved_down = false
 func _ready():
 	buttons[btn_index].modulate = SELECTED_COLOR
 	set_process_input(false)
-	set_process(true)
+	set_process(false)
 
 func _process(delta):
 	if player_device.left(8) == "gamepad_":
@@ -66,10 +66,12 @@ func press_button():
 
 
 func pause(player):
+	Sound.on_pause()
 	var color = RoundManager.CHAR_COLOR[RoundManager.character_map[player.id]]
 	get_tree().paused = true
 	background.visible = true
 	set_process_input(true)
+	set_process(true)
 	player_label.set_modulate(color)
 	$Background/CenterContainer/VBoxContainer/HBoxContainer/Paused.set_modulate(color)
 	player_device = player.device_name
@@ -78,15 +80,21 @@ func pause(player):
 
 
 func unpause():
+	Sound.on_unpause()
 	get_tree().paused = false
 	background.visible = false
 	set_process_input(false)
+	set_process(false)
 
 
 func quit():
 	set_process_input(false)
+	set_process(false)
 	Transition.transition_in()
-	yield(Transition, "finished")
 	Sound.stop_ambience()
+	Sound.fade_out(Sound.game_bgm, Sound.menu_bgm)
+	
+	yield(Transition, "finished")
+	
 	get_tree().paused = false
 	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
