@@ -38,8 +38,9 @@ func _ready():
 		yield(Transition, "finished")
 	
 	Sound.menu_bgm.stop()
-	Sound.game_bgm.play()
-	Sound.play_ambience()
+	if not Sound.game_bgm.playing:
+		Sound.game_bgm.play()
+		Sound.play_ambience()
 	activate_players()
 
 
