@@ -25,19 +25,17 @@ size = 100
 use_mipmaps = true
 use_filter = true
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 70
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 170
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 15 )
+font_data = ExtResource( 16 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:modulate")
@@ -116,7 +114,7 @@ margin_left = 310.0
 margin_top = 180.0
 margin_right = 378.0
 margin_bottom = 281.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "P1"
 
 [node name="P2" type="Label" parent="PlayerIDs"]
@@ -124,7 +122,7 @@ margin_left = 710.0
 margin_top = 180.0
 margin_right = 801.0
 margin_bottom = 385.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "P2
 "
 
@@ -133,7 +131,7 @@ margin_left = 1120.0
 margin_top = 180.0
 margin_right = 1204.0
 margin_bottom = 385.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "P3
 "
 
@@ -142,7 +140,7 @@ margin_left = 1530.0
 margin_top = 180.0
 margin_right = 1616.0
 margin_bottom = 385.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "P4
 "
 
@@ -190,7 +188,6 @@ size_flags_vertical = 6
 [node name="BackIndicator" parent="." instance=ExtResource( 14 )]
 
 [node name="StartMessage" type="Sprite" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 975, 220 )
 rotation = 0.0523599
@@ -206,7 +203,7 @@ margin_left = -814.849
 margin_top = -216.956
 margin_right = 785.151
 margin_bottom = 183.044
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Press start to begin"
 align = 1
 valign = 1
@@ -221,7 +218,7 @@ z_index = 2
 [node name="Tutorial" parent="TutorialNode" instance=ExtResource( 17 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
-anims/show = SubResource( 3 )
+anims/show = SubResource( 4 )
 
 [node name="Sounds" type="Node" parent="."]
 editor/display_folded = true
