@@ -7,12 +7,7 @@
 [ext_resource path="res://camera/Camera.gd" type="Script" id=5]
 [ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=6]
 [ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=7]
-
-[sub_resource type="DynamicFont" id=1]
-size = 160
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
+[ext_resource path="res://hud/main-menu/Hook_logo_out.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=2]
 size = 72
@@ -41,6 +36,9 @@ tracks/0/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 ModeSelect = ExtResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
@@ -48,45 +46,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1440.0
-margin_top = -810.0
-margin_right = 1440.0
-margin_bottom = 810.0
+margin_left = -1800.0
+margin_top = -1012.5
+margin_right = 1800.0
+margin_bottom = 1012.5
 texture = ExtResource( 3 )
-
-[node name="Title" type="Label" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -345.0
-margin_right = 758.0
-margin_bottom = -116.0
-rect_rotation = 30.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 15
-custom_constants/shadow_offset_y = 15
-text = "HookSharks"
-
-[node name="Subtitle" type="Label" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -232.0
-margin_top = -152.0
-margin_right = 575.0
-margin_bottom = -49.0
-rect_rotation = 30.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 8
-custom_constants/shadow_offset_y = 8
-text = "- Beyond Waterdome -"
 
 [node name="PressStart" type="Label" parent="."]
 editor/display_folded = true
@@ -109,7 +73,6 @@ Start"
 anims/show = SubResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="ScreenGlow" type="ColorRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
@@ -134,5 +97,18 @@ one_shot = true
 stream = ExtResource( 6 )
 
 [node name="BackIndicator" parent="." instance=ExtResource( 7 )]
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -354.0
+margin_right = 707.0
+margin_bottom = 354.0
+rect_rotation = 30.0
+rect_pivot_offset = Vector2( 553, 354 )
+texture = ExtResource( 8 )
 
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ui_TITLE.png-84083b2b8fd1668db9a4ddcaad2354ac.stex"
+path="res://.import/Hook_logo_out.png-598f02b728a518622ff6d77b46dfd398.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/main-menu/ui_TITLE.png"
-dest_files=[ "res://.import/ui_TITLE.png-84083b2b8fd1668db9a4ddcaad2354ac.stex" ]
+source_file="res://hud/main-menu/Hook_logo_out.png"
+dest_files=[ "res://.import/Hook_logo_out.png-598f02b728a518622ff6d77b46dfd398.stex" ]
 
 [params]
 
