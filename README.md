@@ -2,7 +2,7 @@
 ###### Copyright (C) 2018-2019  MarvellousSoft & USPGameDev
 ###### Code under license **GPLv3.0**, original assets under license **CC BY-SA 4.0**
 
-# Hooksharks
+# HookSharks
 
 **An open source competitive multiplayer game by [MarvellousSoft](https://marvelloussoft.github.io/) and [USPGameDev](https://uspgamedev.org/) ~ 2018-2019**
 
