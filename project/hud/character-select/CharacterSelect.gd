@@ -116,9 +116,10 @@ func show_start_message():
 func hide_start_message():
 	var Twn = $StartMessage/Tween
 	
-	Twn.interpolate_property($StartMessage, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	Twn.interpolate_property($StartMessage, "position:y", 220, -400, .5, Tween.TRANS_CUBIC, Tween.EASE_IN)
-	Twn.start()
+	if ($StartMessage.get_modulate() == Color(1, 1, 1, 1)):
+		Twn.interpolate_property($StartMessage, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+		Twn.interpolate_property($StartMessage, "position:y", 220, -400, .5, Tween.TRANS_CUBIC, Tween.EASE_IN)
+		Twn.start()
 
 
 func transition_to(packed_scene):

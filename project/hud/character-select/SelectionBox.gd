@@ -43,7 +43,7 @@ func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
 	
-	if event.is_action_pressed("ui_start") and not mid_animation:
+	if event.is_action_pressed("ui_select") and not mid_animation:
 		if state == States.OPEN:
 			if CHARACTERS[char_index] in available_chars:
 				change_state(States.READY)
