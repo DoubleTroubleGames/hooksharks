@@ -28,7 +28,7 @@ func marker_animation():
 	
 	tween.interpolate_property(marker, "modulate:a", null, 1, DURATION,
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.interpolate_property(marker, "scale", null, Vector2(1, 1), DURATION,
+	tween.interpolate_property(marker, "scale", null, Vector2(.7, .7), DURATION,
 			Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.start()
 	
