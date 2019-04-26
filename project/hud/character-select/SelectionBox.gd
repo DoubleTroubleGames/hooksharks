@@ -117,6 +117,8 @@ func change_state(new_state):
 			yield($Boarder/AnimationPlayer, "animation_finished")
 			mid_animation = false
 		States.OPEN:
+			if device_name.split("_")[0] == "gamepad":
+				$Boarder/DeviceNumber.set_text(device_name.split("_")[1])
 			$SharkSprite.show()
 			$Boarder/Left.show()
 			$Boarder/Right.show()
