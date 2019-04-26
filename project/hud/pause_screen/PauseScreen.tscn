@@ -1,19 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://hud/pause_screen/PauseScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/sound/pause_open.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=5]
+[ext_resource path="res://hud/pause_screen/resume_line.png" type="Texture" id=3]
+[ext_resource path="res://hud/pause_screen/quit.png" type="Texture" id=4]
+[ext_resource path="res://assets/sound/pause_open.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 160
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 64
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
@@ -35,12 +31,13 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer"]
 margin_left = 615.0
-margin_top = 314.0
+margin_top = 390.0
 margin_right = 1305.0
-margin_bottom = 766.0
+margin_bottom = 690.0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/CenterContainer/VBoxContainer"]
+editor/display_folded = true
 margin_right = 690.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 0, 300 )
@@ -63,32 +60,20 @@ text = "Paused"
 align = 1
 valign = 1
 
-[node name="Resume" type="Label" parent="Background/CenterContainer/VBoxContainer"]
-margin_top = 304.0
-margin_right = 690.0
-margin_bottom = 376.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Resume"
-align = 1
-valign = 1
+[node name="Resume" type="Sprite" parent="Background/CenterContainer/VBoxContainer"]
+position = Vector2( 345, 350 )
+texture = ExtResource( 3 )
 
-[node name="Quit" type="Label" parent="Background/CenterContainer/VBoxContainer"]
-margin_top = 380.0
-margin_right = 690.0
-margin_bottom = 452.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Quit"
-align = 1
-valign = 1
+[node name="Quit" type="Sprite" parent="Background/CenterContainer/VBoxContainer"]
+position = Vector2( 345, 480 )
+texture = ExtResource( 4 )
 
 [node name="PauseOpenSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 5 )
 
 [node name="MenuSelectionSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 6 )
 
 [node name="MenuConfirmSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 7 )
 
