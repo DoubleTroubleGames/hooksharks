@@ -26,21 +26,24 @@ stage_end = Vector2( 4000, 2700 )
 margin_right = 4000.0
 margin_bottom = 2700.0
 
+[node name="PlayerStartingPosition" parent="." index="1"]
+editor/display_folded = false
+
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
-position = Vector2( 350, 670 )
-direction = Vector2( 0, -1 )
+position = Vector2( 375.106, 471.945 )
+direction = Vector2( 1, -1 )
 
 [node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
-position = Vector2( 500, 670 )
-direction = Vector2( 0, -1 )
+position = Vector2( 508.368, 575.157 )
+direction = Vector2( 0.8, -1 )
 
 [node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
-position = Vector2( 650, 670 )
-direction = Vector2( 0, -1 )
+position = Vector2( 633.263, 661.631 )
+direction = Vector2( 0.4, -1 )
 
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
-position = Vector2( 800, 670 )
-direction = Vector2( 0, -1 )
+position = Vector2( 769.315, 750.896 )
+direction = Vector2( 0.2, -1 )
 
 [node name="Obstacles" parent="." index="2"]
 editor/display_folded = true
@@ -182,6 +185,7 @@ number = 3
 editor/display_folded = true
 position = Vector2( 330, 1100 )
 total_checkpoint_number = 3
+total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 566.27, -294.165 )
