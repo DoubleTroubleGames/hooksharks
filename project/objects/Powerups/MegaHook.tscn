@@ -1,19 +1,18 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://objects/Powerups/MegaHook.gd" type="Script" id=1]
-[ext_resource path="res://player/hook/hook.png" type="Texture" id=2]
+[ext_resource path="res://objects/Powerups/megahook.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
 [node name="MegaHook" type="Node2D"]
-visible = false
 script = ExtResource( 1 )
 power_name = "MegaHooooook!"
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.640625, 0.00250244, 0.00250244, 1 )
 position = Vector2( 4.77306, -0.412826 )
+scale = Vector2( 0.27, 0.27 )
 texture = ExtResource( 2 )
 
 [node name="HookArea" type="Area2D" parent="."]
