@@ -14,6 +14,7 @@ var available_chars = CHARACTERS.duplicate()
 var char_index = 0
 var device_name = ""
 var state = States.CLOSED
+var next_state = States.CLOSED # This is kind of redundant, and heavily depends on estabilished logic, but is useful for the grey portraits logic
 var _moved_left = false
 var _moved_right = false
 var mid_animation = false
@@ -76,13 +77,21 @@ func _input(event):
 
 
 func toggle_left():
-	$Boarder/ChangePortrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
+	var portrait_path = str("res://characters/", CHARACTERS[char_index], "/portrait")
+	if not CHARACTERS[char_index] in available_chars:
+		portrait_path += "_grey"
+	portrait_path += ".png"
+	$Boarder/ChangePortrait.set_texture(load(portrait_path))
 	set_character(char_index - 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
 	#### Visuals for character changing ####
 	mid_animation = true
-	$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
+	portrait_path = str("res://characters/", CHARACTERS[char_index], "/portrait")
+	if not CHARACTERS[char_index] in available_chars:
+		portrait_path += "_grey"
+	portrait_path += ".png"
+	$Boarder/Portrait.set_texture(load(portrait_path))
 	$Boarder/AnimationPlayer.play("change_char_left")
 	yield($Boarder/AnimationPlayer, "animation_finished")
 	mid_animation = false
@@ -90,13 +99,21 @@ func toggle_left():
 
 
 func toggle_right():
-	$Boarder/ChangePortrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
+	var portrait_path = str("res://characters/", CHARACTERS[char_index], "/portrait")
+	if not CHARACTERS[char_index] in available_chars:
+		portrait_path += "_grey"
+	portrait_path += ".png"
+	$Boarder/ChangePortrait.set_texture(load(portrait_path))
 	set_character(char_index + 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
 	#### Visuals for character changing ####
 	mid_animation = true
-	$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
+	portrait_path = str("res://characters/", CHARACTERS[char_index], "/portrait")
+	if not CHARACTERS[char_index] in available_chars:
+		portrait_path += "_grey"
+	portrait_path += ".png"
+	$Boarder/Portrait.set_texture(load(portrait_path))
 	$Boarder/AnimationPlayer.play("change_char_right")
 	yield($Boarder/AnimationPlayer, "animation_finished")
 	mid_animation = false
@@ -104,6 +121,7 @@ func toggle_right():
 
 
 func change_state(new_state):
+	next_state = new_state
 	match new_state:
 		States.CLOSED:
 			device_name = ""
@@ -131,7 +149,7 @@ func change_state(new_state):
 			yield($Boarder/AnimationPlayer, "animation_finished")
 			mid_animation = false
 
-	state = new_state
+	state = next_state
 
 func is_inactive():
 	return state == States.INACTIVE
@@ -158,6 +176,8 @@ func open_with(event):
 		$Boarder/DeviceSprite.set_texture(load("res://hud/character-select/gamepad.png"))
 		$Boarder/DeviceNumber.set_text(str(num))
 
+	if not CHARACTERS[char_index] in available_chars:
+		$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait_grey.png")))
 	$Boarder/AnimationPlayer.play("open")
 	mid_animation = true
 	$Sounds/ConfirmSFX.play()
@@ -174,8 +194,11 @@ func update_available_characters(characters):
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
 	
-	if not CHARACTERS[char_index] in available_chars:
-		pass
+	if not CHARACTERS[char_index] in available_chars and self.next_state != States.READY:
+		$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait_grey.png")))
+	else:
+		$Boarder/Portrait.set_texture(load(str("res://characters/", CHARACTERS[char_index], "/portrait.png")))
+	
 
 
 func add_shark(shark_name):
