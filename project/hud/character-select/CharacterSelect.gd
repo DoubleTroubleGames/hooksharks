@@ -60,6 +60,8 @@ func _input(event):
 func update_boxes():
 	for box in boxes:
 		box.update_available_characters(available_characters)
+	if not can_start():
+   		hide_start_message()
 
 
 func set_device_map():
