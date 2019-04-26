@@ -45,25 +45,37 @@ align = 2
 valign = 1
 
 [node name="ScoreMarkers" type="TextureRect" parent="."]
-margin_top = 210.0
-margin_right = 227.0
-margin_bottom = 266.0
+margin_left = -34.5493
+margin_top = 154.133
+margin_right = 192.451
+margin_bottom = 210.133
+rect_scale = Vector2( 0.5, 0.5 )
 mouse_filter = 2
 texture = ExtResource( 5 )
 
 [node name="X1" type="Sprite" parent="ScoreMarkers"]
 visible = false
-position = Vector2( 30, 25 )
+position = Vector2( 100.841, 90.1943 )
 texture = ExtResource( 6 )
 
 [node name="X2" type="Sprite" parent="ScoreMarkers"]
 visible = false
-position = Vector2( 118, 23 )
+position = Vector2( 295.616, 90.761 )
 texture = ExtResource( 6 )
 
 [node name="X3" type="Sprite" parent="ScoreMarkers"]
 visible = false
-position = Vector2( 200, 20 )
+position = Vector2( 483.877, 93.4078 )
+texture = ExtResource( 6 )
+
+[node name="X4" type="Sprite" parent="ScoreMarkers"]
+visible = false
+position = Vector2( 181.877, 227.408 )
+texture = ExtResource( 6 )
+
+[node name="X5" type="Sprite" parent="ScoreMarkers"]
+visible = false
+position = Vector2( 413.877, 229.408 )
 texture = ExtResource( 6 )
 
 [node name="Tween" type="Tween" parent="."]
