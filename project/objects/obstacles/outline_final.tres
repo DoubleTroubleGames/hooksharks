@@ -52,7 +52,7 @@ void fragment(){
 shader = SubResource( 1 )
 shader_param/active = true
 shader_param/wave_length = 0.341
-shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
+shader_param/wave_color = Color( 0.145098, 0.384314, 0.545098, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
 shader_param/distortion_strength = 0.3
 shader_param/aa_factor = 0.04
