@@ -303,8 +303,8 @@ offset = Vector2( -15, 0 )
 
 [node name="Hook" type="Sprite" parent="Rider"]
 show_behind_parent = true
-position = Vector2( -60, 0 )
-scale = Vector2( 5, 5 )
+position = Vector2( -70, 0 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true

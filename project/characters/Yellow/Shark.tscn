@@ -16,5 +16,5 @@ position = Vector2( -30, 0 )
 texture = ExtResource( 4 )
 
 [node name="Hook" parent="Rider" index="0"]
-position = Vector2( -40, 0 )
+position = Vector2( -60, 0 )
 

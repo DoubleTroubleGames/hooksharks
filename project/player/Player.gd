@@ -413,6 +413,7 @@ func shoot():
 		if not $PowerUps.has_node("MegaHook"):
 			emit_signal("hook_shot", self, hook_dir)
 			riders_hook.hide()
+			riders_hook.texture = load("res://player/hook/hook.png")
 		else:
 			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)

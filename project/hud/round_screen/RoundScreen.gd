@@ -14,7 +14,7 @@ onready var round_label = $Background/Round/Label
 onready var tween = $Tween
 
 const TRIVIA = [
-	"Great White Sharks aren't so great after all",
+	"Great white sharks aren't so great after all",
 	"There isn't always a bigger fish in the sea if you are a big-ass whale",
 	"Hammerhead sharks eat nails",
 	"Sharks always swim fowards because they are afraid of looking back into their past",
@@ -47,6 +47,7 @@ func _ready():
 	for i in range(RoundManager.players_total):
 		set_player_sticker(i)
 
+
 func _process(delta):
 	if not _moved_left and Input.is_action_just_pressed("ui_joy_left"):
 		_moved_left = true
@@ -63,19 +64,11 @@ func _process(delta):
 	if _moved_right and Input.is_action_just_released("ui_joy_right"):
 		_moved_right = false
 
+
 func show_round():
 	var player_score = null
 	
 	round_number.text = str(RoundManager.round_number)
-	
-	var match_winner = RoundManager.get_match_winner()
-	if match_winner == -1:
-		$Background/TriviaHeader.show()
-		$Background/Trivia.show()
-		$Background/Trivia.text = getRandomTrivia()
-	else:
-		$Background/TriviaHeader.hide()
-		$Background/Trivia.hide()
 	
 	# Check draw
 	var is_draw = RoundManager.round_winner == -1
@@ -84,6 +77,20 @@ func show_round():
 	if not is_draw:
 		player_score = player_scores[RoundManager.round_winner]
 		RoundManager.round_number += 1
+	
+	# Win condition
+	var match_winner = RoundManager.get_match_winner()
+	if match_winner == -1:
+		$Background/TriviaHeader.show()
+		$Background/Trivia.show()
+		$Background/Trivia.text = getRandomTrivia()
+	else:
+		var color = RoundManager.CHAR_COLOR[RoundManager.character_map[match_winner]]
+		round_label.text = "Winner"
+		round_number.text = str("P", match_winner + 1)
+		round_number.modulate = color.lightened(.4)
+		$Background/TriviaHeader.hide()
+		$Background/Trivia.hide()
 	
 	for score in player_scores:
 		score.crown.visible = score == player_score
@@ -100,7 +107,7 @@ func show_round():
 		player_score.marker_animation()
 		yield(player_score, "marker_animation_ended")
 
-	# Check win condition
+	# Hide condition
 	if match_winner == -1:
 		display_timer.start()
 		yield(display_timer, "timeout")
@@ -148,9 +155,9 @@ func set_player_sticker(index):
 	var char_sticker = load(str("res://characters/", character, "/sticker.png"))
 	var char_color = RoundManager.CHAR_COLOR[RoundManager.character_map[index]]
 	
-	PlayerNumber.set_modulate(char_color.lightened(.2))
+	PlayerNumber.set_modulate(char_color.lightened(.4))
 	PlayerNumber.set_text(str("P", index + 1))
-	Sticker.set_modulate(char_color.lightened(.2))
+	Sticker.set_modulate(char_color.lightened(.4))
 	Sticker.texture = char_sticker
 
 
@@ -170,5 +177,4 @@ func _on_Quit_pressed():
 
 
 func getRandomTrivia():
-	var index = randi() % TRIVIA.size()
-	return TRIVIA[index]
+	return TRIVIA[randi() % TRIVIA.size()]

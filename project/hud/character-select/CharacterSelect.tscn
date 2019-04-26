@@ -33,7 +33,9 @@ font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 170
-font_data = ExtResource( 16 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 15 )
 
 [sub_resource type="Animation" id=3]
 length = 0.5
