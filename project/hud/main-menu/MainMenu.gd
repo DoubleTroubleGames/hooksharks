@@ -16,10 +16,10 @@ export (PackedScene)var ModeSelect
 var title_shown = false
 var back_indicator_up_speed = 50
 var back_indicator_down_speed = 50
-var possible_frases = ["Please don't leave me", "Don't go :'("]
 
 
 func _ready():
+	$BackIndicator/Message.text = "Hold to quit"
 	title.rect_position = title.rect_position -\
 			TITLE_OFFSET.rotated(deg2rad(title.rect_rotation))
 	
@@ -35,7 +35,6 @@ func _ready():
 	show_title()
 	
 	randomize()
-	$BackIndicator/Message.text = possible_frases[randi() % possible_frases.size()]
 	$PressStartTimer.start()
 
 
@@ -57,11 +56,10 @@ func _physics_process(delta):
 	
 	if bar.value >= 100:
 		get_tree().quit()
-	elif bar.value > 20:
+	elif bar.value > 0:
 		if anim_player.assigned_animation != "show":
 			anim_player.play("show")
-	elif bar.value < 1:
-		if anim_player.assigned_animation == "show":
+	elif anim_player.assigned_animation == "show":
 			anim_player.play("hide")
 
 

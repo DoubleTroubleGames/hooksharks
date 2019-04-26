@@ -39,7 +39,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="BackIndicator" type="Node2D"]
