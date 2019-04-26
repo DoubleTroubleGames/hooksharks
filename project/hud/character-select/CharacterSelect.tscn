@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://hud/character-select/CharacterSelect.gd" type="Script" id=1]
 [ext_resource path="res://hud/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -11,22 +11,29 @@
 [ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/roof.png" type="Texture" id=11]
-[ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=12]
-[ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/board.png" type="Texture" id=14]
-[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=15]
-[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=13]
+[ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/board.png" type="Texture" id=15]
+[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 use_mipmaps = true
 use_filter = true
 
+[sub_resource type="DynamicFont" id=4]
+size = 70
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 12 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 170
-font_data = ExtResource( 15 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="Animation" id=3]
 length = 0.5
@@ -100,8 +107,44 @@ custom_constants/shadow_offset_y = 10
 text = "Shark Select"
 align = 1
 
+[node name="PlayerIDs" type="Control" parent="."]
+
+[node name="P1" type="Label" parent="PlayerIDs"]
+margin_left = 310.0
+margin_top = 180.0
+margin_right = 378.0
+margin_bottom = 281.0
+custom_fonts/font = SubResource( 4 )
+text = "P1"
+
+[node name="P2" type="Label" parent="PlayerIDs"]
+margin_left = 710.0
+margin_top = 180.0
+margin_right = 801.0
+margin_bottom = 385.0
+custom_fonts/font = SubResource( 4 )
+text = "P2
+"
+
+[node name="P3" type="Label" parent="PlayerIDs"]
+margin_left = 1120.0
+margin_top = 180.0
+margin_right = 1204.0
+margin_bottom = 385.0
+custom_fonts/font = SubResource( 4 )
+text = "P3
+"
+
+[node name="P4" type="Label" parent="PlayerIDs"]
+margin_left = 1530.0
+margin_top = 180.0
+margin_right = 1616.0
+margin_bottom = 385.0
+custom_fonts/font = SubResource( 4 )
+text = "P4
+"
+
 [node name="Boxes" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -110,7 +153,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 12 )]
+[node name="SelectionBox0" parent="Boxes" instance=ExtResource( 13 )]
 margin_left = 215.0
 margin_top = 410.0
 margin_right = 475.0
@@ -118,7 +161,7 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
-[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 12 )]
+[node name="SelectionBox1" parent="Boxes" instance=ExtResource( 13 )]
 margin_left = 625.0
 margin_top = 410.0
 margin_right = 885.0
@@ -126,7 +169,7 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
-[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 12 )]
+[node name="SelectionBox2" parent="Boxes" instance=ExtResource( 13 )]
 margin_left = 1035.0
 margin_top = 410.0
 margin_right = 1295.0
@@ -134,7 +177,7 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
-[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 12 )]
+[node name="SelectionBox3" parent="Boxes" instance=ExtResource( 13 )]
 margin_left = 1445.0
 margin_top = 410.0
 margin_right = 1705.0
@@ -142,15 +185,16 @@ margin_bottom = 670.0
 rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
-[node name="BackIndicator" parent="." instance=ExtResource( 13 )]
+[node name="BackIndicator" parent="." instance=ExtResource( 14 )]
 
 [node name="StartMessage" type="Sprite" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 975, 220 )
 rotation = 0.0523599
 scale = Vector2( 0.7, 0.7 )
 z_index = 1
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -172,7 +216,7 @@ editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 z_index = 2
 
-[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 16 )]
+[node name="Tutorial" parent="TutorialNode" instance=ExtResource( 17 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialNode/Tutorial"]
 anims/show = SubResource( 3 )
@@ -181,10 +225,10 @@ anims/show = SubResource( 3 )
 editor/display_folded = true
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 17 )
+stream = ExtResource( 18 )
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 18 )
+stream = ExtResource( 19 )
 
 
 [editable path="BackIndicator"]
