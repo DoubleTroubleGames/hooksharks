@@ -34,7 +34,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if Input.is_action_pressed("ui_cancel"):
+	if Input.is_action_pressed("ui_cancel") and not tutorial_shown:
 		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
 	else:
 		bar.value = max(0, bar.value - back_indicator_down_speed * delta)

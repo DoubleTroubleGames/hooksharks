@@ -23,7 +23,7 @@ func activate(player, direction):
 	self.direction = direction
 	self.position = player.position + player.rider_offset * angle
 	$Sprite.rotation = Vector2(-direction.x, -direction.y).angle()
-
+	
 	show()
 	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
