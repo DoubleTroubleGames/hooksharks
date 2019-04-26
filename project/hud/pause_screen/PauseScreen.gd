@@ -7,8 +7,6 @@ onready var player_label = $Background/CenterContainer/VBoxContainer/HBoxContain
 
 enum {RESUME, QUIT}
 
-const UNSELECTED_COLOR = Color(1, 1, 1)
-const SELECTED_COLOR = Color(1, 1, .5)
 const DEADZONE = .55
 
 var btn_index = 0
@@ -17,7 +15,6 @@ onready var _moved_up = false
 onready var _moved_down = false
 
 func _ready():
-	buttons[btn_index].modulate = SELECTED_COLOR
 	set_process_input(false)
 	set_process(false)
 
@@ -50,9 +47,9 @@ func _input(event):
 
 
 func change_button(direction):
-	buttons[btn_index].modulate = UNSELECTED_COLOR
+	buttons[btn_index].set_texture(load(str("res://hud/pause_screen/", buttons[btn_index].get_name().to_lower(), ".png")))
 	btn_index = wrapi(btn_index + direction, 0, buttons.size())
-	buttons[btn_index].modulate = SELECTED_COLOR
+	buttons[btn_index].set_texture(load(str("res://hud/pause_screen/", buttons[btn_index].get_name().to_lower(), "_line.png")))
 	$MenuSelectionSFX.play()
 
 
@@ -68,6 +65,11 @@ func press_button():
 func pause(player):
 	Sound.on_pause()
 	var color = RoundManager.CHAR_COLOR[RoundManager.character_map[player.id]]
+	
+	btn_index = 0
+	for button in buttons:
+		button.set_texture(load(str("res://hud/pause_screen/", button.get_name().to_lower(), ".png")))
+	buttons[btn_index].set_texture(load(str("res://hud/pause_screen/", buttons[btn_index].get_name().to_lower(), "_line.png")))	
 	get_tree().paused = true
 	background.visible = true
 	set_process_input(true)
