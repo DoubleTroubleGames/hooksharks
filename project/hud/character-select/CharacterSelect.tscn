@@ -101,6 +101,7 @@ text = "Shark Select"
 align = 1
 
 [node name="Boxes" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -142,12 +143,10 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
 [node name="BackIndicator" parent="." instance=ExtResource( 13 )]
-editor/display_folded = false
 
 [node name="StartMessage" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.901961 )
-position = Vector2( 972.688, 222.794 )
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 975, 220 )
 rotation = 0.0523599
 scale = Vector2( 0.7, 0.7 )
 z_index = 1
@@ -165,6 +164,8 @@ custom_fonts/font = SubResource( 2 )
 text = "Press start to begin"
 align = 1
 valign = 1
+
+[node name="Tween" type="Tween" parent="StartMessage"]
 
 [node name="TutorialNode" type="Node2D" parent="."]
 editor/display_folded = true
