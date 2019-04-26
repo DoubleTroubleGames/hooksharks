@@ -24,6 +24,7 @@ __meta__ = {
 "_edit_group_": true
 }
 ROT_SPEED = 0.897598
+movement_type = 1
 
 [node name="Shark" parent="." instance=ExtResource( 2 )]
 
