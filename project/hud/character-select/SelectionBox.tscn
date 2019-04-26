@@ -426,6 +426,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("DeviceNumber:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.6
@@ -678,9 +690,10 @@ frames = SubResource( 1 )
 [node name="Portrait" type="Sprite" parent="Boarder"]
 visible = false
 show_behind_parent = true
+position = Vector2( 0, -223 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 301, 446 )
+region_rect = Rect2( 0, 0, 301, 0 )
 
 [node name="ChangePortrait" type="Sprite" parent="Boarder"]
 visible = false
@@ -691,6 +704,7 @@ region_enabled = true
 region_rect = Rect2( 301, 0, 301, 446 )
 
 [node name="Grid" type="Sprite" parent="Boarder"]
+visible = false
 position = Vector2( 0, -223 )
 texture = ExtResource( 7 )
 region_enabled = true
@@ -722,6 +736,8 @@ margin_bottom = 197.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
 align = 1
 
 [node name="Left" type="TextureRect" parent="Boarder"]
