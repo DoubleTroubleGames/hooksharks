@@ -16,3 +16,7 @@ position = Vector2( -30, 0 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 
+[node name="Hook" parent="Rider" index="0"]
+position = Vector2( -50, 0 )
+scale = Vector2( 0.6, 0.6 )
+
