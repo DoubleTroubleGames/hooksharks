@@ -2,14 +2,10 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:project/assets/tetos/teto_01.png.import
-path="res://.import/teto_01.png-4d03ae3b4c09be7e18424ff3a9c3a7c4.stex"
-=======
 path="res://.import/marker1.png-704e262a0315db26d4917686bc99f0d9.stex"
 metadata={
 "vram_texture": false
 }
->>>>>>> development:project/hud/tutorial/marker1.png.import
 
 [deps]
 
@@ -21,6 +17,7 @@ dest_files=[ "res://.import/marker1.png-704e262a0315db26d4917686bc99f0d9.stex" ]
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -30,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -2,14 +2,10 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:project/assets/tetos/teto_03.png.import
-path="res://.import/teto_03.png-15d7eea65821e5a9c7e9c2d13fd2904a.stex"
-=======
 path="res://.import/float_o.png-4170bce2bc1cf3da5456d00413865ba3.stex"
 metadata={
 "vram_texture": false
 }
->>>>>>> development:project/assets/float_o.png.import
 
 [deps]
 
@@ -21,6 +17,7 @@ dest_files=[ "res://.import/float_o.png-4170bce2bc1cf3da5456d00413865ba3.stex" ]
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -30,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

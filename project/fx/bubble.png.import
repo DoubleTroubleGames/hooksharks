@@ -2,14 +2,10 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:project/player/bubble.png.import
-path="res://.import/bubble.png-cd77c8fa4a4340c1c08626f68c053209.stex"
-=======
 path="res://.import/bubble.png-5fff32eecda64efea6186397783c193e.stex"
 metadata={
 "vram_texture": false
 }
->>>>>>> development:project/fx/bubble.png.import
 
 [deps]
 
@@ -21,6 +17,7 @@ dest_files=[ "res://.import/bubble.png-5fff32eecda64efea6186397783c193e.stex" ]
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -30,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

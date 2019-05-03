@@ -1,0 +1,27 @@
+SFX:
+	- Selecting button
+	- Pressing button
+	- Changing screens
+	- Marking on score screen
+	- Round transition
+	- Reaching finish line
+	- Breaking power-up container
+	- End of game
+
+ART:
+	- Water tile
+	- Wall tile
+	- Finish line
+	- At least 1 shark
+	- At least 1 shark rider
+	- Hook
+	- Power-up barrel
+	- Menu buttons
+		- Button
+		- Checkbox
+		- Slider
+	- HUD
+		- Main Menu background
+		- Round Score
+		- Loading screen
+	

@@ -2,14 +2,10 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:project/assets/caixas_04.png.import
-path="res://.import/caixas_04.png-534bdfd7802c093c65bb0068193ae1be.stex"
-=======
 path="res://.import/jaw_upper.png-6ece87ee002af74c9acdf26b84d10398.stex"
 metadata={
 "vram_texture": false
 }
->>>>>>> development:project/assets/jaw_upper.png.import
 
 [deps]
 
@@ -21,6 +17,7 @@ dest_files=[ "res://.import/jaw_upper.png-6ece87ee002af74c9acdf26b84d10398.stex"
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -30,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
