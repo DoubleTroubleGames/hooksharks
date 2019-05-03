@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://hud/countdown/Countdown.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "countdown"
+length = 3.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Ready:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/Go:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.3, 2.4, 3.3, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "go"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "setup"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Ready:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/Go:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Countdown" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Ready" type="Label" parent="CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 764.0
+margin_top = 448.0
+margin_right = 1155.0
+margin_bottom = 631.0
+custom_fonts/font = SubResource( 1 )
+text = "READY"
+align = 1
+valign = 1
+
+[node name="Go" type="Label" parent="CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 845.0
+margin_top = 448.0
+margin_right = 1074.0
+margin_bottom = 631.0
+custom_fonts/font = SubResource( 1 )
+text = "GO!"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "setup"
+anims/countdown = SubResource( 2 )
+anims/setup = SubResource( 3 )
+

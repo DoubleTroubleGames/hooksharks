@@ -17,7 +17,7 @@ const TRIVIA = [
 	"Great white sharks aren't so great after all",
 	"There isn't always a bigger fish in the sea if you are a big-ass whale",
 	"Hammerhead sharks eat nails",
-	"Sharks always swim fowards because they are afraid of looking back into their past",
+	"Sharks always swim forwards because they are afraid of looking back into their past",
 	"Sharks hunt fish without a fishing permit",
 	"Sharks can see eletricity",
 	"Whale sharks are not actually whales",

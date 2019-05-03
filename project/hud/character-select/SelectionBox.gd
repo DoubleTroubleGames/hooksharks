@@ -124,6 +124,7 @@ func change_state(new_state):
 	next_state = new_state
 	match new_state:
 		States.CLOSED:
+			dive_shark()
 			device_name = ""
 			$Boarder/DeviceSprite.set_texture(null)
 			$Boarder/DeviceNumber.set_text("")
@@ -138,6 +139,8 @@ func change_state(new_state):
 			if device_name.split("_")[0] == "gamepad":
 				$Boarder/DeviceNumber.set_text(device_name.split("_")[1])
 			$SharkSprite.show()
+			if state == States.CLOSED:
+				emerge_shark()
 			$Boarder/Left.show()
 			$Boarder/Right.show()
 			if state == States.READY:

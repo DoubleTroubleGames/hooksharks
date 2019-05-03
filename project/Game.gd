@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var countdown = $Countdown
 onready var pause_screen = $PauseScreen
 
 const HOOK = preload("res://player/hook/Hook.tscn")
@@ -41,6 +42,14 @@ func _ready():
 	if not Sound.game_bgm.playing:
 		Sound.game_bgm.play()
 		Sound.play_ambience()
+	
+	for player in players:
+		player.spawn_animation()
+		
+	countdown.start_countdown()
+	
+	yield(countdown, "go_shown")
+	
 	activate_players()
 
 
@@ -78,9 +87,17 @@ func transition_stage():
 	yield(rs, "shown")
 	free_current_stage()
 	add_new_stage()
+	connect_players()
 	
 	yield(rs, "hidden")
-	connect_players()
+	
+	for player in players:
+		player.spawn_animation()
+	
+	countdown.start_countdown()
+	
+	yield(countdown, "go_shown")
+	
 	activate_players()
 
 
@@ -154,7 +171,8 @@ func _on_player_hook_shot(player, direction):
 
 	player.get_node("SFX/HarpoonSFX").play()
 	player.hook = new_hook
-	
+
+
 func _on_player_megahook_shot(player, direction):
 	var explosion = load("res://fx/explosion/DeathExplosion.tscn").instance()
 	var new_megahook = MEGAHOOK.instance()

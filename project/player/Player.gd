@@ -78,6 +78,14 @@ func _ready():
 	set_physics_process(false)
 	set_process_input(false)
 
+func spawn_animation():
+	yield(get_tree().create_timer(rand_range(.3,1.3)), "timeout")
+	sprite_animation.play("spawn")
+	yield(sprite_animation, "animation_finished")
+	sprite_animation.play("emerge")
+	yield(sprite_animation, "animation_finished")
+	sprite_animation.play("idle")
+
 
 func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
