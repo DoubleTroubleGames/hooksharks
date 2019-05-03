@@ -1,0 +1,405 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/obstacles/BoxClosed.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/obstacles/Floor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/obstacles/Tire2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/obstacles/Float.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/obstacles/Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/obstacles/Floor2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/obstacles/Roof.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/obstacles/Roof2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/obstacles/BoxFull.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/obstacles/Tire.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/obstacles/Metal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/obstacles/Box3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://camera/GroupCamera.gd" type="Script" id=16]
+[ext_resource path="res://objects/Powerups/Powerup.tscn" type="PackedScene" id=17]
+[ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=18]
+[ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=19]
+
+[node name="Stage" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -2300, -2000 )
+stage_end = Vector2( 4400, 2000 )
+
+[node name="Water" parent="." index="0"]
+margin_left = -2300.0
+margin_top = -2000.0
+margin_right = 4400.0
+margin_bottom = 2000.0
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
+position = Vector2( 290, 240 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
+position = Vector2( 290, 390 )
+
+[node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
+position = Vector2( 290, 540 )
+
+[node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
+position = Vector2( 290, 690 )
+
+[node name="Obstacles" parent="." index="2"]
+editor/display_folded = true
+
+[node name="BoxClosed" parent="Obstacles" index="0" instance=ExtResource( 2 )]
+position = Vector2( 460, 970 )
+rotation = -0.191986
+
+[node name="BoxClosed3" parent="Obstacles" index="1" instance=ExtResource( 2 )]
+position = Vector2( 500, -390 )
+rotation = -0.191986
+
+[node name="BoxClosed2" parent="Obstacles" index="2" instance=ExtResource( 2 )]
+position = Vector2( 2860, 500 )
+rotation = -1.0472
+
+[node name="Floor5" parent="Obstacles" index="3" instance=ExtResource( 3 )]
+position = Vector2( 1950, -360 )
+rotation = -2.87979
+
+[node name="Floor7" parent="Obstacles" index="4" instance=ExtResource( 3 )]
+position = Vector2( 3070, -1000 )
+rotation = -5.75958
+
+[node name="BoxMetal2" parent="Obstacles" index="5" instance=ExtResource( 4 )]
+position = Vector2( 30, 940 )
+rotation = 0.261799
+
+[node name="BoxMetal8" parent="Obstacles" index="6" instance=ExtResource( 4 )]
+position = Vector2( 10, -350 )
+rotation = 0.261799
+
+[node name="BoxMetal" parent="Obstacles" index="7" instance=ExtResource( 4 )]
+position = Vector2( 1390, -20 )
+
+[node name="BoxMetal9" parent="Obstacles" index="8" instance=ExtResource( 4 )]
+position = Vector2( -510, -910 )
+rotation = -0.523598
+
+[node name="BoxMetal7" parent="Obstacles" index="9" instance=ExtResource( 4 )]
+position = Vector2( 1780, -1150 )
+
+[node name="BoxMetal5" parent="Obstacles" index="10" instance=ExtResource( 4 )]
+position = Vector2( 2280, -270 )
+rotation = -2.87979
+
+[node name="Tire5" parent="Obstacles" index="11" instance=ExtResource( 5 )]
+position = Vector2( 3370, -840 )
+rotation = -2.93215
+
+[node name="BoxMetal6" parent="Obstacles" index="12" instance=ExtResource( 4 )]
+position = Vector2( 2750, -1130 )
+rotation = -2.93215
+
+[node name="Float" parent="Obstacles" index="13" instance=ExtResource( 6 )]
+position = Vector2( 3830, 820 )
+rotation = 2.09439
+
+[node name="Float2" parent="Obstacles" index="14" instance=ExtResource( 6 )]
+position = Vector2( 3650, -500 )
+rotation = 0.785397
+
+[node name="Box4" parent="Obstacles" index="15" instance=ExtResource( 7 )]
+position = Vector2( 3730, 990 )
+rotation = 0.261799
+
+[node name="Tire2" parent="Obstacles" index="16" instance=ExtResource( 5 )]
+position = Vector2( 3170, 1310 )
+rotation = -2.8798
+
+[node name="Tire3" parent="Obstacles" index="17" instance=ExtResource( 5 )]
+position = Vector2( 3460, 1280 )
+rotation = -2.8798
+
+[node name="Tire4" parent="Obstacles" index="18" instance=ExtResource( 5 )]
+position = Vector2( 3280, 1530 )
+rotation = -5.23598
+
+[node name="Box5" parent="Obstacles" index="19" instance=ExtResource( 7 )]
+position = Vector2( 3920, 680 )
+rotation = 3.40339
+
+[node name="BoxMetal3" parent="Obstacles" index="20" instance=ExtResource( 4 )]
+position = Vector2( 2040, 1510 )
+rotation = 0.261799
+
+[node name="BoxMetal4" parent="Obstacles" index="21" instance=ExtResource( 4 )]
+position = Vector2( 2580, 570 )
+rotation = 0.261799
+
+[node name="Floor2" parent="Obstacles" index="22" instance=ExtResource( 8 )]
+position = Vector2( 160, 10 )
+rotation = -0.261799
+
+[node name="Floor11" parent="Obstacles" index="23" instance=ExtResource( 8 )]
+position = Vector2( -990, -160 )
+rotation = -1.57079
+
+[node name="Floor8" parent="Obstacles" index="24" instance=ExtResource( 8 )]
+position = Vector2( 830, -1090 )
+
+[node name="Floor10" parent="Obstacles" index="25" instance=ExtResource( 3 )]
+position = Vector2( 1320, -400 )
+rotation = -3.14159
+
+[node name="Floor4" parent="Obstacles" index="26" instance=ExtResource( 8 )]
+position = Vector2( 2600, -160 )
+rotation = -2.61799
+
+[node name="Roof" parent="Obstacles" index="27" instance=ExtResource( 9 )]
+position = Vector2( 870, 960 )
+rotation = 3.14159
+
+[node name="Roof13" parent="Obstacles" index="28" instance=ExtResource( 9 )]
+position = Vector2( 910, -400 )
+rotation = 3.14159
+
+[node name="Roof2" parent="Obstacles" index="29" instance=ExtResource( 10 )]
+position = Vector2( 510, -20 )
+rotation = 0.261799
+
+[node name="Tire6" parent="Obstacles" index="30" instance=ExtResource( 5 )]
+position = Vector2( -1000, 360 )
+rotation = -2.47837
+
+[node name="Float3" parent="Obstacles" index="31" instance=ExtResource( 6 )]
+position = Vector2( -620, 680 )
+rotation = -2.35619
+
+[node name="Roof15" parent="Obstacles" index="32" instance=ExtResource( 10 )]
+position = Vector2( -1080, -30 )
+rotation = -1.57079
+
+[node name="Roof7" parent="Obstacles" index="33" instance=ExtResource( 10 )]
+position = Vector2( 2890, 110 )
+rotation = -2.09439
+
+[node name="BoxFull" parent="Obstacles" index="34" instance=ExtResource( 11 )]
+position = Vector2( 1280, 960 )
+rotation = 0.0523599
+
+[node name="Floor9" parent="Obstacles" index="35" instance=ExtResource( 3 )]
+position = Vector2( 1270, -1130 )
+rotation = -0.261799
+
+[node name="Floor" parent="Obstacles" index="36" instance=ExtResource( 3 )]
+position = Vector2( 1010, 10 )
+rotation = -0.0698132
+
+[node name="Floor12" parent="Obstacles" index="37" instance=ExtResource( 3 )]
+position = Vector2( -890, -530 )
+rotation = -1.0472
+
+[node name="Roof12" parent="Obstacles" index="38" instance=ExtResource( 10 )]
+position = Vector2( 1470, -1190 )
+rotation = 0.0349066
+
+[node name="Floor6" parent="Obstacles" index="39" instance=ExtResource( 3 )]
+position = Vector2( 3900, 160 )
+rotation = 1.57079
+
+[node name="Floor3" parent="Obstacles" index="40" instance=ExtResource( 3 )]
+position = Vector2( 1740, 1280 )
+rotation = 1.0472
+
+[node name="Box2" parent="Obstacles" index="41" instance=ExtResource( 12 )]
+position = Vector2( 1910, 100 )
+rotation = 0.523598
+
+[node name="Box7" parent="Obstacles" index="42" instance=ExtResource( 12 )]
+position = Vector2( -90, -1040 )
+rotation = -0.261799
+
+[node name="Box6" parent="Obstacles" index="43" instance=ExtResource( 12 )]
+position = Vector2( 2320, -1170 )
+
+[node name="Box3" parent="Obstacles" index="44" instance=ExtResource( 12 )]
+position = Vector2( 2850, 1510 )
+rotation = -0.261799
+
+[node name="Box" parent="Obstacles" index="45" instance=ExtResource( 7 )]
+position = Vector2( 1660, 1110 )
+rotation = 0.523598
+
+[node name="Roof3" parent="Obstacles" index="46" instance=ExtResource( 9 )]
+position = Vector2( 1720, 9.77516e-06 )
+rotation = 0.383972
+
+[node name="Roof14" parent="Obstacles" index="47" instance=ExtResource( 9 )]
+position = Vector2( -790, -740 )
+rotation = -1.0472
+
+[node name="Roof11" parent="Obstacles" index="48" instance=ExtResource( 9 )]
+position = Vector2( 2130, -1210 )
+rotation = -0.261799
+
+[node name="Roof6" parent="Obstacles" index="49" instance=ExtResource( 9 )]
+position = Vector2( 1610, -400 )
+rotation = -3.14159
+
+[node name="Roof4" parent="Obstacles" index="50" instance=ExtResource( 10 )]
+position = Vector2( 2220, 360 )
+rotation = 0.785397
+
+[node name="Roof8" parent="Obstacles" index="51" instance=ExtResource( 10 )]
+position = Vector2( 3960, -220 )
+rotation = 1.57079
+
+[node name="Roof9" parent="Obstacles" index="52" instance=ExtResource( 10 )]
+position = Vector2( 3970, 130 )
+rotation = 1.57079
+
+[node name="Roof10" parent="Obstacles" index="53" instance=ExtResource( 10 )]
+position = Vector2( 3980, 320 )
+rotation = 1.57079
+
+[node name="Roof5" parent="Obstacles" index="54" instance=ExtResource( 10 )]
+position = Vector2( 2410, 1560 )
+rotation = 3.14159
+
+[node name="BoxFull2" parent="Obstacles" index="55" instance=ExtResource( 11 )]
+position = Vector2( 3490, -570 )
+rotation = 2.09439
+
+[node name="BoxClosed4" parent="Obstacles" index="56" instance=ExtResource( 2 )]
+position = Vector2( 360, -1100 )
+rotation = 0.0698132
+scale = Vector2( 1, -1 )
+
+[node name="Tire" parent="Obstacles" index="57" instance=ExtResource( 13 )]
+position = Vector2( -150, -150 )
+rotation = -0.785397
+
+[node name="Box8" parent="Obstacles" index="58" instance=ExtResource( 7 )]
+position = Vector2( 1040, 465 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Metal" parent="Obstacles" index="59" instance=ExtResource( 14 )]
+position = Vector2( 3240, 752.5 )
+rotation = -1.0472
+scale = Vector2( 0.8, 0.8 )
+
+[node name="BoxClosed5" parent="Obstacles" index="60" instance=ExtResource( 2 )]
+position = Vector2( 2530, -680 )
+rotation = 0.261799
+
+[node name="Box9" parent="Obstacles" index="61" instance=ExtResource( 15 )]
+position = Vector2( 1170, -730 )
+rotation = 0.261799
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Box10" parent="Obstacles" index="62" instance=ExtResource( 7 )]
+position = Vector2( 620, -770 )
+rotation = -0.122173
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
+position = Vector2( 287.242, 455.905 )
+current = true
+limit_left = -1200
+limit_top = -1400
+limit_right = 4200
+limit_bottom = 1800
+limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource( 16 )
+
+[node name="Powerups" type="Node2D" parent="." index="7"]
+z_index = 2
+
+[node name="Powerup" parent="Powerups" index="0" instance=ExtResource( 17 )]
+position = Vector2( 1040, 256.294 )
+
+[node name="Powerup3" parent="Powerups" index="1" instance=ExtResource( 17 )]
+position = Vector2( 3400, 500 )
+rotation = 0.523598
+
+[node name="Powerup2" parent="Powerups" index="2" instance=ExtResource( 17 )]
+position = Vector2( 1032.79, 640.47 )
+
+[node name="Powerup6" parent="Powerups" index="3" instance=ExtResource( 17 )]
+position = Vector2( 2142.47, 594.71 )
+
+[node name="Powerup7" parent="Powerups" index="4" instance=ExtResource( 17 )]
+position = Vector2( 2102.43, 743.431 )
+
+[node name="Powerup8" parent="Powerups" index="5" instance=ExtResource( 17 )]
+position = Vector2( 2005.19, 886.431 )
+
+[node name="Powerup9" parent="Powerups" index="6" instance=ExtResource( 17 )]
+position = Vector2( 1890.79, 1012.27 )
+
+[node name="Powerup10" parent="Powerups" index="7" instance=ExtResource( 17 )]
+position = Vector2( 2965.04, -789.676 )
+
+[node name="Powerup11" parent="Powerups" index="8" instance=ExtResource( 17 )]
+position = Vector2( 2753.39, -376.691 )
+
+[node name="Powerup12" parent="Powerups" index="9" instance=ExtResource( 17 )]
+position = Vector2( -669.229, -433.476 )
+
+[node name="Powerup13" parent="Powerups" index="10" instance=ExtResource( 17 )]
+position = Vector2( -436.925, -376.691 )
+
+[node name="Powerup5" parent="Powerups" index="11" instance=ExtResource( 17 )]
+position = Vector2( 900, -770 )
+rotation = -0.20944
+
+[node name="Checkpoints" parent="." index="8"]
+editor/display_folded = true
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 18 )]
+position = Vector2( 1652.46, 534.003 )
+rotation = 0.46439
+scale = Vector2( 1, 1.94824 )
+
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 18 )]
+position = Vector2( 2670.01, 1093.23 )
+rotation = -0.119566
+scale = Vector2( 1, 1.94824 )
+number = 2
+
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 18 )]
+position = Vector2( 3401.64, 227.056 )
+rotation = -1.60482
+scale = Vector2( 1, 1.94824 )
+number = 3
+
+[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource( 18 )]
+position = Vector2( 1935.65, -739.615 )
+rotation = -3.06167
+scale = Vector2( 1, 1.57661 )
+number = 4
+
+[node name="Checkpoint5" parent="Checkpoints" index="4" instance=ExtResource( 18 )]
+position = Vector2( 102.175, -699.67 )
+rotation = -3.30374
+scale = Vector2( 1, 1.57661 )
+number = 5
+
+[node name="Checkpoint6" parent="Checkpoints" index="5" instance=ExtResource( 18 )]
+position = Vector2( -532.952, -52.5591 )
+rotation = -4.91988
+scale = Vector2( 1, 2.01542 )
+number = 6
+
+[node name="FinishLine" parent="." index="9" instance=ExtResource( 19 )]
+editor/display_folded = true
+total_checkpoint_number = 6
+total_laps = 3
+
+[node name="PullableObjectBot" parent="FinishLine" index="1"]
+position = Vector2( 40, 242 )
+
+[node name="PullableObjectTop" parent="FinishLine" index="2"]
+position = Vector2( 40, 690 )
+
+
+[editable path="FinishLine"]
