@@ -2,14 +2,10 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:project/assets/tetos/teto_02.png.import
-path="res://.import/teto_02.png-fc467678ca658eb98b73f12aee3361b1.stex"
-=======
 path="res://.import/barrel2.png-35c0d668cf43feae337c291f95215926.stex"
 metadata={
 "vram_texture": false
 }
->>>>>>> development:project/assets/barrel2.png.import
 
 [deps]
 
@@ -21,6 +17,7 @@ dest_files=[ "res://.import/barrel2.png-35c0d668cf43feae337c291f95215926.stex" ]
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -30,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

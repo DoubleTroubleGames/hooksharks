@@ -2,14 +2,10 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:project/player/circle.png.import
-path="res://.import/circle.png-ed2a30b486a225a2d4dbd932ef1f8d27.stex"
-=======
 path="res://.import/circle.png-66e15228a891823832e07ea2530d0863.stex"
 metadata={
 "vram_texture": false
 }
->>>>>>> development:project/fx/circle.png.import
 
 [deps]
 
@@ -21,6 +17,7 @@ dest_files=[ "res://.import/circle.png-66e15228a891823832e07ea2530d0863.stex" ]
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -30,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
