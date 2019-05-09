@@ -117,7 +117,5 @@ func activate(player):
 
 
 func set_random_power():
-	var current_index = randi() % POWERS.size()
+	current_index = randi() % POWERS.size()
 	powerup = POWERS[current_index]
-	
-
