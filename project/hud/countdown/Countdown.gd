@@ -11,11 +11,11 @@ func _ready():
 
 func start_countdown(stage_name = null, laps_number = null):
 	if stage_name:
-		$StageName.text = stage_name
+		$MarginContainer/VBoxContainer/StageName.text = stage_name
 		if laps_number:
-			$StageName/Laps.text = "laps: " + str(laps_number)
+			$MarginContainer/VBoxContainer/Laps.text = "laps: " + str(laps_number)
 		else:
-			$StageName/Laps.text = ""
+			$MarginContainer/VBoxContainer/Laps.text = ""
 	$AnimationPlayer.play("countdown")
 
 
