@@ -24,5 +24,4 @@ editor/display_folded = true
 
 [node name="Tween" type="Tween" parent="."]
 
-
 [editable path="Water"]

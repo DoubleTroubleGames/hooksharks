@@ -46,7 +46,7 @@ func _ready():
 	for player in players:
 		player.spawn_animation()
 		
-	countdown.start_countdown()
+	countdown.start_countdown(stage.get_stage_name(), stage.get_stage_laps())
 	
 	yield(countdown, "go_shown")
 	

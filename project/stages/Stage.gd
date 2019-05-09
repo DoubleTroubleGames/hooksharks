@@ -4,6 +4,7 @@ extends Node2D
 
 export (Vector2)var stage_begin = Vector2(-1500, -900) setget set_stage_begin
 export (Vector2)var stage_end = Vector2(2200, 1400) setget set_stage_end
+export (String)var stage_name = "Sample Name"
 
 const PLAYER = preload("res://player/Player.tscn")
 
@@ -21,6 +22,14 @@ func resize_water():
 	$Water.rect_size = stage_end - stage_begin
 	$Water._on_Water_resized()
 
+func get_stage_name():
+	return stage_name
+	
+func get_stage_laps():
+	if $FinishLine:
+		return $FinishLine.get_laps()
+	else:
+		return null
 
 func setup_players():
 	var players = []

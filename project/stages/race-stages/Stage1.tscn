@@ -19,8 +19,9 @@
 [ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=17]
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=18]
 
-[node name="Stage1" index="0" instance=ExtResource( 1 )]
+[node name="Stage1" instance=ExtResource( 1 )]
 stage_end = Vector2( 4000, 2700 )
+stage_name = "The Worst"
 
 [node name="Water" parent="." index="0"]
 margin_right = 4000.0
@@ -189,6 +190,5 @@ total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 566.27, -294.165 )
-
 
 [editable path="FinishLine"]

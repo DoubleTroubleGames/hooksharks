@@ -56,4 +56,3 @@ __meta__ = {
 }
 
 [node name="Checkpoints" type="Node2D" parent="."]
-
