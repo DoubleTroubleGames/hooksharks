@@ -20,9 +20,10 @@
 [ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=18]
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=19]
 
-[node name="Stage" index="0" instance=ExtResource( 1 )]
+[node name="Stage" instance=ExtResource( 1 )]
 stage_begin = Vector2( -2300, -2000 )
 stage_end = Vector2( 4400, 2000 )
+stage_name = "Testicular Punishment"
 
 [node name="Water" parent="." index="0"]
 margin_left = -2300.0

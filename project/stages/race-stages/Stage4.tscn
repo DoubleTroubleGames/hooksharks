@@ -21,6 +21,7 @@
 [node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -2400, -4000 )
 stage_end = Vector2( 9000, 5000 )
+stage_name = "Straight Diver"
 
 [node name="Water" parent="." index="0"]
 margin_left = -2400.0

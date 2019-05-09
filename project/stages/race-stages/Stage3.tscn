@@ -13,6 +13,7 @@
 [node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -200, -200 )
 stage_end = Vector2( 3800, 2350 )
+stage_name = "Fin Twister"
 
 [node name="Water" parent="." index="0"]
 margin_left = -200.0
@@ -68,7 +69,6 @@ rotation = -2.35619
 [node name="BoxMetal11" parent="Obstacles/Circle1" index="3" instance=ExtResource( 3 )]
 position = Vector2( 619.658, 1981.26 )
 rotation = -2.87979
-scale = Vector2( 1, 1 )
 
 [node name="BoxMetal12" parent="Obstacles/Circle1" index="4" instance=ExtResource( 3 )]
 position = Vector2( 1026.71, 2035.21 )
@@ -81,7 +81,6 @@ rotation = 2.8798
 [node name="BoxMetal14" parent="Obstacles/Circle1" index="6" instance=ExtResource( 3 )]
 position = Vector2( 1732.91, 1799.8 )
 rotation = 2.3562
-scale = Vector2( 1, 1 )
 
 [node name="BoxMetal2" parent="Obstacles/Circle1" index="7" instance=ExtResource( 3 )]
 position = Vector2( 134.143, 657.127 )
@@ -126,7 +125,6 @@ rotation = -2.35619
 [node name="BoxMetal11" parent="Obstacles/Circle2" index="3" instance=ExtResource( 3 )]
 position = Vector2( 619.658, 1981.26 )
 rotation = -2.87979
-scale = Vector2( 1, 1 )
 
 [node name="BoxMetal12" parent="Obstacles/Circle2" index="4" instance=ExtResource( 3 )]
 position = Vector2( 1026.71, 2035.21 )
@@ -139,7 +137,6 @@ rotation = 2.8798
 [node name="BoxMetal14" parent="Obstacles/Circle2" index="6" instance=ExtResource( 3 )]
 position = Vector2( 1732.91, 1799.8 )
 rotation = 2.3562
-scale = Vector2( 1, 1 )
 
 [node name="BoxMetal2" parent="Obstacles/Circle2" index="7" instance=ExtResource( 3 )]
 position = Vector2( 134.143, 657.127 )

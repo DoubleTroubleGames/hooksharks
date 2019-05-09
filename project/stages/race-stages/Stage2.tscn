@@ -24,6 +24,7 @@
 [node name="Stage2" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1600, -1100 )
 stage_end = Vector2( 5500, 2000 )
+stage_name = "Ball Buster"
 
 [node name="Water" parent="." index="0"]
 margin_left = -1600.0
