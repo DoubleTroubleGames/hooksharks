@@ -216,6 +216,7 @@ toggle_fullscreen={
 2d_physics/layer_9="finish_line"
 2d_physics/layer_10="megahook"
 2d_physics/layer_11="pullable_object"
+2d_physics/layer_12="underwater_obstacle"
 
 [rendering]
 

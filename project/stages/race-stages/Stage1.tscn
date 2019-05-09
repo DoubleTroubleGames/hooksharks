@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://stages/BaseStage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/obstacles/BoxClosed.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://objects/Powerups/TrailPower.tscn" type="PackedScene" id=18]
 [ext_resource path="res://stages/race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://stages/race-mode/FinishLine.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/obstacles/UnderWaterWall.tscn" type="PackedScene" id=21]
 
 [node name="Stage1" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1200, -900 )
@@ -349,6 +350,10 @@ total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 566.27, -294.165 )
+
+[node name="UnderWaterWall" parent="." index="10" instance=ExtResource( 21 )]
+position = Vector2( 1511.38, 392.256 )
+rotation = 1.57079
 
 
 [editable path="FinishLine"]
