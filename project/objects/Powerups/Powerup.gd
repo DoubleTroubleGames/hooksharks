@@ -38,6 +38,7 @@ const PARTICLES = [wooden_particle,
 
 export(PackedScene) var powerup
 
+var current_index = 0
 var random = false
 var hook
 
@@ -48,6 +49,14 @@ func _ready():
 	if not powerup:
 		random = true
 		set_random_power()
+	else:
+		for i in POWERS.size():
+			if powerup.resource_path == POWERS[i].resource_path:
+				current_index = i
+		
+		$Sprite.set_texture(CRATES[current_index])
+		$Sprite2.set_texture(SHADERS[current_index])
+		$Particles2D.set_texture(PARTICLES[current_index])
 
 
 func _physics_process(delta):
@@ -80,6 +89,9 @@ func despawn():
 func spawn():
 	if random:
 		set_random_power()
+	$Sprite.set_texture(CRATES[current_index])
+	$Sprite2.set_texture(SHADERS[current_index])
+	$Particles2D.set_texture(PARTICLES[current_index])
 	position = initial_position
 	$Hitbox/CollisionShape2D.set_deferred("disabled", false)
 	$Sprite2/AnimationPlayer.play("spawn")
@@ -105,10 +117,7 @@ func activate(player):
 
 
 func set_random_power():
-	var index = randi() % POWERS.size()
-	powerup = POWERS[index]
-	$Sprite.set_texture(CRATES[index])
-	$Sprite2.set_texture(SHADERS[index])
-	$Particles2D.set_texture(PARTICLES[index])
+	var current_index = randi() % POWERS.size()
+	powerup = POWERS[current_index]
 	
 
