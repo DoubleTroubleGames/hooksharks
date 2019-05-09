@@ -14,7 +14,7 @@ onready var dive_meter = $DiveMeter/Bar
 onready var label_position = $LabelPosition
 onready var sprite = $Shark
 onready var sprite_animation = $Shark/AnimationPlayer
-onready var area = $Shark/Area2D
+onready var area = $Shark/OverWaterArea
 onready var rider_offset = -$Shark/Rider.position.x
 onready var water_particles = $WaterParticles
 onready var dont_collide = false
@@ -221,9 +221,11 @@ func add_shark(shark_name):
 	new.set_name("Shark")
 	new.rotation = initial_dir.angle()
 	
-	area = new.get_node("Area2D")
-	area.connect("area_entered", self, "_on_Area2D_area_entered")
-	area.connect("area_exited", self, "_on_Area2D_area_exited")
+	area = new.get_node("UnderWaterArea")
+	area.connect("area_entered", self, "_on_UnderWater_area_entered")
+	area = new.get_node("OverWaterArea") # OverWater must be set to area last
+	area.connect("area_entered", self, "_on_OverWater_area_entered")
+	area.connect("area_exited", self, "_on_OverWater_area_exited")
 	
 	add_child(new)
 
@@ -457,13 +459,13 @@ func _on_label_display_ended():
 		display_label(label_stack.front())
 
 
-func _on_Area2D_area_exited(area):
+func _on_OverWater_area_exited(area):
 	if area.collision_layer == Collision.TRAIL:
 		var trail = area.get_parent()
 		trail.can_collide = true
 
 
-func _on_Area2D_area_entered(area):
+func _on_OverWater_area_entered(area):
 	if not dont_collide:
 		match area.collision_layer:
 			Collision.PLAYER_ABOVE:
@@ -484,6 +486,19 @@ func _on_Area2D_area_entered(area):
 				if not diving:
 					var powerup = area.get_parent()
 					powerup.activate(self)
+
+
+func _on_UnderWater_area_entered(area):
+	if not dont_collide:
+		match area.collision_layer:
+			Collision.PLAYER_BELOW:
+				var other_player = area.get_parent().get_parent()
+				if diving == other_player.diving and not invincible and not other_player.dont_collide:
+					die()
+					other_player.die()
+			Collision.UNDERWATER_OBSTACLE:
+				if diving:
+					die()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

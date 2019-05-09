@@ -110,5 +110,4 @@ margin_bottom = 354.0
 rect_rotation = 30.0
 rect_pivot_offset = Vector2( 553, 354 )
 texture = ExtResource( 8 )
-
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

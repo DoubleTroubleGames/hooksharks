@@ -20,6 +20,8 @@ func _ready():
 	adjust_line_size()
 	set_physics_process(false)
 
+func get_laps():
+	return total_laps
 
 func _physics_process(delta):
 	update_line_polygon()
