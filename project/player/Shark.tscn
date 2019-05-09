@@ -409,7 +409,7 @@ __meta__ = {
 editor/display_folded = true
 position = Vector2( -45, 0 )
 collision_layer = 2
-collision_mask = 2
+collision_mask = 2050
 __meta__ = {
 "_edit_lock_": true
 }

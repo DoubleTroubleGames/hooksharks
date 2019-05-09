@@ -496,6 +496,9 @@ func _on_UnderWater_area_entered(area):
 				if diving == other_player.diving and not invincible and not other_player.dont_collide:
 					die()
 					other_player.die()
+			Collision.UNDERWATER_OBSTACLE:
+				if diving:
+					die()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
