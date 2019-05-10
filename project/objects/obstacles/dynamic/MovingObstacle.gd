@@ -14,22 +14,48 @@ export(float) var duration = 1.0
 export(bool) var explicit_loop = false setget define_loop_type
 export(bool) var playtest = false setget test_move
 
+export(PackedScene) var obstacle setget define_obstacle
+
+var is_editor = Engine.is_editor_hint()
+
+
+var Obstacle
 var root_position = self.position
 var previous_position
 var moving = false
 
 func _ready():
+	print(root_position)
+	# Cleanup, in case there is leftovers from playtesting
+	test_check_current_nodes(1)
+	
+	for node in get_children():
+		if node.name == "Obstacle" or node.name == "ImplicitLoop":
+			node.name = "Old"
+			node.queue_free()
+	
 	if ($Path.get_child_count() == 0):
 		print("Forgot to add any positions to move on MovingObstacle!")
-		queue_free()
+		if (force_terminate()):
+			return
+	
+	if not obstacle:
+		print("Forgot to add Obstacle to MovingObstacle!")
+		force_terminate()
+	else:
+		Obstacle = obstacle.instance()
+		Obstacle.set_name("Obstacle")
+		add_child(Obstacle)
+
 	if (!explicit_loop):
 		var loop_end = Position2D.new()
 		loop_end.position = $Path/Origin.position
 		loop_end.name = "ImplicitLoop"
 		$Path.add_child(loop_end)
+	
 	previous_position = $Path/Origin.position
 	# This is done so tool mode does not activate process on its own
-	set_process(!Engine.is_editor_hint())
+	set_process(!is_editor)
 
 func _process(delta):
 	if(!moving):
@@ -39,19 +65,19 @@ func move():
 	moving = true
 	for node in $Path.get_children():
 		if node.get_name() != "Origin":
-			$Tween.interpolate_property($Obstacle, "position", real_position(previous_position),\
-			       real_position(node.position), duration, transition_type, ease_type)
+			$Tween.interpolate_property(Obstacle, "position", previous_position,\
+			       node.position, duration, transition_type, ease_type)
 			$Tween.start()
 			yield($Tween, "tween_completed")
 			previous_position = node.position
 	moving = false
-	
-func real_position(p):
-	return p + root_position
 
-
-
-
+func force_terminate():
+	if (is_editor):
+		set_process(false)
+		return true
+	else:
+		queue_free()
 
 func define_loop_type(explicit):
 	if (explicit):
@@ -66,7 +92,28 @@ func define_loop_type(explicit):
 	explicit_loop = explicit
 
 func test_move(do):
-	print(do)
-	set_process(do)
-	playtest = do
+	# Cannot playtest if does not have object
+	if(obstacle):
+		set_process(do)
+		playtest = do
+
+func define_obstacle(o):
+	obstacle = o
+	for node in get_children():
+		if node.name == "Obstacle":
+			node.name = "Old Obstacle"
+			node.queue_free()
+	
+	if(obstacle):
+		Obstacle = o.instance()
+		Obstacle.set_name("Obstacle")
+		add_child(Obstacle)
+
+func test_check_current_nodes(moment):
+	print(str(moment))
+	for node in get_children():
+		print(node.name)
+		if node.get_child_count() > 0:
+			for child in node.get_children():
+				print(child.name)
 
