@@ -19,6 +19,7 @@ var Cameras = []
 var players
 var calling_check_winner = false
 var current_stage = 0
+var available_stages = []
 
 
 func _ready():
@@ -235,8 +236,9 @@ func get_stage(stage_number):
 
 
 func get_random_stage():
-	var available_stages = range(1, total_stages + 1)
 	available_stages.erase(current_stage)
+	if available_stages.empty():
+		available_stages = range(1, total_stages + 1)
 	return get_stage(available_stages[randi() % available_stages.size()])
 
 
