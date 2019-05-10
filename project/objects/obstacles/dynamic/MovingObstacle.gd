@@ -1,5 +1,5 @@
 tool
-extends Area2D
+extends Node2D
 
 # Node for moving obstacles. You need to add the Position2Ds on it to make it
 # follow those points. It is recommended to add a final position that is
@@ -11,7 +11,7 @@ export(int, "Linear", "Sine", "Quintic", "Quartic", "Quadratic",\
        "Exponential", "Elastic", "Cubic") var transition_type
 export(int, "In", "Out", "In-Out", "Out-In") var ease_type
 export(float) var duration = 1.0
-export(bool) var explicit_loop = true setget define_loop_type
+export(bool) var explicit_loop = false setget define_loop_type
 export(bool) var playtest = false setget test_move
 
 var root_position = self.position
@@ -39,7 +39,7 @@ func move():
 	moving = true
 	for node in $Path.get_children():
 		if node.get_name() != "Origin":
-			$Tween.interpolate_property(self, "position", real_position(previous_position),\
+			$Tween.interpolate_property($Obstacle, "position", real_position(previous_position),\
 			       real_position(node.position), duration, transition_type, ease_type)
 			$Tween.start()
 			yield($Tween, "tween_completed")
