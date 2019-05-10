@@ -22,7 +22,7 @@ There is currently no executable for the game. To run it, open the project with 
 
 ## Team
 
-The game is developed by the [Marvellous Soft](marvellous.amoeba@gmail.com) team, which is currently composed of:
+The game is developed by the [Double Trouble Games](doubletroublegamesbr@gmail.com) team, which is currently composed of:
 
 ### Developers
 - Ricardo Lira da Fonseca ([@rilifon](https://github.com/rilifon))
