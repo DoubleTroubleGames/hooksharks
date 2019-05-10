@@ -16,17 +16,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Hooksharks"
-run/main_scene="res://hud/main-menu/MainMenu.tscn"
+run/main_scene="res://menus/main-menu/MainMenu.tscn"
 config/use_custom_user_dir=true
-boot_splash/image="res://assets/boot_splash.png"
-config/icon="res://assets/game_icon.png"
+boot_splash/image="res://assets/images/boot_splash.png"
+config/icon="res://assets/images/game_icon.png"
 
 [autoload]
 
-RoundManager="*res://RoundManager.gd"
-Sound="*res://Sound.tscn"
-Transition="*res://Transition.tscn"
-Collision="*res://Collision.gd"
+RoundManager="*res://autoload/RoundManager.gd"
+Sound="*res://autoload/Sound.tscn"
+Transition="*res://autoload/Transition.tscn"
+Collision="*res://autoload/Collision.gd"
 
 [debug]
 

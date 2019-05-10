@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/images/ui/circle.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/ui/bubble.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=3]
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "hide"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="BackIndicator" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 70.1099, 1006.6 )
+z_index = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Progress" type="TextureProgress" parent="."]
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 462.0
+margin_bottom = 462.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+fill_mode = 4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Message" type="Label" parent="."]
+margin_left = 100.0
+margin_top = -30.0
+margin_right = 548.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Hold BACK to leave"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hide = SubResource( 2 )
+anims/show = SubResource( 3 )
+

@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://gameplay/arena-mode/Arena.gd" type="Script" id=1]
+[ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/hud/countdown/Countdown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/hud/round-screen/RoundScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/effects/ScreenBlink.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/hud/pause-screen/PauseScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=7]
+
+
+
+
+
+
+
+
+[node name="Arena" type="Node2D"]
+script = ExtResource( 1 )
+total_stages = 5
+
+[node name="Water" parent="." instance=ExtResource( 2 )]
+
+[node name="Countdown" parent="." instance=ExtResource( 3 )]
+
+[node name="RoundScreen" parent="." instance=ExtResource( 4 )]
+
+[node name="ScreenBlink" parent="." instance=ExtResource( 5 )]
+
+[node name="PauseScreen" parent="." instance=ExtResource( 6 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+rotating = true
+current = true
+limit_left = 0
+limit_top = 0
+script = ExtResource( 7 )
+

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://autoload/Sound.gd" type="Script" id=1]
+[ext_resource path="res://assets/sound/bgm/oilyshark.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/sound/bgm/shark_fase.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sound/bgm/sea_ambience.ogg" type="AudioStream" id=4]
+
+
+
+
+
+[node name="Sound" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="MenuBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "BGM"
+
+[node name="GameBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "BGM"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
+
+[node name="Tween" type="Tween" parent="."]
+
