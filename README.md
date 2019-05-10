@@ -4,7 +4,7 @@
 
 # HookSharks
 
-**An open source competitive multiplayer game by [MarvellousSoft](https://marvelloussoft.github.io/) and [USPGameDev](https://uspgamedev.org/) ~ 2018-2019**
+**An open source competitive multiplayer game by Double Trouble Games and [USPGameDev](https://uspgamedev.org/) ~ 2018-2019**
 
 ## Introduction
 
