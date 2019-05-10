@@ -1,0 +1,208 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://gameplay/hud/round-screen/RoundScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ui/round-screen/gatebasic.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://gameplay/hud/round-screen/PlayerScore.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/ui/round-screen/restart.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/ui/round-screen/restart_line.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/ui/round-screen/quit.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/ui/round-screen/quit_line.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/ui/round-screen/gate_multi.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/ui/round-screen/gate_sub.png" type="Texture" id=10]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=11]
+
+
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 256
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 512
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 11 )
+
+[node name="RoundScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -1056.0
+margin_top = -1188.0
+margin_right = 1056.0
+rect_pivot_offset = Vector2( 1056, 594 )
+texture = ExtResource( 2 )
+
+[node name="Round" type="Control" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Background/Round"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -400.0
+margin_top = 120.0
+margin_right = 400.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 800, 360 )
+rect_rotation = -10.0
+rect_pivot_offset = Vector2( 400, 180 )
+custom_fonts/font = SubResource( 1 )
+text = "Round"
+align = 1
+valign = 1
+
+[node name="Number" type="Label" parent="Background/Round"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -244.0
+margin_right = 300.0
+margin_bottom = 356.0
+rect_min_size = Vector2( 600, 600 )
+rect_rotation = 10.0
+rect_pivot_offset = Vector2( 300, 300 )
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="ScoreGrid" type="GridContainer" parent="Background"]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -827.0
+margin_top = -244.0
+margin_right = 827.0
+margin_bottom = 388.0
+mouse_filter = 2
+custom_constants/vseparation = 400
+custom_constants/hseparation = 1400
+columns = 2
+
+[node name="Player1" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
+editor/display_folded = true
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Player2" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
+editor/display_folded = true
+margin_left = 1400.0
+margin_right = 1400.0
+margin_bottom = 0.0
+
+[node name="Player3" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
+editor/display_folded = true
+margin_top = 400.0
+margin_right = 0.0
+margin_bottom = 400.0
+
+[node name="Player4" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
+editor/display_folded = true
+margin_left = 1400.0
+margin_top = 400.0
+margin_right = 1400.0
+margin_bottom = 400.0
+
+[node name="Buttons" type="VBoxContainer" parent="Background"]
+visible = false
+margin_left = 848.25
+margin_top = 1188.0
+margin_right = 888.25
+margin_bottom = 1228.0
+
+[node name="Restart" type="TextureButton" parent="Background/Buttons"]
+margin_right = 447.0
+margin_bottom = 138.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+
+[node name="Quit" type="TextureButton" parent="Background/Buttons"]
+margin_top = 142.0
+margin_right = 447.0
+margin_bottom = 280.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
+
+[node name="GateShadow" type="TextureRect" parent="Background"]
+modulate = Color( 1, 1, 1, 0.313726 )
+light_mask = 0
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
+texture = ExtResource( 9 )
+
+[node name="GateHightlight" type="TextureRect" parent="Background"]
+modulate = Color( 1, 1, 1, 0.156863 )
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+
+[node name="TriviaHeader" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = -214.0
+margin_right = -200.0
+margin_bottom = -100.0
+custom_fonts/font = SubResource( 5 )
+text = "fact of the day"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Trivia" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = -164.0
+margin_right = -200.0
+margin_bottom = -50.0
+custom_fonts/font = SubResource( 6 )
+text = "Random Trivia"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DisplayTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+

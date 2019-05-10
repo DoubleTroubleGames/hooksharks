@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://objects/obstacles/dynamic/MovingObstacle.gd" type="Script" id=1]
+
+[node name="MovingObstacle" type="Node2D"]
+position = Vector2( 803.379, 368.215 )
+script = ExtResource( 1 )
+
+[node name="Path" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Origin" type="Position2D" parent="Path"]
+
+[node name="Position2D" type="Position2D" parent="Path"]
+position = Vector2( 340.717, -240.506 )
+
+[node name="Position2D2" type="Position2D" parent="Path"]
+position = Vector2( 721.519, 288.942 )
+
+[node name="Position2D3" type="Position2D" parent="Path"]
+position = Vector2( -529.448, 113.573 )
+
+[node name="Tween" type="Tween" parent="."]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/woodcrack.wav-978042f26502cc4f758662069bece549.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/woodcrack.wav"
+dest_files=[ "res://.import/woodcrack.wav-978042f26502cc4f758662069bece549.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
