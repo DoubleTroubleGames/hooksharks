@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://objects/obstacles/outline_final.tres" type="Material" id=1]
-[ext_resource path="res://assets/roof_o.png" type="Texture" id=2]
-[ext_resource path="res://assets/roof.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/obstacles/roof_o.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/obstacles/roof.png" type="Texture" id=3]
+
+
 
 [node name="Roof" type="Area2D"]
 collision_layer = 4

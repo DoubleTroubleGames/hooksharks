@@ -13,9 +13,10 @@
 [ext_resource path="res://hud/character-select/left.png" type="Texture" id=11]
 [ext_resource path="res://hud/character-select/right.png" type="Texture" id=12]
 [ext_resource path="res://player/Shark.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/menu_back.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=16]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

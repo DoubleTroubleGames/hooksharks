@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Transition.gd" type="Script" id=1]
-[ext_resource path="res://assets/jaw_upper.png" type="Texture" id=2]
-[ext_resource path="res://assets/jaw_lower.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/transition/jaw_upper.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/transition/jaw_lower.png" type="Texture" id=3]
+
+
 
 [node name="Transition" type="CanvasLayer"]
 pause_mode = 2

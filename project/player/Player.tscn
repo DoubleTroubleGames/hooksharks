@@ -7,7 +7,7 @@
 [ext_resource path="res://fx/bubble.png" type="Texture" id=5]
 [ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/old sounds/emerge.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sound/explosion2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=11]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/old sounds/hook_hit_player.wav" type="AudioStream" id=16]
+
 
 [node name="Player" type="Node2D"]
 z_index = 1

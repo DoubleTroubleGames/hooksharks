@@ -2,12 +2,15 @@
 
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Powerups/Powerup.gd" type="Script" id=2]
-[ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=3]
-[ext_resource path="res://assets/noise.png" type="Texture" id=4]
-[ext_resource path="res://assets/barrel2_o.png" type="Texture" id=5]
-[ext_resource path="res://assets/barrel2.png" type="Texture" id=6]
-[ext_resource path="res://assets/barril_quebrando_particula.png" type="Texture" id=7]
-[ext_resource path="res://assets/sound/woodcrack.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/images/WaterDistortion.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/noise.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/powerup/barrel2_o.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/powerup/barrel2.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/powerup/barril_quebrando_particula.png" type="Texture" id=7]
+[ext_resource path="res://assets/sound/sfx/woodcrack.wav" type="AudioStream" id=8]
+
+
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

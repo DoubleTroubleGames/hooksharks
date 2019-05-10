@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hook_wall.wav-99467b77e5f0fbd0f8853c1d54aed6cc.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/hook_wall.wav"
+dest_files=[ "res://.import/hook_wall.wav-99467b77e5f0fbd0f8853c1d54aed6cc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

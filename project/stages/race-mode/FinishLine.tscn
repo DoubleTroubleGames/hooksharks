@@ -2,7 +2,8 @@
 
 [ext_resource path="res://stages/race-mode/FinishLine.gd" type="Script" id=1]
 [ext_resource path="res://objects/PullableObject.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/line.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/line.png" type="Texture" id=3]
+
 
 
 [sub_resource type="Animation" id=1]

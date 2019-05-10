@@ -2,8 +2,10 @@
 
 [ext_resource path="res://objects/obstacles/dynamic/MovingObstacle.gd" type="Script" id=1]
 [ext_resource path="res://objects/obstacles/outline_final.tres" type="Material" id=2]
-[ext_resource path="res://assets/box2_o.png" type="Texture" id=3]
-[ext_resource path="res://assets/box2.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/obstacles/box2_o.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/obstacles/box2.png" type="Texture" id=4]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 230, 115 )

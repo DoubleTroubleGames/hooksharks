@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/sound/hook_hook2.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/sound/sfx/hook_hook2.wav" type="AudioStream" id=1]
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.827451, 1 )

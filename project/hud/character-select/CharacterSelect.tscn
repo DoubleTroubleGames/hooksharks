@@ -10,15 +10,19 @@
 [ext_resource path="res://objects/obstacles/Box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/obstacles/Box2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://objects/obstacles/BoxMetal.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/roof.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/obstacles/roof.png" type="Texture" id=11]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://hud/character-select/SelectionBox.tscn" type="PackedScene" id=13]
 [ext_resource path="res://hud/BackIndicator.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/board.png" type="Texture" id=15]
+[ext_resource path="res://assets/images/ui/board.png" type="Texture" id=15]
 [ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://hud/tutorial/Tutorial.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/sound/menu_denied.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/sound/press_start.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/sfx/menu_denied.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=19]
+
+
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 100

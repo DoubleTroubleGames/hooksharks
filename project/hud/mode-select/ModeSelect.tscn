@@ -2,14 +2,17 @@
 
 [ext_resource path="res://hud/mode-select/ModeSelect.gd" type="Script" id=1]
 [ext_resource path="res://fx/water/Water.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/WaterDistortion.png" type="Texture" id=3]
-[ext_resource path="res://assets/noise.png" type="Texture" id=4]
-[ext_resource path="res://assets/m_deathmatch.png" type="Texture" id=5]
-[ext_resource path="res://assets/m_deathmatch_o.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/WaterDistortion.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/noise.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/ui/m_deathmatch.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/ui/m_deathmatch_o.png" type="Texture" id=6]
 [ext_resource path="res://hud/mode-select/m_racingt.png" type="Texture" id=7]
 [ext_resource path="res://hud/mode-select/m_racingt_o.png" type="Texture" id=8]
-[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=10]
+
+
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

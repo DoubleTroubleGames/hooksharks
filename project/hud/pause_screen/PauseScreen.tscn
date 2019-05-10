@@ -4,9 +4,10 @@
 [ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://hud/pause_screen/resume_line.png" type="Texture" id=3]
 [ext_resource path="res://hud/pause_screen/quit.png" type="Texture" id=4]
-[ext_resource path="res://assets/sound/pause_open.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sound/menu_selection.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sound/menu_confirm.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/sfx/pause_open.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=7]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 160

@@ -4,7 +4,8 @@
 [ext_resource path="res://characters/Pirate/pirate_under.png" type="Texture" id=2]
 [ext_resource path="res://characters/Pirate/rider.png" type="Texture" id=3]
 [ext_resource path="res://player/hook/hook.png" type="Texture" id=4]
-[ext_resource path="res://assets/white.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/white.png" type="Texture" id=5]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "dive"

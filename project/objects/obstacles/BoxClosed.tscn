@@ -1,8 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/obstacles/outline_final.tres" type="Material" id=1]
-[ext_resource path="res://assets/box_closed_o.png" type="Texture" id=2]
-[ext_resource path="res://assets/box_closed.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/obstacles/box_closed_o.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/obstacles/box_closed.png" type="Texture" id=3]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 230, 115 )
