@@ -1,5 +1,5 @@
 ###### Hooksharks
-###### Copyright (C) 2018-2019  MarvellousSoft & USPGameDev
+###### Copyright (C) 2018-2019  DoubleTroubleGames & USPGameDev
 ###### Code under license **GPLv3.0**, original assets under license **CC BY-SA 4.0**
 
 # HookSharks
@@ -10,7 +10,7 @@
 
 This game was made for a game jam (https://github.com/uspgamedev/sharktron), under the group USPGameDev.
 
-Now, it is under further development by the Marvellous Soft group.
+Now, it is under further development by the Double Trouble Games group.
 
 ----------------------------------------------------
 
