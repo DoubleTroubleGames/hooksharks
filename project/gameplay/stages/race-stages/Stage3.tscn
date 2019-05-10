@@ -1,0 +1,265 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://gameplay/stages/BaseStage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/objects/obstacles/Float2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/BoxMetal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/objects/obstacles/Dock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gameplay/objects/obstacles/UnderWaterWall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/objects/powerups/Powerup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=9]
+
+
+
+
+
+
+
+[node name="Stage" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -200, -200 )
+stage_end = Vector2( 3800, 2350 )
+stage_name = "Fin Twister"
+
+[node name="Water" parent="." index="0"]
+margin_left = -200.0
+margin_top = -200.0
+margin_right = 3800.0
+margin_bottom = 2350.0
+
+[node name="PlayerStartingPosition" parent="." index="1"]
+position = Vector2( 375.096, 1028.77 )
+rotation = -1.57079
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
+position = Vector2( 0, -100 )
+direction = Vector2( 0, -1 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
+position = Vector2( 0, 41 )
+direction = Vector2( 0, -1 )
+
+[node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
+position = Vector2( 0, 191 )
+direction = Vector2( 0, -1 )
+
+[node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
+position = Vector2( 0, 341 )
+direction = Vector2( 0, -1 )
+
+[node name="Obstacles" parent="." index="2"]
+editor/display_folded = true
+
+[node name="Float2" parent="Obstacles" index="0" instance=ExtResource( 2 )]
+position = Vector2( 1570.19, 785.54 )
+rotation = 0.785397
+scale = Vector2( 1.4, 1.4 )
+
+[node name="Float3" parent="Obstacles" index="1" instance=ExtResource( 2 )]
+position = Vector2( 2118.11, 1393.67 )
+rotation = 0.785397
+scale = Vector2( 1.4, 1.4 )
+
+[node name="Circle1" type="Node2D" parent="Obstacles" index="2"]
+editor/display_folded = true
+
+[node name="BoxMetal" parent="Obstacles/Circle1" index="0" instance=ExtResource( 3 )]
+position = Vector2( 80.1965, 1064.17 )
+rotation = -1.57079
+
+[node name="BoxMetal9" parent="Obstacles/Circle1" index="1" instance=ExtResource( 3 )]
+position = Vector2( 129.238, 1471.22 )
+rotation = -1.83259
+
+[node name="BoxMetal10" parent="Obstacles/Circle1" index="2" instance=ExtResource( 3 )]
+position = Vector2( 305.789, 1794.9 )
+rotation = -2.35619
+
+[node name="BoxMetal11" parent="Obstacles/Circle1" index="3" instance=ExtResource( 3 )]
+position = Vector2( 619.658, 1981.26 )
+rotation = -2.87979
+
+[node name="BoxMetal12" parent="Obstacles/Circle1" index="4" instance=ExtResource( 3 )]
+position = Vector2( 1026.71, 2035.21 )
+rotation = -3.14159
+
+[node name="BoxMetal13" parent="Obstacles/Circle1" index="5" instance=ExtResource( 3 )]
+position = Vector2( 1404.33, 1986.16 )
+rotation = 2.8798
+
+[node name="BoxMetal14" parent="Obstacles/Circle1" index="6" instance=ExtResource( 3 )]
+position = Vector2( 1732.91, 1799.8 )
+rotation = 2.3562
+
+[node name="BoxMetal2" parent="Obstacles/Circle1" index="7" instance=ExtResource( 3 )]
+position = Vector2( 134.143, 657.127 )
+rotation = -1.309
+
+[node name="BoxMetal3" parent="Obstacles/Circle1" index="8" instance=ExtResource( 3 )]
+position = Vector2( 315.287, 336.872 )
+rotation = -0.785397
+
+[node name="BoxMetal4" parent="Obstacles/Circle1" index="9" instance=ExtResource( 3 )]
+position = Vector2( 634.06, 145.609 )
+rotation = -0.261799
+
+[node name="BoxMetal5" parent="Obstacles/Circle1" index="10" instance=ExtResource( 3 )]
+position = Vector2( 1026.4, 96.5667 )
+
+[node name="BoxMetal6" parent="Obstacles/Circle1" index="11" instance=ExtResource( 3 )]
+position = Vector2( 1404.02, 140.705 )
+rotation = 0.261799
+
+[node name="BoxMetal7" parent="Obstacles/Circle1" index="12" instance=ExtResource( 3 )]
+position = Vector2( 1717.89, 317.256 )
+rotation = 0.785397
+
+[node name="Circle2" type="Node2D" parent="Obstacles" index="3"]
+editor/display_folded = true
+position = Vector2( 3624.68, 2137.48 )
+rotation = 3.14159
+
+[node name="BoxMetal" parent="Obstacles/Circle2" index="0" instance=ExtResource( 3 )]
+position = Vector2( 80.1965, 1064.17 )
+rotation = -1.57079
+
+[node name="BoxMetal9" parent="Obstacles/Circle2" index="1" instance=ExtResource( 3 )]
+position = Vector2( 129.238, 1471.22 )
+rotation = -1.83259
+
+[node name="BoxMetal10" parent="Obstacles/Circle2" index="2" instance=ExtResource( 3 )]
+position = Vector2( 305.789, 1794.9 )
+rotation = -2.35619
+
+[node name="BoxMetal11" parent="Obstacles/Circle2" index="3" instance=ExtResource( 3 )]
+position = Vector2( 619.658, 1981.26 )
+rotation = -2.87979
+
+[node name="BoxMetal12" parent="Obstacles/Circle2" index="4" instance=ExtResource( 3 )]
+position = Vector2( 1026.71, 2035.21 )
+rotation = -3.14159
+
+[node name="BoxMetal13" parent="Obstacles/Circle2" index="5" instance=ExtResource( 3 )]
+position = Vector2( 1404.33, 1986.16 )
+rotation = 2.8798
+
+[node name="BoxMetal14" parent="Obstacles/Circle2" index="6" instance=ExtResource( 3 )]
+position = Vector2( 1732.91, 1799.8 )
+rotation = 2.3562
+
+[node name="BoxMetal2" parent="Obstacles/Circle2" index="7" instance=ExtResource( 3 )]
+position = Vector2( 134.143, 657.127 )
+rotation = -1.309
+
+[node name="BoxMetal3" parent="Obstacles/Circle2" index="8" instance=ExtResource( 3 )]
+position = Vector2( 315.287, 336.872 )
+rotation = -0.785397
+
+[node name="BoxMetal4" parent="Obstacles/Circle2" index="9" instance=ExtResource( 3 )]
+position = Vector2( 634.06, 145.609 )
+rotation = -0.261799
+
+[node name="BoxMetal5" parent="Obstacles/Circle2" index="10" instance=ExtResource( 3 )]
+position = Vector2( 1026.4, 96.5667 )
+
+[node name="BoxMetal6" parent="Obstacles/Circle2" index="11" instance=ExtResource( 3 )]
+position = Vector2( 1404.02, 140.705 )
+rotation = 0.261799
+
+[node name="BoxMetal7" parent="Obstacles/Circle2" index="12" instance=ExtResource( 3 )]
+position = Vector2( 1717.89, 317.256 )
+rotation = 0.785397
+
+[node name="Dock" parent="Obstacles" index="4" instance=ExtResource( 4 )]
+position = Vector2( 1112.59, 1080.57 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="Dock2" parent="Obstacles" index="5" instance=ExtResource( 4 )]
+position = Vector2( 2575.71, 1050.47 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="UnderWaterWall" parent="Obstacles" index="6" instance=ExtResource( 5 )]
+position = Vector2( 1503.96, 1477.96 )
+rotation = 0.785397
+scale = Vector2( 1.2, 1.2 )
+
+[node name="UnderWaterWall2" parent="Obstacles" index="7" instance=ExtResource( 5 )]
+position = Vector2( 2136.17, 695.224 )
+rotation = 0.785397
+scale = Vector2( 1.2, 1.2 )
+
+[node name="PowerUps" type="Node2D" parent="." index="6"]
+editor/display_folded = true
+z_index = 2
+
+[node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 6 )]
+position = Vector2( 1858.83, 1084.39 )
+
+[node name="Checkpoints" parent="." index="7"]
+editor/display_folded = true
+
+[node name="Checkpoint6" parent="Checkpoints" index="0" instance=ExtResource( 7 )]
+position = Vector2( 547.508, 929.035 )
+rotation = -4.71238
+scale = Vector2( 1, 1.7 )
+
+[node name="Checkpoint" parent="Checkpoints" index="1" instance=ExtResource( 7 )]
+position = Vector2( 1119.51, 545.048 )
+scale = Vector2( 1, 1.7 )
+number = 2
+
+[node name="Checkpoint2" parent="Checkpoints" index="2" instance=ExtResource( 7 )]
+position = Vector2( 2600.69, 1586.69 )
+scale = Vector2( 1, 1.7 )
+number = 3
+
+[node name="Checkpoint3" parent="Checkpoints" index="3" instance=ExtResource( 7 )]
+position = Vector2( 3088.4, 1068.88 )
+rotation = -1.57079
+scale = Vector2( 1, 1.7 )
+number = 4
+
+[node name="Checkpoint4" parent="Checkpoints" index="4" instance=ExtResource( 7 )]
+position = Vector2( 2594.67, 520.964 )
+rotation = -3.14159
+scale = Vector2( 1, 1.7 )
+number = 5
+
+[node name="Checkpoint5" parent="Checkpoints" index="5" instance=ExtResource( 7 )]
+position = Vector2( 1095.43, 1610.78 )
+rotation = -3.14159
+scale = Vector2( 1, 1.7 )
+number = 6
+
+[node name="FinishLine" parent="." index="8" instance=ExtResource( 8 )]
+position = Vector2( 2750, -1270 )
+rotation = 1.83259
+total_checkpoint_number = 6
+total_laps = 3
+
+[node name="Camera2D" type="Camera2D" parent="." index="9"]
+position = Vector2( 297.405, 289.656 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 3700
+limit_bottom = 2150
+limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource( 9 )
+
+[node name="FinishLine2" parent="." index="10" instance=ExtResource( 8 )]
+editor/display_folded = true
+position = Vector2( 539.433, 1159.35 )
+rotation = -1.57079
+total_checkpoint_number = 6
+total_laps = 3
+
+[node name="PullableObjectBot" parent="FinishLine2" index="1"]
+position = Vector2( 0, 260 )
+
+
+[editable path="FinishLine2"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gameplay/player/hook/Hook.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/elements/hook.png" type="Texture" id=2]
+
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0
+
+[node name="Hook" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( -0.25, 0.25 )
+texture = ExtResource( 2 )
+offset = Vector2( 5, 0 )
+
+[node name="HookArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 1645
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/images/effects/blood.png" type="Texture" id=1]
+
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+anim_speed = 1.0
+
+[node name="BloodParticles" type="Particles2D"]
+material = SubResource( 1 )
+amount = 1
+lifetime = 0.8
+one_shot = true
+local_coords = false
+process_material = SubResource( 2 )
+texture = ExtResource( 1 )
+

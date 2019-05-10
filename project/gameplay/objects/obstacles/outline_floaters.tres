@@ -1,0 +1,63 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://assets/images/effects/WaterDistortion.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/effects/noise.png" type="Texture" id=2]
+
+
+
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform bool active;
+uniform sampler2D noise;
+uniform float wave_length : hint_range(0,1);
+uniform vec4 wave_color : hint_color;
+uniform vec2 wave_scroll_speed;
+uniform sampler2D distortion;
+uniform float distortion_strength;
+uniform float aa_factor;
+
+/*Making outline images on gimp: 
+	- grow shape by 40 pixel
+	- paint it white
+	- use filter \"gaussian blur\" with values (100,100)
+	- fine adjustments with Smudge Tool if needed
+*/
+void fragment(){
+	vec4 pixel = texture(TEXTURE, UV);
+	if (active) {
+		if (pixel.a < 1.0 && pixel.a > 0.0){
+			
+			vec2 distortMod = (texture(distortion, UV).xy * 2.0 - 1.0) * distortion_strength;
+			float noise_x = mod(UV.x + wave_scroll_speed.x*TIME, 1.0) + distortMod.x;
+			float noise_y = mod(UV.y + wave_scroll_speed.y*TIME, 1.0) + distortMod.y;
+			vec2 noiseUV = vec2(noise_x, noise_y);
+			vec4 noisePixel = texture(noise, noiseUV);
+	
+			float value = (noisePixel.r + noisePixel.g + noisePixel.g)/3.0;
+			
+			float cutoff = 1.0 - smoothstep(1.0 - wave_length, 1.0, pixel.a);
+			
+			if (value > cutoff - aa_factor) {
+				float alpha = smoothstep(cutoff - aa_factor, cutoff + aa_factor, value);
+				COLOR = vec4(wave_color.rgb, wave_color.a * alpha);
+			}
+			else
+				COLOR = vec4(0);
+		}else
+			COLOR = pixel;
+	}else
+		COLOR = pixel;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/active = true
+shader_param/wave_length = 0.341
+shader_param/wave_color = Color( 0.701961, 0.909804, 0.980392, 1 )
+shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
+shader_param/distortion_strength = 0.3
+shader_param/aa_factor = 0.04
+shader_param/noise = ExtResource( 2 )
+shader_param/distortion = ExtResource( 1 )

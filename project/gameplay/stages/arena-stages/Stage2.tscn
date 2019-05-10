@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gameplay/stages/BaseStage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/stages/arena-stages/ArenaWalls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/Box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/objects/obstacles/Box3.tscn" type="PackedScene" id=4]
+
+
+
+[node name="Stage2" index="0" instance=ExtResource( 1 )]
+stage_name = "Double Trouble"
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
+position = Vector2( 300, 300 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
+position = Vector2( 1680, 780 )
+direction = Vector2( -1, 0 )
+
+[node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
+position = Vector2( 1680, 300 )
+direction = Vector2( -1, 0 )
+
+[node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
+position = Vector2( 300, 780 )
+
+[node name="ArenaWalls" parent="Obstacles" index="0" instance=ExtResource( 2 )]
+
+[node name="Box" parent="Obstacles" index="1" instance=ExtResource( 3 )]
+position = Vector2( 700, 700 )
+rotation = 0.109246
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Box3" parent="Obstacles" index="2" instance=ExtResource( 4 )]
+position = Vector2( 1280, 380 )
+rotation = -0.187035
+scale = Vector2( 0.6, 0.6 )
+

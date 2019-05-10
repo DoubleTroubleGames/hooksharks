@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hook_barrel2.wav-a274b003f9f0bf3d3f51041b3f001f1e.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/hook_barrel2.wav"
+dest_files=[ "res://.import/hook_barrel2.wav-a274b003f9f0bf3d3f51041b3f001f1e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

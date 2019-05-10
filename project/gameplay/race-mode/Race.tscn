@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://gameplay/race-mode/Race.gd" type="Script" id=1]
+[ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/hud/countdown/Countdown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/hud/round-screen/RoundScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/effects/ScreenBlink.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/hud/pause-screen/PauseScreen.tscn" type="PackedScene" id=6]
+
+
+
+
+
+
+
+
+[node name="Race" type="Node2D"]
+script = ExtResource( 1 )
+total_stages = 5
+
+[node name="Water" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
+
+[node name="Countdown" parent="." instance=ExtResource( 3 )]
+
+[node name="RoundScreen" parent="." instance=ExtResource( 4 )]
+
+[node name="ScreenBlink" parent="." instance=ExtResource( 5 )]
+
+[node name="PauseScreen" parent="." instance=ExtResource( 6 )]
+
+[node name="Tween" type="Tween" parent="."]
+
+[editable path="Water"]
