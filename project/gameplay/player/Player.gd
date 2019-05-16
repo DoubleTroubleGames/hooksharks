@@ -56,6 +56,7 @@ var diving = false
 var can_dive = true
 var dive_on_cooldown = false
 var infinite_dive = false
+var whirlpool_list = []
 var invincible = false
 var stunned = false
 var hook = null
@@ -471,9 +472,14 @@ func _on_label_display_ended():
 
 
 func _on_OverWater_area_exited(area):
-	if area.collision_layer == Collision.TRAIL:
-		var trail = area.get_parent()
-		trail.can_collide = true
+	match area.collision_layer:
+		Collision.TRAIL:
+			var trail = area.get_parent()
+			trail.can_collide = true
+		Collision.WHIRLPOOL:
+			var whirlpool = area.get_parent()
+			if whirlpool_list.find(whirlpool) != -1:
+				whirlpool_list.append(whirlpool)
 
 
 func _on_OverWater_area_entered(area):
@@ -497,6 +503,10 @@ func _on_OverWater_area_entered(area):
 				if not diving:
 					var powerup = area.get_parent()
 					powerup.activate(self)
+			Collision.WHIRLPOOL:
+				var whirlpool = area.get_parent()
+				if whirlpool_list.find(whirlpool) != -1:
+					whirlpool_list.append(whirlpool)
 
 
 func _on_UnderWater_area_entered(area):
@@ -510,6 +520,10 @@ func _on_UnderWater_area_entered(area):
 			Collision.UNDERWATER_OBSTACLE:
 				if diving:
 					die()
+			Collision.WHIRLPOOL:
+				var whirlpool = area.get_parent()
+				if whirlpool_list.find(whirlpool) != -1:
+					whirlpool_list.append(whirlpool)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gameplay/objects/obstacles/Whirlpool.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Whirlpool" type="Node2D"]
+script = ExtResource( 1 )
+death_size = 5.0
+
+[node name="PullingWave" type="Area2D" parent="." groups=[
+"whirlpool",
+]]
+scale = Vector2( 20, 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PullingWave"]
+shape = SubResource( 1 )
+
+[node name="DeathZone" type="Area2D" parent="."]
+scale = Vector2( 5, 5 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+shape = SubResource( 2 )
