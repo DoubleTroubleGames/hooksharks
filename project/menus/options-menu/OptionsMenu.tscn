@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.858824, 0.858824, 0.858824, 1 )
+
+[node name="OptionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 110.0
+margin_top = 110.0
+margin_right = 410.0
+margin_bottom = 126.0
+rounded = true
+ticks_on_borders = true
+

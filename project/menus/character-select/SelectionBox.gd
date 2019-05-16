@@ -94,7 +94,7 @@ func toggle_left():
 		portrait_path += "_grey"
 	portrait_path += ".png"
 	$Boarder/Portrait.set_texture(load(portrait_path))
-	$Boarder/AnimationPlayer.play("change_char_left")
+	$Boarder/AnimationPlayer.play("change_char_right")
 	yield($Boarder/AnimationPlayer, "animation_finished")
 	mid_animation = false
 	########################################
@@ -118,7 +118,7 @@ func toggle_right():
 		portrait_path += "_grey"
 	portrait_path += ".png"
 	$Boarder/Portrait.set_texture(load(portrait_path))
-	$Boarder/AnimationPlayer.play("change_char_right")
+	$Boarder/AnimationPlayer.play("change_char_left")
 	yield($Boarder/AnimationPlayer, "animation_finished")
 	mid_animation = false
 	########################################
