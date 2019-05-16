@@ -65,6 +65,8 @@ func hit_hook(other_hook):
 	retract()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
 	emit_signal("hook_clinked", (other_hook.position + self.position) / 2)
+	
+	rope.straighten()
 
 
 func hit_object(object):
@@ -72,6 +74,8 @@ func hit_object(object):
 	has_collided = true
 	object.set_hook(self)
 	pulling_object = object
+	
+	rope.straighten()
 
 
 func hit_shark(shark):
@@ -79,12 +83,16 @@ func hit_shark(shark):
 		stop_at = shark
 		shark.hook_collision(self)
 		emit_signal("shook_screen", SCREEN_SHAKE_SHARK_HIT)
+		
+		rope.straighten()
 
 
 func hit_wall():
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
 	emit_signal("wall_hit", position, $Sprite.rotation - PI)
 	has_collided = true
+	
+	rope.straighten()
 
 
 func retract():
@@ -92,6 +100,8 @@ func retract():
 		pulling_object.remove_hook()
 		pulling_object = null
 	retracting = true
+	
+	rope.straighten(false)
 
 
 func free_hook():
