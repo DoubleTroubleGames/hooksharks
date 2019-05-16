@@ -93,7 +93,7 @@ func transition_stage():
 	for player in players:
 		player.spawn_animation()
 	
-	countdown.start_countdown()
+	countdown.start_countdown($Stage.get_stage_name(), $Stage.get_stage_laps())
 	
 	yield(countdown, "go_shown")
 	
