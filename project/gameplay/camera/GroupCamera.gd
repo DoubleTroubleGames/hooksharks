@@ -1,7 +1,9 @@
 extends "res://gameplay/camera/Camera.gd"
 
+const ZOOM_IN_MARGIN = .3
 const MIN_ZOOM = 1
-const ZOOM_LERP = 1
+const ZOOM_OUT_LERP = .1
+const ZOOM_IN_LERP = .01
 const POS_LERP = 1
 const WINNER_ZOOM = .5
 const WINNER_ZOOM_LERP = .15
@@ -19,11 +21,14 @@ func _physics_process(delta):
 	update_camera()
 	update()
 
+
 func focus_on_point(point):
 	point_focus = point
-	
+
+
 func reset_focus_point():
 	point_focus = null
+
 
 func update_camera():
 	
@@ -37,10 +42,14 @@ func update_camera():
 		#Update camera zoom
 		var screen_size = get_tree().root.size
 		
-		var target_zoom = (max_limit-min_limit)/screen_size
+		var target_zoom = (max_limit - min_limit) / screen_size
+		
 		var final_zoom = max(max(target_zoom.x, target_zoom.y), MIN_ZOOM)
-		#zoom = Vector2(final_zoom, final_zoom)
-		set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_LERP))
+		
+		if final_zoom > zoom.x:
+			set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_OUT_LERP))
+		elif final_zoom < zoom.x - ZOOM_IN_MARGIN:
+			set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_IN_LERP))
 	else:
 		set_position(lerp(position, point_focus, POS_LERP))
 		set_zoom(lerp(zoom, Vector2(WINNER_ZOOM, WINNER_ZOOM), WINNER_ZOOM_LERP))
