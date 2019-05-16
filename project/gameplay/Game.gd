@@ -20,7 +20,7 @@ var current_stage = 0
 var available_stages = []
 
 
-func _ready():
+"res://gameplay/player/rope/Rope.tscn"func _ready():
 	var stage = get_first_stage().instance()
 	players = stage.setup_players()
 	stage.set_name("Stage")
@@ -71,8 +71,6 @@ func create_rope(player, hook):
 	var rope = ROPE.instance()
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	var rider_pos = player.position + player.rider_offset * angle
-	rope.add_point(rider_pos)
-	rope.add_point(rider_pos)
 	rope.player = player
 	rope.hook = hook
 	get_node("Stage/Ropes").add_child(rope)
