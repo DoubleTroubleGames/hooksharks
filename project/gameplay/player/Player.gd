@@ -348,7 +348,11 @@ func die():
 		if hook != null:
 			hook.free_hook()
 		emit_signal("died", self)
-		sprite.hide()
+		sprite_animation.play("dive")
+		var Twn = Tween.new()
+		add_child(Twn)
+		Twn.interpolate_property(sprite, "modulate:a", null, 0, 0.4, Tween.TRANS_QUAD, Tween.EASE_IN)
+		Twn.start()
 
 
 func hook_collision(from_hook):
