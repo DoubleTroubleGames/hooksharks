@@ -64,6 +64,7 @@ var speed2 = Vector2(INITIAL_SPEED, 0)
 var is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
 var label_stack = []
+var disabled = false
 
 func _ready():
 	if device_name.begins_with("gamepad"):
@@ -97,15 +98,17 @@ func _input(event):
 					(event is InputEventKey and event.is_echo())
 			break
 	
-	if event.is_action_pressed("dive"):
-		dive()
-	elif event.is_action_released("dive"):
-		emerge()
-	elif event.is_action_pressed("shoot"):
-		shoot()
-	elif event.is_action_released("shoot"):
-		retract()
-	elif event.is_action_pressed("pause"):
+	if not disabled:
+		if event.is_action_pressed("dive"):
+			dive()
+		elif event.is_action_released("dive"):
+			emerge()
+		elif event.is_action_pressed("shoot"):
+			shoot()
+		elif event.is_action_released("shoot"):
+			retract()
+	
+	if event.is_action_pressed("pause"):
 		emit_signal("paused", self)
 
 
@@ -197,13 +200,15 @@ func _physics_process(delta):
 
 
 func disable():
+	disabled = true
 	dont_collide = true
 	water_particles.ripples.emitting = false
 	set_physics_process(false)
-	set_process_input(false)
+#	set_process_input(false)
 
 
 func enable():
+	disabled = false
 	dont_collide = false
 	$WaterParticles.show()
 	water_particles.ripples.emitting = true
