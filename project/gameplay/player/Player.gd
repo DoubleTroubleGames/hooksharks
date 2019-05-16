@@ -34,8 +34,6 @@ const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
-const PULL_FORCE = 300
-const DISPLACEMENT_FACTOR = .7
 const WALL_PULL_FORCE_MUL = 2
 
 export(Vector2) var initial_dir = Vector2(1, 0)
@@ -172,8 +170,9 @@ func _physics_process(delta):
 	applying_force -= proj
 	
 	if stunned:
-		position += pull_dir * PULL_FORCE * delta * DISPLACEMENT_FACTOR
-		applying_force = pull_dir * PULL_FORCE
+		var pull_rotation = speed2.angle_to(pull_dir)
+		speed2 = speed2.rotated(pull_rotation * delta)
+		applying_force = pull_dir
 	if MAX_SPEED != -1:
 		speed2 = speed2.clamped(MAX_SPEED)
 	
