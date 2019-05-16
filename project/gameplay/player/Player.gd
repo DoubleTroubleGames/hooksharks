@@ -54,7 +54,7 @@ var diving = false
 var can_dive = true
 var dive_on_cooldown = false
 var infinite_dive = false
-var whirlpool_list = []
+var whirlpool = null
 var invincible = false
 var stunned = false
 var hook = null
@@ -120,6 +120,7 @@ func _physics_process(delta):
 		$Shark.modulate.a = 0.5 if Engine.get_frames_drawn() % 16 <= 7 else 1.0
 	
 	speed2 += speed2.normalized() * ACC * delta
+
 	var applying_force = Vector2(0, 0)
 	var turning_left = false
 	var turning_right = false
@@ -176,6 +177,10 @@ func _physics_process(delta):
 		applying_force = pull_dir
 	if MAX_SPEED != -1:
 		speed2 = speed2.clamped(MAX_SPEED)
+		
+	#Apply whirlpool force
+	if whirlpool:
+		speed2 += whirlpool.get_applying_force(self) 
 	
 	position += speed2 * delta
 	speed2 += applying_force.normalized() * speed2.length() * WALL_PULL_FORCE_MUL * delta
@@ -476,9 +481,7 @@ func _on_OverWater_area_exited(area):
 			var trail = area.get_parent()
 			trail.can_collide = true
 		Collision.WHIRLPOOL:
-			var whirlpool = area.get_parent()
-			if whirlpool_list.find(whirlpool) != -1:
-				whirlpool_list.append(whirlpool)
+			whirlpool = null
 
 
 func _on_OverWater_area_entered(area):
@@ -503,9 +506,7 @@ func _on_OverWater_area_entered(area):
 					var powerup = area.get_parent()
 					powerup.activate(self)
 			Collision.WHIRLPOOL:
-				var whirlpool = area.get_parent()
-				if whirlpool_list.find(whirlpool) != -1:
-					whirlpool_list.append(whirlpool)
+				whirlpool = area.get_parent()
 
 
 func _on_UnderWater_area_entered(area):
@@ -520,9 +521,7 @@ func _on_UnderWater_area_entered(area):
 				if diving:
 					die()
 			Collision.WHIRLPOOL:
-				var whirlpool = area.get_parent()
-				if whirlpool_list.find(whirlpool) != -1:
-					whirlpool_list.append(whirlpool)
+				whirlpool = area.get_parent()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
