@@ -101,4 +101,4 @@ func quit():
 	yield(Transition, "finished")
 	
 	get_tree().paused = false
-	get_tree().change_scene("res://hud/mode-select/ModeSelect.tscn")
+	get_tree().change_scene("res://menus/mode-select/ModeSelect.tscn")
