@@ -335,6 +335,7 @@ func die():
 			var power = $PowerUps.get_child(i)
 			power.deactivate()
 		sprite.set_modulate(Color(1, 1, 1, 0.2))
+		riders_hook.texture = load("res://assets/images/elements/hook.png")
 		if hook:
 			hook.retract()
 		emit_signal("respawned", self)
@@ -423,10 +424,11 @@ func shoot():
 		if not $PowerUps.has_node("MegaHook"):
 			emit_signal("hook_shot", self, hook_dir)
 			riders_hook.hide()
-			riders_hook.texture = load("res://assets/images/elements/hook.png")
 		else:
 			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)
+			riders_hook.texture = load("res://assets/images/elements/hook.png")
+		
 
 func retract():
 	if diving:

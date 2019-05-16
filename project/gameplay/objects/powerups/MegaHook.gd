@@ -11,6 +11,8 @@ func _physics_process(delta):
 
 func init(_player):
 	if not _player.get_node("PowerUps").has_node("MegaHook"):
+		# So it is not showing when waiting at (0, 0)
+		hide()
 		return true
 	else:
 		queue_free()
