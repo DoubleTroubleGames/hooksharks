@@ -33,6 +33,7 @@ The game is developed by the [Double Trouble Games](doubletroublegamesbr@gmail.c
 ### Artists
 - Livia Maki Yoshikawa ([@Makiyoshi](https://github.com/Makiyoshi))
 - Marina de Novaes Benedicto ([@Mariip](https://github.com/Mariip))
+- Rodrigo Passos ([@passosteps](https://github.com/passosteps))
 
 ----------------------------------------------------
 
