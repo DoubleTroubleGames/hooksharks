@@ -70,7 +70,7 @@ func activate_players():
 
 func test_setup():
 	# Override on RaceTest.gd
-	assert(false)
+	pass
 
 
 func create_rope(player, hook):

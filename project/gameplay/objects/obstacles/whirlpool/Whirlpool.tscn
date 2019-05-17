@@ -2,16 +2,14 @@
 
 [ext_resource path="res://gameplay/objects/obstacles/whirlpool/Whirlpool.gd" type="Script" id=1]
 
-
 [sub_resource type="CircleShape2D" id=1]
-radius = 500.0
+radius = 250.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 35.0
+radius = 50.0
 
 [node name="Whirlpool" type="Node2D"]
 script = ExtResource( 1 )
-pull_force = 100.0
 
 [node name="PullingWave" type="Area2D" parent="."]
 collision_layer = 4096
