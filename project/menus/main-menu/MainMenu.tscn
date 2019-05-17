@@ -9,11 +9,6 @@
 [ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=8]
 
-
-
-
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 72
 use_mipmaps = true

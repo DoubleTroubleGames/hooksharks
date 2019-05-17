@@ -1,12 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://gameplay/objects/obstacles/outline_final.tres" type="Material" id=1]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/outline_final.tres" type="Material" id=1]
 [ext_resource path="res://assets/images/elements/obstacles/roof2_o.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/elements/obstacles/roof2.png" type="Texture" id=3]
-
-
-
-
 
 [node name="Roof2" type="Area2D"]
 collision_layer = 4
@@ -22,4 +18,3 @@ texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -230, -110, -230, 110, -170, 110, -170, 80, -110, 80, -110, 100, -50, 100, -50, 90, 120, 90, 170, 90, 170, 50, 230, 50, 230, -110 )
-

@@ -1,17 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://gameplay/objects/obstacles/outline_final.tres" type="Material" id=1]
-[ext_resource path="res://assets/images/elements/obstacles/tire2_o.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/elements/obstacles/tire2.png" type="Texture" id=3]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/outline_final.tres" type="Material" id=1]
+[ext_resource path="res://assets/images/elements/obstacles/box_o.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/elements/obstacles/box.png" type="Texture" id=3]
+
 
 
 
 
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 130 )
+extents = Vector2( 130, 130 )
 
-[node name="Tire2" type="Area2D"]
+[node name="Box" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
 

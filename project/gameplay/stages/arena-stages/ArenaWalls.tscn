@@ -1,16 +1,25 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://gameplay/objects/obstacles/Floor.tscn" type="PackedScene" id=1]
-[ext_resource path="res://gameplay/objects/obstacles/BoxMetal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gameplay/objects/obstacles/Roof2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://gameplay/objects/obstacles/Box3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://gameplay/objects/obstacles/Roof.tscn" type="PackedScene" id=5]
-[ext_resource path="res://gameplay/objects/obstacles/Tire2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://gameplay/objects/obstacles/Floor2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://gameplay/objects/obstacles/Dock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://gameplay/objects/obstacles/BoxClosed.tscn" type="PackedScene" id=9]
-[ext_resource path="res://gameplay/objects/obstacles/Float2.tscn" type="PackedScene" id=10]
-[ext_resource path="res://gameplay/objects/obstacles/Box2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxMetal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Roof2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Roof.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Tire2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Floor2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Dock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxClosed.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gameplay/objects/obstacles/float-objects/Float2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box2.tscn" type="PackedScene" id=11]
+
+
+
+
+
+
+
+
+
 
 
 [node name="ArenaWalls" type="Node2D"]

@@ -1,14 +1,18 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://gameplay/stages/BaseStage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://gameplay/objects/obstacles/Float2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gameplay/objects/obstacles/BoxMetal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://gameplay/objects/obstacles/Dock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://gameplay/objects/obstacles/UnderWaterWall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/objects/obstacles/float-objects/Float2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxMetal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Dock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gameplay/objects/obstacles/underwater-wall/UnderWaterWall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://gameplay/objects/powerups/Powerup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=7]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=8]
 [ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=9]
+
+
+
+
 
 
 
