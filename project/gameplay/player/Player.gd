@@ -35,6 +35,7 @@ const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
 const WALL_PULL_FORCE_MUL = 2
+const PULL_PLAYER_FACTOR = 2.5
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -173,7 +174,7 @@ func _physics_process(delta):
 	
 	if stunned:
 		var pull_rotation = speed2.angle_to(pull_dir)
-		speed2 = speed2.rotated(pull_rotation * delta)
+		speed2 = speed2.rotated(pull_rotation * delta * PULL_PLAYER_FACTOR)
 		applying_force = pull_dir
 	if MAX_SPEED != -1:
 		speed2 = speed2.clamped(MAX_SPEED)
@@ -507,6 +508,8 @@ func _on_OverWater_area_entered(area):
 					powerup.activate(self)
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
+			Collision.WHIRLPOOL_CENTER:
+				die()
 
 
 func _on_UnderWater_area_entered(area):
@@ -522,6 +525,8 @@ func _on_UnderWater_area_entered(area):
 					die()
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
+			Collision.WHIRLPOOL_CENTER:
+				die()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

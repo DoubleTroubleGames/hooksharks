@@ -218,6 +218,7 @@ toggle_fullscreen={
 2d_physics/layer_11="pullable_object"
 2d_physics/layer_12="underwater_obstacle"
 2d_physics/layer_13="whirlpool"
+2d_physics/layer_14="whirlpool_center"
 
 [rendering]
 
