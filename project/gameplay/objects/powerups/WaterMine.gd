@@ -1,5 +1,7 @@
 extends "res://gameplay/objects/PullableObject.gd"
 
+const FOLLOW_DIST = 130
+
 export(String) var power_name = "Powerup"
 var player
 
@@ -7,7 +9,7 @@ var player
 func _physics_process(delta):
 	var angle = player.sprite.rotation
 	rotation = angle
-	position = Vector2(-200 * cos(angle), -200 * sin(angle)) 
+	position = Vector2(-FOLLOW_DIST * cos(angle), -FOLLOW_DIST * sin(angle)) 
 	
 
 func init(_player):
@@ -24,12 +26,14 @@ func init(_player):
 func spawn():
 	$AnimationPlayer.play("spawn")
 	yield($AnimationPlayer, "animation_finished")
-	$Hitbox.monitoring = true
-	$Hitbox.monitorable = true
+	$Hitbox/CollisionShape2D.disabled = false
 
 
 func activate():
+	var angle = player.sprite.rotation
 	set_physics_process(false)
+	set_position(player.get_global_position() + Vector2(-FOLLOW_DIST * cos(angle), -FOLLOW_DIST * sin(angle)))
+	$Rope.queue_free()
 	$Timer.start()
 	yield($Timer, "timeout")
 	explode()
@@ -40,7 +44,12 @@ func deactivate():
 
 
 func explode():
-	print("exploded")
+	$Hitbox/CollisionShape2D.disabled = true
+	$AnimationPlayer.play("pulse")
+	yield($AnimationPlayer, "animation_finished")
+	$AnimationPlayer.play("explode")
+	yield($AnimationPlayer, "animation_finished")
+	queue_free()
 
 
 func _on_Hitbox_area_entered(area):
@@ -50,4 +59,6 @@ func _on_Hitbox_area_entered(area):
 		Collision.OBSTACLE:
 			explode()
 		Collision.FLOATING_OBSTACLE:
+			explode()
+		Collision.HOOK:
 			explode()

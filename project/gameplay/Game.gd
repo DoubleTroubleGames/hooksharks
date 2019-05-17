@@ -208,11 +208,21 @@ func _on_player_megahook_shot(player, direction):
 func shoot_megahook(player, direction):
 	var megahook = player.get_node("PowerUps/MegaHook")
 	
-	player.remove_child(megahook)
+	player.get_node("PowerUps").remove_child(megahook)
 	megahook.set_name("old_MegaHook")
 	get_node("Stage/Hooks").add_child(megahook)
 	megahook.set_owner(get_node("Stage/Hooks"))
 	megahook.activate(direction.normalized())
+
+
+func _on_player_watermine_released(player):
+	var watermine = player.get_node("PowerUps/WaterMine")
+	
+	player.get_node("PowerUps").remove_child(watermine)
+	watermine.set_name("old_WaterMine")
+	get_node("Stage/Obstacles").add_child(watermine)
+	watermine.set_owner(get_node("Stage/Obstacles"))
+	watermine.activate() 
 
 
 func _on_hook_clinked(clink_position):

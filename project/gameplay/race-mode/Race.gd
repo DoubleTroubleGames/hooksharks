@@ -10,6 +10,7 @@ func connect_players():
 		player.connect("created_trail", self, "_on_player_created_trail")
 		player.connect("hook_shot", self, "_on_player_hook_shot")
 		player.connect("megahook_shot", self, "_on_player_megahook_shot")
+		player.connect("watermine_released", self, "_on_player_watermine_released")
 		player.connect("died", self, "remove_player")
 		player.connect("respawned", self, "respawn_player")
 		player.connect("paused", self, "_on_player_paused")

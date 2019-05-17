@@ -4,6 +4,7 @@ signal created_trail(trail)
 signal respawned(player)
 signal died(player, is_player_collision)
 signal hook_shot(player, direction)
+signal watermine_released(player)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
 signal paused(player)
@@ -436,11 +437,13 @@ func shoot():
 		var hook_dir = get_rider_direction()
 		if hook_dir.length() < AXIS_DEADZONE:
 			hook_dir = speed2
-		if not $PowerUps.has_node("MegaHook"):
-			emit_signal("hook_shot", self, hook_dir)
+		if not $PowerUps.has_node("MegaHook") and not $PowerUps.has_node("WaterMine"):
+			emit_signal("hook_shot", self, hook_dir) # recieved in Game.gd
 			riders_hook.hide()
-		else:
-			emit_signal("megahook_shot", self, hook_dir)
+		elif $PowerUps.has_node("WaterMine"):
+			emit_signal("watermine_released", self) # recieved in Game.gd
+		elif $PowerUps.has_node("MegaHook"):
+			emit_signal("megahook_shot", self, hook_dir) # recieved in Game.gd
 			riders_hook.texture = load("res://assets/images/elements/hook.png")
 		
 
