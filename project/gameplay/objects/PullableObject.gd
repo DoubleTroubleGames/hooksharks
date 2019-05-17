@@ -28,7 +28,6 @@ func _on_Timer_timeout():
 		hook.retract()
 		remove_hook()
 
-
 func _on_Hitbox_area_entered(area):
 	# This area only monitors other pullable objects.
 	var other_pullable = area.get_parent()

@@ -440,7 +440,6 @@ func shoot():
 			emit_signal("hook_shot", self, hook_dir)
 			riders_hook.hide()
 		else:
-			$PowerUps/MegaHook.queue_free()
 			emit_signal("megahook_shot", self, hook_dir)
 			riders_hook.texture = load("res://assets/images/elements/hook.png")
 		
@@ -505,7 +504,7 @@ func _on_OverWater_area_entered(area):
 			Collision.POWERUP:
 				if not diving:
 					var powerup = area.get_parent()
-					powerup.activate(self)
+					powerup.add_powerup(self)
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
 			Collision.WHIRLPOOL_CENTER:

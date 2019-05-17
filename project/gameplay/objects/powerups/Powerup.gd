@@ -2,8 +2,6 @@ extends Node2D
 
 onready var initial_position = position
 
-const MEGAHOOK_SPRITE = preload("res://assets/images/elements/megahook.png")
-
 const infinite_dive = preload("res://gameplay/objects/powerups/InfiniteDive.tscn")
 const megahook = preload("res://gameplay/objects/powerups/MegaHook.tscn")
 const trail_power = preload("res://gameplay/objects/powerups/TrailPower.tscn")
@@ -101,15 +99,12 @@ func spawn():
 	
 
 
-func activate(player):
+func add_powerup(player):
 	var power = powerup.instance()
-	# If initialized sucessfully, add it to player
+	
 	if power.init(player):
 		player.get_node("PowerUps").call_deferred("add_child", power)
-#		player.get_node("PowerUps").add_child(power)
 		player.add_label(power.power_name)
-		if powerup == megahook:
-			player.riders_hook.texture = MEGAHOOK_SPRITE
 	if hook:
 		hook.free_hook()
 	

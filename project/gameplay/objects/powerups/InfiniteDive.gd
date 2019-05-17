@@ -18,11 +18,11 @@ func activate():
 	yield($Timer, "timeout")
 	deactivate()
 
+
 func deactivate():
 	player.infinite_dive = false
 	queue_free()
 
 
 func _process(delta):
-	self.position = player.position
 	$Label.set_text("%.1f" % $Timer.time_left)

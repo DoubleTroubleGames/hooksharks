@@ -106,6 +106,8 @@ bus = "SFX"
 stream = ExtResource( 16 )
 volume_db = 10.0
 
+[node name="PowerUps" type="Node2D" parent="."]
+
 [node name="HookTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
@@ -120,6 +122,4 @@ one_shot = true
 [node name="InvencibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[node name="PowerUps" type="Node" parent="."]
 

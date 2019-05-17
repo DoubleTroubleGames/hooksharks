@@ -9,13 +9,6 @@
 [ext_resource path="res://assets/images/powerup/barril_quebrando_particula.png" type="Texture" id=7]
 [ext_resource path="res://assets/sound/sfx/woodcrack.wav" type="AudioStream" id=8]
 
-
-
-
-
-
-
-
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
@@ -187,7 +180,7 @@ script/source = "extends AudioStreamPlayer
 func _hit(unused):
 	self.play()"
 
-[node name="Powerup" index="0" instance=ExtResource( 1 )]
+[node name="Powerup" instance=ExtResource( 1 )]
 position = Vector2( 0, 5 )
 script = ExtResource( 2 )
 
