@@ -196,16 +196,23 @@ func _on_player_hook_shot(player, direction):
 
 func _on_player_megahook_shot(player, direction):
 	var explosion = load("res://assets/effects/explosion/DeathExplosion.tscn").instance()
-	var new_megahook = MEGAHOOK.instance()
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	
+	call_deferred("shoot_megahook", player, direction)
 	explosion.position = player.position + player.rider_offset * angle
-	new_megahook.activate(player, direction.normalized())
-	get_node("Stage/Hooks").add_child(new_megahook)
 	get_node("Stage/Trails").add_child(explosion)
-	
 	yield(explosion.get_node("AnimationPlayer"), "animation_finished")
 	explosion.queue_free()
+
+
+func shoot_megahook(player, direction):
+	var megahook = player.get_node("PowerUps/MegaHook")
+	
+	player.remove_child(megahook)
+	megahook.set_name("old_MegaHook")
+	get_node("Stage/Hooks").add_child(megahook)
+	megahook.set_owner(get_node("Stage/Hooks"))
+	megahook.activate(direction.normalized())
 
 
 func _on_hook_clinked(clink_position):

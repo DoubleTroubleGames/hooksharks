@@ -1,5 +1,7 @@
 extends "res://gameplay/objects/powerups/GenericPower.gd"
 
+const MEGAHOOK_SPRITE = preload("res://assets/images/elements/megahook.png")
+
 var player
 var speed = 800
 var direction = Vector2()
@@ -9,9 +11,11 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 
-func init(_player):
-	if not _player.get_node("PowerUps").has_node("MegaHook"):
-		# So it is not showing when waiting at (0, 0)
+func init(player):
+	if not player.get_node("PowerUps").has_node("MegaHook"):
+		self.player = player
+		player.riders_hook.texture = MEGAHOOK_SPRITE
+		set_physics_process(false)
 		hide()
 		return true
 	else:
@@ -19,11 +23,10 @@ func init(_player):
 		return false
 
 
-func activate(player, direction):
+func activate(direction):
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
-	self.player = player
 	self.direction = direction
-	self.position = player.position + player.rider_offset * angle
+	self.global_position = player.get_global_position() + player.rider_offset * angle
 	$Sprite.rotation = Vector2(-direction.x, -direction.y).angle()
 	
 	show()
@@ -35,7 +38,6 @@ func deactivate():
 
 func free_hook():
 	queue_free()
-
 
 func _on_MegaHookArea_area_entered(area):
 	match area.collision_layer:
