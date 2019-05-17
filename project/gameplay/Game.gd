@@ -20,7 +20,8 @@ var current_stage = 0
 var available_stages = []
 
 
-"res://gameplay/player/rope/Rope.tscn"func _ready():
+func _ready():
+	test_setup()
 	var stage = get_first_stage().instance()
 	players = stage.setup_players()
 	stage.set_name("Stage")
@@ -64,6 +65,11 @@ func connect_players():
 
 func activate_players():
 	# Override on Arena.gd and Race.gd
+	assert(false)
+
+
+func test_setup():
+	# Override on RaceTest.gd
 	assert(false)
 
 
