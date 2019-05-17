@@ -36,8 +36,8 @@ func get_applying_force(object):
 	force = rotate_force * factor
 	var rotation_force
 	if clockwise:
-		rotation_force = (our_pos - their_pos).normalized().rotated(PI/2) * force
-	else:
 		rotation_force = (our_pos - their_pos).normalized().rotated(-PI/2) * force
+	else:
+		rotation_force = (our_pos - their_pos).normalized().rotated(PI/2) * force
 		
 	return pulling_force + rotation_force

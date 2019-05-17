@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://gameplay/stages/BaseStage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/objects/obstacles/whirlpool/Whirlpool.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxMetal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxClosed.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Dock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Floor2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Floor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Float.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxFull.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box.tscn" type="PackedScene" id=12]
+
+[node name="Stage1" index="0" instance=ExtResource( 1 )]
+stage_name = "Open Waters"
+
+[node name="PlayerStartingPosition" parent="." index="1"]
+editor/display_folded = false
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
+position = Vector2( 263.857, 178.296 )
+direction = Vector2( 1, 1 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
+position = Vector2( 1696.38, 876.122 )
+direction = Vector2( -1, -1 )
+
+[node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
+position = Vector2( 1697.17, 182.907 )
+direction = Vector2( -1, 1 )
+
+[node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
+position = Vector2( 231.316, 884.912 )
+direction = Vector2( 1, -1 )
+
+[node name="Whirlpool" parent="Obstacles" index="0" instance=ExtResource( 2 )]
+position = Vector2( 949.522, 552.545 )
+whirl_size = 700.0
+clockwise = false
+pull_force = 1.5
+rotate_force = 0.1
+
+[node name="Box3" parent="Obstacles" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1946.96, 253.42 )
+rotation = 3.14159
+
+[node name="BoxMetal" parent="Obstacles" index="2" instance=ExtResource( 4 )]
+position = Vector2( 1912.25, -9.84801 )
+rotation = 0.869174
+
+[node name="BoxClosed" parent="Obstacles" index="3" instance=ExtResource( 5 )]
+position = Vector2( 1003.18, 1114.01 )
+rotation = 3.14159
+scale = Vector2( 1.5, 1 )
+
+[node name="Dock" parent="Obstacles" index="4" instance=ExtResource( 6 )]
+position = Vector2( 34.5564, 503.257 )
+rotation = -1.5708
+
+[node name="Dock2" parent="Obstacles" index="5" instance=ExtResource( 6 )]
+position = Vector2( 1957.63, 493.957 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="Floor2" parent="Obstacles" index="6" instance=ExtResource( 7 )]
+position = Vector2( 426.899, 1136.71 )
+scale = Vector2( 1.1, 0.9 )
+
+[node name="Floor" parent="Obstacles" index="7" instance=ExtResource( 8 )]
+position = Vector2( 20.0235, 1074.23 )
+rotation = 0.869174
+scale = Vector2( 0.9, 0.9 )
+
+[node name="BoxClosed2" parent="Obstacles" index="8" instance=ExtResource( 5 )]
+position = Vector2( -16.5529, 781.532 )
+rotation = 1.91986
+
+[node name="Floor3" parent="Obstacles" index="9" instance=ExtResource( 7 )]
+position = Vector2( 1635.04, -44.1363 )
+
+[node name="Floor4" parent="Obstacles" index="10" instance=ExtResource( 8 )]
+position = Vector2( 69.1212, 22.1026 )
+rotation = -0.579449
+
+[node name="Float" parent="Obstacles" index="11" instance=ExtResource( 9 )]
+position = Vector2( 968.288, -141.341 )
+rotation = -3.14159
+scale = Vector2( 1.2, 0.8 )
+
+[node name="Box2" parent="Obstacles" index="12" instance=ExtResource( 10 )]
+position = Vector2( 1827.4, 1039.62 )
+rotation = -0.753982
+
+[node name="Box4" parent="Obstacles" index="13" instance=ExtResource( 3 )]
+position = Vector2( -13.6763, 215.632 )
+
+[node name="Box5" parent="Obstacles" index="14" instance=ExtResource( 3 )]
+position = Vector2( 356.905, -71.7446 )
+rotation = 3.31613
+
+[node name="BoxFull" parent="Obstacles" index="15" instance=ExtResource( 11 )]
+position = Vector2( 1392.49, 1096.8 )
+
+[node name="Box" parent="Obstacles" index="16" instance=ExtResource( 12 )]
+position = Vector2( 1903.55, 729.241 )
+rotation = 2.33874
+
+[node name="Dock3" parent="Obstacles" index="17" instance=ExtResource( 6 )]
+position = Vector2( 951.926, 553.014 )
+rotation = 2.31954
+scale = Vector2( 0.4, 0.4 )

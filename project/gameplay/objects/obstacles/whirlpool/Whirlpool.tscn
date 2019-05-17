@@ -3,7 +3,7 @@
 [ext_resource path="res://gameplay/objects/obstacles/whirlpool/Whirlpool.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 250.0
+radius = 700.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 50.0

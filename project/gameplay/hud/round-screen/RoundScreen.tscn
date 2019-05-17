@@ -12,10 +12,6 @@
 [ext_resource path="res://assets/images/ui/round-screen/gate_sub.png" type="Texture" id=10]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=11]
 
-
-
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 256
 use_mipmaps = true
@@ -35,11 +31,11 @@ blend_mode = 2
 blend_mode = 1
 
 [sub_resource type="DynamicFont" id=5]
-size = 30
+size = 25
 font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 40
+size = 37
 font_data = ExtResource( 11 )
 
 [node name="RoundScreen" type="CanvasLayer"]
@@ -190,9 +186,9 @@ autowrap = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 200.0
+margin_left = 96.0
 margin_top = -164.0
-margin_right = -200.0
+margin_right = -96.0
 margin_bottom = -50.0
 custom_fonts/font = SubResource( 6 )
 text = "Random Trivia"
@@ -205,4 +201,3 @@ autowrap = true
 [node name="DisplayTimer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
-

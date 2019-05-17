@@ -393,7 +393,7 @@ anims/spawn = SubResource( 10 )
 [node name="OverWaterArea" type="Area2D" parent="."]
 editor/display_folded = true
 position = Vector2( -45, 0 )
-collision_mask = 4157
+collision_mask = 12349
 __meta__ = {
 "_edit_lock_": true
 }
@@ -408,7 +408,7 @@ __meta__ = {
 editor/display_folded = true
 position = Vector2( -45, 0 )
 collision_layer = 2
-collision_mask = 6146
+collision_mask = 14338
 __meta__ = {
 "_edit_lock_": true
 }
