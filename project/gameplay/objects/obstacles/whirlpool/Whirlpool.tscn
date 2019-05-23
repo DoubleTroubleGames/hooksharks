@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://gameplay/objects/obstacles/whirlpool/Whirlpool.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/elements/obstacles/whirlpool.png" type="Texture" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/whirlpool/water_effect.tres" type="Material" id=3]
+[ext_resource path="res://assets/images/elements/obstacles/water_effect.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 500.0
+radius = 700.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 50.0
+radius = 30.0
 
 [node name="Whirlpool" type="Node2D"]
+z_index = -1
 script = ExtResource( 1 )
-whirl_size = 500.0
+death_size = 100.0
 
 [node name="PullingWave" type="Area2D" parent="."]
 collision_layer = 4096
@@ -27,5 +30,12 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Waves" type="Sprite" parent="."]
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
+
+[node name="WaterEffect" type="Sprite" parent="."]
+material = ExtResource( 3 )
+position = Vector2( -1, -2 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )

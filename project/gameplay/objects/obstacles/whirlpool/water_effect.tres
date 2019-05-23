@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float death_edge : hint_range(0,1);
+
+//float pixel_distance = 1.0 - distance(UV, vec2(.5,.5)); //Pixel distance from edge to the middle
+//float color_factor = smoothstep(shallow_edge, deep_edge, pixel_distance);
+
+void fragment() {
+	float dist = distance(UV, vec2(.5, .5));
+	float alpha = 0.0;
+	float margin = .2;
+	if (dist <= .5) {
+		alpha = .5 - dist;
+		alpha = pow(alpha, .6);
+		if (dist/.5 < death_edge + margin){
+			float factor = smoothstep(0.0, death_edge + margin, dist/.5);
+			alpha = max(pow(alpha, factor*factor*factor*factor), alpha);
+		}
+	}
+	
+    COLOR = vec4(0, 0, 0, alpha);
+}
+"
+
+[resource]
+shader = SubResource( 3 )
+shader_param/death_edge = 0.5
