@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/minibox2.png-f07bdfd046542cb57d5be50f733ccde8.stex"
+path="res://.import/minibox_o.png-7fb60512abdd5ac722ede6b5c4451f81.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/elements/minibox2.png"
-dest_files=[ "res://.import/minibox2.png-f07bdfd046542cb57d5be50f733ccde8.stex" ]
+source_file="res://assets/images/elements/obstacles/minibox_o.png"
+dest_files=[ "res://.import/minibox_o.png-7fb60512abdd5ac722ede6b5c4451f81.stex" ]
 
 [params]
 
