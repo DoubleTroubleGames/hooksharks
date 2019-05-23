@@ -1,18 +1,39 @@
 tool
 extends Node2D
 
+const ROTATE_RATIO = .6
+
 export(float) var whirl_size = 200 setget new_whirlpool_size
 export(float) var death_size = 50 setget new_death_size
-export(bool) var clockwise = true
+export(bool) var clockwise = true setget new_direction
 export(float) var pull_force = 2
 export(float) var rotate_force = 1
+
 
 func _ready():
 	pass
 
+func _physics_process(delta):
+	if clockwise:
+		$Sprite.rotation = $Sprite.rotation + pull_force*rotate_force*ROTATE_RATIO*delta
+	else:
+		$Sprite.rotation = $Sprite.rotation - pull_force*rotate_force*ROTATE_RATIO*delta
+		
+func new_direction(clock):
+	if clock:
+		$Sprite.scale.x = abs($Sprite.scale.x)
+	else:
+		$Sprite.scale.x = -abs($Sprite.scale.x)
+	clockwise = clock
+
 func new_whirlpool_size(new_size):
 	if $PullingWave and $PullingWave/CollisionShape2D:
 		$PullingWave/CollisionShape2D.get_shape().radius = new_size
+		var sprite_size = $Sprite.get_rect().size
+		var w = 2*new_size/sprite_size.x
+		var h = 2*new_size/sprite_size.y
+		$Sprite.scale = Vector2(w, h)
+		
 		whirl_size = new_size
 
 func new_death_size(new_size):
