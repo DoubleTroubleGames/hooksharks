@@ -2,9 +2,10 @@
 
 [ext_resource path="res://gameplay/objects/PullableObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gameplay/objects/powerups/WaterMine.gd" type="Script" id=2]
-[ext_resource path="res://assets/images/elements/minibox.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/elements/obstacles/minibox.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/elements/corda-ferro.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/effects/explosions/1.png" type="Texture" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 64 )
