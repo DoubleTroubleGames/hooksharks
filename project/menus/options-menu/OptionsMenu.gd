@@ -17,10 +17,13 @@ func _ready():
 	var native_size = OS.get_screen_size()
 	native_size = str(native_size.x, 'x', native_size.y)
 	
+	Transition.transition_out()
+	yield(Transition, "finished")
+	
 	FullscreenButton.pressed = OS.window_fullscreen
-	SoundMaster.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
-	SoundSFX.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
-	SoundBGM.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
+	SoundMaster.value = 100 * db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	SoundSFX.value = 100 * db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	SoundBGM.value = 100 * db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
 	if not native_size in resolutions:
 		resolutions.append(native_size)
 	for res in resolutions:

@@ -1,18 +1,25 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://menus/options-menu/OptionsMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/images/elements/obstacles/box2.png" type="Texture" id=3]
-[ext_resource path="res://assets/images/ui/button.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=6]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/images/ui/board.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/images/elements/obstacles/box2.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/ui/button.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=7]
+[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=4]
+size = 150
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 45
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 5 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "float"
@@ -79,12 +86,35 @@ script = ExtResource( 1 )
 
 [node name="Water" parent="." instance=ExtResource( 2 )]
 
+[node name="Board" type="TextureRect" parent="."]
+margin_left = 456.687
+margin_top = -2.27209
+margin_right = 2257.69
+margin_bottom = 650.728
+rect_rotation = 0.5
+rect_scale = Vector2( 0.6, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Board"]
+margin_left = 65.0
+margin_top = 113.0
+margin_right = 1725.0
+margin_bottom = 388.0
+rect_scale = Vector2( 1, 1.5 )
+custom_fonts/font = SubResource( 4 )
+text = "Game Options"
+align = 1
+valign = 1
+
 [node name="Resolution" type="Control" parent="."]
 editor/display_folded = true
 margin_left = 350.0
-margin_top = 500.0
+margin_top = 600.0
 margin_right = 390.0
-margin_bottom = 540.0
+margin_bottom = 640.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Box" type="TextureRect" parent="Resolution"]
 editor/display_folded = true
@@ -92,7 +122,7 @@ margin_left = -120.0
 margin_top = -115.0
 margin_right = 340.0
 margin_bottom = 115.0
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 expand = true
 
 [node name="Board" type="TextureRect" parent="Resolution/Box"]
@@ -102,7 +132,7 @@ margin_top = -50.0
 margin_right = 450.0
 margin_bottom = 87.0
 rect_scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="Resolution/Box/Board"]
 margin_left = 20.0
@@ -136,9 +166,12 @@ anims/float = SubResource( 1 )
 [node name="Sound" type="Control" parent="."]
 editor/display_folded = true
 margin_left = 1200.0
-margin_top = 400.0
+margin_top = 500.0
 margin_right = 1240.0
-margin_bottom = 440.0
+margin_bottom = 540.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Float" type="TextureRect" parent="Sound"]
 editor/display_folded = true
@@ -147,7 +180,7 @@ margin_top = -90.0
 margin_right = 612.0
 margin_bottom = 370.0
 rect_rotation = -1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="Board" type="TextureRect" parent="Sound/Float"]
 editor/display_folded = true
@@ -157,7 +190,7 @@ margin_right = 960.0
 margin_bottom = 87.0
 rect_rotation = 6.0
 rect_scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -233,7 +266,7 @@ ticks_on_borders = true
 autoplay = "float"
 anims/float = SubResource( 3 )
 
-[node name="BackIndicator" parent="." instance=ExtResource( 7 )]
+[node name="BackIndicator" parent="." instance=ExtResource( 8 )]
 
 [connection signal="toggled" from="Resolution/Box/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="item_selected" from="Resolution/Box/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
