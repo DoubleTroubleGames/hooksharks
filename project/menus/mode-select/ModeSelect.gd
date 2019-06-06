@@ -74,3 +74,8 @@ func _on_RacingButton_focus_entered():
 
 func _on_RacingButton_focus_exited():
 	$RacingButton.material.set_shader_param("active", false)
+
+
+func _on_Options_pressed():
+	$Sounds/ConfirmSFX.play()
+	transition_to("res://menus/options-menu/OptionsMenu.tscn")
