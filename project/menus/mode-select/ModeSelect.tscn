@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://menus/mode-select/ModeSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -8,17 +8,10 @@
 [ext_resource path="res://assets/images/ui/m_deathmatch_o.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/ui/m_racingt.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/ui/m_racingt_o.png" type="Texture" id=8]
-[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=10]
-
-
-
-
-
-
-
-
-
+[ext_resource path="res://assets/images/ui/button.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/ui/button_selected.png" type="Texture" id=10]
+[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -151,6 +144,7 @@ script = ExtResource( 1 )
 [node name="Water" parent="." instance=ExtResource( 2 )]
 
 [node name="ArenaButton" type="TextureButton" parent="."]
+editor/display_folded = true
 material = SubResource( 2 )
 margin_left = 161.0
 margin_top = 241.301
@@ -169,6 +163,7 @@ playback_speed = 0.7
 anims/idle = SubResource( 3 )
 
 [node name="RacingButton" type="TextureButton" parent="."]
+editor/display_folded = true
 material = SubResource( 4 )
 margin_left = 1015.0
 margin_top = 254.664
@@ -186,14 +181,25 @@ autoplay = "idle"
 playback_speed = 0.6
 anims/idle = SubResource( 5 )
 
+[node name="Options" type="TextureButton" parent="."]
+margin_left = 1489.95
+margin_top = 910.747
+margin_right = 1889.95
+margin_bottom = 1047.75
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 9 )
+texture_focused = ExtResource( 10 )
+
 [node name="Sounds" type="Node" parent="."]
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 9 )
+stream = ExtResource( 11 )
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 10 )
+stream = ExtResource( 12 )
 bus = "SFX"
 
 [connection signal="focus_entered" from="ArenaButton" to="." method="_on_ArenaButton_focus_entered"]
@@ -202,3 +208,4 @@ bus = "SFX"
 [connection signal="focus_entered" from="RacingButton" to="." method="_on_RacingButton_focus_entered"]
 [connection signal="focus_exited" from="RacingButton" to="." method="_on_RacingButton_focus_exited"]
 [connection signal="pressed" from="RacingButton" to="." method="_on_RacingButton_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
