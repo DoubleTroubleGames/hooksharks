@@ -15,41 +15,61 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="Fullscreen" type="CheckBox" parent="."]
-margin_right = 24.0
-margin_bottom = 24.0
+[node name="Resolution" type="Control" parent="."]
+editor/display_folded = true
+margin_left = 200.0
+margin_top = 150.0
+margin_right = 240.0
+margin_bottom = 190.0
+
+[node name="Fullscreen" type="CheckBox" parent="Resolution"]
+margin_top = 1.0
+margin_right = 94.0
+margin_bottom = 25.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "Fullscreen"
 
+[node name="ScreenSize" type="OptionButton" parent="Resolution"]
+margin_left = 200.0
+margin_right = 241.0
+margin_bottom = 20.0
+
 [node name="Sound" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+editor/display_folded = true
+margin_left = 200.0
+margin_top = 400.0
+margin_right = 240.0
+margin_bottom = 440.0
 
 [node name="MasterVolume" type="HSlider" parent="Sound"]
-margin_left = 110.0
-margin_top = 110.0
-margin_right = 410.0
-margin_bottom = 126.0
+margin_right = 300.0
+margin_bottom = 16.0
+value = 100.0
 rounded = true
 ticks_on_borders = true
 
 [node name="SFXVolume" type="HSlider" parent="Sound"]
-margin_left = 110.0
-margin_top = 110.0
-margin_right = 410.0
-margin_bottom = 126.0
+margin_top = 100.0
+margin_right = 300.0
+margin_bottom = 116.0
+value = 100.0
 rounded = true
 ticks_on_borders = true
 
 [node name="BGMVolume" type="HSlider" parent="Sound"]
-margin_left = 110.0
-margin_top = 110.0
-margin_right = 410.0
-margin_bottom = 126.0
+margin_top = 200.0
+margin_right = 300.0
+margin_bottom = 216.0
+value = 100.0
 rounded = true
 ticks_on_borders = true
 
-[connection signal="toggled" from="Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="toggled" from="Resolution/Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="item_selected" from="Resolution/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
 [connection signal="value_changed" from="Sound/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
 [connection signal="value_changed" from="Sound/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
 [connection signal="value_changed" from="Sound/BGMVolume" to="." method="_on_BGMVolume_value_changed"]
