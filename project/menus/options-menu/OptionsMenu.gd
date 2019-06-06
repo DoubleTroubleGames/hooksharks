@@ -1,6 +1,11 @@
 extends Control
 
+onready var bar = $BackIndicator/Progress
+onready var anim_player = $BackIndicator/AnimationPlayer
+
 var resolutions = ['1920x1080', '1440x900', '1366x768', '1280x800']
+var back_indicator_up_speed = 100
+var back_indicator_down_speed = 150
 
 
 func _ready():
@@ -8,11 +13,31 @@ func _ready():
 	native_size = str(native_size.x, 'x', native_size.y)
 	
 	$Resolution/Fullscreen.pressed = OS.window_fullscreen
+	$Sound/MasterVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	$Sound/SFXVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	$Sound/BGMVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
 	if not native_size in resolutions:
 		resolutions.append(native_size)
 	for res in resolutions:
 		$Resolution/ScreenSize.add_item(res)
 	$Resolution/ScreenSize.selected = resolutions.find(native_size)
+
+
+func _physics_process(delta):
+	if Input.is_action_pressed("ui_cancel"):
+		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
+	else:
+		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
+	
+	if bar.value >= 100:
+		Transition.transition_in()
+		yield(Transition, "finished")
+		get_tree().change_scene_to(load("res://menus/mode-select/ModeSelect.tscn"))
+	elif bar.value > 0:
+		if anim_player.assigned_animation != "show":
+			anim_player.play("show")
+	elif anim_player.assigned_animation == "show":
+			anim_player.play("hide")
 
 
 func _on_Fullscreen_toggled(button_pressed):
