@@ -38,7 +38,7 @@ func update_death_shader():
 	$WaterEffect.get_material().set_shader_param("death_edge", value)
 
 func new_whirlpool_size(new_size):
-	if $PullingWave and $PullingWave/CollisionShape2D:
+	if has_node("PullingWave/CollisionShape2D"):
 		whirl_size = new_size
 		$PullingWave/CollisionShape2D.get_shape().radius = new_size
 		scale_sprite($Waves)
@@ -47,7 +47,7 @@ func new_whirlpool_size(new_size):
 		$WaterEffect.update()
 
 func new_death_size(new_size):
-	if $DeathZone and $DeathZone/CollisionShape2D:
+	if has_node("DeathZone/CollisionShape2D"):
 		$DeathZone/CollisionShape2D.get_shape().radius = new_size
 		death_size = new_size
 		update_death_shader()
