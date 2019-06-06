@@ -35,7 +35,7 @@ func _physics_process(delta):
 	coiling = min(1, length / MAX_LENGTH) * MAX_COILING
 	
 	for i in range(N_POINTS):
-		set_point_position(i, Vector2(length * i / (N_POINTS - 1),
+		set_point_position(N_POINTS - (i+1), Vector2(length * i / (N_POINTS - 1),
 				ampl(i) * sin(i * coiling / (N_POINTS - 1) + freq * time)))
 
 
