@@ -2,6 +2,8 @@ extends Control
 
 onready var bar = $BackIndicator/Progress
 onready var anim_player = $BackIndicator/AnimationPlayer
+onready var FullscreenButton = $Resolution/Box/Fullscreen
+onready var ScreenSizeButton = $Resolution/Box/ScreenSize
 
 var resolutions = ['1920x1080', '1440x900', '1366x768', '1280x800']
 var back_indicator_up_speed = 100
@@ -12,15 +14,15 @@ func _ready():
 	var native_size = OS.get_screen_size()
 	native_size = str(native_size.x, 'x', native_size.y)
 	
-	$Resolution/Fullscreen.pressed = OS.window_fullscreen
+	FullscreenButton.pressed = OS.window_fullscreen
 	$Sound/MasterVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	$Sound/SFXVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 	$Sound/BGMVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
 	if not native_size in resolutions:
 		resolutions.append(native_size)
 	for res in resolutions:
-		$Resolution/ScreenSize.add_item(res)
-	$Resolution/ScreenSize.selected = resolutions.find(native_size)
+		ScreenSizeButton.add_item(res)
+	ScreenSizeButton.selected = resolutions.find(native_size)
 
 
 func _physics_process(delta):
@@ -44,10 +46,10 @@ func _on_Fullscreen_toggled(button_pressed):
 	OS.window_fullscreen = button_pressed
 	if button_pressed:
 		var native_res = OS.get_screen_size()
-		$Resolution/ScreenSize.selected = resolutions.find(str(native_res.x, 'x', native_res.y))
+		ScreenSizeButton.selected = resolutions.find(str(native_res.x, 'x', native_res.y))
 
 func _on_ScreenSize_item_selected(ID):
-	var new_res = $Resolution/ScreenSize.get_item_text(ID)
+	var new_res = ScreenSizeButton.get_item_text(ID)
 	OS.window_size = Vector2(int(new_res.split('x')[0]), int(new_res.split('x')[1]))
 
 func _on_MasterVolume_value_changed(value):
