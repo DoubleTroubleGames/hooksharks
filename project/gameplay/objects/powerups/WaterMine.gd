@@ -48,6 +48,7 @@ func explode():
 	$AnimationPlayer.play("pulse")
 	yield($AnimationPlayer, "animation_finished")
 	$AnimationPlayer.play("explode")
+	$SFXExplosion.play()
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()
 
@@ -62,3 +63,15 @@ func _on_Hitbox_area_entered(area):
 			explode()
 		Collision.HOOK:
 			explode()
+
+
+func _on_ExplosionArea_area_entered(area):
+	match area.collision_layer:
+		Collision.PLAYER_ABOVE:
+			var player = area.get_parent().get_parent()
+			if not player.invincible:
+				player.die()
+		Collision.PLAYER_BELOW:
+			var player = area.get_parent().get_parent()
+			if not player.invincible:
+				player.die()
