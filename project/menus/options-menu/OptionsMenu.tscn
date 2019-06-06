@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menus/options-menu/OptionsMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/elements/obstacles/box2.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/ui/button.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=6]
+[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 size = 45
@@ -19,7 +20,7 @@ length = 4.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Box:rect_position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,7 +32,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Box:rect_rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -40,6 +41,35 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "float"
+length = 7.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Float:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -250, -100 ), Vector2( -250, -85 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Float:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -1.0 ]
 }
 
 [node name="OptionsMenu" type="Control"]
@@ -110,33 +140,103 @@ margin_top = 400.0
 margin_right = 1240.0
 margin_bottom = 440.0
 
-[node name="MasterVolume" type="HSlider" parent="Sound"]
-margin_right = 300.0
-margin_bottom = 16.0
+[node name="Float" type="TextureRect" parent="Sound"]
+editor/display_folded = true
+margin_left = -250.0
+margin_top = -90.0
+margin_right = 612.0
+margin_bottom = 370.0
+rect_rotation = -1.0
+texture = ExtResource( 6 )
+
+[node name="Board" type="TextureRect" parent="Sound/Float"]
+editor/display_folded = true
+margin_left = 560.0
+margin_top = -50.0
+margin_right = 960.0
+margin_bottom = 87.0
+rect_rotation = 6.0
+rect_scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Sound/Float/Board"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 371.0
+margin_bottom = 106.0
+custom_fonts/font = SubResource( 2 )
+text = "Resolution"
+align = 1
+valign = 1
+
+[node name="LabelMaster" type="Label" parent="Sound/Float"]
+margin_left = 115.0
+margin_top = 75.0
+margin_right = 466.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 2 )
+text = "Master Volume"
+align = 1
+valign = 1
+
+[node name="MasterVolume" type="HSlider" parent="Sound/Float"]
+margin_left = 150.0
+margin_top = 150.0
+margin_right = 450.0
+margin_bottom = 166.0
 value = 100.0
 rounded = true
 ticks_on_borders = true
 
-[node name="SFXVolume" type="HSlider" parent="Sound"]
-margin_top = 100.0
-margin_right = 300.0
-margin_bottom = 116.0
+[node name="LabelSFX" type="Label" parent="Sound/Float"]
+margin_left = 115.0
+margin_top = 175.0
+margin_right = 466.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 2 )
+text = "SFX Volume"
+align = 1
+valign = 1
+
+[node name="SFXVolume" type="HSlider" parent="Sound/Float"]
+margin_left = 150.0
+margin_top = 250.0
+margin_right = 450.0
+margin_bottom = 266.0
 value = 100.0
 rounded = true
 ticks_on_borders = true
 
-[node name="BGMVolume" type="HSlider" parent="Sound"]
-margin_top = 200.0
-margin_right = 300.0
-margin_bottom = 216.0
+[node name="LabelBGM" type="Label" parent="Sound/Float"]
+margin_left = 115.0
+margin_top = 275.0
+margin_right = 466.0
+margin_bottom = 340.0
+custom_fonts/font = SubResource( 2 )
+text = "BGM Volume"
+align = 1
+valign = 1
+
+[node name="BGMVolume" type="HSlider" parent="Sound/Float"]
+margin_left = 150.0
+margin_top = 350.0
+margin_right = 450.0
+margin_bottom = 366.0
 value = 100.0
 rounded = true
 ticks_on_borders = true
 
-[node name="BackIndicator" parent="." instance=ExtResource( 6 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sound"]
+autoplay = "float"
+anims/float = SubResource( 3 )
+
+[node name="BackIndicator" parent="." instance=ExtResource( 7 )]
 
 [connection signal="toggled" from="Resolution/Box/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="item_selected" from="Resolution/Box/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
-[connection signal="value_changed" from="Sound/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
-[connection signal="value_changed" from="Sound/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
-[connection signal="value_changed" from="Sound/BGMVolume" to="." method="_on_BGMVolume_value_changed"]
+[connection signal="value_changed" from="Sound/Float/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="value_changed" from="Sound/Float/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
+[connection signal="value_changed" from="Sound/Float/BGMVolume" to="." method="_on_BGMVolume_value_changed"]

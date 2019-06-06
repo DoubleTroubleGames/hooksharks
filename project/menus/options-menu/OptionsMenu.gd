@@ -4,6 +4,9 @@ onready var bar = $BackIndicator/Progress
 onready var anim_player = $BackIndicator/AnimationPlayer
 onready var FullscreenButton = $Resolution/Box/Fullscreen
 onready var ScreenSizeButton = $Resolution/Box/ScreenSize
+onready var SoundMaster = $Sound/Float/MasterVolume
+onready var SoundSFX = $Sound/Float/SFXVolume
+onready var SoundBGM = $Sound/Float/BGMVolume
 
 var resolutions = ['1920x1080', '1440x900', '1366x768', '1280x800']
 var back_indicator_up_speed = 100
@@ -15,9 +18,9 @@ func _ready():
 	native_size = str(native_size.x, 'x', native_size.y)
 	
 	FullscreenButton.pressed = OS.window_fullscreen
-	$Sound/MasterVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
-	$Sound/SFXVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
-	$Sound/BGMVolume.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
+	SoundMaster.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	SoundSFX.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	SoundBGM.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
 	if not native_size in resolutions:
 		resolutions.append(native_size)
 	for res in resolutions:
