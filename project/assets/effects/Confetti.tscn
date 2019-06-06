@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/ui/circle.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.924242, 1 )
+colors = PoolColorArray( 0.705882, 0.392157, 1, 1, 0.705882, 0.392157, 1, 1, 0.705882, 0.392157, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.7
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 10.0
+damping_random = 0.5
+scale = 0.01
+color_ramp = SubResource( 2 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="Confetti" type="Particles2D"]
+emitting = false
+amount = 300
+lifetime = 5.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.95
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )
+
