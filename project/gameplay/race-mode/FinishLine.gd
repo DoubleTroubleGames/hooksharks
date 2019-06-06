@@ -4,6 +4,7 @@ onready var stage = get_parent()
 
 const WIDTH = 10
 const LINE_SPRITE_SIZE = 115
+const CONFETTI = preload("res://assets/effects/Confetti.tscn")
 
 export (int)var total_checkpoint_number = 0
 export (int)var total_laps = 1
@@ -73,6 +74,10 @@ func _on_LineArea_area_entered(area):
 		if lap_num >= total_laps:
 			var winner = player
 			var players = get_parent().get_parent().players
+			
+			var confetti = CONFETTI.instance()
+			confetti.emitting = true
+			winner.add_child(confetti)
 			
 			$LineArea/CollisionPolygon2D.set_deferred("disabled", true)
 			for child in players:
