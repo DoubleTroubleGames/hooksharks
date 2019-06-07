@@ -5,9 +5,9 @@
 [ext_resource path="res://assets/images/openingtitle.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=5]
-[ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=6]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=8]
+[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=7]
+[ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -93,10 +93,7 @@ script = ExtResource( 5 )
 wait_time = 3.0
 one_shot = true
 
-[node name="PressStartSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-
-[node name="BackIndicator" parent="." instance=ExtResource( 7 )]
+[node name="BackIndicator" parent="." instance=ExtResource( 6 )]
 
 [node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -109,5 +106,14 @@ margin_right = 707.0
 margin_bottom = 354.0
 rect_rotation = 30.0
 rect_pivot_offset = Vector2( 553, 354 )
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
+
+[node name="TitleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
+
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

@@ -34,6 +34,8 @@ func transition_in():
 	tw.interpolate_property(upper_jaw, "rect_position:y", null, upper_final_y,
 			IN_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN)
 	tw.start()
+	
+	$CloseSFX.play()
 
 
 func transition_out():
@@ -45,6 +47,8 @@ func transition_out():
 	tw.interpolate_property(upper_jaw, "rect_position:y", null, upper_initial_y,
 			IN_DURATION, Tween.TRANS_QUAD, Tween.EASE_OUT, OUT_DELAY)
 	tw.start()
+	
+	$OpenSFX.play()
 
 
 func _on_Tween_tween_completed(object, key):

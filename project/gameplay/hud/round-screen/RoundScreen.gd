@@ -13,6 +13,10 @@ onready var round_number = $Background/Round/Number
 onready var round_label = $Background/Round/Label
 onready var tween = $Tween
 
+onready var char_sfx = {"pirate": $PirateWinSFX,
+		"pirate-green": $GreenPirateWinSFX, "drill": $DrillWinSFX,
+		"king": $KingWinSFX}
+
 const TRIVIA = [
 	"Great white sharks aren't so great after all",
 	"There isn't always a bigger fish in the sea if you are a big-ass whale",
@@ -99,6 +103,8 @@ func show_round():
 	tween.interpolate_property(background, "rect_position:y", null,
 			BACKGROUND_Y, 1, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
+	$GateCloseSFX.play()
+	
 	yield(tween, "tween_completed")
 	emit_signal("shown")
 	
@@ -128,6 +134,11 @@ func hide_round():
 func win_animation(match_winner):
 	var button_pos = 880
 	buttons.show()
+	
+	char_sfx[RoundManager.character_map[match_winner]].play()
+	
+	# BGM change
+	Sound.fade_out(Sound.game_bgm, $WinMatchBGM)
 	
 	# Menu animation
 	tween.interpolate_property(buttons, "rect_position:y", null, button_pos,

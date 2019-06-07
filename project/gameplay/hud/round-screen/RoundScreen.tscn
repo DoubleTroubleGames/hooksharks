@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://gameplay/hud/round-screen/RoundScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/round-screen/gatebasic.png" type="Texture" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/images/ui/round-screen/gate_multi.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/ui/round-screen/gate_sub.png" type="Texture" id=10]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/sfx/seagull1.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/bgm/oilyshark.ogg" type="AudioStream" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 256
@@ -201,3 +204,28 @@ autowrap = true
 [node name="DisplayTimer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
+
+[node name="GateCloseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[node name="PirateWinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+bus = "SFX"
+
+[node name="GreenPirateWinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[node name="DrillWinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[node name="KingWinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[node name="WinMatchBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+bus = "BGM"
+

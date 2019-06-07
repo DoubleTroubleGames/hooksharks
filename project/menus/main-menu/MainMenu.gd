@@ -75,13 +75,15 @@ func show_title():
 	tween.interpolate_property($CanvasLayer/ScreenGlow, "modulate:a", 1, 0,
 			GLOW_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
-	$PressStartSFX.play()
+	$TitleSFX.play()
 	camera.add_shake(1)
 	
 	$PressStartTimer.start()
 
 
 func change_screen():
+	$StartPressSFX.play()
+	
 	Transition.transition_in()
 	set_process_input(false)
 	yield(Transition, "finished")
