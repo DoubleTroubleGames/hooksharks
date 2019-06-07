@@ -13,9 +13,7 @@ func _on_Area2D_area_entered(area):
 	# This area only monitors PLAYER_ABOVE.
 	var player = area.get_parent().get_parent()
 	var checkpoint_num = stage.get_player_checkpoint(player)
-	if player.invincible:
-		return
 	if checkpoint_num == number - 1:
 		stage.increase_player_checkpoint(player)
-	elif not player.dont_collide:
+	elif not player.invincible and not player.dont_collide:
 		player.add_label("Wrong Way")

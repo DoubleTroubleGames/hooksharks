@@ -4,6 +4,12 @@
 [ext_resource path="res://gameplay/objects/PullableObject.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/elements/line.png" type="Texture" id=3]
 
+
+
+
+
+
+
 [sub_resource type="Animation" id=1]
 resource_name = "float"
 length = 2.0

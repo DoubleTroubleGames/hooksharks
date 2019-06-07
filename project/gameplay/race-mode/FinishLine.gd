@@ -55,9 +55,6 @@ func _on_LineArea_area_entered(area):
 	# This area only monitors PLAYER_ABOVE.
 	var player = area.get_parent().get_parent()
 	var checkpoint_num = stage.get_player_checkpoint(player)
-	
-	if player.invincible:
-		return
 	if checkpoint_num == total_checkpoint_number:
 		stage.increase_player_lap(player)
 		stage.reset_player_checkpoint(player)
@@ -84,7 +81,7 @@ func _on_LineArea_area_entered(area):
 				if child != winner:
 					child.respawn = false
 					child.call_deferred("die")
-	else:
+	elif not player.invincible:
 		player.add_label("Wrong Way")
 
 
