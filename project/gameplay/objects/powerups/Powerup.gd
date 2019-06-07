@@ -58,7 +58,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if hook:
+	if hook and is_instance_valid(hook):
 		position = hook.position
 
 
