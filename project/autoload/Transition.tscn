@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://autoload/Transition.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/transition/jaw_upper.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/transition/jaw_lower.png" type="Texture" id=3]
-[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sound/sfx/shark_transition.wav" type="AudioStream" id=4]
 
 [node name="Transition" type="CanvasLayer"]
 pause_mode = 2
@@ -42,7 +41,6 @@ stream = ExtResource( 4 )
 bus = "SFX"
 
 [node name="CloseSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )
 bus = "SFX"
-
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

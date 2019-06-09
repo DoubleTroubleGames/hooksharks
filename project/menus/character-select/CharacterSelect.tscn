@@ -210,13 +210,11 @@ z_index = 2
 anims/show = SubResource( 3 )
 
 [node name="Sounds" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 17 )
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 18 )
-
 
 [editable path="BackIndicator"]

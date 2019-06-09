@@ -6,14 +6,7 @@
 [ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/images/ui/round-screen/ui_circles.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/ui/round-screen/ui_x.png" type="Texture" id=6]
-[ext_resource path="res://assets/sound/old sounds/score.wav" type="AudioStream" id=7]
-
-
-
-
-
-
-
+[ext_resource path="res://assets/sound/sfx/get_1_point.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -90,4 +83,3 @@ texture = ExtResource( 6 )
 [node name="ScoreSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 bus = "SFX"
-

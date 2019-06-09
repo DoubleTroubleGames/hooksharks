@@ -238,7 +238,7 @@ one_shot = true
 
 [node name="WoodCrackSFX" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource( 8 )
+volume_db = -11.0
 script = SubResource( 11 )
-
 [connection signal="area_entered" from="Hitbox" to="WoodCrackSFX" method="_hit"]
 [connection signal="timeout" from="RespawnTimer" to="." method="spawn"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/intro_press_start_appears.wav-9fcd6542563c5e5c546e76d1d76cf69d.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/intro_press_start_appears.wav"
+dest_files=[ "res://.import/intro_press_start_appears.wav-9fcd6542563c5e5c546e76d1d76cf69d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

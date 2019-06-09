@@ -10,23 +10,24 @@ resource_name = "Chorus"
 resource_name = "Panner"
 
 [resource]
+bus/0/volume_db = 1.7
 bus/1/name = "SFX"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = 1.7
 bus/1/send = "Master"
 bus/2/name = "BGM"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = 0.8
 bus/2/send = "Master"
 bus/3/name = "BGM_Paused"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -13.1
+bus/3/volume_db = -11.3
 bus/3/send = "BGM"
 bus/3/effect/0/effect = SubResource( 1 )
 bus/3/effect/0/enabled = true
@@ -34,4 +35,3 @@ bus/3/effect/1/effect = SubResource( 2 )
 bus/3/effect/1/enabled = true
 bus/3/effect/2/effect = SubResource( 3 )
 bus/3/effect/2/enabled = true
-

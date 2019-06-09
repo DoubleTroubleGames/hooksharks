@@ -5,10 +5,6 @@
 [ext_resource path="res://assets/sound/bgm/shark_fase.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/sound/bgm/sea_ambience.ogg" type="AudioStream" id=4]
 
-
-
-
-
 [node name="Sound" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
@@ -26,4 +22,3 @@ stream = ExtResource( 4 )
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
-

@@ -13,17 +13,9 @@
 [ext_resource path="res://assets/images/ui/left.png" type="Texture" id=11]
 [ext_resource path="res://assets/images/ui/right.png" type="Texture" id=12]
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/sfx/char_select.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/sfx/char_select_ready.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=16]
-
-
-
-
-
-
-
-
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -803,5 +795,4 @@ bus = "SFX"
 stream = ExtResource( 16 )
 volume_db = -6.0
 bus = "SFX"
-
 [connection signal="timeout" from="SharkSprite/SharkChangeTimer" to="." method="_on_SharkChangeTimer_timeout"]

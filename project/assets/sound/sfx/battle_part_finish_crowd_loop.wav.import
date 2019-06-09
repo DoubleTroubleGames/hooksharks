@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/battle_part_finish_crowd_loop.wav-adbad2beb20dc9c456da073ddac85e6d.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/battle_part_finish_crowd_loop.wav"
+dest_files=[ "res://.import/battle_part_finish_crowd_loop.wav-adbad2beb20dc9c456da073ddac85e6d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

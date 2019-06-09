@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/get_1_point.wav-0b5f0879cbb84437a256213920cdd51a.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/get_1_point.wav"
+dest_files=[ "res://.import/get_1_point.wav-0b5f0879cbb84437a256213920cdd51a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

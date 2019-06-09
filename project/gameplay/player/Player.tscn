@@ -56,7 +56,6 @@ position = Vector2( 0, -70 )
 z_index = 7
 
 [node name="SFX" type="Node2D" parent="."]
-editor/display_folded = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -64,14 +63,17 @@ __meta__ = {
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 6 )
+volume_db = -3.0
 bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 7 )
+volume_db = -3.0
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 8 )
+volume_db = -3.0
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
@@ -80,31 +82,37 @@ bus = "SFX"
 
 [node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 10 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX2" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 11 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX3" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 12 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX4" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 13 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX5" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 14 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX6" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 15 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="OnHit" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 16 )
-volume_db = 10.0
+volume_db = -3.0
 
 [node name="PowerUps" type="Node2D" parent="."]
 
@@ -122,4 +130,3 @@ one_shot = true
 [node name="InvencibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
