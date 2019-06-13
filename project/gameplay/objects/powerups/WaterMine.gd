@@ -44,7 +44,7 @@ func deactivate():
 
 
 func explode():
-	$Hitbox/CollisionShape2D.disabled = true
+	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	$AnimationPlayer.play("pulse")
 	yield($AnimationPlayer, "animation_finished")
 	$AnimationPlayer.play("explode")
