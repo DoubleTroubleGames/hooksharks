@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://menus/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/boarder.png" type="Texture" id=2]
@@ -9,13 +9,12 @@
 [ext_resource path="res://assets/images/ui/grid.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/ui/gate.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/ui/ready.png" type="Texture" id=9]
-[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://assets/images/ui/left.png" type="Texture" id=11]
-[ext_resource path="res://assets/images/ui/right.png" type="Texture" id=12]
-[ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/sound/sfx/char_select.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/sfx/char_select_ready.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/images/ui/left.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/ui/right.png" type="Texture" id=11]
+[ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/sound/sfx/char_select.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/sfx/char_select_ready.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -25,11 +24,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 10 )
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "change_char_left"
 length = 0.3
 tracks/0/type = "value"
@@ -93,7 +88,7 @@ tracks/4/keys = {
 "values": [ Vector2( 10, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "change_char_right"
 length = 0.3
 tracks/0/type = "value"
@@ -157,7 +152,7 @@ tracks/4/keys = {
 "values": [ Vector2( 30, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Portrait:visible")
@@ -244,19 +239,19 @@ tracks/6/keys = {
 "values": [ true, false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("DeviceNumber:visible")
+tracks/7/path = NodePath("Grid:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Grid:visible")
+tracks/8/path = NodePath("Left:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -268,7 +263,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Left:visible")
+tracks/9/path = NodePath("Right:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -280,7 +275,7 @@ tracks/9/keys = {
 "values": [ false ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Right:visible")
+tracks/10/path = NodePath("ChangePortrait:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -291,20 +286,8 @@ tracks/10/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/11/type = "value"
-tracks/11/path = NodePath("ChangePortrait:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Portrait:visible")
@@ -426,20 +409,8 @@ tracks/9/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/10/type = "value"
-tracks/10/path = NodePath("DeviceNumber:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Gate:position")
@@ -586,7 +557,7 @@ tracks/11/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Gate:position")
 tracks/0/interp = 1
@@ -727,19 +698,6 @@ margin_right = 73.0
 margin_bottom = 278.0
 rect_scale = Vector2( 0.8, 0.8 )
 
-[node name="DeviceNumber" type="Label" parent="Boarder"]
-visible = false
-margin_left = 30.0
-margin_top = 150.0
-margin_right = 70.0
-margin_bottom = 197.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_y = 2
-custom_constants/shadow_as_outline = 2
-align = 1
-
 [node name="Left" type="TextureRect" parent="Boarder"]
 visible = false
 margin_left = -140.0
@@ -747,7 +705,7 @@ margin_top = -40.0
 margin_right = -60.0
 margin_bottom = 40.0
 rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 expand = true
 
 [node name="Right" type="TextureRect" parent="Boarder"]
@@ -757,23 +715,23 @@ margin_top = -30.0
 margin_right = 150.0
 margin_bottom = 50.0
 rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 11 )
 expand = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder"]
-anims/change_char_left = SubResource( 3 )
-anims/change_char_right = SubResource( 4 )
-anims/close = SubResource( 5 )
-anims/open = SubResource( 6 )
-anims/ready = SubResource( 7 )
-anims/unready = SubResource( 8 )
+anims/change_char_left = SubResource( 2 )
+anims/change_char_right = SubResource( 3 )
+anims/close = SubResource( 4 )
+anims/open = SubResource( 5 )
+anims/ready = SubResource( 6 )
+anims/unready = SubResource( 7 )
 
 [node name="SharkSprite" type="Node2D" parent="."]
 position = Vector2( 100, 460 )
 scale = Vector2( -1, 1 )
 z_index = 1
 
-[node name="Shark" parent="SharkSprite" instance=ExtResource( 13 )]
+[node name="Shark" parent="SharkSprite" instance=ExtResource( 12 )]
 
 [node name="SharkChangeTimer" type="Timer" parent="SharkSprite"]
 wait_time = 0.5
@@ -784,15 +742,16 @@ one_shot = true
 [node name="Sounds" type="Node" parent="."]
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 14 )
+stream = ExtResource( 13 )
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 15 )
+stream = ExtResource( 14 )
 bus = "SFX"
 
 [node name="CancelSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 16 )
+stream = ExtResource( 15 )
 volume_db = -6.0
 bus = "SFX"
+
 [connection signal="timeout" from="SharkSprite/SharkChangeTimer" to="." method="_on_SharkChangeTimer_timeout"]

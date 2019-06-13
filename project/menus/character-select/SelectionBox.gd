@@ -131,7 +131,6 @@ func change_state(new_state):
 			dive_shark()
 			device_name = ""
 			$Boarder/DeviceSprite.set_texture(null)
-			$Boarder/DeviceNumber.set_text("")
 			$Boarder/Left.hide()
 			$Boarder/Right.hide()
 			$SharkSprite.hide()
@@ -140,8 +139,6 @@ func change_state(new_state):
 			yield($Boarder/AnimationPlayer, "animation_finished")
 			mid_animation = false
 		States.OPEN:
-			if device_name.split("_")[0] == "gamepad":
-				$Boarder/DeviceNumber.set_text(device_name.split("_")[1])
 			$SharkSprite.show()
 			if state == States.CLOSED:
 				emerge_shark()
@@ -181,7 +178,6 @@ func open_with(event):
 	else:
 		var num = int(device_name.split("_")[1]) + 1
 		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/gamepad.png"))
-		$Boarder/DeviceNumber.set_text(str(num))
 
 	if not CHARACTERS[char_index] in available_chars:
 		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
