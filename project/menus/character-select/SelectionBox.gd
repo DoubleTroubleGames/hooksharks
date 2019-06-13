@@ -30,10 +30,10 @@ func _physics_process(delta):
 		var axis_value = Input.get_joy_axis(device_n, 0)
 		if axis_value >= DEADZONE and state == States.OPEN and  not _moved_right and not mid_animation:
 			_moved_right = true
-			toggle_left()
+			toggle_right()
 		elif  axis_value <= -DEADZONE and state == States.OPEN and not _moved_left and not mid_animation:
 			_moved_left = true
-			toggle_right()
+			toggle_left()
 		elif abs(axis_value) < DEADZONE:
 			_moved_right = false
 			_moved_left = false
