@@ -1,7 +1,7 @@
 extends Node2D
 
 signal hook_clinked(position)
-signal wall_hit(position, rotation)
+signal wall_hit(position, rotation, color)
 signal shook_screen(amount)
 
 const SCREEN_SHAKE_HOOK_HIT = .8
@@ -87,9 +87,9 @@ func hit_shark(shark):
 		rope.straighten()
 
 
-func hit_wall():
+func hit_wall(color):
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
-	emit_signal("wall_hit", position, $Sprite.rotation - PI)
+	emit_signal("wall_hit", position, $Sprite.rotation - PI, color)
 	has_collided = true
 	
 	rope.straighten()
@@ -123,9 +123,9 @@ func _on_HookArea_area_entered(area):
 			if shark != player:
 				hit_shark(shark)
 		Collision.OBSTACLE:
-			hit_wall()
+			hit_wall(area.color)
 		Collision.FLOATING_OBSTACLE:
-			hit_wall()
+			hit_wall(area.color)
 		Collision.POWERUP:
 			hit_object(area.get_parent())
 		Collision.HOOK:

@@ -9,6 +9,7 @@ const HOOK_CLINK = preload("res://assets/effects/HookClink.tscn")
 const ROPE = preload("res://gameplay/player/rope/Rope.tscn")
 const WALL_PARTICLES = preload("res://assets/effects/WallParticles.tscn")
 const SHOW_ROUND_DELAY = 1.5
+const WALL_PARTICLES_OFFSET = 50
 
 export (int)var total_stages = 10
 
@@ -245,11 +246,13 @@ func _on_hook_clinked(clink_position):
 	hook_clink_positions.erase(clink_position)
 
 
-func _on_wall_hit(position, rotation):
+func _on_wall_hit(position, rotation, color):
 	var wall_particles = WALL_PARTICLES.instance()
 	wall_particles.emitting = true
-	wall_particles.position = position
 	wall_particles.rotation = rotation
+	wall_particles.position = position +\
+			(Vector2.LEFT * WALL_PARTICLES_OFFSET).rotated(rotation)
+	wall_particles.set_color(color)
 	add_child(wall_particles)
 
 	var delay = wall_particles.lifetime / wall_particles.speed_scale
