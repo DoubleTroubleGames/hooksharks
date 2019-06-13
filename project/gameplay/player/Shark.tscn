@@ -365,6 +365,7 @@ frame = 12
 [node name="Rider" type="Sprite" parent="."]
 position = Vector2( -40, -5 )
 scale = Vector2( 0.3, 0.3 )
+z_index = 1
 texture = ExtResource( 3 )
 offset = Vector2( -15, 0 )
 
@@ -433,3 +434,4 @@ position = Vector2( -500, 150 )
 "camera_focus",
 ]]
 position = Vector2( 300, 0 )
+
