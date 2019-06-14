@@ -71,6 +71,9 @@ func move():
 			yield($Tween, "tween_completed")
 			previous_position = node.position
 	moving = false
+	
+func stop():
+	$Tween.stop_all()
 
 func force_terminate():
 	if (is_editor):

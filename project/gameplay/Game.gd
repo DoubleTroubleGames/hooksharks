@@ -176,6 +176,11 @@ func check_winner():
 		RoundManager.round_winner = -1
 	else:
 		return
+		
+	# Stopping moving obticles here
+	for node in $Stage/Obstacles.get_children():
+		if node.filename.find("MovingObstacle") != -1:
+			node.stop()
 	
 	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 	transition_stage()

@@ -35,3 +35,8 @@ func _on_Timer_timeout():
 
 func _on_KillTimer_timeout():
 	self.queue_free()
+
+
+func _on_Area2D_area_entered(area):
+	if area.collision_layer == Collision.OBSTACLE:
+		self.queue_free()
