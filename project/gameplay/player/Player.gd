@@ -267,9 +267,7 @@ func update_dive_meter(delta):
 	elif dive_on_cooldown:
 		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
 		if dive_meter.value >= 100:
-			dive_meter.value = 100
-			dive_on_cooldown = false
-			dive_meter.texture_progress = NORMAL_BUBBLE
+			reset_dive_meter()
 	elif diving:
 		dive_meter.value -= DIVE_USE_SPEED * delta
 		if dive_meter.value <= 0:
@@ -286,6 +284,11 @@ func update_dive_meter(delta):
 	else:
 		dive_meter.hide()
 
+func reset_dive_meter():
+	dive_meter.value = 100
+	dive_on_cooldown = false
+	dive_meter.texture_progress = NORMAL_BUBBLE
+	
 
 func get_rider_direction():
 	if gamepad_id != -1:
@@ -335,6 +338,7 @@ func die():
 	EP.position = self.position
 	get_parent().add_child(EP)
 	sprite_animation.stop(false)
+	reset_dive_meter()
 	dive_meter.hide()
 	$SFX/ExplosionSFX.play()
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
