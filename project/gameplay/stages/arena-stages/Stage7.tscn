@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gameplay/stages/BaseStage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/objects/obstacles/dynamic/MovingObstacle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxFull.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/stages/arena-stages/ArenaWalls.tscn" type="PackedScene" id=4]
+
+[node name="Stage7" index="0" instance=ExtResource( 1 )]
+stage_name = "Sailing Supplies"
+
+[node name="PlayerStartingPosition" parent="." index="1"]
+editor/display_folded = false
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
+position = Vector2( 500, 450 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
+position = Vector2( 1480, 630 )
+direction = Vector2( -1, 0 )
+
+[node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
+position = Vector2( 1480, 450 )
+direction = Vector2( -1, 0 )
+
+[node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
+position = Vector2( 500, 630 )
+
+[node name="MovingObstacle" parent="Obstacles" index="0" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 360, 240 )
+transition_type = 7
+ease_type = 2
+duration = 6.5
+obstacle = ExtResource( 3 )
+
+[node name="Path" parent="Obstacles/MovingObstacle" index="0"]
+editor/display_folded = true
+
+[node name="Position2D" type="Position2D" parent="Obstacles/MovingObstacle/Path" index="1"]
+position = Vector2( 1190, 0 )
+
+[node name="Position2D2" type="Position2D" parent="Obstacles/MovingObstacle/Path" index="2"]
+position = Vector2( 1190, 590 )
+
+[node name="Position2D3" type="Position2D" parent="Obstacles/MovingObstacle/Path" index="3"]
+position = Vector2( 0, 590 )
+
+[node name="MovingObstacle2" parent="Obstacles" index="1" instance=ExtResource( 2 )]
+position = Vector2( 1550, 830 )
+transition_type = 7
+ease_type = 2
+duration = 6.5
+obstacle = ExtResource( 3 )
+
+[node name="Position2D" type="Position2D" parent="Obstacles/MovingObstacle2/Path" index="1"]
+position = Vector2( -1190, 0 )
+
+[node name="Position2D2" type="Position2D" parent="Obstacles/MovingObstacle2/Path" index="2"]
+position = Vector2( -1190, -590 )
+
+[node name="Position2D3" type="Position2D" parent="Obstacles/MovingObstacle2/Path" index="3"]
+position = Vector2( 0, -590 )
+
+[node name="ArenaWalls" parent="Obstacles" index="2" instance=ExtResource( 4 )]
+
+
+[editable path="Obstacles/MovingObstacle"]
+
+[editable path="Obstacles/MovingObstacle2"]
