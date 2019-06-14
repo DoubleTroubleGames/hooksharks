@@ -38,10 +38,12 @@ blend_mode = 1
 
 [sub_resource type="DynamicFont" id=5]
 size = 25
+use_filter = true
 font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 37
+use_filter = true
 font_data = ExtResource( 11 )
 
 [node name="RoundScreen" type="CanvasLayer"]
@@ -236,3 +238,4 @@ bus = "SFX"
 [node name="WinMatchBGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 bus = "BGM"
+
