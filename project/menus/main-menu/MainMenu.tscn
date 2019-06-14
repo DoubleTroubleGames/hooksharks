@@ -116,4 +116,5 @@ bus = "SFX"
 [node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 bus = "SFX"
+
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
