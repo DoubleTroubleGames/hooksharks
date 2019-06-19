@@ -16,9 +16,10 @@ var players_total = 0
 
 func get_device_name_from(event):
 	if event is InputEventKey or event is InputEventMouseButton:
-		if event is InputEventKey and event.scancode in DEBUG_KEYS:
-			if OS.is_debug_build():
-				return "test_keyboard"
+		if OS.is_debug_build() and\
+				((event is InputEventKey and event.scancode in DEBUG_KEYS) or\
+				(event is InputEventMouseButton and event.button_index == BUTTON_RIGHT)):
+			return "test_keyboard"
 		
 		return "keyboard"
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://menus/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -9,6 +9,35 @@
 [ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=7]
 [ext_resource path="res://assets/sound/sfx/intro_title.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=9]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform sampler2D gradient : hint_black;
+uniform float freq = .5;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	float gray = dot(color.rgb, vec3(.299, .587, .114));
+	float gradient_x = gray + sin(freq * TIME);
+	gradient_x = mod(gradient_x, 1.0);
+	vec3 sampled_color = texture(gradient, vec2(gradient_x, 0)).rgb;
+	
+	COLOR.rgb = sampled_color.rgb;
+	COLOR.a = color.a;
+}"
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.07, 0.097, 0.237, 0.263, 0.403, 0.43, 0.57, 0.597, 0.737, 0.763, 0.903, 0.93 )
+colors = PoolColorArray( 0.905882, 0, 0, 1, 1, 0.54902, 0, 1, 1, 0.54902, 0, 1, 1, 0.937255, 0, 1, 1, 0.937255, 0, 1, 0, 0.505882, 0.121569, 1, 0, 0.505882, 0.121569, 1, 0, 0.266667, 1, 1, 0, 0.266667, 1, 1, 0.462745, 0, 0.537255, 1, 0.462745, 0, 0.537255, 1, 0.905882, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/freq = 0.2
+shader_param/gradient = SubResource( 6 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -43,6 +72,7 @@ __meta__ = {
 ModeSelect = ExtResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
+material = SubResource( 4 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
