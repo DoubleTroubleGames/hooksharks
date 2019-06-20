@@ -100,7 +100,7 @@ func retract():
 		pulling_object.remove_hook()
 		pulling_object = null
 	retracting = true
-	
+	$RetractSFX.play()
 	rope.straighten(false)
 
 
@@ -134,3 +134,8 @@ func _on_HookArea_area_entered(area):
 			hit_hook(area.get_parent())
 		Collision.PULLABLE_OBJECT:
 			hit_object(area.get_parent())
+
+
+func _on_RetractSFX_finished():
+	$RetractSFX.pitch_scale *= 1.1
+	$RetractSFX.play()

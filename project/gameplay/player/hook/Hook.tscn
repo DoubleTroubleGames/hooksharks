@@ -22,4 +22,7 @@ collision_mask = 1645
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
 shape = SubResource( 1 )
 
+[node name="RetractSFX" type="AudioStreamPlayer" parent="."]
+
 [connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]
+[connection signal="finished" from="RetractSFX" to="." method="_on_RetractSFX_finished"]
