@@ -81,7 +81,6 @@ func despawn():
 	$Particles2D.emitting = true
 	$Sprite.hide()
 	$Sprite2.hide()
-	
 
 
 func spawn():
@@ -96,7 +95,6 @@ func spawn():
 	$Sprite/AnimationPlayer.play("spawn")
 	$Sprite.show()
 	$Sprite2.show()
-	
 
 
 func add_powerup(player):
@@ -105,7 +103,8 @@ func add_powerup(player):
 	if power.init(player):
 		player.get_node("PowerUps").call_deferred("add_child", power)
 		player.add_label(power.power_name)
-	if hook:
+	if hook and is_instance_valid(hook) and hook.has_method("free_hook"):
+		# workaround for weird bug where a trail was being assigned to the hook 
 		hook.free_hook()
 	
 	despawn()
