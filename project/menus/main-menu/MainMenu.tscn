@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://menus/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -33,6 +33,14 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+
+[sub_resource type="AudioStreamRandomPitch" id=3]
+audio_stream = ExtResource( 9 )
+random_pitch = 1.15
+
+[sub_resource type="AudioStreamRandomPitch" id=4]
+audio_stream = ExtResource( 10 )
+random_pitch = 1.25
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -116,10 +124,10 @@ stream = ExtResource( 8 )
 bus = "SFX"
 
 [node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = SubResource( 3 )
 bus = "SFX"
 
 [node name="PressStartShowSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = SubResource( 4 )
 bus = "SFX"
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
