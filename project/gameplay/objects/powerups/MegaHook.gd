@@ -30,6 +30,7 @@ func activate(direction):
 	$Sprite.rotation = Vector2(-direction.x, -direction.y).angle()
 	
 	show()
+	$ShootSFX.play()
 	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
 

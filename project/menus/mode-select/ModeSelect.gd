@@ -68,17 +68,18 @@ func _on_ArenaButton_focus_entered():
 	                           "shader_param/wave_length", 
 	                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
 	                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
-		$Tween.start()
+	cur = $RacingButton.get_material().get_shader_param("wave_length")
+	if cur > 0:
+		$Tween.interpolate_property($RacingButton.get_material(), 
+	                    "shader_param/wave_length", 
+	                    cur, 0, cur/SPEED, 
+	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 	$Sounds/SelectSFX.play()
 
 
 func _on_ArenaButton_focus_exited():
-	var cur = $ArenaButton.get_material().get_shader_param("wave_length")
-	$Tween.interpolate_property($ArenaButton.get_material(), 
-                       "shader_param/wave_length", 
-                       cur, 0, cur/SPEED, 
-                       Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.start()
+	pass
 
 func _on_RacingButton_focus_entered():
 	var cur = $RacingButton.get_material().get_shader_param("wave_length")
@@ -87,17 +88,18 @@ func _on_RacingButton_focus_entered():
 	                           "shader_param/wave_length", 
 	                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
 	                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
-		$Tween.start()
-	$Sounds/SelectSFX.play()
-
-
-func _on_RacingButton_focus_exited():
-	var cur = $RacingButton.get_material().get_shader_param("wave_length")
-	$Tween.interpolate_property($RacingButton.get_material(), 
+	cur = $ArenaButton.get_material().get_shader_param("wave_length")
+	if cur > 0:
+		$Tween.interpolate_property($ArenaButton.get_material(), 
 	                    "shader_param/wave_length", 
 	                    cur, 0, cur/SPEED, 
 	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
+	$Sounds/SelectSFX.play()
+
+
+func _on_RacingButton_focus_exited():
+	pass
 
 func _on_Options_pressed():
 	$Sounds/ConfirmSFX.play()

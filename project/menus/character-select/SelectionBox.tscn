@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://menus/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/boarder.png" type="Texture" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://assets/sound/sfx/char_select.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sound/sfx/char_select_ready.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/sfx/pirate1.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sound/sfx/pirate2.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/sfx/drill.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sound/sfx/king.wav" type="AudioStream" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -754,4 +758,19 @@ stream = ExtResource( 15 )
 volume_db = -6.0
 bus = "SFX"
 
+[node name="PirateSFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 16 )
+bus = "SFX"
+
+[node name="GreenPirateSFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 17 )
+bus = "SFX"
+
+[node name="DrillSFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 18 )
+bus = "SFX"
+
+[node name="KingSFX" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 19 )
+bus = "SFX"
 [connection signal="timeout" from="SharkSprite/SharkChangeTimer" to="." method="_on_SharkChangeTimer_timeout"]
