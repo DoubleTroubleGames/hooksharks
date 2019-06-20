@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pirate 1 hit.wav-56483621c0fc61944ae81ce7e59a6074.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/pirate 1 hit.wav"
+dest_files=[ "res://.import/pirate 1 hit.wav-56483621c0fc61944ae81ce7e59a6074.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
