@@ -10,6 +10,10 @@ const CHARACTERS = ["pirate", "pirate-green", "drill", "king"]
 const DEADZONE = .55
 const TWN_TIME = 0.6
 
+onready var char_sfx = {"pirate": $Sounds/PirateSFX,
+		"pirate-green": $Sounds/GreenPirateSFX, "drill": $Sounds/DrillSFX,
+		"king": $Sounds/KingSFX}
+
 var available_chars = CHARACTERS.duplicate()
 var char_index = 0
 var device_name = ""
@@ -48,6 +52,7 @@ func _input(event):
 			if CHARACTERS[char_index] in available_chars:
 				change_state(States.READY)
 				$Sounds/ConfirmSFX.play()
+				char_sfx[CHARACTERS[char_index]].play()
 			else:
 				$Sounds/CancelSFX.play()
 		elif state == States.READY or state == States.LOCKED:
