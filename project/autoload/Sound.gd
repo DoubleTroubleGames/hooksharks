@@ -32,7 +32,7 @@ func fade_out(track, next_track = null, duration = 1.0):
 	yield(tween, "tween_completed")
 	track.stop()
 	track.volume_db = 0
-	Sound.on_unpause()
+	on_unpause()
 	
 	if next_track:
 		next_track.play()
