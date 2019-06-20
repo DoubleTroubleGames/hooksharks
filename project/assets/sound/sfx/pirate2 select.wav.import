@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pirate2 select.wav-c13799b1c3011ff6ac57e268072f7867.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/pirate2 select.wav"
+dest_files=[ "res://.import/pirate2 select.wav-c13799b1c3011ff6ac57e268072f7867.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

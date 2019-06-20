@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pirate king hit.wav-714c7ae3f8c95a272c5f55e885a485e2.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/pirate king hit.wav"
+dest_files=[ "res://.import/pirate king hit.wav-714c7ae3f8c95a272c5f55e885a485e2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

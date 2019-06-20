@@ -369,9 +369,9 @@ func die():
 func hook_collision(from_hook):
 	var BP = BLOOD_PARTICLE.instance()
 	BP.position = self.position
-	$HookTimer.start()
-	$SFX/OnHit.play()
 	get_parent().add_child(BP)
+	$HookTimer.start()
+	$Shark/DamageSFX.play()
 	stunned = true
 	pull_dir = (from_hook.rope.get_point_position(0) - \
 			from_hook.rope.get_point_position(1)).normalized()
