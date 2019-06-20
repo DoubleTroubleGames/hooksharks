@@ -10,16 +10,16 @@
 [ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=8]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=9]
 
-[node name="Stage" instance=ExtResource( 1 )]
-stage_begin = Vector2( -200, -200 )
-stage_end = Vector2( 3800, 2350 )
+[node name="Stage" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -150, 0 )
+stage_end = Vector2( 3700, 2150 )
 stage_name = "Fin Twister"
 
 [node name="Water" parent="." index="0"]
-margin_left = -200.0
-margin_top = -200.0
-margin_right = 3800.0
-margin_bottom = 2350.0
+margin_left = -150.0
+margin_top = 0.0
+margin_right = 3700.0
+margin_bottom = 2150.0
 
 [node name="PlayerStartingPosition" parent="." index="1"]
 editor/display_folded = false
@@ -238,10 +238,10 @@ number = 8
 [node name="Camera2D" type="Camera2D" parent="." index="8"]
 position = Vector2( 297.405, 289.656 )
 current = true
-limit_left = 0
-limit_top = 0
-limit_right = 3700
-limit_bottom = 2150
+limit_left = 42
+limit_top = 107
+limit_right = 3507
+limit_bottom = 2042
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
@@ -258,6 +258,5 @@ total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine2" index="1"]
 position = Vector2( 0, 260 )
-
 
 [editable path="FinishLine2"]

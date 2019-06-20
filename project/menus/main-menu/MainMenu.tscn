@@ -92,7 +92,7 @@ limit_top = 0
 script = ExtResource( 5 )
 
 [node name="PressStartTimer" type="Timer" parent="."]
-wait_time = 1.8
+wait_time = 3.0
 one_shot = true
 
 [node name="BackIndicator" parent="." instance=ExtResource( 6 )]

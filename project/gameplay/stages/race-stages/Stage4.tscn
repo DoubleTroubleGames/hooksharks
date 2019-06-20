@@ -18,31 +18,16 @@
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=16]
 [ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=17]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [node name="Stage" index="0" instance=ExtResource( 1 )]
-stage_begin = Vector2( -2400, -4000 )
-stage_end = Vector2( 9000, 5000 )
+stage_begin = Vector2( -500, -750 )
+stage_end = Vector2( 8800, 1500 )
 stage_name = "Straight Diver"
 
 [node name="Water" parent="." index="0"]
-margin_left = -2400.0
-margin_top = -4000.0
-margin_right = 9000.0
-margin_bottom = 5000.0
+margin_left = -500.0
+margin_top = -750.0
+margin_right = 8800.0
+margin_bottom = 1500.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 240, 280 )
@@ -409,16 +394,15 @@ position = Vector2( 1045.5, 290.002 )
 [node name="Camera2D" type="Camera2D" parent="." index="9"]
 position = Vector2( 241.153, 495.556 )
 current = true
-limit_left = -300
-limit_top = -600
-limit_right = 8500
-limit_bottom = 1650
+limit_left = -35
+limit_top = -637
+limit_right = 8335
+limit_bottom = 1387
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource( 17 )
-
 
 [editable path="FinishLine"]

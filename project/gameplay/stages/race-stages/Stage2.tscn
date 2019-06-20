@@ -21,34 +21,16 @@
 [ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=20]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[node name="Stage2" index="0" instance=ExtResource( 1 )]
-stage_begin = Vector2( -1600, -1100 )
-stage_end = Vector2( 5500, 2000 )
+[node name="Stage2" instance=ExtResource( 1 )]
+stage_begin = Vector2( -250, -100 )
+stage_end = Vector2( 4200, 1100 )
 stage_name = "Ball Buster"
 
 [node name="Water" parent="." index="0"]
-margin_left = -1600.0
-margin_top = -1100.0
-margin_right = 5500.0
-margin_bottom = 2000.0
+margin_left = -250.0
+margin_top = -100.0
+margin_right = 4200.0
+margin_bottom = 1100.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 300, 370 )
@@ -219,10 +201,10 @@ position = Vector2( 2557.79, 846.657 )
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 position = Vector2( 296.804, 465.55 )
 current = true
-limit_left = -200
-limit_top = -300
-limit_right = 4200
-limit_bottom = 1400
+limit_left = -27
+limit_top = -40
+limit_right = 3977
+limit_bottom = 1040
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
@@ -252,4 +234,3 @@ number = 4
 [node name="FinishLine" parent="." index="9" instance=ExtResource( 20 )]
 position = Vector2( 3478.28, 417.077 )
 total_checkpoint_number = 4
-
