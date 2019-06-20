@@ -435,3 +435,5 @@ position = Vector2( -500, 150 )
 ]]
 position = Vector2( 300, 0 )
 
+[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+

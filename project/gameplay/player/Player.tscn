@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/old sounds/hook_hit_player.wav" type="AudioStream" id=16]
 
 [node name="Player" type="Node2D"]
 z_index = 1
@@ -110,10 +109,6 @@ stream = ExtResource( 15 )
 volume_db = -6.0
 bus = "SFX"
 
-[node name="OnHit" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 16 )
-volume_db = -3.0
-
 [node name="PowerUps" type="Node2D" parent="."]
 
 [node name="HookTimer" type="Timer" parent="."]
@@ -130,3 +125,4 @@ one_shot = true
 [node name="InvencibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
