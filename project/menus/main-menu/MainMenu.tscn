@@ -101,11 +101,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_top = -354.0
-margin_right = 707.0
-margin_bottom = 354.0
+margin_left = -605.594
+margin_top = -758.929
+margin_right = 3086.41
+margin_bottom = 1601.07
 rect_rotation = 30.0
+rect_scale = Vector2( 0.3, 0.3 )
 rect_pivot_offset = Vector2( 553, 354 )
 texture = ExtResource( 7 )
 
