@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://menus/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=7]
 [ext_resource path="res://assets/sound/sfx/intro_title.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/sfx/press star appear.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -116,5 +117,9 @@ bus = "SFX"
 
 [node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+bus = "SFX"
+
+[node name="PressStartShowSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 bus = "SFX"
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
