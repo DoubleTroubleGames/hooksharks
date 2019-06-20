@@ -5,6 +5,8 @@ extends Node2D
 export (Vector2)var stage_begin = Vector2(-1500, -900) setget set_stage_begin
 export (Vector2)var stage_end = Vector2(2200, 1400) setget set_stage_end
 export (String)var stage_name = "Sample Name"
+export (Color)var water_border = Color("0f4676")
+export (Color)var water_deep = Color("0a2f4f")
 
 const PLAYER = preload("res://gameplay/player/Player.tscn")
 
@@ -14,6 +16,7 @@ var player_laps = [0, 0, 0, 0]
 
 func _ready():
 	resize_water()
+	color_water()
 
 
 func resize_water():
@@ -21,6 +24,10 @@ func resize_water():
 	$Water.rect_position.y = stage_begin.y
 	$Water.rect_size = stage_end - stage_begin
 	$Water._on_Water_resized()
+	
+func color_water():
+	$Water/BG.get_material().set_shader_param("deep_color", water_deep)
+	$Water/BG.get_material().set_shader_param("shallow_color", water_border)
 
 func get_stage_name():
 	return stage_name
