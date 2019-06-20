@@ -91,7 +91,7 @@ limit_top = 0
 script = ExtResource( 5 )
 
 [node name="PressStartTimer" type="Timer" parent="."]
-wait_time = 1.8
+wait_time = 3.0
 one_shot = true
 
 [node name="BackIndicator" parent="." instance=ExtResource( 6 )]
@@ -115,10 +115,6 @@ stream = ExtResource( 8 )
 bus = "SFX"
 
 [node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-bus = "SFX"
-
-[node name="PressStartShowSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 bus = "SFX"
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
