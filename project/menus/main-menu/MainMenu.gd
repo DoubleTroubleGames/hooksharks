@@ -91,4 +91,5 @@ func change_screen():
 
 
 func _on_PressStartTimer_timeout():
+	$PressStartShowSFX.play()
 	$PressStart/AnimationPlayer.play("show")
