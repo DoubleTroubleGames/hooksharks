@@ -9,6 +9,7 @@ export (Color)var water_border = Color("0f4676") setget set_water_border
 export (Color)var water_deep = Color("0a2f4f") setget set_water_deep
 
 const PLAYER = preload("res://gameplay/player/Player.tscn")
+const CAMERA_RATIO = .05
 
 var player_checkpoints = [0, 0, 0, 0]
 var player_laps = [0, 0, 0, 0]
@@ -17,6 +18,7 @@ var player_laps = [0, 0, 0, 0]
 func _ready():
 	resize_water()
 	color_water()
+	resize_camera()
 
 
 func resize_water():
@@ -24,6 +26,15 @@ func resize_water():
 	$Water.rect_position.y = stage_begin.y
 	$Water.rect_size = stage_end - stage_begin
 	$Water._on_Water_resized()
+
+func resize_camera():
+	if $Camera2D:
+		var w = stage_end.x - stage_begin.x
+		var h = stage_end.y - stage_begin.y
+		$Camera2D.limit_left = stage_begin.x + CAMERA_RATIO*w
+		$Camera2D.limit_right = stage_end.x - CAMERA_RATIO*w
+		$Camera2D.limit_top = stage_begin.y + CAMERA_RATIO*h
+		$Camera2D.limit_bottom = stage_end.y - CAMERA_RATIO*h
 	
 func set_water_border(value):
 	water_border = value
@@ -68,11 +79,13 @@ func setup_players():
 func set_stage_begin(pos):
 	stage_begin = pos
 	resize_water()
+	resize_camera()
 
 
 func set_stage_end(pos):
 	stage_end = pos
 	resize_water()
+	resize_camera()
 
 
 func get_start_position(i):
