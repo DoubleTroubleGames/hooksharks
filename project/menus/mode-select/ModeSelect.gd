@@ -3,6 +3,9 @@ extends Control
 onready var _moved_left = false
 onready var _moved_right = false
 
+const WAVE_LENGTH = 0.8
+const SPEED = 5
+
 func _ready():
 	set_process(true)
 	set_process_input(false)
@@ -59,22 +62,40 @@ func _on_RacingButton_pressed():
 
 
 func _on_ArenaButton_focus_entered():
-	$ArenaButton.material.set_shader_param("active", true)
+	var cur = $ArenaButton.get_material().get_shader_param("wave_length")
+	$Tween.interpolate_property($ArenaButton.get_material(), 
+                           "shader_param/wave_length", 
+                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
+                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 	$Sounds/SelectSFX.play()
 
 
 func _on_ArenaButton_focus_exited():
-	$ArenaButton.material.set_shader_param("active", false)
-
+	var cur = $ArenaButton.get_material().get_shader_param("wave_length")
+	$Tween.interpolate_property($ArenaButton.get_material(), 
+                       "shader_param/wave_length", 
+                       cur, 0, cur/SPEED, 
+                       Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 
 func _on_RacingButton_focus_entered():
-	$RacingButton.material.set_shader_param("active", true)
+	var cur = $RacingButton.get_material().get_shader_param("wave_length")
+	$Tween.interpolate_property($RacingButton.get_material(), 
+                           "shader_param/wave_length", 
+                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
+                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 	$Sounds/SelectSFX.play()
 
 
 func _on_RacingButton_focus_exited():
-	$RacingButton.material.set_shader_param("active", false)
-
+	var cur = $RacingButton.get_material().get_shader_param("wave_length")
+	$Tween.interpolate_property($RacingButton.get_material(), 
+                       "shader_param/wave_length", 
+                       cur, 0, cur/SPEED, 
+                       Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 
 func _on_Options_pressed():
 	$Sounds/ConfirmSFX.play()
