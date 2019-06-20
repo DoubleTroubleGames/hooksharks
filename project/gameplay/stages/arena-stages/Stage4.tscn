@@ -5,11 +5,16 @@
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/BoxClosed.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box2.tscn" type="PackedScene" id=4]
 
-
-
-
 [node name="Stage4" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( 0, 0 )
+stage_end = Vector2( 1920, 1080 )
 stage_name = "The Division"
+
+[node name="Water" parent="." index="0"]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
 [node name="PlayerStartingPosition" parent="." index="1"]
 editor/display_folded = false
@@ -40,4 +45,3 @@ rotation = -0.0193346
 [node name="Box2" parent="Obstacles" index="2" instance=ExtResource( 4 )]
 position = Vector2( 1570, 549.03 )
 rotation = -0.0182538
-
