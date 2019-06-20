@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pick pwup.wav-4d4852998785b1ae9a7b7ff5bd700dd6.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/pick pwup.wav"
+dest_files=[ "res://.import/pick pwup.wav-4d4852998785b1ae9a7b7ff5bd700dd6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

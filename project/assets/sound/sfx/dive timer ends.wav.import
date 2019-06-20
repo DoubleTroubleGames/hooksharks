@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dive timer ends.wav-37b4a08e32dec522feb19013d48b9942.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/dive timer ends.wav"
+dest_files=[ "res://.import/dive timer ends.wav-37b4a08e32dec522feb19013d48b9942.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
