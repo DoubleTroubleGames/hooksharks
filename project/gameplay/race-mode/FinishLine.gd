@@ -76,6 +76,8 @@ func _on_LineArea_area_entered(area):
 			confetti.emitting = true
 			winner.add_child(confetti)
 			
+			$SFX.play()
+			
 			$LineArea/CollisionPolygon2D.set_deferred("disabled", true)
 			for child in players:
 				if child != winner:

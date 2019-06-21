@@ -4,12 +4,6 @@
 [ext_resource path="res://gameplay/objects/PullableObject.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/elements/line.png" type="Texture" id=3]
 
-
-
-
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "float"
 length = 2.0
@@ -108,6 +102,7 @@ position = Vector2( 0, 5 )
 autoplay = "float"
 anims/float = SubResource( 1 )
 
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
 [connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
 [connection signal="hooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_hooked"]
 [connection signal="unhooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_unhooked"]
