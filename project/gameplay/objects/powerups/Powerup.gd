@@ -18,21 +18,12 @@ const wooden_particle = preload("res://assets/images/powerup/barril_quebrando_pa
 const metal_particle = preload("res://assets/images/powerup/metalbarrel_particle.png")
 
 
-const POWERS = [infinite_dive,
-				megahook,
-                trail_power]
-				
-const CRATES = [oxygen_barrel,
-				wooden_barrel,
-                metal_barrel]
-
-const SHADERS = [ob_shader,
-				 wb_shader,
-                 mb_shader]
-				
-const PARTICLES = [wooden_particle,
-				   wooden_particle,
-                   metal_particle]
+const POWERS = [infinite_dive, megahook, trail_power]
+const CRATES = [oxygen_barrel, wooden_barrel, metal_barrel]
+const SHADERS = [ob_shader, wb_shader, mb_shader]
+const PARTICLES = [wooden_particle, wooden_particle, metal_particle]
+onready var break_sfx = [$WoodBreakSFX, $WoodBreakSFX, $MetalBreakSFX]
+onready var hooked_sfx = [$WoodHookedSFX, $WoodHookedSFX, $MetalHookedSFX]
 
 export(PackedScene) var powerup
 
@@ -103,6 +94,7 @@ func add_powerup(player):
 	if power.init(player):
 		player.get_node("PowerUps").call_deferred("add_child", power)
 		player.add_label(power.power_name)
+		$PowerPickup.play()
 	if hook and is_instance_valid(hook) and hook.has_method("free_hook"):
 		# workaround for weird bug where a trail was being assigned to the hook 
 		hook.free_hook()
@@ -114,3 +106,11 @@ func add_powerup(player):
 func set_random_power():
 	current_index = randi() % POWERS.size()
 	powerup = POWERS[current_index]
+
+
+func _on_PowerupHitbox_area_entered(area):
+	match area.collision_layer:
+		Collision.HOOK:
+			hooked_sfx[current_index].play()
+		Collision.PLAYER_ABOVE:
+			break_sfx[current_index].play()
