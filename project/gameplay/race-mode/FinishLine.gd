@@ -52,7 +52,9 @@ func adjust_line_size():
 
 
 func _on_LineArea_area_entered(area):
-	# This area only monitors PLAYER_ABOVE.
+	if area.collision_layer != Collision.PLAYER_ABOVE:
+		return
+	
 	var player = area.get_parent().get_parent()
 	var checkpoint_num = stage.get_player_checkpoint(player)
 	if checkpoint_num == total_checkpoint_number:
