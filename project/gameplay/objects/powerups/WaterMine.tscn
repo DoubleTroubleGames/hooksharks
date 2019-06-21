@@ -153,7 +153,7 @@ vframes = 8
 hframes = 8
 
 [node name="ExplosionArea" type="Area2D" parent="." index="5"]
-collision_layer = 4
+collision_layer = 8192
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" index="0"]
@@ -168,5 +168,4 @@ stream = ExtResource( 6 )
 anims/explode = SubResource( 3 )
 anims/pulse = SubResource( 4 )
 anims/spawn = SubResource( 5 )
-
 [connection signal="area_entered" from="ExplosionArea" to="." method="_on_ExplosionArea_area_entered"]
