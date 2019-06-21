@@ -3,7 +3,7 @@ extends "res://gameplay/objects/powerups/GenericPower.gd"
 const MEGAHOOK_SPRITE = preload("res://assets/images/elements/megahook.png")
 
 var player
-var speed = 800
+var speed = 1000
 var direction = Vector2()
 
 
