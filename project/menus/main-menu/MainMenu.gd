@@ -30,6 +30,7 @@ func _ready():
 	tween.interpolate_property(title, "rect_position", null, title_pos, 1.5,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT, TITLE_DELAY)
 	tween.start()
+	$TitleAnticipationSFX.play()
 
 	yield(tween, "tween_completed")
 	show_title()
@@ -71,11 +72,13 @@ func show_title():
 
 	tween.stop_all()
 	title.rect_position = title_pos
+	$TitleAnticipationSFX.stop()
+	
+	$TitleAppearSFX.play()
 	
 	tween.interpolate_property($CanvasLayer/ScreenGlow, "modulate:a", 1, 0,
 			GLOW_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
-	$TitleSFX.play()
 	camera.add_shake(1)
 	
 	$PressStartTimer.start()

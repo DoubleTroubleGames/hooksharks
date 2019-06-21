@@ -119,7 +119,11 @@ rect_scale = Vector2( 0.3, 0.3 )
 rect_pivot_offset = Vector2( 553, 354 )
 texture = ExtResource( 7 )
 
-[node name="TitleSFX" type="AudioStreamPlayer" parent="."]
+[node name="TitleAnticipationSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="TitleAppearSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 bus = "SFX"
 
@@ -130,4 +134,5 @@ bus = "SFX"
 [node name="PressStartShowSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 4 )
 bus = "SFX"
+
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
