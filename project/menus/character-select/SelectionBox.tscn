@@ -756,6 +756,7 @@ bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 14 )
+volume_db = -4.289
 bus = "SFX"
 
 [node name="CancelSFX" type="AudioStreamPlayer" parent="Sounds"]

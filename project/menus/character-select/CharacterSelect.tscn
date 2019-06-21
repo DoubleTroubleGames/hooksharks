@@ -213,8 +213,10 @@ anims/show = SubResource( 3 )
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 17 )
+volume_db = -6.058
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 18 )
+volume_db = -5.361
 
 [editable path="BackIndicator"]

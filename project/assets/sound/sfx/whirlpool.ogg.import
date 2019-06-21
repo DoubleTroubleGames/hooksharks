@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/whirlpool.ogg-df402384486c1bb96cc20e0cae09f4ef.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/sfx/whirlpool.ogg"
+dest_files=[ "res://.import/whirlpool.ogg-df402384486c1bb96cc20e0cae09f4ef.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
