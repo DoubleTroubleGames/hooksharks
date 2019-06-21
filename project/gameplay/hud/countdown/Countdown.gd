@@ -17,6 +17,7 @@ func start_countdown(stage_name = null, laps_number = null):
 		else:
 			$MarginContainer/VBoxContainer/Laps.text = ""
 	$AnimationPlayer.play("countdown")
+	$SFX.play()
 
 
 # Called in AnimationPlayer "countdown" animation
