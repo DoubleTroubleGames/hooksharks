@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gameplay/player/hook/Hook.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/elements/hook.png" type="Texture" id=2]
+[ext_resource path="res://assets/sound/sfx/hook back loop.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 3 )
 
 [node name="Hook" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,4 +26,7 @@ collision_mask = 1645
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
 shape = SubResource( 1 )
 
+[node name="RetractSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 2 )
 [connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]
+[connection signal="finished" from="RetractSFX" to="." method="_on_RetractSFX_finished"]

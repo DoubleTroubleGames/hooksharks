@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://menus/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/boarder.png" type="Texture" id=2]
@@ -15,10 +15,10 @@
 [ext_resource path="res://assets/sound/sfx/char_select.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sound/sfx/char_select_ready.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/sfx/pirate1.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/sound/sfx/pirate2.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sound/sfx/drill.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/sound/sfx/king.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/sfx/pirate1 select.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sound/sfx/pirate2 select.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/sfx/drill select.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sound/sfx/king select.wav" type="AudioStream" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -647,6 +647,10 @@ tracks/6/keys = {
 "values": [ false, true ]
 }
 
+[sub_resource type="AudioStreamRandomPitch" id=8]
+audio_stream = ExtResource( 13 )
+random_pitch = 1.05
+
 [node name="SelectionBox" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -746,7 +750,8 @@ one_shot = true
 [node name="Sounds" type="Node" parent="."]
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 13 )
+stream = SubResource( 8 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]

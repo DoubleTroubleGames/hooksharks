@@ -3,7 +3,7 @@
 [ext_resource path="res://autoload/Sound.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/bgm/menu.ogg" type="AudioStream" id=2]
 [ext_resource path="res://assets/sound/bgm/battle1.ogg" type="AudioStream" id=3]
-[ext_resource path="res://assets/sound/bgm/sea_ambience.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sound/bgm/sea ambience.ogg" type="AudioStream" id=4]
 
 [node name="Sound" type="Node"]
 pause_mode = 2
@@ -19,6 +19,7 @@ bus = "BGM"
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -15.146
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
