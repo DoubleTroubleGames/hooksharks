@@ -332,7 +332,6 @@ func create_trail(pos):
 
 
 func die(play_sfx):
-	var scream = 1 + randi() % 6
 	var EP = EXPLOSION_PARTICLE.instance()
 	
 	EP.position = self.position
@@ -340,9 +339,10 @@ func die(play_sfx):
 	sprite_animation.stop(false)
 	reset_dive_meter()
 	dive_meter.hide()
-	$SFX/ExplosionSFX.play()
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	if play_sfx:
+		var scream = 1 + randi() % 6
+		$SFX/ExplosionSFX.play()
 		get_node(str('SFX/ScreamSFX', scream)).play()
 	disable()
 	
