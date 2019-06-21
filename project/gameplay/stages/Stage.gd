@@ -29,7 +29,7 @@ func resize_water():
 	$Water._on_Water_resized()
 
 func resize_camera():
-	if $Camera2D:
+	if has_node("Camera2D"):
 		var w = stage_end.x - stage_begin.x
 		var h = stage_end.y - stage_begin.y
 		$Camera2D.limit_left = stage_begin.x + CAMERA_RATIO*w
