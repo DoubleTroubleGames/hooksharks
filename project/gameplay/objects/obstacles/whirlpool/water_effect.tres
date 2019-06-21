@@ -27,4 +27,4 @@ void fragment() {
 
 [resource]
 shader = SubResource( 1 )
-shader_param/death_edge = 0.5
+shader_param/death_edge = 0.25
