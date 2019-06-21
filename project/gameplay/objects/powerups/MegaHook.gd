@@ -45,7 +45,7 @@ func _on_MegaHookArea_area_entered(area):
 		Collision.PLAYER_ABOVE:
 			var other_player = area.get_parent().get_parent()
 			if other_player != player and not other_player.diving and not other_player.invincible:
-				other_player.die()
+				other_player.die(true)
 				queue_free()
 		Collision.OBSTACLE:
 			queue_free()

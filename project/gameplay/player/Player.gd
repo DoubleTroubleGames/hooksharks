@@ -331,7 +331,7 @@ func create_trail(pos):
 	emit_signal("created_trail", trail)
 
 
-func die():
+func die(play_sfx):
 	var scream = 1 + randi() % 6
 	var EP = EXPLOSION_PARTICLE.instance()
 	
@@ -342,7 +342,8 @@ func die():
 	dive_meter.hide()
 	$SFX/ExplosionSFX.play()
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
-	get_node(str('SFX/ScreamSFX', scream)).play()
+	if play_sfx:
+		get_node(str('SFX/ScreamSFX', scream)).play()
 	disable()
 	
 	if respawn:
@@ -426,7 +427,7 @@ func emerge():
 	yield(sprite_animation, "animation_finished")
 	for a in area.get_overlapping_areas():
 		if a.collision_layer == Collision.FLOATING_OBSTACLE:
-			die()
+			die(true)
 	can_dive = true
 	sprite_animation.play("idle")
 	yield($ParticleTimer, 'timeout')
@@ -497,17 +498,17 @@ func _on_OverWater_area_entered(area):
 			Collision.PLAYER_ABOVE:
 				var other_player = area.get_parent().get_parent()
 				if diving == other_player.diving and not invincible and not other_player.dont_collide:
-					die()
-					other_player.die()
+					die(true)
+					other_player.die(true)
 			Collision.OBSTACLE:
-				die()
+				die(true)
 			Collision.FLOATING_OBSTACLE:
 				if not diving:
-					die()
+					die(true)
 			Collision.TRAIL:
 				var trail = area.get_parent()
 				if not diving and trail.can_collide and not invincible:
-					die()
+					die(true)
 			Collision.POWERUP:
 				if not diving:
 					var powerup = area.get_parent()
@@ -515,7 +516,7 @@ func _on_OverWater_area_entered(area):
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
 			Collision.WHIRLPOOL_CENTER:
-				die()
+				die(true)
 
 
 func _on_UnderWater_area_entered(area):
@@ -524,15 +525,15 @@ func _on_UnderWater_area_entered(area):
 			Collision.PLAYER_BELOW:
 				var other_player = area.get_parent().get_parent()
 				if diving == other_player.diving and not invincible and not other_player.dont_collide:
-					die()
-					other_player.die()
+					die(true)
+					other_player.die(true)
 			Collision.UNDERWATER_OBSTACLE:
 				if diving:
-					die()
+					die(true)
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
 			Collision.WHIRLPOOL_CENTER:
-				die()
+				die(true)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

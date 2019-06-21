@@ -70,8 +70,8 @@ func _on_ExplosionArea_area_entered(area):
 		Collision.PLAYER_ABOVE:
 			var player = area.get_parent().get_parent()
 			if not player.invincible:
-				player.die()
+				player.die(true)
 		Collision.PLAYER_BELOW:
 			var player = area.get_parent().get_parent()
 			if not player.invincible:
-				player.die()
+				player.die(true)

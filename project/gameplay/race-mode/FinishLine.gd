@@ -82,7 +82,7 @@ func _on_LineArea_area_entered(area):
 			for child in players:
 				if child != winner:
 					child.respawn = false
-					child.call_deferred("die")
+					child.call_deferred("die", false)
 	elif not player.invincible:
 		player.add_label("Wrong Way")
 
