@@ -31,6 +31,11 @@ func _ready():
 	Transition.transition_out()
 	yield(Transition, "finished")
 	set_process_input(true)
+	
+	if RoundManager.gamemode == "Arena":
+		$Sounds/ArenaSFX.play()
+	elif RoundManager.gamemode == "Race":
+		$Sounds/RaceSFX.play()
 
 
 func _physics_process(delta):
