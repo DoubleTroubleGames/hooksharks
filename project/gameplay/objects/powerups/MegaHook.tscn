@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gameplay/objects/powerups/MegaHook.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/elements/megahook.png" type="Texture" id=2]
-[ext_resource path="res://assets/sound/sfx/drill.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sound/sfx/megahook.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 3 )
 
 [node name="MegaHook" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,5 +28,5 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="ShootSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = SubResource( 2 )
 [connection signal="area_entered" from="HookArea" to="." method="_on_MegaHookArea_area_entered"]

@@ -28,5 +28,6 @@ shape = SubResource( 1 )
 
 [node name="RetractSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 2 )
+volume_db = -6.433
 [connection signal="area_entered" from="HookArea" to="." method="_on_HookArea_area_entered"]
 [connection signal="finished" from="RetractSFX" to="." method="_on_RetractSFX_finished"]

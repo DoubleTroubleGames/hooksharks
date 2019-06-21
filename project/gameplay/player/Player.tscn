@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+audio_stream = ExtResource( 9 )
 
 [node name="Player" type="Node2D"]
 z_index = 1
@@ -76,7 +79,8 @@ volume_db = -3.0
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 9 )
+stream = SubResource( 1 )
+volume_db = -4.289
 bus = "SFX"
 
 [node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX"]
