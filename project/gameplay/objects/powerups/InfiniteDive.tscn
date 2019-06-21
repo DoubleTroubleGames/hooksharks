@@ -18,7 +18,7 @@ script = ExtResource( 1 )
 power_name = "Infinite Dive"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 8.0
 one_shot = true
 autostart = true
 
@@ -28,6 +28,5 @@ margin_top = 70.0
 margin_right = -66.0
 margin_bottom = 129.0
 custom_fonts/font = SubResource( 1 )
-text = "4.0"
+text = "8.0"
 align = 1
-
