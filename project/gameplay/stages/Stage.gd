@@ -7,6 +7,7 @@ export (Vector2)var stage_end = Vector2(2200, 1400) setget set_stage_end
 export (String)var stage_name = "Sample Name"
 export (Color)var water_border = Color("0f4676") setget set_water_border
 export (Color)var water_deep = Color("0a2f4f") setget set_water_deep
+export (Color)var water_foam = Color("25628b") setget set_water_foam
 
 const PLAYER = preload("res://gameplay/player/Player.tscn")
 const CAMERA_RATIO = .05
@@ -44,9 +45,16 @@ func set_water_deep(value):
 	water_deep = value
 	color_water()
 
+func set_water_foam(value):
+	water_foam = value
+	color_water()
+
 func color_water():
 	$Water/BG.get_material().set_shader_param("deep_color", water_deep)
 	$Water/BG.get_material().set_shader_param("shallow_color", water_border)
+	$Water/Waves.get_material().set_shader_param("wave_color", water_foam)
+	var shader = load("res://gameplay/objects/obstacles/solid-objects/outline_final.tres")
+	shader.set_shader_param("wave_color", water_foam)
 
 func get_stage_name():
 	return stage_name
