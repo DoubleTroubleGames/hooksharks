@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/images/effects/line.png" type="Texture" id=1]
 [ext_resource path="res://assets/sound/sfx/hook_wall2.wav" type="AudioStream" id=2]
@@ -38,6 +38,9 @@ func set_color(color):
 	color.a = 0
 	process_material.color_ramp.gradient.set_color(2, color)"
 
+[sub_resource type="AudioStreamRandomPitch" id=5]
+audio_stream = ExtResource( 2 )
+
 [node name="WallParticles" type="Particles2D"]
 rotation = 3.14159
 z_index = 1
@@ -54,6 +57,6 @@ texture = ExtResource( 1 )
 script = SubResource( 4 )
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = SubResource( 5 )
+volume_db = -6.433
 autoplay = true
-
