@@ -72,8 +72,9 @@ func hit_hook(other_hook):
 func hit_object(object):
 	emit_signal("shook_screen", SCREEN_SHAKE_OBJECT_HIT)
 	has_collided = true
-	object.set_hook(self)
-	pulling_object = object
+	if not pulling_object:
+		object.set_hook(self)
+		pulling_object = object
 	
 	rope.straighten()
 
