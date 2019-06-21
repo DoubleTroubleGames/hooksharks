@@ -10,7 +10,7 @@ export (Color)var water_deep = Color("0a2f4f") setget set_water_deep
 export (Color)var water_foam = Color("25628b") setget set_water_foam
 
 const PLAYER = preload("res://gameplay/player/Player.tscn")
-const CAMERA_RATIO = .05
+const CAMERA_RATIO = .07
 
 var player_checkpoints = [0, 0, 0, 0]
 var player_laps = [0, 0, 0, 0]
