@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://menus/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=5]
 [ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=7]
-[ext_resource path="res://assets/sound/sfx/intro_title.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/sfx/press star appear.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/sfx/intro title first part.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/intro title scnd part.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/sfx/press star appear.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -35,11 +36,11 @@ tracks/0/keys = {
 }
 
 [sub_resource type="AudioStreamRandomPitch" id=3]
-audio_stream = ExtResource( 9 )
+audio_stream = ExtResource( 10 )
 random_pitch = 1.15
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
-audio_stream = ExtResource( 10 )
+audio_stream = ExtResource( 11 )
 random_pitch = 1.25
 
 [node name="MainMenu" type="Control"]
@@ -121,10 +122,11 @@ texture = ExtResource( 7 )
 
 [node name="TitleAnticipationSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -4.039
 bus = "SFX"
 
 [node name="TitleAppearSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 bus = "SFX"
 
 [node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
@@ -135,5 +137,4 @@ bus = "SFX"
 stream = SubResource( 4 )
 volume_db = -4.289
 bus = "SFX"
-
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
