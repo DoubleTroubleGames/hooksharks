@@ -58,4 +58,3 @@ shader_param/distortion_strength = 0.3
 shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 2 )
 shader_param/distortion = ExtResource( 1 )
-

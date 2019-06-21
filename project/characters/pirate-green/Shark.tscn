@@ -8,7 +8,7 @@
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 4 )
 
-[node name="Green" index="0" instance=ExtResource( 1 )]
+[node name="Green" instance=ExtResource( 1 )]
 texture = ExtResource( 2 )
 
 [node name="Rider" parent="." index="1"]
@@ -16,3 +16,4 @@ texture = ExtResource( 3 )
 
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )
+volume_db = -4.0

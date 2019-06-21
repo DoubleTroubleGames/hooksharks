@@ -27,3 +27,4 @@ scale = Vector2( 0.6, 0.6 )
 
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )
+volume_db = -4.0
