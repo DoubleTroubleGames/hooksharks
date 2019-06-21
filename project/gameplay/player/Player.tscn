@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/ui/circle.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/ui/bubble.png" type="Texture" id=5]
 [ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sound/old sounds/emerge.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/sfx/emerge.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=10]
@@ -17,6 +17,12 @@
 [ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
+audio_stream = ExtResource( 6 )
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 7 )
+
+[sub_resource type="AudioStreamRandomPitch" id=3]
 audio_stream = ExtResource( 9 )
 
 [node name="Player" type="Node2D"]
@@ -64,13 +70,13 @@ __meta__ = {
 }
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 6 )
-volume_db = -3.0
+stream = SubResource( 1 )
+volume_db = -4.072
 bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 7 )
-volume_db = -3.0
+stream = SubResource( 2 )
+volume_db = -4.072
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX"]
@@ -79,7 +85,7 @@ volume_db = -3.0
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 1 )
+stream = SubResource( 3 )
 volume_db = -4.289
 bus = "SFX"
 

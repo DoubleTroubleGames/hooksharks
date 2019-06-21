@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/intro title first part.wav-57042ce32393a6bc0a9e2a3a80801092.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/intro title first part.wav"
+dest_files=[ "res://.import/intro title first part.wav-57042ce32393a6bc0a9e2a3a80801092.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

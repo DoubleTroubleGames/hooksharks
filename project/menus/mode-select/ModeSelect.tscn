@@ -194,10 +194,12 @@ texture_focused = ExtResource( 8 )
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 9 )
+volume_db = -5.361
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 10 )
+volume_db = -4.289
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]

@@ -21,14 +21,14 @@
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=19]
 
 [node name="Stage" index="0" instance=ExtResource( 1 )]
-stage_begin = Vector2( -1300, -1300 )
-stage_end = Vector2( 4200, 1700 )
+stage_begin = Vector2( -1400, -1300 )
+stage_end = Vector2( 4300, 1700 )
 stage_name = "Testicular Punishment"
 
 [node name="Water" parent="." index="0"]
-margin_left = -1300.0
+margin_left = -1400.0
 margin_top = -1300.0
-margin_right = 4200.0
+margin_right = 4300.0
 margin_bottom = 1700.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
@@ -301,10 +301,10 @@ scale = Vector2( 0.5, 0.5 )
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 position = Vector2( 287.242, 455.905 )
 current = true
-limit_left = -1025
-limit_top = -1150
-limit_right = 3925
-limit_bottom = 1550
+limit_left = -1001
+limit_top = -1090
+limit_right = 3901
+limit_bottom = 1490
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
