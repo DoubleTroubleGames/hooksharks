@@ -14,7 +14,6 @@ radius = 30.0
 [node name="Whirlpool" type="Node2D"]
 z_index = -1
 script = ExtResource( 1 )
-death_size = 100.0
 
 [node name="PullingWave" type="Area2D" parent="."]
 collision_layer = 4096
@@ -31,6 +30,7 @@ collision_mask = 0
 shape = SubResource( 2 )
 
 [node name="Waves" type="Sprite" parent="."]
+rotation = 50.141
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
@@ -39,3 +39,6 @@ material = ExtResource( 3 )
 position = Vector2( -1, -2 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+autoplay = true
