@@ -37,9 +37,11 @@ const OFFSET_X = -96
 
 onready var _moved_left = false
 onready var _moved_right = false
+onready var _click_to_continue = false
 
 
 func _ready():
+	_click_to_continue = false
 	set_process(true)
 	background.set_position(Vector2(OFFSET_X, BACKGROUND_OFFSCREEN_Y))
 	
@@ -68,8 +70,13 @@ func _process(delta):
 	if _moved_right and Input.is_action_just_released("ui_joy_right"):
 		_moved_right = false
 
+func _input(event):
+	if (event.is_action_pressed("ui_select") or event.is_action_pressed("ui_select")) and _click_to_continue:
+		hide_round()
+		_click_to_continue = false
 
 func show_round():
+	_click_to_continue = false
 	var player_score = null
 	
 	round_number.text = str(RoundManager.round_number)
@@ -117,7 +124,7 @@ func show_round():
 	if match_winner == -1:
 		display_timer.start()
 		yield(display_timer, "timeout")
-		hide_round()
+		_click_to_continue = true
 	else:
 		win_animation(match_winner)
 

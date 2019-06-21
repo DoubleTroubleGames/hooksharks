@@ -207,7 +207,6 @@ autowrap = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="DisplayTimer" type="Timer" parent="."]
-wait_time = 2.5
 one_shot = true
 
 [node name="GateCloseSFX" type="AudioStreamPlayer" parent="."]
@@ -238,4 +237,3 @@ bus = "SFX"
 [node name="WinMatchBGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 bus = "BGM"
-
