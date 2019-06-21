@@ -33,9 +33,9 @@ func _ready():
 	set_process_input(true)
 	
 	if RoundManager.gamemode == "Arena":
-		$Sounds.ArenaSFX.play()
+		$Sounds/ArenaSFX.play()
 	elif RoundManager.gamemode == "Race":
-		$Sounds.RaceSFX.play()
+		$Sounds/RaceSFX.play()
 
 
 func _physics_process(delta):
