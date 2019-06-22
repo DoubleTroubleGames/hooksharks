@@ -145,7 +145,7 @@ func win_animation(match_winner):
 	char_sfx[RoundManager.character_map[match_winner]].play()
 	
 	# BGM change
-	Sound.fade_out(Sound.game_bgm, $WinMatchBGM)
+	Sound.fade_out(Sound.battle_bgm, $WinMatchBGM)
 	
 	# Menu animation
 	tween.interpolate_property(buttons, "rect_position:y", null, button_pos,
@@ -189,7 +189,7 @@ func _on_Restart_pressed():
 func _on_Quit_pressed():
 	transition()
 	Sound.stop_ambience()
-	Sound.fade_out(Sound.game_bgm, Sound.menu_bgm)
+	Sound.fade_out(Sound.battle_bgm, Sound.menu_bgm)
 	yield(Transition, "finished")
 	get_tree().change_scene("res://menus/mode-select/ModeSelect.tscn")
 

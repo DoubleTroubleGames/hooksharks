@@ -28,9 +28,6 @@ var shake_factor = 0
 var target = null
 
 
-func _ready():
-	randomize()
-
 func _physics_process(delta):
 	if target:
 		position = target.position

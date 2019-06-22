@@ -40,8 +40,8 @@ func _ready():
 		yield(Transition, "finished")
 	
 	Sound.menu_bgm.stop()
-	if not Sound.game_bgm.playing:
-		Sound.game_bgm.play()
+	if not Sound.battle_bgm.playing:
+		Sound.play_battle_bgm()
 		Sound.play_ambience()
 	
 	for player in players:

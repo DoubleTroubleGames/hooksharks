@@ -13,7 +13,7 @@ script = ExtResource( 1 )
 stream = ExtResource( 2 )
 bus = "BGM"
 
-[node name="GameBGM" type="AudioStreamPlayer" parent="."]
+[node name="BattleBGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "BGM"
 
@@ -23,3 +23,4 @@ volume_db = -15.146
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
+

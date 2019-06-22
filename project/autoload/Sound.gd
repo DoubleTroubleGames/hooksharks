@@ -1,11 +1,20 @@
 extends Node
 
-onready var game_bgm = $GameBGM
+onready var battle_bgm = $BattleBGM
 onready var menu_bgm = $MenuBGM
 onready var tween = $Tween
 
+const BATTLE_MUSIC = [preload("res://assets/sound/bgm/battle1.ogg"),
+		preload("res://assets/sound/bgm/battle2.ogg"),
+		preload("res://assets/sound/bgm/battle3.ogg")]
+
 func _ready():
-	menu_bgm.play()
+	randomize()
+
+
+func play_battle_bgm():
+	randomize_battle_bgm()
+	battle_bgm.play()
 
 
 func play_ambience():
@@ -17,11 +26,11 @@ func stop_ambience():
 
 
 func on_pause():
-	game_bgm.bus = "BGM_Paused"
+	battle_bgm.bus = "BGM_Paused"
 
 
 func on_unpause():
-	game_bgm.bus = "BGM"
+	battle_bgm.bus = "BGM"
 
 
 func fade_out(track, next_track = null, duration = 1.0):
@@ -36,3 +45,7 @@ func fade_out(track, next_track = null, duration = 1.0):
 	
 	if next_track:
 		next_track.play()
+
+
+func randomize_battle_bgm():
+	battle_bgm.stream = BATTLE_MUSIC[randi() % BATTLE_MUSIC.size()]

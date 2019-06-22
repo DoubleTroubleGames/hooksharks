@@ -35,7 +35,6 @@ func _ready():
 	yield(tween, "tween_completed")
 	show_title()
 	
-	randomize()
 	$PressStartTimer.start()
 
 
@@ -69,7 +68,10 @@ func show_title():
 		return
 	
 	title_shown = true
-
+	
+	if not Sound.menu_bgm.playing:
+		Sound.menu_bgm.play()
+	
 	tween.stop_all()
 	title.rect_position = title_pos
 	$TitleAnticipationSFX.stop()

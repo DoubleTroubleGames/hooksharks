@@ -96,7 +96,7 @@ func quit():
 	set_process(false)
 	Transition.transition_in()
 	Sound.stop_ambience()
-	Sound.fade_out(Sound.game_bgm, Sound.menu_bgm)
+	Sound.fade_out(Sound.battle_bgm, Sound.menu_bgm)
 	
 	yield(Transition, "finished")
 	

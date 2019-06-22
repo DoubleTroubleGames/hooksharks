@@ -73,7 +73,6 @@ func _ready():
 	else:
 		movement_type = MovementTypes.TANK
 	
-	randomize()
 	speed2 = speed2.rotated(initial_dir.angle())
 	dive_meter.texture_progress = NORMAL_BUBBLE
 	dive_meter.value = 100
@@ -516,7 +515,7 @@ func _on_OverWater_area_entered(area):
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
 			Collision.DEATHZONE:
-				die()
+				die(true)
 
 
 func _on_UnderWater_area_entered(area):
@@ -533,7 +532,7 @@ func _on_UnderWater_area_entered(area):
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
 			Collision.DEATHZONE:
-				die()
+				die(true)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

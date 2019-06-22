@@ -33,7 +33,6 @@ var hook
 
 
 func _ready():
-	randomize()
 	$Hitbox.disconnect("area_entered", self, "_on_Hitbox_area_entered")
 	if not powerup:
 		random = true
