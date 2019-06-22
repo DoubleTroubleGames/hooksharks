@@ -515,8 +515,8 @@ func _on_OverWater_area_entered(area):
 					powerup.add_powerup(self)
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
-			Collision.WHIRLPOOL_CENTER:
-				die(true)
+			Collision.DEATHZONE:
+				die()
 
 
 func _on_UnderWater_area_entered(area):
@@ -532,8 +532,8 @@ func _on_UnderWater_area_entered(area):
 					die(true)
 			Collision.WHIRLPOOL:
 				whirlpool = area.get_parent()
-			Collision.WHIRLPOOL_CENTER:
-				die(true)
+			Collision.DEATHZONE:
+				die()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
