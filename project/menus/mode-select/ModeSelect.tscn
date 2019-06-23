@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://menus/mode-select/ModeSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -6,10 +6,8 @@
 [ext_resource path="res://assets/images/effects/noise.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/ui/m_deathmatch_o.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/ui/m_racingt_o.png" type="Texture" id=6]
-[ext_resource path="res://assets/images/ui/button.png" type="Texture" id=7]
-[ext_resource path="res://assets/images/ui/button_selected.png" type="Texture" id=8]
-[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -80,7 +78,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 161, 264 ), Vector2( 161, 240 ) ]
+"values": [ Vector2( 161, 184 ), Vector2( 161, 160 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rect_rotation")
@@ -119,7 +117,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1015, 235 ), Vector2( 1015, 255 ) ]
+"values": [ Vector2( 1015, 184 ), Vector2( 1015, 160 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rect_rotation")
@@ -142,13 +140,12 @@ script = ExtResource( 1 )
 [node name="Water" parent="." instance=ExtResource( 2 )]
 
 [node name="ArenaButton" type="TextureButton" parent="."]
-editor/display_folded = true
 material = SubResource( 2 )
 margin_left = 161.0
-margin_top = 241.301
-margin_right = 865.0
-margin_bottom = 866.301
-rect_rotation = 2.70973
+margin_top = 184.0
+margin_right = 969.0
+margin_bottom = 912.0
+rect_rotation = -2.35661
 rect_pivot_offset = Vector2( 358.61, 325.188 )
 focus_neighbour_right = NodePath("../RacingButton")
 disabled = true
@@ -161,13 +158,12 @@ playback_speed = 0.7
 anims/idle = SubResource( 3 )
 
 [node name="RacingButton" type="TextureButton" parent="."]
-editor/display_folded = true
 material = SubResource( 4 )
 margin_left = 1015.0
-margin_top = 254.664
-margin_right = 1719.0
-margin_bottom = 879.664
-rect_rotation = 1.05035
+margin_top = 184.0
+margin_right = 1819.0
+margin_bottom = 909.0
+rect_rotation = 4.0
 rect_pivot_offset = Vector2( 352.534, 316.153 )
 focus_neighbour_left = NodePath("../ArenaButton")
 disabled = true
@@ -179,34 +175,23 @@ autoplay = "idle"
 playback_speed = 0.6
 anims/idle = SubResource( 5 )
 
-[node name="Options" type="TextureButton" parent="."]
-margin_left = 1489.95
-margin_top = 910.747
-margin_right = 1889.95
-margin_bottom = 1047.75
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 8 )
-texture_disabled = ExtResource( 7 )
-texture_focused = ExtResource( 8 )
-
 [node name="Sounds" type="Node" parent="."]
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 9 )
+stream = ExtResource( 7 )
 volume_db = -5.361
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 10 )
+stream = ExtResource( 8 )
 volume_db = -4.289
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
+
 [connection signal="focus_entered" from="ArenaButton" to="." method="_on_ArenaButton_focus_entered"]
 [connection signal="focus_exited" from="ArenaButton" to="." method="_on_ArenaButton_focus_exited"]
 [connection signal="pressed" from="ArenaButton" to="." method="_on_ArenaButton_pressed"]
 [connection signal="focus_entered" from="RacingButton" to="." method="_on_RacingButton_focus_entered"]
 [connection signal="focus_exited" from="RacingButton" to="." method="_on_RacingButton_focus_exited"]
 [connection signal="pressed" from="RacingButton" to="." method="_on_RacingButton_pressed"]
-[connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
