@@ -12,7 +12,7 @@ audio_stream = ExtResource( 3 )
 
 [node name="MegaHook" type="Node2D"]
 script = ExtResource( 1 )
-power_name = "MegaHooooook!"
+power_name = "Golden Hook"
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 4.77306, -0.412826 )
