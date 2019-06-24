@@ -19,6 +19,7 @@ onready var area = $Shark/OverWaterArea
 onready var rider_offset = -$Shark/Rider.position.x
 onready var water_particles = $WaterParticles
 onready var dont_collide = false
+onready var original_hook_texture = $Shark/Rider/Hook.texture
 
 enum MovementTypes {DIRECT, TANK}
 
@@ -352,7 +353,7 @@ func die(play_sfx):
 			var power = $PowerUps.get_child(i)
 			power.deactivate()
 		sprite.set_modulate(Color(1, 1, 1, 0.2))
-		riders_hook.texture = load("res://assets/images/elements/hook.png")
+		riders_hook.texture = original_hook_texture
 		riders_hook.scale = ORIGINAL_HOOK_SCALE
 		if hook:
 			hook.retract()
@@ -450,7 +451,7 @@ func shoot():
 			emit_signal("watermine_released", self) # recieved in Game.gd
 		elif $PowerUps.has_node("MegaHook"):
 			emit_signal("megahook_shot", self, hook_dir) # recieved in Game.gd
-			riders_hook.texture = load("res://assets/images/elements/hook.png")
+			riders_hook.texture = original_hook_texture
 			riders_hook.scale = ORIGINAL_HOOK_SCALE
 		
 

@@ -16,16 +16,19 @@ audio_stream = ExtResource( 5 )
 script = ExtResource( 1 )
 
 [node name="Pirate" type="Sprite" parent="."]
+visible = false
 scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 2 )
 offset = Vector2( -75, -2 )
 
 [node name="Drill" type="Sprite" parent="."]
+visible = false
 scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 3 )
 offset = Vector2( -85, 2 )
 
 [node name="King" type="Sprite" parent="."]
+visible = false
 scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 offset = Vector2( -75, -2 )
