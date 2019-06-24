@@ -37,6 +37,7 @@ const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
 const WALL_PULL_FORCE_MUL = 2
 const PULL_PLAYER_FACTOR = 3.5
+const ORIGINAL_HOOK_SCALE = Vector2(.6,.6)
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -352,6 +353,7 @@ func die(play_sfx):
 			power.deactivate()
 		sprite.set_modulate(Color(1, 1, 1, 0.2))
 		riders_hook.texture = load("res://assets/images/elements/hook.png")
+		riders_hook.scale = ORIGINAL_HOOK_SCALE
 		if hook:
 			hook.retract()
 		emit_signal("respawned", self)
@@ -449,6 +451,7 @@ func shoot():
 		elif $PowerUps.has_node("MegaHook"):
 			emit_signal("megahook_shot", self, hook_dir) # recieved in Game.gd
 			riders_hook.texture = load("res://assets/images/elements/hook.png")
+			riders_hook.scale = ORIGINAL_HOOK_SCALE
 		
 
 func retract():

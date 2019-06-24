@@ -12,7 +12,11 @@ audio_stream = ExtResource( 4 )
 texture = ExtResource( 2 )
 
 [node name="Rider" parent="." index="1"]
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+
+[node name="Hook" parent="Rider" index="0"]
+scale = Vector2( 0.6, 0.6 )
 
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )

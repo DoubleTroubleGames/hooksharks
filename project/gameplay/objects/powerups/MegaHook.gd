@@ -3,7 +3,7 @@ extends "res://gameplay/objects/powerups/GenericPower.gd"
 const MEGAHOOK_SPRITE = preload("res://assets/images/elements/megahook.png")
 
 var player
-var speed = 1000
+var speed = 1400
 var direction = Vector2()
 
 
@@ -15,6 +15,8 @@ func init(player):
 	if not player.get_node("PowerUps").has_node("MegaHook"):
 		self.player = player
 		player.riders_hook.texture = MEGAHOOK_SPRITE
+		player.riders_hook.scale = Vector2(2,2)
+		player.riders_hook.offset = Vector2(-70,0)
 		set_physics_process(false)
 		hide()
 		return true

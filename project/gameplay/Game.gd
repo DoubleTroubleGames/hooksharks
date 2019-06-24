@@ -219,6 +219,7 @@ func shoot_megahook(player, direction):
 	get_node("Stage/Hooks").add_child(megahook)
 	megahook.set_owner(get_node("Stage/Hooks"))
 	megahook.activate(direction.normalized())
+	megahook.scale = Vector2(2/.6,2/.6)
 
 
 func _on_player_watermine_released(player):
