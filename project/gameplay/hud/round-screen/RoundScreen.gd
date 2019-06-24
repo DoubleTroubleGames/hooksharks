@@ -72,8 +72,8 @@ func _process(delta):
 
 func _input(event):
 	if (event.is_action_pressed("ui_select") or event.is_action_pressed("ui_select")) and _click_to_continue:
-		hide_round()
 		_click_to_continue = false
+		hide_round()
 
 func show_round():
 	_click_to_continue = false
@@ -93,6 +93,7 @@ func show_round():
 	var match_winner = RoundManager.get_match_winner()
 	if match_winner == -1:
 		$Background/TriviaHeader.show()
+		$Background/TriviaHeader.modulate.a = 1
 		$Background/Trivia.show()
 		$Background/Trivia.text = getRandomTrivia()
 	else:
@@ -125,14 +126,39 @@ func show_round():
 		display_timer.start()
 		yield(display_timer, "timeout")
 		_click_to_continue = true
+		
+		$ContinueTimer.start()
+		yield($ContinueTimer, "timeout")
+		show_continue_text()
 	else:
 		win_animation(match_winner)
 
 
+func show_continue_text():
+	var fade_duration = .5
+	
+	tween.interpolate_property($Background/TriviaHeader, "modulate:a", 1, 0,
+			fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property($Background/Trivia, "modulate:a", 1, 0,
+			fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	
+	yield(get_tree().create_timer(fade_duration), "timeout")
+	$Background/Trivia.text = "Press START to continue"
+	
+	tween.interpolate_property($Background/Trivia, "modulate:a", 0, 1,
+			fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+
+
 func hide_round():
+	$ContinueTimer.stop()
+	
 	tween.interpolate_property(background, "rect_position:y", null,
 			BACKGROUND_OFFSCREEN_Y, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
+	
+	$GateOpenSFX.play()
 	
 	yield(tween, "tween_completed")
 	emit_signal("hidden")
