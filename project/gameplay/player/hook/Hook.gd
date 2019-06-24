@@ -32,7 +32,6 @@ func init(player, direction):
 	self.position = player.position
 	self.position += player.rider_offset * angle
 	self.speed += self.player.speed2.length()*SPEED_MOD
-	print(RoundManager.character_map[player.id])
 	sprite = get_node(char_hook[RoundManager.character_map[player.id]])
 	sprite.visible = true
 	sprite.rotation = direction.angle()

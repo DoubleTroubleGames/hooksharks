@@ -34,7 +34,6 @@ func scale_sprite(sprite):
 
 func update_death_shader():
 	var value = death_size/whirl_size
-	print(value)
 	$WaterEffect.get_material().set_shader_param("death_edge", value)
 
 func new_whirlpool_size(new_size):
