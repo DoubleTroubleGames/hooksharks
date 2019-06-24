@@ -36,7 +36,7 @@ const DIVE_USE_SPEED = 75
 const DIVE_REGAIN_SPEED = 40
 const DIVE_COOLDOWN_SPEED = 40
 const WALL_PULL_FORCE_MUL = 2
-const PULL_PLAYER_FACTOR = 2.5
+const PULL_PLAYER_FACTOR = 3.5
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -373,8 +373,8 @@ func hook_collision(from_hook):
 	$HookTimer.start()
 	$Shark/DamageSFX.play()
 	stunned = true
-	pull_dir = (from_hook.rope.get_point_position(0) - \
-			from_hook.rope.get_point_position(1)).normalized()
+	pull_dir = (from_hook.player.position - \
+			from_hook.position).normalized()
 	
 	if not can_dive: # player was diving or emerging when hooked
 		if sprite_animation.current_animation != "emerge":
