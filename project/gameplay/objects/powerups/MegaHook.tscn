@@ -28,6 +28,8 @@ collision_mask = 77
 shape = SubResource( 1 )
 disabled = true
 
-[node name="ShootSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 2 )
+bus = "SFX"
+
 [connection signal="area_entered" from="HookArea" to="." method="_on_MegaHookArea_area_entered"]
