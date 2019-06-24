@@ -56,37 +56,38 @@ func _on_LineArea_area_entered(area):
 		return
 	
 	var player = area.get_parent().get_parent()
-	var checkpoint_num = stage.get_player_checkpoint(player)
-	if checkpoint_num == total_checkpoint_number:
-		stage.increase_player_lap(player)
-		stage.reset_player_checkpoint(player)
-		var lap_num = stage.get_player_lap(player)
-		
-		if lap_num >= total_laps:
-			if randf() < .01:
-				player.add_label("A winner is you!")
+	if not player.is_respawning:
+		var checkpoint_num = stage.get_player_checkpoint(player)
+		if checkpoint_num == total_checkpoint_number:
+			stage.increase_player_lap(player)
+			stage.reset_player_checkpoint(player)
+			var lap_num = stage.get_player_lap(player)
+			
+			if lap_num >= total_laps:
+				if randf() < .01:
+					player.add_label("A winner is you!")
+				else:
+					player.add_label("Winner!")
 			else:
-				player.add_label("Winner!")
-		else:
-			player.add_label("Lap %s/%s" % [lap_num, total_laps])
-		
-		if lap_num >= total_laps:
-			var winner = player
-			var players = get_parent().get_parent().players
+				player.add_label("Lap %s/%s" % [lap_num, total_laps])
 			
-			var confetti = CONFETTI.instance()
-			confetti.emitting = true
-			winner.add_child(confetti)
-			
-			$SFX.play()
-			
-			$LineArea/CollisionPolygon2D.set_deferred("disabled", true)
-			for child in players:
-				if child != winner:
-					child.respawn = false
-					child.call_deferred("die", false)
-	elif not player.invincible:
-		player.add_label("Wrong Way")
+			if lap_num >= total_laps:
+				var winner = player
+				var players = get_parent().get_parent().players
+				
+				var confetti = CONFETTI.instance()
+				confetti.emitting = true
+				winner.add_child(confetti)
+				
+				$SFX.play()
+				
+				$LineArea/CollisionPolygon2D.set_deferred("disabled", true)
+				for child in players:
+					if child != winner:
+						child.respawn = false
+						child.call_deferred("die", false)
+		elif not player.invincible:
+			player.add_label("Wrong Way")
 
 
 func _on_PullableObjectTop_hooked():
