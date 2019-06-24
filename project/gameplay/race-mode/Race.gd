@@ -29,7 +29,7 @@ func activate_players():
 func set_race_attributes(player):
 	player.create_trail = false
 	player.respawn = true
-	player.ROT_SPEED = PI/2
+	player.ROT_SPEED = PI/3.2
 	player.INITIAL_SPEED = 1
 	player.ACC = 50
 	player.MAX_SPEED = 500
