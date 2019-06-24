@@ -59,7 +59,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/wave_length = 0.495
-shader_param/wave_color = Color( 1, 0.847059, 0.235294, 1 )
+shader_param/wave_color = Color( 0, 1, 1, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0 )
 shader_param/distortion_strength = 0.0
 shader_param/aa_factor = 0.05
@@ -198,7 +198,7 @@ random_pitch = 1.3
 audio_stream = ExtResource( 12 )
 random_pitch = 1.2
 
-[node name="Powerup" index="0" instance=ExtResource( 1 )]
+[node name="Powerup" instance=ExtResource( 1 )]
 position = Vector2( 0, 5 )
 script = ExtResource( 2 )
 
