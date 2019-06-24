@@ -36,11 +36,25 @@ func activate(direction):
 	$HookArea/CollisionShape2D.set_disabled(false)
 	set_physics_process(true)
 
+
+func explode():
+	set_physics_process(false)
+	$HookArea/CollisionShape2D.set_deferred("disabled", true)
+	$Sprite.hide()
+	
+	$MegahookExplosion.emitting = true
+	$ExplosionSFX.play()
+	yield(get_tree().create_timer($MegahookExplosion.lifetime), "timeout")
+	queue_free()
+
+
 func deactivate():
 	queue_free()
 
+
 func free_hook():
 	queue_free()
+
 
 func _on_MegaHookArea_area_entered(area):
 	match area.collision_layer:
@@ -50,8 +64,8 @@ func _on_MegaHookArea_area_entered(area):
 				other_player.die(true)
 				queue_free()
 		Collision.OBSTACLE:
-			queue_free()
+			explode()
 		Collision.FLOATING_OBSTACLE:
-			queue_free()
+			explode()
 		Collision.HOOK:
-			queue_free()
+			explode()
