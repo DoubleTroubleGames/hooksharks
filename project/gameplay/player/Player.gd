@@ -61,6 +61,7 @@ var infinite_dive = false
 var whirlpool = null
 var invincible = false
 var stunned = false
+var is_respawning = false
 var hook = null
 var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)

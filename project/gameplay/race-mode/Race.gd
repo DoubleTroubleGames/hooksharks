@@ -43,6 +43,7 @@ func respawn_player(player):
 	
 	player.reset_input_map()
 	player.can_dive = true
+	player.is_respawning = true
 	player.get_node("InvencibilityTimer").stop()
 	if check_n > 0:
 		var check = $Stage.get_checkpoint(check_n)
@@ -62,5 +63,6 @@ func respawn_player(player):
 	player.sprite_animation.play("idle")
 	player.sprite.set_modulate(Color(1, 1, 1, 1))
 	player.start_invincibility()
+	player.is_respawning = false
 	player.enable()
 	player.speed2 = Vector2(200 * cos(player.sprite.rotation), 200 *  sin(player.sprite.rotation))
