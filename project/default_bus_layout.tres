@@ -6,8 +6,6 @@ ratio = 48.0
 
 [sub_resource type="AudioEffectLowPassFilter" id=2]
 resource_name = "LowPassFilter"
-cutoff_hz = 11320.2
-resonance = 0.0
 
 [sub_resource type="AudioEffectChorus" id=3]
 resource_name = "Chorus"
@@ -43,3 +41,4 @@ bus/3/effect/1/effect = SubResource( 3 )
 bus/3/effect/1/enabled = true
 bus/3/effect/2/effect = SubResource( 4 )
 bus/3/effect/2/enabled = true
+
