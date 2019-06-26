@@ -10,21 +10,32 @@
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 6 )
 
-[node name="Yellow" instance=ExtResource( 1 )]
+[node name="Yellow" index="0" instance=ExtResource( 1 )]
+modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
+frame = 7
 
 [node name="UnderWater" parent="." index="0"]
 texture = ExtResource( 3 )
+frame = 7
 
 [node name="Rider" parent="." index="1"]
-position = Vector2( -30, 0 )
+visible = false
+position = Vector2( -35, 0 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
+offset = Vector2( 0, 0 )
 
 [node name="Hook" parent="Rider" index="0"]
-position = Vector2( -50, 0 )
+position = Vector2( -45, 0 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
+
+[node name="OverWaterArea" parent="." index="3"]
+visible = false
+
+[node name="UnderWaterArea" parent="." index="4"]
+visible = false
 
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )

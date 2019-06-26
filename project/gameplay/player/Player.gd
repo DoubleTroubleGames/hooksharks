@@ -356,6 +356,7 @@ func die(play_sfx):
 		sprite.set_modulate(Color(1, 1, 1, 0.2))
 		riders_hook.texture = original_hook_texture
 		riders_hook.scale = ORIGINAL_HOOK_SCALE
+		riders_hook.offset = Vector2()
 		if hook:
 			hook.retract()
 		emit_signal("respawned", self)
@@ -454,6 +455,7 @@ func shoot():
 			emit_signal("megahook_shot", self, hook_dir) # recieved in Game.gd
 			riders_hook.texture = original_hook_texture
 			riders_hook.scale = ORIGINAL_HOOK_SCALE
+			riders_hook.offset = Vector2()
 		
 
 func retract():
