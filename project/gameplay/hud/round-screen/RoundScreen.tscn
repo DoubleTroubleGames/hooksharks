@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://gameplay/hud/round-screen/RoundScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/round-screen/gatebasic.png" type="Texture" id=2]
@@ -11,12 +11,13 @@
 [ext_resource path="res://assets/images/ui/round-screen/gate_multi.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/ui/round-screen/gate_sub.png" type="Texture" id=10]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=11]
-[ext_resource path="res://assets/sound/sfx/Round End.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/sound/sfx/pirate1.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sound/sfx/pirate2.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/sfx/drill.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/sfx/king.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/sound/bgm/endgame.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/sfx/gate closes.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/sfx/gate opens.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/sfx/pirate1.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/sfx/pirate2.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/sfx/drill.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sound/sfx/king.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/bgm/endgame.ogg" type="AudioStream" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 256
@@ -219,35 +220,34 @@ one_shot = true
 
 [node name="GateCloseSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = 2.0
+volume_db = -0.145
 bus = "SFX"
 
 [node name="GateOpenSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
-volume_db = 2.0
+stream = ExtResource( 13 )
+volume_db = -0.02
 bus = "SFX"
 
 [node name="PirateWinSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-volume_db = 2.0
-bus = "SFX"
-
-[node name="GreenPirateWinSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = 2.0
 bus = "SFX"
 
-[node name="DrillWinSFX" type="AudioStreamPlayer" parent="."]
+[node name="GreenPirateWinSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 volume_db = 2.0
 bus = "SFX"
 
-[node name="KingWinSFX" type="AudioStreamPlayer" parent="."]
+[node name="DrillWinSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = 2.0
 bus = "SFX"
 
-[node name="WinMatchBGM" type="AudioStreamPlayer" parent="."]
+[node name="KingWinSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
-bus = "BGM"
+volume_db = 2.0
+bus = "SFX"
 
+[node name="WinMatchBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+bus = "BGM"

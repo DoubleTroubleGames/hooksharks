@@ -137,5 +137,4 @@ bus = "SFX"
 stream = SubResource( 4 )
 volume_db = -4.289
 bus = "SFX"
-
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

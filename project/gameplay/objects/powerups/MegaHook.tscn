@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gameplay/objects/powerups/MegaHook.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/elements/megahook.png" type="Texture" id=2]
 [ext_resource path="res://assets/sound/sfx/megahook.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/effects/MegahookExplosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sound/sfx/mega hook hit wall.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/effects/MegahookExplosion.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
 audio_stream = ExtResource( 3 )
+
+[sub_resource type="AudioStreamRandomPitch" id=3]
+audio_stream = ExtResource( 4 )
+random_pitch = 1.4
 
 [node name="MegaHook" type="Node2D"]
 scale = Vector2( 2, 2 )
@@ -34,9 +39,9 @@ stream = SubResource( 2 )
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 2 )
+stream = SubResource( 3 )
+volume_db = 2.142
 bus = "SFX"
 
-[node name="MegahookExplosion" parent="." instance=ExtResource( 4 )]
-
+[node name="MegahookExplosion" parent="." instance=ExtResource( 5 )]
 [connection signal="area_entered" from="HookArea" to="." method="_on_MegaHookArea_area_entered"]
