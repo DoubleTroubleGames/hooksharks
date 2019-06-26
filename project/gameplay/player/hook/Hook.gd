@@ -4,9 +4,6 @@ signal hook_clinked(position)
 signal wall_hit(position, rotation, color)
 signal shook_screen(amount)
 
-var char_hook = {"pirate": "Pirate", "drill": "Drill",
-		"pirate-green": "Pirate", "king": "King"}
-
 const SCREEN_SHAKE_HOOK_HIT = .8
 const SCREEN_SHAKE_OBJECT_HIT = .1
 const SCREEN_SHAKE_SHARK_HIT = .7
@@ -25,6 +22,7 @@ var rope = null
 var stop_at = null
 var sprite
 
+
 func init(player, direction):
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	self.player = player
@@ -32,7 +30,7 @@ func init(player, direction):
 	self.position = player.position
 	self.position += player.rider_offset * angle
 	self.speed += self.player.speed2.length()*SPEED_MOD
-	sprite = get_node(char_hook[RoundManager.character_map[player.id]])
+	sprite = get_node(RoundManager.character_map[player.id].capitalize())
 	sprite.visible = true
 	sprite.rotation = direction.angle()
 

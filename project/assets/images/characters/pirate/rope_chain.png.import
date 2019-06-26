@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green.png-35af5c19f2bd3b34e9d5681ee1653a07.stex"
+path="res://.import/rope_chain.png-95197f256ac105d4a8aa87be19816243.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate-green/green.png"
-dest_files=[ "res://.import/green.png-35af5c19f2bd3b34e9d5681ee1653a07.stex" ]
+source_file="res://assets/images/characters/pirate/rope_chain.png"
+dest_files=[ "res://.import/rope_chain.png-95197f256ac105d4a8aa87be19816243.stex" ]
 
 [params]
 

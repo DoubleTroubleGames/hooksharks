@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sticker.png-d5927870386d25e47658510338181e1f.stex"
+path="res://.import/green_above.png-9a4cc8589a961fe645e9379222f1403c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate-green/sticker.png"
-dest_files=[ "res://.import/sticker.png-d5927870386d25e47658510338181e1f.stex" ]
+source_file="res://assets/images/characters/eskimo/green_above.png"
+dest_files=[ "res://.import/green_above.png-9a4cc8589a961fe645e9379222f1403c.stex" ]
 
 [params]
 

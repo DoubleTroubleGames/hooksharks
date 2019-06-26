@@ -14,8 +14,8 @@ onready var round_label = $Background/Round/Label
 onready var tween = $Tween
 
 onready var char_sfx = {"pirate": $PirateWinSFX,
-		"pirate-green": $GreenPirateWinSFX, "drill": $DrillWinSFX,
-		"king": $KingWinSFX}
+		"drill": $DrillWinSFX, "king": $KingWinSFX,
+		"eskimo": $GreenPirateWinSFX}
 
 const TRIVIA = [
 	"Great white sharks aren't so great after all",
