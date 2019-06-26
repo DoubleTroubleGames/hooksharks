@@ -76,10 +76,7 @@ func test_setup():
 
 func create_rope(player, hook):
 	var rope = ROPE.instance()
-	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
-	var rider_pos = player.position + player.rider_offset * angle
-	rope.player = player
-	rope.hook = hook
+	rope.init(player, hook)
 	get_node("Stage/Ropes").add_child(rope)
 	return rope
 
