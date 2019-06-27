@@ -22,6 +22,7 @@ var available_stages = []
 
 
 func _ready():
+	available_stages = range(1, total_stages + 1)
 	test_setup()
 	var stage = get_first_stage().instance()
 	players = stage.setup_players()
