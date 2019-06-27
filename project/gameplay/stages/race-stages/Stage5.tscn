@@ -20,10 +20,10 @@
 [ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=18]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=19]
 
-[node name="Stage" index="0" instance=ExtResource( 1 )]
+[node name="Stage" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1400, -1300 )
 stage_end = Vector2( 4300, 1700 )
-stage_name = "Testicular Punishment"
+stage_name = "Drawning Chaos"
 
 [node name="Water" parent="." index="0"]
 margin_left = -1400.0
@@ -227,7 +227,7 @@ position = Vector2( 1660, 1110 )
 rotation = 0.523598
 
 [node name="Roof3" parent="Obstacles" index="46" instance=ExtResource( 9 )]
-position = Vector2( 1720, 9.77516e-06 )
+position = Vector2( 1720, 9.77516e-006 )
 rotation = 0.383972
 
 [node name="Roof14" parent="Obstacles" index="47" instance=ExtResource( 9 )]
@@ -313,6 +313,7 @@ editor_draw_limits = true
 script = ExtResource( 16 )
 
 [node name="Powerups" type="Node2D" parent="." index="7"]
+editor/display_folded = true
 z_index = 2
 
 [node name="Powerup" parent="Powerups" index="0" instance=ExtResource( 17 )]
@@ -401,5 +402,6 @@ position = Vector2( 40, 242 )
 
 [node name="PullableObjectTop" parent="FinishLine" index="2"]
 position = Vector2( 40, 690 )
+
 
 [editable path="FinishLine"]
