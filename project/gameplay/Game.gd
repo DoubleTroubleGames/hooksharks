@@ -213,7 +213,8 @@ func shoot_megahook(player, direction):
 	var megahook = player.get_node("PowerUps/MegaHook")
 	
 	player.get_node("PowerUps").remove_child(megahook)
-	megahook.set_name("old_MegaHook")
+	if megahook and is_instance_valid(megahook):
+		megahook.set_name("old_MegaHook")
 	get_node("Stage/Hooks").add_child(megahook)
 	megahook.set_owner(get_node("Stage/Hooks"))
 	megahook.activate(direction.normalized())

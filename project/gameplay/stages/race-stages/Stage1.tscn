@@ -21,7 +21,7 @@
 [ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=20]
 
-[node name="Stage1" instance=ExtResource( 1 )]
+[node name="Stage1" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -250, -180 )
 stage_end = Vector2( 4050, 1800 )
 stage_name = "Hippodrome"
@@ -258,9 +258,6 @@ powerup = ExtResource( 18 )
 position = Vector2( 1392.48, 1451.1 )
 powerup = ExtResource( 18 )
 
-[node name="Checkpoints" parent="." index="8"]
-editor/display_folded = true
-
 [node name="Checkpoint1" parent="Checkpoints" index="0" instance=ExtResource( 19 )]
 position = Vector2( 750.096, 418.357 )
 rotation = 5.49778
@@ -349,10 +346,9 @@ number = 15
 editor/display_folded = true
 position = Vector2( 330, 1100 )
 total_checkpoint_number = 15
-total_laps = 3
+total_laps = 2
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 566.27, -294.165 )
-
 
 [editable path="FinishLine"]

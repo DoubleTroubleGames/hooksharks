@@ -409,13 +409,12 @@ number = 6
 [node name="FinishLine" parent="." index="9" instance=ExtResource( 22 )]
 editor/display_folded = true
 total_checkpoint_number = 6
-total_laps = 3
+total_laps = 2
 
 [node name="PullableObjectBot" parent="FinishLine" index="1"]
 position = Vector2( 40, 242 )
 
 [node name="PullableObjectTop" parent="FinishLine" index="2"]
 position = Vector2( 40, 690 )
-
 
 [editable path="FinishLine"]

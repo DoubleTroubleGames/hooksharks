@@ -41,10 +41,10 @@ func _ready():
 		for i in POWERS.size():
 			if powerup.resource_path == POWERS[i].resource_path:
 				current_index = i
-		
-		$Sprite.set_texture(CRATES[current_index])
-		$Sprite2.set_texture(SHADERS[current_index])
-		$Particles2D.set_texture(PARTICLES[current_index])
+	
+	$Sprite.set_texture(CRATES[current_index])
+	$Sprite2.set_texture(SHADERS[current_index])
+	$Particles2D.set_texture(PARTICLES[current_index])
 
 
 func _physics_process(delta):
