@@ -21,16 +21,16 @@
 [ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=20]
 
-[node name="Stage1" index="0" instance=ExtResource( 1 )]
-stage_begin = Vector2( -250, -180 )
-stage_end = Vector2( 4050, 1800 )
+[node name="Stage1" instance=ExtResource( 1 )]
+stage_begin = Vector2( -1250, -1180 )
+stage_end = Vector2( 5050, 2800 )
 stage_name = "Hippodrome"
 
 [node name="Water" parent="." index="0"]
-margin_left = -250.0
-margin_top = -180.0
-margin_right = 4050.0
-margin_bottom = 1800.0
+margin_left = -1250.0
+margin_top = -1180.0
+margin_right = 5050.0
+margin_bottom = 2800.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 375.106, 471.945 )
@@ -173,13 +173,13 @@ position = Vector2( 3889.82, 843.573 )
 rotation = -4.71238
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
-position = Vector2( 592.533, 669.799 )
+position = Vector2( 571.513, 614.907 )
 current = true
 process_mode = 0
-limit_left = 51
-limit_top = -41
-limit_right = 3749
-limit_bottom = 1661
+limit_left = -809
+limit_top = -901
+limit_right = 4609
+limit_bottom = 2521
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false

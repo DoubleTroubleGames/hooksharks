@@ -23,16 +23,16 @@
 [ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=21]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=22]
 
-[node name="Stage" index="0" instance=ExtResource( 1 )]
-stage_begin = Vector2( -1400, -1300 )
-stage_end = Vector2( 4300, 1700 )
+[node name="Stage" instance=ExtResource( 1 )]
+stage_begin = Vector2( -2400, -2300 )
+stage_end = Vector2( 5300, 2700 )
 stage_name = "Drawning Chaos"
 
 [node name="Water" parent="." index="0"]
-margin_left = -1400.0
-margin_top = -1300.0
-margin_right = 4300.0
-margin_bottom = 1700.0
+margin_left = -2400.0
+margin_top = -2300.0
+margin_right = 5300.0
+margin_bottom = 2700.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 290, 240 )
@@ -230,7 +230,7 @@ position = Vector2( 1660, 1110 )
 rotation = 0.523598
 
 [node name="Roof3" parent="Obstacles" index="46" instance=ExtResource( 9 )]
-position = Vector2( 1720, 9.77516e-006 )
+position = Vector2( 1720, 9.77516e-06 )
 rotation = 0.383972
 
 [node name="Roof14" parent="Obstacles" index="47" instance=ExtResource( 9 )]
@@ -304,10 +304,10 @@ scale = Vector2( 0.5, 0.5 )
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
 position = Vector2( 287.242, 455.905 )
 current = true
-limit_left = -1001
-limit_top = -1090
-limit_right = 3901
-limit_bottom = 1490
+limit_left = -1861
+limit_top = -1950
+limit_right = 4761
+limit_bottom = 2350
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false

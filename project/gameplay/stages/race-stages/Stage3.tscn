@@ -13,15 +13,15 @@
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=11]
 
 [node name="Stage" instance=ExtResource( 1 )]
-stage_begin = Vector2( -150, 0 )
-stage_end = Vector2( 3700, 2150 )
+stage_begin = Vector2( -1150, -1000 )
+stage_end = Vector2( 4700, 3150 )
 stage_name = "Fin Twister"
 
 [node name="Water" parent="." index="0"]
-margin_left = -150.0
-margin_top = 0.0
-margin_right = 3700.0
-margin_bottom = 2150.0
+margin_left = -1150.0
+margin_top = -1000.0
+margin_right = 4700.0
+margin_bottom = 3150.0
 
 [node name="PlayerStartingPosition" parent="." index="1"]
 editor/display_folded = false
@@ -71,28 +71,24 @@ texture = ExtResource( 2 )
 self_modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 2040.91, 593.978 )
 rotation = -3.92168
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="arrow7" type="Sprite" parent="." index="7"]
 self_modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 2219.44, 769.717 )
 rotation = -3.92168
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="arrow8" type="Sprite" parent="." index="8"]
 self_modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 1402.12, 1388.99 )
 rotation = -3.92168
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="arrow9" type="Sprite" parent="." index="9"]
 self_modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 1583.43, 1559.15 )
 rotation = -3.92168
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="Obstacles" parent="." index="10"]
@@ -304,12 +300,12 @@ scale = Vector2( 1, 1.7 )
 number = 8
 
 [node name="Camera2D" type="Camera2D" parent="." index="16"]
-position = Vector2( 297.405, 289.656 )
+position = Vector2( 501.727, 986.169 )
 current = true
-limit_left = 119
-limit_top = 150
-limit_right = 3430
-limit_bottom = 1999
+limit_left = -740
+limit_top = -709
+limit_right = 4290
+limit_bottom = 2859
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
@@ -326,6 +322,5 @@ total_laps = 3
 
 [node name="PullableObjectBot" parent="FinishLine2" index="1"]
 position = Vector2( 0, 260 )
-
 
 [editable path="FinishLine2"]

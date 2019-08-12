@@ -24,15 +24,15 @@
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=22]
 
 [node name="Stage2" instance=ExtResource( 1 )]
-stage_begin = Vector2( -250, -100 )
-stage_end = Vector2( 4200, 1100 )
+stage_begin = Vector2( -1250, -1100 )
+stage_end = Vector2( 5200, 2100 )
 stage_name = "Shallow Dash"
 
 [node name="Water" parent="." index="0"]
-margin_left = -250.0
-margin_top = -100.0
-margin_right = 4200.0
-margin_bottom = 1100.0
+margin_left = -1250.0
+margin_top = -1100.0
+margin_right = 5200.0
+margin_bottom = 2100.0
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 300, 370 )
@@ -166,7 +166,7 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Box5" parent="Obstacles" index="28" instance=ExtResource( 10 )]
 position = Vector2( 2072.8, 710.109 )
-rotation = -2.5332e-005
+rotation = -2.5332e-05
 scale = Vector2( 0.6, 0.6 )
 
 [node name="PowerUps" type="Node2D" parent="." index="5"]
@@ -210,12 +210,12 @@ position = Vector2( 2557.79, 846.657 )
 powerup = ExtResource( 18 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="6"]
-position = Vector2( 296.804, 465.55 )
+position = Vector2( 300, 470 )
 current = true
-limit_left = 61
-limit_top = -15
-limit_right = 3888
-limit_bottom = 1016
+limit_left = -798
+limit_top = -876
+limit_right = 4748
+limit_bottom = 1876
 limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
@@ -248,4 +248,3 @@ number = 4
 [node name="FinishLine" parent="." index="9" instance=ExtResource( 22 )]
 position = Vector2( 3478.28, 417.077 )
 total_checkpoint_number = 4
-
