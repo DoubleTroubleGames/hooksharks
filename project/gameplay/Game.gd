@@ -154,14 +154,11 @@ func remove_player(player):
 	player.set_process_input(false)
 	
 	if not calling_check_winner:
-		call_deferred("check_winner")
 		calling_check_winner = true
+		call_deferred("check_winner")
 
 
 func check_winner():
-	calling_check_winner = false
-	
-	
 	if players.size() == 1:
 		var winner = players[0]
 		winner.disable()
@@ -181,6 +178,7 @@ func check_winner():
 			node.stop()
 	
 	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
+	calling_check_winner = false
 	transition_stage()
 
 
