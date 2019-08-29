@@ -48,7 +48,7 @@ func _physics_process(delta):
 			free_hook()
 	elif pulling_object:
 		direction = (player.position - self.position).normalized()
-		position += direction * (delta * speed * .3)
+		position += direction * min(delta * speed * .3, position.distance_to(player.position))
 		if position.distance_to(player.position) <= kill_distance:
 			pulling_object.remove_hook()
 			if pulling_object.is_in_group('powerup'):
