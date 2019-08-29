@@ -14,7 +14,7 @@ var speed = 500
 var acc = 500
 var retracting = false
 var pulling_object = null
-var kill_distance = 45
+var kill_distance = 50
 var direction = Vector2()
 var has_collided = false
 var player = null
@@ -42,8 +42,8 @@ func _physics_process(delta):
 	elif !has_collided:
 		position += direction * (delta * speed)
 	if retracting:
-		direction = (player.position - self.position).normalized() * position.distance_to(player.position)*.99*delta
-		position += direction
+		direction = (player.position - self.position).normalized()
+		position += direction * (speed * delta * 2)
 		if position.distance_to(player.position) <= kill_distance:
 			free_hook()
 	elif pulling_object:
@@ -65,6 +65,8 @@ func is_colliding():
 
 
 func hit_hook(other_hook):
+	if retracting:
+		return
 	retract()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
 	emit_signal("hook_clinked", (other_hook.position + self.position) / 2)
@@ -73,6 +75,8 @@ func hit_hook(other_hook):
 
 
 func hit_object(object):
+	if retracting:
+		return
 	emit_signal("shook_screen", SCREEN_SHAKE_OBJECT_HIT)
 	has_collided = true
 	if not pulling_object:
@@ -83,6 +87,8 @@ func hit_object(object):
 
 
 func hit_shark(shark):
+	if retracting:
+		return
 	if not shark.stunned and not shark.diving and not shark.invincible:
 		stop_at = shark
 		shark.hook_collision(self)
@@ -92,6 +98,8 @@ func hit_shark(shark):
 
 
 func hit_wall(color):
+	if retracting:
+		return
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
 	emit_signal("wall_hit", position, sprite.rotation - PI, color)
 	has_collided = true

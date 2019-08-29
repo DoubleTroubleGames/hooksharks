@@ -359,9 +359,11 @@ func die(play_sfx):
 		riders_hook.offset = Vector2()
 		if hook:
 			hook.retract()
+			hook.free_hook()
 		emit_signal("respawned", self)
 	else:
 		if hook != null:
+			hook.retract()
 			hook.free_hook()
 		emit_signal("died", self)
 		sprite_animation.play("dive")
