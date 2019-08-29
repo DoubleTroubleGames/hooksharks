@@ -14,7 +14,7 @@ var speed = 500
 var acc = 500
 var retracting = false
 var pulling_object = null
-var kill_distance = 20
+var kill_distance = 45
 var direction = Vector2()
 var has_collided = false
 var player = null
@@ -42,8 +42,8 @@ func _physics_process(delta):
 	elif !has_collided:
 		position += direction * (delta * speed)
 	if retracting:
-		direction = (player.position - self.position).normalized()
-		position += direction * (delta * speed * 2)
+		direction = (player.position - self.position).normalized() * position.distance_to(player.position)*.99*delta
+		position += direction
 		if position.distance_to(player.position) <= kill_distance:
 			free_hook()
 	elif pulling_object:
