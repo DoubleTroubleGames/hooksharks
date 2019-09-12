@@ -25,6 +25,7 @@ func _ready():
 		boxes[i].connect("selected", self, "_on_box_selected")
 		boxes[i].connect("unselected", self, "_on_box_unselected")
 		boxes[i].connect("tried_to_start", self, "_on_box_tried_to_start")
+		boxes[i].connect("closed", self, "_on_box_closed")
 		boxes[i].set_character(0)
 	
 	set_process_input(false)
@@ -59,6 +60,7 @@ func _input(event):
 		for box in boxes:
 			if box.is_closed():
 				box.open_with(event)
+				hide_start_message()
 				return
 
 
@@ -162,7 +164,24 @@ func _on_box_selected(character):
 func _on_box_unselected(character):
 	available_characters.append(character)
 	update_boxes()
+	
 	hide_start_message()
+
+func _on_box_closed():
+	var open_boxes = 0
+	var ready_boxes = 0
+	
+	for box in boxes:
+		if box.is_open():
+			open_boxes += 1
+		elif box.is_ready():
+			ready_boxes +=1
+	
+	print(ready_boxes, open_boxes)
+	if ready_boxes > 0 and open_boxes == 1:
+		# For some reason, the box that emits the selected signal is always identified as open, which is
+		# why this check is so weird
+		show_start_message()
 
 
 func _on_box_tried_to_start():

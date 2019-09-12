@@ -2,6 +2,7 @@ extends Control
 
 signal selected(character)
 signal unselected(character)
+signal closed()
 signal tried_to_start
 
 enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
@@ -143,6 +144,7 @@ func change_state(new_state):
 			mid_animation = true
 			yield($Boarder/AnimationPlayer, "animation_finished")
 			mid_animation = false
+			emit_signal("closed")
 		States.OPEN:
 			$SharkSprite.show()
 			if state == States.CLOSED:
