@@ -10,7 +10,7 @@
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 6 )
 
-[node name="Shark" instance=ExtResource( 1 )]
+[node name="Purple" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 
@@ -37,4 +37,3 @@ visible = false
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )
 volume_db = -4.0
-

@@ -342,10 +342,9 @@ func die(play_sfx):
 	reset_dive_meter()
 	dive_meter.hide()
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
-	if play_sfx:
-		var scream = 1 + randi() % 6
-		$SFX/ExplosionSFX.play()
-		get_node(str('SFX/ScreamSFX', scream)).play()
+	if play_sfx and $Shark/DeathSFXs.get_child_count() > 0:
+		var sfx_number = randi() % $Shark/DeathSFXs.get_child_count()
+		$Shark/DeathSFXs.get_child(sfx_number).play()
 	disable()
 	
 	if respawn:

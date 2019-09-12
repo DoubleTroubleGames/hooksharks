@@ -37,4 +37,3 @@ visible = false
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )
 volume_db = -4.0
-

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/images/characters/pirate/pirate_above.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/characters/pirate/pirate_under.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/characters/pirate/rider.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/elements/hook.png" type="Texture" id=4]
+[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dive"
@@ -436,3 +437,8 @@ position = Vector2( -500, 150 )
 position = Vector2( 300, 0 )
 
 [node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+
+[node name="DeathSFXs" type="Node" parent="."]
+
+[node name="SFX1" type="AudioStreamPlayer" parent="DeathSFXs"]
+stream = ExtResource( 5 )
