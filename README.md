@@ -16,7 +16,7 @@ Now, it is under further development by the Double Trouble Games group.
 
 ## Running
 
-There is currently no executable for the game. To run it, open the project with the [Godot Engine v3.1](https://godotengine.org/) editor.
+Go to the [release page](https://github.com/DoubleTroubleGames/hooksharks/releases) and download the latest version.
 
 ----------------------------------------------------
 
@@ -42,7 +42,7 @@ The game is developed by the [Double Trouble Games](doubletroublegamesbr@gmail.c
 Originally made using [Godot Engine v3.0.6](https://godotengine.org/).
 
 Github
-    ~ https://github.com/MarvellousSoft/hooksharks
+    ~ https://github.com/DoubleTroubleGames/hooksharks
 
 ----------------------------------------------------
 
