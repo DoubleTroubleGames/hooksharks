@@ -23,22 +23,23 @@ uniform float v_deep_edge : hint_range(0,.5); //Must be >= v_shallow_edge
 
 void fragment() {
 	float color_factor = 1.0;
+	float grad_fixer = .4;
 
 	//Left side
 	if (UV.x <= h_deep_edge){
-		color_factor *= smoothstep(h_shallow_edge, h_deep_edge, UV.x);
+		color_factor *= smoothstep(h_shallow_edge - grad_fixer, h_deep_edge, UV.x);
 	}
 	//Right side
 	else if (UV.x >= 1.0 - h_deep_edge) {
-		color_factor *= 1.0 - smoothstep(1.0 - h_deep_edge, 1.0 - h_shallow_edge, UV.x);
+		color_factor *= 1.0 - smoothstep(1.0 - h_deep_edge, 1.0 - h_shallow_edge + grad_fixer, UV.x);
 	}
 	//Top side
 	if (UV.y <= v_deep_edge){
-		color_factor *= smoothstep(v_shallow_edge, v_deep_edge, UV.y);
+		color_factor *= smoothstep(v_shallow_edge - grad_fixer, v_deep_edge, UV.y);
 	}
 	//Bottom side
 	else if (UV.y >= 1.0 - v_deep_edge) {
-		color_factor *= 1.0 - smoothstep(1.0 - v_deep_edge, 1.0 - v_shallow_edge, UV.y);
+		color_factor *= 1.0 - smoothstep(1.0 - v_deep_edge , 1.0 - v_shallow_edge + grad_fixer, UV.y);
 	}
 	vec4 color = mix(shallow_color, deep_color, color_factor);
     COLOR = vec4(color.x, color.y, color.z, 1);
@@ -61,9 +62,9 @@ shader = SubResource( 2 )
 shader_param/shallow_color = Color( 0.0588235, 0.27451, 0.462745, 1 )
 shader_param/deep_color = Color( 0.0392157, 0.184314, 0.309804, 1 )
 shader_param/h_shallow_edge = 0.0
-shader_param/h_deep_edge = 0.298
+shader_param/h_deep_edge = 0.5
 shader_param/v_shallow_edge = 0.0
-shader_param/v_deep_edge = 0.335
+shader_param/v_deep_edge = 0.5
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -129,7 +130,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 4 )
-shader_param/rect_size = Vector2( 2000, 1100 )
+shader_param/rect_size = Vector2( 1920, 1080 )
 shader_param/noise_size = Vector2( 700, 700 )
 shader_param/noise_cutoff = 0.75
 shader_param/h_foam_distance = 0.0
