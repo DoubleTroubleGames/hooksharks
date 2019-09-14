@@ -101,6 +101,10 @@ func transition_stage():
 	yield(countdown, "go_shown")
 	
 	activate_players()
+	var obstacles = get_node("Stage/Obstacles")
+	for obst in obstacles.get_children():
+		if obst.has_method("test_move"): # Is a MovingObstacle
+			obst.set_process(true)
 
 
 func clean_all():

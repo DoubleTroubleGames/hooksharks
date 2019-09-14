@@ -55,7 +55,7 @@ func _ready():
 	
 	previous_position = $Path/Origin.position
 	# This is done so tool mode does not activate process on its own
-	set_process(!is_editor)
+	set_process(false)
 
 func _process(delta):
 	if(!moving):
