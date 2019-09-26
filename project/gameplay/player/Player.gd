@@ -39,6 +39,7 @@ const DIVE_COOLDOWN_SPEED = 40
 const WALL_PULL_FORCE_MUL = 2
 const PULL_PLAYER_FACTOR = 3.5
 const ORIGINAL_HOOK_SCALE = Vector2(.6,.6)
+const PLAYER_NUMBER_SHOW_SPEED = 4
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -61,6 +62,7 @@ var infinite_dive = false
 var whirlpool = null
 var invincible = false
 var stunned = false
+var show_player_number = false
 var is_respawning = false
 var hook = null
 var pull_dir = null
@@ -118,6 +120,8 @@ func _input(event):
 func _physics_process(delta):
 	# Update dive meter
 	update_dive_meter(delta)
+	
+	update_player_number(delta)
 	
 	#Update "invincible animation"
 	if invincible:
@@ -291,6 +295,15 @@ func reset_dive_meter():
 	dive_on_cooldown = false
 	dive_meter.texture_progress = NORMAL_BUBBLE
 	
+
+func update_player_number(dt):
+	var m = $PlayerNumber.modulate
+	var alpha 
+	if show_player_number:
+		alpha = min(m.a + PLAYER_NUMBER_SHOW_SPEED*dt, 1)
+	else:
+		alpha = max(m.a - PLAYER_NUMBER_SHOW_SPEED*dt, 0)
+	$PlayerNumber.modulate = Color(m.r, m.g, m.b, alpha)
 
 func get_rider_direction():
 	if gamepad_id != -1:
