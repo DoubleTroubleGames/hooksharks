@@ -19,6 +19,7 @@ var players
 var calling_check_winner = false
 var current_stage = 0
 var available_stages = []
+var can_pause = true
 
 
 func _ready():
@@ -86,6 +87,8 @@ func transition_stage():
 	var rs = $RoundScreen
 	rs.show_round()
 	
+	can_pause = false
+	
 	yield(rs, "shown")
 	free_current_stage()
 	add_new_stage()
@@ -101,6 +104,9 @@ func transition_stage():
 	yield(countdown, "go_shown")
 	
 	activate_players()
+	
+	can_pause = true
+	
 	var obstacles = get_node("Stage/Obstacles")
 	for obst in obstacles.get_children():
 		if obst.has_method("test_move"): # Is a MovingObstacle
@@ -273,4 +279,5 @@ func _on_player_created_trail(trail):
 
 
 func _on_player_paused(player):
-	pause_screen.pause(player)
+	if can_pause:
+		pause_screen.pause(player)
