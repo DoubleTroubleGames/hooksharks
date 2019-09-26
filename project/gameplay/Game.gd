@@ -280,4 +280,4 @@ func _on_player_created_trail(trail):
 
 func _on_player_paused(player):
 	if can_pause:
-		pause_screen.pause(player)
+		pause_screen.pause(player, players)

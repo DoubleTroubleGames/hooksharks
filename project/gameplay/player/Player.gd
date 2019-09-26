@@ -474,7 +474,7 @@ func hook_retracted():
 func reset_input_map():
 	is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
-
+	retract()
 
 func start_invincibility():
 	invincible = true

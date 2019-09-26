@@ -11,6 +11,7 @@ const DEADZONE = .55
 
 var btn_index = 0
 var player_device = "keyboard"
+var players
 onready var _moved_up = false
 onready var _moved_down = false
 
@@ -62,9 +63,11 @@ func press_button():
 			quit()
 
 
-func pause(player):
+func pause(player, all_players):
 	Sound.on_pause()
 	var color = RoundManager.CHAR_COLOR[RoundManager.character_map[player.id]]
+	
+	players = all_players
 	
 	btn_index = 0
 	for button in buttons:
@@ -87,6 +90,9 @@ func unpause():
 	Sound.on_unpause()
 	get_tree().paused = false
 	background.visible = false
+	for player in players:
+		player.reset_input_map()
+	
 	set_process_input(false)
 	set_process(false)
 
