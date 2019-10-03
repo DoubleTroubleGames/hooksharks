@@ -6,8 +6,10 @@ const LERP_FACTOR = .2
 const OFFSET = Vector2(-20, -110)
 
 var player_dict
+var camera
 
-func set_players(player_dict):
+func set_players(player_dict, camera):
+	self.camera = camera
 	self.player_dict = player_dict
 	for p in player_dict:
 		if player_dict[p] == null:
@@ -21,7 +23,7 @@ func set_players(player_dict):
 func _physics_process(delta):
 	for p in player_dict:
 		if player_dict[p] and is_instance_valid(player_dict[p]):
-			label_dict[p].rect_position = player_dict[p].global_position + OFFSET
+			label_dict[p].rect_position = player_dict[p].global_position + OFFSET + camera.position*camera.zoom.x
 			if label_dict[p].is_showing:
 				label_dict[p].modulate.a = lerp(label_dict[p].modulate.a, 1, LERP_FACTOR)
 			else:

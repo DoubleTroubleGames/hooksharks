@@ -17,7 +17,9 @@ func connect_players():
 		player.connect("spawned", self, "_on_player_spawned")
 		for camera in Cameras:
 			player.connect("shook_screen", camera, "add_shake")
-
+	for camera in Cameras:
+		camera.connect("zoomed_in", self, "_on_zoomed_in")
+		camera.connect("zoomed_out", self, "_on_zoomed_out")
 
 func activate_players():
 	for player in players:
@@ -67,3 +69,9 @@ func respawn_player(player):
 	player.is_respawning = false
 	player.enable()
 	player.speed2 = Vector2(200 * cos(player.sprite.rotation), 200 *  sin(player.sprite.rotation))
+
+func _on_zoomed_in():
+	$PlayerHUD.hide_all()
+
+func _on_zoomed_out():
+	$PlayerHUD.show_all()

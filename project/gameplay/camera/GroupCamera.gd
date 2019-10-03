@@ -1,9 +1,13 @@
 extends "res://gameplay/camera/Camera.gd"
 
+signal zoomed_in
+signal zoomed_out
+
 const ZOOM_IN_MARGIN = .3
 const MIN_ZOOM = 1
 const ZOOM_OUT_LERP = .1
 const ZOOM_IN_LERP = .01
+const ZOOM_THRESHOLD = 1.001
 const POS_LERP = 1
 const WINNER_ZOOM = .5
 const WINNER_ZOOM_LERP = .15
@@ -46,14 +50,21 @@ func update_camera():
 		
 		var final_zoom = max(max(target_zoom.x, target_zoom.y), MIN_ZOOM)
 		
+		var pre_zoom = zoom
+		
 		if final_zoom > zoom.x:
 			set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_OUT_LERP))
 		elif final_zoom < zoom.x - ZOOM_IN_MARGIN:
 			set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_IN_LERP))
+			
+		if pre_zoom.x <= ZOOM_THRESHOLD and zoom.x > ZOOM_THRESHOLD:
+			emit_signal("zoomed_out")
+		elif pre_zoom.x > ZOOM_THRESHOLD and zoom.x <= ZOOM_THRESHOLD:
+			emit_signal("zoomed_in")
 	else:
 		set_position(lerp(position, point_focus, POS_LERP))
 		set_zoom(lerp(zoom, Vector2(WINNER_ZOOM, WINNER_ZOOM), WINNER_ZOOM_LERP))
-
+	
 
 func get_focus_limits():
 	if focuses.empty():
