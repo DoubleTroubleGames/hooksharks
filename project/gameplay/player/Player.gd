@@ -8,6 +8,7 @@ signal watermine_released(player)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
 signal paused(player)
+signal spawned(id)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
@@ -85,6 +86,7 @@ func _ready():
 func spawn_animation():
 	yield(get_tree().create_timer(rand_range(.3,1.3)), "timeout")
 	sprite_animation.play("spawn")
+	emit_signal("spawned", id)
 	yield(sprite_animation, "animation_finished")
 	sprite_animation.play("emerge")
 	yield(sprite_animation, "animation_finished")

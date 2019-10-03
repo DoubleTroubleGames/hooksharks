@@ -14,6 +14,7 @@ func connect_players():
 		player.connect("died", self, "remove_player")
 		player.connect("respawned", self, "respawn_player")
 		player.connect("paused", self, "_on_player_paused")
+		player.connect("spawned", self, "_on_player_spawned")
 		for camera in Cameras:
 			player.connect("shook_screen", camera, "add_shake")
 

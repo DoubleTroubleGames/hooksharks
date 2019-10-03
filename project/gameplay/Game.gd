@@ -55,6 +55,8 @@ func _ready():
 	
 	yield(countdown, "go_shown")
 	
+	$PlayerHUD.hide_all()
+	
 	activate_players()
 
 
@@ -111,7 +113,10 @@ func transition_stage():
 	
 	countdown.start_countdown($Stage.get_stage_name(), $Stage.get_stage_laps())
 	
+	
 	yield(countdown, "go_shown")
+	
+	$PlayerHUD.hide_all()
 	
 	activate_players()
 	
@@ -291,3 +296,8 @@ func _on_player_created_trail(trail):
 func _on_player_paused(player):
 	if can_pause:
 		pause_screen.pause(player, players)
+
+
+func _on_player_spawned(id):
+	$PlayerHUD.show_label(id+1)
+

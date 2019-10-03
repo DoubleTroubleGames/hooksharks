@@ -7,18 +7,6 @@ const OFFSET = Vector2(-20, -110)
 
 var player_dict
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-func _input(event):
-	if event.is_action_pressed("shoot"):
-		hide_label(1)
-	elif event.is_action_pressed("dive"):
-		show_label(1)
-
-
 func set_players(player_dict):
 	self.player_dict = player_dict
 	for p in player_dict:
@@ -26,7 +14,8 @@ func set_players(player_dict):
 			label_dict[p].hide()
 		else:
 			label_dict[p].modulate = RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]]
-			label_dict[p].is_showing = true
+			label_dict[p].modulate.a = 0
+			label_dict[p].is_showing = false
 
 
 func _physics_process(delta):
@@ -38,6 +27,13 @@ func _physics_process(delta):
 			else:
 				label_dict[p].modulate.a = lerp(label_dict[p].modulate.a, 0, LERP_FACTOR)
 
+func show_all():
+	for i in range(1,5):
+		label_dict[i].is_showing = true
+
+func hide_all():
+	for i in range(1,5):
+		label_dict[i].is_showing = false
 
 func show_label(player_number):
 	label_dict[player_number].is_showing = true
