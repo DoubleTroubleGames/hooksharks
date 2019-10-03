@@ -30,6 +30,8 @@ func _ready():
 	stage.set_name("Stage")
 	add_child(stage)
 	
+	setup_player_labels()
+	
 	Cameras = get_cameras() 
 	for camera in Cameras:
 		if camera.has_method("reset_focus_point"):
@@ -76,6 +78,13 @@ func test_setup():
 	pass
 
 
+func setup_player_labels():
+	var players_dict = {}
+	for i in range(4):
+		players_dict[i+1] = players[i] if i < players.size() else null
+	$PlayerHUD.set_players(players_dict)
+
+
 func create_rope(player, hook):
 	var rope = ROPE.instance()
 	rope.init(player, hook)
@@ -93,6 +102,7 @@ func transition_stage():
 	free_current_stage()
 	add_new_stage()
 	connect_players()
+	setup_player_labels()
 	
 	yield(rs, "hidden")
 	
