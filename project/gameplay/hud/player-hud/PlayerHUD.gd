@@ -23,7 +23,7 @@ func set_players(player_dict, camera):
 func _physics_process(delta):
 	for p in player_dict:
 		if player_dict[p] and is_instance_valid(player_dict[p]):
-			label_dict[p].rect_position = player_dict[p].global_position + OFFSET + camera.position*camera.zoom.x
+			label_dict[p].rect_position = player_dict[p].get_global_transform_with_canvas().origin + OFFSET
 			if label_dict[p].is_showing:
 				label_dict[p].modulate.a = lerp(label_dict[p].modulate.a, 1, LERP_FACTOR)
 			else:
