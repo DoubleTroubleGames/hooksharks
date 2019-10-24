@@ -29,23 +29,10 @@ text = "P1"
 align = 1
 valign = 1
 
-[node name="Outline" type="Polygon2D" parent="."]
-visible = false
-position = Vector2( 2, 45 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, 0, 40, 0, 20, 15 )
-
-[node name="Inner" type="Polygon2D" parent="Outline"]
-position = Vector2( 4.175, 1.196 )
-scale = Vector2( 0.55, 0.55 )
-offset = Vector2( 8.55, 3 )
-antialiased = true
-polygon = PoolVector2Array( 0, 0, 40, 0, 20, 15 )
-
-[node name="player_arrow" type="TextureRect" parent="."]
+[node name="Arrow" type="TextureRect" parent="."]
 margin_left = 2.36811
 margin_top = 44.9962
 margin_right = 40.3681
 margin_bottom = 58.9962
 texture = ExtResource( 3 )
+

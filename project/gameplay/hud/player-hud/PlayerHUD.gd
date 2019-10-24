@@ -1,9 +1,7 @@
 extends CanvasLayer
 
-onready var label_dict = {1 : $P1Label, 2 : $P2Label, 3 : $P3Label, 4 : $P4Label}
-
-const LERP_FACTOR = .2
-const OFFSET = Vector2(-20, -110)
+onready var label_dict = {1 : $P1/Label, 2 : $P2/Label, 3 : $P3/Label, 4 : $P4/Label}
+onready var hud = [null, $P1, $P2, $P3, $P4]
 
 var player_dict
 var camera
@@ -23,19 +21,15 @@ func set_players(player_dict, camera):
 func _physics_process(delta):
 	for p in player_dict:
 		if player_dict[p] and is_instance_valid(player_dict[p]):
-			label_dict[p].rect_position = player_dict[p].get_global_transform_with_canvas().origin + OFFSET
-			if label_dict[p].is_showing:
-				label_dict[p].modulate.a = lerp(label_dict[p].modulate.a, 1, LERP_FACTOR)
-			else:
-				label_dict[p].modulate.a = lerp(label_dict[p].modulate.a, 0, LERP_FACTOR)
+			hud[p].rect_position = player_dict[p].get_global_transform_with_canvas().origin
 
 func show_all():
-	for i in range(1,5):
-		label_dict[i].is_showing = true
+	for i in range(4):
+		label_dict[i+1].is_showing = true
 
 func hide_all():
-	for i in range(1,5):
-		label_dict[i].is_showing = false
+	for i in range(4):
+		label_dict[i+1].is_showing = false
 
 func show_label(player_number):
 	label_dict[player_number].is_showing = true

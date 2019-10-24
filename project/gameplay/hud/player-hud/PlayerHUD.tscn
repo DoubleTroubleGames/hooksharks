@@ -6,31 +6,64 @@
 [node name="PlayerHUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="P1Label" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
+[node name="P1" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="P2Label" parent="." instance=ExtResource( 2 )]
+[node name="Label" parent="P1" instance=ExtResource( 2 )]
 editor/display_folded = true
+margin_left = -20.0
+margin_top = -110.0
+margin_right = -20.0
+margin_bottom = -110.0
 
-[node name="Label" parent="P2Label" index="0"]
+[node name="P2" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" parent="P2" instance=ExtResource( 2 )]
+editor/display_folded = true
+margin_left = -20.0
+margin_top = -110.0
+margin_right = -20.0
+margin_bottom = -110.0
+
+[node name="Label" parent="P2/Label" index="0"]
 text = "P2"
 
-[node name="P3Label" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
+[node name="P3" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Label" parent="P3Label" index="0"]
+[node name="Label" parent="P3" instance=ExtResource( 2 )]
+editor/display_folded = true
+margin_left = -20.0
+margin_top = -110.0
+margin_right = -20.0
+margin_bottom = -110.0
+
+[node name="Label" parent="P3/Label" index="0"]
 text = "P3"
 
-[node name="P4Label" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
+[node name="P4" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Label" parent="P4Label" index="0"]
+[node name="Label" parent="P4" instance=ExtResource( 2 )]
+editor/display_folded = true
+margin_left = -20.0
+margin_top = -110.0
+margin_right = -20.0
+margin_bottom = -110.0
+
+[node name="Label" parent="P4/Label" index="0"]
 text = "P4"
 
-[editable path="P1Label"]
 
-[editable path="P2Label"]
+[editable path="P1/Label"]
 
-[editable path="P3Label"]
+[editable path="P2/Label"]
 
-[editable path="P4Label"]
+[editable path="P3/Label"]
+
+[editable path="P4/Label"]
