@@ -4,9 +4,9 @@ onready var bar = $BackIndicator/Progress
 onready var anim_player = $BackIndicator/AnimationPlayer
 onready var FullscreenButton = $Resolution/Box/Fullscreen
 onready var ScreenSizeButton = $Resolution/Box/ScreenSize
-onready var SoundMaster = $Sound/Float/MasterVolume
-onready var SoundSFX = $Sound/Float/SFXVolume
-onready var SoundBGM = $Sound/Float/BGMVolume
+onready var SoundMaster = $Sound/Float/VScrollBar/MasterVolume/MasterVolume
+onready var SoundSFX = $Sound/Float/VScrollBar/SFXVolume/SFXVolume
+onready var SoundBGM = $Sound/Float/VScrollBar/BGMVolume/BGMVolume
 
 var resolutions = ['1920x1080', '1440x900', '1366x768', '1280x800']
 var back_indicator_up_speed = 100
@@ -29,6 +29,8 @@ func _ready():
 	for res in resolutions:
 		ScreenSizeButton.add_item(res)
 	ScreenSizeButton.selected = resolutions.find(native_size)
+	
+	$Resolution/Box/Fullscreen.grab_focus()
 
 
 func _physics_process(delta):

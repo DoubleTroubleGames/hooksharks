@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://menus/mode-select/ModeSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/images/ui/m_racingt_o.png" type="Texture" id=6]
 [ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/images/ui/button.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/ui/button_selected.png" type="Texture" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -132,6 +134,34 @@ tracks/1/keys = {
 "values": [ 4.0, 1.0 ]
 }
 
+[sub_resource type="Animation" id=6]
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1015, 184 ), Vector2( 1015, 160 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4.0, 1.0 ]
+}
+
 [node name="ModeSelect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -147,6 +177,7 @@ margin_right = 969.0
 margin_bottom = 912.0
 rect_rotation = -2.35661
 rect_pivot_offset = Vector2( 358.61, 325.188 )
+focus_neighbour_top = NodePath("../OptionsButton")
 focus_neighbour_right = NodePath("../RacingButton")
 disabled = true
 texture_normal = ExtResource( 5 )
@@ -166,6 +197,7 @@ margin_bottom = 909.0
 rect_rotation = 4.0
 rect_pivot_offset = Vector2( 352.534, 316.153 )
 focus_neighbour_left = NodePath("../ArenaButton")
+focus_neighbour_top = NodePath("../OptionsButton")
 disabled = true
 texture_normal = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
@@ -189,9 +221,26 @@ bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="OptionsButton" type="TextureButton" parent="."]
+margin_left = 1558.35
+margin_top = 130.912
+margin_right = 1558.35
+margin_bottom = 130.912
+focus_neighbour_bottom = NodePath("../RacingButton")
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
+expand = true
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OptionsButton"]
+autoplay = "idle"
+playback_speed = 0.6
+anims/idle = SubResource( 6 )
 [connection signal="focus_entered" from="ArenaButton" to="." method="_on_ArenaButton_focus_entered"]
 [connection signal="focus_exited" from="ArenaButton" to="." method="_on_ArenaButton_focus_exited"]
 [connection signal="pressed" from="ArenaButton" to="." method="_on_ArenaButton_pressed"]
 [connection signal="focus_entered" from="RacingButton" to="." method="_on_RacingButton_focus_entered"]
 [connection signal="focus_exited" from="RacingButton" to="." method="_on_RacingButton_focus_exited"]
 [connection signal="pressed" from="RacingButton" to="." method="_on_RacingButton_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]

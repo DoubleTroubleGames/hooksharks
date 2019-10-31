@@ -101,6 +101,7 @@ func _on_RacingButton_focus_entered():
 func _on_RacingButton_focus_exited():
 	pass
 
-func _on_Options_pressed():
+
+func _on_OptionsButton_pressed():
 	$Sounds/ConfirmSFX.play()
 	transition_to("res://menus/options-menu/OptionsMenu.tscn")
