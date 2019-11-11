@@ -3,9 +3,6 @@
 [ext_resource path="res://assets/images/effects/WaterDistortion.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/effects/noise.png" type="Texture" id=2]
 
-
-
-
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
@@ -53,12 +50,11 @@ void fragment(){
 
 [resource]
 shader = SubResource( 1 )
-shader_param/active = false
-shader_param/wave_length = 0.515
+shader_param/active = true
+shader_param/wave_length = 0.0
 shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
 shader_param/distortion_strength = 0.3
 shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 2 )
 shader_param/distortion = ExtResource( 1 )
-
