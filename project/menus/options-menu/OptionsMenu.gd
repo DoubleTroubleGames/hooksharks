@@ -40,6 +40,8 @@ func _physics_process(delta):
 		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
 	
 	if bar.value >= 100:
+		set_physics_process(false)
+		set_process_input(false)
 		Transition.transition_in()
 		yield(Transition, "finished")
 		get_tree().change_scene_to(load("res://menus/mode-select/ModeSelect.tscn"))

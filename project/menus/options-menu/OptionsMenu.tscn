@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://menus/options-menu/OptionsMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/images/ui/button.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=7]
 [ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/images/ui/best_with_mouse.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 150
@@ -25,7 +26,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 23
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -33,7 +34,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 8.0
 loop = true
 tracks/0/type = "value"
@@ -61,7 +62,7 @@ tracks/1/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 7.0
 loop = true
 tracks/0/type = "value"
@@ -87,6 +88,35 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, -1.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -0.5, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 503.507, 936.523 ), Vector2( 495.954, 930.795 ), Vector2( 503, 936 ) ]
 }
 
 [node name="OptionsMenu" type="Control"]
@@ -160,7 +190,7 @@ margin_bottom = 195.179
 rect_rotation = -0.144858
 focus_neighbour_top = NodePath("../../../Sound/Float/VScrollBar/BGMVolume/BGMVolume")
 focus_neighbour_bottom = NodePath("../../../Sound/Float/VScrollBar/MasterVolume/MasterVolume")
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 custom_constants/hseparation = 14
 text = "Fullscreen"
 
@@ -173,7 +203,7 @@ rect_rotation = -0.144858
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Resolution"]
 autoplay = "float"
-anims/float = SubResource( 3 )
+anims/float = SubResource( 4 )
 
 [node name="Sound" type="Control" parent="."]
 margin_left = 1200.0
@@ -296,9 +326,21 @@ ticks_on_borders = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sound"]
 autoplay = "float"
-anims/float = SubResource( 4 )
+anims/float = SubResource( 5 )
 
 [node name="BackIndicator" parent="." instance=ExtResource( 8 )]
+
+[node name="BestWithMouse" type="TextureRect" parent="."]
+margin_left = 499.987
+margin_top = 933.774
+margin_right = 1399.99
+margin_bottom = 1070.77
+rect_rotation = -0.213813
+texture = ExtResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BestWithMouse"]
+autoplay = "Idle"
+anims/Idle = SubResource( 6 )
 [connection signal="toggled" from="Resolution/Box/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="item_selected" from="Resolution/Box/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
 [connection signal="value_changed" from="Sound/Float/VScrollBar/MasterVolume/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
