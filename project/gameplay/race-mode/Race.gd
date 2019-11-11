@@ -39,7 +39,7 @@ func set_race_attributes(player):
 
 
 func respawn_player(player):
-	var check_n = $Stage.get_player_checkpoint(player)
+	var check = $Stage.get_player_checkpoint(player)
 	var RespTimer = player.get_node("RespawnTimer")
 	var final_position
 	var final_rotation
@@ -48,8 +48,7 @@ func respawn_player(player):
 	player.can_dive = true
 	player.is_respawning = true
 	player.get_node("InvencibilityTimer").stop()
-	if check_n > 0:
-		var check = $Stage.get_checkpoint(check_n)
+	if check.number > 0:
 		final_position = check.get_respawn_position(player.id + 1)
 		final_rotation = check.rotation
 	else:

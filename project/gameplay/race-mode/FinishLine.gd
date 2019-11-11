@@ -2,6 +2,8 @@ extends Node2D
 
 onready var stage = get_parent()
 
+var number = 0
+
 const WIDTH = 10
 const LINE_SPRITE_SIZE = 115
 const CONFETTI = preload("res://assets/effects/Confetti.tscn")
@@ -57,8 +59,8 @@ func _on_LineArea_area_entered(area):
 	
 	var player = area.get_parent().get_parent()
 	if not player.is_respawning:
-		var checkpoint_num = stage.get_player_checkpoint(player)
-		if checkpoint_num == total_checkpoint_number:
+		var checkpoint = stage.get_player_checkpoint(player)
+		if checkpoint.number == total_checkpoint_number:
 			stage.increase_player_lap(player)
 			stage.reset_player_checkpoint(player)
 			var lap_num = stage.get_player_lap(player)

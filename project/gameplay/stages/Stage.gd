@@ -12,7 +12,7 @@ export (Color)var water_foam = Color("25628b") setget set_water_foam
 const PLAYER = preload("res://gameplay/player/Player.tscn")
 const CAMERA_RATIO = .07
 
-var player_checkpoints = [0, 0, 0, 0]
+var player_checkpoints = [null, null, null, null]
 var player_laps = [0, 0, 0, 0]
 
 
@@ -79,6 +79,7 @@ func setup_players():
 		player.add_shark(RoundManager.character_map[i])
 		player.set_name(str("Player", i + 1))
 		players.append(player)
+		player_checkpoints[i] = $FinishLine
 		add_child(player)
 	
 	return players
@@ -100,9 +101,9 @@ func get_start_position(i):
 	return get_node(str("PlayerStartingPosition/StartingPosition", i))
 	
 
-func increase_player_checkpoint(player):
+func update_player_checkpoint(player, checkpoint):
 	var player_num = int(player.get_name()[-1])
-	player_checkpoints[player_num - 1] += 1
+	player_checkpoints[player_num - 1] = checkpoint
 
 
 func increase_player_lap(player):
@@ -112,7 +113,7 @@ func increase_player_lap(player):
 
 func reset_player_checkpoint(player):
 	var player_num = int(player.get_name()[-1])
-	player_checkpoints[player_num - 1] = 0
+	player_checkpoints[player_num - 1] = $FinishLine
 
 
 func reset_player_lap(player):
@@ -123,12 +124,6 @@ func reset_player_lap(player):
 func get_player_checkpoint(player):
 	var player_num = int(player.get_name()[-1])
 	return player_checkpoints[player_num - 1]
-
-func get_checkpoint(n):
-	for check in $Checkpoints.get_children():
-		if check.number == n:
-			return check
-	assert(false)
 
 func get_player_lap(player):
 	var player_num = int(player.get_name()[-1])
