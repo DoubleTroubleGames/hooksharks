@@ -300,5 +300,5 @@ func _on_player_paused(player):
 
 
 func _on_player_spawned(id):
-	$PlayerHUD.show_label(id+1)
+	$PlayerHUD.show_indicator(id+1)
 

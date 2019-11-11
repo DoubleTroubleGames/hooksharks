@@ -69,8 +69,10 @@ func respawn_player(player):
 	player.enable()
 	player.speed2 = Vector2(200 * cos(player.sprite.rotation), 200 *  sin(player.sprite.rotation))
 
+
 func _on_zoomed_in():
 	$PlayerHUD.hide_all()
+
 
 func _on_zoomed_out():
 	$PlayerHUD.show_all()

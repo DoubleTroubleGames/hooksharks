@@ -1,69 +1,20 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://gameplay/hud/player-hud/PlayerHUD.gd" type="Script" id=1]
-[ext_resource path="res://gameplay/hud/player-hud/PlayerLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/hud/player-hud/PX_HUD.tscn" type="PackedScene" id=2]
 
 [node name="PlayerHUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="P1" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="P1" parent="." instance=ExtResource( 2 )]
+label_string = "P1"
 
-[node name="Label" parent="P1" instance=ExtResource( 2 )]
-editor/display_folded = true
-margin_left = -20.0
-margin_top = -110.0
-margin_right = -20.0
-margin_bottom = -110.0
+[node name="P2" parent="." instance=ExtResource( 2 )]
+label_string = "P2"
 
-[node name="P2" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="P3" parent="." instance=ExtResource( 2 )]
+label_string = "P3"
 
-[node name="Label" parent="P2" instance=ExtResource( 2 )]
-editor/display_folded = true
-margin_left = -20.0
-margin_top = -110.0
-margin_right = -20.0
-margin_bottom = -110.0
+[node name="P4" parent="." instance=ExtResource( 2 )]
+label_string = "P4"
 
-[node name="Label" parent="P2/Label" index="0"]
-text = "P2"
-
-[node name="P3" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Label" parent="P3" instance=ExtResource( 2 )]
-editor/display_folded = true
-margin_left = -20.0
-margin_top = -110.0
-margin_right = -20.0
-margin_bottom = -110.0
-
-[node name="Label" parent="P3/Label" index="0"]
-text = "P3"
-
-[node name="P4" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Label" parent="P4" instance=ExtResource( 2 )]
-editor/display_folded = true
-margin_left = -20.0
-margin_top = -110.0
-margin_right = -20.0
-margin_bottom = -110.0
-
-[node name="Label" parent="P4/Label" index="0"]
-text = "P4"
-
-
-[editable path="P1/Label"]
-
-[editable path="P2/Label"]
-
-[editable path="P3/Label"]
-
-[editable path="P4/Label"]

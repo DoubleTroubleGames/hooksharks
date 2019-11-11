@@ -9,6 +9,7 @@ signal megahook_shot(player, direction)
 signal shook_screen(amount)
 signal paused(player)
 signal spawned(id)
+signal message_received(text)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
@@ -30,7 +31,6 @@ const NORMAL_BUBBLE = preload("res://assets/images/ui/bubble.png")
 const COOLDOWN_BUBBLE = preload("res://assets/images/ui/cd_bubble.png")
 const BLOOD_PARTICLE = preload("res://assets/effects/BloodParticles.tscn")
 const EXPLOSION_PARTICLE = preload("res://assets/effects/explosion/DeathExplosion.tscn")
-const PLAYER_LABEL = preload("res://gameplay/player/PlayerLabel.tscn")
 const AXIS_DEADZONE = .5
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36
@@ -68,7 +68,6 @@ var pull_dir = null
 var speed2 = Vector2(INITIAL_SPEED, 0)
 var is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
 		"up": false, "down": false, "pause": false}
-var label_stack = []
 var disabled = false
 
 func _ready():
@@ -247,18 +246,7 @@ func add_shark(shark_name):
 
 
 func add_label(text):
-	var label = PLAYER_LABEL.instance()
-	label.text = text
-	
-	if label_stack.empty():
-		display_label(label)
-	
-	label_stack.append(label)
-
-
-func display_label(label):
-	label.connect("display_ended", self, "_on_label_display_ended")
-	label_position.add_child(label)
+	emit_signal("message_received", text)
 
 func start_infinite_dive():
 	infinite_dive = true
@@ -490,12 +478,6 @@ func start_invincibility():
 	yield($InvencibilityTimer, "timeout")
 	invincible = false
 	$Shark.modulate.a = 1.0
-
-func _on_label_display_ended():
-	label_stack.pop_front()
-	
-	if not label_stack.empty():
-		display_label(label_stack.front())
 
 
 func _on_OverWater_area_exited(area):

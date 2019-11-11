@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-onready var label_dict = {1 : $P1/Label, 2 : $P2/Label, 3 : $P3/Label, 4 : $P4/Label}
 onready var hud = [null, $P1, $P2, $P3, $P4]
 
 var player_dict
@@ -10,12 +9,11 @@ func set_players(player_dict, camera):
 	self.camera = camera
 	self.player_dict = player_dict
 	for p in player_dict:
-		if player_dict[p] == null:
-			label_dict[p].hide()
+		if player_dict[p]:
+			player_dict[p].connect("message_received", hud[p], "add_message")
+			hud[p].set_player_color(RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]])
 		else:
-			label_dict[p].modulate = RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]]
-			label_dict[p].modulate.a = 0
-			label_dict[p].is_showing = false
+			hud[p].hide()
 
 
 func _physics_process(delta):
@@ -23,17 +21,20 @@ func _physics_process(delta):
 		if player_dict[p] and is_instance_valid(player_dict[p]):
 			hud[p].rect_position = player_dict[p].get_global_transform_with_canvas().origin
 
+
 func show_all():
 	for i in range(4):
-		label_dict[i+1].is_showing = true
+		hud[i+1].indicator_showing = true
+
 
 func hide_all():
 	for i in range(4):
-		label_dict[i+1].is_showing = false
+		hud[i+1].indicator_showing = false
 
-func show_label(player_number):
-	label_dict[player_number].is_showing = true
+
+func show_indicator(player_number):
+	hud[player_number].indicator_showing = true
 
 
 func hide_label(player_number):
-	label_dict[player_number].is_showing = false
+	hud[player_number].indicator_showing = false
