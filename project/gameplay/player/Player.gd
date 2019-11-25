@@ -14,7 +14,6 @@ signal message_received(text)
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
 onready var dive_meter = $DiveMeter/Bar
-onready var label_position = $LabelPosition
 onready var sprite = $Shark
 onready var sprite_animation = $Shark/AnimationPlayer
 onready var area = $Shark/OverWaterArea
