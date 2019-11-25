@@ -381,7 +381,11 @@ func hook_collision(from_hook):
 	BP.position = self.position
 	get_parent().add_child(BP)
 	$HookTimer.start()
-	$Shark/DamageSFX.play()
+	
+	#Play a random hit sfx
+	var sfx_number = randi() % $Shark/HitSFXs.get_child_count()
+	$Shark/HitSFXs.get_child(sfx_number).play()
+	
 	stunned = true
 	pull_dir = (from_hook.player.position - \
 			from_hook.position).normalized()

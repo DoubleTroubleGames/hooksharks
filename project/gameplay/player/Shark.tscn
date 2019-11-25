@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/images/characters/jackie/pirate_above.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/characters/jackie/pirate_under.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/characters/jackie/rider.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/elements/hook.png" type="Texture" id=4]
 [ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sound/sfx/explosion1.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sound/sfx/explosion3.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/loc_narrator_death_match.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/sfx/explosion1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/explosion3.wav" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dive"
@@ -439,20 +440,23 @@ position = Vector2( -500, 150 )
 ]]
 position = Vector2( 300, 0 )
 
-[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
-
 [node name="DeathSFXs" type="Node" parent="."]
 
 [node name="SFX1" type="AudioStreamPlayer" parent="DeathSFXs"]
 stream = ExtResource( 5 )
 
+[node name="HitSFXs" type="Node" parent="."]
+
+[node name="SFX1" type="AudioStreamPlayer" parent="HitSFXs"]
+stream = ExtResource( 6 )
+
 [node name="ExplosionSFXs" type="Node" parent="."]
 
 [node name="ExplosionSFX1" type="AudioStreamPlayer" parent="ExplosionSFXs"]
-stream = ExtResource( 6 )
-
-[node name="ExplosionSFX2" type="AudioStreamPlayer" parent="ExplosionSFXs"]
 stream = ExtResource( 7 )
 
-[node name="ExplosionSFX3" type="AudioStreamPlayer" parent="ExplosionSFXs"]
+[node name="ExplosionSFX2" type="AudioStreamPlayer" parent="ExplosionSFXs"]
 stream = ExtResource( 8 )
+
+[node name="ExplosionSFX3" type="AudioStreamPlayer" parent="ExplosionSFXs"]
+stream = ExtResource( 9 )
