@@ -9,7 +9,7 @@ signal megahook_shot(player, direction)
 signal shook_screen(amount)
 signal paused(player)
 signal spawned(id)
-signal message_received(text)
+signal message_sent(text, color)
 signal dive_value_changed(value)
 signal dive_texture_changed(texture)
 signal dive_visibility_changed(visibility)
@@ -249,8 +249,8 @@ func add_shark(shark_name):
 	add_child(new)
 
 
-func add_label(text):
-	emit_signal("message_received", text)
+func add_label(text, color = Color.white):
+	emit_signal("message_sent", text, color)
 
 
 func start_infinite_dive():

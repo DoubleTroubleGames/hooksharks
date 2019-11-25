@@ -1,3 +1,4 @@
+class_name TrailPower
 extends "res://gameplay/objects/powerups/GenericPower.gd"
 
 var player
@@ -18,9 +19,11 @@ func activate():
 	yield($Timer, "timeout")
 	deactivate()
 
+
 func deactivate():
 	player.create_trail = false
 	queue_free()
+
 
 func _process(delta):
 	$Label.set_text("%.1f" % $Timer.time_left)

@@ -30,4 +30,3 @@ margin_bottom = 99.0
 custom_fonts/font = SubResource( 1 )
 text = "4.0"
 align = 1
-

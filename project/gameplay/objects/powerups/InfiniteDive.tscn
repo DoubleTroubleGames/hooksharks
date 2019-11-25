@@ -12,7 +12,7 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="InfiniteDive" type="Node2D"]
-modulate = Color( 0.760784, 0.917647, 0.996078, 1 )
+modulate = Color( 0.760784, 0.917647, 1, 1 )
 z_index = 2
 script = ExtResource( 1 )
 power_name = "Infinite Dive"

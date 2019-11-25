@@ -1,3 +1,4 @@
+class_name InfiniteDive
 extends "res://gameplay/objects/powerups/GenericPower.gd"
 
 var player

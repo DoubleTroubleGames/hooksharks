@@ -37,9 +37,10 @@ func set_player_color(c):
 	indicator.modulate.a = 0
 
 
-func add_message(text):
+func add_message(text, color):
 	var message = MESSAGE_LABEL.instance()
 	message.text = text
+#	message.theme.get_type_list() = color
 	
 	if message_stack.empty():
 		display(message)

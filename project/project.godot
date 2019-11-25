@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "InfiniteDive",
+"language": "GDScript",
+"path": "res://gameplay/objects/powerups/InfiniteDive.gd"
+}, {
+"base": "Node2D",
+"class": "TrailPower",
+"language": "GDScript",
+"path": "res://gameplay/objects/powerups/TrailPower.gd"
+} ]
 _global_script_class_icons={
-
+"InfiniteDive": "",
+"TrailPower": ""
 }
 
 [application]
