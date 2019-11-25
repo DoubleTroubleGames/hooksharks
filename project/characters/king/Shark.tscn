@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/characters/king/yellow_above.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/images/characters/king/rider.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/characters/king/hook_king.png" type="Texture" id=5]
 [ext_resource path="res://assets/sound/sfx/pirate king hit.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/sfx/king/loc_kinghook_die_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/sfx/king/loc_kinghook_die_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/king/loc_kinghook_die_3.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/sfx/king/loc_kinghook_die_4.wav" type="AudioStream" id=10]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 6 )
@@ -40,3 +44,15 @@ visible = false
 [node name="DamageSFX" parent="." index="8"]
 stream = SubResource( 1 )
 volume_db = -4.039
+
+[node name="SFX1" parent="DeathSFXs" index="0"]
+stream = ExtResource( 7 )
+
+[node name="SFX2" type="AudioStreamPlayer" parent="DeathSFXs" index="1"]
+stream = ExtResource( 8 )
+
+[node name="SFX3" type="AudioStreamPlayer" parent="DeathSFXs" index="2"]
+stream = ExtResource( 9 )
+
+[node name="SFX4" type="AudioStreamPlayer" parent="DeathSFXs" index="3"]
+stream = ExtResource( 10 )

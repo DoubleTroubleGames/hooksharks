@@ -79,7 +79,8 @@ func setup_players():
 		player.add_shark(RoundManager.character_map[i])
 		player.set_name(str("Player", i + 1))
 		players.append(player)
-		player_checkpoints[i] = $FinishLine
+		if has_node("FinishLine"):
+			player_checkpoints[i] = $FinishLine
 		add_child(player)
 	
 	return players
