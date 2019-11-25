@@ -1,31 +1,30 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/effects/trails/WaterParticles.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/images/ui/circle.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/ui/bubble.png" type="Texture" id=5]
-[ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sound/sfx/emerge.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/sound/old sounds/scream3.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sound/sfx/emerge.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/old sounds/scream3.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=13]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
-audio_stream = ExtResource( 6 )
+audio_stream = ExtResource( 4 )
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
-audio_stream = ExtResource( 7 )
+audio_stream = ExtResource( 5 )
 
 [sub_resource type="AudioStreamRandomPitch" id=3]
-audio_stream = ExtResource( 9 )
+audio_stream = ExtResource( 7 )
 
 [node name="Player" type="Node2D"]
+position = Vector2( 0, -1 )
 z_index = 1
 script = ExtResource( 1 )
 __meta__ = {
@@ -40,24 +39,6 @@ movement_type = 1
 visible = false
 position = Vector2( 30, 0 )
 rotation = 1.5708
-
-[node name="DiveMeter" type="Node2D" parent="."]
-visible = false
-position = Vector2( 0, -70 )
-scale = Vector2( 0.07, 0.07 )
-z_index = 7
-
-[node name="Bar" type="TextureProgress" parent="DiveMeter"]
-margin_left = -256.0
-margin_top = -256.0
-margin_right = 256.0
-margin_bottom = 256.0
-rect_pivot_offset = Vector2( 256, 256 )
-mouse_filter = 2
-value = 100.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 5 )
-fill_mode = 4
 
 [node name="SFX" type="Node2D" parent="."]
 __meta__ = {
@@ -76,7 +57,7 @@ volume_db = -4.072
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 8 )
+stream = ExtResource( 6 )
 volume_db = -3.0
 bus = "SFX"
 
@@ -86,32 +67,32 @@ volume_db = -4.289
 bus = "SFX"
 
 [node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 10 )
+stream = ExtResource( 8 )
 volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX2" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 11 )
+stream = ExtResource( 9 )
 volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX3" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 12 )
+stream = ExtResource( 10 )
 volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX4" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 13 )
+stream = ExtResource( 11 )
 volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX5" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 14 )
+stream = ExtResource( 12 )
 volume_db = -6.0
 bus = "SFX"
 
 [node name="ScreamSFX6" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 15 )
+stream = ExtResource( 13 )
 volume_db = -6.0
 bus = "SFX"
 
@@ -131,4 +112,3 @@ one_shot = true
 [node name="InvencibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-

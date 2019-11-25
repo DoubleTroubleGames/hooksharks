@@ -11,6 +11,9 @@ func set_players(player_dict, camera):
 	for p in player_dict:
 		if player_dict[p]:
 			player_dict[p].connect("message_received", hud[p], "add_message")
+			player_dict[p].connect("dive_value_changed", hud[p], "on_dive_value_changed")
+			player_dict[p].connect("dive_texture_changed", hud[p], "on_dive_texture_changed")
+			player_dict[p].connect("dive_visibility_changed", hud[p], "on_dive_visibility_changed")
 			hud[p].set_player_color(RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]])
 		else:
 			hud[p].hide()

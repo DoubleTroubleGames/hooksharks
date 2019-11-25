@@ -23,9 +23,9 @@ script = ExtResource( 1 )
 
 [node name="Indicator" type="VBoxContainer" parent="."]
 margin_left = -28.0
-margin_top = -120.0
+margin_top = -100.0
 margin_right = 28.0
-margin_bottom = -57.0
+margin_bottom = -37.0
 custom_constants/separation = -5
 alignment = 1
 
@@ -49,8 +49,11 @@ margin_top = -70.0
 margin_bottom = -70.0
 
 [node name="DiveBar" type="TextureProgress" parent="."]
-margin_right = 66.0
-margin_bottom = 66.0
+margin_left = 20.0
+margin_top = -60.0
+margin_right = 86.0
+margin_bottom = 6.0
+rect_scale = Vector2( 0.7, 0.7 )
 mouse_filter = 2
 value = 100.0
 texture_under = ExtResource( 4 )

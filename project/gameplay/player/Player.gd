@@ -10,10 +10,12 @@ signal shook_screen(amount)
 signal paused(player)
 signal spawned(id)
 signal message_received(text)
+signal dive_value_changed(value)
+signal dive_texture_changed(texture)
+signal dive_visibility_changed(visibility)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
-onready var dive_meter = $DiveMeter/Bar
 onready var sprite = $Shark
 onready var sprite_animation = $Shark/AnimationPlayer
 onready var area = $Shark/OverWaterArea
@@ -26,8 +28,8 @@ enum MovementTypes {DIRECT, TANK}
 
 const TRAIL = preload("res://assets/effects/trails/Trail.tscn")
 const DIVE_PARTICLES = preload("res://assets/effects/DiveParticles.tscn")
-const NORMAL_BUBBLE = preload("res://assets/images/ui/bubble.png")
-const COOLDOWN_BUBBLE = preload("res://assets/images/ui/cd_bubble.png")
+const NORMAL_BUBBLE = preload("res://assets/images/ui/divebar-bubble.png")
+const COOLDOWN_BUBBLE = preload("res://assets/images/ui/divebar-bubble-cd.png")
 const BLOOD_PARTICLE = preload("res://assets/effects/BloodParticles.tscn")
 const EXPLOSION_PARTICLE = preload("res://assets/effects/explosion/DeathExplosion.tscn")
 const AXIS_DEADZONE = .5
@@ -54,6 +56,7 @@ var gamepad_id = -1
 var device_name = ""
 var last_trail_pos = Vector2(0, 0)
 var trail = TRAIL.instance()
+var dive_value = 100
 var diving = false
 var can_dive = true
 var dive_on_cooldown = false
@@ -76,8 +79,10 @@ func _ready():
 		movement_type = MovementTypes.TANK
 	
 	speed2 = speed2.rotated(initial_dir.angle())
-	dive_meter.texture_progress = NORMAL_BUBBLE
-	dive_meter.value = 100
+	
+	emit_signal("dive_value_changed", 100)
+	emit_signal("dive_texture_changed", NORMAL_BUBBLE)
+	
 	set_physics_process(false)
 	set_process_input(false)
 
@@ -247,38 +252,48 @@ func add_shark(shark_name):
 func add_label(text):
 	emit_signal("message_received", text)
 
+
 func start_infinite_dive():
 	infinite_dive = true
 	dive_on_cooldown = false
-	dive_meter.value = 100
+	dive_value = 100
+	emit_signal("dive_value_changed", dive_value)
+
 
 func update_dive_meter(delta):
 	if infinite_dive:
 		return
 	elif dive_on_cooldown:
-		dive_meter.value += DIVE_COOLDOWN_SPEED * delta
-		if dive_meter.value >= 100:
+		dive_value += DIVE_COOLDOWN_SPEED * delta
+		if dive_value >= 100:
 			reset_dive_meter()
 	elif diving:
-		dive_meter.value -= DIVE_USE_SPEED * delta
-		if dive_meter.value <= 0:
-			dive_meter.value = 0
-			dive_meter.texture_progress = COOLDOWN_BUBBLE
-			dive_on_cooldown = true 
+		dive_value -= DIVE_USE_SPEED * delta
+		if dive_value <= 0:
+			dive_value = 0
+			emit_signal("dive_texture_changed", COOLDOWN_BUBBLE)
+			dive_on_cooldown = true
 			emerge()
 	else:
-		dive_meter.value += DIVE_USE_SPEED * delta
-		if dive_meter.value >= 100:
-			dive_meter.value = 100
-	if dive_meter.value < 100:
-		dive_meter.show()
+		dive_value += DIVE_USE_SPEED * delta
+		if dive_value >= 100:
+			dive_value = 100
+	
+	emit_signal("dive_value_changed", dive_value)
+	
+	if dive_value < 100:
+		emit_signal("dive_visibility_changed", true)
 	else:
-		dive_meter.hide()
+		emit_signal("dive_visibility_changed", false)
+
 
 func reset_dive_meter():
-	dive_meter.value = 100
+	dive_value = 100
 	dive_on_cooldown = false
-	dive_meter.texture_progress = NORMAL_BUBBLE
+	
+	emit_signal("dive_value_changed", dive_value)
+	emit_signal("dive_texture_changed", NORMAL_BUBBLE)
+
 
 func get_rider_direction():
 	if gamepad_id != -1:
@@ -328,7 +343,7 @@ func die(play_sfx):
 	get_parent().add_child(EP)
 	sprite_animation.stop(false)
 	reset_dive_meter()
-	dive_meter.hide()
+	emit_signal("dive_visibility_changed", false)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	if play_sfx and $Shark/ExplosionSFXs.get_child_count() > 0:
 		var sfx_number = randi() % $Shark/ExplosionSFXs.get_child_count()
