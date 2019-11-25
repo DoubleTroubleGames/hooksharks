@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rider.png-a0796cfd8c2cb9c76fd18ebc71d09659.stex"
+path="res://.import/portrait.png-257912f0c54eddcf82ef998bce34d301.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/eskimo/rider.png"
-dest_files=[ "res://.import/rider.png-a0796cfd8c2cb9c76fd18ebc71d09659.stex" ]
+source_file="res://assets/images/characters/outsider/portrait.png"
+dest_files=[ "res://.import/portrait.png-257912f0c54eddcf82ef998bce34d301.stex" ]
 
 [params]
 

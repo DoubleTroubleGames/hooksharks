@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pirate_above.png-61df48a398b34feb3545c8f0b13839fe.stex"
+path="res://.import/portrait_grey.png-c29938b5b725ffe3402819247df66b84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate/pirate_above.png"
-dest_files=[ "res://.import/pirate_above.png-61df48a398b34feb3545c8f0b13839fe.stex" ]
+source_file="res://assets/images/characters/jackie/portrait_grey.png"
+dest_files=[ "res://.import/portrait_grey.png-c29938b5b725ffe3402819247df66b84.stex" ]
 
 [params]
 

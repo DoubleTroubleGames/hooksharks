@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/portrait.png-6f6c66b7023ef9e3558595fdf832575a.stex"
+path="res://.import/portrait.png-d2bcc67d689c35f43810199f52c82ff6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/eskimo/portrait.png"
-dest_files=[ "res://.import/portrait.png-6f6c66b7023ef9e3558595fdf832575a.stex" ]
+source_file="res://assets/images/characters/jackie/portrait.png"
+dest_files=[ "res://.import/portrait.png-d2bcc67d689c35f43810199f52c82ff6.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rope_chain.png-95197f256ac105d4a8aa87be19816243.stex"
+path="res://.import/portrait_grey.png-2006079ab105d75f686e201f52757200.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate/rope_chain.png"
-dest_files=[ "res://.import/rope_chain.png-95197f256ac105d4a8aa87be19816243.stex" ]
+source_file="res://assets/images/characters/outsider/portrait_grey.png"
+dest_files=[ "res://.import/portrait_grey.png-2006079ab105d75f686e201f52757200.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

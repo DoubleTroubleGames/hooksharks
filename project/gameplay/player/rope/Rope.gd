@@ -6,10 +6,10 @@ const FORCE = 500
 const MAX_COILING = 10.0
 const MAX_LENGTH = 800.0
 const N_POINTS = 25
-const TEXTURES = {"pirate": preload("res://assets/images/characters/pirate/rope_chain.png"),
+const TEXTURES = {"jackie": preload("res://assets/images/characters/jackie/rope_chain.png"),
 		"drill": preload("res://assets/images/characters/drill/rope_black.png"),
 		"king": preload("res://assets/images/characters/king/rope_golden_chain.png"),
-		"eskimo": preload("res://assets/images/characters/eskimo/rope_simple.png")}
+		"outsider": preload("res://assets/images/characters/outsider/rope_simple.png")}
 
 var hook = null
 var player = null

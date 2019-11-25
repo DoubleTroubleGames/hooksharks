@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rope_simple.png-cec8d34ef2c4c686c9a57d747faf48d1.stex"
+path="res://.import/rider.png-4b6e0425ce88c508265b1339991535fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/eskimo/rope_simple.png"
-dest_files=[ "res://.import/rope_simple.png-cec8d34ef2c4c686c9a57d747faf48d1.stex" ]
+source_file="res://assets/images/characters/outsider/rider.png"
+dest_files=[ "res://.import/rider.png-4b6e0425ce88c508265b1339991535fa.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

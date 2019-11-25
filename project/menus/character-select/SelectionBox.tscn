@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/images/ui/boarder.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/ui/cover2.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/ui/cover.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/characters/pirate/portrait.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/characters/jackie/portrait.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/characters/drill/portrait.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/ui/grid.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/ui/gate.png" type="Texture" id=8]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/sound/sfx/pirate2 select.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/sound/sfx/drill/drill select.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/sound/sfx/king/king select.wav" type="AudioStream" id=19]
+
 
 
 

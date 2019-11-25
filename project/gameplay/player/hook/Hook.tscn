@@ -4,8 +4,9 @@
 [ext_resource path="res://assets/images/elements/hook.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/characters/drill/drill_hook.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/characters/king/hook_king.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/characters/eskimo/hook_eskimo.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/characters/outsider/hook_eskimo.png" type="Texture" id=5]
 [ext_resource path="res://assets/sound/sfx/hook back loop.wav" type="AudioStream" id=6]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 22, 0, -15, 10, -15, -10 )

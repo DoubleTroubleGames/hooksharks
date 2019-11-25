@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/portrait_grey.png-c58b5c9351419a91c2653bd055e25826.stex"
+path="res://.import/green.png-32c787df11df6aa3c2babbb343f9f358.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/eskimo/portrait_grey.png"
-dest_files=[ "res://.import/portrait_grey.png-c58b5c9351419a91c2653bd055e25826.stex" ]
+source_file="res://assets/images/characters/outsider/green.png"
+dest_files=[ "res://.import/green.png-32c787df11df6aa3c2babbb343f9f358.stex" ]
 
 [params]
 

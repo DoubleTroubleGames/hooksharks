@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/portrait_grey.png-14bf9dddd7a4e58e0b3efe209a63ec84.stex"
+path="res://.import/rope_chain.png-19dc51332f6ade5fc2e13bb154e53811.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate/portrait_grey.png"
-dest_files=[ "res://.import/portrait_grey.png-14bf9dddd7a4e58e0b3efe209a63ec84.stex" ]
+source_file="res://assets/images/characters/jackie/rope_chain.png"
+dest_files=[ "res://.import/rope_chain.png-19dc51332f6ade5fc2e13bb154e53811.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

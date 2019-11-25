@@ -7,13 +7,13 @@ signal tried_to_start
 
 enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
 
-const CHARACTERS = ["pirate", "drill", "king", "eskimo"]
+const CHARACTERS = ["jackie", "drill", "king", "outsider"]
 const DEADZONE = .55
 const TWN_TIME = 0.6
 
-onready var char_sfx = {"pirate": $Sounds/PirateSFX,
+onready var char_sfx = {"jackie": $Sounds/PirateSFX,
 		"drill": $Sounds/DrillSFX, "king": $Sounds/KingSFX,
-		"eskimo": $Sounds/GreenPirateSFX}
+		"outsider": $Sounds/GreenPirateSFX}
 
 var available_chars = CHARACTERS.duplicate()
 var char_index = 0

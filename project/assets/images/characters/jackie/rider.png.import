@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pirate_under.png-8821b171976e61ec4dfd22a95cdf459b.stex"
+path="res://.import/rider.png-14912cadc44b140aefd9ee85ebe47561.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate/pirate_under.png"
-dest_files=[ "res://.import/pirate_under.png-8821b171976e61ec4dfd22a95cdf459b.stex" ]
+source_file="res://assets/images/characters/jackie/rider.png"
+dest_files=[ "res://.import/rider.png-14912cadc44b140aefd9ee85ebe47561.stex" ]
 
 [params]
 

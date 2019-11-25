@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rider.png-83ef139ef33b22732d49163251dcb77c.stex"
+path="res://.import/hook_eskimo.png-78b9a098cef725f755941fbe7b560cef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/pirate/rider.png"
-dest_files=[ "res://.import/rider.png-83ef139ef33b22732d49163251dcb77c.stex" ]
+source_file="res://assets/images/characters/outsider/hook_eskimo.png"
+dest_files=[ "res://.import/hook_eskimo.png-78b9a098cef725f755941fbe7b560cef.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hook_eskimo.png-5ecaf282a727c6cdabe6f73475ba2dc3.stex"
+path="res://.import/green_above.png-1faf33b32eefe5bb102bced1c221e537.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/characters/eskimo/hook_eskimo.png"
-dest_files=[ "res://.import/hook_eskimo.png-5ecaf282a727c6cdabe6f73475ba2dc3.stex" ]
+source_file="res://assets/images/characters/outsider/green_above.png"
+dest_files=[ "res://.import/green_above.png-1faf33b32eefe5bb102bced1c221e537.stex" ]
 
 [params]
 

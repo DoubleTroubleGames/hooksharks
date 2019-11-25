@@ -8,7 +8,7 @@ func test_setup():
 	RoundManager.players_total = 2
 	RoundManager.device_map.append("keyboard")
 	RoundManager.device_map.append("test_keyboard")
-	RoundManager.character_map.append("pirate")
+	RoundManager.character_map.append("jackie")
 	RoundManager.character_map.append("drill")
 	RoundManager.reset_round()
 
