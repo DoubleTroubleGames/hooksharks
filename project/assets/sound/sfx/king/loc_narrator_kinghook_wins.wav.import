@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loc_narrator_kinghook_wins.wav-f2d1446cb86a57e74beb9461f1a8bec3.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/king/loc_narrator_kinghook_wins.wav"
+dest_files=[ "res://.import/loc_narrator_kinghook_wins.wav-f2d1446cb86a57e74beb9461f1a8bec3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

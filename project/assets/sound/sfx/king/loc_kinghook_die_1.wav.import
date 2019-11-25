@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loc_kinghook_die_1.wav-e7e14b05c86b45f5feb7df315d55a70f.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/king/loc_kinghook_die_1.wav"
+dest_files=[ "res://.import/loc_kinghook_die_1.wav-e7e14b05c86b45f5feb7df315d55a70f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

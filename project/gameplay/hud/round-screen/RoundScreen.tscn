@@ -15,9 +15,11 @@
 [ext_resource path="res://assets/sound/sfx/gate opens.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sound/sfx/pirate1.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/sfx/pirate2.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sound/sfx/drill.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/sound/sfx/king.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/sfx/drill/drill.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sound/sfx/king/king.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/sound/bgm/endgame.ogg" type="AudioStream" id=18]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 256

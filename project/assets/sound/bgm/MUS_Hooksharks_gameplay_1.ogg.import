@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MUS_Hooksharks_gameplay_1.ogg-3488874b499117e063200f2b54764c9c.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/bgm/MUS_Hooksharks_gameplay_1.ogg"
+dest_files=[ "res://.import/MUS_Hooksharks_gameplay_1.ogg-3488874b499117e063200f2b54764c9c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

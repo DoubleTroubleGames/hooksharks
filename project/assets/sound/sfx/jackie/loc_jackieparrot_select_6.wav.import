@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loc_jackieparrot_select_6.wav-73de4c5290bcc6feb7195c429ddb4a7b.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/jackie/loc_jackieparrot_select_6.wav"
+dest_files=[ "res://.import/loc_jackieparrot_select_6.wav-73de4c5290bcc6feb7195c429ddb4a7b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

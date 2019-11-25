@@ -17,8 +17,10 @@
 [ext_resource path="res://assets/sound/sfx/menu_back.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/sfx/pirate1 select.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/sound/sfx/pirate2 select.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sound/sfx/drill select.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/sound/sfx/king select.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/sfx/drill/drill select.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sound/sfx/king/king select.wav" type="AudioStream" id=19]
+
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
