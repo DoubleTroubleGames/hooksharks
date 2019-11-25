@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/images/characters/outsider/hook_eskimo.png" type="Texture" id=5]
 [ext_resource path="res://assets/sound/sfx/hook back loop.wav" type="AudioStream" id=6]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 22, 0, -15, 10, -15, -10 )
 
@@ -17,7 +16,7 @@ audio_stream = ExtResource( 6 )
 [node name="Hook" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Pirate" type="Sprite" parent="."]
+[node name="Jackie" type="Sprite" parent="."]
 visible = false
 scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 2 )
@@ -35,7 +34,7 @@ scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 offset = Vector2( -75, -2 )
 
-[node name="Eskimo" type="Sprite" parent="."]
+[node name="Outsider" type="Sprite" parent="."]
 visible = false
 scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 5 )
