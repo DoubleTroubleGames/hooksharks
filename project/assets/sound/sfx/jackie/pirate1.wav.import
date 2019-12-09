@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/pirate 1.wav-2beda7774c897a86f53413ffc559d37b.sample"
+path="res://.import/pirate1.wav-e815ef086a68b57ed2d182b314275770.sample"
 
 [deps]
 
-source_file="res://assets/sound/sfx/pirate 1.wav"
-dest_files=[ "res://.import/pirate 1.wav-2beda7774c897a86f53413ffc559d37b.sample" ]
+source_file="res://assets/sound/sfx/jackie/pirate1.wav"
+dest_files=[ "res://.import/pirate1.wav-e815ef086a68b57ed2d182b314275770.sample" ]
 
 [params]
 

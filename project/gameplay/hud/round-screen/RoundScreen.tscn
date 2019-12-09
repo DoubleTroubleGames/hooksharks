@@ -13,11 +13,13 @@
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/sound/sfx/gate closes.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sound/sfx/gate opens.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sound/sfx/pirate1.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sound/sfx/pirate2.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sound/sfx/jackie/pirate1.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/sfx/drill/pirate2.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sound/sfx/drill/drill.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/sound/sfx/king/king.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/sound/bgm/endgame.ogg" type="AudioStream" id=18]
+
+
 
 
 

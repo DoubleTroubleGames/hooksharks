@@ -11,9 +11,9 @@ const CHARACTERS = ["jackie", "drill", "king", "outsider"]
 const DEADZONE = .55
 const TWN_TIME = 0.6
 
-onready var char_sfx = {"jackie": $Sounds/PirateSFX,
-		"drill": $Sounds/DrillSFX, "king": $Sounds/KingSFX,
-		"outsider": $Sounds/GreenPirateSFX}
+onready var char_sfx = {"jackie": $Sounds/JackieSFXs,
+		"drill": $Sounds/DrillSFXs, "king": $Sounds/KingSFXs,
+		"outsider": $Sounds/OutsiderSFXs}
 
 var available_chars = CHARACTERS.duplicate()
 var char_index = 0
@@ -53,7 +53,9 @@ func _input(event):
 			if CHARACTERS[char_index] in available_chars:
 				change_state(States.READY)
 				$Sounds/ConfirmSFX.play()
-				char_sfx[CHARACTERS[char_index]].play()
+				var sfxs = char_sfx[CHARACTERS[char_index]]
+				var sfx_number = randi() % sfxs.get_child_count()
+				sfxs.get_child(sfx_number).play()
 			else:
 				$Sounds/CancelSFX.play()
 		elif state == States.READY or state == States.LOCKED:
