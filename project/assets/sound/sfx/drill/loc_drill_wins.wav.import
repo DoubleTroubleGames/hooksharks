@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loc_drill_wins.wav-6c7d57ebd8302429526bcdbf9f6c927a.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/drill/loc_drill_wins.wav"
+dest_files=[ "res://.import/loc_drill_wins.wav-6c7d57ebd8302429526bcdbf9f6c927a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -8,4 +8,3 @@
 script = ExtResource( 2 )
 total_stages = 10
 TestStage = ExtResource( 3 )
-

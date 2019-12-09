@@ -13,9 +13,9 @@ onready var round_number = $Background/Round/Number
 onready var round_label = $Background/Round/Label
 onready var tween = $Tween
 
-onready var char_sfx = {"jackie": $PirateWinSFX,
-		"drill": $DrillWinSFX, "king": $KingWinSFX,
-		"outsider": $GreenPirateWinSFX}
+onready var char_sfx = {"jackie": $JackieSFXs,
+		"drill": $DrillSFXs, "king": $KingSFXs,
+		"outsider": $OutsiderSFXs}
 
 const TRIVIA = [
 	"Great white sharks aren't so great after all",
@@ -168,7 +168,8 @@ func win_animation(match_winner):
 	var button_pos = 880
 	buttons.show()
 	
-	char_sfx[RoundManager.character_map[match_winner]].play()
+	char_sfx[RoundManager.character_map[match_winner]].get_node("Win").play()
+	char_sfx[RoundManager.character_map[match_winner]].get_node("").play()
 	
 	# BGM change
 	Sound.fade_out(Sound.battle_bgm, $WinMatchBGM)
