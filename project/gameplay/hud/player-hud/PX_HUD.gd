@@ -40,7 +40,6 @@ func set_player_color(c):
 func add_message(text, color):
 	var message = MESSAGE_LABEL.instance()
 	message.text = text
-#	message.theme.get_type_list() = color
 	
 	if message_stack.empty():
 		display(message)
@@ -60,13 +59,13 @@ func _on_display_ended():
 		display(message_stack.front())
 
 
-func on_dive_value_changed(value):
+func _on_dive_value_changed(value):
 	dive_bar.value = value
 
 
-func on_dive_texture_changed(texture):
+func _on_dive_texture_changed(texture):
 	dive_bar.texture_progress = texture
 
 
-func on_dive_visibility_changed(visibility):
+func _on_dive_visibility_changed(visibility):
 	dive_bar_showing = visibility

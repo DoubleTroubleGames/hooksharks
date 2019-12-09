@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/ui/divebar-circle.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/ui/divebar-bubble.png" type="Texture" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -14,7 +14,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 35
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -40,7 +40,7 @@ alignment = 1
 [node name="Label" type="Label" parent="Indicator"]
 margin_right = 56.0
 margin_bottom = 53.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "PX"
 align = 1
 valign = 1
@@ -76,7 +76,7 @@ rect_min_size = Vector2( 200, 0 )
 [node name="Label2" type="Label" parent="VBoxContainer"]
 margin_right = 200.0
 margin_bottom = 59.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "4.0"
 align = 1
 
@@ -84,7 +84,7 @@ align = 1
 margin_top = 63.0
 margin_right = 200.0
 margin_bottom = 122.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "4.0"
 align = 1
 
@@ -92,6 +92,6 @@ align = 1
 margin_top = 126.0
 margin_right = 200.0
 margin_bottom = 185.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "4.0"
 align = 1
