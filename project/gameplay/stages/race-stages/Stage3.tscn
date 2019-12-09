@@ -12,7 +12,7 @@
 [ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=10]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=11]
 
-[node name="Stage" instance=ExtResource( 1 )]
+[node name="Stage" index="0" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1150, -1000 )
 stage_end = Vector2( 4700, 3150 )
 stage_name = "Fin Twister"
@@ -250,9 +250,6 @@ position = Vector2( 1836.7, 1287.99 )
 [node name="Powerup4" parent="PowerUps" index="3" instance=ExtResource( 8 )]
 position = Vector2( 2075.71, 1071.11 )
 
-[node name="Checkpoints" parent="." index="15"]
-editor/display_folded = true
-
 [node name="Checkpoint1" parent="Checkpoints" index="0" instance=ExtResource( 9 )]
 position = Vector2( 620.063, 702.379 )
 rotation = 5.31976
@@ -313,14 +310,9 @@ smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource( 10 )
 
-[node name="FinishLine2" parent="." index="17" instance=ExtResource( 11 )]
+[node name="FinishLine" parent="." index="17" instance=ExtResource( 11 )]
 editor/display_folded = true
 position = Vector2( 539.433, 1159.35 )
 rotation = -1.57079
 total_checkpoint_number = 8
 total_laps = 3
-
-[node name="PullableObjectBot" parent="FinishLine2" index="1"]
-position = Vector2( 0, 260 )
-
-[editable path="FinishLine2"]

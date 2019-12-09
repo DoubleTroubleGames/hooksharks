@@ -81,6 +81,9 @@ func setup_players():
 		players.append(player)
 		if has_node("FinishLine"):
 			player_checkpoints[i] = $FinishLine
+		else:
+			print("This should not happen")
+			assert(false)
 		add_child(player)
 	
 	return players
