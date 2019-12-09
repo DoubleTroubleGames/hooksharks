@@ -83,7 +83,10 @@ func show_round():
 	
 	# Check draw
 	var is_draw = RoundManager.round_winner == -1
-	round_label.text = "Draw" if is_draw else "Round"
+	if is_draw:
+		round_label.text = "\nDraw"
+	else:
+		round_label.text = "Round"
 	round_number.visible = not is_draw
 	if not is_draw:
 		player_score = player_scores[RoundManager.round_winner]
@@ -120,6 +123,8 @@ func show_round():
 	if not is_draw:
 		player_score.marker_animation()
 		yield(player_score, "marker_animation_ended")
+	else:
+		$DrawGameSFX.play()
 
 	# Hide condition
 	if match_winner == -1:
