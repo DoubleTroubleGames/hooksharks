@@ -18,8 +18,8 @@
 [ext_resource path="res://menus/tutorial/Tutorial.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sound/sfx/menu_denied.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/sound/sfx/loc arena mode.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/sound/sfx/loc race mode.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/sound/sfx/loc_narrator_death_match.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sound/sfx/loc_narrator_racemode.wav" type="AudioStream" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
