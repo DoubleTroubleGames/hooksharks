@@ -169,7 +169,7 @@ func win_animation(match_winner):
 	buttons.show()
 	
 	char_sfx[RoundManager.character_map[match_winner]].get_node("Win").play()
-	char_sfx[RoundManager.character_map[match_winner]].get_node("").play()
+	char_sfx[RoundManager.character_map[match_winner]].get_node("Narrator").play()
 	
 	# BGM change
 	Sound.fade_out(Sound.battle_bgm, $WinMatchBGM)
