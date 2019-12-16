@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://menus/credits/Credits.gd" type="Script" id=1]
+[ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/images/ui/board.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 150
+outline_size = 15
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+outline_size = 7
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=5]
+length = 7.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Float:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 340, 290 ), Vector2( 340, 305 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Float:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -1.0 ]
+}
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 1885.15, 402.63 )
+script = ExtResource( 1 )
+
+[node name="Water" parent="." instance=ExtResource( 2 )]
+
+[node name="Board" type="TextureRect" parent="."]
+margin_left = 456.687
+margin_top = -2.27209
+margin_right = 2257.69
+margin_bottom = 650.728
+rect_rotation = 0.5
+rect_scale = Vector2( 0.6, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Board"]
+margin_left = 49.5561
+margin_top = 79.0524
+margin_right = 1709.56
+margin_bottom = 354.052
+rect_scale = Vector2( 1, 1.5 )
+custom_fonts/font = SubResource( 1 )
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="BackIndicator" parent="." instance=ExtResource( 5 )]
+
+[node name="Float" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 340.0
+margin_top = 290.0
+margin_right = -287.0
+margin_bottom = -100.0
+
+[node name="float" type="Sprite" parent="Float"]
+position = Vector2( 646.5, 345 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="Label" type="RichTextLabel" parent="Float"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -120.0
+margin_top = 10.0
+margin_right = -120.0
+margin_bottom = 10.0
+rect_clip_content = false
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "
+					[b]Programming[/b]			 Ricardo Lira da Fonseca
+															Arthur Vieira Barbosa
+															André Ferrari Moukarzel
+															Luiz Felipe Moumdjian Girotto
+					[b]Graphics[/b]					   Marina de Novaes Benedicto
+					[b]Sounds[/b]						   Rodrigo Passos
+															Livia Maki Yoshikawa"
+text = "
+					Programming			 Ricardo Lira da Fonseca
+															Arthur Vieira Barbosa
+															André Ferrari Moukarzel
+															Luiz Felipe Moumdjian Girotto
+					Graphics					   Marina de Novaes Benedicto
+					Sounds						   Rodrigo Passos
+															Livia Maki Yoshikawa"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "float"
+anims/float = SubResource( 5 )
