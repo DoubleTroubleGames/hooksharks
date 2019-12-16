@@ -12,7 +12,7 @@
 [ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=10]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=11]
 
-[node name="Stage" index="0" instance=ExtResource( 1 )]
+[node name="Stage" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1150, -1000 )
 stage_end = Vector2( 4700, 3150 )
 stage_name = "Fin Twister"

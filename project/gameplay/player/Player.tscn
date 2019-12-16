@@ -16,13 +16,13 @@
 [ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=15]
 
-[sub_resource type="AudioStreamRandomPitch" id=2]
+[sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 6 )
 
-[sub_resource type="AudioStreamRandomPitch" id=3]
+[sub_resource type="AudioStreamRandomPitch" id=2]
 audio_stream = ExtResource( 7 )
 
-[sub_resource type="AudioStreamRandomPitch" id=4]
+[sub_resource type="AudioStreamRandomPitch" id=3]
 audio_stream = ExtResource( 9 )
 
 [node name="Player" type="Node2D"]
@@ -70,12 +70,12 @@ __meta__ = {
 }
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 2 )
+stream = SubResource( 1 )
 volume_db = -4.072
 bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 3 )
+stream = SubResource( 2 )
 volume_db = -4.072
 bus = "SFX"
 
@@ -85,7 +85,7 @@ volume_db = -3.0
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 4 )
+stream = SubResource( 3 )
 volume_db = -4.289
 bus = "SFX"
 
