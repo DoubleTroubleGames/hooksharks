@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://menus/mode-select/ModeSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://assets/images/ui/m_racingt_o.png" type="Texture" id=6]
 [ext_resource path="res://menus/mode-select/button_shader.tres" type="Material" id=7]
 [ext_resource path="res://assets/images/ui/m_options_o.png" type="Texture" id=8]
-[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/images/ui/m_credits_o.png" type="Texture" id=9]
+[ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=11]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -273,7 +274,7 @@ margin_left = 523.182
 margin_top = -12.8663
 margin_right = 1023.18
 margin_bottom = 224.134
-rect_rotation = 1.02765
+rect_rotation = 3.84566
 focus_neighbour_right = NodePath("../CreditsButton")
 focus_neighbour_bottom = NodePath("../ArenaButton")
 disabled = true
@@ -295,8 +296,8 @@ rect_rotation = 1.83646
 focus_neighbour_left = NodePath("../OptionsButton")
 focus_neighbour_bottom = NodePath("../RacingButton")
 disabled = true
-texture_normal = ExtResource( 8 )
-texture_focused = ExtResource( 8 )
+texture_normal = ExtResource( 9 )
+texture_focused = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsButton"]
 autoplay = "idle"
@@ -306,12 +307,12 @@ anims/idle = SubResource( 7 )
 [node name="Sounds" type="Node" parent="."]
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = -5.361
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = -4.289
 bus = "SFX"
 
