@@ -19,6 +19,7 @@ func _ready():
 	$ArenaButton.disabled = false
 	$RacingButton.disabled = false
 	$OptionsButton.disabled = false
+	$RacingButton.disabled = false
 	$ArenaButton.grab_focus()
 
 
@@ -61,6 +62,7 @@ func transition_to(scene_path):
 	$ArenaButton.disabled = true
 	$RacingButton.disabled = true
 	$OptionsButton.disabled = true
+	$RacingButton.disabled = true
 	
 	Transition.transition_in()
 	yield(Transition, "finished")
@@ -83,68 +85,62 @@ func _on_OptionsButton_pressed():
 	transition_to("res://menus/options-menu/OptionsMenu.tscn")
 
 
+func _on_CreditsButton_pressed():
+	$Sounds/ConfirmSFX.play()
+	#transition_to("killme.tscn")
+
 func _on_ArenaButton_focus_entered():
-	var cur = $ArenaButton.get_material().get_shader_param("wave_length")
-	if cur < WAVE_LENGTH:
-		$Tween.interpolate_property($ArenaButton.get_material(), 
-	                           "shader_param/wave_length", 
-	                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
-	                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	cur = $RacingButton.get_material().get_shader_param("wave_length")
-	if cur > 0:
-		$Tween.interpolate_property($RacingButton.get_material(), 
-	                    "shader_param/wave_length", 
-	                    cur, 0, cur/SPEED, 
-	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	cur = $OptionsButton.get_material().get_shader_param("wave_length")
-	if cur > 0:
-		$Tween.interpolate_property($OptionsButton.get_material(), 
-	                    "shader_param/wave_length", 
-	                    cur, 0, cur/SPEED, 
-	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	fadeWaveIn($ArenaButton)
+	
+	fadeWaveOut($RacingButton)
+	fadeWaveOut($CreditsButton)
+	fadeWaveOut($OptionsButton)
+	
 	$Tween.start()
 	$Sounds/SelectSFX.play()
 
 func _on_RacingButton_focus_entered():
-	var cur = $RacingButton.get_material().get_shader_param("wave_length")
-	if cur < WAVE_LENGTH:
-		$Tween.interpolate_property($RacingButton.get_material(), 
-	                           "shader_param/wave_length", 
-	                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
-	                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	cur = $ArenaButton.get_material().get_shader_param("wave_length")
-	if cur > 0:
-		$Tween.interpolate_property($ArenaButton.get_material(), 
-	                    "shader_param/wave_length", 
-	                    cur, 0, cur/SPEED, 
-	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	cur = $OptionsButton.get_material().get_shader_param("wave_length")
-	if cur > 0:
-		$Tween.interpolate_property($OptionsButton.get_material(), 
-	                    "shader_param/wave_length", 
-	                    cur, 0, cur/SPEED, 
-	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	fadeWaveIn($RacingButton)
+	
+	fadeWaveOut($ArenaButton)
+	fadeWaveOut($CreditsButton)
+	fadeWaveOut($OptionsButton)
+	
 	$Tween.start()
 	$Sounds/SelectSFX.play()
 
 func _on_OptionsButton_focus_entered():
-	var cur = $OptionsButton.get_material().get_shader_param("wave_length")
+	fadeWaveIn($OptionsButton)
+	
+	fadeWaveOut($ArenaButton)
+	fadeWaveOut($RacingButton)
+	fadeWaveOut($CreditsButton)
+	
+	$Tween.start()
+	$Sounds/SelectSFX.play()
+
+
+func _on_CreditsButton_focus_entered():
+	fadeWaveIn($CreditsButton)
+	
+	fadeWaveOut($ArenaButton)
+	fadeWaveOut($RacingButton)
+	fadeWaveOut($OptionsButton)
+	
+	$Tween.start()
+	$Sounds/SelectSFX.play()
+	
+func fadeWaveIn(button):
+	var cur = button.get_material().get_shader_param("wave_length")
 	if cur < WAVE_LENGTH:
-		$Tween.interpolate_property($OptionsButton.get_material(), 
+		$Tween.interpolate_property(button.get_material(), 
 	                           "shader_param/wave_length", 
 	                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
 	                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	cur = $ArenaButton.get_material().get_shader_param("wave_length")
+func fadeWaveOut(button):
+	var cur = button.get_material().get_shader_param("wave_length")
 	if cur > 0:
-		$Tween.interpolate_property($ArenaButton.get_material(), 
+		$Tween.interpolate_property(button.get_material(), 
 	                    "shader_param/wave_length", 
 	                    cur, 0, cur/SPEED, 
 	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	cur = $RacingButton.get_material().get_shader_param("wave_length")
-	if cur > 0:
-		$Tween.interpolate_property($RacingButton.get_material(), 
-	                    "shader_param/wave_length", 
-	                    cur, 0, cur/SPEED, 
-	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.start()
-	$Sounds/SelectSFX.play()
