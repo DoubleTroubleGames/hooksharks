@@ -7,10 +7,12 @@
 [ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=5]
 [ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=7]
-[ext_resource path="res://assets/sound/sfx/intro title first part.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sound/sfx/intro title scnd part.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/sfx/intro_title_first_part.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/intro_title_second_part.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sound/sfx/press star appear.wav" type="AudioStream" id=11]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
