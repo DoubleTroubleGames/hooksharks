@@ -81,7 +81,7 @@ func setup_players():
 		players.append(player)
 		if has_node("FinishLine"):
 			player_checkpoints[i] = $FinishLine
-		else:
+		elif RoundManager.gamemode == "Race":
 			print("This should not happen")
 			assert(false)
 		add_child(player)

@@ -4,9 +4,9 @@ onready var battle_bgm = $BattleBGM
 onready var menu_bgm = $MenuBGM
 onready var tween = $Tween
 
-const BATTLE_MUSIC = [preload("res://assets/sound/bgm/battle1.ogg"),
-		preload("res://assets/sound/bgm/battle2.ogg"),
-		preload("res://assets/sound/bgm/battle3.ogg")]
+const BATTLE_MUSIC = [preload("res://assets/sound/bgm/battle_1.ogg"),
+		preload("res://assets/sound/bgm/battle_2.ogg"),
+		preload("res://assets/sound/bgm/battle_3.ogg")]
 
 func _ready():
 	randomize()

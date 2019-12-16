@@ -428,17 +428,27 @@ __meta__ = {
 [node name="CameraFocus1" type="Position2D" parent="." groups=[
 "camera_focus",
 ]]
-position = Vector2( -500, -150 )
+position = Vector2( -530, -150 )
 
 [node name="CameraFocus2" type="Position2D" parent="." groups=[
 "camera_focus",
 ]]
-position = Vector2( -500, 150 )
+position = Vector2( -530, 150 )
 
 [node name="CameraFocus3" type="Position2D" parent="." groups=[
 "camera_focus",
 ]]
 position = Vector2( 300, 0 )
+
+[node name="CameraFocus4" type="Position2D" parent="." groups=[
+"camera_focus",
+]]
+position = Vector2( 0, 210 )
+
+[node name="CameraFocus5" type="Position2D" parent="." groups=[
+"camera_focus",
+]]
+position = Vector2( 0, -210 )
 
 [node name="DeathSFXs" type="Node" parent="."]
 
