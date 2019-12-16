@@ -19,7 +19,7 @@ func _ready():
 	$ArenaButton.disabled = false
 	$RacingButton.disabled = false
 	$OptionsButton.disabled = false
-	$RacingButton.disabled = false
+	$CreditsButton.disabled = false
 	$ArenaButton.grab_focus()
 
 
@@ -87,7 +87,7 @@ func _on_OptionsButton_pressed():
 
 func _on_CreditsButton_pressed():
 	$Sounds/ConfirmSFX.play()
-	#transition_to("killme.tscn")
+	transition_to("res://menus/credits/Credits.tscn")
 
 func _on_ArenaButton_focus_entered():
 	fadeWaveIn($ArenaButton)

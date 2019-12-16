@@ -7,7 +7,7 @@ var back_indicator_up_speed = 100
 var back_indicator_down_speed = 150
 
 func _ready():
-	pass
+	Transition.transition_out()
 
 
 func _physics_process(delta):

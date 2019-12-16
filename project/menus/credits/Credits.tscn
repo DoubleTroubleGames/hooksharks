@@ -32,7 +32,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 7.0
 loop = true
 tracks/0/type = "value"
@@ -134,4 +134,4 @@ text = "
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "float"
-anims/float = SubResource( 5 )
+anims/float = SubResource( 4 )

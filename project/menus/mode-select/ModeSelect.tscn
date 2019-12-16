@@ -151,7 +151,7 @@ tracks/0/keys = {
 "values": [ 4.0, 1.0 ]
 }
 
-[sub_resource type="Shader" id=8]
+[sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
 
 uniform bool active;
@@ -196,8 +196,8 @@ void fragment(){
 		COLOR = pixel;
 }"
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 shader_param/active = true
 shader_param/wave_length = 0.0
 shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
@@ -207,7 +207,7 @@ shader_param/aa_factor = 0.04
 shader_param/noise = ExtResource( 4 )
 shader_param/distortion = ExtResource( 3 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -287,7 +287,7 @@ playback_speed = 0.6
 anims/idle = SubResource( 6 )
 
 [node name="CreditsButton" type="TextureButton" parent="."]
-material = SubResource( 9 )
+material = SubResource( 8 )
 margin_left = 1018.26
 margin_top = 32.5751
 margin_right = 1518.26
@@ -302,7 +302,7 @@ texture_focused = ExtResource( 9 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsButton"]
 autoplay = "idle"
 playback_speed = 0.6
-anims/idle = SubResource( 7 )
+anims/idle = SubResource( 9 )
 
 [node name="Sounds" type="Node" parent="."]
 
