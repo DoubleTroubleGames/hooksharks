@@ -279,5 +279,6 @@ bus = "SFX"
 stream = SubResource( 15 )
 volume_db = -8.856
 bus = "SFX"
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_PowerupHitbox_area_entered"]
 [connection signal="timeout" from="RespawnTimer" to="." method="spawn"]
