@@ -57,10 +57,10 @@ margin_top = -70.0
 margin_bottom = -70.0
 
 [node name="DiveBar" type="TextureProgress" parent="."]
-margin_left = 48.6082
-margin_top = -96.0904
-margin_right = 114.608
-margin_bottom = -30.0904
+margin_left = -23.0
+margin_top = 60.0
+margin_right = 43.0
+margin_bottom = 126.0
 rect_scale = Vector2( 0.7, 0.7 )
 mouse_filter = 2
 value = 100.0
