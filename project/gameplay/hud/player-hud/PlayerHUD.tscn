@@ -17,3 +17,4 @@ label_string = "P3"
 
 [node name="P4" parent="." instance=ExtResource( 2 )]
 label_string = "P4"
+

@@ -99,6 +99,7 @@ func add_powerup(player):
 			color = Color8(194, 234, 255)
 		player.add_label(power.power_name, color)
 		$PowerPickup.play()
+	
 	if hook and is_instance_valid(hook) and hook.has_method("free_hook"):
 		# workaround for weird bug where a trail was being assigned to the hook 
 		hook.free_hook()

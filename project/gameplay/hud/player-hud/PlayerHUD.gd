@@ -14,6 +14,8 @@ func set_players(player_dict, camera):
 			player_dict[p].connect("dive_value_changed", hud[p], "_on_dive_value_changed")
 			player_dict[p].connect("dive_texture_changed", hud[p], "_on_dive_texture_changed")
 			player_dict[p].connect("dive_visibility_changed", hud[p], "_on_dive_visibility_changed")
+			player_dict[p].connect("fire_trail_started", hud[p], "_on_fire_trail_started")
+			player_dict[p].connect("infinite_dive_started", hud[p], "_on_infinite_dive_started")
 			hud[p].set_player_color(RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]])
 		else:
 			hud[p].hide()

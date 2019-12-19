@@ -13,6 +13,8 @@ signal message_sent(text, color)
 signal dive_value_changed(value)
 signal dive_texture_changed(texture)
 signal dive_visibility_changed(visibility)
+signal fire_trail_started(powerup)
+signal infinite_dive_started(powerup)
 
 onready var rider = $Shark/Rider
 onready var riders_hook = $Shark/Rider/Hook
