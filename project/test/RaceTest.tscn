@@ -4,7 +4,7 @@
 [ext_resource path="res://test/RaceTest.gd" type="Script" id=2]
 [ext_resource path="res://gameplay/stages/race-stages/Stage6.tscn" type="PackedScene" id=3]
 
-[node name="RaceTest" index="0" instance=ExtResource( 1 )]
+[node name="RaceTest" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 total_stages = 10
 TestStage = ExtResource( 3 )

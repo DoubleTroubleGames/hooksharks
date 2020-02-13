@@ -259,7 +259,7 @@ number = 8
 position = Vector2( 939.644, 1642.74 )
 rotation = 3.40339
 scale = Vector2( 1, 1.7 )
-number = 8
+number = 9
 
 [node name="Camera2D" type="Camera2D" parent="." index="12"]
 position = Vector2( 501.727, 986.169 )

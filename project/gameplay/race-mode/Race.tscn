@@ -10,7 +10,7 @@
 
 [node name="Race" type="Node2D"]
 script = ExtResource( 1 )
-total_stages = 5
+total_stages = 6
 
 [node name="Water" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true
