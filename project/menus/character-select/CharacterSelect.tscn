@@ -223,10 +223,8 @@ volume_db = -5.361
 
 [node name="ArenaSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 19 )
-volume_db = -5.362
 
 [node name="RaceSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 20 )
-volume_db = -5.362
 
 [editable path="BackIndicator"]

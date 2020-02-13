@@ -18,7 +18,7 @@
 [ext_resource path="res://assets/sound/sfx/outsider/loc_theoutsider_hit_5.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/sound/sfx/outsider/loc_theoutsider_hit_6.wav" type="AudioStream" id=17]
 
-[node name="Outsider" index="0" instance=ExtResource( 1 )]
+[node name="Outsider" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 frame = 7

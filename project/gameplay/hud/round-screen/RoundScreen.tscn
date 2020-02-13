@@ -225,12 +225,10 @@ one_shot = true
 
 [node name="GateCloseSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = -0.145
 bus = "SFX"
 
 [node name="GateOpenSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -0.02
 bus = "SFX"
 
 [node name="JackieSFXs" type="Node" parent="."]
@@ -279,5 +277,4 @@ bus = "BGM"
 
 [node name="DrawGameSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
-volume_db = 5.0
 bus = "SFX"
