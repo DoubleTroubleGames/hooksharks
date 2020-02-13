@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gameplay/stages/BaseStage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=3]
+[ext_resource path="res://gameplay/race-mode/Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=5]
+
+[node name="Stage" index="0" instance=ExtResource( 1 )]
+stage_begin = Vector2( -2400, -2300 )
+stage_end = Vector2( 5300, 2700 )
+stage_name = "Drawning Chaos"
+
+[node name="Water" parent="." index="0"]
+margin_left = -2400.0
+margin_top = -2300.0
+margin_right = 5300.0
+margin_bottom = 2700.0
+
+[node name="PlayerStartingPosition" parent="." index="1"]
+editor/display_folded = false
+
+[node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
+position = Vector2( 1340, -100 )
+direction = Vector2( 0, -1 )
+
+[node name="StartingPosition2" parent="PlayerStartingPosition" index="1"]
+position = Vector2( 1440, -110 )
+direction = Vector2( 0, -1 )
+
+[node name="StartingPosition3" parent="PlayerStartingPosition" index="2"]
+position = Vector2( 1540, -120 )
+direction = Vector2( 0, -1 )
+
+[node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
+position = Vector2( 1640, -130 )
+direction = Vector2( 0, -1 )
+
+[node name="Box2" parent="PlayerStartingPosition/StartingPosition4" index="0" instance=ExtResource( 2 )]
+position = Vector2( -272, 70 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
+position = Vector2( 1490, -99.9998 )
+current = true
+limit_left = -1861
+limit_top = -1950
+limit_right = 4761
+limit_bottom = 2350
+limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource( 3 )
+
+[node name="Powerups" type="Node2D" parent="." index="7"]
+z_index = 2
+
+[node name="Checkpoints" parent="." index="8"]
+editor/display_folded = true
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 4 )]
+position = Vector2( -2574.71, -2391.79 )
+rotation = 0.46439
+scale = Vector2( 1, 1.94824 )
+
+[node name="FinishLine" parent="." index="9" instance=ExtResource( 5 )]
+total_checkpoint_number = 6
+total_laps = 2
+
+[node name="PullableObjectBot" parent="FinishLine" index="1"]
+position = Vector2( 1270, 20 )
+
+[node name="PullableObjectTop" parent="FinishLine" index="2"]
+position = Vector2( 1710, 20 )
+
+[editable path="FinishLine"]
