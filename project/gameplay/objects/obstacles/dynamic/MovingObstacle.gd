@@ -25,9 +25,6 @@ var previous_position
 var moving = false
 
 func _ready():
-	print(root_position)
-	# Cleanup, in case there is leftovers from playtesting
-	test_check_current_nodes(1)
 	
 	for node in get_children():
 		if node.name == "Obstacle" or node.name == "ImplicitLoop":
@@ -111,12 +108,3 @@ func define_obstacle(o):
 		Obstacle = o.instance()
 		Obstacle.set_name("Obstacle")
 		add_child(Obstacle)
-
-func test_check_current_nodes(moment):
-	print(str(moment))
-	for node in get_children():
-		print(node.name)
-		if node.get_child_count() > 0:
-			for child in node.get_children():
-				print(child.name)
-
