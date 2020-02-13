@@ -26,7 +26,11 @@ const TRIVIA = [
 	"Sharks can see eletricity",
 	"Whale sharks are not actually whales",
 	"Goblin sharks are, indeed, goblins",
-	"Cookiecutter sharks prefer icecream to cookies"
+	"Cookiecutter sharks prefer icecream to cookies",
+	"Angel Sharks are famous for their magic tricks",
+	"Blue sharks are, honestly, the most happy sharks",
+	"Zebra sharks were named by a cientist who never actually saw a zebra",
+	"Wobbegong sharks were named by an angry cientist who drank too much vodka"
 ]
 
 const DELAY = .1
