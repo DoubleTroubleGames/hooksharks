@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://menus/main-menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/sound/sfx/intro_title_first_part.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/sfx/intro_title_second_part.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/sound/sfx/press star appear.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/sfx/intro_press_start_appears.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -34,14 +34,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-
-[sub_resource type="AudioStreamRandomPitch" id=3]
-audio_stream = ExtResource( 10 )
-random_pitch = 1.15
-
-[sub_resource type="AudioStreamRandomPitch" id=4]
-audio_stream = ExtResource( 11 )
-random_pitch = 1.25
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -130,11 +122,10 @@ stream = ExtResource( 9 )
 bus = "SFX"
 
 [node name="StartPressSFX" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 3 )
+stream = ExtResource( 10 )
 bus = "SFX"
 
 [node name="PressStartShowSFX" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 4 )
-volume_db = -4.289
+stream = ExtResource( 11 )
 bus = "SFX"
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

@@ -39,7 +39,6 @@ texture = ExtResource( 3 )
 
 [node name="OpenSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -4.039
 bus = "SFX"
 
 [node name="CloseSFX" type="AudioStreamPlayer" parent="."]

@@ -17,7 +17,7 @@
 [ext_resource path="res://assets/images/ui/startbt.png" type="Texture" id=15]
 [ext_resource path="res://menus/tutorial/Tutorial.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sound/sfx/menu_denied.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sound/sfx/press_start.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sound/sfx/pre_battle_press_start.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/sound/sfx/loc_narrator_death_match.wav" type="AudioStream" id=19]
 [ext_resource path="res://assets/sound/sfx/loc_narrator_racemode.wav" type="AudioStream" id=20]
 
@@ -215,11 +215,9 @@ anims/show = SubResource( 3 )
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 17 )
-volume_db = -6.058
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 18 )
-volume_db = -5.361
 
 [node name="ArenaSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 19 )

@@ -30,7 +30,9 @@ const TRIVIA = [
 	"Angel Sharks are famous for their magic tricks",
 	"Blue sharks are, honestly, the most happy sharks",
 	"Zebra sharks were named by a cientist who never actually saw a zebra",
-	"Wobbegong sharks were named by an angry cientist who drank too much vodka"
+	"Wobbegong sharks were named by an angry cientist who drank too much vodka",
+	"The sea is pretty big",
+	"The sea is pretty small",
 ]
 
 const DELAY = .1

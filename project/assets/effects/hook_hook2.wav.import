@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/hook_hook2.wav-220e0154b294532c2f1b813151440056.sample"
+path="res://.import/hook_hook2.wav-1ba5862bd9a96a0656ed1cc7c9e0912f.sample"
 
 [deps]
 
-source_file="res://assets/sound/sfx/hook_hook2.wav"
-dest_files=[ "res://.import/hook_hook2.wav-220e0154b294532c2f1b813151440056.sample" ]
+source_file="res://assets/effects/hook_hook2.wav"
+dest_files=[ "res://.import/hook_hook2.wav-1ba5862bd9a96a0656ed1cc7c9e0912f.sample" ]
 
 [params]
 

@@ -187,4 +187,3 @@ align = 1
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -16.171

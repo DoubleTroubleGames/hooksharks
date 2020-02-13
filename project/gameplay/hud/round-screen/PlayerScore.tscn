@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/images/ui/round-screen/ui_x.png" type="Texture" id=6]
 [ext_resource path="res://assets/sound/sfx/get_1_point.wav" type="AudioStream" id=7]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 60
 font_data = ExtResource( 4 )

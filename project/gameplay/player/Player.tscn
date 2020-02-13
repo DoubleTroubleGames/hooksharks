@@ -1,26 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gameplay/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/player/Shark.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/effects/trails/WaterParticles.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sound/old sounds/dive.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sound/sfx/submerge.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sound/sfx/emerge.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sound/old sounds/scream1.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sound/old sounds/scream2.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/sound/old sounds/scream3.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/sound/old sounds/scream6.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/sound/old sounds/scream7.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/sound/old sounds/scream9.wav" type="AudioStream" id=13]
-
-[sub_resource type="AudioStreamRandomPitch" id=1]
-audio_stream = ExtResource( 4 )
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
-audio_stream = ExtResource( 5 )
-
-[sub_resource type="AudioStreamRandomPitch" id=3]
 audio_stream = ExtResource( 7 )
 
 [node name="Player" type="Node2D"]
@@ -47,53 +35,19 @@ __meta__ = {
 }
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 1 )
-volume_db = -4.072
+stream = ExtResource( 4 )
 bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 2 )
-volume_db = -4.072
+stream = ExtResource( 5 )
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 6 )
-volume_db = -3.0
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 3 )
-volume_db = -4.289
-bus = "SFX"
-
-[node name="ScreamSFX1" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 8 )
-volume_db = -6.0
-bus = "SFX"
-
-[node name="ScreamSFX2" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 9 )
-volume_db = -6.0
-bus = "SFX"
-
-[node name="ScreamSFX3" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 10 )
-volume_db = -6.0
-bus = "SFX"
-
-[node name="ScreamSFX4" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 11 )
-volume_db = -6.0
-bus = "SFX"
-
-[node name="ScreamSFX5" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 12 )
-volume_db = -6.0
-bus = "SFX"
-
-[node name="ScreamSFX6" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 13 )
-volume_db = -6.0
+stream = SubResource( 2 )
 bus = "SFX"
 
 [node name="PowerUps" type="Node2D" parent="."]
