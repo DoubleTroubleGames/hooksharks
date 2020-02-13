@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/sound/sfx/jackie/loc_jackieparrot_hit_4.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sound/sfx/jackie/loc_jackieparrot_hit_5.wav" type="AudioStream" id=11]
 
-[node name="Jackie" instance=ExtResource( 1 )]
+[node name="Jackie" index="0" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0 )
 frame = 7
 
