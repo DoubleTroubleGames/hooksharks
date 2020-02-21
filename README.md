@@ -1,10 +1,10 @@
 ###### Hooksharks
-###### Copyright (C) 2018-2019  DoubleTroubleGames & USPGameDev
+###### Copyright (C) 2018-2020  DoubleTroubleGames & USPGameDev
 ###### Code under license **GPLv3.0**, original assets under license **CC BY-SA 4.0**
 
 # HookSharks
 
-**An open source competitive multiplayer game by Double Trouble Games and [USPGameDev](https://uspgamedev.org/) ~ 2018-2019**
+**An open source competitive multiplayer game by Double Trouble Games and [USPGameDev](https://uspgamedev.org/) ~ 2018-2020**
 
 ## Introduction
 
