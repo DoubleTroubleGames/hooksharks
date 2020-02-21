@@ -22,7 +22,7 @@ Open the project using [Godot Engine v3.1.1](https://downloads.tuxfamily.org/god
 
 ## Team
 
-The game is developed by the [Double Trouble Games](doubletroublegamesbr@gmail.com) team, which is currently composed of:
+The game was developed by the [Double Trouble Games](doubletroublegamesbr@gmail.com) team, at the time composed of:
 
 ### Developers
 - Ricardo Lira da Fonseca ([@rilifon](https://github.com/rilifon))
