@@ -225,6 +225,7 @@ one_shot = true
 
 [node name="GateCloseSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+volume_db = -0.145
 bus = "SFX"
 
 [node name="GateOpenSFX" type="AudioStreamPlayer" parent="."]
@@ -235,6 +236,7 @@ bus = "SFX"
 
 [node name="Win" type="AudioStreamPlayer" parent="JackieSFXs"]
 stream = ExtResource( 14 )
+volume_db = 2.0
 bus = "SFX"
 
 [node name="Narrator" type="AudioStreamPlayer" parent="JackieSFXs"]
@@ -245,6 +247,7 @@ bus = "SFX"
 
 [node name="Win" type="AudioStreamPlayer" parent="DrillSFXs"]
 stream = ExtResource( 16 )
+volume_db = 2.0
 bus = "SFX"
 
 [node name="Narrator" type="AudioStreamPlayer" parent="DrillSFXs"]
@@ -255,6 +258,7 @@ bus = "SFX"
 
 [node name="Win" type="AudioStreamPlayer" parent="KingSFXs"]
 stream = ExtResource( 18 )
+volume_db = 2.0
 bus = "SFX"
 
 [node name="Narrator" type="AudioStreamPlayer" parent="KingSFXs"]
@@ -265,6 +269,7 @@ bus = "SFX"
 
 [node name="Win" type="AudioStreamPlayer" parent="OutsiderSFXs"]
 stream = ExtResource( 20 )
+volume_db = 2.0
 bus = "SFX"
 
 [node name="Narrator" type="AudioStreamPlayer" parent="OutsiderSFXs"]
@@ -277,4 +282,5 @@ bus = "BGM"
 
 [node name="DrawGameSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
+volume_db = 5.0
 bus = "SFX"

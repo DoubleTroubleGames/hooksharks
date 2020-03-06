@@ -747,14 +747,17 @@ one_shot = true
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 13 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="ConfirmSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 14 )
+volume_db = -4.289
 bus = "SFX"
 
 [node name="CancelSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 15 )
+volume_db = -6.0
 bus = "SFX"
 
 [node name="JackieSFXs" type="Node" parent="Sounds"]

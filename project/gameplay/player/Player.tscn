@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/sound/sfx/explosion2.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/old sounds/harpoon.wav" type="AudioStream" id=7]
 
-[sub_resource type="AudioStreamRandomPitch" id=2]
+[sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 7 )
 
 [node name="Player" type="Node2D"]
@@ -36,18 +36,22 @@ __meta__ = {
 
 [node name="DiveSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 4 )
+volume_db = -4.072
 bus = "SFX"
 
 [node name="EmergeSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 5 )
+volume_db = -4.072
 bus = "SFX"
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 6 )
+volume_db = -3.0
 bus = "SFX"
 
 [node name="HarpoonSFX" type="AudioStreamPlayer" parent="SFX"]
-stream = SubResource( 2 )
+stream = SubResource( 1 )
+volume_db = -4.289
 bus = "SFX"
 
 [node name="PowerUps" type="Node2D" parent="."]

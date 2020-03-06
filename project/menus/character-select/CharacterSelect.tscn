@@ -59,7 +59,6 @@ RaceMode = ExtResource( 4 )
 [node name="Water" parent="." instance=ExtResource( 5 )]
 
 [node name="Objects" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Floor" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 22.5696, 58.809 )
@@ -215,14 +214,18 @@ anims/show = SubResource( 3 )
 
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 17 )
+volume_db = -6.058
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 18 )
+volume_db = -5.361
 
 [node name="ArenaSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 19 )
+volume_db = -5.362
 
 [node name="RaceSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 20 )
+volume_db = -5.362
 
 [editable path="BackIndicator"]
