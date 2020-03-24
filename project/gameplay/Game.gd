@@ -185,6 +185,8 @@ func remove_player(player):
 
 
 func check_winner():
+	print("check_winner")
+	print("players.size(): ", players.size())
 	if players.size() == 1:
 		var winner = players[0]
 		winner.disable()
@@ -196,6 +198,7 @@ func check_winner():
 	elif players.size() == 0:
 		RoundManager.round_winner = -1
 	else:
+		calling_check_winner = false
 		return
 		
 	# Stopping moving obticles here
