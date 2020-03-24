@@ -189,6 +189,7 @@ func check_winner():
 	print("players.size(): ", players.size())
 	if players.size() == 1:
 		var winner = players[0]
+		winner.reset_dive_meter(true)
 		winner.disable()
 		RoundManager.scores[winner.id] += 1
 		RoundManager.round_winner = winner.id

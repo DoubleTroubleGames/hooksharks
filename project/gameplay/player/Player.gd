@@ -13,6 +13,7 @@ signal message_sent(text, color)
 signal dive_value_changed(value)
 signal dive_texture_changed(texture)
 signal dive_visibility_changed(visibility)
+signal dive_hide()
 signal fire_trail_started(powerup)
 signal infinite_dive_started(powerup)
 
@@ -264,11 +265,12 @@ func start_infinite_dive():
 
 func update_dive_meter(delta):
 	if infinite_dive:
+		
 		return
 	elif dive_on_cooldown:
 		dive_value += DIVE_COOLDOWN_SPEED * delta
 		if dive_value >= 100:
-			reset_dive_meter()
+			reset_dive_meter(false)
 	elif diving:
 		dive_value -= DIVE_USE_SPEED * delta
 		if dive_value <= 0:
@@ -289,12 +291,14 @@ func update_dive_meter(delta):
 		emit_signal("dive_visibility_changed", false)
 
 
-func reset_dive_meter():
+func reset_dive_meter(hard_change):
 	dive_value = 100
 	dive_on_cooldown = false
 	
 	emit_signal("dive_value_changed", dive_value)
 	emit_signal("dive_texture_changed", NORMAL_BUBBLE)
+	if hard_change:
+		emit_signal("dive_hide")
 
 
 func get_rider_direction():
@@ -344,7 +348,7 @@ func die(play_sfx):
 	EP.position = self.position
 	get_parent().add_child(EP)
 	sprite_animation.stop(false)
-	reset_dive_meter()
+	reset_dive_meter(false)
 	emit_signal("dive_visibility_changed", false)
 	emit_signal("shook_screen", SCREEN_SHAKE_EXPLOSION)
 	if play_sfx and $Shark/ExplosionSFXs.get_child_count() > 0:

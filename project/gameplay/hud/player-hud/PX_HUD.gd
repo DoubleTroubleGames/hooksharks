@@ -81,6 +81,10 @@ func _on_dive_texture_changed(texture):
 func _on_dive_visibility_changed(visibility):
 	dive_bar_showing = visibility
 
+func _on_dive_hide():
+	dive_bar_showing = false
+	dive_bar.modulate.a	= 0
+
 
 func _on_fire_trail_started(powerup):
 	trail_label.text = str(trail_timer.wait_time)
@@ -93,6 +97,7 @@ func _on_fire_trail_started(powerup):
 
 func _on_infinite_dive_started(powerup):
 	dive_label.text = str(dive_timer.wait_time)
+	dive_bar_showing = false
 	dive_label.show()
 	dive_timer.start()
 	
@@ -105,4 +110,5 @@ func _on_TrailTimer_timeout():
 
 
 func _on_DiveTimer_timeout():
+	dive_bar_showing = true
 	dive_label.hide()
