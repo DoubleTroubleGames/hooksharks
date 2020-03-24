@@ -261,6 +261,7 @@ func start_infinite_dive():
 	dive_on_cooldown = false
 	dive_value = 100
 	emit_signal("dive_value_changed", dive_value)
+	emit_signal("dive_texture_changed", NORMAL_BUBBLE)
 
 
 func update_dive_meter(delta):
