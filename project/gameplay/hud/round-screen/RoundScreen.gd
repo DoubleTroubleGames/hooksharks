@@ -48,6 +48,7 @@ onready var _click_to_continue = false
 
 
 func _ready():
+	TRIVIA.shuffle()
 	_click_to_continue = false
 	set_process(true)
 	background.set_position(Vector2(OFFSET_X, BACKGROUND_OFFSCREEN_Y))
@@ -234,4 +235,8 @@ func _on_Quit_pressed():
 
 
 func getRandomTrivia():
-	return TRIVIA[randi() % TRIVIA.size()]
+	var trivia = TRIVIA.pop_front()
+	TRIVIA.shuffle()
+	TRIVIA.append(trivia)
+	
+	return trivia
