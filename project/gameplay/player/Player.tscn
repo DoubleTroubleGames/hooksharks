@@ -60,13 +60,10 @@ bus = "SFX"
 wait_time = 0.1
 one_shot = true
 
-[node name="ParticleTimer" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
 [node name="RespawnTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="InvencibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+

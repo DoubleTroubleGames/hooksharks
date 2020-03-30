@@ -30,7 +30,6 @@ onready var original_hook_texture = $Shark/Rider/Hook.texture
 enum MovementTypes {DIRECT, TANK}
 
 const TRAIL = preload("res://assets/effects/trails/Trail.tscn")
-const DIVE_PARTICLES = preload("res://assets/effects/DiveParticles.tscn")
 const NORMAL_BUBBLE = preload("res://assets/images/ui/divebar-bubble.png")
 const COOLDOWN_BUBBLE = preload("res://assets/images/ui/divebar-bubble-cd.png")
 const BLOOD_PARTICLE = preload("res://assets/effects/BloodParticles.tscn")
@@ -419,11 +418,6 @@ func dive():
 		return
 	
 	$SFX/DiveSFX.play()
-	var dive_particles = DIVE_PARTICLES.instance()
-	dive_particles.emitting = true
-	$ParticleTimer.wait_time = dive_particles.lifetime
-	$ParticleTimer.start()
-	self.add_child(dive_particles)
 	can_dive = false
 	sprite_animation.play("dive")
 	yield(get_tree().create_timer(0.2), "timeout")
@@ -431,8 +425,6 @@ func dive():
 		# Verification in case diving was canceled
 		diving = true
 		sprite_animation.play("dive_idle")
-	yield($ParticleTimer, 'timeout')
-	dive_particles.queue_free()
 
 
 func emerge():
@@ -440,10 +432,6 @@ func emerge():
 		return
 	
 	$SFX/EmergeSFX.play()
-	var dive_particles = DIVE_PARTICLES.instance()
-	dive_particles.emitting = true
-	$ParticleTimer.wait_time = dive_particles.lifetime
-	$ParticleTimer.start()
 	sprite_animation.play("emerge")
 	diving = false
 	yield(sprite_animation, "animation_finished")
@@ -452,8 +440,6 @@ func emerge():
 			die(true)
 	can_dive = true
 	sprite_animation.play("idle")
-	yield($ParticleTimer, 'timeout')
-	dive_particles.queue_free()
 
 
 func shoot():
