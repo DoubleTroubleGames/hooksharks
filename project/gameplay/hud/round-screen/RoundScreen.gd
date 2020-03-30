@@ -29,10 +29,11 @@ const TRIVIA = [
 	"Cookiecutter sharks prefer icecream to cookies",
 	"Angel Sharks are famous for their magic tricks",
 	"Blue sharks are, honestly, the most happy sharks",
-	"Zebra sharks were named by a cientist who never actually saw a zebra",
-	"Wobbegong sharks were named by an angry cientist who drank too much vodka",
+	"Zebra sharks were named by a scientist who never actually saw a zebra",
+	"Wobbegong sharks were named by an angry scientist who drank too much vodka",
 	"The sea is pretty big",
 	"The sea is pretty small",
+	"Sharks can swim at the speed of sound, but they rarely want to"
 ]
 
 const DELAY = .1
