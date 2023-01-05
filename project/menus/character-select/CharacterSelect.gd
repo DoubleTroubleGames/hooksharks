@@ -79,6 +79,7 @@ func set_device_map():
 			var character = box.CHARACTERS[box.char_index]
 			RoundManager.device_map.append(box.device_name)
 			RoundManager.character_map.append(character)
+			RoundManager.movement_type_map.append(box.movement_type)
 			num_players += 1
 	
 	RoundManager.players_total = num_players

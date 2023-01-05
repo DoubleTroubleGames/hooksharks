@@ -77,6 +77,7 @@ func setup_players():
 		player.id = i
 		player.device_name = RoundManager.device_map[i]
 		player.add_shark(RoundManager.character_map[i])
+		player.movement_type = RoundManager.movement_type_map[i]
 		player.set_name(str("Player", i + 1))
 		players.append(player)
 		if has_node("FinishLine"):
