@@ -809,17 +809,17 @@ expand = true
 [node name="MoveTypeSprite" type="TextureRect" parent="Boarder"]
 visible = false
 margin_left = 32.0
-margin_top = 141.0
+margin_top = 149.0
 margin_right = 370.0
-margin_bottom = 388.0
+margin_bottom = 396.0
 rect_scale = Vector2( 0.2, 0.2 )
 
 [node name="Up" type="TextureRect" parent="Boarder"]
 visible = false
 margin_left = 31.5
-margin_top = 151.0
+margin_top = 160.0
 margin_right = 111.5
-margin_bottom = 231.0
+margin_bottom = 240.0
 rect_rotation = 90.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
@@ -828,9 +828,9 @@ expand = true
 [node name="Down" type="TextureRect" parent="Boarder"]
 visible = false
 margin_left = 132.0
-margin_top = 151.0
+margin_top = 160.0
 margin_right = 212.0
-margin_bottom = 231.0
+margin_bottom = 240.0
 rect_rotation = 90.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 11 )
