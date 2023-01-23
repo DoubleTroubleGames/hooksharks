@@ -5,6 +5,7 @@ signal unselected(character)
 signal closed()
 signal tried_to_start
 
+enum MovementTypes {DIRECT, TANK}
 enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
 
 const CHARACTERS = ["jackie", "drill", "king", "outsider"]
@@ -18,10 +19,13 @@ onready var char_sfx = {"jackie": $Sounds/JackieSFXs,
 var available_chars = CHARACTERS.duplicate()
 var char_index = 0
 var device_name = ""
+var movement_type = MovementTypes.DIRECT
 var state = States.CLOSED
 var next_state = States.CLOSED # This is kind of redundant, and heavily depends on estabilished logic, but is useful for the grey portraits logic
 var _moved_left = false
 var _moved_right = false
+var _moved_up = false
+var _moved_down = false
 var mid_animation = false
 
 
@@ -30,25 +34,55 @@ func _ready():
 	$SharkSprite.hide()
 
 func _physics_process(delta):
-	if device_name.left(8) == "gamepad_":
-		var device_n = int(device_name.right(8))
-		var axis_value = Input.get_joy_axis(device_n, 0)
-		if axis_value >= DEADZONE and state == States.OPEN and  not _moved_right and not mid_animation:
-			_moved_right = true
-			toggle_right()
-		elif  axis_value <= -DEADZONE and state == States.OPEN and not _moved_left and not mid_animation:
-			_moved_left = true
-			toggle_left()
-		elif abs(axis_value) < DEADZONE:
-			_moved_right = false
-			_moved_left = false
+	# This handles gamepad input
+	if device_name.left(8) != "gamepad_":
+		return
+
+	if mid_animation:
+		return
+
+	if state != States.OPEN:
+		return
+
+	var device_n = int(device_name.right(8))
+	var axis_value_x = Input.get_joy_axis(device_n, 0)
+	var axis_value_y = Input.get_joy_axis(device_n, 1)
+
+	if abs(axis_value_x) < DEADZONE:
+		_moved_left = false
+		_moved_right = false
+
+	if abs(axis_value_y) < DEADZONE:
+		_moved_up = false
+		_moved_down = false
+
+	if  axis_value_x <= -DEADZONE and not _moved_left:
+		_moved_left = true
+		toggle_left()
+
+	elif axis_value_x >= DEADZONE and not _moved_right:
+		_moved_right = true
+		toggle_right()
+
+	elif  axis_value_y <= -DEADZONE and not _moved_up:
+		_moved_up = true
+		toggle_up()
+
+	elif axis_value_y >= DEADZONE and not _moved_down:
+		_moved_down = true
+		toggle_down()
 
 
 func _input(event):
+	# This handles keyboard input
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
-	
-	if event.is_action_pressed("ui_select") and not mid_animation:
+
+	if mid_animation:
+		get_tree().set_input_as_handled()
+		return
+
+	if event.is_action_pressed("ui_select"):
 		if state == States.OPEN:
 			if CHARACTERS[char_index] in available_chars:
 				change_state(States.READY)
@@ -56,16 +90,19 @@ func _input(event):
 				var sfxs = char_sfx[CHARACTERS[char_index]]
 				var sfx_number = randi() % sfxs.get_child_count()
 				sfxs.get_child(sfx_number).play()
+
 			else:
 				$Sounds/CancelSFX.play()
+
 		elif state == States.READY or state == States.LOCKED:
 			emit_signal("tried_to_start")
 
-	elif event.is_action_pressed("ui_cancel") and not mid_animation:
+	elif event.is_action_pressed("ui_cancel"):
 		if state == States.OPEN:
 			device_name = ""
 			change_state(States.CLOSED)
 			$Sounds/CancelSFX.play()
+
 		elif state == States.READY:
 			mid_animation = true
 			$Boarder/AnimationPlayer.play("unready")
@@ -73,13 +110,23 @@ func _input(event):
 			$Sounds/CancelSFX.play()
 			yield($Boarder/AnimationPlayer, "animation_finished")
 			mid_animation = false
-			
 
-	elif event.is_action_pressed("ui_left") and state == States.OPEN and not mid_animation:
+	# This makes it so each subsequent elif doesn't need to check if state == States.OPEN
+	elif state != States.OPEN:
+		get_tree().set_input_as_handled()
+		return
+
+	elif event.is_action_pressed("ui_left"):
 		toggle_left()
 
-	elif event.is_action_pressed("ui_right") and state == States.OPEN and not mid_animation:
+	elif event.is_action_pressed("ui_right"):
 		toggle_right()
+
+	elif event.is_action_pressed("ui_up"):
+		toggle_up()
+
+	elif event.is_action_pressed("ui_down"):
+		toggle_down()
 
 	get_tree().set_input_as_handled()
 
@@ -132,6 +179,16 @@ func toggle_right():
 	########################################
 
 
+func toggle_up():
+	toggle_movement_type()
+	$Sounds/SelectSFX.play()
+
+
+func toggle_down():
+	toggle_movement_type()
+	$Sounds/SelectSFX.play()
+
+
 func change_state(new_state):
 	next_state = new_state
 	match new_state:
@@ -139,8 +196,11 @@ func change_state(new_state):
 			dive_shark()
 			device_name = ""
 			$Boarder/DeviceSprite.set_texture(null)
+			$Boarder/MoveTypeSprite.set_texture(null)
 			$Boarder/Left.hide()
 			$Boarder/Right.hide()
+			$Boarder/Up.hide()
+			$Boarder/Down.hide()
 			$SharkSprite.hide()
 			$Boarder/AnimationPlayer.play("close")
 			mid_animation = true
@@ -153,6 +213,8 @@ func change_state(new_state):
 				emerge_shark()
 			$Boarder/Left.show()
 			$Boarder/Right.show()
+			$Boarder/Up.show()
+			$Boarder/Down.show()
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
 		States.READY:
@@ -184,9 +246,12 @@ func open_with(event):
 	device_name = RoundManager.get_device_name_from(event)
 	if device_name == "keyboard" or (OS.is_debug_build() and device_name == "test_keyboard"):
 		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/keyboard.png"))
+		set_movement_type(MovementTypes.TANK)
+
 	else:
 		var num = int(device_name.split("_")[1]) + 1
 		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/gamepad.png"))
+		set_movement_type(MovementTypes.DIRECT)
 
 	if not CHARACTERS[char_index] in available_chars:
 		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
@@ -213,7 +278,25 @@ func set_character(index):
 	else:
 		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
 				CHARACTERS[char_index], "/portrait.png")))
-	
+
+
+func set_movement_type(new_movement_type):
+	match new_movement_type:
+		MovementTypes.DIRECT:
+			movement_type = MovementTypes.DIRECT
+			$Boarder/MoveTypeSprite.set_texture(load("res://assets/images/ui/direct.png"))
+
+		MovementTypes.TANK:
+			movement_type = MovementTypes.TANK
+			$Boarder/MoveTypeSprite.set_texture(load("res://assets/images/ui/tank.png"))
+
+
+func toggle_movement_type():
+	if movement_type == MovementTypes.DIRECT:
+		set_movement_type(MovementTypes.TANK)
+
+	else:
+		set_movement_type(MovementTypes.DIRECT)
 
 
 func add_shark(shark_name):
