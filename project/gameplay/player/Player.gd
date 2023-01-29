@@ -204,9 +204,7 @@ func _physics_process(delta):
 		create_trail(self.position)
 	
 	# Update rider direction
-	var rider_dir = get_rider_direction()
-	rider_dir.x *= -1
-	rider.global_rotation = rider_dir.angle()
+	rider.look_at(rider.global_position + get_rider_direction())
 	
 	if diving and not is_pressed["dive"]:
 		emerge()
@@ -301,13 +299,16 @@ func reset_dive_meter(hard_change):
 
 func get_rider_direction():
 	if gamepad_id != -1:
-		var direction = Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
-				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY))
+		var direction = Vector2(
+				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
+				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY)
+			)
 		if direction.length() > AXIS_DEADZONE:
-			return direction
+			return direction.normalized()
+
 		return speed2.normalized()
 	
-	return get_global_mouse_position() - get_position()
+	return (get_global_mouse_position() - get_position()).normalized()
 
 
 func get_movement_direction():

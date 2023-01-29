@@ -36,7 +36,7 @@ texture = ExtResource( 4 )
 offset = Vector2( 0, 0 )
 
 [node name="Hook" parent="Rider" index="0"]
-position = Vector2( -45, 0 )
+position = Vector2( 45, 0 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
 

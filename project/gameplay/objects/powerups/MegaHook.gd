@@ -16,7 +16,7 @@ func init(player):
 		self.player = player
 		player.riders_hook.texture = MEGAHOOK_SPRITE
 		player.riders_hook.scale = Vector2(2,2)
-		player.riders_hook.offset = Vector2(-70,0)
+		player.riders_hook.offset = Vector2(70,0)
 		set_physics_process(false)
 		hide()
 		return true

@@ -369,16 +369,21 @@ frame = 12
 
 [node name="Rider" type="Sprite" parent="."]
 position = Vector2( -40, -5 )
+rotation = 3.14159
 scale = Vector2( 0.3, 0.3 )
 z_index = 1
 texture = ExtResource( 3 )
-offset = Vector2( -15, 0 )
+offset = Vector2( 15, 0 )
+flip_h = true
+flip_v = true
 
 [node name="Hook" type="Sprite" parent="Rider"]
 show_behind_parent = true
-position = Vector2( -70, 0 )
+position = Vector2( 70, 0 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 4 )
+flip_h = true
+flip_v = true
 __meta__ = {
 "_edit_lock_": true
 }
