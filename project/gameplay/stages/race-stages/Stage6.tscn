@@ -36,9 +36,6 @@ margin_top = -2300.0
 margin_right = 5300.0
 margin_bottom = 2700.0
 
-[node name="PlayerStartingPosition" parent="." index="1"]
-editor/display_folded = false
-
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
 position = Vector2( 1910, -260 )
 direction = Vector2( 0, -1 )
@@ -230,17 +227,14 @@ rotation = -1.01205
 [node name="Box2" parent="Obstacles" index="45" instance=ExtResource( 15 )]
 position = Vector2( 1440, -1490 )
 rotation = 0.17034
-scale = Vector2( 1, 1 )
 
 [node name="Box5" parent="Obstacles" index="46" instance=ExtResource( 15 )]
 position = Vector2( 1780, 1350 )
 rotation = 0.0685516
-scale = Vector2( 1, 1 )
 
 [node name="Box4" parent="Obstacles" index="47" instance=ExtResource( 15 )]
 position = Vector2( -550, -500 )
 rotation = -0.96339
-scale = Vector2( 1, 1 )
 
 [node name="Box" parent="Obstacles" index="48" instance=ExtResource( 16 )]
 position = Vector2( 800, 1250 )
@@ -253,7 +247,6 @@ rotation = -0.893308
 [node name="BoxFull2" parent="Obstacles" index="50" instance=ExtResource( 3 )]
 position = Vector2( 2990, 140 )
 rotation = -0.698132
-scale = Vector2( 1, 1 )
 
 [node name="Box3" parent="Obstacles" index="51" instance=ExtResource( 17 )]
 position = Vector2( 1440, 1320 )
@@ -269,8 +262,6 @@ limit_top = -1950
 limit_right = 4761
 limit_bottom = 2350
 limit_smoothed = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource( 18 )
@@ -349,7 +340,6 @@ number = 5
 
 [node name="Checkpoint6" parent="Checkpoints" index="5" instance=ExtResource( 23 )]
 position = Vector2( 1350, 1620 )
-rotation = 3.01992e-07
 number = 6
 
 [node name="Checkpoint6-2" parent="Checkpoints" index="6" instance=ExtResource( 23 )]
@@ -375,3 +365,5 @@ position = Vector2( 1840, -140 )
 position = Vector2( 2280, -140 )
 
 [editable path="FinishLine"]
+[editable path="FinishLine/PullableObjectBot"]
+[editable path="FinishLine/PullableObjectTop"]

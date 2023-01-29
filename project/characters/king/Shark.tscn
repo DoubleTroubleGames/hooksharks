@@ -19,7 +19,7 @@
 [ext_resource path="res://assets/sound/sfx/king/loc_kinghook_hit_8.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/sound/sfx/king/loc_kinghook_hit_9.wav" type="AudioStream" id=18]
 
-[node name="King" index="0" instance=ExtResource( 1 )]
+[node name="King" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 frame = 7

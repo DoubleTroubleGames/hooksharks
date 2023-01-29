@@ -37,7 +37,6 @@ margin_bottom = 690.0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/CenterContainer/VBoxContainer"]
-editor/display_folded = true
 margin_right = 690.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 0, 300 )

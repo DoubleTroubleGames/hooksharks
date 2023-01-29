@@ -12,16 +12,6 @@
 [ext_resource path="res://gameplay/objects/obstacles/float-objects/Float2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/Box2.tscn" type="PackedScene" id=11]
 
-
-
-
-
-
-
-
-
-
-
 [node name="ArenaWalls" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
@@ -105,4 +95,3 @@ rotation = 1.5708
 [node name="Box2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1899.13, -31.0768 )
 rotation = 1.5708
-

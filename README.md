@@ -16,7 +16,7 @@ Now, it is under further development by the Double Trouble Games group.
 
 ## Running
 
-Open the project using [Godot Engine v3.1.1](https://downloads.tuxfamily.org/godotengine/3.1.1/) or go to the [release page](https://github.com/DoubleTroubleGames/hooksharks/releases) and download the latest version.
+Open the project using [Godot Engine v3.5.1](https://downloads.tuxfamily.org/godotengine/3.5.1/) or go to the [release page](https://github.com/DoubleTroubleGames/hooksharks/releases) and download the latest version.
 
 ----------------------------------------------------
 

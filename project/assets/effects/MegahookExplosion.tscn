@@ -20,7 +20,6 @@ gradient = SubResource( 2 )
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color_ramp = SubResource( 3 )
@@ -34,4 +33,3 @@ lifetime = 0.7
 one_shot = true
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
-

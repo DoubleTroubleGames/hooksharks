@@ -36,7 +36,8 @@ func set_color(color):
 	process_material.color_ramp.gradient.set_color(0, color)
 	process_material.color_ramp.gradient.set_color(1, color)
 	color.a = 0
-	process_material.color_ramp.gradient.set_color(2, color)"
+	process_material.color_ramp.gradient.set_color(2, color)
+"
 
 [sub_resource type="AudioStreamRandomPitch" id=5]
 audio_stream = ExtResource( 2 )

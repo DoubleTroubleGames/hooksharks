@@ -44,4 +44,5 @@ volume_db = 2.142
 bus = "SFX"
 
 [node name="MegahookExplosion" parent="." instance=ExtResource( 5 )]
+
 [connection signal="area_entered" from="HookArea" to="." method="_on_MegaHookArea_area_entered"]

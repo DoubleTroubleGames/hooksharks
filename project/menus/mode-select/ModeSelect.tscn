@@ -317,6 +317,7 @@ volume_db = -4.289
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
+
 [connection signal="focus_entered" from="ArenaButton" to="." method="_on_ArenaButton_focus_entered"]
 [connection signal="pressed" from="ArenaButton" to="." method="_on_ArenaButton_pressed"]
 [connection signal="focus_entered" from="RacingButton" to="." method="_on_RacingButton_focus_entered"]

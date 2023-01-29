@@ -56,7 +56,6 @@ margin_bottom = 1012.5
 texture = ExtResource( 3 )
 
 [node name="PressStart" type="Label" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_top = 1.0
@@ -64,11 +63,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -220.0
 margin_top = -209.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 8
 custom_constants/shadow_offset_y = 8
+custom_fonts/font = SubResource( 1 )
 text = "Press
 Start"
 
@@ -129,4 +128,5 @@ bus = "SFX"
 stream = ExtResource( 11 )
 volume_db = -4.289
 bus = "SFX"
+
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]

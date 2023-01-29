@@ -32,4 +32,3 @@ current = true
 limit_left = 0
 limit_top = 0
 script = ExtResource( 8 )
-

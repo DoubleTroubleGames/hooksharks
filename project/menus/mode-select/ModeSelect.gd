@@ -133,14 +133,14 @@ func _on_CreditsButton_focus_entered():
 func fadeWaveIn(button):
 	var cur = button.get_material().get_shader_param("wave_length")
 	if cur < WAVE_LENGTH:
-		$Tween.interpolate_property(button.get_material(), 
-	                           "shader_param/wave_length", 
-	                           cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED, 
-	                           Tween.TRANS_LINEAR, Tween.EASE_OUT)
+		$Tween.interpolate_property(button.get_material(),
+				"shader_param/wave_length",
+				cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED,
+				Tween.TRANS_LINEAR, Tween.EASE_OUT)
 func fadeWaveOut(button):
 	var cur = button.get_material().get_shader_param("wave_length")
 	if cur > 0:
 		$Tween.interpolate_property(button.get_material(), 
-	                    "shader_param/wave_length", 
-	                    cur, 0, cur/SPEED, 
-	                    Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			"shader_param/wave_length",
+			cur, 0, cur/SPEED,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)

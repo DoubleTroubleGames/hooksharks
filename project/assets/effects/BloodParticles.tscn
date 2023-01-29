@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/images/effects/blood.png" type="Texture" id=1]
 
-
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -26,4 +25,3 @@ one_shot = true
 local_coords = false
 process_material = SubResource( 2 )
 texture = ExtResource( 1 )
-

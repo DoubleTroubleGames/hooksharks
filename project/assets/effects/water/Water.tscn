@@ -158,4 +158,5 @@ anchor_bottom = 1.0
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+
 [connection signal="resized" from="." to="." method="_on_Water_resized"]

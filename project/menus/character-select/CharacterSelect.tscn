@@ -96,15 +96,14 @@ margin_left = 670.0
 margin_top = 70.0
 margin_right = 1314.0
 margin_bottom = 213.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
 custom_constants/shadow_offset_y = 10
+custom_fonts/font = SubResource( 1 )
 text = "Shark Select"
 align = 1
 
 [node name="PlayerIDs" type="Control" parent="."]
-editor/display_folded = true
 
 [node name="P1" type="Label" parent="PlayerIDs"]
 margin_left = 310.0
@@ -142,7 +141,6 @@ text = "P4
 "
 
 [node name="Boxes" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -184,10 +182,8 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
 [node name="BackIndicator" parent="." instance=ExtResource( 14 )]
-editor/display_folded = true
 
 [node name="StartMessage" type="Sprite" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 975, 220 )
 rotation = 0.0523599
@@ -201,7 +197,6 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="StartMessage"]
 
 [node name="TutorialNode" type="Node2D" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 z_index = 2
 

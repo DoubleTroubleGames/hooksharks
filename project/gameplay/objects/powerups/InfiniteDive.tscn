@@ -7,4 +7,3 @@ modulate = Color( 0.760784, 0.917647, 1, 1 )
 z_index = 2
 script = ExtResource( 1 )
 power_name = "Infinite Dive"
-

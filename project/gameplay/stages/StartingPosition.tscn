@@ -2,8 +2,6 @@
 
 [ext_resource path="res://gameplay/stages/StartingPosition.gd" type="Script" id=1]
 
-
 [node name="StartingPosition" type="Position2D"]
 scale = Vector2( 5, 5 )
 script = ExtResource( 1 )
-
