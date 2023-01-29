@@ -38,6 +38,7 @@ RoundManager="*res://autoload/RoundManager.gd"
 Sound="*res://autoload/Sound.tscn"
 Transition="*res://autoload/Transition.tscn"
 Collision="*res://autoload/Collision.gd"
+FullscreenToggle="*res://autoload/FullscreenToggle.gd"
 
 [debug]
 
