@@ -47,7 +47,7 @@ func respawn_player(player):
 	player.reset_input_map()
 	player.can_dive = true
 	player.is_respawning = true
-	player.get_node("InvencibilityTimer").stop()
+	player.get_node("InvincibilityTimer").stop()
 	if check.number > 0:
 		final_position = check.get_respawn_position(player.id + 1)
 		final_rotation = check.rotation

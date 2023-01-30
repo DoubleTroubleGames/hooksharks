@@ -480,8 +480,8 @@ func reset_input_map():
 
 func start_invincibility():
 	invincible = true
-	$InvencibilityTimer.start()
-	yield($InvencibilityTimer, "timeout")
+	$InvincibilityTimer.start()
+	yield($InvincibilityTimer, "timeout")
 	invincible = false
 	$Shark.modulate.a = 1.0
 
