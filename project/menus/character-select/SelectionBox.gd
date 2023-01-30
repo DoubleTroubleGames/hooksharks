@@ -105,10 +105,10 @@ func _input(event):
 
 		elif state == States.READY:
 			mid_animation = true
-			$Boarder/AnimationPlayer.play("unready")
+			$Border/AnimationPlayer.play("unready")
 			change_state(States.OPEN)
 			$Sounds/CancelSFX.play()
-			yield($Boarder/AnimationPlayer, "animation_finished")
+			yield($Border/AnimationPlayer, "animation_finished")
 			mid_animation = false
 
 	# This makes it so each subsequent elif doesn't need to check if state == States.OPEN
@@ -137,7 +137,7 @@ func toggle_left():
 	if not CHARACTERS[char_index] in available_chars:
 		portrait_path += "_grey"
 	portrait_path += ".png"
-	$Boarder/ChangePortrait.set_texture(load(portrait_path))
+	$Border/ChangePortrait.set_texture(load(portrait_path))
 	set_character(char_index - 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
@@ -148,9 +148,9 @@ func toggle_left():
 	if not CHARACTERS[char_index] in available_chars:
 		portrait_path += "_grey"
 	portrait_path += ".png"
-	$Boarder/Portrait.set_texture(load(portrait_path))
-	$Boarder/AnimationPlayer.play("change_char_right")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	$Border/Portrait.set_texture(load(portrait_path))
+	$Border/AnimationPlayer.play("change_char_right")
+	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
 	########################################
 
@@ -161,7 +161,7 @@ func toggle_right():
 	if not CHARACTERS[char_index] in available_chars:
 		portrait_path += "_grey"
 	portrait_path += ".png"
-	$Boarder/ChangePortrait.set_texture(load(portrait_path))
+	$Border/ChangePortrait.set_texture(load(portrait_path))
 	set_character(char_index + 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
@@ -172,9 +172,9 @@ func toggle_right():
 	if not CHARACTERS[char_index] in available_chars:
 		portrait_path += "_grey"
 	portrait_path += ".png"
-	$Boarder/Portrait.set_texture(load(portrait_path))
-	$Boarder/AnimationPlayer.play("change_char_left")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	$Border/Portrait.set_texture(load(portrait_path))
+	$Border/AnimationPlayer.play("change_char_left")
+	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
 	########################################
 
@@ -195,33 +195,33 @@ func change_state(new_state):
 		States.CLOSED:
 			dive_shark()
 			device_name = ""
-			$Boarder/DeviceSprite.set_texture(null)
-			$Boarder/MoveTypeSprite.set_texture(null)
-			$Boarder/Left.hide()
-			$Boarder/Right.hide()
-			$Boarder/Up.hide()
-			$Boarder/Down.hide()
+			$Border/DeviceSprite.set_texture(null)
+			$Border/MoveTypeSprite.set_texture(null)
+			$Border/Left.hide()
+			$Border/Right.hide()
+			$Border/Up.hide()
+			$Border/Down.hide()
 			$SharkSprite.hide()
-			$Boarder/AnimationPlayer.play("close")
+			$Border/AnimationPlayer.play("close")
 			mid_animation = true
-			yield($Boarder/AnimationPlayer, "animation_finished")
+			yield($Border/AnimationPlayer, "animation_finished")
 			mid_animation = false
 			emit_signal("closed")
 		States.OPEN:
 			$SharkSprite.show()
 			if state == States.CLOSED:
 				emerge_shark()
-			$Boarder/Left.show()
-			$Boarder/Right.show()
-			$Boarder/Up.show()
-			$Boarder/Down.show()
+			$Border/Left.show()
+			$Border/Right.show()
+			$Border/Up.show()
+			$Border/Down.show()
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
 		States.READY:
 			emit_signal("selected", CHARACTERS[char_index])
 			mid_animation = true
-			$Boarder/AnimationPlayer.play("ready")
-			yield($Boarder/AnimationPlayer, "animation_finished")
+			$Border/AnimationPlayer.play("ready")
+			yield($Border/AnimationPlayer, "animation_finished")
 			mid_animation = false
 
 	state = next_state
@@ -245,22 +245,22 @@ func is_locked():
 func open_with(event):
 	device_name = RoundManager.get_device_name_from(event)
 	if device_name == "keyboard" or (OS.is_debug_build() and device_name == "test_keyboard"):
-		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/keyboard.png"))
+		$Border/DeviceSprite.set_texture(load("res://assets/images/ui/keyboard.png"))
 		set_movement_type(MovementTypes.TANK)
 
 	else:
 		var num = int(device_name.split("_")[1]) + 1
-		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/gamepad.png"))
+		$Border/DeviceSprite.set_texture(load("res://assets/images/ui/gamepad.png"))
 		set_movement_type(MovementTypes.DIRECT)
 
 	if not CHARACTERS[char_index] in available_chars:
-		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
+		$Border/Portrait.set_texture(load(str("res://assets/images/characters/",
 				CHARACTERS[char_index], "/portrait_grey.png")))
-	$Boarder/AnimationPlayer.play("open")
+	$Border/AnimationPlayer.play("open")
 	mid_animation = true
 	$Sounds/ConfirmSFX.play()
 	change_state(States.OPEN)
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
 
 
@@ -273,10 +273,10 @@ func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
 	
 	if not CHARACTERS[char_index] in available_chars and self.next_state != States.READY:
-		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
+		$Border/Portrait.set_texture(load(str("res://assets/images/characters/",
 				CHARACTERS[char_index], "/portrait_grey.png")))
 	else:
-		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
+		$Border/Portrait.set_texture(load(str("res://assets/images/characters/",
 				CHARACTERS[char_index], "/portrait.png")))
 
 
@@ -284,11 +284,11 @@ func set_movement_type(new_movement_type):
 	match new_movement_type:
 		MovementTypes.DIRECT:
 			movement_type = MovementTypes.DIRECT
-			$Boarder/MoveTypeSprite.set_texture(load("res://assets/images/ui/direct.png"))
+			$Border/MoveTypeSprite.set_texture(load("res://assets/images/ui/direct.png"))
 
 		MovementTypes.TANK:
 			movement_type = MovementTypes.TANK
-			$Boarder/MoveTypeSprite.set_texture(load("res://assets/images/ui/tank.png"))
+			$Border/MoveTypeSprite.set_texture(load("res://assets/images/ui/tank.png"))
 
 
 func toggle_movement_type():
