@@ -7,7 +7,6 @@ signal hook_shot(player, direction)
 signal watermine_released(player)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
-signal paused(player)
 signal spawned(id)
 signal message_sent(text, color)
 signal dive_value_changed(value)
@@ -117,7 +116,9 @@ func _input(event):
 			retract()
 	
 	if event.is_action_pressed("pause"):
-		emit_signal("paused", self)
+		# Passing self as source_node is useful for scripts
+		# that want to know what node paused the game (see PauseScreen).
+		PauseManager.set_pause(true, {"source_node": self})
 
 
 func _physics_process(delta):

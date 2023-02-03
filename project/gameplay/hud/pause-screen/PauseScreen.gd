@@ -44,7 +44,7 @@ func _input(event):
 	elif event.is_action_pressed("ui_accept"):
 		press_button()
 	elif event.is_action_pressed("ui_cancel"):
-		unpause()
+		PauseManager.set_pause(false)
 
 
 func change_button(direction):
@@ -58,43 +58,9 @@ func press_button():
 	$MenuConfirmSFX.play()
 	match btn_index:
 		RESUME:
-			unpause()
+			PauseManager.set_pause(false)
 		QUIT:
 			quit()
-
-
-func pause(player, all_players):
-	Sound.on_pause()
-	var color = RoundManager.CHAR_COLOR[RoundManager.character_map[player.id]]
-	
-	players = all_players
-	
-	btn_index = 0
-	for button in buttons:
-		button.set_texture(load(str("res://assets/images/ui/pause/",
-				button.get_name().to_lower(), ".png")))
-	buttons[btn_index].set_texture(load(str("res://assets/images/ui/pause/",
-			buttons[btn_index].get_name().to_lower(), "_line.png")))
-	get_tree().paused = true
-	background.visible = true
-	set_process_input(true)
-	set_process(true)
-	player_label.set_modulate(color)
-	$Background/CenterContainer/VBoxContainer/HBoxContainer/Paused.set_modulate(color)
-	player_device = player.device_name
-	player_label.text = str("P", player.id + 1)
-	$PauseOpenSFX.play()
-
-
-func unpause():
-	Sound.on_unpause()
-	get_tree().paused = false
-	background.visible = false
-	for player in players:
-		player.reset_input_map()
-	
-	set_process_input(false)
-	set_process(false)
 
 
 func quit():
@@ -106,5 +72,39 @@ func quit():
 	
 	yield(Transition, "finished")
 	
-	get_tree().paused = false
+	PauseManager.set_pause(false)
 	get_tree().change_scene("res://menus/mode-select/ModeSelect.tscn")
+
+
+func _on_set_pause(should_pause: bool) -> void:
+	players = get_tree().get_nodes_in_group("players")
+	if should_pause:
+		var source_player = PauseManager.get_info().get("source_node", null)
+		# Default to player 1 if the game wasn't paused by a player
+		if not source_player in players:
+			source_player = players[0]
+
+		var color = RoundManager.CHAR_COLOR[RoundManager.character_map[source_player.id]]
+
+		btn_index = 0
+		for button in buttons:
+			button.set_texture(load(str("res://assets/images/ui/pause/",
+					button.get_name().to_lower(), ".png")))
+		buttons[btn_index].set_texture(load(str("res://assets/images/ui/pause/",
+				buttons[btn_index].get_name().to_lower(), "_line.png")))
+		background.visible = true
+		set_process_input(true)
+		set_process(true)
+		player_label.set_modulate(color)
+		$Background/CenterContainer/VBoxContainer/HBoxContainer/Paused.set_modulate(color)
+		player_device = source_player.device_name
+		player_label.text = str("P", source_player.id + 1)
+		$PauseOpenSFX.play()
+
+	else:
+		background.visible = false
+		for player in players:
+			player.reset_input_map()
+
+		set_process_input(false)
+		set_process(false)

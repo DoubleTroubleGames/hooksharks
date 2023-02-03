@@ -1,7 +1,6 @@
 extends Node2D
 
 onready var countdown = $Countdown
-onready var pause_screen = $PauseScreen
 
 const HOOK = preload("res://gameplay/player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://gameplay/objects/powerups/MegaHook.tscn")
@@ -23,6 +22,7 @@ var can_pause = true
 
 
 func _ready():
+	add_to_group("pause_sync")
 	available_stages = range(1, total_stages + 1)
 	test_setup()
 	var stage = get_first_stage().instance()
@@ -212,6 +212,10 @@ func check_winner():
 	transition_stage()
 
 
+func _allow_set_pause() -> bool:
+	return can_pause
+
+
 func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
@@ -296,11 +300,6 @@ func _on_wall_hit(position, rotation, color):
 
 func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
-
-
-func _on_player_paused(player):
-	if can_pause:
-		pause_screen.pause(player, players)
 
 
 func _on_player_spawned(id):

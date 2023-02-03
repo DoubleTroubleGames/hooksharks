@@ -25,14 +25,6 @@ func stop_ambience():
 	$Ambience.stop()
 
 
-func on_pause():
-	battle_bgm.bus = "BGM_Paused"
-
-
-func on_unpause():
-	battle_bgm.bus = "BGM"
-
-
 func fade_out(track, next_track = null, duration = 1.0):
 	tween.interpolate_property(track, "volume_db", null, -80, duration,
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -41,7 +33,7 @@ func fade_out(track, next_track = null, duration = 1.0):
 	yield(tween, "tween_completed")
 	track.stop()
 	track.volume_db = 0
-	on_unpause()
+	_on_set_pause(false)
 	
 	if next_track:
 		next_track.play()
@@ -49,3 +41,11 @@ func fade_out(track, next_track = null, duration = 1.0):
 
 func randomize_battle_bgm():
 	battle_bgm.stream = BATTLE_MUSIC[randi() % BATTLE_MUSIC.size()]
+
+
+func _on_set_pause(should_pause: bool) -> void:
+	if should_pause:
+		battle_bgm.set_bus("BGM_Paused")
+
+	else:
+		battle_bgm.set_bus("BGM")
