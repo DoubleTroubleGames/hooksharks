@@ -40,6 +40,7 @@ Transition="*res://autoload/Transition.tscn"
 Collision="*res://autoload/Collision.gd"
 FullscreenToggle="*res://autoload/FullscreenToggle.gd"
 PauseManager="*res://autoload/PauseManager.gd"
+PauseFocus="*res://autoload/PauseFocus.gd"
 
 [debug]
 

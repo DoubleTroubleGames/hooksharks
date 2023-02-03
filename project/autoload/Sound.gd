@@ -46,6 +46,8 @@ func randomize_battle_bgm():
 func _on_set_pause(should_pause: bool) -> void:
 	if should_pause:
 		battle_bgm.set_bus("BGM_Paused")
+		menu_bgm.set_bus("BGM_Paused")
 
 	else:
 		battle_bgm.set_bus("BGM")
+		menu_bgm.set_bus("BGM")

@@ -76,6 +76,16 @@ func quit():
 	get_tree().change_scene("res://menus/mode-select/ModeSelect.tscn")
 
 
+func _allow_set_pause() -> bool:
+	# PauseScreen will keep the game paused if an unpause attempt includes an
+	# unpause_priority less than 0. This allows scripts that would otherwise
+	# automatically unpause the game to leave that action to PauseScreen.
+	if PauseManager.get_info().get("unpause_priority", 0) < 0:
+		return false
+
+	return true
+
+
 func _on_set_pause(should_pause: bool) -> void:
 	players = get_tree().get_nodes_in_group("players")
 	if should_pause:
