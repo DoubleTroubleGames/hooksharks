@@ -78,6 +78,10 @@ func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
 
+	# Don't mark input as handled so FullscreenToggle can get this input.
+	if event.is_action_pressed("toggle_fullscreen"):
+		return
+
 	if mid_animation:
 		get_tree().set_input_as_handled()
 		return
