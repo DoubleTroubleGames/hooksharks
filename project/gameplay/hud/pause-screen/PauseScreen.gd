@@ -114,7 +114,8 @@ func _on_set_pause(should_pause: bool) -> void:
 	else:
 		background.visible = false
 		for player in players:
-			player.reset_input_map()
+			player.update_input_map()
+			player.apply_action_presses()
 
 		set_process_input(false)
 		set_process(false)
