@@ -462,14 +462,14 @@ func hook_retracted():
 # was changed in that event. This is useful when an action should only be done
 # once when pressed or released.
 func apply_action_presses(event: InputEvent = null) -> void:
-	if disabled:
-		return
-
 	if event:
 		if event.is_action_pressed("pause"):
 			# Passing self as source_node is useful for scripts
 			# that want to know what node paused the game (see PauseScreen).
 			PauseManager.set_pause(true, {"source_node": self})
+
+		if disabled:  # Only pausing is allowed when disabled.
+			return
 
 		if event.is_action_pressed("dive"):
 			dive()
@@ -485,8 +485,12 @@ func apply_action_presses(event: InputEvent = null) -> void:
 
 		return
 
+	# If no event was provided:
 	if is_pressed["pause"]:
 		PauseManager.set_pause(true, {"source_node": self})
+
+	if disabled:  # Only pausing is allowed when disabled.
+		return
 
 	if is_pressed["dive"]:
 		dive()
