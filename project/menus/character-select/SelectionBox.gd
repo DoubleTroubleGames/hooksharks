@@ -9,6 +9,12 @@ enum MovementTypes {DIRECT, TANK}
 enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
 
 const CHARACTERS = ["jackie", "drill", "king", "outsider"]
+const PORTRAITS = [
+		preload("res://assets/images/characters/jackie/portrait.png"),
+		preload("res://assets/images/characters/drill/portrait.png"),
+		preload("res://assets/images/characters/king/portrait.png"),
+		preload("res://assets/images/characters/outsider/portrait.png"),
+]
 const DEADZONE = .55
 const DIRECT = preload("res://assets/images/ui/direct.png")
 const GAMEPAD = preload("res://assets/images/ui/gamepad.png")
@@ -140,23 +146,23 @@ func _input(event):
 
 
 func toggle_left():
-	var portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Border/ChangePortrait.set_texture(load(portrait_path))
+		grey_factor = 1
+
+	$Border/ChangePortrait.set_texture(PORTRAITS[char_index])
+	$Border/ChangePortrait.material.set_shader_param("grey_factor", grey_factor)
 	set_character(char_index - 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
 	#### Visuals for character changing ####
 	mid_animation = true
-	portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Border/Portrait.set_texture(load(portrait_path))
+		grey_factor = 1
+
+	$Border/Portrait.set_texture(PORTRAITS[char_index])
+	$Border/Portrait.material.set_shader_param("grey_factor", grey_factor)
 	$Border/AnimationPlayer.play("change_char_right")
 	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
@@ -164,23 +170,23 @@ func toggle_left():
 
 
 func toggle_right():
-	var portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Border/ChangePortrait.set_texture(load(portrait_path))
+		grey_factor = 1
+
+	$Border/ChangePortrait.set_texture(PORTRAITS[char_index])
+	$Border/ChangePortrait.material.set_shader_param("grey_factor", grey_factor)
 	set_character(char_index + 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
 	#### Visuals for character changing ####
 	mid_animation = true
-	portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Border/Portrait.set_texture(load(portrait_path))
+		grey_factor = 1
+
+	$Border/Portrait.set_texture(PORTRAITS[char_index])
+	$Border/Portrait.material.set_shader_param("grey_factor", grey_factor)
 	$Border/AnimationPlayer.play("change_char_left")
 	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
@@ -262,8 +268,8 @@ func open_with(event):
 		set_movement_type(MovementTypes.DIRECT)
 
 	if not CHARACTERS[char_index] in available_chars:
-		$Border/Portrait.set_texture(load(str("res://assets/images/characters/",
-				CHARACTERS[char_index], "/portrait_grey.png")))
+		$Border/Portrait.material.set_shader_param("grey_factor", 1)
+
 	$Border/AnimationPlayer.play("open")
 	mid_animation = true
 	$Sounds/ConfirmSFX.play()
@@ -280,12 +286,12 @@ func update_available_characters(characters):
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
 	
+	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars and self.next_state != States.READY:
-		$Border/Portrait.set_texture(load(str("res://assets/images/characters/",
-				CHARACTERS[char_index], "/portrait_grey.png")))
-	else:
-		$Border/Portrait.set_texture(load(str("res://assets/images/characters/",
-				CHARACTERS[char_index], "/portrait.png")))
+		grey_factor = 1
+
+	$Border/Portrait.set_texture(PORTRAITS[char_index])
+	$Border/Portrait.material.set_shader_param("grey_factor", grey_factor)
 
 
 func set_movement_type(new_movement_type):

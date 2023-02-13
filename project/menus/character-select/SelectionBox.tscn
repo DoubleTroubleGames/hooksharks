@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://menus/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/boarder.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/ui/cover2.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/ui/cover.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/characters/jackie/portrait.png" type="Texture" id=5]
-[ext_resource path="res://assets/images/characters/drill/portrait.png" type="Texture" id=6]
+[ext_resource path="res://menus/character-select/Portrait.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/character-select/ChangePortrait.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/images/ui/grid.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/ui/gate.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/ui/ready.png" type="Texture" id=9]
@@ -27,6 +27,27 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform float grey_factor : hint_range(0,1);
+
+void fragment() {
+	vec4 sample = texture(TEXTURE, UV);
+	float grey = 0.21 * sample.r + 0.71 * sample.g + 0.07 * sample.b;
+    COLOR = vec4(sample.r * (1.0 - grey_factor) + grey * grey_factor, sample.g * (1.0 - grey_factor) + grey * grey_factor, sample.b * (1.0 - grey_factor) + grey * grey_factor, sample.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/grey_factor = 0.0
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/grey_factor = 0.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "change_char_left"
@@ -794,21 +815,11 @@ texture = ExtResource( 2 )
 show_behind_parent = true
 frames = SubResource( 1 )
 
-[node name="Portrait" type="Sprite" parent="Border"]
-visible = false
-show_behind_parent = true
-position = Vector2( 0, -223 )
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 301, 0 )
+[node name="Portrait" parent="Border" instance=ExtResource( 5 )]
+material = SubResource( 9 )
 
-[node name="ChangePortrait" type="Sprite" parent="Border"]
-visible = false
-show_behind_parent = true
-position = Vector2( 10, 0 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 301, 0, 301, 446 )
+[node name="ChangePortrait" parent="Border" instance=ExtResource( 6 )]
+material = SubResource( 10 )
 
 [node name="Grid" type="Sprite" parent="Border"]
 visible = false

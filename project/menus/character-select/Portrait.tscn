@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/images/characters/jackie/portrait.png" type="Texture" id=1]
+[ext_resource path="res://menus/character-select/grey_shader.tres" type="Material" id=2]
+
+[node name="Portrait" type="Sprite"]
+visible = false
+show_behind_parent = true
+material = ExtResource( 2 )
+position = Vector2( 0, -223 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 301, 0 )
