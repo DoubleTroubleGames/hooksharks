@@ -48,9 +48,9 @@ func _input(event):
 
 
 func change_button(direction):
-	buttons[btn_index].set_texture(load(str("res://assets/images/ui/pause/", buttons[btn_index].get_name().to_lower(), ".png")))
+	buttons[btn_index].set_frame(0)
 	btn_index = wrapi(btn_index + direction, 0, buttons.size())
-	buttons[btn_index].set_texture(load(str("res://assets/images/ui/pause/", buttons[btn_index].get_name().to_lower(), "_line.png")))
+	buttons[btn_index].set_frame(1)
 	$MenuSelectionSFX.play()
 
 
@@ -98,10 +98,9 @@ func _on_set_pause(should_pause: bool) -> void:
 
 		btn_index = 0
 		for button in buttons:
-			button.set_texture(load(str("res://assets/images/ui/pause/",
-					button.get_name().to_lower(), ".png")))
-		buttons[btn_index].set_texture(load(str("res://assets/images/ui/pause/",
-				buttons[btn_index].get_name().to_lower(), "_line.png")))
+			button.set_frame(0)
+
+		buttons[btn_index].set_frame(1)
 		background.visible = true
 		set_process_input(true)
 		set_process(true)

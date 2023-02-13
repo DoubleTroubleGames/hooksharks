@@ -2,7 +2,7 @@
 
 [ext_resource path="res://gameplay/hud/pause-screen/PauseScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/edosz.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/images/ui/pause/resume_line.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/ui/pause/resume.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/ui/pause/quit.png" type="Texture" id=4]
 [ext_resource path="res://assets/sound/sfx/pause_open.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=6]
@@ -62,10 +62,13 @@ valign = 1
 [node name="Resume" type="Sprite" parent="Background/CenterContainer/VBoxContainer"]
 position = Vector2( 345, 350 )
 texture = ExtResource( 3 )
+hframes = 2
+frame = 1
 
 [node name="Quit" type="Sprite" parent="Background/CenterContainer/VBoxContainer"]
 position = Vector2( 345, 480 )
 texture = ExtResource( 4 )
+hframes = 2
 
 [node name="PauseOpenSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
