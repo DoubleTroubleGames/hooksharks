@@ -10,6 +10,10 @@ enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
 
 const CHARACTERS = ["jackie", "drill", "king", "outsider"]
 const DEADZONE = .55
+const DIRECT = preload("res://assets/images/ui/direct.png")
+const GAMEPAD = preload("res://assets/images/ui/gamepad.png")
+const KEYBOARD = preload("res://assets/images/ui/keyboard.png")
+const TANK = preload("res://assets/images/ui/tank.png")
 const TWN_TIME = 0.6
 
 onready var char_sfx = {"jackie": $Sounds/JackieSFXs,
@@ -249,12 +253,12 @@ func is_locked():
 func open_with(event):
 	device_name = RoundManager.get_device_name_from(event)
 	if device_name == "keyboard" or (OS.is_debug_build() and device_name == "test_keyboard"):
-		$Border/DeviceSprite.set_texture(load("res://assets/images/ui/keyboard.png"))
+		$Border/DeviceSprite.set_texture(KEYBOARD)
 		set_movement_type(MovementTypes.TANK)
 
 	else:
 		var num = int(device_name.split("_")[1]) + 1
-		$Border/DeviceSprite.set_texture(load("res://assets/images/ui/gamepad.png"))
+		$Border/DeviceSprite.set_texture(GAMEPAD)
 		set_movement_type(MovementTypes.DIRECT)
 
 	if not CHARACTERS[char_index] in available_chars:
@@ -288,11 +292,11 @@ func set_movement_type(new_movement_type):
 	match new_movement_type:
 		MovementTypes.DIRECT:
 			movement_type = MovementTypes.DIRECT
-			$Border/MoveTypeSprite.set_texture(load("res://assets/images/ui/direct.png"))
+			$Border/MoveTypeSprite.set_texture(DIRECT)
 
 		MovementTypes.TANK:
 			movement_type = MovementTypes.TANK
-			$Border/MoveTypeSprite.set_texture(load("res://assets/images/ui/tank.png"))
+			$Border/MoveTypeSprite.set_texture(TANK)
 
 
 func toggle_movement_type():
