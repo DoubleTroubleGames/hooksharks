@@ -2,6 +2,7 @@ extends Node2D
 
 onready var countdown = $Countdown
 
+const Explosion = preload("res://assets/effects/explosion/DeathExplosion.tscn")
 const HOOK = preload("res://gameplay/player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://gameplay/objects/powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://assets/effects/HookClink.tscn")
@@ -231,7 +232,7 @@ func _on_player_hook_shot(player, direction):
 
 
 func _on_player_megahook_shot(player, direction):
-	var explosion = load("res://assets/effects/explosion/DeathExplosion.tscn").instance()
+	var explosion = Explosion.instance()
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	
 	call_deferred("shoot_megahook", player, direction)
