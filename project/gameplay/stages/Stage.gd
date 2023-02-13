@@ -10,6 +10,7 @@ export (Color)var water_deep = Color("0a2f4f") setget set_water_deep
 export (Color)var water_foam = Color("25628b") setget set_water_foam
 
 const PLAYER = preload("res://gameplay/player/Player.tscn")
+const SHADER = preload("res://gameplay/objects/obstacles/solid-objects/outline_final.tres")
 const CAMERA_RATIO = .07
 
 var player_checkpoints = [null, null, null, null]
@@ -53,8 +54,7 @@ func color_water():
 	$Water/BG.get_material().set_shader_param("deep_color", water_deep)
 	$Water/BG.get_material().set_shader_param("shallow_color", water_border)
 	$Water/Waves.get_material().set_shader_param("wave_color", water_foam)
-	var shader = load("res://gameplay/objects/obstacles/solid-objects/outline_final.tres")
-	shader.set_shader_param("wave_color", water_foam)
+	SHADER.set_shader_param("wave_color", water_foam)
 
 func get_stage_name():
 	return stage_name
