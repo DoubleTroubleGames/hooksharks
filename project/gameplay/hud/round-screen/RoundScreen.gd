@@ -17,6 +17,12 @@ onready var char_sfx = {"jackie": $JackieSFXs,
 		"drill": $DrillSFXs, "king": $KingSFXs,
 		"outsider": $OutsiderSFXs}
 
+const STICKERS = {
+	"drill": preload("res://assets/images/characters/drill/sticker.png"),
+	"jackie": preload("res://assets/images/characters/jackie/sticker.png"),
+	"king": preload("res://assets/images/characters/king/sticker.png"),
+	"outsider": preload("res://assets/images/characters/outsider/sticker.png"),
+}
 const TRIVIA = [
 	"Great white sharks aren't so great after all",
 	"There isn't always a bigger fish in the sea if you are a big-ass whale",
@@ -210,7 +216,7 @@ func set_player_sticker(index):
 	var Sticker = get_node(str("Background/ScoreGrid/Player", index + 1, "/Portrait"))
 	var PlayerNumber = get_node(str("Background/ScoreGrid/Player", index + 1, "/PlayerNumber"))
 	var character = RoundManager.character_map[index]
-	var char_sticker = load(str("res://assets/images/characters/", character, "/sticker.png"))
+	var char_sticker = STICKERS[character]
 	var char_color = RoundManager.CHAR_COLOR[RoundManager.character_map[index]]
 	
 	PlayerNumber.set_modulate(char_color.lightened(.4))
