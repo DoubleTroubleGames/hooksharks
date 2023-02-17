@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://menus/main-menu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/openingtitle.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=5]
@@ -35,14 +34,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
-ModeSelect = ExtResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_left = 0.5

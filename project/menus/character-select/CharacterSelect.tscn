@@ -1,9 +1,6 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://menus/character-select/CharacterSelect.gd" type="Script" id=1]
-[ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gameplay/arena-mode/Arena.tscn" type="PackedScene" id=3]
-[ext_resource path="res://gameplay/race-mode/Race.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=5]
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/Floor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/Tire2.tscn" type="PackedScene" id=7]
@@ -47,14 +44,11 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="CharacterSelect" type="Control"]
+[node name="CharacterSelect" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 tutorial = true
-ModeSelect = ExtResource( 2 )
-ArenaMode = ExtResource( 3 )
-RaceMode = ExtResource( 4 )
 
 [node name="Water" parent="." instance=ExtResource( 5 )]
 

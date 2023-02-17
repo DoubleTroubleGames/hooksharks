@@ -223,7 +223,7 @@ tracks/0/keys = {
 "values": [ 4.0, 1.0 ]
 }
 
-[node name="ModeSelect" type="Control"]
+[node name="ModeSelect" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )

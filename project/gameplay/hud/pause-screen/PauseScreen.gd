@@ -60,20 +60,14 @@ func press_button():
 		RESUME:
 			PauseManager.set_pause(false)
 		QUIT:
-			quit()
+			Transition.transition_to("ModeSelect")
 
 
-func quit():
+func _on_transition_in() -> void:
 	set_process_input(false)
 	set_process(false)
-	Transition.transition_in()
 	Sound.stop_ambience()
 	Sound.fade_out(Sound.battle_bgm, Sound.menu_bgm)
-	
-	yield(Transition, "finished")
-	
-	PauseManager.set_pause(false)
-	get_tree().change_scene("res://menus/mode-select/ModeSelect.tscn")
 
 
 func _allow_set_pause() -> bool:
