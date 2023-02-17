@@ -9,6 +9,13 @@ extends Node
 var _info := {}
 
 
+# Return the info dictionary provided by the most recent caller
+# of set_pause, which scripts may use as part of their
+# _allow_set_pause or _on_set_pause implementations.
+func get_info() -> Dictionary:
+	return _info
+
+
 # If all members of pause_sync allow set_pause
 # to continue, then pause or unpause the game.
 func set_pause(should_pause: bool, info := {}) -> void:
@@ -33,10 +40,3 @@ func _allow_set_pause() -> bool:
 			return false
 
 	return true
-
-
-# Return the info dictionary provided by the most recent caller
-# of set_pause, which scripts may use as part of their
-# _allow_set_pause or _on_set_pause implementations.
-func get_info() -> Dictionary:
-	return _info
