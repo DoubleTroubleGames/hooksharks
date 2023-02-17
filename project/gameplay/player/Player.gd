@@ -43,6 +43,12 @@ const DIVE_COOLDOWN_SPEED = 40
 const WALL_PULL_FORCE_MUL = 2
 const PULL_PLAYER_FACTOR = 3.5
 const ORIGINAL_HOOK_SCALE = Vector2(.6,.6)
+const SHARKS = {
+	"drill": preload("res://characters/drill/Shark.tscn"),
+	"jackie": preload("res://characters/jackie/Shark.tscn"),
+	"king": preload("res://characters/king/Shark.tscn"),
+	"outsider": preload("res://characters/outsider/Shark.tscn"),
+}
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -209,8 +215,7 @@ func enable():
 
 func add_shark(shark_name):
 	var old = $Shark
-	var new_path = str("res://characters/", shark_name, "/Shark.tscn")
-	var new = load(new_path).instance()
+	var new = SHARKS[shark_name].instance()
 	
 	old.set_name("old shark")
 	old.queue_free()

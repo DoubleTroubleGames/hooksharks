@@ -21,6 +21,12 @@ const GAMEPAD = preload("res://assets/images/ui/gamepad.png")
 const KEYBOARD = preload("res://assets/images/ui/keyboard.png")
 const TANK = preload("res://assets/images/ui/tank.png")
 const TWN_TIME = 0.6
+const SHARKS = {
+	"drill": preload("res://characters/drill/Shark.tscn"),
+	"jackie": preload("res://characters/jackie/Shark.tscn"),
+	"king": preload("res://characters/king/Shark.tscn"),
+	"outsider": preload("res://characters/outsider/Shark.tscn"),
+}
 
 onready var char_sfx = {"jackie": $Sounds/JackieSFXs,
 		"drill": $Sounds/DrillSFXs, "king": $Sounds/KingSFXs,
@@ -315,8 +321,7 @@ func toggle_movement_type():
 
 func add_shark(shark_name):
 	var old = $SharkSprite/Shark
-	var new_path = str("res://characters/", shark_name, "/Shark.tscn")
-	var new = load(new_path).instance()
+	var new = SHARKS[shark_name].instance()
 
 	old.set_name("old shark")
 	old.queue_free()
