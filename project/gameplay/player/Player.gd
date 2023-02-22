@@ -7,7 +7,6 @@ signal hook_shot(player, direction)
 signal watermine_released(player)
 signal megahook_shot(player, direction)
 signal shook_screen(amount)
-signal paused(player)
 signal spawned(id)
 signal message_sent(text, color)
 signal dive_value_changed(value)
@@ -35,6 +34,7 @@ const COOLDOWN_BUBBLE = preload("res://assets/images/ui/divebar-bubble-cd.png")
 const BLOOD_PARTICLE = preload("res://assets/effects/BloodParticles.tscn")
 const EXPLOSION_PARTICLE = preload("res://assets/effects/explosion/DeathExplosion.tscn")
 const AXIS_DEADZONE = .5
+const AXIS_DIRECTIONS := {"left": -1, "right": 1, "up": -1, "down": 1}
 const SCREEN_SHAKE_EXPLOSION = 1
 const DIRECT_MOVEMENT_MARGIN = PI / 36
 const DIVE_USE_SPEED = 75
@@ -43,6 +43,12 @@ const DIVE_COOLDOWN_SPEED = 40
 const WALL_PULL_FORCE_MUL = 2
 const PULL_PLAYER_FACTOR = 3.5
 const ORIGINAL_HOOK_SCALE = Vector2(.6,.6)
+const SHARKS = {
+	"drill": preload("res://characters/drill/Shark.tscn"),
+	"jackie": preload("res://characters/jackie/Shark.tscn"),
+	"king": preload("res://characters/king/Shark.tscn"),
+	"outsider": preload("res://characters/outsider/Shark.tscn"),
+}
 
 export(Vector2) var initial_dir = Vector2(1, 0)
 export(bool) var create_trail = true
@@ -99,25 +105,9 @@ func spawn_animation():
 func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
-	
-	for action in is_pressed.keys():
-		if event.is_action(action):
-			is_pressed[action] = event.is_pressed() or\
-					(event is InputEventKey and event.is_echo())
-			break
-	
-	if not disabled:
-		if event.is_action_pressed("dive"):
-			dive()
-		elif event.is_action_released("dive"):
-			emerge()
-		elif event.is_action_pressed("shoot"):
-			shoot()
-		elif event.is_action_released("shoot"):
-			retract()
-	
-	if event.is_action_pressed("pause"):
-		emit_signal("paused", self)
+
+	update_input_map()
+	apply_action_presses(event)
 
 
 func _physics_process(delta):
@@ -139,11 +129,6 @@ func _physics_process(delta):
 		applying_force = hook.rope.get_applying_force()
 	elif not stunned:
 		if movement_type == MovementTypes.TANK:
-			# Workaround for gamepad bug
-			if device_name.begins_with("gamepad"):
-				var direction = get_movement_direction()
-				is_pressed["right"] = direction.x > AXIS_DEADZONE
-				is_pressed["left"] = direction.x < - AXIS_DEADZONE
 			turning_right = is_pressed["right"]
 			turning_left = is_pressed["left"]
 		elif movement_type == MovementTypes.DIRECT:
@@ -204,9 +189,7 @@ func _physics_process(delta):
 		create_trail(self.position)
 	
 	# Update rider direction
-	var rider_dir = get_rider_direction()
-	rider_dir.x *= -1
-	rider.global_rotation = rider_dir.angle()
+	rider.look_at(rider.global_position + get_rider_direction())
 	
 	if diving and not is_pressed["dive"]:
 		emerge()
@@ -232,8 +215,7 @@ func enable():
 
 func add_shark(shark_name):
 	var old = $Shark
-	var new_path = str("res://characters/", shark_name, "/Shark.tscn")
-	var new = load(new_path).instance()
+	var new = SHARKS[shark_name].instance()
 	
 	old.set_name("old shark")
 	old.queue_free()
@@ -301,13 +283,16 @@ func reset_dive_meter(hard_change):
 
 func get_rider_direction():
 	if gamepad_id != -1:
-		var direction = Vector2(Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
-				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY))
+		var direction = Vector2(
+				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RX),
+				Input.get_joy_axis(gamepad_id, JOY_ANALOG_RY)
+			)
 		if direction.length() > AXIS_DEADZONE:
-			return direction
+			return direction.normalized()
+
 		return speed2.normalized()
 	
-	return get_global_mouse_position() - get_position()
+	return (get_global_mouse_position() - get_position()).normalized()
 
 
 func get_movement_direction():
@@ -472,15 +457,120 @@ func hook_retracted():
 	riders_hook.show()
 
 
+# Handles applying all actions that aren't movement-related.
+#
+# By default, the current action presses will be applied even if the player has
+# not done anything new. This is useful for ensuring that a player's held inputs
+# are still applied when unpausing the game.
+#
+# If an InputEvent is provided, the player's input will only be applied if it
+# was changed in that event. This is useful when an action should only be done
+# once when pressed or released.
+func apply_action_presses(event: InputEvent = null) -> void:
+	if event:
+		if event.is_action_pressed("pause"):
+			# Passing self as source_node is useful for scripts
+			# that want to know what node paused the game (see PauseScreen).
+			PauseManager.set_pause(true, {"source_node": self})
+
+		if disabled:  # Only pausing is allowed when disabled.
+			return
+
+		if event.is_action_pressed("dive"):
+			dive()
+
+		elif event.is_action_released("dive"):
+			emerge()
+
+		if event.is_action_pressed("shoot"):
+			shoot()
+
+		elif event.is_action_released("shoot"):
+			retract()
+
+		return
+
+	# If no event was provided:
+	if is_pressed["pause"]:
+		PauseManager.set_pause(true, {"source_node": self})
+
+	if disabled:  # Only pausing is allowed when disabled.
+		return
+
+	if is_pressed["dive"]:
+		dive()
+
+	else:
+		emerge()
+
+	if is_pressed["shoot"]:
+		shoot()
+
+	else:
+		retract()
+
+
+# Updates whether each action in is_pressed is currently pressed. Does not take
+# into account whether that action was recently pressed or released.
+func update_input_map() -> void:
+	for action_name in is_pressed:
+		var action_pressed := false
+
+		for action_input in ProjectSettings.get_setting("input/%s" % action_name)["events"]:
+			var action_input_pressed := false
+
+			if action_input is InputEventJoypadMotion:
+				var axis_direction: int = AXIS_DIRECTIONS.get(action_name, 0)
+				var axis_input := Input.get_joy_axis(gamepad_id, action_input.get_axis())
+
+				# axis_input must have a magnitude greater than AXIS_DEADZONE and have
+				# the same sign as axis_direction for action_input_pressed to be true.
+				action_input_pressed = (
+						abs(axis_input) > AXIS_DEADZONE
+						and (
+								axis_input > 0 and axis_direction > 0
+								or axis_input < 0 and axis_direction < 0
+						)
+				)
+
+			elif action_input is InputEventJoypadButton:
+				action_input_pressed = Input.is_joy_button_pressed(
+						gamepad_id,
+						action_input.get_button_index()
+				)
+
+			elif gamepad_id == -1:  # -1 means this player does not have a gamepad assigned.
+				if action_input is InputEventKey:
+					action_input_pressed = Input.is_key_pressed(
+							action_input.get_scancode()
+					)
+
+				elif action_input is InputEventMouseButton:
+					action_input_pressed = Input.is_mouse_button_pressed(
+							action_input.get_button_index()
+					)
+
+			# Using "or" means that if any action_input for action_name
+			# is pressed, then action_pressed will stay true.
+			action_pressed = action_pressed or action_input_pressed
+
+		is_pressed[action_name] = action_pressed
+
+
 func reset_input_map():
-	is_pressed = {"dive": false, "shoot": false, "left": false, "right": false,
-		"up": false, "down": false, "pause": false}
-	retract()
+	for action_name in is_pressed:
+		is_pressed[action_name] = false
+
+
+func reset_input() -> void:
+	reset_input_map()
+	apply_action_presses()
+
 
 func start_invincibility():
 	invincible = true
-	$InvencibilityTimer.start()
-	yield($InvencibilityTimer, "timeout")
+	$InvincibilityTimer.start()
+	yield($InvincibilityTimer, "timeout")
 	invincible = false
 	$Shark.modulate.a = 1.0
 

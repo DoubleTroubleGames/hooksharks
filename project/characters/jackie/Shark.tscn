@@ -23,10 +23,10 @@ frame = 7
 visible = false
 position = Vector2( -40, -2 )
 scale = Vector2( 0.4, 0.4 )
-offset = Vector2( 20, 0 )
+offset = Vector2( -20, 0 )
 
 [node name="Hook" parent="Rider" index="0"]
-position = Vector2( -35, 0 )
+position = Vector2( 35, 0 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="OverWaterArea" parent="." index="3"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://gameplay/race-mode/Race.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -7,13 +7,18 @@
 [ext_resource path="res://gameplay/hud/round-screen/RoundScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/effects/ScreenBlink.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/hud/pause-screen/PauseScreen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/stages/race-stages/Stage3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gameplay/stages/race-stages/Stage2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gameplay/stages/race-stages/Stage1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gameplay/stages/race-stages/Stage6.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gameplay/stages/race-stages/Stage5.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gameplay/stages/race-stages/Stage4.tscn" type="PackedScene" id=13]
 
 [node name="Race" type="Node2D"]
 script = ExtResource( 1 )
-total_stages = 6
+stage_scenes = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ) ]
 
 [node name="Water" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
 
 [node name="Countdown" parent="." instance=ExtResource( 3 )]
 

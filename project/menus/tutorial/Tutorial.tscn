@@ -52,8 +52,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="Continue"]
 margin_right = 607.0
 margin_bottom = 117.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "PRESS ANY KEY TO CONTINUE
 "
 
@@ -65,4 +65,3 @@ texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Continue"]
 anims/show = SubResource( 2 )
-

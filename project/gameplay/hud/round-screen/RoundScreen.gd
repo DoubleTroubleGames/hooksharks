@@ -17,6 +17,12 @@ onready var char_sfx = {"jackie": $JackieSFXs,
 		"drill": $DrillSFXs, "king": $KingSFXs,
 		"outsider": $OutsiderSFXs}
 
+const STICKERS = {
+	"drill": preload("res://assets/images/characters/drill/sticker.png"),
+	"jackie": preload("res://assets/images/characters/jackie/sticker.png"),
+	"king": preload("res://assets/images/characters/king/sticker.png"),
+	"outsider": preload("res://assets/images/characters/outsider/sticker.png"),
+}
 const TRIVIA = [
 	"Great white sharks aren't so great after all",
 	"There isn't always a bigger fish in the sea if you are a big-ass whale",
@@ -199,18 +205,16 @@ func win_animation(match_winner):
 	button_restart.grab_focus()
 
 
-func transition():
+func _on_transition_in():
 	button_quit.disabled = true
 	button_restart.disabled = true
-	
-	Transition.transition_in()
 
 
 func set_player_sticker(index):
 	var Sticker = get_node(str("Background/ScoreGrid/Player", index + 1, "/Portrait"))
 	var PlayerNumber = get_node(str("Background/ScoreGrid/Player", index + 1, "/PlayerNumber"))
 	var character = RoundManager.character_map[index]
-	var char_sticker = load(str("res://assets/images/characters/", character, "/sticker.png"))
+	var char_sticker = STICKERS[character]
 	var char_color = RoundManager.CHAR_COLOR[RoundManager.character_map[index]]
 	
 	PlayerNumber.set_modulate(char_color.lightened(.4))
@@ -221,17 +225,13 @@ func set_player_sticker(index):
 
 func _on_Restart_pressed():
 	RoundManager.reset_round()
-	transition()
-	yield(Transition, "finished")
-	get_tree().reload_current_scene()
+	Transition.transition_to("current")
 
 
 func _on_Quit_pressed():
-	transition()
 	Sound.stop_ambience()
 	Sound.fade_out(Sound.battle_bgm, Sound.menu_bgm)
-	yield(Transition, "finished")
-	get_tree().change_scene("res://menus/mode-select/ModeSelect.tscn")
+	Transition.transition_to("ModeSelect")
 
 
 func getRandomTrivia():

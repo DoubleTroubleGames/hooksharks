@@ -10,7 +10,7 @@
 [ext_resource path="res://gameplay/camera/GroupCamera.gd" type="Script" id=8]
 [ext_resource path="res://gameplay/race-mode/FinishLine.tscn" type="PackedScene" id=9]
 
-[node name="Stage" index="0" instance=ExtResource( 1 )]
+[node name="Stage" instance=ExtResource( 1 )]
 stage_begin = Vector2( -1150, -1000 )
 stage_end = Vector2( 4700, 3150 )
 stage_name = "Fin Twister"
@@ -22,7 +22,6 @@ margin_right = 4700.0
 margin_bottom = 3150.0
 
 [node name="PlayerStartingPosition" parent="." index="1"]
-editor/display_folded = false
 position = Vector2( 375.096, 1028.77 )
 
 [node name="StartingPosition1" parent="PlayerStartingPosition" index="0"]
@@ -76,7 +75,6 @@ rotation = 0.785397
 scale = Vector2( 1.4, 1.4 )
 
 [node name="Circle1" type="Node2D" parent="Obstacles" index="2"]
-editor/display_folded = true
 
 [node name="BoxMetal" parent="Obstacles/Circle1" index="0" instance=ExtResource( 4 )]
 position = Vector2( 80.1965, 1064.17 )
@@ -130,7 +128,6 @@ position = Vector2( 1717.89, 317.256 )
 rotation = 0.785397
 
 [node name="Circle2" type="Node2D" parent="Obstacles" index="3"]
-editor/display_folded = true
 position = Vector2( 3624.68, 2137.48 )
 rotation = 3.14159
 
@@ -194,7 +191,6 @@ position = Vector2( 2575.71, 1050.47 )
 scale = Vector2( 1.2, 1.2 )
 
 [node name="PowerUps" type="Node2D" parent="." index="10"]
-editor/display_folded = true
 z_index = 2
 
 [node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 6 )]
@@ -269,14 +265,11 @@ limit_top = -709
 limit_right = 4290
 limit_bottom = 2859
 limit_smoothed = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource( 8 )
 
 [node name="FinishLine" parent="." index="13" instance=ExtResource( 9 )]
-editor/display_folded = true
 position = Vector2( 539.433, 1159.35 )
 rotation = -1.57079
 total_checkpoint_number = 9

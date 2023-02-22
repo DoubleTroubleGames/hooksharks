@@ -1,9 +1,6 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://menus/character-select/CharacterSelect.gd" type="Script" id=1]
-[ext_resource path="res://menus/mode-select/ModeSelect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://gameplay/arena-mode/Arena.tscn" type="PackedScene" id=3]
-[ext_resource path="res://gameplay/race-mode/Race.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=5]
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/Floor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/objects/obstacles/solid-objects/Tire2.tscn" type="PackedScene" id=7]
@@ -47,14 +44,11 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="CharacterSelect" type="Control"]
+[node name="CharacterSelect" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 tutorial = true
-ModeSelect = ExtResource( 2 )
-ArenaMode = ExtResource( 3 )
-RaceMode = ExtResource( 4 )
 
 [node name="Water" parent="." instance=ExtResource( 5 )]
 
@@ -96,15 +90,14 @@ margin_left = 670.0
 margin_top = 70.0
 margin_right = 1314.0
 margin_bottom = 213.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 10
 custom_constants/shadow_offset_y = 10
+custom_fonts/font = SubResource( 1 )
 text = "Shark Select"
 align = 1
 
 [node name="PlayerIDs" type="Control" parent="."]
-editor/display_folded = true
 
 [node name="P1" type="Label" parent="PlayerIDs"]
 margin_left = 310.0
@@ -142,7 +135,6 @@ text = "P4
 "
 
 [node name="Boxes" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 150
@@ -184,10 +176,8 @@ rect_min_size = Vector2( 260, 260 )
 size_flags_vertical = 6
 
 [node name="BackIndicator" parent="." instance=ExtResource( 14 )]
-editor/display_folded = true
 
 [node name="StartMessage" type="Sprite" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 975, 220 )
 rotation = 0.0523599
@@ -201,7 +191,6 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="StartMessage"]
 
 [node name="TutorialNode" type="Node2D" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 z_index = 2
 

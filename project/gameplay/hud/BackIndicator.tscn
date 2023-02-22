@@ -69,11 +69,10 @@ margin_left = 100.0
 margin_top = -30.0
 margin_right = 548.0
 margin_bottom = 35.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Hold BACK to leave"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide = SubResource( 2 )
 anims/show = SubResource( 3 )
-

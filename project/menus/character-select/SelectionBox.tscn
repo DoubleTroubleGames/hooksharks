@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://menus/character-select/SelectionBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/boarder.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/ui/cover2.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/ui/cover.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/characters/jackie/portrait.png" type="Texture" id=5]
-[ext_resource path="res://assets/images/characters/drill/portrait.png" type="Texture" id=6]
+[ext_resource path="res://menus/character-select/Portrait.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/character-select/ChangePortrait.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/images/ui/grid.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/ui/gate.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/ui/ready.png" type="Texture" id=9]
@@ -27,6 +27,27 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform float grey_factor : hint_range(0,1);
+
+void fragment() {
+	vec4 sample = texture(TEXTURE, UV);
+	float grey = 0.21 * sample.r + 0.71 * sample.g + 0.07 * sample.b;
+    COLOR = vec4(sample.r * (1.0 - grey_factor) + grey * grey_factor, sample.g * (1.0 - grey_factor) + grey * grey_factor, sample.b * (1.0 - grey_factor) + grey * grey_factor, sample.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/grey_factor = 0.0
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/grey_factor = 0.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "change_char_left"
@@ -785,48 +806,38 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 100, 100 )
 script = ExtResource( 1 )
 
-[node name="Boarder" type="Sprite" parent="."]
+[node name="Border" type="Sprite" parent="."]
 position = Vector2( 130, 130 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 2 )
 
-[node name="Cover" type="AnimatedSprite" parent="Boarder"]
+[node name="Cover" type="AnimatedSprite" parent="Border"]
 show_behind_parent = true
 frames = SubResource( 1 )
 
-[node name="Portrait" type="Sprite" parent="Boarder"]
-visible = false
-show_behind_parent = true
-position = Vector2( 0, -223 )
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 301, 0 )
+[node name="Portrait" parent="Border" instance=ExtResource( 5 )]
+material = SubResource( 9 )
 
-[node name="ChangePortrait" type="Sprite" parent="Boarder"]
-visible = false
-show_behind_parent = true
-position = Vector2( 10, 0 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 301, 0, 301, 446 )
+[node name="ChangePortrait" parent="Border" instance=ExtResource( 6 )]
+material = SubResource( 10 )
 
-[node name="Grid" type="Sprite" parent="Boarder"]
+[node name="Grid" type="Sprite" parent="Border"]
 visible = false
 position = Vector2( 0, -223 )
 texture = ExtResource( 7 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 301, 0 )
 
-[node name="Gate" type="Sprite" parent="Boarder"]
+[node name="Gate" type="Sprite" parent="Border"]
 visible = false
 position = Vector2( 0, -385 )
 texture = ExtResource( 8 )
 
-[node name="Ready" type="Sprite" parent="Boarder"]
+[node name="Ready" type="Sprite" parent="Border"]
 visible = false
 texture = ExtResource( 9 )
 
-[node name="DeviceSprite" type="TextureRect" parent="Boarder"]
+[node name="DeviceSprite" type="TextureRect" parent="Border"]
 visible = false
 margin_left = -129.0
 margin_top = 150.0
@@ -834,7 +845,7 @@ margin_right = -1.0
 margin_bottom = 278.0
 rect_scale = Vector2( 0.8, 0.8 )
 
-[node name="Left" type="TextureRect" parent="Boarder"]
+[node name="Left" type="TextureRect" parent="Border"]
 visible = false
 margin_left = -140.0
 margin_top = -40.0
@@ -844,7 +855,7 @@ rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 10 )
 expand = true
 
-[node name="Right" type="TextureRect" parent="Boarder"]
+[node name="Right" type="TextureRect" parent="Border"]
 visible = false
 margin_left = 70.0
 margin_top = -30.0
@@ -854,7 +865,7 @@ rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 11 )
 expand = true
 
-[node name="MoveTypeSprite" type="TextureRect" parent="Boarder"]
+[node name="MoveTypeSprite" type="TextureRect" parent="Border"]
 visible = false
 margin_left = 32.0
 margin_top = 149.0
@@ -862,7 +873,7 @@ margin_right = 370.0
 margin_bottom = 396.0
 rect_scale = Vector2( 0.2, 0.2 )
 
-[node name="Up" type="TextureRect" parent="Boarder"]
+[node name="Up" type="TextureRect" parent="Border"]
 visible = false
 margin_left = 31.5
 margin_top = 160.0
@@ -873,7 +884,7 @@ rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 expand = true
 
-[node name="Down" type="TextureRect" parent="Boarder"]
+[node name="Down" type="TextureRect" parent="Border"]
 visible = false
 margin_left = 132.0
 margin_top = 160.0
@@ -884,7 +895,7 @@ rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 11 )
 expand = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Border"]
 anims/change_char_left = SubResource( 2 )
 anims/change_char_right = SubResource( 3 )
 anims/close = SubResource( 4 )
@@ -949,4 +960,5 @@ bus = "SFX"
 stream = ExtResource( 19 )
 volume_db = 4.0
 bus = "SFX"
+
 [connection signal="timeout" from="SharkSprite/SharkChangeTimer" to="." method="_on_SharkChangeTimer_timeout"]

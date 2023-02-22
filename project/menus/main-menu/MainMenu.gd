@@ -11,8 +11,6 @@ const TITLE_OFFSET = Vector2(5000, 0)
 const TITLE_DELAY = .5
 const GLOW_DURATION = 1
 
-export (PackedScene)var ModeSelect
-
 var title_shown = false
 var back_indicator_up_speed = 50
 var back_indicator_down_speed = 50
@@ -24,7 +22,6 @@ func _ready():
 			TITLE_OFFSET.rotated(deg2rad(title.rect_rotation))
 	
 	if Transition.is_black_screen:
-		Transition.transition_out()
 		yield(Transition, "finished")
 	
 	tween.interpolate_property(title, "rect_position", null, title_pos, 1.5,
@@ -39,8 +36,6 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("toggle_fullscreen"):
-		OS.window_fullscreen = !OS.window_fullscreen
 	if event.is_action_pressed("ui_start"):
 		if not title_shown:
 			show_title()
@@ -88,11 +83,11 @@ func show_title():
 
 func change_screen():
 	$StartPressSFX.play()
-	
-	Transition.transition_in()
+	Transition.transition_to("ModeSelect")
+
+
+func _on_transition_in() -> void:
 	set_process_input(false)
-	yield(Transition, "finished")
-	get_tree().change_scene_to(ModeSelect)
 
 
 func _on_PressStartTimer_timeout():

@@ -35,4 +35,3 @@ lifetime = 2.0
 local_coords = false
 process_material = SubResource( 5 )
 texture = ExtResource( 2 )
-

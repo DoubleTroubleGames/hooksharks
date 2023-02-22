@@ -9,8 +9,24 @@ enum MovementTypes {DIRECT, TANK}
 enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
 
 const CHARACTERS = ["jackie", "drill", "king", "outsider"]
+const PORTRAITS = [
+		preload("res://assets/images/characters/jackie/portrait.png"),
+		preload("res://assets/images/characters/drill/portrait.png"),
+		preload("res://assets/images/characters/king/portrait.png"),
+		preload("res://assets/images/characters/outsider/portrait.png"),
+]
 const DEADZONE = .55
+const DIRECT = preload("res://assets/images/ui/direct.png")
+const GAMEPAD = preload("res://assets/images/ui/gamepad.png")
+const KEYBOARD = preload("res://assets/images/ui/keyboard.png")
+const TANK = preload("res://assets/images/ui/tank.png")
 const TWN_TIME = 0.6
+const SHARKS = {
+	"drill": preload("res://characters/drill/Shark.tscn"),
+	"jackie": preload("res://characters/jackie/Shark.tscn"),
+	"king": preload("res://characters/king/Shark.tscn"),
+	"outsider": preload("res://characters/outsider/Shark.tscn"),
+}
 
 onready var char_sfx = {"jackie": $Sounds/JackieSFXs,
 		"drill": $Sounds/DrillSFXs, "king": $Sounds/KingSFXs,
@@ -78,6 +94,10 @@ func _input(event):
 	if RoundManager.get_device_name_from(event) != device_name:
 		return
 
+	# Don't mark input as handled so FullscreenToggle can get this input.
+	if event.is_action_pressed("toggle_fullscreen"):
+		return
+
 	if mid_animation:
 		get_tree().set_input_as_handled()
 		return
@@ -105,10 +125,10 @@ func _input(event):
 
 		elif state == States.READY:
 			mid_animation = true
-			$Boarder/AnimationPlayer.play("unready")
+			$Border/AnimationPlayer.play("unready")
 			change_state(States.OPEN)
 			$Sounds/CancelSFX.play()
-			yield($Boarder/AnimationPlayer, "animation_finished")
+			yield($Border/AnimationPlayer, "animation_finished")
 			mid_animation = false
 
 	# This makes it so each subsequent elif doesn't need to check if state == States.OPEN
@@ -132,49 +152,49 @@ func _input(event):
 
 
 func toggle_left():
-	var portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Boarder/ChangePortrait.set_texture(load(portrait_path))
+		grey_factor = 1
+
+	$Border/ChangePortrait.set_texture(PORTRAITS[char_index])
+	$Border/ChangePortrait.material.set_shader_param("grey_factor", grey_factor)
 	set_character(char_index - 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
 	#### Visuals for character changing ####
 	mid_animation = true
-	portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Boarder/Portrait.set_texture(load(portrait_path))
-	$Boarder/AnimationPlayer.play("change_char_right")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+		grey_factor = 1
+
+	$Border/Portrait.set_texture(PORTRAITS[char_index])
+	$Border/Portrait.material.set_shader_param("grey_factor", grey_factor)
+	$Border/AnimationPlayer.play("change_char_right")
+	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
 	########################################
 
 
 func toggle_right():
-	var portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Boarder/ChangePortrait.set_texture(load(portrait_path))
+		grey_factor = 1
+
+	$Border/ChangePortrait.set_texture(PORTRAITS[char_index])
+	$Border/ChangePortrait.material.set_shader_param("grey_factor", grey_factor)
 	set_character(char_index + 1)
 	change_shark()
 	$Sounds/SelectSFX.play()
 	#### Visuals for character changing ####
 	mid_animation = true
-	portrait_path = str("res://assets/images/characters/",
-			CHARACTERS[char_index], "/portrait")
+	grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars:
-		portrait_path += "_grey"
-	portrait_path += ".png"
-	$Boarder/Portrait.set_texture(load(portrait_path))
-	$Boarder/AnimationPlayer.play("change_char_left")
-	yield($Boarder/AnimationPlayer, "animation_finished")
+		grey_factor = 1
+
+	$Border/Portrait.set_texture(PORTRAITS[char_index])
+	$Border/Portrait.material.set_shader_param("grey_factor", grey_factor)
+	$Border/AnimationPlayer.play("change_char_left")
+	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
 	########################################
 
@@ -195,33 +215,33 @@ func change_state(new_state):
 		States.CLOSED:
 			dive_shark()
 			device_name = ""
-			$Boarder/DeviceSprite.set_texture(null)
-			$Boarder/MoveTypeSprite.set_texture(null)
-			$Boarder/Left.hide()
-			$Boarder/Right.hide()
-			$Boarder/Up.hide()
-			$Boarder/Down.hide()
+			$Border/DeviceSprite.set_texture(null)
+			$Border/MoveTypeSprite.set_texture(null)
+			$Border/Left.hide()
+			$Border/Right.hide()
+			$Border/Up.hide()
+			$Border/Down.hide()
 			$SharkSprite.hide()
-			$Boarder/AnimationPlayer.play("close")
+			$Border/AnimationPlayer.play("close")
 			mid_animation = true
-			yield($Boarder/AnimationPlayer, "animation_finished")
+			yield($Border/AnimationPlayer, "animation_finished")
 			mid_animation = false
 			emit_signal("closed")
 		States.OPEN:
 			$SharkSprite.show()
 			if state == States.CLOSED:
 				emerge_shark()
-			$Boarder/Left.show()
-			$Boarder/Right.show()
-			$Boarder/Up.show()
-			$Boarder/Down.show()
+			$Border/Left.show()
+			$Border/Right.show()
+			$Border/Up.show()
+			$Border/Down.show()
 			if state == States.READY:
 				emit_signal("unselected", CHARACTERS[char_index])
 		States.READY:
 			emit_signal("selected", CHARACTERS[char_index])
 			mid_animation = true
-			$Boarder/AnimationPlayer.play("ready")
-			yield($Boarder/AnimationPlayer, "animation_finished")
+			$Border/AnimationPlayer.play("ready")
+			yield($Border/AnimationPlayer, "animation_finished")
 			mid_animation = false
 
 	state = next_state
@@ -245,22 +265,22 @@ func is_locked():
 func open_with(event):
 	device_name = RoundManager.get_device_name_from(event)
 	if device_name == "keyboard" or (OS.is_debug_build() and device_name == "test_keyboard"):
-		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/keyboard.png"))
+		$Border/DeviceSprite.set_texture(KEYBOARD)
 		set_movement_type(MovementTypes.TANK)
 
 	else:
 		var num = int(device_name.split("_")[1]) + 1
-		$Boarder/DeviceSprite.set_texture(load("res://assets/images/ui/gamepad.png"))
+		$Border/DeviceSprite.set_texture(GAMEPAD)
 		set_movement_type(MovementTypes.DIRECT)
 
 	if not CHARACTERS[char_index] in available_chars:
-		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
-				CHARACTERS[char_index], "/portrait_grey.png")))
-	$Boarder/AnimationPlayer.play("open")
+		$Border/Portrait.material.set_shader_param("grey_factor", 1)
+
+	$Border/AnimationPlayer.play("open")
 	mid_animation = true
 	$Sounds/ConfirmSFX.play()
 	change_state(States.OPEN)
-	yield($Boarder/AnimationPlayer, "animation_finished")
+	yield($Border/AnimationPlayer, "animation_finished")
 	mid_animation = false
 
 
@@ -272,23 +292,23 @@ func update_available_characters(characters):
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
 	
+	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars and self.next_state != States.READY:
-		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
-				CHARACTERS[char_index], "/portrait_grey.png")))
-	else:
-		$Boarder/Portrait.set_texture(load(str("res://assets/images/characters/",
-				CHARACTERS[char_index], "/portrait.png")))
+		grey_factor = 1
+
+	$Border/Portrait.set_texture(PORTRAITS[char_index])
+	$Border/Portrait.material.set_shader_param("grey_factor", grey_factor)
 
 
 func set_movement_type(new_movement_type):
 	match new_movement_type:
 		MovementTypes.DIRECT:
 			movement_type = MovementTypes.DIRECT
-			$Boarder/MoveTypeSprite.set_texture(load("res://assets/images/ui/direct.png"))
+			$Border/MoveTypeSprite.set_texture(DIRECT)
 
 		MovementTypes.TANK:
 			movement_type = MovementTypes.TANK
-			$Boarder/MoveTypeSprite.set_texture(load("res://assets/images/ui/tank.png"))
+			$Border/MoveTypeSprite.set_texture(TANK)
 
 
 func toggle_movement_type():
@@ -301,8 +321,7 @@ func toggle_movement_type():
 
 func add_shark(shark_name):
 	var old = $SharkSprite/Shark
-	var new_path = str("res://characters/", shark_name, "/Shark.tscn")
-	var new = load(new_path).instance()
+	var new = SHARKS[shark_name].instance()
 
 	old.set_name("old shark")
 	old.queue_free()

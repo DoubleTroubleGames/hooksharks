@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/quit.png-fc24da98c6358266dff5e2a9bc005c20.stex"
+path="res://.import/tank.png-d0a0169c5ae1ddd6672d78d2c4ec28f5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/pause/quit.png"
-dest_files=[ "res://.import/quit.png-fc24da98c6358266dff5e2a9bc005c20.stex" ]
+source_file="res://assets/images/ui/tank.png"
+dest_files=[ "res://.import/tank.png-d0a0169c5ae1ddd6672d78d2c4ec28f5.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

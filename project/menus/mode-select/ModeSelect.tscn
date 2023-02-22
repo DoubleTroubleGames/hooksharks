@@ -223,7 +223,7 @@ tracks/0/keys = {
 "values": [ 4.0, 1.0 ]
 }
 
-[node name="ModeSelect" type="Control"]
+[node name="ModeSelect" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -317,6 +317,7 @@ volume_db = -4.289
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
+
 [connection signal="focus_entered" from="ArenaButton" to="." method="_on_ArenaButton_focus_entered"]
 [connection signal="pressed" from="ArenaButton" to="." method="_on_ArenaButton_pressed"]
 [connection signal="focus_entered" from="RacingButton" to="." method="_on_RacingButton_focus_entered"]

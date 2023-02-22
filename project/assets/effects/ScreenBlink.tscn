@@ -21,4 +21,3 @@ anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
 
 [node name="Tween" type="Tween" parent="."]
-

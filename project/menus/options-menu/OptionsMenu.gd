@@ -17,10 +17,6 @@ var back_indicator_down_speed = 150
 func _ready():
 	var native_size = OS.get_screen_size()
 	native_size = str(native_size.x, 'x', native_size.y)
-	
-	Transition.transition_out()
-	yield(Transition, "finished")
-	
 	FullscreenButton.pressed = OS.window_fullscreen
 	SoundMaster.value = 100 * db2linear(AudioServer.get_bus_volume_db(MASTER))
 	SoundSFX.value = 100 * db2linear(AudioServer.get_bus_volume_db(SFX))
@@ -34,6 +30,18 @@ func _ready():
 	$Resolution/Box/Fullscreen.grab_focus()
 
 
+func _on_transition_in() -> void:
+	set_physics_process(false)
+	set_process_input(false)
+
+
+func _input(_event):
+	if Input.is_action_just_pressed("toggle_fullscreen"):
+		# Wait to update button until FullscreenToggle is done
+		yield(get_tree(), "idle_frame")
+		FullscreenButton.pressed = OS.window_fullscreen
+
+
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
@@ -41,11 +49,7 @@ func _physics_process(delta):
 		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
 	
 	if bar.value >= 100:
-		set_physics_process(false)
-		set_process_input(false)
-		Transition.transition_in()
-		yield(Transition, "finished")
-		get_tree().change_scene_to(load("res://menus/mode-select/ModeSelect.tscn"))
+		Transition.transition_to("ModeSelect")
 	elif bar.value > 0:
 		if anim_player.assigned_animation != "show":
 			anim_player.play("show")

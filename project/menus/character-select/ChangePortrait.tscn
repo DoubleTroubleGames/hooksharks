@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menus/character-select/grey_shader.tres" type="Material" id=1]
+[ext_resource path="res://assets/images/characters/drill/portrait.png" type="Texture" id=2]
+
+[node name="ChangePortrait" type="Sprite"]
+visible = false
+show_behind_parent = true
+material = ExtResource( 1 )
+position = Vector2( 10, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 301, 0, 301, 446 )

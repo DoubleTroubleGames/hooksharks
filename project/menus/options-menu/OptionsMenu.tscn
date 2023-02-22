@@ -119,7 +119,7 @@ tracks/1/keys = {
 "values": [ Vector2( 503.507, 936.523 ), Vector2( 495.954, 930.795 ), Vector2( 503, 936 ) ]
 }
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -190,8 +190,8 @@ margin_bottom = 195.179
 rect_rotation = -0.144858
 focus_neighbour_top = NodePath("../../../Sound/Float/VScrollBar/BGMVolume/BGMVolume")
 focus_neighbour_bottom = NodePath("../../../Sound/Float/VScrollBar/MasterVolume/MasterVolume")
-custom_fonts/font = SubResource( 3 )
 custom_constants/hseparation = 14
+custom_fonts/font = SubResource( 3 )
 text = "Fullscreen"
 
 [node name="ScreenSize" type="OptionButton" parent="Resolution/Box"]
@@ -223,7 +223,6 @@ rect_rotation = -1.0
 texture = ExtResource( 7 )
 
 [node name="Board" type="TextureRect" parent="Sound/Float"]
-editor/display_folded = true
 margin_left = 560.0
 margin_top = -50.0
 margin_right = 960.0
@@ -341,6 +340,7 @@ texture = ExtResource( 9 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BestWithMouse"]
 autoplay = "Idle"
 anims/Idle = SubResource( 6 )
+
 [connection signal="toggled" from="Resolution/Box/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="item_selected" from="Resolution/Box/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
 [connection signal="value_changed" from="Sound/Float/VScrollBar/MasterVolume/MasterVolume" to="." method="_on_MasterVolume_value_changed"]

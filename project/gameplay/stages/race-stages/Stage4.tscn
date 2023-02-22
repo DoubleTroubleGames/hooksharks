@@ -309,10 +309,10 @@ limit_top = -2107
 limit_right = 9184
 limit_bottom = 3077
 limit_smoothed = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource( 19 )
 
 [editable path="FinishLine"]
+[editable path="FinishLine/PullableObjectBot"]
+[editable path="FinishLine/PullableObjectTop"]

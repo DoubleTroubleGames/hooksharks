@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/sound/bgm/battle_1.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/sound/bgm/sea ambience.ogg" type="AudioStream" id=4]
 
-[node name="Sound" type="Node"]
+[node name="Sound" type="Node" groups=["pause_sync"]]
 pause_mode = 2
 script = ExtResource( 1 )
 

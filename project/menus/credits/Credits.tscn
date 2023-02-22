@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 0.0, -1.0 ]
 }
 
-[node name="Credits" type="Control"]
+[node name="Credits" type="Control" groups=["transition_sync"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 1885.15, 402.63 )

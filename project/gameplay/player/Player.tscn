@@ -11,14 +11,13 @@
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 7 )
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["players"]]
 position = Vector2( 0, -1 )
 z_index = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-ROT_SPEED = 0.897598
 
 [node name="Shark" parent="." instance=ExtResource( 2 )]
 
@@ -62,6 +61,6 @@ one_shot = true
 [node name="RespawnTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="InvencibilityTimer" type="Timer" parent="."]
+[node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true

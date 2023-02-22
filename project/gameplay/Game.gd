@@ -1,8 +1,8 @@
 extends Node2D
 
 onready var countdown = $Countdown
-onready var pause_screen = $PauseScreen
 
+const Explosion = preload("res://assets/effects/explosion/DeathExplosion.tscn")
 const HOOK = preload("res://gameplay/player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://gameplay/objects/powerups/MegaHook.tscn")
 const HOOK_CLINK = preload("res://assets/effects/HookClink.tscn")
@@ -11,7 +11,7 @@ const WALL_PARTICLES = preload("res://assets/effects/WallParticles.tscn")
 const SHOW_ROUND_DELAY = 1.5
 const WALL_PARTICLES_OFFSET = 50
 
-export (int)var total_stages = 10
+export var stage_scenes = []  # Scripts that extend Game should add PackedScenes here.
 
 var hook_clink_positions = []
 var Cameras = []
@@ -23,7 +23,8 @@ var can_pause = true
 
 
 func _ready():
-	available_stages = range(1, total_stages + 1)
+	add_to_group("pause_sync")
+	available_stages = range(0, stage_scenes.size())
 	test_setup()
 	var stage = get_first_stage().instance()
 	players = stage.setup_players()
@@ -41,7 +42,6 @@ func _ready():
 	connect_players()
 	
 	if Transition.is_black_screen:
-		Transition.transition_out()
 		yield(Transition, "finished")
 	
 	Sound.menu_bgm.stop()
@@ -158,20 +158,18 @@ func add_new_stage():
 
 func get_stage(stage_number):
 	current_stage = stage_number
-	var base_path = str("res://gameplay/stages/", self.get_name().to_lower(), 
-			"-stages/Stage")
-	return load(str(base_path, stage_number, ".tscn"))
+	return stage_scenes[stage_number]
 
 
 func get_random_stage():
 	available_stages.erase(current_stage)
 	if available_stages.empty():
-		available_stages = range(1, total_stages + 1)
+		available_stages = range(0, stage_scenes.size())
 	return get_stage(available_stages[randi() % available_stages.size()])
 
 
 func get_first_stage():
-	return get_stage(1)
+	return get_stage(0)
 
 
 func remove_player(player):
@@ -212,6 +210,10 @@ func check_winner():
 	transition_stage()
 
 
+func _allow_set_pause() -> bool:
+	return can_pause
+
+
 func _on_player_hook_shot(player, direction):
 	var new_hook = HOOK.instance()
 	new_hook.init(player, direction.normalized())
@@ -227,7 +229,7 @@ func _on_player_hook_shot(player, direction):
 
 
 func _on_player_megahook_shot(player, direction):
-	var explosion = load("res://assets/effects/explosion/DeathExplosion.tscn").instance()
+	var explosion = Explosion.instance()
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
 	
 	call_deferred("shoot_megahook", player, direction)
@@ -296,11 +298,6 @@ func _on_wall_hit(position, rotation, color):
 
 func _on_player_created_trail(trail):
 	$Stage/Trails.add_child(trail)
-
-
-func _on_player_paused(player):
-	if can_pause:
-		pause_screen.pause(player, players)
 
 
 func _on_player_spawned(id):

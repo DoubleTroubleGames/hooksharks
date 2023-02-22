@@ -35,4 +35,3 @@ speed_scale = 2.0
 explosiveness = 0.95
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
-

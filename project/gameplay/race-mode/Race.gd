@@ -13,7 +13,6 @@ func connect_players():
 		player.connect("watermine_released", self, "_on_player_watermine_released")
 		player.connect("died", self, "remove_player")
 		player.connect("respawned", self, "respawn_player")
-		player.connect("paused", self, "_on_player_paused")
 		player.connect("spawned", self, "_on_player_spawned")
 		for camera in Cameras:
 			player.connect("shook_screen", camera, "add_shake")
@@ -44,10 +43,10 @@ func respawn_player(player):
 	var final_position
 	var final_rotation
 	
-	player.reset_input_map()
+	player.reset_input()
 	player.can_dive = true
 	player.is_respawning = true
-	player.get_node("InvencibilityTimer").stop()
+	player.get_node("InvincibilityTimer").stop()
 	if check.number > 0:
 		final_position = check.get_respawn_position(player.id + 1)
 		final_rotation = check.rotation

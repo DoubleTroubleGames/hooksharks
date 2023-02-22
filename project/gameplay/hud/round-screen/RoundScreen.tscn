@@ -105,7 +105,6 @@ align = 1
 valign = 1
 
 [node name="ScoreGrid" type="GridContainer" parent="Background"]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -120,24 +119,20 @@ custom_constants/hseparation = 1400
 columns = 2
 
 [node name="Player1" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
-editor/display_folded = true
 margin_right = 0.0
 margin_bottom = 0.0
 
 [node name="Player2" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
-editor/display_folded = true
 margin_left = 1400.0
 margin_right = 1400.0
 margin_bottom = 0.0
 
 [node name="Player3" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
-editor/display_folded = true
 margin_top = 400.0
 margin_right = 0.0
 margin_bottom = 400.0
 
 [node name="Player4" parent="Background/ScoreGrid" instance=ExtResource( 4 )]
-editor/display_folded = true
 margin_left = 1400.0
 margin_top = 400.0
 margin_right = 1400.0

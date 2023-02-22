@@ -46,4 +46,5 @@ bus = "SFX"
 stream = ExtResource( 5 )
 volume_db = -4.288
 bus = "SFX"
+
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

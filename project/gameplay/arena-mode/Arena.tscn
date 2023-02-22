@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://gameplay/arena-mode/Arena.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -8,10 +8,17 @@
 [ext_resource path="res://assets/effects/ScreenBlink.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/hud/pause-screen/PauseScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=8]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage5.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage1.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage6.tscn" type="PackedScene" id=13]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://gameplay/stages/arena-stages/Stage7.tscn" type="PackedScene" id=15]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource( 1 )
-total_stages = 7
+stage_scenes = [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 15 ) ]
 
 [node name="Water" parent="." instance=ExtResource( 2 )]
 
@@ -32,4 +39,3 @@ current = true
 limit_left = 0
 limit_top = 0
 script = ExtResource( 8 )
-

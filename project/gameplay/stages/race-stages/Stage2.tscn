@@ -46,9 +46,6 @@ position = Vector2( 300, 170 )
 [node name="StartingPosition4" parent="PlayerStartingPosition" index="3"]
 position = Vector2( 300, 770 )
 
-[node name="Obstacles" parent="." index="2"]
-editor/display_folded = true
-
 [node name="Floor" parent="Obstacles" index="0" instance=ExtResource( 2 )]
 position = Vector2( 56.5043, 169.719 )
 rotation = -1.40794
@@ -170,7 +167,6 @@ rotation = -2.5332e-05
 scale = Vector2( 0.6, 0.6 )
 
 [node name="PowerUps" type="Node2D" parent="." index="5"]
-editor/display_folded = true
 z_index = 2
 
 [node name="Powerup" parent="PowerUps" index="0" instance=ExtResource( 17 )]
@@ -217,14 +213,9 @@ limit_top = -876
 limit_right = 4748
 limit_bottom = 1876
 limit_smoothed = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource( 20 )
-
-[node name="Checkpoints" parent="." index="8"]
-editor/display_folded = true
 
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 21 )]
 position = Vector2( 777.925, 491.923 )

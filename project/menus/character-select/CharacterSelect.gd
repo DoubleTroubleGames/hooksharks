@@ -5,9 +5,6 @@ onready var bar = $BackIndicator/Progress
 onready var anim_player = $BackIndicator/AnimationPlayer
 
 export (bool)var tutorial = false
-export (PackedScene)var ModeSelect 
-export (PackedScene)var ArenaMode
-export (PackedScene)var RaceMode
 
 var available_characters
 var starting_game = false
@@ -29,8 +26,13 @@ func _ready():
 		boxes[i].set_character(0)
 	
 	set_process_input(false)
-	Transition.transition_out()
-	yield(Transition, "finished")
+
+
+func _on_transition_in() -> void:
+	set_physics_process(false)
+
+
+func _on_transition_out() -> void:
 	set_process_input(true)
 	
 	if RoundManager.gamemode == "Arena":
@@ -46,7 +48,7 @@ func _physics_process(delta):
 		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
 	
 	if bar.value >= 100:
-		transition_to(ModeSelect)
+		Transition.transition_to("ModeSelect")
 	elif bar.value > 20:
 		if anim_player.assigned_animation != "show":
 			anim_player.play("show")
@@ -110,9 +112,9 @@ func start_game():
 	RoundManager.reset_round()
 	
 	if RoundManager.gamemode == "Arena":
-		transition_to(ArenaMode)
+		Transition.transition_to("ArenaMode")
 	elif RoundManager.gamemode == "Race":
-		transition_to(RaceMode)
+		Transition.transition_to("RaceMode")
 
 
 func show_start_message():
@@ -130,17 +132,6 @@ func hide_start_message():
 		Twn.interpolate_property($StartMessage, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 		Twn.interpolate_property($StartMessage, "position:y", 220, -400, .5, Tween.TRANS_CUBIC, Tween.EASE_IN)
 		Twn.start()
-
-
-func transition_to(packed_scene):
-	set_physics_process(false)
-	set_process_input(false)
-	for box in boxes:
-		box.set_process_input(false)
-	
-	Transition.transition_in()
-	yield(Transition, "finished")
-	get_tree().change_scene_to(packed_scene)
 
 
 func _on_box_selected(character):
