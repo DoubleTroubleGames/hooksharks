@@ -1,7 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=2]
-
-[ext_resource path="res://assets/images/effects/WaterDistortion.png" type="Texture" id=1]
-[ext_resource path="res://assets/images/effects/noise.png" type="Texture" id=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -56,5 +53,3 @@ shader_param/wave_color = Color( 0.145098, 0.384314, 0.545098, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
 shader_param/distortion_strength = 0.3
 shader_param/aa_factor = 0.04
-shader_param/noise = ExtResource( 2 )
-shader_param/distortion = ExtResource( 1 )
