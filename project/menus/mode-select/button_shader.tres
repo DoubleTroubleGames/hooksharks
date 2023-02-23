@@ -1,4 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "func _init():
+	self.shader.set_default_texture_param(\"distortion\", load(\"res://assets/images/effects/WaterDistortion.png\"))
+	self.shader.set_default_texture_param(\"noise\", load(\"res://assets/images/effects/noise.png\"))
+"
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -53,3 +59,4 @@ shader_param/wave_color = Color( 0.392157, 0.568627, 0.686275, 1 )
 shader_param/wave_scroll_speed = Vector2( 0.02, 0.01 )
 shader_param/distortion_strength = 0.3
 shader_param/aa_factor = 0.04
+script = SubResource( 2 )
