@@ -19,11 +19,9 @@ var players
 var calling_check_winner = false
 var current_stage = 0
 var available_stages = []
-var can_pause = true
 
 
 func _ready():
-	add_to_group("pause_sync")
 	available_stages = range(0, stage_scenes.size())
 	test_setup()
 	var stage = get_first_stage().instance()
@@ -99,8 +97,6 @@ func transition_stage():
 	var rs = $RoundScreen
 	rs.show_round()
 	
-	can_pause = false
-	
 	yield(rs, "shown")
 	free_current_stage()
 	add_new_stage()
@@ -120,8 +116,6 @@ func transition_stage():
 	$PlayerHUD.hide_all()
 	
 	activate_players()
-	
-	can_pause = true
 	
 	var obstacles = get_node("Stage/Obstacles")
 	for obst in obstacles.get_children():
@@ -208,10 +202,6 @@ func check_winner():
 	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 	calling_check_winner = false
 	transition_stage()
-
-
-func _allow_set_pause() -> bool:
-	return can_pause
 
 
 func _on_player_hook_shot(player, direction):
