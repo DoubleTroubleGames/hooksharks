@@ -46,6 +46,8 @@ func _input(event):
 	elif event.is_action_pressed("ui_cancel"):
 		PauseManager.set_pause(false)
 
+	get_tree().set_input_as_handled()
+
 
 func change_button(direction):
 	buttons[btn_index].set_frame(0)
