@@ -4,7 +4,7 @@
 
 # HookSharks
 
-**An open source competitive multiplayer game by Double Trouble Games and [USPGameDev](https://uspgamedev.org/) ~ 2018-2020**
+**An open source competitive multiplayer game by Double Trouble Games and [USPGameDev](https://uspgamedev.org/) ~ 2018-2022**
 
 ## Introduction
 
@@ -35,11 +35,15 @@ The game was developed by the [Double Trouble Games](doubletroublegamesbr@gmail.
 - Marina de Novaes Benedicto ([@Mariip](https://github.com/Mariip))
 - Rodrigo Passos ([@passosteps](https://github.com/passosteps))
 
+**Special Thanks to our most dedicated collaborators:**
+
+- Joseph Michael Ware ([@Zibetnu](https://github.com/Zibetnu))
+
 ----------------------------------------------------
 
 ## Platform
 
-Originally made using [Godot Engine v3.0.6](https://godotengine.org/).
+Originally made using [Godot Engine v3.0.6](https://godotengine.org/)(now ported to Godot 3.5.X).
 
 Github
     ~ https://github.com/DoubleTroubleGames/hooksharks
