@@ -99,18 +99,18 @@ margin_right = -287.0
 margin_bottom = -100.0
 
 [node name="float" type="Sprite" parent="Float"]
-position = Vector2( 646.5, 345 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 664, 361 )
+scale = Vector2( 1.5406, 1.56957 )
 texture = ExtResource( 6 )
 flip_h = true
 
 [node name="Label" type="RichTextLabel" parent="Float"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -120.0
-margin_top = 10.0
-margin_right = -120.0
-margin_bottom = 10.0
+margin_left = -90.0
+margin_top = -2.0
+margin_right = -90.0
+margin_bottom = -2.0
 rect_clip_content = false
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
@@ -122,7 +122,10 @@ bbcode_text = "
 															Luiz Felipe Moumdjian Girotto
 					[b]Graphics[/b]					   Marina de Novaes Benedicto
 					[b]Sounds[/b]						   Rodrigo Passos
-															Livia Maki Yoshikawa"
+															Livia Maki Yoshikawa
+					[b]Special Thanks[/b]		   Joseph Michael Ware
+
+															"
 text = "
 					Programming			 Ricardo Lira da Fonseca
 															Arthur Vieira Barbosa
@@ -130,7 +133,10 @@ text = "
 															Luiz Felipe Moumdjian Girotto
 					Graphics					   Marina de Novaes Benedicto
 					Sounds						   Rodrigo Passos
-															Livia Maki Yoshikawa"
+															Livia Maki Yoshikawa
+					Special Thanks		   Joseph Michael Ware
+
+															"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "float"
