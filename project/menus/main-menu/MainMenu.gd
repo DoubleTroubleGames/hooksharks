@@ -67,7 +67,7 @@ func show_title():
 	if not Sound.menu_bgm.playing:
 		Sound.menu_bgm.play()
 	
-	tween.stop_all()
+	tween.remove_all()
 	title.rect_position = title_pos
 	$TitleAnticipationSFX.stop()
 	
