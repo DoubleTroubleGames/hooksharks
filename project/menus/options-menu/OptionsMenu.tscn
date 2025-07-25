@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/images/elements/obstacles/box2.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/ui/button.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=7]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://menus/back-indicator/BackIndicator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/images/ui/best_with_mouse.png" type="Texture" id=9]
 [ext_resource path="res://menus/options-menu/h-slider-button/HSliderButton.tscn" type="PackedScene" id=10]
 
@@ -341,3 +341,4 @@ anims/Idle = SubResource( 6 )
 [connection signal="value_changed" from="Sound/Float/VScrollBar/MasterVolume/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
 [connection signal="value_changed" from="Sound/Float/VScrollBar/SFXVolume/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
 [connection signal="value_changed" from="Sound/Float/VScrollBar/BGMVolume/BGMVolume" to="." method="_on_BGMVolume_value_changed"]
+[connection signal="completed" from="BackIndicator" to="." method="_on_BackIndicator_completed"]

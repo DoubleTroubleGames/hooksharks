@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/images/ui/board.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/back-indicator/BackIndicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -141,3 +141,5 @@ text = "
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "float"
 anims/float = SubResource( 4 )
+
+[connection signal="completed" from="BackIndicator" to="." method="_on_BackIndicator_completed"]

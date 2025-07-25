@@ -1,7 +1,5 @@
 extends Control
 
-onready var bar = $BackIndicator/Progress
-onready var anim_player = $BackIndicator/AnimationPlayer
 onready var FullscreenButton = $Resolution/Box/Fullscreen
 onready var ScreenSizeButton = $Resolution/Box/ScreenSize
 onready var SoundMaster = $Sound/Float/VScrollBar/MasterVolume/MasterVolume
@@ -11,8 +9,6 @@ onready var SoundBGM = $Sound/Float/VScrollBar/BGMVolume/BGMVolume
 enum {MASTER, SFX, BGM}
 
 var resolutions = ['1920x1080', '1440x900', '1366x768', '1280x800']
-var back_indicator_up_speed = 100
-var back_indicator_down_speed = 150
 
 func _ready():
 	var native_size = OS.get_screen_size()
@@ -31,7 +27,6 @@ func _ready():
 
 
 func _on_transition_in() -> void:
-	set_physics_process(false)
 	set_process_input(false)
 
 
@@ -40,21 +35,6 @@ func _input(_event):
 		# Wait to update button until FullscreenToggle is done
 		yield(get_tree(), "idle_frame")
 		FullscreenButton.pressed = OS.window_fullscreen
-
-
-func _physics_process(delta):
-	if Input.is_action_pressed("ui_cancel"):
-		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
-	else:
-		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
-	
-	if bar.value >= 100:
-		Transition.transition_to("ModeSelect")
-	elif bar.value > 0:
-		if anim_player.assigned_animation != "show":
-			anim_player.play("show")
-	elif anim_player.assigned_animation == "show":
-			anim_player.play("hide")
 
 
 func _on_Fullscreen_toggled(button_pressed):
@@ -82,3 +62,7 @@ func _on_SFXVolume_value_changed(value):
 func _on_BGMVolume_value_changed(value):
 	var volume = float(value)/100.0
 	AudioServer.set_bus_volume_db(BGM, linear2db(volume))
+
+
+func _on_BackIndicator_completed() -> void:
+	Transition.transition_to("ModeSelect")
