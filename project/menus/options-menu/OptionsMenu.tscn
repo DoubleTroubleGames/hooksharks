@@ -184,13 +184,14 @@ align = 1
 valign = 1
 
 [node name="Fullscreen" type="CheckBox" parent="Resolution/Box"]
-margin_left = 49.2366
-margin_top = 45.1793
-margin_right = 199.237
-margin_bottom = 195.179
-rect_rotation = -0.144858
-focus_neighbour_top = NodePath("../../../Sound/Float/VScrollBar/BGMVolume/BGMVolume")
-focus_neighbour_bottom = NodePath("../../../Sound/Float/VScrollBar/MasterVolume/MasterVolume")
+margin_left = 49.0
+margin_top = 98.0
+margin_right = 208.0
+margin_bottom = 140.0
+focus_neighbour_left = NodePath("../../../Sound/Float/VScrollBar/MasterVolume/MasterVolume")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../ScreenSize")
+focus_neighbour_bottom = NodePath(".")
 custom_constants/hseparation = 14
 custom_fonts/font = SubResource( 3 )
 text = "Fullscreen"
@@ -201,6 +202,10 @@ margin_top = 105.311
 margin_right = 390.621
 margin_bottom = 145.311
 rect_rotation = -0.144858
+focus_neighbour_left = NodePath("../Fullscreen")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../../../Sound/Float/VScrollBar/MasterVolume/MasterVolume")
+focus_neighbour_bottom = NodePath(".")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Resolution"]
 autoplay = "float"
@@ -258,7 +263,8 @@ custom_constants/separation = 16
 
 [node name="MasterVolume" type="VBoxContainer" parent="Sound/Float/VScrollBar"]
 margin_right = 341.0
-margin_bottom = 85.0
+margin_bottom = 87.0
+custom_constants/separation = 0
 
 [node name="LabelMaster" type="Label" parent="Sound/Float/VScrollBar/MasterVolume"]
 margin_right = 341.0
@@ -269,17 +275,20 @@ align = 1
 valign = 1
 
 [node name="MasterVolume" parent="Sound/Float/VScrollBar/MasterVolume" instance=ExtResource( 10 )]
-margin_top = 69.0
+margin_top = 65.0
 margin_right = 341.0
-margin_bottom = 85.0
-focus_neighbour_top = NodePath("../../../../../Resolution/Box/Fullscreen")
+margin_bottom = 87.0
+focus_neighbour_left = NodePath("../../../../../Resolution/Box/ScreenSize")
+focus_neighbour_top = NodePath("../../BGMVolume/BGMVolume")
+focus_neighbour_right = NodePath("../../../../../Resolution/Box/Fullscreen")
 focus_neighbour_bottom = NodePath("../../SFXVolume/SFXVolume")
 value = 100.0
 
 [node name="SFXVolume" type="VBoxContainer" parent="Sound/Float/VScrollBar"]
-margin_top = 101.0
+margin_top = 103.0
 margin_right = 341.0
-margin_bottom = 186.0
+margin_bottom = 190.0
+custom_constants/separation = 0
 
 [node name="LabelSFX" type="Label" parent="Sound/Float/VScrollBar/SFXVolume"]
 margin_right = 341.0
@@ -290,17 +299,20 @@ align = 1
 valign = 1
 
 [node name="SFXVolume" parent="Sound/Float/VScrollBar/SFXVolume" instance=ExtResource( 10 )]
-margin_top = 69.0
+margin_top = 65.0
 margin_right = 341.0
-margin_bottom = 85.0
+margin_bottom = 87.0
+focus_neighbour_left = NodePath("../../../../../Resolution/Box/ScreenSize")
 focus_neighbour_top = NodePath("../../MasterVolume/MasterVolume")
+focus_neighbour_right = NodePath("../../../../../Resolution/Box/Fullscreen")
 focus_neighbour_bottom = NodePath("../../BGMVolume/BGMVolume")
 value = 100.0
 
 [node name="BGMVolume" type="VBoxContainer" parent="Sound/Float/VScrollBar"]
-margin_top = 202.0
+margin_top = 206.0
 margin_right = 341.0
-margin_bottom = 287.0
+margin_bottom = 293.0
+custom_constants/separation = 0
 
 [node name="LabelBGM" type="Label" parent="Sound/Float/VScrollBar/BGMVolume"]
 margin_right = 341.0
@@ -311,11 +323,13 @@ align = 1
 valign = 1
 
 [node name="BGMVolume" parent="Sound/Float/VScrollBar/BGMVolume" instance=ExtResource( 10 )]
-margin_top = 69.0
+margin_top = 65.0
 margin_right = 341.0
-margin_bottom = 85.0
+margin_bottom = 87.0
+focus_neighbour_left = NodePath("../../../../../Resolution/Box/ScreenSize")
 focus_neighbour_top = NodePath("../../SFXVolume/SFXVolume")
-focus_neighbour_bottom = NodePath("../../../../../Resolution/Box/Fullscreen")
+focus_neighbour_right = NodePath("../../../../../Resolution/Box/Fullscreen")
+focus_neighbour_bottom = NodePath("../../MasterVolume/MasterVolume")
 value = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sound"]

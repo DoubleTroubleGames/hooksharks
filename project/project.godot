@@ -59,6 +59,10 @@ window/stretch/shrink="1"
 
 color=false
 
+[gui]
+
+theme/custom="res://assets/theme.tres"
+
 [input]
 
 ui_accept={
