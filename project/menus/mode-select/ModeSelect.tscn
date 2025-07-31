@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://menus/mode-select/ModeSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/images/ui/m_credits_o.png" type="Texture" id=9]
 [ext_resource path="res://assets/sound/sfx/menu_selection.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sound/sfx/menu_confirm.wav" type="AudioStream" id=11]
+[ext_resource path="res://menus/JoypadMotionActions.gd" type="Script" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -317,6 +318,9 @@ volume_db = -4.289
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="JoypadMotionActions" type="Node" parent="."]
+script = ExtResource( 12 )
 
 [connection signal="focus_entered" from="ArenaButton" to="." method="_on_ArenaButton_focus_entered"]
 [connection signal="pressed" from="ArenaButton" to="." method="_on_ArenaButton_pressed"]

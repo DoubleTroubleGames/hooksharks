@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://menus/options-menu/OptionsMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/water/Water.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/images/ui/button.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/elements/obstacles/float.png" type="Texture" id=7]
 [ext_resource path="res://menus/back-indicator/BackIndicator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://menus/JoypadMotionActions.gd" type="Script" id=9]
 [ext_resource path="res://menus/options-menu/h-slider-button/HSliderButton.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
@@ -307,6 +308,9 @@ autoplay = "float"
 anims/float = SubResource( 5 )
 
 [node name="BackIndicator" parent="." instance=ExtResource( 8 )]
+
+[node name="JoypadMotionActions" type="Node" parent="."]
+script = ExtResource( 9 )
 
 [connection signal="toggled" from="Resolution/Box/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="item_selected" from="Resolution/Box/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
