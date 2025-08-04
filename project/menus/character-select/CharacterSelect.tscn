@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/images/elements/obstacles/roof.png" type="Texture" id=11]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://menus/character-select/SelectionBox.tscn" type="PackedScene" id=13]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=14]
+[ext_resource path="res://menus/back-indicator/BackIndicator.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/images/ui/startbt.png" type="Texture" id=15]
 [ext_resource path="res://menus/tutorial/Tutorial.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sound/sfx/menu_denied.wav" type="AudioStream" id=17]
@@ -216,5 +216,7 @@ volume_db = -5.362
 [node name="RaceSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 20 )
 volume_db = -5.362
+
+[connection signal="completed" from="BackIndicator" to="." method="_on_BackIndicator_completed"]
 
 [editable path="BackIndicator"]

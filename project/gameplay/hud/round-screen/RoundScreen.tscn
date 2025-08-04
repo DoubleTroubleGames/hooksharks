@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://gameplay/hud/round-screen/RoundScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/round-screen/gatebasic.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/sound/sfx/outsider/loc_narrator_theoutsider_wins.wav" type="AudioStream" id=21]
 [ext_resource path="res://assets/sound/bgm/endgame.ogg" type="AudioStream" id=22]
 [ext_resource path="res://assets/sound/sfx/loc_narrator_no_contest.wav" type="AudioStream" id=23]
+[ext_resource path="res://menus/JoypadMotionActions.gd" type="Script" id=24]
 
 [sub_resource type="DynamicFont" id=1]
 size = 256
@@ -278,3 +279,6 @@ bus = "BGM"
 stream = ExtResource( 23 )
 volume_db = 5.0
 bus = "SFX"
+
+[node name="JoypadMotionActions" type="Node" parent="."]
+script = ExtResource( 24 )

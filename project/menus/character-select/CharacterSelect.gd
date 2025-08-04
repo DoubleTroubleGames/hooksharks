@@ -1,15 +1,11 @@
 extends Control
 
 onready var boxes = $Boxes.get_children()
-onready var bar = $BackIndicator/Progress
-onready var anim_player = $BackIndicator/AnimationPlayer
 
 export (bool)var tutorial = false
 
 var available_characters
 var starting_game = false
-var back_indicator_up_speed = 100
-var back_indicator_down_speed = 150
 var tutorial_shown = false
 
 
@@ -39,22 +35,6 @@ func _on_transition_out() -> void:
 		$Sounds/ArenaSFX.play()
 	elif RoundManager.gamemode == "Race":
 		$Sounds/RaceSFX.play()
-
-
-func _physics_process(delta):
-	if Input.is_action_pressed("ui_cancel") and not tutorial_shown:
-		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
-	else:
-		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
-	
-	if bar.value >= 100:
-		Transition.transition_to("ModeSelect")
-	elif bar.value > 20:
-		if anim_player.assigned_animation != "show":
-			anim_player.play("show")
-	elif bar.value < 1:
-		if anim_player.assigned_animation == "show":
-			anim_player.play("hide")
 
 
 func _input(event):
@@ -132,6 +112,10 @@ func hide_start_message():
 		Twn.interpolate_property($StartMessage, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 		Twn.interpolate_property($StartMessage, "position:y", 220, -400, .5, Tween.TRANS_CUBIC, Tween.EASE_IN)
 		Twn.start()
+
+
+func _on_BackIndicator_completed() -> void:
+	Transition.transition_to("ModeSelect")
 
 
 func _on_box_selected(character):

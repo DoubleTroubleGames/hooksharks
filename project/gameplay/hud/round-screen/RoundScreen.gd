@@ -48,8 +48,6 @@ const BACKGROUND_Y = -108
 const BACKGROUND_OFFSCREEN_Y = -2000
 const OFFSET_X = -96
 
-onready var _moved_up = false
-onready var _moved_down = false
 onready var _click_to_continue = false
 
 
@@ -67,22 +65,6 @@ func _ready():
 	for i in range(RoundManager.players_total):
 		set_player_sticker(i)
 
-
-func _process(delta):
-	if not _moved_up and Input.is_action_just_pressed("ui_joy_up"):
-		_moved_up = true
-		var cur_focus = $Background/Buttons.get_focus_owner()
-		if cur_focus and cur_focus.focus_neighbour_top:
-			cur_focus.get_node(cur_focus.focus_neighbour_top).grab_focus()
-	if not _moved_down and Input.is_action_just_pressed("ui_joy_down"):
-		_moved_down = true
-		var cur_focus = $Background/Buttons.get_focus_owner()
-		if cur_focus and cur_focus.focus_neighbour_bottom:
-			cur_focus.get_node(cur_focus.focus_neighbour_bottom).grab_focus()
-	if _moved_up and Input.is_action_just_released("ui_joy_up"):
-		_moved_up = false
-	if _moved_down and Input.is_action_just_released("ui_joy_down"):
-		_moved_down = false
 
 func _input(event):
 	if (event.is_action_pressed("ui_select") or event.is_action_pressed("ui_select")) and _click_to_continue:

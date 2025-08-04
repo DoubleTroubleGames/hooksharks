@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/images/openingtitle.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/permanent_marker-regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://gameplay/camera/Camera.gd" type="Script" id=5]
-[ext_resource path="res://gameplay/hud/BackIndicator.tscn" type="PackedScene" id=6]
+[ext_resource path="res://menus/back-indicator/BackIndicator.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/images/Hook_logo_out.png" type="Texture" id=7]
 [ext_resource path="res://assets/sound/sfx/intro_title_first_part.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/sfx/intro_title_second_part.wav" type="AudioStream" id=9]
@@ -94,6 +94,9 @@ wait_time = 3.0
 one_shot = true
 
 [node name="BackIndicator" parent="." instance=ExtResource( 6 )]
+text = "Hold to quit"
+up_time_sec = 2.0
+down_time_sec = 2.0
 
 [node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -128,3 +131,4 @@ volume_db = -4.289
 bus = "SFX"
 
 [connection signal="timeout" from="PressStartTimer" to="." method="_on_PressStartTimer_timeout"]
+[connection signal="completed" from="BackIndicator" to="." method="_on_BackIndicator_completed"]

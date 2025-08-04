@@ -1,10 +1,5 @@
 extends Control
 
-onready var _moved_left = false
-onready var _moved_right = false
-onready var _moved_up = false
-onready var _moved_down = false
-
 const WAVE_LENGTH = 0.8
 const SPEED = 5
 
@@ -16,37 +11,6 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Transition.transition_to("MainMenu")
-
-
-func _process(delta):
-	if not _moved_left and Input.is_action_just_pressed("ui_joy_left"):
-		_moved_left = true
-		var cur_focus = self.get_focus_owner()
-		if cur_focus and cur_focus.focus_neighbour_left:
-			cur_focus.get_node(cur_focus.focus_neighbour_left).grab_focus()
-	if not _moved_right and Input.is_action_just_pressed("ui_joy_right"):
-		_moved_right = true
-		var cur_focus = self.get_focus_owner()
-		if cur_focus and cur_focus.focus_neighbour_right:
-			cur_focus.get_node(cur_focus.focus_neighbour_right).grab_focus()
-	if not _moved_up and Input.is_action_just_pressed("ui_joy_up"):
-		_moved_up = true
-		var cur_focus = self.get_focus_owner()
-		if cur_focus and cur_focus.focus_neighbour_top:
-			cur_focus.get_node(cur_focus.focus_neighbour_top).grab_focus()
-	if not _moved_down and Input.is_action_just_pressed("ui_joy_down"):
-		_moved_down = true
-		var cur_focus = self.get_focus_owner()
-		if cur_focus and cur_focus.focus_neighbour_bottom:
-			cur_focus.get_node(cur_focus.focus_neighbour_bottom).grab_focus()
-	if _moved_left and Input.is_action_just_released("ui_joy_left"):
-		_moved_left = false
-	if _moved_right and Input.is_action_just_released("ui_joy_right"):
-		_moved_right = false
-	if _moved_up and Input.is_action_just_released("ui_joy_up"):
-		_moved_up = false
-	if _moved_down and Input.is_action_just_released("ui_joy_down"):
-		_moved_down = false
 
 
 func _on_transition_in() -> void:

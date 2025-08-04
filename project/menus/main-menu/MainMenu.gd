@@ -4,20 +4,15 @@ onready var camera = $Camera2D
 onready var title = $Title
 onready var tween = $Tween
 onready var title_pos = title.rect_position
-onready var bar = $BackIndicator/Progress
-onready var anim_player = $BackIndicator/AnimationPlayer
 
 const TITLE_OFFSET = Vector2(5000, 0)
 const TITLE_DELAY = .5
 const GLOW_DURATION = 1
 
 var title_shown = false
-var back_indicator_up_speed = 50
-var back_indicator_down_speed = 50
 
 
 func _ready():
-	$BackIndicator/Message.text = "Hold to quit"
 	title.rect_position = title.rect_position -\
 			TITLE_OFFSET.rotated(deg2rad(title.rect_rotation))
 	
@@ -41,21 +36,6 @@ func _input(event):
 			show_title()
 		else:
 			change_screen()
-
-
-func _physics_process(delta):
-	if Input.is_action_pressed("ui_cancel"):
-		bar.value = min(100, bar.value + back_indicator_up_speed*delta)
-	else:
-		bar.value = max(0, bar.value - back_indicator_down_speed * delta)
-	
-	if bar.value >= 100:
-		get_tree().quit()
-	elif bar.value > 0:
-		if anim_player.assigned_animation != "show":
-			anim_player.play("show")
-	elif anim_player.assigned_animation == "show":
-			anim_player.play("hide")
 
 
 func show_title():
@@ -84,6 +64,10 @@ func show_title():
 func change_screen():
 	$StartPressSFX.play()
 	Transition.transition_to("ModeSelect")
+
+
+func _on_BackIndicator_completed() -> void:
+	get_tree().quit()
 
 
 func _on_transition_in() -> void:
