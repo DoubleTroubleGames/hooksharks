@@ -447,19 +447,24 @@ position = Vector2( 0, -210 )
 
 [node name="SFX1" type="AudioStreamPlayer" parent="DeathSFXs"]
 stream = ExtResource( 5 )
+bus = "SFX"
 
 [node name="HitSFXs" type="Node" parent="."]
 
 [node name="SFX1" type="AudioStreamPlayer" parent="HitSFXs"]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="ExplosionSFXs" type="Node" parent="."]
 
 [node name="ExplosionSFX1" type="AudioStreamPlayer" parent="ExplosionSFXs"]
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [node name="ExplosionSFX2" type="AudioStreamPlayer" parent="ExplosionSFXs"]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [node name="ExplosionSFX3" type="AudioStreamPlayer" parent="ExplosionSFXs"]
 stream = ExtResource( 9 )
+bus = "SFX"

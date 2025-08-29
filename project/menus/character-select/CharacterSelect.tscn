@@ -204,18 +204,22 @@ anims/show = SubResource( 3 )
 [node name="DenySFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 17 )
 volume_db = -6.058
+bus = "SFX"
 
 [node name="PressStartSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 18 )
 volume_db = -5.361
+bus = "SFX"
 
 [node name="ArenaSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 19 )
 volume_db = -5.362
+bus = "SFX"
 
 [node name="RaceSFX" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 20 )
 volume_db = -5.362
+bus = "SFX"
 
 [connection signal="completed" from="BackIndicator" to="." method="_on_BackIndicator_completed"]
 
