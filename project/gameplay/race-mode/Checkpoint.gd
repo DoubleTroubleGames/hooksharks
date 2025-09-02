@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var stage = get_parent().get_parent()
-
 export(int, 1, 20, 1) var number = 1
+
+onready var stage = get_parent().get_parent()
 
 
 func get_respawn_position(player_number):

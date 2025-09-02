@@ -61,14 +61,7 @@ func stop() -> void:
 
 func tween_to(value: float, time_sec: float) -> void:
 	tween.remove_all()
-	tween.interpolate_property(
-			bar,
-			"value",
-			bar.value,
-			value,
-			time_sec,
-			Tween.TRANS_LINEAR
-	)
+	tween.interpolate_property(bar, "value", bar.value, value, time_sec, Tween.TRANS_LINEAR)
 	tween.start()
 
 

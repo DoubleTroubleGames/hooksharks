@@ -28,27 +28,29 @@ var shake_factor = 0
 var target = null
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if target:
 		position = target.position
+
 
 func _process(delta):
 	if screen_shake == 0:
 		offset = Vector2()
 		set_process(false)
 		return
-	
+
 	shake_factor = pow(screen_shake, exponent)
-	
+
 	var to_offset_x = rand_range(-1, 1) * shake_factor * max_offset_x
 	var to_offset_y = rand_range(-1, 1) * shake_factor * max_offset_y
 	var to_rotation = rand_range(-1, 1) * shake_factor * max_angle
-	
+
 	offset.x = lerp(offset.x, to_offset_x, violence)
 	offset.y = lerp(offset.y, to_offset_y, violence)
 	rotation_degrees = lerp(rotation_degrees, to_rotation, violence)
-	
+
 	screen_shake = max(0, screen_shake - dec_ratio * delta)
+
 
 func add_shake(shake):
 	screen_shake = min(1, screen_shake + shake)

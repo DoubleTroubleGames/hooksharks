@@ -2,18 +2,18 @@ extends Control
 
 signal selected(character)
 signal unselected(character)
-signal closed()
+signal closed
 signal tried_to_start
 
-enum MovementTypes {DIRECT, TANK}
-enum States {INACTIVE, CLOSED, OPEN, READY, LOCKED}
+enum MovementTypes { DIRECT, TANK }
+enum States { INACTIVE, CLOSED, OPEN, READY, LOCKED }
 
 const CHARACTERS = ["jackie", "drill", "king", "outsider"]
 const PORTRAITS = [
-		preload("res://assets/images/characters/jackie/portrait.png"),
-		preload("res://assets/images/characters/drill/portrait.png"),
-		preload("res://assets/images/characters/king/portrait.png"),
-		preload("res://assets/images/characters/outsider/portrait.png"),
+	preload("res://assets/images/characters/jackie/portrait.png"),
+	preload("res://assets/images/characters/drill/portrait.png"),
+	preload("res://assets/images/characters/king/portrait.png"),
+	preload("res://assets/images/characters/outsider/portrait.png"),
 ]
 const DEADZONE = .55
 const DIRECT = preload("res://assets/images/ui/direct.png")
@@ -28,28 +28,34 @@ const SHARKS = {
 	"outsider": preload("res://characters/outsider/Shark.tscn"),
 }
 
-onready var char_sfx = {"jackie": $Sounds/JackieSFXs,
-		"drill": $Sounds/DrillSFXs, "king": $Sounds/KingSFXs,
-		"outsider": $Sounds/OutsiderSFXs}
-
 var available_chars = CHARACTERS.duplicate()
 var char_index = 0
 var device_name = ""
 var movement_type = MovementTypes.DIRECT
 var state = States.CLOSED
-var next_state = States.CLOSED # This is kind of redundant, and heavily depends on estabilished logic, but is useful for the grey portraits logic
+# This is kind of redundant, and heavily depends on established logic,
+# but is useful for the grey portraits logic
+var next_state = States.CLOSED
+var mid_animation = false
 var _moved_left = false
 var _moved_right = false
 var _moved_up = false
 var _moved_down = false
-var mid_animation = false
+
+onready var char_sfx = {
+	"jackie": $Sounds/JackieSFXs,
+	"drill": $Sounds/DrillSFXs,
+	"king": $Sounds/KingSFXs,
+	"outsider": $Sounds/OutsiderSFXs
+}
 
 
 func _ready():
 	set_physics_process(true)
 	$SharkSprite.hide()
 
-func _physics_process(delta):
+
+func _physics_process(_delta):
 	# This handles gamepad input
 	if device_name.left(8) != "gamepad_":
 		return
@@ -72,7 +78,7 @@ func _physics_process(delta):
 		_moved_up = false
 		_moved_down = false
 
-	if  axis_value_x <= -DEADZONE and not _moved_left:
+	if axis_value_x <= -DEADZONE and not _moved_left:
 		_moved_left = true
 		toggle_left()
 
@@ -80,7 +86,7 @@ func _physics_process(delta):
 		_moved_right = true
 		toggle_right()
 
-	elif  axis_value_y <= -DEADZONE and not _moved_up:
+	elif axis_value_y <= -DEADZONE and not _moved_up:
 		_moved_up = true
 		toggle_up()
 
@@ -246,17 +252,22 @@ func change_state(new_state):
 
 	state = next_state
 
+
 func is_inactive():
 	return state == States.INACTIVE
+
 
 func is_closed():
 	return state == States.CLOSED
 
+
 func is_open():
 	return state == States.OPEN
 
+
 func is_ready():
 	return state == States.READY
+
 
 func is_locked():
 	return state == States.LOCKED
@@ -291,7 +302,7 @@ func update_available_characters(characters):
 
 func set_character(index):
 	char_index = wrapi(index, 0, CHARACTERS.size())
-	
+
 	var grey_factor = 0
 	if not CHARACTERS[char_index] in available_chars and self.next_state != States.READY:
 		grey_factor = 1
@@ -333,32 +344,36 @@ func add_shark(shark_name):
 
 
 func change_shark():
-	var SharkTimer = $SharkSprite/SharkChangeTimer
-	
-	if SharkTimer.time_left == 0: # not dived
+	var shark_timer = $SharkSprite/SharkChangeTimer
+
+	if shark_timer.time_left == 0:  # not dived
 		dive_shark()
-	SharkTimer.start()
+	shark_timer.start()
 
 
 func emerge_shark():
-	var Twn = $SharkSprite/SharkChangeTween
-	var SharkAnim = $SharkSprite/Shark/AnimationPlayer
-	var Shark = $SharkSprite/Shark
-	
-	Twn.interpolate_property(Shark, "modulate", null, Color(1, 1, 1, 1), TWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	Twn.start()
-	SharkAnim.play("emerge")
-	SharkAnim.queue("idle")
+	var twn = $SharkSprite/SharkChangeTween
+	var shark_anim = $SharkSprite/Shark/AnimationPlayer
+	var shark = $SharkSprite/Shark
+
+	twn.interpolate_property(
+		shark, "modulate", null, Color(1, 1, 1, 1), TWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
+	)
+	twn.start()
+	shark_anim.play("emerge")
+	shark_anim.queue("idle")
 
 
 func dive_shark():
-	var Twn = $SharkSprite/SharkChangeTween
-	var SharkAnim = $SharkSprite/Shark/AnimationPlayer
-	var Shark = $SharkSprite/Shark
-	
-	Twn.interpolate_property(Shark, "modulate", null, Color(1, 1, 1, 0), TWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	Twn.start()
-	SharkAnim.play("dive")
+	var twn = $SharkSprite/SharkChangeTween
+	var shark_anim = $SharkSprite/Shark/AnimationPlayer
+	var shark = $SharkSprite/Shark
+
+	twn.interpolate_property(
+		shark, "modulate", null, Color(1, 1, 1, 0), TWN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
+	)
+	twn.start()
+	shark_anim.play("dive")
 
 
 func _on_SharkChangeTimer_timeout():

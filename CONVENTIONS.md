@@ -8,43 +8,6 @@ Avoid writing code that relies on a specific scene structure (like calling metho
 
 Follow [GDScript's official style guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html).
 
-### Order inside a .gd file
-
-	tool
-  
-	extends
-  
-	class_name
-  
-  	signal
-  
-  	onready var
-  
-	enum
-  
-	const
-  
-	export var
-  
-	var
-  
-	lifecycle functions
-		_ready
-		_input
-		_unhandled_input
-		_process
-		_physics_process
-    
-	instance functions
-  
-	funcref callbacks
-  
-	signal callbacks
-  
-	setters/getters (in pairs if needed, setter before getter)
-  
-	static functions
-
 ## Naming conventions
 
 ### Directories

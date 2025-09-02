@@ -1,9 +1,10 @@
 class_name TrailPower
 extends "res://gameplay/objects/powerups/GenericPower.gd"
 
+#const DURATION = 4
+
 var player
 
-#const DURATION = 4
 
 func init(_player):
 	self.player = _player
@@ -11,10 +12,10 @@ func init(_player):
 		activate()
 		player.emit_signal("fire_trail_started", self)
 		return true
-	else:
-		player.emit_signal("fire_trail_started", null)
-		queue_free()
-		return false
+
+	player.emit_signal("fire_trail_started", null)
+	queue_free()
+	return false
 
 
 func activate():

@@ -3,6 +3,7 @@ extends Control
 const WAVE_LENGTH = 0.8
 const SPEED = 5
 
+
 func _ready():
 	set_process(true)
 	set_process_input(false)
@@ -42,6 +43,7 @@ func _on_RacingButton_pressed():
 	$Sounds/ConfirmSFX.play()
 	Transition.transition_to("CharacterSelect")
 
+
 func _on_OptionsButton_pressed():
 	$Sounds/ConfirmSFX.play()
 	Transition.transition_to("OptionsMenu")
@@ -51,58 +53,74 @@ func _on_CreditsButton_pressed():
 	$Sounds/ConfirmSFX.play()
 	Transition.transition_to("Credits")
 
+
 func _on_ArenaButton_focus_entered():
-	fadeWaveIn($ArenaButton)
-	
-	fadeWaveOut($RacingButton)
-	fadeWaveOut($CreditsButton)
-	fadeWaveOut($OptionsButton)
-	
+	fade_wave_in($ArenaButton)
+
+	fade_wave_out($RacingButton)
+	fade_wave_out($CreditsButton)
+	fade_wave_out($OptionsButton)
+
 	$Tween.start()
 	$Sounds/SelectSFX.play()
+
 
 func _on_RacingButton_focus_entered():
-	fadeWaveIn($RacingButton)
-	
-	fadeWaveOut($ArenaButton)
-	fadeWaveOut($CreditsButton)
-	fadeWaveOut($OptionsButton)
-	
+	fade_wave_in($RacingButton)
+
+	fade_wave_out($ArenaButton)
+	fade_wave_out($CreditsButton)
+	fade_wave_out($OptionsButton)
+
 	$Tween.start()
 	$Sounds/SelectSFX.play()
 
+
 func _on_OptionsButton_focus_entered():
-	fadeWaveIn($OptionsButton)
-	
-	fadeWaveOut($ArenaButton)
-	fadeWaveOut($RacingButton)
-	fadeWaveOut($CreditsButton)
-	
+	fade_wave_in($OptionsButton)
+
+	fade_wave_out($ArenaButton)
+	fade_wave_out($RacingButton)
+	fade_wave_out($CreditsButton)
+
 	$Tween.start()
 	$Sounds/SelectSFX.play()
 
 
 func _on_CreditsButton_focus_entered():
-	fadeWaveIn($CreditsButton)
-	
-	fadeWaveOut($ArenaButton)
-	fadeWaveOut($RacingButton)
-	fadeWaveOut($OptionsButton)
-	
+	fade_wave_in($CreditsButton)
+
+	fade_wave_out($ArenaButton)
+	fade_wave_out($RacingButton)
+	fade_wave_out($OptionsButton)
+
 	$Tween.start()
 	$Sounds/SelectSFX.play()
-	
-func fadeWaveIn(button):
+
+
+func fade_wave_in(button):
 	var cur = button.get_material().get_shader_param("wave_length")
 	if cur < WAVE_LENGTH:
-		$Tween.interpolate_property(button.get_material(),
-				"shader_param/wave_length",
-				cur, WAVE_LENGTH, (WAVE_LENGTH-cur)/SPEED,
-				Tween.TRANS_LINEAR, Tween.EASE_OUT)
-func fadeWaveOut(button):
+		$Tween.interpolate_property(
+			button.get_material(),
+			"shader_param/wave_length",
+			cur,
+			WAVE_LENGTH,
+			(WAVE_LENGTH - cur) / SPEED,
+			Tween.TRANS_LINEAR,
+			Tween.EASE_OUT
+		)
+
+
+func fade_wave_out(button):
 	var cur = button.get_material().get_shader_param("wave_length")
 	if cur > 0:
-		$Tween.interpolate_property(button.get_material(), 
+		$Tween.interpolate_property(
+			button.get_material(),
 			"shader_param/wave_length",
-			cur, 0, cur/SPEED,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			cur,
+			0,
+			cur / SPEED,
+			Tween.TRANS_LINEAR,
+			Tween.EASE_OUT
+		)

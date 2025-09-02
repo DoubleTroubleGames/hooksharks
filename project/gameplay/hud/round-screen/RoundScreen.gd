@@ -3,20 +3,6 @@ extends CanvasLayer
 signal shown
 signal hidden
 
-onready var background = $Background
-onready var button_restart = $Background/Buttons/Restart
-onready var button_quit = $Background/Buttons/Quit
-onready var buttons = $Background/Buttons
-onready var display_timer = $DisplayTimer
-onready var player_scores = $Background/ScoreGrid.get_children()
-onready var round_number = $Background/Round/Number
-onready var round_label = $Background/Round/Label
-onready var tween = $Tween
-
-onready var char_sfx = {"jackie": $JackieSFXs,
-		"drill": $DrillSFXs, "king": $KingSFXs,
-		"outsider": $OutsiderSFXs}
-
 const STICKERS = {
 	"drill": preload("res://assets/images/characters/drill/sticker.png"),
 	"jackie": preload("res://assets/images/characters/jackie/sticker.png"),
@@ -29,7 +15,7 @@ const TRIVIA = [
 	"Hammerhead sharks eat nails",
 	"Sharks always swim forwards because they are afraid of looking back into their past",
 	"Sharks hunt fish without a fishing permit",
-	"Sharks can see eletricity",
+	"Sharks can see electricity",
 	"Whale sharks are not actually whales",
 	"Goblin sharks are, indeed, goblins",
 	"Cookiecutter sharks prefer icecream to cookies",
@@ -48,6 +34,19 @@ const BACKGROUND_Y = -108
 const BACKGROUND_OFFSCREEN_Y = -2000
 const OFFSET_X = -96
 
+onready var background = $Background
+onready var button_restart = $Background/Buttons/Restart
+onready var button_quit = $Background/Buttons/Quit
+onready var buttons = $Background/Buttons
+onready var display_timer = $DisplayTimer
+onready var player_scores = $Background/ScoreGrid.get_children()
+onready var round_number = $Background/Round/Number
+onready var round_label = $Background/Round/Label
+onready var tween = $Tween
+onready var char_sfx = {
+	"jackie": $JackieSFXs, "drill": $DrillSFXs, "king": $KingSFXs, "outsider": $OutsiderSFXs
+}
+
 onready var _click_to_continue = false
 
 
@@ -56,10 +55,10 @@ func _ready():
 	_click_to_continue = false
 	set_process(true)
 	background.set_position(Vector2(OFFSET_X, BACKGROUND_OFFSCREEN_Y))
-	
+
 	button_restart.connect("pressed", self, "_on_Restart_pressed")
 	button_quit.connect("pressed", self, "_on_Quit_pressed")
-	
+
 	for i in range(player_scores.size()):
 		player_scores[i].visible = i < RoundManager.players_total
 	for i in range(RoundManager.players_total):
@@ -67,16 +66,20 @@ func _ready():
 
 
 func _input(event):
-	if (event.is_action_pressed("ui_select") or event.is_action_pressed("ui_select")) and _click_to_continue:
+	if (
+		(event.is_action_pressed("ui_select") or event.is_action_pressed("ui_select"))
+		and _click_to_continue
+	):
 		_click_to_continue = false
 		hide_round()
+
 
 func show_round():
 	_click_to_continue = false
 	var player_score = null
-	
+
 	round_number.text = str(RoundManager.round_number)
-	
+
 	# Check draw
 	var is_draw = RoundManager.round_winner == -1
 	if is_draw:
@@ -87,14 +90,14 @@ func show_round():
 	if not is_draw:
 		player_score = player_scores[RoundManager.round_winner]
 		RoundManager.round_number += 1
-	
+
 	# Win condition
 	var match_winner = RoundManager.get_match_winner()
 	if match_winner == -1:
 		$Background/TriviaHeader.show()
 		$Background/TriviaHeader.modulate.a = 1
 		$Background/Trivia.show()
-		$Background/Trivia.text = getRandomTrivia()
+		$Background/Trivia.text = get_random_trivia()
 	else:
 		var color = RoundManager.CHAR_COLOR[RoundManager.character_map[match_winner]]
 		round_label.text = "Winner"
@@ -102,19 +105,20 @@ func show_round():
 		round_number.modulate = color.lightened(.4)
 		$Background/TriviaHeader.hide()
 		$Background/Trivia.hide()
-	
+
 	for score in player_scores:
 		score.crown.visible = score == player_score
-	
+
 	# Enter animation
-	tween.interpolate_property(background, "rect_position:y", null,
-			BACKGROUND_Y, 1, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	tween.interpolate_property(
+		background, "rect_position:y", null, BACKGROUND_Y, 1, Tween.TRANS_BOUNCE, Tween.EASE_OUT
+	)
 	tween.start()
 	$GateCloseSFX.play()
-	
+
 	yield(tween, "tween_completed")
 	emit_signal("shown")
-	
+
 	# Marker animation
 	if not is_draw:
 		player_score.marker_animation()
@@ -127,7 +131,7 @@ func show_round():
 		display_timer.start()
 		yield(display_timer, "timeout")
 		_click_to_continue = true
-		
+
 		$ContinueTimer.start()
 		yield($ContinueTimer, "timeout")
 		show_continue_text()
@@ -137,30 +141,46 @@ func show_round():
 
 func show_continue_text():
 	var fade_duration = .5
-	
-	tween.interpolate_property($Background/TriviaHeader, "modulate:a", 1, 0,
-			fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.interpolate_property($Background/Trivia, "modulate:a", 1, 0,
-			fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+
+	tween.interpolate_property(
+		$Background/TriviaHeader,
+		"modulate:a",
+		1,
+		0,
+		fade_duration,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN
+	)
+	tween.interpolate_property(
+		$Background/Trivia, "modulate:a", 1, 0, fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN
+	)
 	tween.start()
-	
+
 	yield(get_tree().create_timer(fade_duration), "timeout")
 	$Background/Trivia.text = "Press START to continue"
-	
-	tween.interpolate_property($Background/Trivia, "modulate:a", 0, 1,
-			fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+
+	tween.interpolate_property(
+		$Background/Trivia, "modulate:a", 0, 1, fade_duration, Tween.TRANS_LINEAR, Tween.EASE_IN
+	)
 	tween.start()
 
 
 func hide_round():
 	$ContinueTimer.stop()
-	
-	tween.interpolate_property(background, "rect_position:y", null,
-			BACKGROUND_OFFSCREEN_Y, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+
+	tween.interpolate_property(
+		background,
+		"rect_position:y",
+		null,
+		BACKGROUND_OFFSCREEN_Y,
+		1,
+		Tween.TRANS_CUBIC,
+		Tween.EASE_OUT
+	)
 	tween.start()
-	
+
 	$GateOpenSFX.play()
-	
+
 	yield(tween, "tween_completed")
 	emit_signal("hidden")
 
@@ -168,16 +188,17 @@ func hide_round():
 func win_animation(match_winner):
 	var button_pos = 880
 	buttons.show()
-	
+
 	char_sfx[RoundManager.character_map[match_winner]].get_node("Win").play()
 	char_sfx[RoundManager.character_map[match_winner]].get_node("Narrator").play()
-	
+
 	# BGM change
 	Sound.fade_out(Sound.battle_bgm, $WinMatchBGM)
-	
+
 	# Menu animation
-	tween.interpolate_property(buttons, "rect_position:y", null, button_pos,
-			DURATION, Tween.TRANS_BACK, Tween.EASE_OUT)
+	tween.interpolate_property(
+		buttons, "rect_position:y", null, button_pos, DURATION, Tween.TRANS_BACK, Tween.EASE_OUT
+	)
 	tween.start()
 
 	yield(tween, "tween_completed")
@@ -193,16 +214,16 @@ func _on_transition_in():
 
 
 func set_player_sticker(index):
-	var Sticker = get_node(str("Background/ScoreGrid/Player", index + 1, "/Portrait"))
-	var PlayerNumber = get_node(str("Background/ScoreGrid/Player", index + 1, "/PlayerNumber"))
+	var sticker = get_node(str("Background/ScoreGrid/Player", index + 1, "/Portrait"))
+	var player_number = get_node(str("Background/ScoreGrid/Player", index + 1, "/player_number"))
 	var character = RoundManager.character_map[index]
 	var char_sticker = STICKERS[character]
 	var char_color = RoundManager.CHAR_COLOR[RoundManager.character_map[index]]
-	
-	PlayerNumber.set_modulate(char_color.lightened(.4))
-	PlayerNumber.set_text(str("P", index + 1))
-	Sticker.set_modulate(char_color.lightened(.4))
-	Sticker.texture = char_sticker
+
+	player_number.set_modulate(char_color.lightened(.4))
+	player_number.set_text(str("P", index + 1))
+	sticker.set_modulate(char_color.lightened(.4))
+	sticker.texture = char_sticker
 
 
 func _on_Restart_pressed():
@@ -216,9 +237,9 @@ func _on_Quit_pressed():
 	Transition.transition_to("ModeSelect")
 
 
-func getRandomTrivia():
+func get_random_trivia():
 	var trivia = TRIVIA.pop_front()
 	TRIVIA.shuffle()
 	TRIVIA.append(trivia)
-	
+
 	return trivia

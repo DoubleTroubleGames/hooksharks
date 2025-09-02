@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 
 
 func send_event(action: String, pressed: bool) -> void:
-		var event := InputEventAction.new()
-		event.action = action
-		event.pressed = pressed
-		get_tree().input_event(event)
+	var event := InputEventAction.new()
+	event.action = action
+	event.pressed = pressed
+	get_tree().input_event(event)
