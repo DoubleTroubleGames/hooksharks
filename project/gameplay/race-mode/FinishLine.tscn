@@ -104,6 +104,7 @@ anims/float = SubResource( 1 )
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -6.245
+bus = "SFX"
 
 [connection signal="area_entered" from="LineArea" to="." method="_on_LineArea_area_entered"]
 [connection signal="hooked" from="PullableObjectBot" to="." method="_on_PullableObjectBot_hooked"]

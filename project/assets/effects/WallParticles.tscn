@@ -61,3 +61,4 @@ script = SubResource( 4 )
 stream = SubResource( 5 )
 volume_db = -6.433
 autoplay = true
+bus = "SFX"

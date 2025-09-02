@@ -40,27 +40,35 @@ stream = ExtResource( 2 )
 
 [node name="SFX2" type="AudioStreamPlayer" parent="DeathSFXs" index="1"]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="SFX3" type="AudioStreamPlayer" parent="DeathSFXs" index="2"]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="SFX4" type="AudioStreamPlayer" parent="DeathSFXs" index="3"]
 stream = ExtResource( 5 )
+bus = "SFX"
 
 [node name="SFX5" type="AudioStreamPlayer" parent="DeathSFXs" index="4"]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="SFX1" parent="HitSFXs" index="0"]
 stream = ExtResource( 7 )
 
 [node name="SFX2" type="AudioStreamPlayer" parent="HitSFXs" index="1"]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [node name="SFX3" type="AudioStreamPlayer" parent="HitSFXs" index="2"]
 stream = ExtResource( 9 )
+bus = "SFX"
 
 [node name="SFX4" type="AudioStreamPlayer" parent="HitSFXs" index="3"]
 stream = ExtResource( 10 )
+bus = "SFX"
 
 [node name="SFX5" type="AudioStreamPlayer" parent="HitSFXs" index="4"]
 stream = ExtResource( 11 )
+bus = "SFX"

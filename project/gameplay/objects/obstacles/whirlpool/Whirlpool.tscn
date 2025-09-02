@@ -42,3 +42,4 @@ texture = ExtResource( 4 )
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 autoplay = true
+bus = "SFX"
