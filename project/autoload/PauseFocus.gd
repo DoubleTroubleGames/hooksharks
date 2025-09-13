@@ -1,7 +1,6 @@
 extends Node
 # Automatically pauses/unpauses the game based on window focus.
 
-
 var _is_in_tree := false
 
 

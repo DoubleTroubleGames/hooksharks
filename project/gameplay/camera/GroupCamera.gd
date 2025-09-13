@@ -17,11 +17,12 @@ var max_limit = Vector2()
 var min_limit = Vector2()
 var point_focus = null
 
+
 func _ready():
 	set_physics_process(false)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	update_camera()
 	update()
 
@@ -35,28 +36,27 @@ func reset_focus_point():
 
 
 func update_camera():
-	
 	if not point_focus:
 		get_focus_limits()
-		
+
 		#Update camera position
 		position = min_limit + (max_limit - min_limit) / 2
 		#set_position(lerp(position, target_pos, POS_LERP))
-		
+
 		#Update camera zoom
 		var screen_size = get_tree().root.size
-		
+
 		var target_zoom = (max_limit - min_limit) / screen_size
-		
+
 		var final_zoom = max(max(target_zoom.x, target_zoom.y), MIN_ZOOM)
-		
+
 		var pre_zoom = zoom
-		
+
 		if final_zoom > zoom.x:
 			set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_OUT_LERP))
 		elif final_zoom < zoom.x - ZOOM_IN_MARGIN:
 			set_zoom(lerp(zoom, Vector2(final_zoom, final_zoom), ZOOM_IN_LERP))
-			
+
 		if pre_zoom.x <= ZOOM_THRESHOLD and zoom.x > ZOOM_THRESHOLD:
 			emit_signal("zoomed_out")
 		elif pre_zoom.x > ZOOM_THRESHOLD and zoom.x <= ZOOM_THRESHOLD:
@@ -64,13 +64,13 @@ func update_camera():
 	else:
 		set_position(lerp(position, point_focus, POS_LERP))
 		set_zoom(lerp(zoom, Vector2(WINNER_ZOOM, WINNER_ZOOM), WINNER_ZOOM_LERP))
-	
+
 
 func get_focus_limits():
 	if focuses.empty():
 		print("GroupCamera.gd: Should have at least one focus")
 		assert(false)
-	
+
 	max_limit = focuses[0].global_position
 	min_limit = focuses[0].global_position
 	for f in focuses:

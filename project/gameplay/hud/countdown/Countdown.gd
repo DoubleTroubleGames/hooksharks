@@ -1,9 +1,10 @@
 extends CanvasLayer
 
+signal go_shown
+
 onready var ready_label = $CenterContainer/Ready
 onready var go_label = $CenterContainer/Go
 
-signal go_shown
 
 func _ready():
 	pass

@@ -1,7 +1,5 @@
 extends Node2D
 
-onready var countdown = $Countdown
-
 const Explosion = preload("res://assets/effects/explosion/DeathExplosion.tscn")
 const HOOK = preload("res://gameplay/player/hook/Hook.tscn")
 const MEGAHOOK = preload("res://gameplay/objects/powerups/MegaHook.tscn")
@@ -14,11 +12,13 @@ const WALL_PARTICLES_OFFSET = 50
 export var stage_scenes = []  # Scripts that extend Game should add PackedScenes here.
 
 var hook_clink_positions = []
-var Cameras = []
+var cameras = []
 var players
 var calling_check_winner = false
 var current_stage = 0
 var available_stages = []
+
+onready var countdown = $Countdown
 
 
 func _ready():
@@ -28,34 +28,34 @@ func _ready():
 	players = stage.setup_players()
 	stage.set_name("Stage")
 	add_child(stage)
-	
-	Cameras = get_cameras() 
-	
-	setup_player_labels(Cameras[0])
-	
-	for camera in Cameras:
+
+	cameras = get_cameras()
+
+	setup_player_labels(cameras[0])
+
+	for camera in cameras:
 		if camera.has_method("reset_focus_point"):
 			camera.reset_focus_point()
-	
+
 	connect_players()
-	
+
 	if Transition.is_black_screen:
 		yield(Transition, "finished")
-	
+
 	Sound.menu_bgm.stop()
 	if not Sound.battle_bgm.playing:
 		Sound.play_battle_bgm()
 		Sound.play_ambience()
-	
+
 	for player in players:
 		player.spawn_animation()
-		
+
 	countdown.start_countdown(stage.get_stage_name(), stage.get_stage_laps())
-	
+
 	yield(countdown, "go_shown")
-	
+
 	$PlayerHUD.hide_all()
-	
+
 	activate_players()
 
 
@@ -82,7 +82,7 @@ func test_setup():
 func setup_player_labels(camera):
 	var players_dict = {}
 	for i in range(4):
-		players_dict[i+1] = players[i] if i < players.size() else null
+		players_dict[i + 1] = players[i] if i < players.size() else null
 	$PlayerHUD.set_players(players_dict, camera)
 
 
@@ -96,30 +96,29 @@ func create_rope(player, hook):
 func transition_stage():
 	var rs = $RoundScreen
 	rs.show_round()
-	
+
 	yield(rs, "shown")
 	free_current_stage()
 	add_new_stage()
 	connect_players()
-	setup_player_labels(Cameras[0])
-	
+	setup_player_labels(cameras[0])
+
 	yield(rs, "hidden")
-	
+
 	for player in players:
 		player.spawn_animation()
-	
+
 	countdown.start_countdown($Stage.get_stage_name(), $Stage.get_stage_laps())
-	
-	
+
 	yield(countdown, "go_shown")
-	
+
 	$PlayerHUD.hide_all()
-	
+
 	activate_players()
-	
+
 	var obstacles = get_node("Stage/Obstacles")
 	for obst in obstacles.get_children():
-		if obst.has_method("test_move"): # Is a MovingObstacle
+		if obst.has_method("test_move"):  # Is a MovingObstacle
 			obst.set_process(true)
 
 
@@ -133,8 +132,8 @@ func clean_all():
 
 func free_current_stage():
 	var stage = get_node("Stage")
-	stage.set_name("Old Stage") # Necessary to keep new stage from getting a name like Stage1
-	for camera in Cameras:
+	stage.set_name("Old Stage")  # Necessary to keep new stage from getting a name like Stage1
+	for camera in cameras:
 		camera.current = false
 	clean_all()
 	stage.queue_free()
@@ -145,8 +144,8 @@ func add_new_stage():
 	players = stage.setup_players()
 	stage.set_name("Stage")
 	add_child(stage)
-	Cameras = get_cameras()
-	for camera in Cameras:
+	cameras = get_cameras()
+	for camera in cameras:
 		camera.current = true
 
 
@@ -170,7 +169,7 @@ func remove_player(player):
 	players.erase(player)
 	player.set_physics_process(false)
 	player.set_process_input(false)
-	
+
 	if not calling_check_winner:
 		calling_check_winner = true
 		call_deferred("check_winner")
@@ -185,7 +184,7 @@ func check_winner():
 		winner.disable()
 		RoundManager.scores[winner.id] += 1
 		RoundManager.round_winner = winner.id
-		for camera in Cameras:
+		for camera in cameras:
 			if camera.has_method("focus_on_point"):
 				camera.focus_on_point(winner.get_global_position())
 	elif players.size() == 0:
@@ -193,12 +192,12 @@ func check_winner():
 	else:
 		calling_check_winner = false
 		return
-		
+
 	# Stopping moving obticles here
 	for node in $Stage/Obstacles.get_children():
 		if node.filename.find("MovingObstacle") != -1:
 			node.stop()
-	
+
 	yield(get_tree().create_timer(SHOW_ROUND_DELAY), "timeout")
 	calling_check_winner = false
 	transition_stage()
@@ -209,7 +208,7 @@ func _on_player_hook_shot(player, direction):
 	new_hook.init(player, direction.normalized())
 	new_hook.rope = create_rope(player, new_hook)
 	get_node("Stage/Hooks").add_child(new_hook)
-	for camera in Cameras:
+	for camera in cameras:
 		new_hook.connect("shook_screen", camera, "add_shake")
 	new_hook.connect("hook_clinked", self, "_on_hook_clinked")
 	new_hook.connect("wall_hit", self, "_on_wall_hit")
@@ -221,7 +220,7 @@ func _on_player_hook_shot(player, direction):
 func _on_player_megahook_shot(player, direction):
 	var explosion = Explosion.instance()
 	var angle = Vector2(cos(player.sprite.rotation), sin(player.sprite.rotation))
-	
+
 	call_deferred("shoot_megahook", player, direction)
 	explosion.position = player.position + player.rider_offset * angle
 	get_node("Stage/Trails").add_child(explosion)
@@ -231,32 +230,32 @@ func _on_player_megahook_shot(player, direction):
 
 func shoot_megahook(player, direction):
 	var megahook = player.get_node("PowerUps/MegaHook")
-	
+
 	player.get_node("PowerUps").remove_child(megahook)
 	if megahook and is_instance_valid(megahook):
 		megahook.set_name("old_MegaHook")
 	get_node("Stage/Hooks").add_child(megahook)
 	megahook.set_owner(get_node("Stage/Hooks"))
 	megahook.activate(direction.normalized())
-	megahook.scale = Vector2(2/.6,2/.6)
+	megahook.scale = Vector2(2 / .6, 2 / .6)
 
 
 func _on_player_watermine_released(player):
 	var watermine = player.get_node("PowerUps/WaterMine")
-	
+
 	player.get_node("PowerUps").remove_child(watermine)
 	watermine.set_name("old_WaterMine")
 	get_node("Stage/Obstacles").add_child(watermine)
 	watermine.set_owner(get_node("Stage/Obstacles"))
-	watermine.activate() 
+	watermine.activate()
 
 
 func _on_hook_clinked(clink_position):
 	if clink_position in hook_clink_positions:
 		return
-	
+
 	$ScreenBlink.blink()
-	
+
 	var hook_clink = HOOK_CLINK.instance()
 	hook_clink.emitting = true
 	hook_clink.position = clink_position
@@ -275,8 +274,7 @@ func _on_wall_hit(position, rotation, color):
 	var wall_particles = WALL_PARTICLES.instance()
 	wall_particles.emitting = true
 	wall_particles.rotation = rotation
-	wall_particles.position = position +\
-			(Vector2.LEFT * WALL_PARTICLES_OFFSET).rotated(rotation)
+	wall_particles.position = position + (Vector2.LEFT * WALL_PARTICLES_OFFSET).rotated(rotation)
 	wall_particles.set_color(color)
 	add_child(wall_particles)
 
@@ -291,5 +289,4 @@ func _on_player_created_trail(trail):
 
 
 func _on_player_spawned(id):
-	$PlayerHUD.show_indicator(id+1)
-
+	$PlayerHUD.show_indicator(id + 1)

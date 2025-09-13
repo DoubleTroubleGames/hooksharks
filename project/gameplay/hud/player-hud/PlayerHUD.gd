@@ -1,9 +1,16 @@
 extends CanvasLayer
 
-onready var hud = [null, $P1, $P2, $P3, $P4]
-
 var player_dict
 var camera
+
+onready var hud = [null, $P1, $P2, $P3, $P4]
+
+
+func _physics_process(_delta):
+	for p in player_dict:
+		if player_dict[p] and is_instance_valid(player_dict[p]):
+			hud[p].rect_position = player_dict[p].get_global_transform_with_canvas().origin
+
 
 func set_players(player_dict, camera):
 	self.camera = camera
@@ -17,25 +24,21 @@ func set_players(player_dict, camera):
 			player_dict[p].connect("dive_hide", hud[p], "_on_dive_hide")
 			player_dict[p].connect("fire_trail_started", hud[p], "_on_fire_trail_started")
 			player_dict[p].connect("infinite_dive_started", hud[p], "_on_infinite_dive_started")
-			hud[p].set_player_color(RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]])
+			hud[p].set_player_color(
+				RoundManager.CHAR_COLOR[RoundManager.character_map[player_dict[p].id]]
+			)
 		else:
 			hud[p].hide()
 
 
-func _physics_process(delta):
-	for p in player_dict:
-		if player_dict[p] and is_instance_valid(player_dict[p]):
-			hud[p].rect_position = player_dict[p].get_global_transform_with_canvas().origin
-
-
 func show_all():
 	for i in range(4):
-		hud[i+1].indicator_showing = true
+		hud[i + 1].indicator_showing = true
 
 
 func hide_all():
 	for i in range(4):
-		hud[i+1].indicator_showing = false
+		hud[i + 1].indicator_showing = false
 
 
 func show_indicator(player_number):

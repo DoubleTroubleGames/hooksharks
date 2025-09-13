@@ -29,7 +29,7 @@ func init(player, direction):
 	self.direction = direction
 	self.position = player.position
 	self.position += player.rider_offset * angle
-	self.speed += self.player.speed2.length()*SPEED_MOD
+	self.speed += self.player.speed2.length() * SPEED_MOD
 	sprite = get_node(RoundManager.character_map[player.id].capitalize())
 	sprite.visible = true
 	sprite.rotation = direction.angle()
@@ -51,7 +51,7 @@ func _physics_process(delta):
 		position += direction * min(delta * speed * .3, position.distance_to(player.position))
 		if position.distance_to(player.position) <= kill_distance:
 			pulling_object.remove_hook()
-			if pulling_object.is_in_group('powerup'):
+			if pulling_object.is_in_group("powerup"):
 				pulling_object.activate(player)
 			free_hook()
 
@@ -70,7 +70,7 @@ func hit_hook(other_hook):
 	retract()
 	emit_signal("shook_screen", SCREEN_SHAKE_HOOK_HIT)
 	emit_signal("hook_clinked", (other_hook.position + self.position) / 2)
-	
+
 	rope.straighten()
 
 
@@ -82,7 +82,7 @@ func hit_object(object):
 	if not pulling_object:
 		object.set_hook(self)
 		pulling_object = object
-	
+
 	rope.straighten()
 
 
@@ -93,7 +93,7 @@ func hit_shark(shark):
 		stop_at = shark
 		shark.hook_collision(self)
 		emit_signal("shook_screen", SCREEN_SHAKE_SHARK_HIT)
-		
+
 		rope.straighten()
 
 
@@ -103,7 +103,7 @@ func hit_wall(color):
 	emit_signal("shook_screen", SCREEN_SHAKE_WALL_HIT)
 	emit_signal("wall_hit", position, sprite.rotation - PI, color)
 	has_collided = true
-	
+
 	rope.straighten()
 
 
@@ -128,7 +128,7 @@ func free_hook():
 func _on_HookArea_area_entered(area):
 	if retracting:
 		return
-	
+
 	match area.collision_layer:
 		Collision.PLAYER_ABOVE:
 			var shark = area.get_parent().get_parent()

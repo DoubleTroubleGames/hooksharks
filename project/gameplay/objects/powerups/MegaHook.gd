@@ -15,14 +15,14 @@ func init(player):
 	if not player.get_node("PowerUps").has_node("MegaHook"):
 		self.player = player
 		player.riders_hook.texture = MEGAHOOK_SPRITE
-		player.riders_hook.scale = Vector2(2,2)
-		player.riders_hook.offset = Vector2(70,0)
+		player.riders_hook.scale = Vector2(2, 2)
+		player.riders_hook.offset = Vector2(70, 0)
 		set_physics_process(false)
 		hide()
 		return true
-	else:
-		queue_free()
-		return false
+
+	queue_free()
+	return false
 
 
 func activate(direction):
@@ -30,7 +30,7 @@ func activate(direction):
 	self.direction = direction
 	self.global_position = player.get_global_position() + player.rider_offset * angle
 	$Sprite.rotation = Vector2(-direction.x, -direction.y).angle()
-	
+
 	show()
 	$ShootSFX.play()
 	$HookArea/CollisionShape2D.set_disabled(false)
@@ -41,7 +41,7 @@ func explode():
 	set_physics_process(false)
 	$HookArea/CollisionShape2D.set_deferred("disabled", true)
 	$Sprite.hide()
-	
+
 	$MegahookExplosion.emitting = true
 	$ExplosionSFX.play()
 	yield(get_tree().create_timer($MegahookExplosion.lifetime), "timeout")

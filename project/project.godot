@@ -44,7 +44,9 @@ PauseFocus="*res://autoload/PauseFocus.gd"
 
 [debug]
 
-gdscript/warnings/enable=false
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 

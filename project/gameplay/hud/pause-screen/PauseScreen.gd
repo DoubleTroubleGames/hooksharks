@@ -1,42 +1,47 @@
 extends CanvasLayer
 
-onready var background = $Background
-onready var buttons = [$Background/CenterContainer/VBoxContainer/Resume,
-		$Background/CenterContainer/VBoxContainer/Quit]
-onready var player_label = $Background/CenterContainer/VBoxContainer/HBoxContainer/Player
-
-enum {RESUME, QUIT}
+enum { RESUME, QUIT }
 
 const DEADZONE = .55
 
 var btn_index = 0
 var player_device = "keyboard"
 var players
+
+onready var background = $Background
+onready var buttons = [
+	$Background/CenterContainer/VBoxContainer/Resume, $Background/CenterContainer/VBoxContainer/Quit
+]
+onready var player_label = $Background/CenterContainer/VBoxContainer/HBoxContainer/Player
+
 onready var _moved_up = false
 onready var _moved_down = false
+
 
 func _ready():
 	set_process_input(false)
 	set_process(false)
 
-func _process(delta):
+
+func _process(_delta):
 	if player_device.left(8) == "gamepad_":
-			var device_n = int(player_device.right(8))
-			var axis_value = Input.get_joy_axis(device_n, 1)
-			if axis_value >= DEADZONE and not _moved_down:
-				_moved_down = true
-				change_button(+1)
-			elif  axis_value <= -DEADZONE and not _moved_up:
-				_moved_up = true
-				change_button(-1)
-			if abs(axis_value) < DEADZONE:
-				_moved_down = false
-				_moved_up = false
+		var device_n = int(player_device.right(8))
+		var axis_value = Input.get_joy_axis(device_n, 1)
+		if axis_value >= DEADZONE and not _moved_down:
+			_moved_down = true
+			change_button(+1)
+		elif axis_value <= -DEADZONE and not _moved_up:
+			_moved_up = true
+			change_button(-1)
+		if abs(axis_value) < DEADZONE:
+			_moved_down = false
+			_moved_up = false
+
 
 func _input(event):
 	if RoundManager.get_device_name_from(event) != player_device:
 		return
-	
+
 	if event.is_action_pressed("ui_up"):
 		change_button(-1)
 	elif event.is_action_pressed("ui_down"):
@@ -65,14 +70,7 @@ func press_button():
 			Transition.transition_to("ModeSelect")
 
 
-func _on_transition_in() -> void:
-	set_process_input(false)
-	set_process(false)
-	Sound.stop_ambience()
-	Sound.fade_out(Sound.battle_bgm, Sound.menu_bgm)
-
-
-func _allow_set_pause() -> bool:
+func allow_set_pause() -> bool:
 	# PauseScreen will keep the game paused if an unpause attempt includes an
 	# unpause_priority less than 0. This allows scripts that would otherwise
 	# automatically unpause the game to leave that action to PauseScreen.
@@ -80,6 +78,13 @@ func _allow_set_pause() -> bool:
 		return false
 
 	return true
+
+
+func _on_transition_in() -> void:
+	set_process_input(false)
+	set_process(false)
+	Sound.stop_ambience()
+	Sound.fade_out(Sound.battle_bgm, Sound.menu_bgm)
 
 
 func _on_set_pause(should_pause: bool) -> void:

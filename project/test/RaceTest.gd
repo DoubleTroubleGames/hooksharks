@@ -1,9 +1,8 @@
 extends "res://gameplay/race-mode/Race.gd"
 
+enum MovementTypes { DIRECT, TANK }
 
-enum MovementTypes {DIRECT, TANK}
-
-export (PackedScene)var TestStage
+export(PackedScene) var test_stage
 
 
 func test_setup():
@@ -19,8 +18,8 @@ func test_setup():
 
 
 func get_first_stage():
-	return TestStage
+	return test_stage
 
 
 func get_random_stage():
-	return TestStage
+	return test_stage

@@ -1,9 +1,5 @@
 extends CanvasLayer
 
-onready var tw = $Tween
-onready var lower_jaw = $Jaw/Lower
-onready var upper_jaw = $Jaw/Upper
-
 signal finished
 
 const KEYWORDS = ["current"]
@@ -27,12 +23,16 @@ var lower_initial_y
 var upper_final_y
 var upper_initial_y
 
+onready var tw = $Tween
+onready var lower_jaw = $Jaw/Lower
+onready var upper_jaw = $Jaw/Upper
+
 
 func _ready():
 	lower_final_y = -100
 	lower_initial_y = $Jaw.rect_size.y
 	upper_final_y = 0
-	upper_initial_y = - upper_jaw.rect_size.y
+	upper_initial_y = -upper_jaw.rect_size.y
 
 
 # Scenes that want to start a transition to another scene should call this
@@ -64,30 +64,60 @@ func transition_to(scene_name: String) -> void:
 func _transition_in() -> void:
 	$Jaw/Lower.rect_position.y = lower_initial_y
 	$Jaw/Upper.rect_position.y = upper_initial_y
-	
-	tw.interpolate_property(lower_jaw, "rect_position:y", null, lower_final_y,
-			IN_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN)
-	tw.interpolate_property(upper_jaw, "rect_position:y", null, upper_final_y,
-			IN_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN)
+
+	tw.interpolate_property(
+		lower_jaw,
+		"rect_position:y",
+		null,
+		lower_final_y,
+		IN_DURATION,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN
+	)
+	tw.interpolate_property(
+		upper_jaw,
+		"rect_position:y",
+		null,
+		upper_final_y,
+		IN_DURATION,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN
+	)
 	tw.start()
-	
+
 	$CloseSFX.play()
 
 
 func _transition_out() -> void:
 	$Jaw/Lower.rect_position.y = upper_final_y
 	$Jaw/Upper.rect_position.y = lower_final_y
-	
-	tw.interpolate_property(lower_jaw, "rect_position:y", null, lower_initial_y,
-			IN_DURATION, Tween.TRANS_QUAD, Tween.EASE_OUT, OUT_DELAY)
-	tw.interpolate_property(upper_jaw, "rect_position:y", null, upper_initial_y,
-			IN_DURATION, Tween.TRANS_QUAD, Tween.EASE_OUT, OUT_DELAY)
+
+	tw.interpolate_property(
+		lower_jaw,
+		"rect_position:y",
+		null,
+		lower_initial_y,
+		IN_DURATION,
+		Tween.TRANS_QUAD,
+		Tween.EASE_OUT,
+		OUT_DELAY
+	)
+	tw.interpolate_property(
+		upper_jaw,
+		"rect_position:y",
+		null,
+		upper_initial_y,
+		IN_DURATION,
+		Tween.TRANS_QUAD,
+		Tween.EASE_OUT,
+		OUT_DELAY
+	)
 	tw.start()
-	
+
 	$OpenSFX.play()
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	# Only finishes the transition on the second time this function is called,
 	# because of the two objects being tweened.
 	if second_callback:

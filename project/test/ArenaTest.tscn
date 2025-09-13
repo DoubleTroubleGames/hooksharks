@@ -6,5 +6,4 @@
 
 [node name="Arena" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-total_stages = 10
-TestStage = ExtResource( 3 )
+test_stage = ExtResource( 3 )

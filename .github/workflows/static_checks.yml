@@ -1,0 +1,29 @@
+name: 📊 Static Checks
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: Scony/godot-gdscript-toolkit@master
+        with:
+          version: "3.*"
+
+      - name: Formatting checks
+        run: gdformat --check .
+
+      - name: Linting checks
+        run: gdlint .
+
+      - name: Spelling checks
+        uses: codespell-project/actions-codespell@v2
+        with:
+          skip: ./addons
+          ignore_words_list: doubleclick

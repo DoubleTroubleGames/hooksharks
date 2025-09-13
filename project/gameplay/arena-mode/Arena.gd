@@ -1,7 +1,9 @@
 extends "res://gameplay/Game.gd"
 
+
 func get_cameras():
 	return [$Camera2D]
+
 
 func connect_players():
 	for player in players:
@@ -11,8 +13,9 @@ func connect_players():
 		player.connect("watermine_released", self, "_on_player_watermine_released")
 		player.connect("died", self, "remove_player")
 		player.connect("spawned", self, "_on_player_spawned")
-		for camera in Cameras:
+		for camera in cameras:
 			player.connect("shook_screen", camera, "add_shake")
+
 
 func activate_players():
 	for player in players:
